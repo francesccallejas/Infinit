@@ -119,21 +119,11 @@ nav.top {
 }
 nav.top.scrolled { border-color: var(--line); }
 
-/* Logo hidden on load, slides in from left on scroll */
 .logo-lockup {
   display: inline-flex;
   align-items: center;
   gap: 13px;
   line-height: 1;
-  opacity: 0;
-  transform: translateX(-14px);
-  transition: opacity .45s cubic-bezier(.2, .6, .2, 1), transform .45s cubic-bezier(.2, .6, .2, 1);
-  pointer-events: none;
-}
-nav.top.logo-visible .logo-lockup {
-  opacity: 1;
-  transform: translateX(0);
-  pointer-events: auto;
 }
 .logo-lockup .word {
   font-size: 34px;
