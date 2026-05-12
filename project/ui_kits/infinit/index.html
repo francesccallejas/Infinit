@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Infinit Studio — UI kit</title>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<link rel="stylesheet" href="tokens.css"/>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+</head>
+<body>
+<div id="app"></div>
+<script type="text/babel" src="Nav.jsx"></script>
+<script type="text/babel" src="Hero.jsx"></script>
+<script type="text/babel" src="Manifesto.jsx"></script>
+<script type="text/babel" src="Services.jsx"></script>
+<script type="text/babel" src="WorkGrid.jsx"></script>
+<script type="text/babel" src="Contact.jsx"></script>
+<script type="text/babel" src="Footer.jsx"></script>
+<script type="text/babel">
+function App() {
+  const [route, setRoute] = React.useState('home');
+  React.useEffect(() => { window.scrollTo({top: 0, behavior: 'instant'}); }, [route]);
+
+  // Route to advisory link in main project nav (just visual; same app stays here)
+  const navigate = (r) => { if (r === 'advisory') { window.location.href = '../infinit-advisory/index.html'; return; } setRoute(r); };
+
+  return (
+    <div className="inf-shell" data-screen-label={`Studio · ${route}`}>
+      <Nav active={route === 'home' ? 'home' : route} onNavigate={navigate} />
+      {route === 'home' && <>
+        <Hero onNavigate={navigate} />
+        <Manifesto />
+        <Services />
+        <WorkGrid onOpen={() => navigate('work')} />
+      </>}
+      {route === 'services' && <Services />}
+      {route === 'work' && <WorkGrid onOpen={() => {}}/>}
+      {route === 'contact' && <Contact />}
+      {route === 'about' && <Manifesto />}
+      <Footer practice="studio" />
+    </div>
+  );
+}
+ReactDOM.createRoot(document.getElementById('app')).render(<App/>);
+</script>
+</body>
+</html>

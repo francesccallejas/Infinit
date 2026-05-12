@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<title>Footer block</title>
+<link rel="stylesheet" href="../colors_and_type.css"/>
+<style>
+  html,body{margin:0;height:100%;}
+  .frame{height:100vh;background:var(--deep-blue);color:var(--warm-gray);padding:32px 40px;font-family:Inter,system-ui,sans-serif;display:grid;grid-template-rows:1fr auto;}
+  .top{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:24px;align-content:center;}
+  .head{font-size:42px;letter-spacing:-.02em;line-height:1.05;max-width:14ch;}
+  .head em{color:var(--light-blue);font-style:normal;}
+  .col h4{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:rgba(243,240,239,.5);font-weight:500;margin-bottom:14px;}
+  .col a{display:block;color:var(--warm-gray);text-decoration:none;font-size:13.5px;padding:4px 0;opacity:.86;}
+  .bottom{display:flex;justify-content:space-between;align-items:center;padding-top:16px;border-top:1px solid rgba(243,240,239,.12);font-size:12px;color:rgba(243,240,239,.6);}
+  .wm{display:inline-flex;align-items:center;gap:6px;color:var(--warm-gray);font-size:14px;letter-spacing:-.02em;}
+  .mark{display:inline-flex;width:14px;height:14px;border:1px solid var(--light-blue);border-radius:999px;color:var(--light-blue);align-items:center;justify-content:center;font-size:9px;}
+</style></head>
+<body>
+<div class="frame">
+  <div class="top">
+    <div class="head">Let's structure <em>what's next.</em></div>
+    <div class="col"><h4>Studio</h4><a>Strategy</a><a>Identity</a><a>Digital</a></div>
+    <div class="col"><h4>Advisory</h4><a>Architecture</a><a>Platform Strategy</a><a>Data &amp; AI</a></div>
+    <div class="col"><h4>Contact</h4><a>hello@weareinfinit.com</a><a>+34 689 022 383</a><a>Barcelona · Remote</a></div>
+  </div>
+  <div class="bottom">
+    <span class="wm">infinit <span class="mark">c</span></span>
+    <span>© 2026 Infinit. All rights reserved.</span>
+  </div>
+</div>
+</body></html>

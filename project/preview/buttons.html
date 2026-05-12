@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<title>Buttons</title>
+<link rel="stylesheet" href="../colors_and_type.css"/>
+<style>
+  html,body{margin:0;height:100%;}
+  .frame{height:100vh;background:var(--warm-gray);color:var(--deep-blue);padding:28px 40px;font-family:Inter,system-ui,sans-serif;display:flex;flex-direction:column;justify-content:center;gap:22px;}
+  .row{display:flex;gap:12px;align-items:center;}
+  .label{font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:var(--blue-gray);min-width:120px;}
+  .btn{font:inherit;font-size:14px;font-weight:500;letter-spacing:-.005em;padding:12px 20px;border-radius:6px;border:1px solid transparent;cursor:pointer;transition:all 150ms cubic-bezier(.2,.6,.2,1);display:inline-flex;align-items:center;gap:8px;}
+  .btn--primary{background:var(--deep-blue);color:var(--warm-gray);}
+  .btn--primary:hover{background:#1A2040;}
+  .btn--accent{background:var(--light-blue);color:var(--warm-gray);}
+  .btn--accent:hover{background:#1F47D6;}
+  .btn--ghost{background:transparent;color:var(--deep-blue);border-color:rgba(0,7,40,.24);}
+  .btn--ghost:hover{background:rgba(0,7,40,.04);}
+  .btn--link{padding:0;background:none;color:var(--deep-blue);border:none;border-bottom:1px solid currentColor;border-radius:0;}
+  .arrow{font-size:1.1em;line-height:1;}
+</style></head>
+<body>
+<div class="frame">
+  <div class="row"><div class="label">Primary</div><button class="btn btn--primary">Get in touch <span class="arrow">→</span></button><button class="btn btn--primary" disabled style="opacity:.4">Disabled</button></div>
+  <div class="row"><div class="label">Accent</div><button class="btn btn--accent">Start a project <span class="arrow">→</span></button></div>
+  <div class="row"><div class="label">Ghost</div><button class="btn btn--ghost">Read more <span class="arrow">→</span></button></div>
+  <div class="row"><div class="label">Inline link</div><a class="btn btn--link" href="#">View case study</a></div>
+</div>
+</body></html>

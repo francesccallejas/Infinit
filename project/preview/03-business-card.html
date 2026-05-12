@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Infinit® — Business Card</title>
+<link rel="stylesheet" href="../colors_and_type.css"/>
+<style>
+  body { margin: 0; background: var(--warm); color: var(--ink); font-family: var(--sans); }
+  .doc { max-width: 1280px; margin: 0 auto; padding: 80px 56px 120px; }
+
+  /* HEADER */
+  .head { display: grid; grid-template-columns: 1fr auto; align-items: end; gap: 64px; padding-bottom: 32px; border-bottom: 1px solid var(--line); margin-bottom: 80px; }
+  .head .lockup { display: inline-flex; align-items: center; gap: 14px; font-size: 30px; letter-spacing: -.05em; }
+  .head .lockup .reg { font-size: .45em; vertical-align: super; opacity: .55; }
+  .head h1 { font-size: 96px; line-height: .92; letter-spacing: -.04em; font-weight: 400; margin: 24px 0 0; max-width: 18ch; }
+  .head h1 .serif { font-family: var(--serif); font-weight: 300; color: var(--studio); }
+  .head .meta { font-size: 13px; letter-spacing: .14em; text-transform: uppercase; opacity: .55; text-align: right; line-height: 1.7; font-weight: 500; }
+  .head .meta .studio { color: var(--studio); opacity: 1; }
+  .head .lede { grid-column: 1 / -1; font-size: 22px; line-height: 1.5; max-width: 76ch; color: var(--blue-gray); font-weight: 300; margin-top: 32px; }
+  .head .lede .ink { color: var(--ink); }
+
+  /* SECTION LABELS */
+  .label-row { display: flex; justify-content: space-between; align-items: baseline; margin: 80px 0 24px; }
+  .label-row h2 { font-size: 18px; letter-spacing: .18em; text-transform: uppercase; font-weight: 500; margin: 0; }
+  .label-row .meta { font-size: 12px; letter-spacing: .14em; text-transform: uppercase; opacity: .55; font-weight: 500; }
+
+  /* CARD MOUNT */
+  .mount { background: linear-gradient(180deg, #EFEAE7 0%, #E6E0DD 100%); border-radius: 8px;
+           padding: 72px 56px; display: grid; gap: 56px; place-items: center;
+           grid-template-columns: 1fr 1fr; box-shadow: inset 0 1px 0 rgba(255,255,255,.5); }
+  .mount.dark { background: linear-gradient(180deg, #0E1126 0%, #06091C 100%); box-shadow: inset 0 1px 0 rgba(255,255,255,.05); }
+
+  /* CARD — physical 85 × 55 mm, 1.545 aspect ratio. Rendered at 540 × 350. */
+  .card { width: 540px; height: 350px; border-radius: 8px; position: relative;
+          background: var(--warm-50);
+          box-shadow:
+            0 1px 1px rgba(0,4,28,.04),
+            0 6px 14px -4px rgba(0,4,28,.18),
+            0 30px 60px -20px rgba(0,4,28,.35);
+          overflow: hidden; }
+  .card.front { background: var(--warm-50); color: var(--ink); padding: 36px 40px; display: grid; grid-template-rows: auto 1fr auto; }
+  .card.back  { background: var(--deep); color: var(--warm); padding: 36px 40px; display: grid; grid-template-rows: auto 1fr auto; }
+  .card.back.studio { background: var(--studio); color: var(--warm); }
+
+  /* FRONT layout */
+  .card .lockup-lg { display: inline-flex; align-items: center; gap: 10px; font-size: 26px; letter-spacing: -.05em; line-height: 1; }
+  .card .lockup-lg .reg { font-size: .45em; vertical-align: super; opacity: .55; }
+  .card .top-meta { display: flex; justify-content: space-between; align-items: center; }
+  .card .top-meta .pill { font-size: 9px; padding: 4px 10px; border: 1px solid currentColor; border-radius: 999px; letter-spacing: .18em; text-transform: uppercase; opacity: .55; font-weight: 500; }
+  .card .name-block { align-self: center; display: grid; gap: 6px; }
+  .card .name-block .name { font-size: 28px; letter-spacing: -.022em; font-weight: 400; line-height: 1; }
+  .card .name-block .role { font-family: var(--serif); font-weight: 300; font-style: italic; font-size: 16px; color: var(--studio); letter-spacing: -.005em; }
+  .card .ftr { display: grid; grid-template-columns: 1fr auto; align-items: end; gap: 24px; font-size: 11px; line-height: 1.5; }
+  .card .ftr .col { display: grid; gap: 2px; letter-spacing: -.002em; }
+  .card .ftr .col.right { text-align: right; opacity: .65; letter-spacing: .04em; }
+  .card .ftr .col .lbl { font-size: 8px; letter-spacing: .2em; text-transform: uppercase; opacity: .55; font-weight: 500; margin-bottom: 2px; }
+  .card .ftr a { color: inherit; }
+
+  /* BACK layout */
+  .card.back .massive { align-self: center; justify-self: center; display: grid; gap: 14px; place-items: center; }
+  .card.back .massive svg { display: block; }
+  .card.back .tag { font-size: 9px; letter-spacing: .26em; text-transform: uppercase; opacity: .55; font-weight: 500; text-align: center; }
+  .card.back .top { display: flex; justify-content: space-between; font-size: 9px; letter-spacing: .2em; text-transform: uppercase; opacity: .55; font-weight: 500; }
+  .card.back .bot { display: flex; justify-content: space-between; font-size: 10px; letter-spacing: .04em; opacity: .55; line-height: 1.5; }
+  .card.back .bot .ser { font-family: var(--mono); }
+  .card.back .scale { font-family: var(--serif); font-weight: 300; font-style: italic; font-size: 26px; color: var(--studio); letter-spacing: -.015em; }
+
+  /* Spec strip below */
+  .spec { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; padding-top: 32px; margin-top: 48px; border-top: 1px solid var(--line); }
+  .spec .cell { display: grid; gap: 6px; }
+  .spec .cell .k { font-size: 10px; letter-spacing: .2em; text-transform: uppercase; opacity: .55; font-weight: 500; }
+  .spec .cell .v { font-size: 15px; letter-spacing: -.005em; color: var(--ink); }
+  .spec .cell .v .mono { font-family: var(--mono); font-size: 13px; }
+
+  /* Detail rows */
+  .detail-row { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; padding-top: 32px; margin-top: 56px; border-top: 1px solid var(--line); }
+  .detail-row h4 { font-size: 14px; letter-spacing: .18em; text-transform: uppercase; opacity: .55; margin: 0 0 14px; font-weight: 500; }
+  .detail-row p { font-size: 16px; line-height: 1.6; color: var(--blue-gray); font-weight: 300; }
+  .detail-row p .ink { color: var(--ink); }
+
+  /* Stack mockup */
+  .stack-row { margin-top: 80px; padding: 64px 40px; background: linear-gradient(180deg, #E6DFD7 0%, #D6CDC2 100%); border-radius: 8px; display: grid; place-items: center; }
+  .stack { position: relative; width: 540px; height: 380px; }
+  .stack .c { position: absolute; width: 540px; height: 350px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,4,28,.08), 0 12px 30px -6px rgba(0,4,28,.25); }
+  .stack .c.c1 { top: 0; left: 0; transform: rotate(-3deg); background: var(--deep); padding: 36px 40px; color: var(--warm); display: grid; grid-template-rows: auto 1fr auto; }
+  .stack .c.c2 { top: 8px; left: 18px; transform: rotate(1deg); background: var(--studio); padding: 36px 40px; color: var(--warm); display: grid; grid-template-rows: auto 1fr auto; }
+  .stack .c.c3 { top: 20px; left: 32px; transform: rotate(4deg); background: var(--warm-50); padding: 36px 40px; display: grid; grid-template-rows: auto 1fr auto; }
+
+</style>
+</head>
+<body>
+
+<div class="doc">
+
+  <!-- HEADER -->
+  <header class="head">
+    <div>
+      <span class="lockup">
+        <svg width="42" height="22" viewBox="0 0 62 32" fill="none" stroke="currentColor" stroke-width="4.2"><circle cx="16" cy="16" r="13.5"/><circle cx="46" cy="16" r="13.5"/></svg>
+        infinit<span class="reg">®</span>
+      </span>
+      <h1>Business<br/><span class="serif">card.</span></h1>
+    </div>
+    <div class="meta">
+      04 / Brand System<br/>
+      <span class="studio">— Stationery</span><br/>
+      85 × 55 mm<br/>
+      2026 · V01
+    </div>
+    <p class="lede">
+      A two-sided card across three colour-ways — <span class="ink">warm canvas, deep blue, Studio Blue</span>. Same lockup, same anatomy, same imprint position. Front holds the person; back holds the mark and the line that follows it everywhere — <em>designed to scale.</em>
+    </p>
+  </header>
+
+  <!-- FRONT + BACK PRIMARY (warm + deep) -->
+  <div class="label-row">
+    <h2>— Primary · Warm front · Deep back</h2>
+    <span class="meta">A · Production reference</span>
+  </div>
+  <div class="mount">
+    <!-- FRONT -->
+    <div class="card front">
+      <div class="top-meta">
+        <span class="lockup-lg">
+          <svg width="36" height="19" viewBox="0 0 62 32" fill="none" stroke="currentColor" stroke-width="4.2"><circle cx="16" cy="16" r="13.5"/><circle cx="46" cy="16" r="13.5"/></svg>
+          infinit<span class="reg">®</span>
+        </span>
+        <span class="pill">Studio · Advisory</span>
+      </div>
+      <div class="name-block">
+        <span class="name">Francesc Callejas</span>
+        <span class="role">Founder &amp; Principal — Brand &amp; Strategy</span>
+      </div>
+      <div class="ftr">
+        <div class="col">
+          <span class="lbl">— Contact</span>
+          <a href="mailto:francesc@weareinfinit.com">francesc@weareinfinit.com</a>
+          <span>+34 600 000 000</span>
+        </div>
+        <div class="col right">
+          <span class="lbl">— Studio</span>
+          weareinfinit.com<br/>
+          Barcelona · 41°23′N
+        </div>
+      </div>
+    </div>
+
+    <!-- BACK -->
+    <div class="card back">
+      <div class="top">
+        <span>— Studio &amp; Advisory</span>
+        <span>2026</span>
+      </div>
+      <div class="massive">
+        <svg width="180" height="94" viewBox="0 0 62 32" fill="none" stroke="var(--studio)" stroke-width="4.2"><circle cx="16" cy="16" r="13.5"/><circle cx="46" cy="16" r="13.5"/></svg>
+        <span class="scale">designed to scale.</span>
+      </div>
+      <div class="bot">
+        <span>Brand &amp; Strategy · Barcelona</span>
+        <span class="ser">M—04 · A</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ALT: studio blue -->
+  <div class="label-row">
+    <h2>— Variant · Studio Blue back</h2>
+    <span class="meta">B · Higher-impact</span>
+  </div>
+  <div class="mount">
+    <!-- FRONT (same) -->
+    <div class="card front">
+      <div class="top-meta">
+        <span class="lockup-lg">
+          <svg width="36" height="19" viewBox="0 0 62 32" fill="none" stroke="currentColor" stroke-width="4.2"><circle cx="16" cy="16" r="13.5"/><circle cx="46" cy="16" r="13.5"/></svg>
+          infinit<span class="reg">®</span>
+        </span>
+        <span class="pill">Studio</span>
+      </div>
+      <div class="name-block">
+        <span class="name">Francesc Callejas</span>
+        <span class="role">Founder &amp; Principal — Brand &amp; Strategy</span>
+      </div>
+      <div class="ftr">
+        <div class="col">
+          <span class="lbl">— Contact</span>
+          <a href="mailto:francesc@weareinfinit.com">francesc@weareinfinit.com</a>
+          <span>+34 600 000 000</span>
+        </div>
+        <div class="col right">
+          <span class="lbl">— Studio</span>
+          weareinfinit.com<br/>
+          Barcelona · 41°23′N
+        </div>
+      </div>
+    </div>
+
+    <!-- BACK Studio -->
+    <div class="card back studio">
+      <div class="top">
+        <span>— Studio</span>
+        <span>Primary practice</span>
+      </div>
+      <div class="massive">
+        <svg width="180" height="94" viewBox="0 0 62 32" fill="none" stroke="var(--warm)" stroke-width="4.2"><circle cx="16" cy="16" r="13.5"/><circle cx="46" cy="16" r="13.5"/></svg>
+        <span class="scale" style="color: var(--warm); opacity: .9">designed to scale.</span>
+      </div>
+      <div class="bot">
+        <span>Brand &amp; Strategy · Barcelona</span>
+        <span class="ser">M—04 · B</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- SPEC -->
+  <div class="spec">
+    <div class="cell"><span class="k">Format</span><span class="v">85 × 55 mm</span></div>
+    <div class="cell"><span class="k">Stock</span><span class="v">Mohawk Superfine · 350 gsm</span></div>
+    <div class="cell"><span class="k">Print</span><span class="v">Letterpress + 1 PMS spot</span></div>
+    <div class="cell"><span class="k">Edge</span><span class="v"><span class="mono">2C5BFF</span> · Studio Blue painted</span></div>
+  </div>
+
+  <!-- DETAILS -->
+  <div class="detail-row">
+    <div>
+      <h4>— Anatomy</h4>
+      <p>Front: <span class="ink">lockup top-left, role pill top-right, name + serif role centered, two contact blocks at the foot.</span> Back: the mark sized to the same cap-height as the cover deck (~28% of card height) with the editorial line <em>designed to scale.</em> directly below in Source Serif italic, Studio Blue.</p>
+    </div>
+    <div>
+      <h4>— Colour-ways</h4>
+      <p><span class="ink">A — Warm front / Deep back</span> is the production default. <span class="ink">B — Warm front / Studio Blue back</span> is reserved for new-business and conference use. Both ship as one batch; the mix tells the brand story on the desk.</p>
+    </div>
+  </div>
+
+  <!-- STACK MOCKUP -->
+  <div class="label-row">
+    <h2>— On the desk</h2>
+    <span class="meta">Stack · scattered</span>
+  </div>
+  <div class="stack-row">
+    <div class="stack">
+      <div class="c c1">
+        <div class="top" style="display:flex;justify-content:space-between;font-size:9px;letter-spacing:.2em;text-transform:uppercase;opacity:.55;font-weight:500">
+          <span>— Advisory</span><span>2026</span>
+        </div>
+        <div style="display:grid;place-items:center;gap:14px">
+          <svg width="160" height="84" viewBox="0 0 62 32" fill="none" stroke="var(--studio)" stroke-width="4.2"><circle cx="16" cy="16" r="13.5"/><circle cx="46" cy="16" r="13.5"/></svg>
+          <span style="font-family:var(--serif);font-weight:300;font-style:italic;font-size:22px;color:var(--studio)">designed to scale.</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;font-size:10px;opacity:.55">
+          <span>Architecture · Platforms · Data &amp; AI</span><span style="font-family:var(--mono)">M—04 · A</span>
+        </div>
+      </div>
+      <div class="c c2">
+        <div style="display:flex;justify-content:space-between;font-size:9px;letter-spacing:.2em;text-transform:uppercase;opacity:.65;font-weight:500">
+          <span>— Studio</span><span>Primary</span>
+        </div>
+        <div style="display:grid;place-items:center;gap:14px">
+          <svg width="160" height="84" viewBox="0 0 62 32" fill="none" stroke="var(--warm)" stroke-width="4.2"><circle cx="16" cy="16" r="13.5"/><circle cx="46" cy="16" r="13.5"/></svg>
+          <span style="font-family:var(--serif);font-weight:300;font-style:italic;font-size:22px;color:var(--warm);opacity:.9">designed to scale.</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;font-size:10px;opacity:.6">
+          <span>Brand &amp; Strategy · Barcelona</span><span style="font-family:var(--mono)">M—04 · B</span>
+        </div>
+      </div>
+      <div class="c c3">
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <span style="display:inline-flex;align-items:center;gap:10px;font-size:24px;letter-spacing:-.05em">
+            <svg width="32" height="17" viewBox="0 0 62 32" fill="none" stroke="currentColor" stroke-width="4.2"><circle cx="16" cy="16" r="13.5"/><circle cx="46" cy="16" r="13.5"/></svg>
+            infinit<span style="font-size:.45em;vertical-align:super;opacity:.55">®</span>
+          </span>
+          <span style="font-size:9px;padding:3px 9px;border:1px solid currentColor;border-radius:999px;letter-spacing:.18em;text-transform:uppercase;opacity:.55;font-weight:500">Studio · Advisory</span>
+        </div>
+        <div style="align-self:center;display:grid;gap:4px">
+          <span style="font-size:24px;letter-spacing:-.022em;line-height:1">Francesc Callejas</span>
+          <span style="font-family:var(--serif);font-weight:300;font-style:italic;font-size:14px;color:var(--studio)">Founder &amp; Principal — Brand &amp; Strategy</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;font-size:10px;line-height:1.5">
+          <div>francesc@weareinfinit.com<br/>+34 600 000 000</div>
+          <div style="text-align:right;opacity:.6">weareinfinit.com<br/>Barcelona · 41°23′N</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

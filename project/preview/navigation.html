@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<title>Navigation</title>
+<link rel="stylesheet" href="../colors_and_type.css"/>
+<style>
+  html,body{margin:0;height:100%;}
+  .frame{height:100vh;background:var(--warm-gray);color:var(--deep-blue);font-family:Inter,system-ui,sans-serif;display:flex;flex-direction:column;justify-content:center;gap:30px;padding:0 0;}
+  .nav{display:flex;align-items:center;justify-content:space-between;padding:18px 40px;border-bottom:1px solid var(--line-on-light);}
+  .nav--dark{background:var(--deep-blue);color:var(--warm-gray);border-bottom-color:rgba(243,240,239,.12);}
+  .wm{font-size:22px;letter-spacing:-.03em;display:inline-flex;align-items:center;gap:8px;}
+  .mark{display:inline-flex;width:18px;height:18px;border:1.2px solid currentColor;border-radius:999px;align-items:center;justify-content:center;font-size:10px;font-weight:500;}
+  .links{display:flex;gap:28px;font-size:14px;color:inherit;}
+  .links a{color:inherit;opacity:.72;text-decoration:none;}
+  .links a.active{opacity:1;}
+  .cta{font-size:13px;padding:9px 14px;border-radius:6px;border:1px solid currentColor;opacity:.92;}
+</style></head>
+<body>
+<div class="frame">
+  <div class="nav">
+    <span class="wm">infinit <span class="mark">c</span></span>
+    <div class="links">
+      <a class="active">Studio</a>
+      <a>Advisory</a>
+      <a>Work</a>
+      <a>About</a>
+    </div>
+    <a class="cta">Start a project →</a>
+  </div>
+  <div class="nav nav--dark">
+    <span class="wm">infinit <span class="mark" style="color:#2C5BFF;border-color:#2C5BFF;">c</span> advisory</span>
+    <div class="links">
+      <a class="active">Architecture</a>
+      <a>Platform Strategy</a>
+      <a>Data &amp; AI</a>
+      <a>Leadership</a>
+    </div>
+    <a class="cta">Book a call →</a>
+  </div>
+</div>
+</body></html>

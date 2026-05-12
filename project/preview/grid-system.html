@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<title>Grid system</title>
+<link rel="stylesheet" href="../colors_and_type.css"/>
+<style>
+  html,body{margin:0;height:100%;}
+  .frame{height:100vh;background:var(--warm-gray);color:var(--deep-blue);padding:24px 40px;font-family:Inter,system-ui,sans-serif;display:flex;flex-direction:column;justify-content:center;gap:18px;}
+  .grid{position:relative;display:grid;grid-template-columns:repeat(12,1fr);column-gap:24px;padding:24px 32px;border:1px solid var(--line-on-light);}
+  .grid .col{height:48px;background:rgba(44,91,255,.08);border-left:1px solid rgba(44,91,255,.18);border-right:1px solid rgba(44,91,255,.18);}
+  .legend{display:flex;gap:24px;font-size:12px;color:var(--blue-gray);font-variant-numeric:tabular-nums;}
+  .legend b{color:var(--deep-blue);font-weight:500;}
+  .layout{display:grid;grid-template-columns:8fr 4fr;gap:24px;align-items:start;padding:0 32px;}
+  .layout h3{font-size:24px;letter-spacing:-.015em;font-weight:500;line-height:1.1;margin:0;}
+  .layout p{font-size:13px;color:var(--blue-gray);line-height:1.55;margin:6px 0 0;}
+</style></head>
+<body>
+<div class="frame">
+  <div class="grid">
+    <div class="col"></div><div class="col"></div><div class="col"></div><div class="col"></div>
+    <div class="col"></div><div class="col"></div><div class="col"></div><div class="col"></div>
+    <div class="col"></div><div class="col"></div><div class="col"></div><div class="col"></div>
+  </div>
+  <div class="legend"><span><b>12</b> columns</span><span><b>24px</b> gutter</span><span><b>8%</b> outer margin</span><span><b>1280–1440</b> base widths</span></div>
+  <div class="layout">
+    <h3>Long left rails of text against a short right column. The signature service-page layout.</h3>
+    <p>Aligned to columns 1–8; the right column lives on 9–12. Service lists run as a sub-grid inside the left rail.</p>
+  </div>
+</div>
+</body></html>

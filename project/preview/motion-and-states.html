@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<title>Motion & state</title>
+<link rel="stylesheet" href="../colors_and_type.css"/>
+<style>
+  html,body{margin:0;height:100%;}
+  .frame{height:100vh;background:var(--warm-gray);color:var(--deep-blue);padding:24px 40px;font-family:Inter,system-ui,sans-serif;display:flex;flex-direction:column;justify-content:center;gap:18px;}
+  .row{display:grid;grid-template-columns:180px 1fr;align-items:center;gap:24px;}
+  .label{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--blue-gray);}
+  .swatch{display:flex;gap:10px;align-items:center;font-size:13px;}
+  .demo-link{position:relative;display:inline-block;color:var(--deep-blue);padding-bottom:2px;border-bottom:1px solid var(--deep-blue);transition:opacity 150ms cubic-bezier(.2,.6,.2,1),color 150ms cubic-bezier(.2,.6,.2,1);}
+  .demo-link:hover{color:var(--light-blue);border-color:var(--light-blue);}
+  .demo-btn{padding:10px 16px;border:1px solid currentColor;border-radius:6px;background:transparent;font:inherit;font-size:13px;cursor:pointer;transition:transform 100ms cubic-bezier(.2,.6,.2,1),background 150ms,color 150ms;}
+  .demo-btn:hover{background:var(--deep-blue);color:var(--warm-gray);}
+  .demo-btn:active{transform:scale(.97);}
+  .focus{padding:10px 14px;background:#fff;border:1px solid var(--line-on-light);border-radius:6px;outline:2px solid var(--light-blue);outline-offset:2px;font-size:13px;}
+  code{font-family:ui-monospace,Menlo,monospace;font-size:12px;background:rgba(0,7,40,.05);padding:2px 6px;border-radius:3px;}
+</style></head>
+<body>
+<div class="frame">
+  <div class="row"><div class="label">Easing</div><div class="swatch"><code>cubic-bezier(0.2, 0.6, 0.2, 1)</code></div></div>
+  <div class="row"><div class="label">Durations</div><div class="swatch"><code>150ms</code> hover · <code>300ms</code> transitions · <code>700ms</code> entrances</div></div>
+  <div class="row"><div class="label">Link · hover</div><a class="demo-link" href="#">View case study →</a></div>
+  <div class="row"><div class="label">Button · press</div><button class="demo-btn">Press &amp; hold</button></div>
+  <div class="row"><div class="label">Focus ring</div><div class="focus">Tab here</div></div>
+</div>
+</body></html>

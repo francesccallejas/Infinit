@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<title>Semantic colors</title>
+<link rel="stylesheet" href="../colors_and_type.css"/>
+<style>
+  html,body{margin:0;height:100%;}
+  .frame{height:100vh;background:var(--warm-gray);color:var(--deep-blue);padding:32px 40px;font-family:Inter,system-ui,sans-serif;}
+  table{width:100%;border-collapse:collapse;font-size:13px;}
+  th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line-on-light);vertical-align:middle;}
+  th{font-weight:500;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--blue-gray);}
+  .chip{display:inline-block;width:18px;height:18px;border-radius:3px;vertical-align:middle;margin-right:10px;border:1px solid rgba(0,7,40,.08);}
+  .tok{font-family:ui-monospace,Menlo,monospace;color:var(--deep-blue);}
+  .val{font-variant-numeric:tabular-nums;color:var(--blue-gray);}
+</style></head>
+<body>
+<div class="frame">
+<table>
+  <thead><tr><th>Token</th><th>Role</th><th>Resolves to</th></tr></thead>
+  <tbody>
+    <tr><td><span class="chip" style="background:#F3F0EF"></span><span class="tok">--bg</span></td><td>Page canvas, light</td><td class="val">#F3F0EF</td></tr>
+    <tr><td><span class="chip" style="background:#000728"></span><span class="tok">--fg</span></td><td>Primary text, light</td><td class="val">#000728</td></tr>
+    <tr><td><span class="chip" style="background:#7F838B"></span><span class="tok">--fg-muted</span></td><td>Secondary text, captions</td><td class="val">#7F838B</td></tr>
+    <tr><td><span class="chip" style="background:#2C5BFF"></span><span class="tok">--accent</span></td><td>Links, mark, emphasis</td><td class="val">#2C5BFF</td></tr>
+    <tr><td><span class="chip" style="background:#1F47D6"></span><span class="tok">--accent-hover</span></td><td>Pressed / hovered link</td><td class="val">#1F47D6</td></tr>
+    <tr><td><span class="chip" style="background:rgba(0,7,40,.12);border-color:rgba(0,7,40,.2)"></span><span class="tok">--line</span></td><td>Hairline divider, light</td><td class="val">rgba(0,7,40,.12)</td></tr>
+  </tbody>
+</table>
+</div>
+</body></html>

@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<title>Primary palette</title>
+<link rel="stylesheet" href="../colors_and_type.css"/>
+<style>
+  html,body{margin:0;height:100%;}
+  .grid{height:100vh;display:grid;grid-template-columns:repeat(4,1fr);}
+  .sw{display:flex;flex-direction:column;justify-content:space-between;padding:24px;font-family:Inter,system-ui,sans-serif;font-size:13px;}
+  .sw .name{font-weight:500;}
+  .sw .hex{letter-spacing:0.04em;font-variant-numeric:tabular-nums;opacity:.7;}
+  .a{background:#F3F0EF;color:#000728;}
+  .b{background:#000728;color:#F3F0EF;}
+  .c{background:#2C5BFF;color:#F3F0EF;}
+  .d{background:#7F838B;color:#F3F0EF;}
+  .role{font-size:11px;text-transform:uppercase;letter-spacing:.12em;margin-bottom:6px;opacity:.6;}
+</style></head>
+<body>
+<div class="grid">
+  <div class="sw a"><div><div class="role">Canvas / light</div><div class="name">Warm gray</div></div><div class="hex">#F3F0EF</div></div>
+  <div class="sw b"><div><div class="role">Ink / dark canvas</div><div class="name">Deep blue</div></div><div class="hex">#000728</div></div>
+  <div class="sw c"><div><div class="role">Accent</div><div class="name">Light blue</div></div><div class="hex">#2C5BFF</div></div>
+  <div class="sw d"><div><div class="role">Muted</div><div class="name">Blue gray</div></div><div class="hex">#7F838B</div></div>
+</div>
+</body></html>

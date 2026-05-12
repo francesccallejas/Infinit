@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 80" role="img" aria-label="infinit">
+  
+  <text x="0" y="60" class="wm" font-size="72" fill="currentColor">infinit</text>
+  <g transform="translate(252,28)">
+    <circle cx="14" cy="14" r="13" fill="none" stroke="currentColor" stroke-width="1.5"></circle>
+    <text x="14" y="19" text-anchor="middle" class="wm" font-size="14" font-weight="500" fill="currentColor">c</text>
+  </g>
+</svg>

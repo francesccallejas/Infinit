@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<title>Tags & metadata chips</title>
+<link rel="stylesheet" href="../colors_and_type.css"/>
+<style>
+  html,body{margin:0;height:100%;}
+  .frame{height:100vh;background:var(--warm-gray);color:var(--deep-blue);padding:32px 40px;font-family:Inter,system-ui,sans-serif;display:flex;flex-direction:column;justify-content:center;gap:24px;}
+  .row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;}
+  .label{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--blue-gray);min-width:140px;}
+  .chip{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border:1px solid var(--line-on-light);border-radius:999px;font-size:12px;letter-spacing:.02em;}
+  .chip--solid{background:var(--deep-blue);color:var(--warm-gray);border-color:transparent;}
+  .chip--accent{background:var(--light-blue);color:var(--warm-gray);border-color:transparent;}
+  .chip--dot::before{content:"";width:6px;height:6px;border-radius:999px;background:var(--light-blue);}
+  .meta{display:flex;gap:14px;font-size:13px;color:var(--blue-gray);font-variant-numeric:tabular-nums;}
+  .meta span:not(:last-child)::after{content:" ·"; margin-left:6px;}
+</style></head>
+<body>
+<div class="frame">
+  <div class="row"><div class="label">Outline tag</div>
+    <span class="chip">Strategy</span><span class="chip">Identity</span><span class="chip">Digital</span><span class="chip">Advisory</span>
+  </div>
+  <div class="row"><div class="label">Solid</div>
+    <span class="chip chip--solid">Featured</span>
+    <span class="chip chip--accent">In progress</span>
+    <span class="chip chip--dot">Live engagement</span>
+  </div>
+  <div class="row"><div class="label">Inline metadata</div>
+    <div class="meta"><span>2025</span><span>Brand &amp; Strategy</span><span>Industrial</span><span>EU / LATAM</span></div>
+  </div>
+</div>
+</body></html>

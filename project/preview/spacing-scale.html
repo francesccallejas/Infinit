@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<title>Spacing scale</title>
+<link rel="stylesheet" href="../colors_and_type.css"/>
+<style>
+  html,body{margin:0;height:100%;}
+  .frame{height:100vh;background:var(--warm-gray);color:var(--deep-blue);padding:28px 40px;font-family:Inter,system-ui,sans-serif;display:flex;flex-direction:column;justify-content:center;gap:10px;}
+  .row{display:grid;grid-template-columns:88px 70px 1fr;align-items:center;gap:18px;font-variant-numeric:tabular-nums;}
+  .label{font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:var(--blue-gray);}
+  .val{font-size:13px;color:var(--deep-blue);}
+  .bar{height:10px;background:var(--deep-blue);}
+</style></head>
+<body>
+<div class="frame">
+  <div class="row"><div class="label">--s-1</div><div class="val">4 px</div><div class="bar" style="width:4px"></div></div>
+  <div class="row"><div class="label">--s-2</div><div class="val">8 px</div><div class="bar" style="width:8px"></div></div>
+  <div class="row"><div class="label">--s-3</div><div class="val">12 px</div><div class="bar" style="width:12px"></div></div>
+  <div class="row"><div class="label">--s-4</div><div class="val">16 px</div><div class="bar" style="width:16px"></div></div>
+  <div class="row"><div class="label">--s-5</div><div class="val">24 px</div><div class="bar" style="width:24px"></div></div>
+  <div class="row"><div class="label">--s-6</div><div class="val">32 px</div><div class="bar" style="width:32px"></div></div>
+  <div class="row"><div class="label">--s-7</div><div class="val">48 px</div><div class="bar" style="width:48px"></div></div>
+  <div class="row"><div class="label">--s-8</div><div class="val">64 px</div><div class="bar" style="width:64px"></div></div>
+  <div class="row"><div class="label">--s-9</div><div class="val">96 px</div><div class="bar" style="width:96px"></div></div>
+  <div class="row"><div class="label">--s-10</div><div class="val">128 px</div><div class="bar" style="width:128px"></div></div>
+  <div class="row"><div class="label">--s-11</div><div class="val">192 px</div><div class="bar" style="width:192px"></div></div>
+</div>
+</body></html>

@@ -1,0 +1,585 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Infinit® — Studio &amp; Advisory · Capabilities</title>
+<link rel="stylesheet" href="../colors_and_type.css"/>
+<script src="deck-stage.js"></script>
+<style>
+  :root { --slide-pad: 96px; }
+  body { margin: 0; background: #0a0a0a; }
+  deck-stage { font-family: var(--sans); }
+
+  section {
+    width: 1920px; height: 1080px;
+    background: var(--warm); color: var(--ink);
+    padding: var(--slide-pad);
+    box-sizing: border-box;
+    display: grid;
+    position: relative;
+    overflow: hidden;
+  }
+  section.dark     { background: var(--deep); color: var(--warm); }
+  section.studio   { background: var(--studio); color: var(--warm); }
+  section.sage     { background: var(--sage); color: var(--deep); }
+
+  /* ----- shared chrome ----- */
+  .wm { position: absolute; top: 56px; left: var(--slide-pad);
+        display: inline-flex; align-items: center; gap: 14px;
+        font-size: 30px; letter-spacing: -.05em; font-weight: 400; line-height: 1; }
+  .wm svg { display:block; flex-shrink: 0; }
+  .wm .reg { font-size: .5em; vertical-align: super; opacity: .55; }
+  .wm .sub { margin-left: 8px; font-size: 13px; padding: 5px 12px; border: 1px solid currentColor; border-radius: 999px; letter-spacing: .14em; text-transform: uppercase; font-weight: 500; opacity: .85; }
+
+  .corner-tr { position: absolute; top: 64px; right: var(--slide-pad);
+               font-size: 14px; letter-spacing: .18em; text-transform: uppercase; font-weight: 500; opacity: .55; }
+  .corner-br { position: absolute; bottom: 56px; right: var(--slide-pad);
+               font-size: 14px; opacity: .45; font-variant-numeric: tabular-nums; letter-spacing: .12em; font-weight: 500; }
+  .corner-bl { position: absolute; bottom: 56px; left: var(--slide-pad);
+               font-size: 15px; opacity: .55; letter-spacing: -.005em; }
+
+  .eyebrow { font-size: 16px; letter-spacing: .22em; text-transform: uppercase; opacity: .55; font-weight: 500; }
+  .eyebrow.studio { color: var(--studio); opacity: 1; }
+  .serif   { font-family: var(--serif); font-weight: 300; font-style: normal; letter-spacing: -.018em; }
+  .ital    { font-family: var(--serif); font-weight: 300; font-style: italic; }
+  .accent  { color: var(--studio); }
+
+  /* tiny pill */
+  .pill { display: inline-flex; align-items: center; gap: 8px;
+          font-size: 14px; padding: 7px 16px; border: 1px solid currentColor;
+          border-radius: 999px; letter-spacing: -.005em; }
+  .pill.studio { color: var(--studio); border-color: var(--studio); }
+
+  /* ===== 01 Cover ===== */
+  .s-cover { align-content: end; }
+  .s-cover .above { position: absolute; top: 56px; right: var(--slide-pad);
+                    display: flex; gap: 12px; align-items: center;
+                    font-size: 14px; letter-spacing: .18em; text-transform: uppercase; opacity: .6; font-weight: 500; }
+  .s-cover h1 { font-size: 380px; line-height: .88; letter-spacing: -.045em; font-weight: 400; margin: 0; }
+  .s-cover h1 .serif { font-size: 360px; color: var(--studio); }
+  .s-cover .lead { display: grid; grid-template-columns: 1fr auto; align-items: end; margin-top: 56px; padding-top: 36px; border-top: 1px solid rgba(243,240,239,.16); gap: 64px; }
+  .s-cover .lead .desc { font-size: 26px; max-width: 56ch; opacity: .8; line-height: 1.45; font-weight: 300; }
+  .s-cover .lead .meta { font-size: 18px; opacity: .55; letter-spacing: .04em; text-align: right; line-height: 1.6; }
+
+  /* ===== 02 Who we are ===== */
+  .s-who { grid-template-rows: auto 1fr; gap: 96px; align-content: start; }
+  .s-who header { margin-top: 64px; }
+  .s-who h2 { font-size: 200px; line-height: .9; letter-spacing: -.04em; font-weight: 400; margin: 0; max-width: 16ch; }
+  .s-who h2 .serif { color: var(--studio); }
+  .s-who .below { display: grid; grid-template-columns: 1.4fr 1fr; gap: 96px; align-items: end; }
+  .s-who .below .desc { font-size: 26px; line-height: 1.5; max-width: 44ch; color: var(--blue-gray); font-weight: 300; }
+  .s-who .below .desc .ink { color: var(--ink); }
+  .s-who .below .stats { display: grid; gap: 24px; }
+  .s-who .below .stat { display: grid; grid-template-columns: auto 1fr; gap: 24px; align-items: baseline; border-top: 1px solid var(--line); padding-top: 16px; }
+  .s-who .below .stat .v { font-size: 64px; letter-spacing: -.035em; line-height: 1; color: var(--studio); font-variant-numeric: tabular-nums; }
+  .s-who .below .stat .lbl { font-size: 17px; line-height: 1.4; color: var(--blue-gray); }
+
+  /* ===== 03 Two practices ===== */
+  .s-two { grid-template-rows: auto 1fr; gap: 80px; align-content: start; }
+  .s-two header { margin-top: 64px; }
+  .s-two h2 { font-size: 144px; line-height: .92; letter-spacing: -.04em; font-weight: 400; max-width: 18ch; margin: 0; }
+  .s-two h2 .serif { color: var(--studio); }
+  .s-two .cols { display: grid; grid-template-columns: 1.4fr 1fr; gap: 24px; }
+  .s-two .card { padding: 56px; border-radius: 6px; display: grid; gap: 32px; align-content: start; position: relative; min-height: 600px; }
+  .s-two .card.studio { background: var(--studio); color: var(--warm); }
+  .s-two .card.advisory { background: var(--deep); color: var(--warm); }
+  .s-two .card .tag { font-size: 14px; letter-spacing: .2em; text-transform: uppercase; opacity: .65; font-weight: 500; }
+  .s-two .card h3 { font-size: 120px; line-height: .92; letter-spacing: -.04em; font-weight: 400; margin: 0; }
+  .s-two .card.advisory h3 { font-size: 92px; }
+  .s-two .card h3 .ital { color: var(--warm); opacity: .85; }
+  .s-two .card.advisory h3 .ital { color: var(--studio); opacity: 1; }
+  .s-two .card .desc { font-size: 20px; line-height: 1.45; opacity: .8; max-width: 38ch; font-weight: 300; }
+  .s-two .card .disciplines { display: flex; flex-wrap: wrap; gap: 8px; margin-top: auto; }
+  .s-two .card .pill { color: var(--warm); border-color: rgba(243,240,239,.4); }
+  .s-two .card.advisory .pill { border-color: var(--studio); color: var(--studio); }
+  .s-two .card .anchor { position: absolute; bottom: 56px; right: 56px; font-size: 16px; opacity: .65; letter-spacing: .12em; text-transform: uppercase; font-weight: 500; display: inline-flex; align-items: center; gap: 8px; }
+  .s-two .card .infinity-deco { position: absolute; bottom: -40px; right: -40px; opacity: .1; }
+
+  /* ===== 04/05 Services triplet ===== */
+  .s-svc { grid-template-rows: auto 1fr; gap: 80px; align-content: start; }
+  .s-svc header { margin-top: 64px; display: grid; grid-template-columns: 1fr auto; gap: 96px; align-items: end; }
+  .s-svc h2 { font-size: 160px; line-height: .92; letter-spacing: -.04em; font-weight: 400; margin: 0; }
+  .s-svc h2 .serif { color: var(--studio); }
+  .s-svc header .desc { font-size: 22px; line-height: 1.5; max-width: 32ch; color: var(--blue-gray); text-align: right; font-weight: 300; }
+  .s-svc.dark header .desc { color: rgba(243,240,239,.65); }
+  .s-svc .rows { display: grid; gap: 0; border-top: 1px solid currentColor; }
+  .s-svc .row { display: grid; grid-template-columns: 100px 1.2fr 1fr 80px;
+                gap: 48px; align-items: start; padding: 40px 0;
+                border-bottom: 1px solid currentColor; transition: background .3s ease; }
+  .s-svc .row .n { font-size: 18px; letter-spacing: .18em; font-variant-numeric: tabular-nums; opacity: .55; font-weight: 500; padding-top: 8px; }
+  .s-svc .row .title { display: grid; gap: 8px; }
+  .s-svc .row .title h3 { font-size: 56px; line-height: 1; letter-spacing: -.025em; font-weight: 400; margin: 0; }
+  .s-svc .row .title .sub { font-family: var(--serif); font-weight: 300; font-style: italic; font-size: 24px; color: var(--studio); }
+  .s-svc.dark .row .title .sub { color: var(--studio); }
+  .s-svc .row .tags { display: flex; flex-wrap: wrap; gap: 6px; padding-top: 14px; }
+  .s-svc .row .tags .pill { font-size: 13px; padding: 5px 12px; opacity: .8; }
+  .s-svc .row .arrow { width: 56px; height: 56px; border-radius: 50%;
+                       border: 1px solid currentColor; display: grid; place-items: center;
+                       align-self: center; font-size: 20px; opacity: .55; transition: all .25s; }
+
+  /* ===== 06 Process ===== */
+  .s-process { grid-template-rows: auto auto 1fr; gap: 64px; align-content: start; }
+  .s-process header { margin-top: 64px; }
+  .s-process h2 { font-size: 144px; line-height: .92; letter-spacing: -.04em; font-weight: 400; margin: 0; max-width: 18ch; }
+  .s-process h2 .serif { color: var(--studio); }
+  .s-process .lede { font-size: 24px; line-height: 1.5; max-width: 56ch; color: var(--blue-gray); font-weight: 300; }
+  .s-process .bar { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0; border-top: 1.5px solid currentColor; border-bottom: 1.5px solid currentColor; align-self: start; }
+  .s-process .step { padding: 48px 32px 48px 0;
+                     border-right: 1px solid var(--line);
+                     display: grid; gap: 18px; align-content: start; }
+  .s-process .step:not(:nth-child(1)) { padding-left: 32px; }
+  .s-process .step:last-child { border-right: none; }
+  .s-process .step .n { font-size: 14px; letter-spacing: .22em; color: var(--studio); font-variant-numeric: tabular-nums; font-weight: 500; }
+  .s-process .step h3 { font-size: 44px; letter-spacing: -.025em; font-weight: 400; margin: 0; }
+  .s-process .step p { font-size: 17px; color: var(--blue-gray); line-height: 1.5; margin: 0; max-width: 32ch; }
+
+  /* ===== 07 Selected work ===== */
+  .s-work { grid-template-rows: auto 1fr; gap: 64px; align-content: start; }
+  .s-work header { margin-top: 64px; display: grid; grid-template-columns: 1fr auto; gap: 96px; align-items: end; }
+  .s-work h2 { font-size: 144px; line-height: .92; letter-spacing: -.04em; font-weight: 400; margin: 0; }
+  .s-work h2 .serif { color: var(--studio); }
+  .s-work .grid { display: grid; grid-template-columns: repeat(4, 1fr); grid-template-rows: 1fr 1fr; gap: 16px; }
+  .s-work .tile { background: var(--warm-50); border: 1px solid var(--line); border-radius: 6px;
+                  display: grid; place-items: center; position: relative; overflow: hidden;
+                  min-height: 280px; padding: 32px; }
+  .s-work .tile .lbl { position: absolute; bottom: 18px; left: 22px;
+                       font-size: 12px; letter-spacing: .14em; text-transform: uppercase; opacity: .55; font-weight: 500; }
+  .s-work .tile .name { font-size: 48px; letter-spacing: -.04em; font-weight: 400; color: var(--ink); }
+  .s-work .tile.studio-bg { background: var(--studio); color: var(--warm); }
+  .s-work .tile.studio-bg .name, .s-work .tile.studio-bg .lbl { color: var(--warm); }
+  .s-work .tile.dark { background: var(--deep); color: var(--warm); }
+  .s-work .tile.dark .name, .s-work .tile.dark .lbl { color: var(--warm); }
+  .s-work .tile.dark .name { color: var(--studio); }
+
+  /* ===== 08 Track record (KPIs) ===== */
+  .s-kpi { grid-template-rows: auto 1fr; gap: 80px; align-content: start; }
+  .s-kpi header { margin-top: 64px; }
+  .s-kpi h2 { font-size: 144px; line-height: .92; letter-spacing: -.04em; font-weight: 400; margin: 0; max-width: 18ch; }
+  .s-kpi h2 .serif { color: var(--studio); }
+  .s-kpi .row { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 16px; }
+  .s-kpi .tile { padding: 48px; border-radius: 6px; display: grid; gap: 24px; align-content: space-between; min-height: 360px; }
+  .s-kpi .tile.xl { background: var(--studio); color: var(--warm); }
+  .s-kpi .tile.deep { background: var(--deep); color: var(--warm); }
+  .s-kpi .tile.deep .lbl { color: var(--studio); }
+  .s-kpi .tile.warm { background: var(--warm-50); border: 1px solid var(--line); }
+  .s-kpi .tile .lbl { font-size: 13px; letter-spacing: .2em; text-transform: uppercase; opacity: .65; font-weight: 500; }
+  .s-kpi .tile .v { font-size: 120px; line-height: .9; letter-spacing: -.04em; font-variant-numeric: tabular-nums; }
+  .s-kpi .tile.xl .v { font-size: 200px; }
+  .s-kpi .tile .v .u { font-size: .42em; opacity: .55; }
+  .s-kpi .tile .note { font-size: 17px; line-height: 1.5; opacity: .8; font-weight: 300; max-width: 38ch; }
+
+  /* ===== 09 Founder ===== */
+  .s-founder { grid-template-columns: 1.1fr 1fr; gap: 80px; align-content: center; align-items: center; }
+  .s-founder .col-l { display: grid; gap: 32px; align-content: center; }
+  .s-founder .eyebrow { color: var(--studio); }
+  .s-founder h2 { font-size: 112px; line-height: 1; letter-spacing: -.035em; font-weight: 400; margin: 0; max-width: 14ch; }
+  .s-founder h2 .serif { color: var(--studio); }
+  .s-founder p { font-size: 22px; line-height: 1.55; color: var(--blue-gray); max-width: 48ch; font-weight: 300; }
+  .s-founder p .ink { color: var(--ink); }
+  .s-founder .interests { display: flex; gap: 8px; flex-wrap: wrap; }
+  .s-founder .interests span { font-family: var(--serif); font-weight: 300; font-size: 16px; padding: 6px 16px; background: var(--warm-50); border: 1px solid var(--line); border-radius: 999px; color: var(--ink); }
+  .s-founder .portrait { position: relative; aspect-ratio: 4/5; background: #ddd; border-radius: 6px; overflow: hidden; }
+  .s-founder .portrait img { width: 100%; height: 100%; object-fit: cover; object-position: center 30%; }
+  .s-founder .name-tag { position: absolute; bottom: 24px; left: 24px; right: 24px; background: var(--deep); color: var(--warm); padding: 14px 20px; border-radius: 999px; display: flex; align-items: center; gap: 12px; font-size: 18px; font-weight: 500; }
+  .s-founder .name-tag .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--studio); }
+  .s-founder .name-tag .role { margin-left: auto; font-size: 13px; opacity: .55; letter-spacing: .14em; text-transform: uppercase; }
+
+  /* ===== 10 Manifesto ===== */
+  .s-manifesto { align-content: center; }
+  .s-manifesto .label { font-size: 16px; letter-spacing: .22em; text-transform: uppercase; opacity: .6; font-weight: 500; color: var(--sage-ink); margin-bottom: 48px; }
+  .s-manifesto p { font-size: 132px; line-height: 1; letter-spacing: -.035em; font-weight: 400; margin: 0; max-width: 14ch; color: var(--deep); }
+  .s-manifesto p .serif { color: var(--sage-ink); font-style: italic; }
+
+  /* ===== 11 Contact ===== */
+  .s-contact { align-content: end; }
+  .s-contact h2 { font-size: 320px; line-height: .88; letter-spacing: -.045em; font-weight: 400; margin: 0; }
+  .s-contact h2 .serif { color: var(--studio); }
+  .s-contact .row { display: grid; grid-template-columns: 1fr 1fr; gap: 96px; align-items: end; margin-top: 64px; padding-top: 40px; border-top: 1px solid rgba(243,240,239,.16); }
+  .s-contact .col h4 { font-size: 14px; letter-spacing: .22em; text-transform: uppercase; opacity: .55; margin: 0 0 14px; font-weight: 500; }
+  .s-contact .col .line { font-size: 28px; letter-spacing: -.015em; font-weight: 300; line-height: 1.3; }
+  .s-contact .col .line a { color: var(--warm); border-bottom: 1px solid currentColor; padding-bottom: 4px; }
+
+  /* small infinity mark (recurring) */
+  .infinity { display: inline-flex; align-items: center; gap: 14px; }
+</style>
+<script type="application/json" id="speaker-notes">
+[
+  "Welcome. Infinit is a brand and strategy studio, with a sister Advisory practice. Today I'll walk you through who we are, what we do, and the work we ship.",
+  "Two-line intro. Infinit is a brand and strategy studio for companies entering their next stage of growth — identity, digital, and operating systems built to scale across markets and time.",
+  "We're one firm, two practices, sharing the same DNA. Studio handles brand, identity and digital. Advisory handles architecture, platform strategy, and data + AI. Same people, same operating model.",
+  "Studio's three disciplines. Strategy is the direction. Identity makes it visible. Digital is where it scales. Every engagement weaves the three.",
+  "Advisory mirrors the structure. Architecture designs the system. Platform Strategy makes it work. Data & AI makes it smart. Often delivered as fractional or interim CIO / CDO.",
+  "How we work. Five phases — Understand, Map, Structure, Decide, Scale. Same backbone for Studio and Advisory; the deliverables differ.",
+  "Selected clients across enterprise, scale-ups and platforms. SAP, Almirall, Glovo, 11onze, Relats, Instellar, Bunnker, DronParc.",
+  "Track record. Across the work we've shipped, we average +40% business growth, 98% client satisfaction, +35% operational efficiency, and we cut time-to-market by half.",
+  "I'm Francesc Callejas. Twenty years across brand, platforms and growth — SAP, Seidor, Girbau, Relats, IESE, INSEAD.",
+  "Our position. We don't build brands for today. We build brands prepared for what's next.",
+  "Let's talk. hello@weareinfinit.com — based in Barcelona, working across Spain, Europe and the Americas."
+]
+</script>
+</head>
+<body>
+<deck-stage>
+
+  <!-- 01 — Cover -->
+  <section class="s-cover dark" data-screen-label="01 Cover">
+    <span class="wm">
+      <svg width="62" height="32" viewBox="0 0 62 32" fill="none" stroke="currentColor" stroke-width="4.2"><circle cx="16" cy="16" r="13.5"/><circle cx="46" cy="16" r="13.5"/></svg>
+      infinit<span class="reg">®</span>
+    </span>
+    <span class="above">
+      <span>Studio</span><span style="opacity:.4">·</span><span>Advisory</span>
+      <span style="opacity:.3; margin: 0 12px">/</span>
+      <span>Capabilities · 2026</span>
+    </span>
+    <span class="corner-br">01 / 11</span>
+    <div>
+      <h1>Designed<br/>to <span class="serif">scale.</span></h1>
+      <div class="lead">
+        <div class="desc">
+          Infinit® is a Brand &amp; Strategy studio for companies entering their next stage of growth — identity, digital and operating systems built to expand across markets, time and complexity.
+        </div>
+        <div class="meta">
+          Barcelona · 41°23′N<br/>
+          weareinfinit.com<br/>
+          hello@weareinfinit.com
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 — Who we are -->
+  <section class="s-who" data-screen-label="02 Who we are">
+    <span class="wm">
+      <svg width="48" height="25" viewBox="0 0 62 32" fill="none" stroke="currentColor" stroke-width="4.2"><circle cx="16" cy="16" r="13.5"/><circle cx="46" cy="16" r="13.5"/></svg>
+      infinit<span class="reg">®</span>
+    </span>
+    <span class="corner-tr">Who we are</span>
+    <span class="corner-br">02 / 11</span>
+    <header>
+      <div class="eyebrow studio" style="margin-bottom: 28px">— Studio &amp; Advisory</div>
+      <h2>A studio<br/>for the <span class="serif">next stage</span><br/>of growth.</h2>
+    </header>
+    <div class="below">
+      <div class="desc">
+        We work at the intersection of <span class="ink">brand, technology and business</span> — pairing creative direction with the structural rigour of a strategy firm. Engagements run from naming and identity through to platform architecture and data systems.
+      </div>
+      <div class="stats">
+        <div class="stat"><span class="v">20<span style="font-size:.5em;color:var(--blue-gray)">+</span></span><span class="lbl">Years across brand, platforms<br/>and growth.</span></div>
+        <div class="stat"><span class="v">2</span><span class="lbl">Connected practices<br/>under one operating model.</span></div>
+        <div class="stat"><span class="v">14</span><span class="lbl">Active clients across Europe,<br/>Spain and the Americas.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 — Two practices -->
+  <section class="s-two" data-screen-label="03 Two practices">
+    <span class="wm">
+      <svg width="48" height="25" viewBox="0 0 62 32" fill="none" stroke="currentColor" stroke-width="4.2"><circle cx="16" cy="16" r="13.5"/><circle cx="46" cy="16" r="13.5"/></svg>
+      infinit<span class="reg">®</span>
+    </span>
+    <span class="corner-tr">Structure</span>
+    <span class="corner-br">03 / 11</span>
+    <header>
+      <h2>One studio.<br/><span class="serif">Two</span> practices.</h2>
+    </header>
+    <div class="cols">
+      <div class="card studio">
+        <span class="tag">Studio · Primary</span>
+        <h3>Studio.<br/><span class="ital">Brand &amp; Strategy.</span></h3>
+        <p class="desc">Bringing direction for companies building their next stage of growth — identity, digital and the operating systems behind them.</p>
+        <div class="disciplines">
+          <span class="pill">Strategy</span>
+          <span class="pill">Identity</span>
+          <span class="pill">Digital</span>
+        </div>
+        <span class="anchor">Brand &amp; Strategy · Barcelona</span>
+      </div>
+      <div class="card advisory">
+        <span class="tag">Advisory</span>
+        <h3>Advisory.<br/><span class="ital">Structure.</span></h3>
+        <p class="desc">Strategic advisory for companies navigating complex digital ecosystems — architecture, platforms, data &amp; AI.</p>
+        <div class="disciplines">
+          <span class="pill">Architecture</span>
+          <span class="pill">Platforms</span>
+          <span class="pill">Data &amp; AI</span>
+        </div>
+        <svg class="infinity-deco" width="380" height="200" viewBox="0 0 62 32" fill="none" stroke="var(--studio)" stroke-width="2"><circle cx="16" cy="16" r="13.5"/><circle cx="46" cy="16" r="13.5"/></svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 — Studio services -->
+  <section class="s-svc" data-screen-label="04 Studio services">
+    <span class="wm">
+      <svg width="48" height="25" viewBox="0 0 62 32" fill="none" stroke="currentColor" stroke-width="4.2"><circle cx="16" cy="16" r="13.5"/><circle cx="46" cy="16" r="13.5"/></svg>
+      infinit<span class="reg">®</span>
+      <span class="sub">Studio</span>
+    </span>
+    <span class="corner-tr">Studio · Services</span>
+    <span class="corner-br">04 / 11</span>
+    <header>
+      <h2>What <span class="serif">we do.</span></h2>
+      <div class="desc">Three connected disciplines — one operating system. Engagements range from positioning sprints to multi-quarter scale-ups.</div>
+    </header>
+    <div class="rows">
+      <div class="row">
+        <span class="n">01</span>
+        <div class="title">
+          <h3>Strategy</h3>
+          <span class="sub">The discipline behind growth.</span>
+        </div>
+        <div class="tags">
+          <span class="pill">Brand strategy</span>
+          <span class="pill">Positioning</span>
+          <span class="pill">Growth strategy</span>
+          <span class="pill">Founder positioning</span>
+          <span class="pill">Fractional CMO</span>
+        </div>
+        <div class="arrow">↗</div>
+      </div>
+      <div class="row">
+        <span class="n">02</span>
+        <div class="title">
+          <h3>Identity</h3>
+          <span class="sub">Structure made visible.</span>
+        </div>
+        <div class="tags">
+          <span class="pill">Visual identity</span>
+          <span class="pill">Verbal identity</span>
+          <span class="pill">Design systems</span>
+          <span class="pill">Creative direction</span>
+          <span class="pill">Motion</span>
+        </div>
+        <div class="arrow">↗</div>
+      </div>
+      <div class="row">
+        <span class="n">03</span>
+        <div class="title">
+          <h3>Digital</h3>
+          <span class="sub">Where identity scales.</span>
+        </div>
+        <div class="tags">
+          <span class="pill">Websites &amp; platforms</span>
+          <span class="pill">UX / UI direction</span>
+          <span class="pill">Performance marketing</span>
+          <span class="pill">SEO &amp; GEO</span>
+          <span class="pill">AI experiences</span>
+        </div>
+        <div class="arrow">↗</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 05 — Advisory services -->
+  <section class="s-svc dark" data-screen-label="05 Advisory services">
+    <span class="wm">
+      <svg width="48" height="25" viewBox="0 0 62 32" fill="none" stroke="var(--studio)" stroke-width="4.2"><circle cx="16" cy="16" r="13.5"/><circle cx="46" cy="16" r="13.5"/></svg>
+      infinit<span class="reg">®</span>
+      <span class="sub">Advisory</span>
+    </span>
+    <span class="corner-tr">Advisory · Services</span>
+    <span class="corner-br">05 / 11</span>
+    <header>
+      <h2>What <span class="serif">we advise.</span></h2>
+      <div class="desc">Bringing structure to complexity. Often delivered as fractional or interim CIO / CDO — embedded for the duration.</div>
+    </header>
+    <div class="rows">
+      <div class="row">
+        <span class="n">01</span>
+        <div class="title">
+          <h3>Architecture</h3>
+          <span class="sub">Design the system.</span>
+        </div>
+        <div class="tags">
+          <span class="pill">Architecture audit</span>
+          <span class="pill">Integration design</span>
+          <span class="pill">Technology selection</span>
+          <span class="pill">Roadmap to value</span>
+        </div>
+        <div class="arrow">↗</div>
+      </div>
+      <div class="row">
+        <span class="n">02</span>
+        <div class="title">
+          <h3>Platform Strategy</h3>
+          <span class="sub">Make it work.</span>
+        </div>
+        <div class="tags">
+          <span class="pill">ERP / CRM definition</span>
+          <span class="pill">Implementation direction</span>
+          <span class="pill">Operating model</span>
+          <span class="pill">Vendor management</span>
+        </div>
+        <div class="arrow">↗</div>
+      </div>
+      <div class="row">
+        <span class="n">03</span>
+        <div class="title">
+          <h3>Data &amp; AI</h3>
+          <span class="sub">Make it smart.</span>
+        </div>
+        <div class="tags">
+          <span class="pill">Data strategy &amp; architecture</span>
+          <span class="pill">Analytics &amp; decision systems</span>
+          <span class="pill">AI use-case definition</span>
+          <span class="pill">AI opportunity mapping</span>
+        </div>
+        <div class="arrow">↗</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 06 — Process -->
+  <section class="s-process" data-screen-label="06 Process">
+    <span class="wm">
+      <svg width="48" height="25" viewBox="0 0 62 32" fill="none" stroke="currentColor" stroke-width="4.2"><circle cx="16" cy="16" r="13.5"/><circle cx="46" cy="16" r="13.5"/></svg>
+      infinit<span class="reg">®</span>
+    </span>
+    <span class="corner-tr">Method</span>
+    <span class="corner-br">06 / 11</span>
+    <header>
+      <div class="eyebrow studio" style="margin-bottom: 24px">— How we work</div>
+      <h2>From diagnosis<br/>to <span class="serif">scale.</span></h2>
+    </header>
+    <p class="lede">A five-phase backbone shared by Studio and Advisory. The deliverables differ — the discipline behind them is the same.</p>
+    <div class="bar">
+      <div class="step"><span class="n">01</span><h3>Understand</h3><p>Assess current systems, the brief and the constraints behind it.</p></div>
+      <div class="step"><span class="n">02</span><h3>Map</h3><p>Audit the architecture, integrations, dependencies and the moves available.</p></div>
+      <div class="step"><span class="n">03</span><h3>Structure</h3><p>Target model and decision frame for the next 18 months.</p></div>
+      <div class="step"><span class="n">04</span><h3>Decide</h3><p>Direction, roadmap and vendor selection signed-off in the room.</p></div>
+      <div class="step"><span class="n">05</span><h3>Scale</h3><p>Implementation, governance and evolution — embedded or hand-off.</p></div>
+    </div>
+  </section>
+
+  <!-- 07 — Selected work -->
+  <section class="s-work" data-screen-label="07 Selected work">
+    <span class="wm">
+      <svg width="48" height="25" viewBox="0 0 62 32" fill="none" stroke="currentColor" stroke-width="4.2"><circle cx="16" cy="16" r="13.5"/><circle cx="46" cy="16" r="13.5"/></svg>
+      infinit<span class="reg">®</span>
+    </span>
+    <span class="corner-tr">Selected clients</span>
+    <span class="corner-br">07 / 11</span>
+    <header>
+      <h2>The <span class="serif">work.</span></h2>
+      <div class="desc" style="font-size:22px;line-height:1.5;max-width:36ch;color:var(--blue-gray);text-align:right;font-weight:300">From enterprise platforms to scale-ups and category-defining startups.</div>
+    </header>
+    <div class="grid">
+      <div class="tile"><span class="lbl">Enterprise · Platform</span><span class="name">SAP</span></div>
+      <div class="tile studio-bg"><span class="lbl">Pharma · Scale-up</span><span class="name">Almirall</span></div>
+      <div class="tile"><span class="lbl">Industrial</span><span class="name" style="font-family:var(--serif);font-weight:300">Relats</span></div>
+      <div class="tile dark"><span class="lbl">Marketplace</span><span class="name">Glovo</span></div>
+      <div class="tile dark"><span class="lbl">Fintech</span><span class="name" style="font-weight:500">11onze</span></div>
+      <div class="tile"><span class="lbl">B2B SaaS</span><span class="name" style="font-style:italic;font-family:var(--serif);font-weight:300">Instellar</span></div>
+      <div class="tile"><span class="lbl">Logistics</span><span class="name">Bunnker</span></div>
+      <div class="tile studio-bg"><span class="lbl">Aerospace</span><span class="name">DronParc</span></div>
+    </div>
+  </section>
+
+  <!-- 08 — Track record (KPIs) -->
+  <section class="s-kpi" data-screen-label="08 Track record">
+    <span class="wm">
+      <svg width="48" height="25" viewBox="0 0 62 32" fill="none" stroke="currentColor" stroke-width="4.2"><circle cx="16" cy="16" r="13.5"/><circle cx="46" cy="16" r="13.5"/></svg>
+      infinit<span class="reg">®</span>
+    </span>
+    <span class="corner-tr">Track record</span>
+    <span class="corner-br">08 / 11</span>
+    <header>
+      <div class="eyebrow studio" style="margin-bottom: 24px">— The numbers</div>
+      <h2>20+ years<br/>defining and <span class="serif">scaling</span><br/>brand &amp; platforms.</h2>
+    </header>
+    <div class="row">
+      <div class="tile xl">
+        <span class="lbl">Average business growth</span>
+        <div>
+          <span class="v">+40<span class="u">%</span></span>
+          <p class="note" style="margin-top:20px">YoY revenue lift across re-positioned Studio brands (2023–2025).</p>
+        </div>
+      </div>
+      <div class="tile warm">
+        <span class="lbl">Customer satisfaction</span>
+        <span class="v">98<span class="u">%</span></span>
+      </div>
+      <div class="tile deep">
+        <span class="lbl">Operational efficiency</span>
+        <span class="v">+35<span class="u">%</span></span>
+      </div>
+      <div class="tile warm">
+        <span class="lbl">Time-to-market</span>
+        <span class="v">−50<span class="u">%</span></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 09 — Founder -->
+  <section class="s-founder" data-screen-label="09 Founder">
+    <span class="wm">
+      <svg width="48" height="25" viewBox="0 0 62 32" fill="none" stroke="currentColor" stroke-width="4.2"><circle cx="16" cy="16" r="13.5"/><circle cx="46" cy="16" r="13.5"/></svg>
+      infinit<span class="reg">®</span>
+    </span>
+    <span class="corner-tr">Founder</span>
+    <span class="corner-br">09 / 11</span>
+    <div class="col-l">
+      <div class="eyebrow">— Founder &amp; principal</div>
+      <h2><span class="ink">Twenty years</span><br/><span class="serif">across brand,</span><br/>platforms and growth.</h2>
+      <p>From enterprise platforms at <span class="ink">SAP</span> and <span class="ink">Seidor</span>, to industrial-scale operations at <span class="ink">Girbau</span> and <span class="ink">Relats</span>, to advising scale-ups including <span class="ink">Glovo</span> and <span class="ink">11onze</span> — with executive education at <span class="ink">IESE</span> and <span class="ink">INSEAD</span>.</p>
+      <div class="interests">
+        <span>Mountains</span><span>4x4Campers</span><span>Ski</span><span>Running</span><span>Console</span>
+      </div>
+    </div>
+    <div class="portrait">
+      <img src="../uploads/ChatGPT Image May 12, 2026, 02_01_19 PM.png" alt="Francesc Callejas portrait"/>
+      <div class="name-tag">
+        <span class="dot"></span>
+        <span>Francesc Callejas</span>
+        <span class="role">Founder · Principal</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10 — Manifesto -->
+  <section class="s-manifesto sage" data-screen-label="10 Manifesto">
+    <span class="wm">
+      <svg width="48" height="25" viewBox="0 0 62 32" fill="none" stroke="currentColor" stroke-width="4.2"><circle cx="16" cy="16" r="13.5"/><circle cx="46" cy="16" r="13.5"/></svg>
+      infinit<span class="reg">®</span>
+    </span>
+    <span class="corner-tr">Positioning</span>
+    <span class="corner-br">10 / 11</span>
+    <div>
+      <div class="label">— Our view</div>
+      <p>We don't build<br/>brands for today.<br/>We build brands<br/>prepared for<br/><span class="serif">what's next.</span></p>
+    </div>
+  </section>
+
+  <!-- 11 — Contact -->
+  <section class="s-contact dark" data-screen-label="11 Contact">
+    <span class="wm">
+      <svg width="48" height="25" viewBox="0 0 62 32" fill="none" stroke="currentColor" stroke-width="4.2"><circle cx="16" cy="16" r="13.5"/><circle cx="46" cy="16" r="13.5"/></svg>
+      infinit<span class="reg">®</span>
+    </span>
+    <span class="corner-tr">— End</span>
+    <span class="corner-br">11 / 11</span>
+    <div>
+      <h2>Let's <span class="serif">talk.</span></h2>
+      <div class="row">
+        <div class="col">
+          <h4>Studio &amp; Advisory</h4>
+          <div class="line">
+            <a href="mailto:hello@weareinfinit.com">hello@weareinfinit.com</a><br/>
+            weareinfinit.com
+          </div>
+        </div>
+        <div class="col">
+          <h4>Location · 2026</h4>
+          <div class="line">
+            Barcelona · 41°23′N · 2°09′E<br/>
+            Working across Spain, Europe &amp; the Americas
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</deck-stage>
+</body>
+</html>

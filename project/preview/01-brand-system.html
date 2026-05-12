@@ -1,0 +1,1188 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Infinit — v6 · 2-color hero, bento KPIs, founder block</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,300;8..60,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --warm:        #F3F0EF;
+    --warm-50:     #FAF8F7;
+    --warm-200:    #E6E2E0;
+    --deep:        #00041C;
+    --deep-blue:   #000728;
+    --ink:         var(--deep-blue);
+    --blue-gray:   #7F838B;
+
+    --studio:      #2C5BFF;
+    --studio-hover:#1F47D6;
+    --advisory:    var(--deep);
+    --sage:        #BFD9B0;
+    --sage-ink:    #3A5424;
+
+    --line:        rgba(0,7,40,.10);
+    --line-dark:   rgba(243,240,239,.16);
+
+    --serif: "Source Serif 4", "Times New Roman", Times, serif;
+    --sans:  "Inter", system-ui, -apple-system, sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: var(--warm); color: var(--ink);
+    font-family: var(--sans); font-size: 16px; line-height: 1.55;
+    -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
+    letter-spacing: -.005em;
+  }
+  img { max-width: 100%; display: block; }
+  a { color: inherit; text-decoration: none; }
+
+  .serif    { font-family: var(--serif); font-weight: 300; font-style: normal; letter-spacing: -.012em; }
+  .serif-r  { font-family: var(--serif); font-weight: 400; font-style: normal; letter-spacing: -.012em; }
+  /* registered mark — small superscript, studio blue, Motto-style */
+  .reg {
+    font-family: var(--sans); font-weight: 400;
+    font-size: .42em; color: var(--studio); letter-spacing: 0;
+    vertical-align: super; line-height: 1; margin-left: 1px;
+  }
+  .eyebrow  { font-size: 11px; letter-spacing: .18em; text-transform: uppercase; color: var(--blue-gray); font-weight: 500; }
+  .muted    { color: var(--blue-gray); }
+
+  /* reveal */
+  .reveal { opacity: 0; transform: translateY(20px); transition: opacity .9s cubic-bezier(.2,.6,.2,1), transform .9s cubic-bezier(.2,.6,.2,1); }
+  .reveal.in { opacity: 1; transform: none; }
+  .reveal.d1 { transition-delay: .08s; } .reveal.d2 { transition-delay: .16s; } .reveal.d3 { transition-delay: .24s; } .reveal.d4 { transition-delay: .32s; }
+
+  /* ---- shared logo lockup: a single canonical mark, optionally with "Advisory" pill ---- */
+  .logo-lockup { display: inline-flex; align-items: center; gap: 10px; line-height: 1; font-weight: 400; }
+  .logo-lockup .word { font-size: 22px; letter-spacing: -.05em; }
+  .logo-lockup svg { display: block; flex-shrink: 0; }
+  .logo-lockup.sm .word { font-size: 18px; }
+  .logo-lockup.big .word { font-size: clamp(120px, 22vw, 320px); }
+  .logo-lockup .adv-pill {
+    font-size: 10px; letter-spacing: .22em; text-transform: uppercase; color: var(--studio);
+    padding: 3px 9px; border: 1px solid var(--studio); border-radius: 999px; font-weight: 500;
+    align-self: center; margin-left: 4px;
+  }
+
+  /* ===== NAV ===== */
+  nav.top {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 26px 52px;
+    background: rgba(243,240,239,.78);
+    backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid transparent;
+    transition: border-color .3s, background .3s;
+  }
+  nav.top.scrolled { border-color: var(--line); }
+  nav.top .links { display: flex; gap: 42px; font-size: 18px; }
+  nav.top .links a { position: relative; padding: 6px 0; transition: color .2s; }
+  nav.top .links a::after {
+    content: ''; position: absolute; left: 0; right: 0; bottom: 0;
+    height: 1px; background: var(--studio); transform: scaleX(0); transform-origin: left;
+    transition: transform .35s cubic-bezier(.2,.6,.2,1);
+  }
+  nav.top .links a:hover { color: var(--studio); }
+  nav.top .links a:hover::after { transform: scaleX(1); }
+  nav.top .links a.advisory-link { color: var(--blue-gray); }
+  nav.top .links a.advisory-link .arrow { display: inline-block; transition: transform .25s; margin-left: 2px; }
+  nav.top .links a.advisory-link:hover { color: var(--deep); }
+  nav.top .links a.advisory-link:hover .arrow { transform: translate(2px,-2px); }
+  nav.top .meta { font-size: 16px; letter-spacing: .08em; }
+  /* unify ALL inline lockup mark proportions — mark height = word-cap-height */
+  nav.top .logo-lockup { gap: 13px; }
+  nav.top .logo-lockup .word { font-size: 34px; }
+  nav.top .logo-lockup svg { width: 47px; height: 25px; }
+  nav.top .logo-lockup .reg { font-size: .5em; vertical-align: super; }
+
+  /* ===== HERO (motto-style massive slogan) ===== */
+  .hero {
+    padding: 180px 40px 40px;
+    display: grid; grid-template-columns: 1fr;
+  }
+  .hero .slogan-block { padding: 24px 0 32px; position: relative; }
+  .hero h1 {
+    font-family: var(--sans); font-weight: 400;
+    font-size: clamp(64px, 9.4vw, 168px);
+    line-height: .88; letter-spacing: -.04em;
+    margin: 0; max-width: 100%;
+    text-transform: none;
+    color: var(--ink);
+  }
+  .hero h1 .scale { color: var(--studio); }
+  .hero h1 .serif-r { font-weight: 300; font-size: .98em; letter-spacing: -.024em; color: var(--studio); }
+
+  /* infinit-style animated mark — one dot → two dots, loops gently */
+  .hero .infinit-anim {
+    display: inline-flex; vertical-align: middle;
+    width: clamp(96px, 13vw, 200px);
+    height: clamp(48px, 6.5vw, 100px);
+    margin-right: clamp(16px, 1.6vw, 28px);
+    transform: translateY(-.04em);
+  }
+  .hero .infinit-anim svg { width: 100%; height: 100%; overflow: visible; }
+  .hero .infinit-anim .dot-left, .hero .infinit-anim .dot-right {
+    transition: transform 1.4s cubic-bezier(.65,0,.35,1);
+    transform-origin: 31px 16px;
+  }
+  .hero .infinit-anim .dot-left  { animation: dotLeftMorph  5s cubic-bezier(.65,0,.35,1) infinite; }
+  .hero .infinit-anim .dot-right { animation: dotRightMorph 5s cubic-bezier(.65,0,.35,1) infinite; }
+  @keyframes dotLeftMorph {
+    0%, 14%   { transform: translateX(15px); }
+    50%, 64%  { transform: translateX(0); }
+    100%      { transform: translateX(15px); }
+  }
+  @keyframes dotRightMorph {
+    0%, 14%   { transform: translateX(-15px); }
+    50%, 64%  { transform: translateX(0); }
+    100%      { transform: translateX(-15px); }
+  }
+
+  .hero .below {
+    display: grid; grid-template-columns: 1fr auto; align-items: end; gap: 48px;
+    margin-top: 40px; padding-top: 32px; border-top: 1px solid var(--line);
+  }
+  .hero .below .explain { font-size: 19px; line-height: 1.45; max-width: 58ch; color: var(--ink); margin: 0; font-weight: 400; letter-spacing: -.008em; }
+  .hero .below .explain .brand { color: var(--ink); font-weight: 500; }
+  .hero .below .explain .accent { font-family: var(--serif); font-weight: 400; font-style: normal; letter-spacing: -.012em; color: var(--studio); font-size: 1.06em; }
+  .hero .below .explain .brand .reg { font-size: .5em; color: var(--studio); letter-spacing: 0; vertical-align: super; margin-left: 2px; font-weight: 400; }
+  .hero .below .scroll {
+    display: inline-flex; flex-direction: column; align-items: end; gap: 6px;
+    font-size: 11px; letter-spacing: .18em; text-transform: uppercase; color: var(--blue-gray); font-weight: 500;
+  }
+  .hero .below .scroll .arrow { font-size: 22px; line-height: 1; color: var(--ink); }
+
+  /* ===== VIDEO REEL ===== */
+  .reel-wrap {
+    padding: 0 40px 96px;
+    display: grid; gap: 16px;
+  }
+  .reel-meta-top {
+    display: flex; justify-content: space-between; align-items: end; gap: 32px;
+    padding-bottom: 12px;
+  }
+  .reel-meta-top h3 { font-family: var(--sans); font-weight: 400; font-size: 20px; letter-spacing: -.012em; margin: 0; max-width: 30ch; }
+  .reel-meta-top h3 .serif-r { color: var(--studio); }
+  .reel-meta-top .stamp { display: inline-flex; align-items: center; gap: 10px; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--blue-gray); font-weight: 500; }
+  .reel-meta-top .stamp .live { width: 7px; height: 7px; border-radius: 50%; background: #4ade80; animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: .35; } }
+
+  .reel {
+    position: relative; width: 100%;
+    aspect-ratio: 24 / 9;
+    overflow: hidden; background: #0c0c11;
+    border-radius: 6px;
+  }
+  .reel .stage { position: absolute; inset: 0; }
+  .reel .slide {
+    position: absolute; inset: 0; opacity: 0;
+    transition: opacity 1.3s cubic-bezier(.4,.0,.2,1), transform 7s linear;
+    transform: scale(1.06);
+  }
+  .reel .slide.active { opacity: 1; transform: scale(1.0); }
+  .reel .slide img { width: 100%; height: 100%; object-fit: cover; }
+  .reel .scrim {
+    position: absolute; inset: 0; pointer-events: none;
+    background: linear-gradient(180deg, rgba(0,4,28,0) 30%, rgba(0,4,28,.45) 100%),
+                linear-gradient(90deg, rgba(0,4,28,.32) 0%, rgba(0,4,28,0) 50%);
+  }
+  .reel .video-badge {
+    position: absolute; left: 32px; bottom: 28px;
+    color: var(--warm); display: inline-flex; align-items: center; gap: 12px;
+    font-size: 13px; letter-spacing: .04em; padding: 10px 16px;
+    background: rgba(0,4,28,.55); backdrop-filter: blur(10px);
+    border-radius: 999px;
+  }
+  .reel .video-badge .play {
+    width: 26px; height: 26px; border-radius: 50%; background: var(--warm);
+    display: grid; place-items: center; color: var(--ink);
+  }
+  .reel .dots { position: absolute; right: 32px; bottom: 32px; display: flex; gap: 6px; }
+  .reel .dots span { width: 22px; height: 2px; background: rgba(243,240,239,.3); border-radius: 1px; transition: background .35s; }
+  .reel .dots span.on { background: var(--warm); }
+
+  /* ===== MARQUEE ===== */
+  .marquee {
+    overflow: hidden; padding: 56px 0;
+    border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+  }
+  .marquee .track {
+    display: flex; gap: 96px; align-items: center;
+    animation: marquee 44s linear infinite;
+    width: max-content;
+  }
+  .marquee .track img {
+    height: 30px; width: auto; max-width: 200px; object-fit: contain;
+    opacity: .55; filter: grayscale(1) brightness(0); transition: opacity .25s, filter .25s;
+  }
+  .marquee .track img:hover { opacity: 1; filter: grayscale(0) brightness(1); }
+  /* per-logo size tuning */
+  .marquee .track img.l-glovo    { height: 42px; }
+  .marquee .track img.l-dronparc { height: 22px; }
+  .marquee .track img.l-11onze   { height: 22px; }
+  .marquee .track img.l-instellar{ height: 24px; }
+  .marquee .track img.l-sap      { height: 36px; }
+  .marquee .track img.l-bunnker  { height: 28px; }
+  .marquee .track img.l-relats   { height: 26px; }
+  .marquee .track img.l-almirall { height: 28px; }
+  .marquee .label { padding: 0 40px 24px; }
+  @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+  /* ===== PRACTICES (v3 styling restored) ===== */
+  .practices { padding: 144px 40px 96px; display: grid; gap: 80px; }
+  .practices header { display: grid; grid-template-columns: auto 1fr; gap: 64px; align-items: end; }
+  .practices header h2 {
+    font-family: var(--sans); font-weight: 400;
+    font-size: clamp(48px, 7vw, 104px); line-height: .98; letter-spacing: -.032em;
+    color: var(--ink);
+    margin: 0; max-width: 14ch;
+  }
+  .practices header h2 .serif { color: var(--studio); }
+  .practices header p { font-size: 16px; max-width: 36ch; color: var(--blue-gray); }
+
+  .practices .grid { display: grid; grid-template-columns: 1.55fr 1fr; gap: 24px; }
+
+  .card-studio {
+    background: var(--studio); color: var(--warm); border-radius: 6px;
+    padding: 56px 56px 48px; min-height: 460px;
+    display: grid; align-content: space-between; gap: 32px;
+    position: relative; overflow: hidden;
+    transition: background .3s;
+  }
+  .card-studio:hover { background: var(--studio-hover); }
+  .card-studio .head { display: flex; justify-content: space-between; align-items: start; gap: 24px; }
+  .card-studio .head .tag { font-size: 11px; letter-spacing: .18em; text-transform: uppercase; opacity: .65; font-weight: 500; }
+  .card-studio .head .logo { display: inline-flex; align-items: center; gap: 10px; font-size: 18px; letter-spacing: -.045em; }
+  .card-studio h3 { font-family: var(--sans); font-weight: 400; font-size: 64px; line-height: .98; letter-spacing: -.028em; margin: 0; max-width: 18ch; }
+  .card-studio h3 .serif-r { color: var(--warm); }
+  .card-studio .disciplines { display: flex; flex-wrap: wrap; gap: 8px; }
+  .card-studio .pill {
+    font-size: 13px; padding: 7px 14px; border: 1px solid rgba(243,240,239,.45);
+    border-radius: 999px; letter-spacing: -.005em; color: var(--warm);
+    transition: background .2s, color .2s, border-color .2s;
+  }
+  .card-studio .pill:hover { background: var(--warm); color: var(--studio); border-color: var(--warm); }
+  .card-studio .foot { display: flex; justify-content: space-between; align-items: end; gap: 24px; }
+  .card-studio .cta {
+    display: inline-flex; align-items: center; gap: 12px; font-size: 14px;
+    padding: 14px 22px; border: 1px solid rgba(243,240,239,.6); border-radius: 999px;
+    color: var(--warm);
+    transition: background .25s, color .25s;
+  }
+  .card-studio .cta:hover { background: var(--warm); color: var(--studio); }
+  .card-studio .cta .arrow { display: inline-block; transition: transform .25s; }
+  .card-studio .cta:hover .arrow { transform: translate(3px,-3px); }
+
+  .card-advisory {
+    background: var(--advisory); color: var(--warm); border-radius: 6px;
+    padding: 56px 48px 48px; min-height: 460px;
+    display: grid; align-content: space-between; gap: 28px;
+    position: relative; overflow: hidden;
+    transition: background .3s;
+  }
+  .card-advisory:hover { background: #050b30; }
+  .card-advisory .head { display: flex; justify-content: space-between; align-items: start; gap: 24px; }
+  .card-advisory .head .tag { font-size: 11px; letter-spacing: .18em; text-transform: uppercase; color: var(--studio); font-weight: 500; }
+  .card-advisory .head .logo { display: inline-flex; align-items: baseline; gap: 8px; font-size: 16px; opacity: .95; letter-spacing: -.045em; color: var(--warm); }
+  .card-advisory .head .logo svg { stroke: var(--warm); }
+  .card-advisory .head .logo .label { font-size: 10px; letter-spacing: .22em; text-transform: uppercase; color: var(--studio); padding: 3px 8px; border: 1px solid var(--studio); border-radius: 999px; }
+  .card-advisory h3 { font-family: var(--sans); font-weight: 400; font-size: 48px; line-height: 1.02; letter-spacing: -.022em; margin: 0; max-width: 18ch; }
+  .card-advisory h3 .serif-r { color: var(--studio); }
+  .card-advisory .disciplines { display: flex; flex-wrap: wrap; gap: 8px; }
+  .card-advisory .pill {
+    font-size: 13px; padding: 7px 14px; border: 1px solid rgba(44,91,255,.5);
+    border-radius: 999px; color: var(--studio);
+    transition: background .2s, color .2s;
+  }
+  .card-advisory .pill:hover { background: var(--studio); color: var(--warm); border-color: var(--studio); }
+  .card-advisory .cta {
+    display: inline-flex; align-items: center; gap: 12px; font-size: 14px;
+    padding: 14px 22px; border: 1px solid var(--studio); border-radius: 999px; color: var(--studio);
+    transition: background .25s, color .25s; align-self: start;
+  }
+  .card-advisory .cta:hover { background: var(--studio); color: var(--warm); }
+  .card-advisory .cta .arrow { display: inline-block; transition: transform .25s; }
+  .card-advisory .cta:hover .arrow { transform: translate(3px,-3px); }
+  .card-advisory .deco {
+    position: absolute; right: -100px; bottom: -120px; opacity: .12;
+    pointer-events: none; transition: transform .6s cubic-bezier(.2,.6,.2,1);
+    stroke: var(--studio);
+  }
+  .card-advisory:hover .deco { transform: rotate(-12deg) scale(1.08); }
+
+  /* bento KPI grid (v6 layout) */
+  .kf-split { display: grid; grid-template-columns: 1.25fr 1fr; gap: 24px; align-items: stretch; }
+  .bento { display: grid; grid-template-columns: repeat(4, 1fr); grid-auto-rows: 88px; gap: 12px; }
+  .bento .b {
+    border-radius: 6px; padding: 20px; background: var(--warm-50); border: 1px solid var(--line);
+    display: grid; align-content: space-between; gap: 8px; position: relative; overflow: hidden;
+    transition: transform .3s cubic-bezier(.2,.6,.2,1);
+  }
+  .bento .b:hover { transform: translateY(-2px); }
+  .bento .b .lbl { font-size: 10.5px; letter-spacing: .18em; text-transform: uppercase; color: var(--blue-gray); font-weight: 500; }
+  .bento .b .v { font-family: var(--sans); font-weight: 400; line-height: .9; letter-spacing: -.038em; font-variant-numeric: tabular-nums; color: var(--ink); }
+  .bento .b .v .u { font-size: .5em; color: var(--blue-gray); font-weight: 300; }
+  .bento .b .note { font-size: 12px; color: var(--blue-gray); line-height: 1.45; max-width: 32ch; }
+  .bento .b.xl  { grid-column: span 2; grid-row: span 2; padding: 28px; }
+  .bento .b.xl .v  { font-size: clamp(73px, 7.8vw, 120px); }
+  .bento .b.lg  { grid-column: span 2; grid-row: span 1; }
+  .bento .b.lg .v  { font-size: 80px; }
+  .bento .b.sm  { grid-column: span 1; grid-row: span 1; padding: 16px; }
+  .bento .b.sm .v  { font-size: 28px; }
+  .bento .b.wide { grid-column: span 3; grid-row: span 1; }
+  .bento .b.wide .v { font-size: 28px; }
+  .bento .b.studio { background: var(--studio); color: var(--warm); border-color: var(--studio); }
+  .bento .b.studio .v, .bento .b.studio .lbl { color: var(--warm); }
+  .bento .b.studio .v .u { color: rgba(243,240,239,.6); }
+  .bento .b.studio .note { color: rgba(243,240,239,.75); }
+  .bento .b.deep { background: var(--advisory); color: var(--warm); border-color: var(--advisory); }
+  .bento .b.deep .v, .bento .b.deep .lbl { color: var(--warm); }
+  .bento .b.deep .v .u { color: rgba(243,240,239,.55); }
+  .bento .b.deep .note { color: rgba(243,240,239,.7); }
+  .bento .b.deep .lbl { color: var(--studio); }
+  .bento .b.outline { background: transparent; }
+  .bento .b::before { content: ""; position: absolute; top: 14px; right: 14px; width: 7px; height: 7px; border-radius: 50%; background: var(--studio); opacity: .35; }
+  .bento .b.studio::before { background: var(--warm); opacity: .25; }
+  .bento .b.deep::before { background: var(--studio); opacity: 1; }
+
+  /* founder card (v6 vertical layout) */
+  .founder {
+    background: var(--warm-50); border: 1px solid var(--line); border-radius: 6px;
+    overflow: hidden; display: grid; grid-template-rows: auto 1fr;
+    position: relative; min-height: 100%;
+  }
+  .founder .portrait { position: relative; width: 100%; aspect-ratio: 4 / 3; overflow: hidden; background: #ddd; }
+  .founder .portrait img { width: 100%; height: 100%; object-fit: cover; object-position: 38% 42%; }
+  .founder .portrait .name-tag {
+    position: absolute; left: 14px; bottom: 14px; right: 14px;
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 8px 12px; border-radius: 999px;
+    background: rgba(0,7,40,.82); backdrop-filter: blur(8px); color: var(--warm);
+    font-size: 12px; font-weight: 500; letter-spacing: -.005em;
+  }
+  .founder .portrait .name-tag .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--studio); flex-shrink: 0; }
+  .founder .portrait .name-tag .li {
+    margin-left: auto; display: inline-grid; place-items: center;
+    width: 22px; height: 22px; border-radius: 4px; background: var(--studio); color: var(--warm);
+    font-size: 10px; font-weight: 700; transition: background .2s, color .2s;
+  }
+  .founder .portrait .name-tag .li:hover { background: var(--warm); color: var(--studio); }
+  .founder .body { padding: 28px 28px 32px; display: grid; gap: 14px; align-content: start; }
+  .founder .role .tag { font-size: 11px; letter-spacing: .18em; text-transform: uppercase; color: var(--studio); font-weight: 500; }
+  .founder h3 { font-family: var(--sans); font-weight: 400; font-size: 24px; line-height: 1.15; letter-spacing: -.018em; margin: 0; color: var(--ink); max-width: 26ch; }
+  .founder h3 .serif-r { color: var(--studio); }
+  .founder p { font-size: 14.5px; line-height: 1.55; color: var(--blue-gray); margin: 0; max-width: 58ch; }
+  .founder p .ink { color: var(--ink); }
+  .founder .interests { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
+  .founder .interests span {
+    font-family: var(--sans); font-weight: 500; font-size: 11px;
+    letter-spacing: .14em; text-transform: uppercase;
+    padding: 6px 12px; border: 1px solid var(--line); border-radius: 0; color: var(--ink);
+    background: var(--warm);
+  }
+
+  /* ===== SERVICES (Studio) ===== */
+  .services { padding: 80px 40px 48px; }
+  .services .studio-mark {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 6px 12px 6px 8px; border: 1px solid var(--line); border-radius: 999px;
+    font-size: 11px; letter-spacing: .18em; text-transform: uppercase; color: var(--ink); font-weight: 500;
+    margin-bottom: 24px;
+  }
+  .services .studio-mark .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--studio); }
+  .services .studio-mark .pipe { width: 1px; height: 12px; background: var(--line); }
+  .services .studio-mark svg { width: 18px; height: 9px; }
+
+  .services header { display: grid; grid-template-columns: 1.2fr 1fr; gap: 64px; align-items: end; margin-bottom: 56px; }
+  .services header h2 {
+    font-family: var(--sans); font-weight: 400;
+    font-size: clamp(48px, 7vw, 104px); line-height: .98; letter-spacing: -.032em; margin: 0;
+  }
+  .services header h2 .serif { color: var(--studio); }
+  .services header p { color: var(--blue-gray); max-width: 38ch; }
+
+  .services .row { display: grid; grid-template-columns: 1fr; gap: 0; border-top: 1px solid var(--line); }
+
+  .service {
+    border-bottom: 1px solid var(--line); padding: 32px 0;
+    display: grid; grid-template-columns: 80px 1fr 1.4fr auto;
+    gap: 48px; align-items: center; cursor: pointer; position: relative;
+    transition: background .35s cubic-bezier(.2,.6,.2,1);
+  }
+  .service::before {
+    content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 2px;
+    background: var(--studio); transform: scaleY(0); transform-origin: top;
+    transition: transform .4s cubic-bezier(.2,.6,.2,1);
+  }
+  .service:hover { padding-left: 24px; padding-right: 24px; }
+  .service:hover::before { transform: scaleY(1); }
+  .service .num { font-size: 14px; letter-spacing: .12em; color: var(--blue-gray); font-variant-numeric: tabular-nums; font-weight: 500; }
+  .service .title-block { display: grid; gap: 6px; }
+  .service .title {
+    font-family: var(--sans); font-weight: 400;
+    font-size: clamp(36px, 4.6vw, 64px); line-height: 1; letter-spacing: -.028em; margin: 0;
+    transition: color .35s;
+  }
+  .service .subtitle {
+    font-family: var(--serif); font-weight: 300;
+    font-size: clamp(18px, 1.8vw, 26px); color: var(--blue-gray); letter-spacing: -.005em; line-height: 1.1;
+    transition: color .35s;
+  }
+  .service:hover .subtitle { color: var(--studio); }
+
+  /* sub-services reveal in place — NO descending animation */
+  .service .desc-stack { position: relative; min-height: 56px; display: flex; align-items: center; }
+  .service .desc { font-size: 15.5px; color: var(--blue-gray); line-height: 1.5; max-width: 44ch; margin: 0; transition: opacity .3s; }
+  .service:hover .desc { opacity: 0; }
+  .service .tags {
+    position: absolute; inset: 0;
+    display: flex; flex-wrap: wrap; gap: 6px; align-content: center;
+    opacity: 0; transition: opacity .35s ease .08s;
+    pointer-events: none;
+  }
+  .service:hover .tags { opacity: 1; }
+  .service .tags span {
+    font-family: var(--serif); font-weight: 400; font-size: 14.5px;
+    padding: 6px 14px; background: var(--warm); border: 1px solid var(--line); border-radius: 999px; color: var(--ink);
+    letter-spacing: -.005em;
+  }
+  .service .arrow-ring {
+    width: 56px; height: 56px; border-radius: 50%;
+    border: 1px solid var(--line); display: grid; place-items: center;
+    transition: background .35s, border-color .35s, transform .35s;
+  }
+  .service .arrow-ring svg { transition: transform .35s, color .35s; }
+  .service:hover .arrow-ring { background: var(--studio); border-color: var(--studio); transform: scale(1.08); }
+  .service:hover .arrow-ring svg { transform: translate(3px,-3px); color: var(--warm); }
+
+  /* ===== WORK GRID ===== */
+  .work { padding: 24px 40px 80px; }
+  .work header { display: flex; justify-content: space-between; align-items: end; margin-bottom: 48px; gap: 32px; }
+  .work header h2 { font-family: var(--sans); font-weight: 400; font-size: clamp(40px, 5.4vw, 80px); line-height: 1; letter-spacing: -.028em; margin: 0; }
+  .work header h2 .serif { color: var(--studio); }
+  .work .grid { display: grid; grid-template-columns: 1.6fr 1fr 1fr; grid-template-rows: 360px 360px; gap: 16px; }
+  .work .tile .logo-img {
+    max-width: 38%; max-height: 38%;
+    width: auto; height: auto;
+    object-fit: contain;
+    filter: brightness(0) invert(1);
+    transform: translateY(8px);
+    transition: transform .45s ease;
+  }
+  .work .tile:hover .logo-img { transform: translateY(0); }
+  .work .tile .logo-img.lg-bunnker  { max-width: 36%; }
+  .work .tile .logo-img.lg-relats   { max-width: 44%; }
+  .work .tile .logo-img.lg-instellar{ max-width: 50%; }
+  .work .tile .logo-img.lg-almirall { max-width: 44%; }
+  .work .tile .logo-img.lg-11onze   { max-width: 38%; }
+  .work .tile {
+    position: relative; overflow: hidden; border-radius: 4px; background: #1a1a1a;
+    color: var(--warm); transition: transform .5s cubic-bezier(.2,.6,.2,1);
+  }
+  .work .tile:hover { transform: translateY(-4px); }
+  .work .tile img.cover { width: 100%; height: 100%; object-fit: cover; transition: transform .8s cubic-bezier(.2,.6,.2,1), filter .55s ease; }
+  .work .tile:hover img.cover { transform: scale(1.04); filter: blur(10px) brightness(.55); }
+  /* logo overlay — SVG-based to avoid pixelation */
+  .work .tile .logo-over {
+    position: absolute; inset: 0; display: grid; place-items: center;
+    opacity: 0; transition: opacity .45s ease; pointer-events: none;
+  }
+  .work .tile:hover .logo-over { opacity: 1; }
+  .work .tile .logo-over .logo-glyph {
+    color: var(--warm);
+    width: clamp(120px, 22%, 220px);
+    height: auto;
+    transform: translateY(8px);
+    transition: transform .45s ease;
+    text-align: center;
+  }
+  .work .tile:hover .logo-over .logo-glyph { transform: translateY(0); }
+  .work .tile .logo-over .logo-glyph .wordmark {
+    font-family: var(--sans); font-weight: 500; letter-spacing: -.02em; line-height: 1; color: var(--warm);
+    font-size: clamp(28px, 3.2vw, 44px); display: block; margin-top: 12px;
+  }
+  .work .tile .logo-over .logo-glyph .wordmark.tight { letter-spacing: -.035em; font-weight: 600; }
+  .work .tile .logo-over .logo-glyph .wordmark.serif { font-family: var(--serif); font-weight: 400; letter-spacing: -.01em; }
+  .work .tile .meta {
+    position: absolute; left: 24px; right: 24px; bottom: 20px;
+    display: flex; justify-content: space-between; align-items: end; gap: 16px;
+    font-size: 13px;
+  }
+  .work .tile .meta .name { font-size: 18px; font-weight: 500; letter-spacing: -.012em; }
+  .work .tile .meta .tag { font-size: 11px; letter-spacing: .14em; text-transform: uppercase; opacity: .8; }
+  .work .tile.span2 { grid-row: span 2; }
+  .work .tile .scrim {
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, rgba(0,4,28,0) 50%, rgba(0,4,28,.7) 100%);
+    pointer-events: none;
+  }
+
+  /* ===== KPIs + FOUNDER (bento left, founder right) ===== */
+  .kpis-founder { padding: 96px 40px; background: var(--warm); border-top: 1px solid var(--line); }
+  .kpis-founder .studio-mark {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 6px 12px 6px 8px; border: 1px solid var(--line); border-radius: 999px;
+    font-size: 11px; letter-spacing: .18em; text-transform: uppercase; color: var(--ink); font-weight: 500;
+    margin-bottom: 28px;
+  }
+  .kpis-founder .studio-mark .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--studio); }
+  .kpis-founder header h2 { font-family: var(--sans); font-weight: 400; font-size: clamp(40px, 5.4vw, 80px); line-height: 1; letter-spacing: -.028em; margin: 0 0 56px; max-width: 22ch; }
+  .kpis-founder header h2 .serif { color: var(--studio); }
+
+  .kf-split { display: grid; grid-template-columns: 1.25fr 1fr; gap: 24px; align-items: stretch; }
+
+  /* bento grid — fills founder card height exactly */
+  .bento { display: grid; grid-template-columns: repeat(4, 1fr); grid-template-rows: 1fr 1fr 1fr; gap: 12px; height: 100%; }
+  .bento .b {
+    border-radius: 6px; padding: 20px; background: var(--warm-50); border: 1px solid var(--line);
+    display: grid; align-content: space-between; gap: 8px; position: relative; overflow: hidden;
+    transition: transform .3s cubic-bezier(.2,.6,.2,1);
+  }
+  .bento .b:hover { transform: translateY(-2px); }
+  .bento .b .lbl { font-size: 10.5px; letter-spacing: .18em; text-transform: uppercase; color: var(--blue-gray); font-weight: 500; }
+  .bento .b .v { font-family: var(--sans); font-weight: 400; line-height: .9; letter-spacing: -.038em; font-variant-numeric: tabular-nums; color: var(--ink); }
+  .bento .b .v .u { font-size: .5em; color: var(--blue-gray); font-weight: 300; }
+  .bento .b .note { font-size: 12px; color: var(--blue-gray); line-height: 1.45; max-width: 32ch; }
+
+  /* size variants */
+  .bento .b.xl  { grid-column: span 2; grid-row: span 2; padding: 28px; }
+  .bento .b.xl .v  { font-size: clamp(73px, 7.8vw, 120px); }
+  .bento .b.lg  { grid-column: span 2; grid-row: span 1; }
+  .bento .b.lg .v  { font-size: 80px; }
+  .bento .b.tall { grid-column: span 1; grid-row: span 2; padding: 22px; }
+  .bento .b.tall .v { font-size: 44px; }
+  .bento .b.sm  { grid-column: span 1; grid-row: span 1; padding: 16px; }
+  .bento .b.sm .v  { font-size: 28px; }
+  .bento .b.wide { grid-column: span 3; grid-row: span 1; }
+  .bento .b.wide .v { font-size: 28px; }
+
+  /* color variants */
+  .bento .b.studio { background: var(--studio); color: var(--warm); border-color: var(--studio); }
+  .bento .b.studio .v, .bento .b.studio .lbl { color: var(--warm); }
+  .bento .b.studio .v .u { color: rgba(243,240,239,.6); }
+  .bento .b.studio .note { color: rgba(243,240,239,.75); }
+  .bento .b.deep { background: var(--advisory); color: var(--warm); border-color: var(--advisory); }
+  .bento .b.deep .v, .bento .b.deep .lbl { color: var(--warm); }
+  .bento .b.deep .v .u { color: rgba(243,240,239,.55); }
+  .bento .b.deep .note { color: rgba(243,240,239,.7); }
+  .bento .b.deep .lbl { color: var(--studio); }
+  .bento .b.outline { background: transparent; }
+
+  /* corner dot */
+  .bento .b::before {
+    content: ""; position: absolute; top: 14px; right: 14px; width: 7px; height: 7px;
+    border-radius: 50%; background: var(--studio); opacity: .35;
+  }
+  .bento .b.studio::before { background: var(--warm); opacity: .25; }
+  .bento .b.deep::before { background: var(--studio); opacity: 1; }
+
+  /* founder card */
+  .founder {
+    background: var(--warm-50); border: 1px solid var(--line); border-radius: 6px;
+    overflow: hidden; display: grid; grid-template-rows: 1fr auto;
+    position: relative; min-height: 100%;
+  }
+  .founder .portrait {
+    width: 100%; aspect-ratio: 16 / 6.3; overflow: hidden; background: #ddd;
+  }
+  .founder .portrait img { width: 100%; height: 100%; object-fit: cover; object-position: center 35%; }
+  .founder .body { padding: 28px 28px 32px; display: grid; gap: 14px; }
+  .founder .role { display: flex; align-items: center; gap: 10px; }
+  .founder .role .tag { font-size: 11px; letter-spacing: .18em; text-transform: uppercase; color: var(--studio); font-weight: 500; }
+  .founder .role .sep { width: 24px; height: 1px; background: var(--line); }
+  .founder .role .city { font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--blue-gray); font-weight: 500; }
+  .founder h3 {
+    font-family: var(--sans); font-weight: 400;
+    font-size: 28px; line-height: 1.05; letter-spacing: -.022em; margin: 0;
+  }
+  .founder h3 .name { color: var(--ink); }
+  .founder h3 .serif-r { color: var(--studio); }
+  .founder p {
+    font-size: 14.5px; line-height: 1.55; color: var(--blue-gray); margin: 0;
+  }
+  .founder p .ink { color: var(--ink); }
+  .founder .interests {
+    margin-top: 4px; display: flex; flex-wrap: wrap; gap: 6px;
+  }
+  .founder .interests span {
+    font-family: var(--serif); font-weight: 400; font-size: 13px;
+    padding: 5px 12px; background: var(--warm); border: 1px solid var(--line);
+    border-radius: 999px; color: var(--ink); letter-spacing: -.005em;
+    text-transform: none;
+  }
+  .founder .schools {
+    display: flex; gap: 14px; flex-wrap: wrap; align-items: center;
+    padding-top: 10px; margin-top: 4px; border-top: 1px solid var(--line);
+    font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--studio); font-weight: 500;
+  }
+  .founder .schools .pipe { color: var(--blue-gray); opacity: .35; }
+
+  /* ===== MANIFESTO ===== */
+  .manifesto {
+    background: var(--sage); color: var(--advisory);
+    padding: 112px 40px; overflow: hidden; position: relative;
+  }
+  .manifesto .inner { max-width: 1400px; margin: 0 auto; display: grid; gap: 48px; }
+  .manifesto .eyebrow { color: var(--sage-ink); }
+  .manifesto p.q {
+    font-family: var(--sans); font-weight: 400;
+    font-size: clamp(48px, 7vw, 112px); line-height: 1; letter-spacing: -.032em; margin: 0; max-width: 18ch;
+  }
+  .manifesto p.q .serif-r { font-weight: 400; }
+  .manifesto .src { font-size: 13px; letter-spacing: .14em; text-transform: uppercase; color: var(--sage-ink); font-weight: 500; }
+
+  /* ===== ADVISORY TEASER — full Studio-style services ===== */
+  .advisory-block { background: var(--advisory); color: var(--warm); padding: 112px 40px; }
+  .advisory-block .inner { max-width: 1400px; margin: 0 auto; }
+  .advisory-block .head-row {
+    display: grid; grid-template-columns: 1.2fr 1fr; gap: 64px; align-items: end; margin-bottom: 64px;
+  }
+  .advisory-block .adv-mark {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 6px 12px 6px 8px; border: 1px solid rgba(243,240,239,.2); border-radius: 999px;
+    font-size: 11px; letter-spacing: .18em; text-transform: uppercase; color: var(--studio); font-weight: 500;
+    margin-bottom: 24px;
+  }
+  .advisory-block .adv-mark .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--studio); }
+  .advisory-block h2 {
+    font-family: var(--sans); font-weight: 400; color: var(--warm);
+    font-size: clamp(48px, 7vw, 104px); line-height: .98; letter-spacing: -.032em; margin: 0;
+    max-width: 14ch;
+  }
+  .advisory-block h2 .serif-r { color: var(--studio); }
+  .advisory-block .lead { color: rgba(243,240,239,.65); max-width: 40ch; font-size: 16px; }
+
+  /* services row, dark variant */
+  .advisory-block .row { display: grid; grid-template-columns: 1fr; gap: 0; border-top: 1px solid var(--line-dark); }
+  .advisory-block .service {
+    border-bottom: 1px solid var(--line-dark); padding: 32px 0;
+    display: grid; grid-template-columns: 80px 1fr 1.4fr auto; gap: 48px; align-items: center;
+    cursor: pointer; position: relative; transition: padding .35s cubic-bezier(.2,.6,.2,1);
+  }
+  .advisory-block .service::before {
+    content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 2px;
+    background: var(--studio); transform: scaleY(0); transform-origin: top;
+    transition: transform .4s cubic-bezier(.2,.6,.2,1);
+  }
+  .advisory-block .service:hover { padding-left: 24px; padding-right: 24px; }
+  .advisory-block .service:hover::before { transform: scaleY(1); }
+  .advisory-block .service .num { font-size: 14px; letter-spacing: .12em; color: var(--studio); font-variant-numeric: tabular-nums; font-weight: 500; }
+  .advisory-block .service .title-block { display: grid; gap: 6px; }
+  .advisory-block .service .title { font-family: var(--sans); font-weight: 400; font-size: clamp(32px, 4vw, 56px); line-height: 1; letter-spacing: -.028em; margin: 0; color: var(--warm); }
+  .advisory-block .service .subtitle { font-family: var(--serif); font-weight: 300; font-size: clamp(16px, 1.6vw, 22px); color: rgba(243,240,239,.55); letter-spacing: -.005em; line-height: 1.15; transition: color .35s; }
+  .advisory-block .service:hover .subtitle { color: var(--studio); }
+  .advisory-block .service .desc-stack { position: relative; min-height: 56px; display: flex; align-items: center; }
+  .advisory-block .service .desc { font-size: 15px; color: rgba(243,240,239,.6); line-height: 1.5; max-width: 44ch; margin: 0; transition: opacity .3s; }
+  .advisory-block .service:hover .desc { opacity: 0; }
+  .advisory-block .service .tags {
+    position: absolute; inset: 0; display: flex; flex-wrap: wrap; gap: 6px; align-content: center;
+    opacity: 0; transition: opacity .35s ease .08s; pointer-events: none;
+  }
+  .advisory-block .service:hover .tags { opacity: 1; }
+  .advisory-block .service .tags span {
+    font-family: var(--serif); font-weight: 400; font-size: 14.5px;
+    padding: 6px 14px; background: rgba(44,91,255,.08); border: 1px solid rgba(44,91,255,.4); border-radius: 999px; color: var(--studio);
+    letter-spacing: -.005em;
+  }
+  .advisory-block .service .arrow-ring {
+    width: 56px; height: 56px; border-radius: 50%;
+    border: 1px solid rgba(243,240,239,.2); display: grid; place-items: center; color: var(--warm);
+    transition: background .35s, border-color .35s, transform .35s;
+  }
+  .advisory-block .service .arrow-ring svg { transition: transform .35s, color .35s; }
+  .advisory-block .service:hover .arrow-ring { background: var(--studio); border-color: var(--studio); transform: scale(1.08); }
+  .advisory-block .service:hover .arrow-ring svg { transform: translate(3px,-3px); color: var(--warm); }
+
+  /* ===== BIG FOOTER ===== */
+  footer.bottom {
+    background: var(--warm); color: var(--ink); padding: 96px 40px 32px;
+    border-top: 1px solid var(--line); position: relative; overflow: hidden;
+  }
+  footer .ftr-top { max-width: 1400px; margin: 0 auto 64px; display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 48px; }
+  footer h4 { font-size: 11px; letter-spacing: .18em; text-transform: uppercase; color: var(--studio); font-weight: 500; margin: 0 0 16px; }
+  footer ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; font-size: 14.5px; color: var(--blue-gray); }
+  footer ul a:hover { color: var(--ink); }
+  footer .ftr-lead { display: grid; gap: 14px; }
+  footer .ftr-lead .lockup .word { color: var(--ink); }
+  footer .ftr-lead p { color: var(--blue-gray); max-width: 36ch; margin: 0; font-size: 14.5px; line-height: 1.6; }
+
+  /* massive infinit wordmark */
+  footer .ftr-mark {
+    max-width: 1400px; margin: 24px auto 32px;
+    line-height: .82; padding: 24px 0 0;
+    border-top: 1px solid var(--line);
+  }
+  footer .ftr-mark .word {
+    display: inline-flex; align-items: baseline; gap: clamp(8px, 1.4vw, 24px);
+    font-family: var(--sans); font-weight: 400; font-size: clamp(110px, 18vw, 280px);
+    letter-spacing: -.06em; color: var(--ink); line-height: .82;
+  }
+  footer .ftr-mark .word svg {
+    width: clamp(72px, 12vw, 180px); height: auto;
+    transform: translateY(-.04em);
+  }
+  footer .ftr-mark .word .reg { font-size: .14em; color: var(--studio); letter-spacing: 0; align-self: start; margin-left: 8px; transform: translateY(.2em); }
+
+  footer .ftr-bottom {
+    max-width: 1400px; margin: 24px auto 0; padding-top: 24px;
+    border-top: 1px solid var(--line);
+    display: flex; justify-content: space-between; align-items: center; gap: 24px; font-size: 12px; color: var(--blue-gray); letter-spacing: .04em;
+  }
+  footer .ftr-bottom .cta-row { display: flex; gap: 24px; align-items: center; }
+  footer .ftr-bottom a:hover { color: var(--ink); }
+
+  @media (max-width: 900px) {
+    .hero { padding-top: 124px; }
+    .kpis-founder .kf-split { grid-template-columns: 1fr; }
+    .bento { grid-template-columns: repeat(2, 1fr); }
+    .bento .b.xl, .bento .b.wide { grid-column: span 2; }
+    .practices header, .practices .grid, .services header, .work .grid, .advisory-block .head-row, footer .ftr-top { grid-template-columns: 1fr; }
+    .service, .advisory-block .service { grid-template-columns: 48px 1fr; gap: 16px; }
+    .service .desc-stack, .advisory-block .service .desc-stack { grid-column: 1 / -1; }
+    .service .arrow-ring, .advisory-block .service .arrow-ring { grid-column: 1 / -1; justify-self: start; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== NAV ===== -->
+<nav class="top">
+  <a class="logo-lockup" href="#">
+    <svg width="28" height="14.5" viewBox="0 0 62 32" fill="none" stroke="currentColor" stroke-width="4.2"><circle cx="16" cy="16" r="13.5"/><circle cx="46" cy="16" r="13.5"/></svg>
+    <span class="word">infinit<span class="reg">®</span></span>
+  </a>
+  <div class="links">
+    <a href="#practices">Studio</a>
+    <a href="#services">Services</a>
+    <a href="#work">Work</a>
+    <a href="#advisory" class="advisory-link">Advisory<span class="arrow"> ↗</span></a>
+    <a href="#contact">Contact</a>
+  </div>
+  <div class="meta muted">BCN · 41°23′N</div>
+</nav>
+
+<!-- ===== HERO ===== -->
+<header class="hero">
+  <div class="slogan-block reveal in">
+    <h1>
+      <span class="infinit-anim" aria-hidden="true">
+        <svg viewBox="0 0 62 32" fill="none" stroke="currentColor" stroke-width="4.2">
+          <circle class="dot-left"  cx="16" cy="16" r="13.5"/>
+          <circle class="dot-right" cx="46" cy="16" r="13.5"/>
+        </svg>
+      </span>Designed<br/>to <span class="scale"><span class="serif-r">scale</span>.</span>
+    </h1>
+    <div class="below">
+      <p class="explain">
+        <span class="brand">Infinit<span class="reg">®</span></span> is a Brand &amp; Strategy studio for companies entering their <span class="accent">next stage of growth</span> — identity, digital and operating systems built to expand across markets, time and complexity.
+      </p>
+      <div class="scroll">
+        <span>Here's how we work</span>
+        <span class="arrow">↓</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ===== VIDEO REEL ===== -->
+<section class="reel-wrap">
+  <div class="reel-meta-top">
+    <h3>Selected studio work <span class="serif-r">in motion</span> — strategy, identity &amp; digital systems for companies entering their next stage.</h3>
+    <span class="stamp"><span class="live"></span>Showreel · 2024–2026</span>
+  </div>
+  <div class="reel" id="reel">
+    <div class="stage">
+      <div class="slide active"><img src="../assets/images/knob-orange.webp" alt=""/></div>
+      <div class="slide"><img src="../assets/images/astronaut-pink-full.avif" alt=""/></div>
+      <div class="slide"><img src="../assets/images/ipad-sunset.jpg" alt=""/></div>
+      <div class="slide"><img src="../assets/images/hero-speaker.webp" alt=""/></div>
+      <div class="slide"><img src="../assets/images/rainy-day.webp" alt=""/></div>
+    </div>
+    <div class="scrim"></div>
+    <div class="video-badge">
+      <span class="play"><svg width="9" height="10" viewBox="0 0 9 10" fill="currentColor"><path d="M0 0 L9 5 L0 10 Z"/></svg></span>
+      Play the full reel <span style="opacity:.6">· 1:24</span>
+    </div>
+    <div class="dots">
+      <span class="on"></span><span></span><span></span><span></span><span></span>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CLIENTS MARQUEE ===== -->
+<section class="marquee">
+  <div class="label eyebrow">Selected clients &amp; collaborations</div>
+  <div class="track">
+    <img class="l-sap"      src="../assets/clients/sap.png"      alt="SAP"/>
+    <img class="l-glovo"    src="../assets/clients/glovo.png"    alt="Glovo"/>
+    <img class="l-almirall" src="../assets/clients/almirall.png" alt="Almirall"/>
+    <img class="l-instellar" src="../assets/clients/instellar.png" alt="Instellar"/>
+    <img class="l-relats"   src="../assets/clients/relats.png"   alt="Relats"/>
+    <img class="l-bunnker"  src="../assets/clients/bunnker.png"  alt="Bunnker"/>
+    <img class="l-11onze"   src="../assets/clients/11onze.png"   alt="11onze"/>
+    <img class="l-dronparc" src="../assets/clients/dronparc.png" alt="DronParc"/>
+    <!-- duplicate for seamless loop -->
+    <img class="l-sap"      src="../assets/clients/sap.png"      alt=""/>
+    <img class="l-glovo"    src="../assets/clients/glovo.png"    alt=""/>
+    <img class="l-almirall" src="../assets/clients/almirall.png" alt=""/>
+    <img class="l-instellar" src="../assets/clients/instellar.png" alt=""/>
+    <img class="l-relats"   src="../assets/clients/relats.png"   alt=""/>
+    <img class="l-bunnker"  src="../assets/clients/bunnker.png"  alt=""/>
+    <img class="l-11onze"   src="../assets/clients/11onze.png"   alt=""/>
+    <img class="l-dronparc" src="../assets/clients/dronparc.png" alt=""/>
+  </div>
+</section>
+
+<!-- ===== PRACTICES (V3 style restored) ===== -->
+<section class="practices" id="practices">
+  <header>
+    <h2 class="reveal">One studio.<br/><span class="serif">Two</span> practices.</h2>
+    <p class="reveal d1">Studio is the brand &amp; strategy firm. Advisory is the operating model behind it — for when complexity makes design alone insufficient.</p>
+  </header>
+
+  <div class="grid">
+    <!-- STUDIO — BIG, LIGHT BLUE -->
+    <a class="card-studio reveal" href="#services">
+      <div class="head">
+        <span class="tag">Primary practice</span>
+        <span class="logo">
+          <svg width="22" height="11" viewBox="0 0 62 32" fill="none" stroke="currentColor" stroke-width="4.2"><circle cx="16" cy="16" r="13.5"/><circle cx="46" cy="16" r="13.5"/></svg>
+          infinit
+        </span>
+      </div>
+      <h3>Brand, identity and digital systems <span class="serif-r">designed</span> to scale across markets and time.</h3>
+      <div class="disciplines">
+        <span class="pill">Strategy</span>
+        <span class="pill">Identity</span>
+        <span class="pill">Digital</span>
+        <span class="pill">Verbal</span>
+        <span class="pill">Motion</span>
+      </div>
+      <div class="foot">
+        <span class="muted" style="color: rgba(243,240,239,.65); font-size: 13px;">Brand &amp; Strategy · Barcelona</span>
+        <span class="cta">Explore Studio<span class="arrow">↗</span></span>
+      </div>
+    </a>
+
+    <!-- ADVISORY — SMALLER, DEEP BLUE + LIGHT BLUE -->
+    <a class="card-advisory reveal d1" href="#advisory">
+      <div class="head">
+        <span class="tag">Additional practice</span>
+        <span class="logo">
+          <svg width="22" height="11" viewBox="0 0 62 32" fill="none" stroke="currentColor" stroke-width="4.2"><circle cx="16" cy="16" r="13.5"/><circle cx="46" cy="16" r="13.5"/></svg>
+          infinit <span class="label">Advisory</span>
+        </span>
+      </div>
+      <h3>Structure <span class="serif-r">made</span> visible — for digital ecosystems and enterprise architecture.</h3>
+      <div class="disciplines">
+        <span class="pill">Architecture</span>
+        <span class="pill">Platforms</span>
+        <span class="pill">Data &amp; AI</span>
+      </div>
+      <span class="cta">Read more<span class="arrow">↗</span></span>
+      <svg class="deco" width="380" height="200" viewBox="0 0 62 32" fill="none" stroke-width="2"><circle cx="16" cy="16" r="13.5"/><circle cx="46" cy="16" r="13.5"/></svg>
+    </a>
+  </div>
+</section>
+
+<!-- ===== SERVICES (Studio) ===== -->
+<section class="services" id="services">
+  <span class="studio-mark"><span class="dot"></span><svg viewBox="0 0 62 32" fill="none" stroke="currentColor" stroke-width="4.2"><circle cx="16" cy="16" r="13.5"/><circle cx="46" cy="16" r="13.5"/></svg><span class="pipe"></span>Infinit Studio</span>
+  <header>
+    <h2 class="reveal">Three connected <span class="serif">disciplines.</span><br/>One operating system.</h2>
+    <p class="reveal d1">Hover any discipline to expand its capability list. Click to open the full service page.</p>
+  </header>
+
+  <div class="row">
+    <div class="service reveal">
+      <span class="num">01</span>
+      <div class="title-block">
+        <h3 class="title">Strategy</h3>
+        <span class="subtitle">The discipline behind growth.</span>
+      </div>
+      <div class="desc-stack">
+        <p class="desc">Direction aligning business ambition, market opportunity and execution. Positioning, growth, founder voice and fractional CMO support.</p>
+        <div class="tags">
+          <span>Brand Strategy</span><span>Positioning</span><span>Growth Strategy</span><span>Founder Positioning</span><span>Fractional CMO</span>
+        </div>
+      </div>
+      <div class="arrow-ring"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 14 L14 4 M7 4 H14 V11"/></svg></div>
+    </div>
+
+    <div class="service reveal d1">
+      <span class="num">02</span>
+      <div class="title-block">
+        <h3 class="title">Identity</h3>
+        <span class="subtitle">Structure made visible.</span>
+      </div>
+      <div class="desc-stack">
+        <p class="desc">Scalable visual &amp; verbal systems for digital, physical and cultural environments. Identity, design systems, creative direction, motion.</p>
+        <div class="tags">
+          <span>Visual Identity</span><span>Verbal Identity</span><span>Design Systems</span><span>Creative Direction</span><span>Motion Systems</span>
+        </div>
+      </div>
+      <div class="arrow-ring"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 14 L14 4 M7 4 H14 V11"/></svg></div>
+    </div>
+
+    <div class="service reveal d2">
+      <span class="num">03</span>
+      <div class="title-block">
+        <h3 class="title">Digital</h3>
+        <span class="subtitle">Where identity scales.</span>
+      </div>
+      <div class="desc-stack">
+        <p class="desc">Digital ecosystems generating visibility, engagement and measurable business impact. Websites, UX/UI, performance, SEO/GEO, AI experiences.</p>
+        <div class="tags">
+          <span>Websites &amp; Platforms</span><span>UX / UI Direction</span><span>Performance</span><span>SEO &amp; GEO</span><span>AI Experiences</span>
+        </div>
+      </div>
+      <div class="arrow-ring"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 14 L14 4 M7 4 H14 V11"/></svg></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== WORK ===== -->
+<section class="work" id="work">
+  <header>
+    <h2 class="reveal">Recent <span class="serif">work.</span></h2>
+  </header>
+  <div class="grid">
+    <div class="tile span2 reveal">
+      <img class="cover" src="../assets/images/astronaut-pink-full.avif" alt="" />
+      <div class="scrim"></div>
+      <div class="logo-over"><img class="logo-img lg-bunnker" src="../assets/clients/bunnker.png" alt="Bunnker"/></div>
+      <div class="meta">
+        <div><div class="tag">Brand · Identity · Campaign</div><div class="name">Bunnker — beyond gravity</div></div>
+        <span class="tag">2026</span>
+      </div>
+    </div>
+    <div class="tile reveal d1">
+      <img class="cover" src="../assets/images/knob-orange.webp" alt="" />
+      <div class="scrim"></div>
+      <div class="logo-over"><img class="logo-img lg-relats" src="../assets/clients/relats.png" alt="Relats"/></div>
+      <div class="meta">
+        <div><div class="tag">Industrial · Digital</div><div class="name">Relats — material systems</div></div>
+        <span class="tag">2025</span>
+      </div>
+    </div>
+    <div class="tile reveal d2">
+      <img class="cover" src="../assets/images/ipad-sunset.jpg" alt="" />
+      <div class="scrim"></div>
+      <div class="logo-over"><img class="logo-img lg-instellar" src="../assets/clients/instellar.png" alt="Instellar"/></div>
+      <div class="meta">
+        <div><div class="tag">UX · Platform</div><div class="name">Instellar — horizons</div></div>
+        <span class="tag">2025</span>
+      </div>
+    </div>
+    <div class="tile reveal d1">
+      <img class="cover" src="../assets/images/hero-speaker.webp" alt="" />
+      <div class="scrim"></div>
+      <div class="logo-over"><img class="logo-img lg-almirall" src="../assets/clients/almirall.png" alt="Almirall"/></div>
+      <div class="meta">
+        <div><div class="tag">Pharma · Identity</div><div class="name">Almirall — quiet objects</div></div>
+        <span class="tag">2024</span>
+      </div>
+    </div>
+    <div class="tile reveal d2">
+      <img class="cover" src="../assets/images/rainy-day.webp" alt="" />
+      <div class="scrim"></div>
+      <div class="logo-over"><img class="logo-img lg-11onze" src="../assets/clients/11onze.png" alt="11onze"/></div>
+      <div class="meta">
+        <div><div class="tag">Editorial · Campaign</div><div class="name">11onze — weatherproof</div></div>
+        <span class="tag">2024</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== KPIs + FOUNDER ===== -->
+<section class="kpis-founder" id="kpis">
+  <span class="studio-mark"><span class="dot"></span><svg viewBox="0 0 62 32" fill="none" stroke="currentColor" stroke-width="4.2" style="width:18px;height:9px"><circle cx="16" cy="16" r="13.5"/><circle cx="46" cy="16" r="13.5"/></svg><span style="width:1px;height:12px;background:var(--line);display:inline-block"></span>Track record &amp; founder</span>
+  <header>
+    <h2 class="reveal">Outcomes, not <span class="serif">outputs</span> — led by a founder who's been there.</h2>
+  </header>
+
+  <div class="kf-split">
+    <!-- BENTO KPI GRID -->
+    <div class="bento reveal">
+      <div class="b xl studio">
+        <span class="lbl">Average business growth</span>
+        <span class="v">+40<span class="u">%</span></span>
+        <p class="note">YoY revenue lift across re-positioned Studio brands (2023–2025).</p>
+      </div>
+      <div class="b lg">
+        <span class="lbl">Customer satisfaction</span>
+        <span class="v">98<span class="u">%</span></span>
+      </div>
+      <div class="b lg deep">
+        <span class="lbl">Operational efficiency</span>
+        <span class="v">+35<span class="u">%</span></span>
+      </div>
+      <div class="b lg">
+        <span class="lbl">Time-to-market</span>
+        <span class="v">−50<span class="u">%</span></span>
+      </div>
+      <div class="b lg">
+        <span class="lbl">Conversion</span>
+        <span class="v">+62<span class="u">%</span></span>
+      </div>
+    </div>
+
+    <!-- FOUNDER -->
+    <div class="founder reveal d2">
+      <div class="portrait">
+        <img src="../assets/founder/edu-portrait-v3.png" alt="Francesc Callejas" />
+        <span class="name-tag">
+          <span class="dot"></span>
+          Francesc Callejas
+          <a class="li" href="https://www.linkedin.com/in/francesc-callejas-%E2%98%81%EF%B8%8F%E2%98%98%EF%B8%8F-99416a90/" target="_blank" rel="noopener" aria-label="LinkedIn">in</a>
+        </span>
+      </div>
+      <div class="body">
+        <div class="role"><span class="tag">Founder · Principal · Barcelona</span></div>
+        <h3><span class="name">Twenty years</span> <span class="serif-r">across</span> brand, platforms and growth.</h3>
+        <p>From enterprise platforms at <span class="ink">SAP</span> and <span class="ink">Seidor</span> to industrial-scale operations at <span class="ink">Girbau</span> and <span class="ink">Relats</span> — and the schools (<span class="ink">IESE</span>, <span class="ink">INSEAD</span>) that taught me to think about both at once.</p>
+        <div class="interests"><span>Mountains</span><span>4x4Campers</span><span>Ski</span><span>Running</span><span>Console</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== MANIFESTO (sage stripe — single use) ===== -->
+<section class="manifesto">
+  <div class="inner">
+    <div class="eyebrow reveal">Our position</div>
+    <p class="q reveal d1">We don't build brands for today. We build brands <span class="serif-r">prepared</span> for what's next.</p>
+    <div class="src reveal d2">— Infinit Studio · Manifesto</div>
+  </div>
+</section>
+
+<!-- ===== ADVISORY — full services row, Studio-style ===== -->
+<section class="advisory-block" id="advisory">
+  <div class="inner">
+    <span class="adv-mark"><span class="dot"></span><svg viewBox="0 0 62 32" fill="none" stroke="currentColor" stroke-width="4.2" style="width:18px;height:9px"><circle cx="16" cy="16" r="13.5"/><circle cx="46" cy="16" r="13.5"/></svg><span style="width:1px;height:12px;background:rgba(243,240,239,.2);display:inline-block"></span>Infinit Advisory</span>
+    <div class="head-row">
+      <h2 class="reveal">For when <span class="serif-r">design</span><br/>alone is insufficient.</h2>
+      <p class="lead reveal d1">Fractional CIO/CDO depth for enterprise architecture, platform strategy and data &amp; AI. Operates separately from Studio with shared leadership and direction.</p>
+    </div>
+
+    <div class="row">
+      <div class="service reveal">
+        <span class="num">01</span>
+        <div class="title-block">
+          <h3 class="title">Architecture</h3>
+          <span class="subtitle">Fragmented systems, made coherent.</span>
+        </div>
+        <div class="desc-stack">
+          <p class="desc">From audit to integration design — technology selection, target-state architecture, roadmap to value, vendor &amp; risk governance.</p>
+          <div class="tags">
+            <span>Architecture Audit</span><span>Integration Design</span><span>Technology Selection</span><span>Target State</span><span>Roadmap</span>
+          </div>
+        </div>
+        <div class="arrow-ring"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 14 L14 4 M7 4 H14 V11"/></svg></div>
+      </div>
+
+      <div class="service reveal d1">
+        <span class="num">02</span>
+        <div class="title-block">
+          <h3 class="title">Platform Strategy</h3>
+          <span class="subtitle">How platforms scale, governed.</span>
+        </div>
+        <div class="desc-stack">
+          <p class="desc">ERP/CRM definition, implementation direction, operating-model design and vendor management for enterprise platform rollouts.</p>
+          <div class="tags">
+            <span>ERP &amp; CRM Strategy</span><span>Implementation Direction</span><span>Operating Model</span><span>Vendor Management</span><span>Governance</span>
+          </div>
+        </div>
+        <div class="arrow-ring"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 14 L14 4 M7 4 H14 V11"/></svg></div>
+      </div>
+
+      <div class="service reveal d2">
+        <span class="num">03</span>
+        <div class="title-block">
+          <h3 class="title">Data &amp; AI</h3>
+          <span class="subtitle">Information turned into action.</span>
+        </div>
+        <div class="desc-stack">
+          <p class="desc">Data strategy, analytics &amp; decision systems, AI use-case definition, opportunity mapping and adoption frameworks.</p>
+          <div class="tags">
+            <span>Data Strategy</span><span>Analytics</span><span>Decision Systems</span><span>AI Use-cases</span><span>Adoption</span>
+          </div>
+        </div>
+        <div class="arrow-ring"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 14 L14 4 M7 4 H14 V11"/></svg></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="bottom" id="contact">
+  <div class="ftr-top">
+    <div class="ftr-lead">
+      <span class="logo-lockup">
+        <svg width="28" height="14.5" viewBox="0 0 62 32" fill="none" stroke="currentColor" stroke-width="4.2"><circle cx="16" cy="16" r="13.5"/><circle cx="46" cy="16" r="13.5"/></svg>
+        <span class="word">infinit</span>
+      </span>
+      <p>Brand &amp; Strategy designed to scale. A studio for the next stage of growth — Barcelona, with engagements across Europe &amp; the Americas.</p>
+      <a href="mailto:hello@weareinfinit.com" style="color: var(--studio); font-size: 14px; margin-top: 8px;">hello@weareinfinit.com →</a>
+    </div>
+    <div>
+      <h4>Studio</h4>
+      <ul><li><a href="#">Strategy</a></li><li><a href="#">Identity</a></li><li><a href="#">Digital</a></li><li><a href="#">Verbal</a></li><li><a href="#">Motion</a></li></ul>
+    </div>
+    <div>
+      <h4>Advisory</h4>
+      <ul><li><a href="#">Architecture</a></li><li><a href="#">Platform Strategy</a></li><li><a href="#">Data &amp; AI</a></li></ul>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <ul><li><a href="#">Barcelona — c/ Pau Claris 95</a></li><li><a href="#">LinkedIn ↗</a></li><li><a href="#">Instagram ↗</a></li><li><a href="#">Are.na ↗</a></li></ul>
+    </div>
+  </div>
+
+  <div class="ftr-mark">
+    <div class="word">
+      <svg viewBox="0 0 62 32" fill="none" stroke="currentColor" stroke-width="4.2"><circle cx="16" cy="16" r="13.5"/><circle cx="46" cy="16" r="13.5"/></svg>
+      infinit<span class="reg">®</span>
+    </div>
+  </div>
+
+  <div class="ftr-bottom">
+    <span>© 2026 Infinit · All rights reserved · Barcelona, ES</span>
+    <div class="cta-row">
+      <a href="#">Privacy</a>
+      <a href="#">Cookies</a>
+      <a href="#" style="color: var(--studio)">Back to top ↑</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const nav = document.querySelector('nav.top');
+  window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 8); });
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }});
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal:not(.in)').forEach(el => io.observe(el));
+
+  (function() {
+    const reel = document.getElementById('reel');
+    if (!reel) return;
+    const slides = reel.querySelectorAll('.slide');
+    const dots = reel.querySelectorAll('.dots span');
+    let i = 0;
+    setInterval(() => {
+      slides[i].classList.remove('active'); dots[i].classList.remove('on');
+      i = (i + 1) % slides.length;
+      slides[i].classList.add('active'); dots[i].classList.add('on');
+    }, 3200);
+  })();
+</script>
+</body>
+</html>

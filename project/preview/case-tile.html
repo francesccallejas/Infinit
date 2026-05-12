@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<title>Case study tile</title>
+<link rel="stylesheet" href="../colors_and_type.css"/>
+<style>
+  html,body{margin:0;height:100%;}
+  .frame{height:100vh;background:var(--warm-gray);color:var(--deep-blue);padding:24px 40px;font-family:Inter,system-ui,sans-serif;display:grid;grid-template-columns:1.1fr .9fr;gap:32px;align-items:center;}
+  .img{aspect-ratio:4/3;background:linear-gradient(135deg,#0a1240,#000728 60%,#000728);position:relative;overflow:hidden;}
+  .img::after{content:"RELATS / Industrial";position:absolute;bottom:14px;left:16px;color:rgba(243,240,239,.6);font-size:11px;letter-spacing:.18em;text-transform:uppercase;}
+  .img::before{content:"";position:absolute;left:50%;top:50%;width:50%;height:1px;background:var(--light-blue);transform:translate(-50%,-50%) rotate(-22deg);opacity:.7;}
+  .meta{display:flex;flex-direction:column;gap:16px;}
+  .eyebrow{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--blue-gray);}
+  .title{font-size:34px;line-height:1.05;letter-spacing:-.02em;font-weight:400;}
+  .body{font-size:14px;line-height:1.55;color:var(--blue-gray);}
+  .link{display:inline-flex;align-items:center;gap:8px;border-bottom:1px solid currentColor;font-size:13px;font-weight:500;align-self:flex-start;padding-bottom:2px;}
+</style></head>
+<body>
+<div class="frame">
+  <div class="img"></div>
+  <div class="meta">
+    <div class="eyebrow">2025 · Industrial</div>
+    <div class="title">The global trusted partner in innovative safety covering solutions.</div>
+    <div class="body">Brand, identity and digital system for Relats Group — a multi-decade industrial specialist re-architected for international scale.</div>
+    <a class="link" href="#">Read the case study <span>→</span></a>
+  </div>
+</div>
+</body></html>

@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<title>Form inputs</title>
+<link rel="stylesheet" href="../colors_and_type.css"/>
+<style>
+  html,body{margin:0;height:100%;}
+  .frame{height:100vh;background:var(--warm-gray);color:var(--deep-blue);padding:28px 40px;font-family:Inter,system-ui,sans-serif;display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:center;}
+  label{display:block;font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:var(--blue-gray);margin-bottom:10px;}
+  .field{font:inherit;font-size:15px;padding:14px 14px;background:transparent;border:1px solid var(--line-on-light);border-radius:6px;color:var(--deep-blue);width:100%;box-sizing:border-box;}
+  .field:focus{outline:none;border-color:var(--light-blue);box-shadow:0 0 0 3px rgba(44,91,255,.15);}
+  .underline{border:none;border-bottom:1px solid rgba(0,7,40,.4);border-radius:0;padding:10px 0;}
+  .help{font-size:12px;color:var(--blue-gray);margin-top:6px;}
+  .check{display:flex;gap:10px;align-items:center;font-size:14px;}
+  .check input{accent-color:var(--light-blue);width:16px;height:16px;}
+</style></head>
+<body>
+<div class="frame">
+  <div><label>Email</label><input class="field" placeholder="hello@yourcompany.com"/><div class="help">We reply within two business days.</div></div>
+  <div><label>Inquiry type</label>
+    <select class="field"><option>Brand &amp; Strategy</option><option>Identity</option><option>Digital</option><option>Advisory</option></select>
+  </div>
+  <div><label>Brief (underline style)</label><input class="underline field" placeholder="Tell us what you're building"/></div>
+  <div style="display:flex;flex-direction:column;gap:14px;">
+    <div class="check"><input type="checkbox" id="a" checked/><label for="a" style="text-transform:none;letter-spacing:0;color:var(--deep-blue);font-size:14px;margin:0;">Subscribe to occasional notes</label></div>
+    <div class="check"><input type="radio" name="r" id="r1" checked/><label for="r1" style="text-transform:none;letter-spacing:0;color:var(--deep-blue);font-size:14px;margin:0;">Studio engagement</label></div>
+    <div class="check"><input type="radio" name="r" id="r2"/><label for="r2" style="text-transform:none;letter-spacing:0;color:var(--deep-blue);font-size:14px;margin:0;">Advisory engagement</label></div>
+  </div>
+</div>
+</body></html>
