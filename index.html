@@ -595,11 +595,16 @@
 
 
 <script>
-  // Nav: add scrolled class for border visibility
+  // Nav: border on scroll + logo slides in after hero
   const nav = document.getElementById('nav');
-  window.addEventListener('scroll', () => {
+  const hero = document.querySelector('.hero');
+  function onScroll() {
+    const heroBottom = hero ? hero.offsetTop + hero.offsetHeight - 80 : 120;
     nav.classList.toggle('scrolled', window.scrollY > 8);
-  }, { passive: true });
+    nav.classList.toggle('logo-visible', window.scrollY > heroBottom);
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll(); // set initial state
 
   // Reveal on scroll
   const revealObserver = new IntersectionObserver((entries) => {
