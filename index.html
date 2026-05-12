@@ -125,7 +125,7 @@
 
   <div class="cards-grid">
     <!-- STUDIO — primary practice, Studio Blue -->
-    <a class="card-studio reveal" href="#services">
+    <a class="card-studio reveal-scale" href="#services">
       <div class="card-head">
         <span class="card-tag">Primary practice</span>
         <span class="card-logo">
@@ -150,7 +150,7 @@
     </a>
 
     <!-- ADVISORY — additional practice, deep blue -->
-    <a class="card-advisory reveal d1" href="#advisory">
+    <a class="card-advisory reveal-scale d1" href="#advisory">
       <div class="card-head">
         <span class="card-tag">Additional practice</span>
         <span class="card-logo">
@@ -272,7 +272,7 @@
 
   <div class="work-grid">
     <!-- Bunnker — large tile, spans 2 rows -->
-    <div class="work-tile span2 reveal">
+    <div class="work-tile span2 reveal-scale">
       <img class="cover" src="project/assets/images/astronaut-pink-full.avif" alt="Bunnker project — astronaut creative" loading="lazy"/>
       <div class="tile-scrim"></div>
       <div class="logo-over">
@@ -288,7 +288,7 @@
     </div>
 
     <!-- Relats -->
-    <div class="work-tile reveal d1">
+    <div class="work-tile reveal-scale d1">
       <img class="cover" src="project/assets/images/knob-orange.webp" alt="Relats project — industrial design" loading="lazy"/>
       <div class="tile-scrim"></div>
       <div class="logo-over">
@@ -304,7 +304,7 @@
     </div>
 
     <!-- Instellar -->
-    <div class="work-tile reveal d2">
+    <div class="work-tile reveal-scale d2">
       <img class="cover" src="project/assets/images/ipad-sunset.jpg" alt="Instellar project — platform UX" loading="lazy"/>
       <div class="tile-scrim"></div>
       <div class="logo-over">
@@ -320,7 +320,7 @@
     </div>
 
     <!-- Almirall -->
-    <div class="work-tile reveal d1">
+    <div class="work-tile reveal-scale d1">
       <img class="cover" src="project/assets/images/hero-speaker.webp" alt="Almirall project — quiet objects" loading="lazy"/>
       <div class="tile-scrim"></div>
       <div class="logo-over">
@@ -336,7 +336,7 @@
     </div>
 
     <!-- 11onze -->
-    <div class="work-tile reveal d2">
+    <div class="work-tile reveal-scale d2">
       <img class="cover" src="project/assets/images/rainy-day.webp" alt="11onze project — editorial campaign" loading="lazy"/>
       <div class="tile-scrim"></div>
       <div class="logo-over">
@@ -595,24 +595,53 @@
 
 
 <script>
-  // Nav: add scrolled class for border visibility
+  /* ── Nav scroll border ───────────────────────────────────────── */
   const nav = document.getElementById('nav');
   window.addEventListener('scroll', () => {
     nav.classList.toggle('scrolled', window.scrollY > 8);
   }, { passive: true });
 
-  // Reveal on scroll
-  const revealObserver = new IntersectionObserver((entries) => {
+  /* ── Reveal on scroll (all types) ───────────────────────────── */
+  const io = new IntersectionObserver(entries => {
     entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.classList.add('in');
-        revealObserver.unobserve(e.target);
-      }
+      if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
     });
-  }, { threshold: 0.12 });
-  document.querySelectorAll('.reveal:not(.in)').forEach(el => revealObserver.observe(el));
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal:not(.in), .reveal-scale, .reveal-fade').forEach(el => io.observe(el));
 
-  // Reel slideshow
+  /* ── KPI counter: counts up when entering viewport ───────────── */
+  function countUp(valEl, target, duration) {
+    const prefix = target.startsWith('+') ? '+' : target.startsWith('−') ? '−' : '';
+    const num    = parseFloat(target.replace(/[^0-9.]/g, ''));
+    const suffix = target.replace(/[^%a-zA-Z]/g, '');
+    const start  = performance.now();
+    function tick(now) {
+      const p = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - p, 3);  /* ease-out cubic */
+      valEl.childNodes[0].textContent = prefix + Math.round(num * eased) + suffix;
+      if (p < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }
+
+  const kpiObserver = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      e.target.querySelectorAll('.kpi-val').forEach(el => {
+        /* store original text, replace with 0 until animated */
+        const original = el.childNodes[0]?.textContent?.trim();
+        if (!original) return;
+        const unit = el.querySelector('.unit');
+        el.childNodes[0].textContent = original.replace(/[0-9]+/g, '0');
+        setTimeout(() => countUp(el, original, 1800), 200);
+      });
+      kpiObserver.unobserve(e.target);
+    });
+  }, { threshold: 0.3 });
+  const kpiSection = document.querySelector('.bento');
+  if (kpiSection) kpiObserver.observe(kpiSection);
+
+  /* ── Reel slideshow ──────────────────────────────────────────── */
   (function() {
     const reel = document.getElementById('reel');
     if (!reel) return;
@@ -620,16 +649,14 @@
     const dots   = reel.querySelectorAll('.reel-dots span');
     let i = 0;
     setInterval(() => {
-      slides[i].classList.remove('active');
-      dots[i].classList.remove('on');
+      slides[i].classList.remove('active'); dots[i].classList.remove('on');
       i = (i + 1) % slides.length;
-      slides[i].classList.add('active');
-      dots[i].classList.add('on');
+      slides[i].classList.add('active'); dots[i].classList.add('on');
     }, 3200);
   })();
 
-  // Back-to-top smooth scroll
-  document.querySelector('.back-top').addEventListener('click', (e) => {
+  /* ── Back to top ─────────────────────────────────────────────── */
+  document.querySelector('.back-top').addEventListener('click', e => {
     e.preventDefault();
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
