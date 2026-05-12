@@ -595,79 +595,24 @@
 
 
 <script>
-  /* ── Custom cursor ───────────────────────────────────────────── */
-  const cursor = document.createElement('div');
-  cursor.className = 'cursor';
-  cursor.setAttribute('aria-hidden', 'true');
-  document.body.appendChild(cursor);
-
-  let cx = window.innerWidth / 2, cy = window.innerHeight / 2;
-  let tx = cx, ty = cy;
-  let cursorVisible = false;
-
-  document.addEventListener('mousemove', e => {
-    tx = e.clientX; ty = e.clientY;
-    if (!cursorVisible) { cursorVisible = true; cursor.classList.remove('hidden'); }
-  });
-  document.addEventListener('mouseleave', () => cursor.classList.add('hidden'));
-  document.addEventListener('mouseenter', () => cursor.classList.remove('hidden'));
-  document.addEventListener('mousedown', () => cursor.classList.add('click'));
-  document.addEventListener('mouseup',   () => cursor.classList.remove('click'));
-
-  const hoverEls = 'a, button, .service, .advisory-service, .work-tile, .pill, .cta, .card-studio, .card-advisory';
-  document.querySelectorAll(hoverEls).forEach(el => {
-    el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
-    el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
-  });
-
-  (function animCursor() {
-    cx += (tx - cx) * 0.12;
-    cy += (ty - cy) * 0.12;
-    cursor.style.transform = `translate(calc(${cx}px - 50%), calc(${cy}px - 50%))`;
-    requestAnimationFrame(animCursor);
-  })();
-
-  /* ── Nav: hide on scroll down, show on scroll up ────────────── */
+  // Nav: add scrolled class for border visibility
   const nav = document.getElementById('nav');
-  let lastY = 0;
   window.addEventListener('scroll', () => {
-    const y = window.scrollY;
-    nav.classList.toggle('scrolled', y > 8);
-    nav.classList.toggle('nav-hidden', y > lastY && y > 120);
-    lastY = y;
+    nav.classList.toggle('scrolled', window.scrollY > 8);
   }, { passive: true });
 
-  /* ── Curtain reveal for large headings ───────────────────────── */
-  function wrapCurtain(el, delay) {
-    const wrap = document.createElement('span');
-    wrap.className = 'curtain' + (delay ? ' d' + delay : '');
-    const inner = document.createElement('span');
-    inner.className = 'curtain-inner';
-    inner.innerHTML = el.innerHTML;
-    wrap.appendChild(inner);
-    el.innerHTML = '';
-    el.appendChild(wrap);
-    return wrap;
-  }
-
-  const curtainEls = [];
-  document.querySelectorAll('h2.reveal, .practices header h2, .services header h2, .work header h2, .kpis-founder header h2, .advisory-block h2, .manifesto blockquote').forEach((el, i) => {
-    el.classList.remove('reveal');
-    const wrap = wrapCurtain(el, 0);
-    curtainEls.push(wrap);
-  });
-
-  /* ── IntersectionObserver for all reveals + curtains ────────── */
-  const io = new IntersectionObserver(entries => {
+  // Reveal on scroll
+  const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach(e => {
-      if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        revealObserver.unobserve(e.target);
+      }
     });
-  }, { threshold: 0.14 });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal:not(.in)').forEach(el => revealObserver.observe(el));
 
-  document.querySelectorAll('.reveal:not(.in)').forEach(el => io.observe(el));
-  curtainEls.forEach(el => io.observe(el));
-
-  /* ── Reel slideshow ──────────────────────────────────────────── */
+  // Reel slideshow
   (function() {
     const reel = document.getElementById('reel');
     if (!reel) return;
@@ -675,14 +620,16 @@
     const dots   = reel.querySelectorAll('.reel-dots span');
     let i = 0;
     setInterval(() => {
-      slides[i].classList.remove('active'); dots[i].classList.remove('on');
+      slides[i].classList.remove('active');
+      dots[i].classList.remove('on');
       i = (i + 1) % slides.length;
-      slides[i].classList.add('active'); dots[i].classList.add('on');
+      slides[i].classList.add('active');
+      dots[i].classList.add('on');
     }, 3200);
   })();
 
-  /* ── Back to top ─────────────────────────────────────────────── */
-  document.querySelector('.back-top').addEventListener('click', e => {
+  // Back-to-top smooth scroll
+  document.querySelector('.back-top').addEventListener('click', (e) => {
     e.preventDefault();
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
