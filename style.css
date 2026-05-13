@@ -885,7 +885,7 @@ nav.top .links a.nav-cta:hover { background: var(--studio-hover); color: var(--w
 /* ==========================================================================
    WORK GRID
    ========================================================================== */
-.work { padding: 24px 52px 80px; }
+.work { padding: 80px 52px 80px; }
 .work header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 48px; gap: 32px; }
 .work header h2 {
   font-family: var(--sans); font-weight: 400;
