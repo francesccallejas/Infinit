@@ -44,7 +44,32 @@
     <a href="#advisory" class="advisory-link">Advisory<span class="arrow"> ↗</span></a>
     <a href="#contact" class="nav-cta">Contact</a>
   </nav>
+
+  <button class="nav-burger" id="navBurger" aria-label="Open menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+
+<!-- ===== MOBILE MENU OVERLAY ===== -->
+<div class="mob-overlay" id="mobOverlay" aria-hidden="true">
+  <div class="mob-overlay-inner">
+    <button class="mob-close" id="mobClose" aria-label="Close menu">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <line x1="3" y1="3" x2="17" y2="17"/><line x1="17" y1="3" x2="3" y2="17"/>
+      </svg>
+    </button>
+    <nav class="mob-links" aria-label="Mobile primary">
+      <a href="#practices" class="mob-link">Studio</a>
+      <a href="#services" class="mob-link">Services</a>
+      <a href="#work" class="mob-link">Work</a>
+      <a href="#advisory" class="mob-link mob-advisory">Advisory <span class="arrow">↗</span></a>
+    </nav>
+    <div class="mob-footer">
+      <a href="#contact" class="mob-cta">Contact us</a>
+      <a href="tel:+34689022383" class="mob-phone">+34 689 022 383</a>
+    </div>
+  </div>
+</div>
 
 
 <!-- ========== HERO ========== -->
@@ -889,6 +914,35 @@
     e.preventDefault();
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
+
+  /* ── Mobile hamburger menu ───────────────────────────────────── */
+  (function() {
+    const burger  = document.getElementById('navBurger');
+    const overlay = document.getElementById('mobOverlay');
+    const close   = document.getElementById('mobClose');
+    const links   = overlay.querySelectorAll('.mob-link, .mob-cta');
+
+    function openMenu() {
+      overlay.classList.add('open');
+      overlay.setAttribute('aria-hidden', 'false');
+      burger.setAttribute('aria-expanded', 'true');
+      burger.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeMenu() {
+      overlay.classList.remove('open');
+      overlay.setAttribute('aria-hidden', 'true');
+      burger.setAttribute('aria-expanded', 'false');
+      burger.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    burger.addEventListener('click', openMenu);
+    close.addEventListener('click', closeMenu);
+    links.forEach(l => l.addEventListener('click', closeMenu));
+    overlay.addEventListener('click', e => { if (e.target === overlay) closeMenu(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
+  })();
 </script>
 
 </body>

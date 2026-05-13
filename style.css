@@ -1376,6 +1376,106 @@ footer .ftr-bottom .back-top:hover { color: var(--studio-hover); }
 .cookie-accept:hover { background: var(--studio-hover); }
 
 /* ==========================================================================
+   MOBILE MENU OVERLAY
+   ========================================================================== */
+
+/* Hamburger button — hidden on desktop */
+.nav-burger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  width: 40px; height: 40px;
+  background: none; border: none; cursor: pointer; padding: 0;
+  color: inherit;
+}
+.nav-burger span {
+  display: block;
+  width: 22px; height: 1.5px;
+  background: currentColor;
+  border-radius: 2px;
+  transition: transform .3s cubic-bezier(.16,1,.3,1), opacity .2s;
+}
+.nav-burger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+.nav-burger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.nav-burger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+/* Full-screen overlay */
+.mob-overlay {
+  display: none;
+  position: fixed; inset: 0; z-index: 9000;
+  background: rgba(6,8,24,.97);
+  backdrop-filter: blur(24px);
+  opacity: 0;
+  transition: opacity .35s cubic-bezier(.16,1,.3,1);
+}
+.mob-overlay.open { opacity: 1; }
+.mob-overlay-inner {
+  display: flex; flex-direction: column; justify-content: space-between;
+  height: 100%; padding: 28px 32px 48px;
+}
+
+/* Close button */
+.mob-close {
+  align-self: flex-end;
+  background: none; border: 1px solid rgba(243,240,239,.18);
+  color: var(--warm); border-radius: 50%;
+  width: 40px; height: 40px;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; flex-shrink: 0;
+  transition: background .2s;
+}
+.mob-close:hover { background: rgba(243,240,239,.1); }
+
+/* Nav links */
+.mob-links {
+  display: flex; flex-direction: column; justify-content: center;
+  gap: 8px; flex: 1; padding: 40px 0 24px;
+}
+.mob-link {
+  font-family: var(--sans); font-weight: 400;
+  font-size: clamp(40px, 12vw, 64px);
+  line-height: 1; letter-spacing: -.03em;
+  color: var(--warm); text-decoration: none;
+  opacity: 0; transform: translateY(16px);
+  transition: color .2s, opacity .4s cubic-bezier(.16,1,.3,1), transform .4s cubic-bezier(.16,1,.3,1);
+}
+.mob-overlay.open .mob-link:nth-child(1) { opacity: 1; transform: translateY(0); transition-delay: .05s; }
+.mob-overlay.open .mob-link:nth-child(2) { opacity: 1; transform: translateY(0); transition-delay: .10s; }
+.mob-overlay.open .mob-link:nth-child(3) { opacity: 1; transform: translateY(0); transition-delay: .15s; }
+.mob-overlay.open .mob-link:nth-child(4) { opacity: 1; transform: translateY(0); transition-delay: .20s; }
+.mob-link:hover { color: var(--studio); }
+.mob-advisory { color: rgba(243,240,239,.5); }
+.mob-advisory .arrow { display: inline-block; margin-left: 4px; }
+.mob-advisory:hover { color: var(--warm); }
+
+/* Footer: CTA + phone */
+.mob-footer {
+  display: flex; flex-direction: column; gap: 16px;
+  border-top: 1px solid rgba(243,240,239,.12); padding-top: 28px;
+  opacity: 0; transform: translateY(8px);
+  transition: opacity .4s cubic-bezier(.16,1,.3,1) .28s, transform .4s cubic-bezier(.16,1,.3,1) .28s;
+}
+.mob-overlay.open .mob-footer { opacity: 1; transform: translateY(0); }
+.mob-cta {
+  display: inline-flex; align-items: center; justify-content: center;
+  background: var(--studio); color: var(--warm);
+  font-size: 15px; font-weight: 500; letter-spacing: .01em;
+  padding: 14px 28px; border-radius: 100px;
+  text-decoration: none; width: 100%;
+  transition: background .2s;
+}
+.mob-cta:hover { background: var(--studio-hover); }
+.mob-phone {
+  font-size: 17px; font-weight: 400; letter-spacing: .01em;
+  color: rgba(243,240,239,.55); text-decoration: none;
+  text-align: center;
+  transition: color .2s;
+}
+.mob-phone:hover { color: var(--warm); }
+
+/* ==========================================================================
    RESPONSIVE
    ========================================================================== */
 @media (max-width: 1100px) {
@@ -1393,6 +1493,8 @@ footer .ftr-bottom .back-top:hover { color: var(--studio-hover); }
 @media (max-width: 768px) {
   nav.top { top: 12px; padding: 8px 8px 8px 16px; max-width: calc(100vw - 32px); }
   nav.top .links { display: none; }
+  .nav-burger { display: flex; }
+  .mob-overlay { display: flex; flex-direction: column; }
   .hero { padding-left: 24px; padding-right: 24px; padding-bottom: 28px; }
   .hero-services { display: none; }
   .hero-bottom { flex-direction: column; align-items: flex-start; gap: 20px; }
