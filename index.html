@@ -606,11 +606,23 @@
 <script>
   /* ── Lenis smooth scroll ─────────────────────────────────────── */
   const lenis = new Lenis({
-    duration: 1.4,
+    duration: 1.2,
     easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+    smoothWheel: true,
+    syncTouch: false,
   });
   function lenisRaf(time) { lenis.raf(time); requestAnimationFrame(lenisRaf); }
   requestAnimationFrame(lenisRaf);
+
+  /* hook Lenis into the reel scale so it reads the real scroll pos */
+  lenis.on('scroll', () => {
+    const reelEl = document.getElementById('reel');
+    if (!reelEl) return;
+    const rect = reelEl.getBoundingClientRect();
+    const vh   = window.innerHeight;
+    const p    = Math.min(Math.max((vh - rect.top) / (vh * 0.55), 0), 1);
+    window.__reelTarget = 0.62 + 0.38 * p;
+  });
 
   /* ── Intro splash ────────────────────────────────────────────── */
   const intro = document.getElementById('intro');
@@ -629,12 +641,12 @@
     nav.classList.toggle('scrolled', window.scrollY > 8);
   }, { passive: true });
 
-  /* ── Reveal on scroll (all types) ───────────────────────────── */
+  /* ── Reveal on scroll ───────────────────────────────────────── */
   const io = new IntersectionObserver(entries => {
     entries.forEach(e => {
       if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
     });
-  }, { threshold: 0.1 });
+  }, { threshold: 0, rootMargin: '0px 0px -60px 0px' });
   document.querySelectorAll('.reveal:not(.in), .reveal-scale, .reveal-fade, .reveal-push').forEach(el => io.observe(el));
 
   /* ── KPI counter: counts up when entering viewport ───────────── */
@@ -669,24 +681,21 @@
   const kpiSection = document.querySelector('.bento');
   if (kpiSection) kpiObserver.observe(kpiSection);
 
-  /* ── Reel scroll scale (lerp smooth) ────────────────────────── */
+  /* ── Reel scroll scale (driven by Lenis) ────────────────────── */
   (function() {
     const reel = document.getElementById('reel');
     if (!reel) return;
-    let current = 0.62, target = 0.62;
-    function getTarget() {
-      const rect = reel.getBoundingClientRect();
-      const vh   = window.innerHeight;
-      // reaches 1.0 when reel top is at 55% of viewport (still plenty of title visible)
-      const p = Math.min(Math.max((vh - rect.top) / (vh * 0.55), 0), 1);
-      return 0.62 + 0.38 * p;
-    }
+    let current = 0.62;
+    window.__reelTarget = 0.62;
     function tick() {
-      target  = getTarget();
-      current += (target - current) * 0.09;
+      current += (window.__reelTarget - current) * 0.08;
       reel.style.setProperty('--reel-scale', current.toFixed(4));
       requestAnimationFrame(tick);
     }
+    // seed initial target
+    const rect = reel.getBoundingClientRect();
+    const vh   = window.innerHeight;
+    window.__reelTarget = 0.62 + 0.38 * Math.min(Math.max((vh - rect.top) / (vh * 0.55), 0), 1);
     tick();
   })();
 
