@@ -370,6 +370,11 @@ nav.top .links a.nav-cta:hover { background: var(--studio-hover); color: var(--w
   grid-template-rows: 1fr auto auto;
   padding: 104px 52px 40px;
   color: var(--warm);
+  border-radius: 0;
+  transition: border-radius .6s cubic-bezier(.16,1,.3,1);
+}
+.hero:hover {
+  border-radius: 0 0 28px 28px;
 }
 
 .hero-bg {
