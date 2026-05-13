@@ -961,7 +961,7 @@ nav.top .links a.nav-cta:hover { background: var(--studio-hover); color: var(--w
 /* Logo size overrides for specific clients */
 .work-tile .logo-over img.lg-bunnker   { max-width: 36%; }
 .work-tile .logo-over img.lg-relats    { max-width: 44%; }
-.work-tile .logo-over img.lg-instellar { max-width: 40%; }
+.work-tile .logo-over img.lg-instellar { max-width: 45%; }
 .work-tile .logo-over img.lg-almirall  { max-width: 44%; }
 .work-tile .logo-over img.lg-11onze    { max-width: 38%; }
 
