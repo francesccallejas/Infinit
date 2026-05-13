@@ -1118,7 +1118,7 @@ nav.top .links a.nav-cta:hover { background: var(--studio-hover); color: var(--w
   transition: background .2s;
   text-decoration: none;
 }
-.name-tag-overlay .li-btn:hover { background: rgba(255,255,255,.32); }
+.name-tag-overlay .li-btn:hover { background: var(--studio); border-color: var(--studio); }
 
 /* ==========================================================================
    RECOGNITION STRIP
