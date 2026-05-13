@@ -9,7 +9,7 @@
 /* ---- Reset --------------------------------------------------------------- */
 *, *::before, *::after { box-sizing: border-box; }
 html, body { margin: 0; padding: 0; }
-html { scrollbar-gutter: stable; scrollbar-color: transparent transparent; }
+html { scrollbar-gutter: stable; scrollbar-color: transparent transparent; background: var(--warm); }
 html:hover { scrollbar-color: rgba(0,7,40,.2) transparent; }
 img { max-width: 100%; display: block; }
 a { color: inherit; text-decoration: none; }
@@ -61,7 +61,7 @@ blockquote { margin: 0; padding: 0; }
    BASE
    ========================================================================== */
 body {
-  background: #060818;
+  background: var(--warm);
   color: var(--ink);
   font-family: var(--sans);
   font-size: 16px;
@@ -370,12 +370,22 @@ nav.top .links a.nav-cta:hover { background: var(--studio-hover); color: var(--w
   grid-template-rows: 1fr auto auto;
   padding: 104px 52px 40px;
   color: var(--warm);
-  border-radius: 0;
-  transition: border-radius .6s cubic-bezier(.16,1,.3,1);
 }
-.hero:hover {
-  border-radius: 0 0 12px 12px;
+/* Rounded bottom corners on hover — pseudo-element masks corners with page bg */
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 16px;
+  pointer-events: none;
+  z-index: 10;
+  background:
+    radial-gradient(circle at 0% 100%, transparent 14px, var(--warm) 15px) bottom left / 50% 100% no-repeat,
+    radial-gradient(circle at 100% 100%, transparent 14px, var(--warm) 15px) bottom right / 50% 100% no-repeat;
+  opacity: 0;
+  transition: opacity .5s cubic-bezier(.16,1,.3,1);
 }
+.hero:hover::after { opacity: 1; }
 
 .hero-bg {
   position: absolute;
@@ -539,7 +549,6 @@ nav.top .links a.nav-cta:hover { background: var(--studio-hover); color: var(--w
   overflow: hidden;
   padding: 56px 0;
   background: var(--warm);
-  border-top: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
 }
 .marquee .marquee-label {
@@ -1100,6 +1109,7 @@ nav.top .links a.nav-cta:hover { background: var(--studio-hover); color: var(--w
   border-bottom: 1px solid var(--line);
   overflow: hidden;
   padding: 0;
+  background: var(--warm);
 }
 .rec-label-fixed {
   padding: 22px 28px 22px 52px;
@@ -1216,7 +1226,7 @@ nav.top .links a.nav-cta:hover { background: var(--studio-hover); color: var(--w
 .advisory-service:hover::before { transform: scaleY(1); }
 .advisory-service .adv-num { font-size: 14px; letter-spacing: .12em; color: var(--studio); font-variant-numeric: tabular-nums; font-weight: 500; }
 .advisory-service .adv-title-block { display: grid; gap: 6px; }
-.advisory-service .adv-title { font-family: var(--sans); font-weight: 400; font-size: clamp(32px, 4vw, 56px); line-height: 1; letter-spacing: -.028em; margin: 0; color: var(--warm); }
+.advisory-service .adv-title { font-family: var(--sans); font-weight: 400; font-size: clamp(28px, 3.2vw, 48px); line-height: 1; letter-spacing: -.028em; margin: 0; color: var(--warm); white-space: nowrap; }
 .advisory-service .adv-sub {
   font-family: var(--serif); font-weight: 300; font-size: clamp(16px, 1.6vw, 22px);
   color: rgba(243, 240, 239, .55); letter-spacing: -.005em; line-height: 1.15; transition: color .35s;
