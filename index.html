@@ -631,10 +631,9 @@
       <h4>Studio</h4>
       <ul>
         <li><a href="#services">Strategy</a></li>
-        <li><a href="#services">Identity</a></li>
+        <li><a href="#services">Brand</a></li>
         <li><a href="#services">Digital</a></li>
-        <li><a href="#services">Verbal</a></li>
-        <li><a href="#services">Motion</a></li>
+        <li><a href="#services">Content</a></li>
       </ul>
     </div>
 
@@ -652,8 +651,7 @@
       <ul>
         <li><a href="#">Barcelona — c/ Pau Claris 95</a></li>
         <li><a href="https://www.linkedin.com/in/francesc-callejas-%E2%98%81%EF%B8%8F%E2%98%98%EF%B8%8F-99416a90/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a></li>
-        <li><a href="#">Instagram ↗</a></li>
-        <li><a href="#">Are.na ↗</a></li>
+        <li><a href="mailto:hello@weareinfinit.com">hello@weareinfinit.com ↗</a></li>
       </ul>
     </div>
   </div>
@@ -678,6 +676,15 @@
   </div>
 </footer>
 
+
+<!-- ========== COOKIE BANNER ========== -->
+<div class="cookie-bar" id="cookieBar" role="dialog" aria-label="Cookie consent">
+  <p>We use cookies to improve your experience. <a href="#" class="cookie-link">Learn more</a></p>
+  <div class="cookie-actions">
+    <button class="cookie-decline" id="cookieDecline">Decline</button>
+    <button class="cookie-accept" id="cookieAccept">Accept</button>
+  </div>
+</div>
 
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
 <script>
@@ -902,6 +909,21 @@
     onVisible(document.querySelector('.manifesto'), () => {
       quote.querySelectorAll('.word-reveal').forEach(w => w.classList.add('in'));
     }, '0px 0px -20% 0px');
+  })();
+
+  /* ── Cookie banner ───────────────────────────────────────────── */
+  (function() {
+    const bar = document.getElementById('cookieBar');
+    if (!bar) return;
+    if (localStorage.getItem('cookie-consent')) { bar.remove(); return; }
+    setTimeout(() => bar.classList.add('visible'), 1800);
+    function dismiss(val) {
+      localStorage.setItem('cookie-consent', val);
+      bar.classList.remove('visible');
+      setTimeout(() => bar.remove(), 400);
+    }
+    document.getElementById('cookieAccept').addEventListener('click', () => dismiss('accepted'));
+    document.getElementById('cookieDecline').addEventListener('click', () => dismiss('declined'));
   })();
 
   /* ── Back to top ─────────────────────────────────────────────── */
