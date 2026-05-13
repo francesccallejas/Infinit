@@ -710,19 +710,23 @@
     }, 3200);
   })();
 
-  /* ── Practice cards: Studio first, Advisory 750ms later ─────── */
+  /* ── Practice cards: fire when h2 is near the top nav ───────── */
   (function() {
     const section  = document.querySelector('.practices');
     const studio   = document.querySelector('.card-studio');
     const advisory = document.querySelector('.card-advisory');
     if (!section || !studio || !advisory) return;
-    const obs = new IntersectionObserver(([e]) => {
-      if (!e.isIntersecting) return;
-      obs.disconnect();
-      studio.classList.add('in');
-      setTimeout(() => advisory.classList.add('in'), 750);
-    }, { threshold: 0.2 });
-    obs.observe(section);
+    let fired = false;
+    lenis.on('scroll', () => {
+      if (fired) return;
+      const dist = section.getBoundingClientRect().top;
+      /* fire when section top is within 160px of viewport top (h2 near nav) */
+      if (dist <= 160) {
+        fired = true;
+        studio.classList.add('in');
+        setTimeout(() => advisory.classList.add('in'), 750);
+      }
+    });
   })();
 
   /* ── Back to top ─────────────────────────────────────────────── */
