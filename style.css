@@ -1125,8 +1125,9 @@ nav.top .links a.nav-cta:hover { background: var(--studio-hover); color: var(--w
 }
 .rec-sep { opacity: .2; font-size: 14px; }
 
-/* COAC badge — text version until transparent PNG is available */
-.badge-coac { top: auto; bottom: 16px; right: 16px; font-size: 10px; letter-spacing: .1em; text-transform: uppercase; font-weight: 500; color: #fff; }
+/* COAC badge on Bunnker tile — top right, logo white */
+.badge-coac { top: 16px; right: 16px; }
+.badge-coac img { height: 14px; width: auto; filter: brightness(0) invert(1); }
 
 /* ==========================================================================
    MANIFESTO
