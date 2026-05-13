@@ -473,7 +473,7 @@
 <section class="manifesto" aria-label="Our position">
   <div class="manifesto-inner">
     <p class="manifesto-eyebrow eyebrow reveal-push">Our position</p>
-    <blockquote class="reveal d1">
+    <blockquote class="manifesto-quote">
       We don't build brands for today. We build brands <span class="serif-r">prepared</span> for what's next.
     </blockquote>
     <p class="manifesto-src reveal d2">— Infinit Studio · Manifesto</p>
@@ -808,6 +808,47 @@
         setTimeout(() => tiles[i].classList.add('in'), delay)
       );
     }, '0px 0px -55% 0px');
+  })();
+
+  /* ── Manifesto word-wave reveal ─────────────────────────────── */
+  (function() {
+    const quote = document.querySelector('.manifesto-quote');
+    if (!quote) return;
+
+    let wi = 0;
+    const children = Array.from(quote.childNodes);
+
+    children.forEach(node => {
+      if (node.nodeType === 3) {
+        const frag = document.createDocumentFragment();
+        node.textContent.split(/(\s+)/).forEach(part => {
+          if (/^\s*$/.test(part)) {
+            frag.appendChild(document.createTextNode(part));
+          } else {
+            const mask = document.createElement('span');
+            mask.className = 'word-mask';
+            const inner = document.createElement('span');
+            inner.className = 'word-reveal';
+            inner.style.transitionDelay = (wi++ * 0.06) + 's';
+            inner.textContent = part;
+            mask.appendChild(inner);
+            frag.appendChild(mask);
+          }
+        });
+        node.replaceWith(frag);
+      } else if (node.nodeType === 1) {
+        const mask = document.createElement('span');
+        mask.className = 'word-mask';
+        node.classList.add('word-reveal');
+        node.style.transitionDelay = (wi++ * 0.06) + 's';
+        node.replaceWith(mask);
+        mask.appendChild(node);
+      }
+    });
+
+    onVisible(document.querySelector('.manifesto'), () => {
+      quote.querySelectorAll('.word-reveal').forEach(w => w.classList.add('in'));
+    }, '0px 0px -20% 0px');
   })();
 
   /* ── Back to top ─────────────────────────────────────────────── */

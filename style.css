@@ -1164,6 +1164,24 @@ nav.top .links a.nav-cta:hover { background: var(--studio-hover); color: var(--w
 .badge-coac img { height: 14px; width: auto; filter: brightness(0) invert(1); }
 
 /* ==========================================================================
+   MANIFESTO WORD REVEAL
+   ========================================================================== */
+.manifesto-quote { opacity: 1; transform: none; }
+.word-mask {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+  padding-bottom: .12em;
+  margin-bottom: -.12em;
+}
+.word-reveal {
+  display: inline-block;
+  transform: translateY(115%);
+  transition: transform 1s cubic-bezier(.16,1,.3,1);
+}
+.word-reveal.in { transform: translateY(0); }
+
+/* ==========================================================================
    MANIFESTO
    ========================================================================== */
 .manifesto {
