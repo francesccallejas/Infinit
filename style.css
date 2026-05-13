@@ -1092,28 +1092,32 @@ nav.top .links a.nav-cta:hover { background: var(--studio-hover); color: var(--w
   border-radius: 999px; color: var(--ink); letter-spacing: -.005em;
 }
 
-/* Name-tag overlay on portrait — pill badge top-right, brand style */
+/* Name-tag overlay on portrait — matches Awwwards badge style */
 .name-tag-overlay {
   position: absolute;
   top: 16px; right: 16px;
   display: inline-flex; align-items: center; gap: 8px;
-  padding: 7px 10px 7px 12px; border-radius: 999px;
-  background: rgba(0, 7, 40, .72);
-  border: 1px solid rgba(255, 255, 255, .18);
-  color: var(--warm);
-  font-size: 11px; font-weight: 500; letter-spacing: .01em;
+  padding: 8px 12px;
+  background: rgba(0,0,0,.38);
+  border: 1px solid rgba(255,255,255,.18);
+  border-radius: 999px;
+  color: #fff;
+  font-size: 10px; letter-spacing: .12em; text-transform: uppercase; font-weight: 500;
   white-space: nowrap; pointer-events: auto;
 }
 .name-tag-overlay .tag-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--studio); flex-shrink: 0; }
 .name-tag-overlay .li-btn {
   display: inline-grid; place-items: center;
-  width: 22px; height: 22px; border-radius: 4px;
-  background: var(--studio); color: var(--warm);
+  width: 20px; height: 20px; border-radius: 3px;
+  background: rgba(255,255,255,.18);
+  border: 1px solid rgba(255,255,255,.35);
+  color: #fff;
   font-size: 10px; font-weight: 700;
-  transition: background .2s, color .2s;
+  letter-spacing: 0; text-transform: none;
+  transition: background .2s;
   text-decoration: none;
 }
-.name-tag-overlay .li-btn:hover { background: var(--warm); color: var(--studio); }
+.name-tag-overlay .li-btn:hover { background: rgba(255,255,255,.32); }
 
 /* ==========================================================================
    RECOGNITION STRIP
