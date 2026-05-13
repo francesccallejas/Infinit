@@ -618,6 +618,15 @@ nav.top .links a.nav-cta:hover { background: var(--studio-hover); color: var(--w
   gap: 24px;
 }
 
+/* Practice cards animation */
+.card-anim {
+  opacity: 0;
+  transform: translateY(100px);
+  transition: opacity 1s cubic-bezier(.22,1,.36,1),
+              transform 1.2s cubic-bezier(.22,1,.36,1);
+}
+.card-anim.in { opacity: 1; transform: translateY(0); }
+
 /* Studio card */
 .card-studio {
   background: var(--studio);
