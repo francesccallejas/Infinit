@@ -50,7 +50,9 @@
 <!-- ========== HERO ========== -->
 <header class="hero">
   <div class="hero-bg" aria-hidden="true">
-    <img src="project/assets/images/astronaut-red-portrait.png" alt=""/>
+    <div class="hero-slide active"><img src="project/assets/images/astronaut-red-portrait.png" alt=""/></div>
+    <div class="hero-slide"><img src="project/assets/images/rainy-day.webp" alt=""/></div>
+    <div class="hero-slide"><img src="project/assets/imagery/Almirall.webp" alt=""/></div>
   </div>
 
   <div class="hero-services" aria-hidden="true">
@@ -71,59 +73,19 @@
     </h1>
   </div>
 
+  <p class="hero-explain">
+    <strong class="brand">Infinit<span class="reg">®</span></strong> is a Brand &amp; Strategy studio for companies entering their <span class="accent">next stage of growth</span> — identity, digital and operating systems built to expand across markets, time and complexity.
+  </p>
+
   <div class="hero-bottom">
-    <p class="hero-tagline">
-      <strong>No generic brands. No empty strategy.</strong><br/>
-      Identity, digital and operating systems built to expand<br/>across markets, time and complexity.
-    </p>
-    <div class="hero-card">
-      <div class="hero-card-img">
-        <img src="project/assets/founder/edu-portrait-v3.png" alt="Francesc Callejas"/>
-      </div>
-      <div class="hero-card-info">
-        <span class="hero-card-label">Founder · Infinit®</span>
-        <span class="hero-card-name">Francesc Callejas</span>
-      </div>
-      <button class="hero-card-cta"><span class="hero-dot"></span> Let's talk</button>
+    <div class="hero-scroll-hint" aria-hidden="true">
+      <span>Here's how we work</span>
+      <span class="arrow">↓</span>
     </div>
   </div>
 </header>
 
 
-<!-- ========== IMAGE REEL ========== -->
-<section class="reel-wrap" aria-label="Studio work">
-  <div class="reel" id="reel">
-    <div class="img-strip-track">
-      <div class="img-strip-item"><img src="project/assets/images/knob-orange.webp" alt="" loading="lazy"/></div>
-      <div class="img-strip-item"><img src="project/assets/imagery/Almirall.webp" alt="" loading="lazy"/></div>
-      <div class="img-strip-item"><img src="project/assets/images/Bunnker Final.webp" alt="" loading="lazy"/></div>
-      <div class="img-strip-item"><img src="project/assets/images/ipad-sunset.webp" alt="" loading="lazy"/></div>
-      <div class="img-strip-item"><img src="project/assets/imagery/device-thermos.webp" alt="" loading="lazy"/></div>
-      <div class="img-strip-item"><img src="project/assets/images/rainy-day.webp" alt="" loading="lazy"/></div>
-      <div class="img-strip-item"><img src="project/assets/imagery/Julia Camper.webp" alt="" loading="lazy"/></div>
-      <div class="img-strip-item"><img src="project/assets/images/hero-speaker.webp" alt="" loading="lazy"/></div>
-      <div class="img-strip-item"><img src="project/assets/images/Relats Brand.webp" alt="" loading="lazy"/></div>
-      <div class="img-strip-item"><img src="project/assets/imagery/raincoat.webp" alt="" loading="lazy"/></div>
-      <div class="img-strip-item"><img src="project/assets/images/astronaut-red-tight.png" alt="" loading="lazy"/></div>
-      <div class="img-strip-item"><img src="project/assets/imagery/device-knob.webp" alt="" loading="lazy"/></div>
-      <div class="img-strip-item"><img src="project/assets/images/Julia Yosemite.webp" alt="" loading="lazy"/></div>
-      <!-- duplicate for seamless loop -->
-      <div class="img-strip-item" aria-hidden="true"><img src="project/assets/images/knob-orange.webp" alt="" loading="lazy"/></div>
-      <div class="img-strip-item" aria-hidden="true"><img src="project/assets/imagery/Almirall.webp" alt="" loading="lazy"/></div>
-      <div class="img-strip-item" aria-hidden="true"><img src="project/assets/images/Bunnker Final.webp" alt="" loading="lazy"/></div>
-      <div class="img-strip-item" aria-hidden="true"><img src="project/assets/images/ipad-sunset.webp" alt="" loading="lazy"/></div>
-      <div class="img-strip-item" aria-hidden="true"><img src="project/assets/imagery/device-thermos.webp" alt="" loading="lazy"/></div>
-      <div class="img-strip-item" aria-hidden="true"><img src="project/assets/images/rainy-day.webp" alt="" loading="lazy"/></div>
-      <div class="img-strip-item" aria-hidden="true"><img src="project/assets/imagery/Julia Camper.webp" alt="" loading="lazy"/></div>
-      <div class="img-strip-item" aria-hidden="true"><img src="project/assets/images/hero-speaker.webp" alt="" loading="lazy"/></div>
-      <div class="img-strip-item" aria-hidden="true"><img src="project/assets/images/Relats Brand.webp" alt="" loading="lazy"/></div>
-      <div class="img-strip-item" aria-hidden="true"><img src="project/assets/imagery/raincoat.webp" alt="" loading="lazy"/></div>
-      <div class="img-strip-item" aria-hidden="true"><img src="project/assets/images/astronaut-red-tight.png" alt="" loading="lazy"/></div>
-      <div class="img-strip-item" aria-hidden="true"><img src="project/assets/imagery/device-knob.webp" alt="" loading="lazy"/></div>
-      <div class="img-strip-item" aria-hidden="true"><img src="project/assets/images/Julia Yosemite.webp" alt="" loading="lazy"/></div>
-    </div>
-  </div>
-</section>
 
 
 <!-- ========== CLIENTS MARQUEE ========== -->
@@ -725,41 +687,17 @@
   function lenisRaf(time) { lenis.raf(time); requestAnimationFrame(lenisRaf); }
   requestAnimationFrame(lenisRaf);
 
-  /* hook Lenis into the reel scale — compute position once, no reflow per frame */
+
+  /* ── Hero background slideshow ──────────────────────────────── */
   (function() {
-    const reelEl = document.getElementById('reel');
-    if (!reelEl) return;
-    const vh = window.innerHeight;
-    /* Calculate reel's document-top once (no getBoundingClientRect in handler) */
-    const reelDocTop = reelEl.getBoundingClientRect().top + window.scrollY;
-
-    let current = 0.62;
-    window.__reelTarget = 0.62;
-    let reelVisible = false;
-    let rafId = null;
-
-    function tick() {
-      const next = current + (window.__reelTarget - current) * 0.08;
-      if (Math.abs(next - current) > 0.0001) {
-        current = next;
-        reelEl.style.setProperty('--reel-scale', current.toFixed(3));
-      }
-      rafId = requestAnimationFrame(tick);
-    }
-
-    /* Only run RAF while reel is near viewport */
-    new IntersectionObserver(([e]) => {
-      reelVisible = e.isIntersecting;
-      if (reelVisible && !rafId) { rafId = requestAnimationFrame(tick); }
-      else if (!reelVisible && rafId) { cancelAnimationFrame(rafId); rafId = null; }
-    }, { rootMargin: '200px' }).observe(reelEl);
-
-    /* Update target using scroll value — zero layout reflow */
-    lenis.on('scroll', ({ scroll }) => {
-      if (!reelVisible) return;
-      const p = Math.min(Math.max((vh - (reelDocTop - scroll)) / (vh * 0.55), 0), 1);
-      window.__reelTarget = 0.62 + 0.38 * p;
-    });
+    const slides = document.querySelectorAll('.hero-slide');
+    if (slides.length < 2) return;
+    let i = 0;
+    setInterval(() => {
+      slides[i].classList.remove('active');
+      i = (i + 1) % slides.length;
+      slides[i].classList.add('active');
+    }, 4500);
   })();
 
   /* ── Intro splash ────────────────────────────────────────────── */
