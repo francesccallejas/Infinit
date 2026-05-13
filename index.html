@@ -199,7 +199,7 @@
   </header>
 
   <div class="services-list">
-    <div class="service reveal d1">
+    <div class="service card-fly" id="svc-01">
       <span class="svc-num">01</span>
       <div class="svc-title-block">
         <h3 class="svc-title">Strategy</h3>
@@ -222,7 +222,7 @@
       </div>
     </div>
 
-    <div class="service reveal d2">
+    <div class="service card-fly" id="svc-02">
       <span class="svc-num">02</span>
       <div class="svc-title-block">
         <h3 class="svc-title">Identity</h3>
@@ -245,7 +245,7 @@
       </div>
     </div>
 
-    <div class="service reveal d3">
+    <div class="service card-fly" id="svc-03">
       <span class="svc-num">03</span>
       <div class="svc-title-block">
         <h3 class="svc-title">Digital</h3>
@@ -725,6 +725,23 @@
         fired = true;
         studio.classList.add('in');
         setTimeout(() => advisory.classList.add('in'), 750);
+      }
+    });
+  })();
+
+  /* ── Services rows: fly-in when h2 near top nav ─────────────── */
+  (function() {
+    const section = document.querySelector('.services');
+    const rows    = ['svc-01','svc-02','svc-03'].map(id => document.getElementById(id));
+    if (!section || rows.some(r => !r)) return;
+    let fired = false;
+    lenis.on('scroll', () => {
+      if (fired) return;
+      if (section.getBoundingClientRect().top <= 160) {
+        fired = true;
+        rows[0].classList.add('in');
+        setTimeout(() => rows[1].classList.add('in'), 500);
+        setTimeout(() => rows[2].classList.add('in'), 1000);
       }
     });
   })();
