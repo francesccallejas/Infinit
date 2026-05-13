@@ -402,8 +402,23 @@ nav.top .links a.nav-cta:hover { background: var(--studio-hover); color: var(--w
   text-transform: uppercase;
   color: var(--blue-gray);
   font-weight: 500;
+  opacity: 0;
+  transform: translateY(18px);
+  animation: scrollHintIn .9s cubic-bezier(.16,1,.3,1) 3.1s forwards;
 }
-.hero .below .scroll-hint .arrow { font-size: 22px; line-height: 1; color: var(--ink); }
+.hero .below .scroll-hint .arrow {
+  font-size: 22px;
+  line-height: 1;
+  color: var(--ink);
+  animation: arrowBob 2.4s cubic-bezier(.4,0,.6,1) 4.2s infinite;
+}
+@keyframes scrollHintIn {
+  to { opacity: 1; transform: none; }
+}
+@keyframes arrowBob {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(5px); }
+}
 
 /* ==========================================================================
    VIDEO REEL
