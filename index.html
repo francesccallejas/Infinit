@@ -747,61 +747,54 @@
     }, 3200);
   })();
 
-  /* ── Practice cards: fire when h2 is near the top nav ───────── */
+  /* ── Scroll-triggered fly-ins (no getBoundingClientRect in handler) ── */
+  /* Compute trigger offsets once at load — no layout reflow on scroll    */
+  function scrollTrigger(el, offset, callback) {
+    const triggerAt = el.getBoundingClientRect().top + window.scrollY - offset;
+    let fired = false;
+    lenis.on('scroll', ({ scroll }) => {
+      if (fired || scroll < triggerAt) return;
+      fired = true;
+      callback();
+    });
+  }
+
+  /* Practice cards */
   (function() {
     const section  = document.querySelector('.practices');
     const studio   = document.querySelector('.card-studio');
     const advisory = document.querySelector('.card-advisory');
     if (!section || !studio || !advisory) return;
-    let fired = false;
-    lenis.on('scroll', () => {
-      if (fired) return;
-      const dist = section.getBoundingClientRect().top;
-      /* fire when section top is within 160px of viewport top (h2 near nav) */
-      if (dist <= 160) {
-        fired = true;
-        studio.classList.add('in');
-        setTimeout(() => advisory.classList.add('in'), 750);
-      }
+    scrollTrigger(section, 160, () => {
+      studio.classList.add('in');
+      setTimeout(() => advisory.classList.add('in'), 750);
     });
   })();
 
-  /* ── Services rows: fly-in when h2 near top nav ─────────────── */
+  /* Services rows */
   (function() {
     const section = document.querySelector('.services');
     const rows    = ['svc-01','svc-02','svc-03'].map(id => document.getElementById(id));
     if (!section || rows.some(r => !r)) return;
-    let fired = false;
-    lenis.on('scroll', () => {
-      if (fired) return;
-      if (section.getBoundingClientRect().top <= 160) {
-        fired = true;
-        rows[0].classList.add('in');
-        setTimeout(() => rows[1].classList.add('in'), 500);
-        setTimeout(() => rows[2].classList.add('in'), 1000);
-      }
+    scrollTrigger(section, 160, () => {
+      rows[0].classList.add('in');
+      setTimeout(() => rows[1].classList.add('in'), 500);
+      setTimeout(() => rows[2].classList.add('in'), 1000);
     });
   })();
 
-  /* ── Work tiles: fly-in when section h2 near top nav ───────────── */
+  /* Work tiles */
   (function() {
     const section = document.querySelector('.work');
     const tiles   = ['work-01','work-02','work-03','work-04','work-05'].map(id => document.getElementById(id));
     if (!section || tiles.some(t => !t)) return;
-
-    /* After animation ends, remove it so hover transitions work normally */
-    tiles.forEach(tile => {
-      tile.addEventListener('animationend', () => tile.classList.add('done'), { once: true });
-    });
-
-    const delays = [0, 200, 380, 540, 700];
-    let fired = false;
-    lenis.on('scroll', () => {
-      if (fired) return;
-      if (section.getBoundingClientRect().top <= 160) {
-        fired = true;
-        tiles.forEach((tile, i) => setTimeout(() => tile.classList.add('in'), delays[i]));
-      }
+    tiles.forEach(tile =>
+      tile.addEventListener('animationend', () => tile.classList.add('done'), { once: true })
+    );
+    scrollTrigger(section, 160, () => {
+      [0, 180, 340, 490, 630].forEach((delay, i) =>
+        setTimeout(() => tiles[i].classList.add('in'), delay)
+      );
     });
   })();
 
