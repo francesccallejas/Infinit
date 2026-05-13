@@ -81,23 +81,16 @@
   </div>
 
   <div class="reel" id="reel">
-    <div class="reel-stage">
-      <div class="slide active"><img src="project/assets/images/knob-orange.webp" alt="" loading="lazy"/></div>
-      <div class="slide"><img src="project/assets/images/astronaut-pink-full.avif" alt="" loading="lazy"/></div>
-      <div class="slide"><img src="project/assets/images/ipad-sunset.jpg" alt="" loading="lazy"/></div>
-      <div class="slide"><img src="project/assets/images/hero-speaker.webp" alt="" loading="lazy"/></div>
-      <div class="slide"><img src="project/assets/images/rainy-day.webp" alt="" loading="lazy"/></div>
-    </div>
+    <video class="reel-video" autoplay muted loop playsinline poster="project/assets/images/knob-orange.webp">
+      <!-- src="your-reel.mp4" -->
+    </video>
     <div class="scrim" aria-hidden="true"></div>
-    <div class="video-badge">
-      <span class="play-btn" aria-hidden="true">
-        <svg width="9" height="10" viewBox="0 0 9 10" fill="currentColor"><path d="M0 0 L9 5 L0 10 Z"/></svg>
+    <button class="play-badge" aria-label="Play full reel">
+      <span class="play-thumb">
+        <svg width="10" height="12" viewBox="0 0 10 12" fill="currentColor"><path d="M0 0L10 6L0 12Z"/></svg>
       </span>
-      Play the full reel <span style="opacity:.6">· 1:24</span>
-    </div>
-    <div class="reel-dots" aria-hidden="true">
-      <span class="on"></span><span></span><span></span><span></span><span></span>
-    </div>
+      <span class="play-label">Play full reel <span class="play-dur">· 1:24</span></span>
+    </button>
   </div>
 </section>
 
@@ -663,18 +656,20 @@
   const kpiSection = document.querySelector('.bento');
   if (kpiSection) kpiObserver.observe(kpiSection);
 
-  /* ── Reel slideshow ──────────────────────────────────────────── */
+  /* ── Reel scroll scale ───────────────────────────────────────── */
   (function() {
     const reel = document.getElementById('reel');
     if (!reel) return;
-    const slides = reel.querySelectorAll('.slide');
-    const dots   = reel.querySelectorAll('.reel-dots span');
-    let i = 0;
-    setInterval(() => {
-      slides[i].classList.remove('active'); dots[i].classList.remove('on');
-      i = (i + 1) % slides.length;
-      slides[i].classList.add('active'); dots[i].classList.add('on');
-    }, 3200);
+    function updateScale() {
+      const rect = reel.getBoundingClientRect();
+      const vh   = window.innerHeight;
+      // progress: 0 when top of reel hits bottom of screen, 1 when reel top reaches viewport top
+      const progress = Math.min(Math.max((vh - rect.top) / (vh * 0.9), 0), 1);
+      const scale    = 0.62 + 0.38 * progress;
+      reel.style.setProperty('--reel-scale', scale);
+    }
+    window.addEventListener('scroll', updateScale, { passive: true });
+    updateScale();
   })();
 
   /* ── Back to top ─────────────────────────────────────────────── */
