@@ -710,18 +710,22 @@
     }, 3200);
   })();
 
-  /* ── Practice cards sequential fly-in ───────────────────────── */
+  /* ── Practice cards fly-in — each on its own scroll position ── */
   (function() {
     const studio   = document.querySelector('.card-studio');
     const advisory = document.querySelector('.card-advisory');
     if (!studio || !advisory) return;
-    const obs = new IntersectionObserver(entries => {
-      if (!entries[0].isIntersecting) return;
-      obs.disconnect();
-      setTimeout(() => studio.classList.add('in'),    80);
-      setTimeout(() => advisory.classList.add('in'), 600);
-    }, { threshold: 0.15 });
-    obs.observe(studio);
+
+    function makeObs(el, delay) {
+      const obs = new IntersectionObserver(entries => {
+        if (!entries[0].isIntersecting) return;
+        obs.disconnect();
+        setTimeout(() => el.classList.add('in'), delay);
+      }, { threshold: 0.08 });
+      obs.observe(el);
+    }
+    makeObs(studio,   60);
+    makeObs(advisory, 60);
   })();
 
   /* ── Back to top ─────────────────────────────────────────────── */
