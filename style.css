@@ -829,9 +829,41 @@ nav.top .links a.nav-cta:hover { background: var(--studio-hover); color: var(--w
   display: grid; place-items: center;
   transition: background .35s, border-color .35s, transform .35s;
 }
-.service:hover .arrow-ring { background: var(--studio); border-color: var(--studio); transform: scale(1.08); }
-.service:hover .arrow-ring svg { transform: translate(3px, -3px); color: var(--warm); }
-.service .arrow-ring svg { transition: transform .35s, color .35s; }
+.svc-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.svc-img {
+  width: 140px;
+  height: 90px;
+  border-radius: 8px;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateX(16px) scale(.96);
+  transition: opacity .45s cubic-bezier(.16,1,.3,1),
+              transform .5s cubic-bezier(.16,1,.3,1);
+}
+.svc-img img { width: 100%; height: 100%; object-fit: cover; }
+.service:hover .svc-img {
+  opacity: 1;
+  transform: translateX(0) scale(1);
+}
+.svc-plus {
+  width: 56px; height: 56px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  display: grid; place-items: center;
+  font-size: 24px; font-weight: 300; color: var(--ink);
+  flex-shrink: 0;
+  transition: background .35s, border-color .35s, transform .45s cubic-bezier(.16,1,.3,1), color .35s;
+}
+.service:hover .svc-plus {
+  background: var(--studio);
+  border-color: var(--studio);
+  color: var(--warm);
+  transform: rotate(45deg);
+}
 
 /* ==========================================================================
    WORK GRID
