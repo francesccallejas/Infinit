@@ -89,6 +89,78 @@ body {
 }
 
 /* ==========================================================================
+   INTRO SPLASH
+   ========================================================================== */
+#intro {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: var(--warm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  transition: transform .9s cubic-bezier(.76, 0, .24, 1);
+}
+#intro.slide-up { transform: translateY(-100%); }
+
+.intro-lockup {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+}
+
+/* Mark fades in */
+.intro-mark {
+  opacity: 0;
+  color: var(--ink);
+  animation: introFade .5s ease .2s forwards;
+}
+/* Two dots converge on load */
+.intro-dot-l {
+  animation: introDotL 1.4s cubic-bezier(.65, 0, .35, 1) .3s both;
+}
+.intro-dot-r {
+  animation: introDotR 1.4s cubic-bezier(.65, 0, .35, 1) .3s both;
+}
+@keyframes introDotL {
+  0%   { transform: translateX(13px); }
+  60%  { transform: translateX(0); }
+  100% { transform: translateX(0); }
+}
+@keyframes introDotR {
+  0%   { transform: translateX(-13px); }
+  60%  { transform: translateX(0); }
+  100% { transform: translateX(0); }
+}
+
+/* Word slides up */
+.intro-word-wrap {
+  overflow: hidden;
+  line-height: 1;
+}
+.intro-word {
+  display: block;
+  font-size: 26px;
+  letter-spacing: -.05em;
+  font-weight: 400;
+  color: var(--ink);
+  transform: translateY(110%);
+  animation: introWordUp .7s cubic-bezier(.16, 1, .3, 1) .65s forwards;
+}
+
+@keyframes introFade   { to { opacity: 1; } }
+@keyframes introWordUp { to { transform: translateY(0); } }
+
+/* Block scroll + hide page during intro */
+body.intro-running { overflow: hidden; }
+body.intro-running nav.top,
+body.intro-running .hero,
+body.intro-running .reel-wrap { opacity: 0; }
+nav.top, .hero { transition: opacity .5s ease .1s; }
+
+/* ==========================================================================
    NAV LOAD SEQUENCE
    ========================================================================== */
 .logo-lockup {
@@ -224,15 +296,18 @@ nav.top .meta { font-size: 16px; letter-spacing: .08em; color: var(--blue-gray);
    HERO
    ========================================================================== */
 .hero {
-  padding: 180px 52px 40px;
+  min-height: 100dvh;
+  padding: 160px 52px 48px;
+  display: flex;
+  align-items: flex-end;
 }
 
-.hero .slogan-block { padding: 24px 0 32px; }
+.hero .slogan-block { padding: 24px 0 40px; width: 100%; }
 
 .hero h1 {
   font-family: var(--sans);
   font-weight: 400;
-  font-size: clamp(64px, 9.4vw, 168px);
+  font-size: clamp(80px, 12vw, 210px);
   line-height: .88;
   letter-spacing: -.04em;
   margin: 0;
@@ -245,8 +320,8 @@ nav.top .meta { font-size: 16px; letter-spacing: .08em; color: var(--blue-gray);
 .hero .infinit-anim {
   display: inline-flex;
   vertical-align: middle;
-  width: clamp(96px, 13vw, 200px);
-  height: clamp(48px, 6.5vw, 100px);
+  width: clamp(120px, 16.5vw, 250px);
+  height: clamp(60px, 8.25vw, 125px);
   margin-right: clamp(16px, 1.6vw, 28px);
   transform: translateY(-.04em);
 }
