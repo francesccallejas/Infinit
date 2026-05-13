@@ -275,8 +275,7 @@
   </header>
 
   <div class="work-grid">
-    <!-- Bunnker — large tile, spans 2 rows -->
-    <div class="work-tile span2 reveal-scale">
+    <div class="work-tile span2 card-fly" id="work-01">
       <img class="cover" src="project/assets/images/astronaut-pink-full.avif" alt="Bunnker project — astronaut creative" loading="lazy"/>
       <div class="tile-scrim"></div>
       <div class="logo-over">
@@ -291,8 +290,7 @@
       </div>
     </div>
 
-    <!-- Relats -->
-    <div class="work-tile reveal-scale d1">
+    <div class="work-tile card-fly" id="work-02">
       <img class="cover" src="project/assets/images/knob-orange.webp" alt="Relats project — industrial design" loading="lazy"/>
       <div class="tile-scrim"></div>
       <div class="logo-over">
@@ -307,8 +305,7 @@
       </div>
     </div>
 
-    <!-- Instellar -->
-    <div class="work-tile reveal-scale d2">
+    <div class="work-tile card-fly" id="work-03">
       <img class="cover" src="project/assets/images/ipad-sunset.jpg" alt="Instellar project — platform UX" loading="lazy"/>
       <div class="tile-scrim"></div>
       <div class="logo-over">
@@ -323,8 +320,7 @@
       </div>
     </div>
 
-    <!-- Almirall -->
-    <div class="work-tile reveal-scale d1">
+    <div class="work-tile card-fly" id="work-04">
       <img class="cover" src="project/assets/images/hero-speaker.webp" alt="Almirall project — quiet objects" loading="lazy"/>
       <div class="tile-scrim"></div>
       <div class="logo-over">
@@ -339,8 +335,7 @@
       </div>
     </div>
 
-    <!-- 11onze -->
-    <div class="work-tile reveal-scale d2">
+    <div class="work-tile card-fly" id="work-05">
       <img class="cover" src="project/assets/images/rainy-day.webp" alt="11onze project — editorial campaign" loading="lazy"/>
       <div class="tile-scrim"></div>
       <div class="logo-over">
@@ -739,6 +734,25 @@
         rows[0].classList.add('in');
         setTimeout(() => rows[1].classList.add('in'), 500);
         setTimeout(() => rows[2].classList.add('in'), 1000);
+      }
+    });
+  })();
+
+  /* ── Work tiles: fly-in when section h2 near top nav ───────────── */
+  (function() {
+    const section = document.querySelector('.work');
+    const tiles   = ['work-01','work-02','work-03','work-04','work-05'].map(id => document.getElementById(id));
+    if (!section || tiles.some(t => !t)) return;
+    let fired = false;
+    lenis.on('scroll', () => {
+      if (fired) return;
+      if (section.getBoundingClientRect().top <= 160) {
+        fired = true;
+        tiles[0].classList.add('in');
+        setTimeout(() => tiles[1].classList.add('in'), 300);
+        setTimeout(() => tiles[2].classList.add('in'), 500);
+        setTimeout(() => tiles[3].classList.add('in'), 700);
+        setTimeout(() => tiles[4].classList.add('in'), 900);
       }
     });
   })();
