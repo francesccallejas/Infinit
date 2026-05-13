@@ -736,7 +736,7 @@
         if (!original) return;
         const unit = el.querySelector('.unit');
         el.childNodes[0].textContent = original.replace(/[0-9]+/g, '0');
-        setTimeout(() => countUp(el, original, 1800), 200);
+        setTimeout(() => countUp(el, original, 1350), 200);
       });
       kpiObserver.unobserve(e.target);
     });
