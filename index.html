@@ -275,7 +275,7 @@
   </header>
 
   <div class="work-grid">
-    <div class="work-tile span2 card-fly" id="work-01">
+    <div class="work-tile span2" id="work-01">
       <img class="cover" src="project/assets/images/Bunnker Final.png" alt="Bunnker project — beyond renting" loading="lazy"/>
       <div class="tile-scrim"></div>
       <div class="logo-over">
@@ -294,7 +294,7 @@
       </div>
     </div>
 
-    <div class="work-tile card-fly" id="work-02">
+    <div class="work-tile" id="work-02">
       <img class="cover" src="project/assets/images/Relats Brand.png" alt="Relats project — brand" loading="lazy"/>
       <div class="tile-scrim"></div>
       <div class="logo-over">
@@ -312,7 +312,7 @@
       </div>
     </div>
 
-    <div class="work-tile card-fly" id="work-03">
+    <div class="work-tile" id="work-03">
       <img class="cover" src="project/assets/images/ipad-sunset.jpg" alt="Instellar project — platform UX" loading="lazy"/>
       <div class="tile-scrim"></div>
       <div class="logo-over">
@@ -327,7 +327,7 @@
       </div>
     </div>
 
-    <div class="work-tile card-fly" id="work-04">
+    <div class="work-tile" id="work-04">
       <img class="cover" src="project/assets/images/hero-speaker.webp" alt="Almirall project — quiet objects" loading="lazy"/>
       <div class="tile-scrim"></div>
       <div class="logo-over">
@@ -342,7 +342,7 @@
       </div>
     </div>
 
-    <div class="work-tile card-fly" id="work-05">
+    <div class="work-tile" id="work-05">
       <img class="cover" src="project/assets/images/rainy-day.webp" alt="11onze project — editorial campaign" loading="lazy"/>
       <div class="tile-scrim"></div>
       <div class="logo-over">
@@ -441,21 +441,6 @@
       <span class="rec-sep" aria-hidden="true">—</span>
       <div class="rec-item">
         <img src="project/assets/clients/Coac.png" alt="COAC"/>
-        <span>Premis d'Arquitectura · Architecture &amp; Design</span>
-      </div>
-      <span class="rec-sep" aria-hidden="true">—</span>
-      <div class="rec-item">
-        <span>Featured across leading design &amp; brand publications</span>
-      </div>
-      <span class="rec-sep" aria-hidden="true">—</span>
-      <!-- Duplicate for seamless loop -->
-      <div class="rec-item">
-        <img src="project/assets/clients/Awwwards-Logo-Vector.svg-.png" alt=""/>
-        <span>Various nominations · Site of the Day &amp; Site of the Month</span>
-      </div>
-      <span class="rec-sep" aria-hidden="true">—</span>
-      <div class="rec-item">
-        <img src="project/assets/clients/Coac.png" alt=""/>
         <span>Premis d'Arquitectura · Architecture &amp; Design</span>
       </div>
       <span class="rec-sep" aria-hidden="true">—</span>
@@ -790,24 +775,7 @@
     }, '-60% 0px 0px 0px');
   })();
 
-  /* Work tiles */
-  (function() {
-    const section = document.querySelector('.work');
-    const tiles   = ['work-01','work-02','work-03','work-04','work-05'].map(id => document.getElementById(id));
-    if (!section || tiles.some(t => !t)) return;
-    tiles.forEach(tile => {
-      tile.addEventListener('animationend', () => {
-        tile.classList.add('done');
-        tile.style.willChange = '';
-      }, { once: true });
-    });
-    onVisible(section, () => {
-      tiles.forEach(tile => { tile.style.willChange = 'opacity, transform'; });
-      [0, 180, 340, 490, 630].forEach((delay, i) =>
-        setTimeout(() => tiles[i].classList.add('in'), delay)
-      );
-    }, '-40% 0px 0px 0px');
-  })();
+  /* Work tiles — animations removed for testing, tiles visible immediately */
 
   /* ── Back to top ─────────────────────────────────────────────── */
   document.querySelector('.back-top').addEventListener('click', e => {
