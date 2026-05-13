@@ -1025,9 +1025,8 @@ nav.top .links a.nav-cta:hover { background: var(--studio-hover); color: var(--w
 .bento-tile .kpi-note { font-size: 12px; color: var(--blue-gray); line-height: 1.45; max-width: 32ch; }
 
 /* Size variants */
-.bento-tile.xl  { grid-column: span 2; grid-row: span 2; padding: 28px; align-content: end; }
-.bento-tile.xl .kpi-label { margin-bottom: auto; }
-.bento-tile.xl .kpi-val  { font-size: clamp(73px, 7.8vw, 120px); }
+.bento-tile.xl  { grid-column: span 2; grid-row: span 2; padding: 28px; align-content: start; }
+.bento-tile.xl .kpi-val  { font-size: clamp(73px, 7.8vw, 120px); margin-top: auto; }
 .bento-tile.lg  { grid-column: span 2; }
 .bento-tile.lg .kpi-val  { font-size: 80px; }
 
@@ -1062,7 +1061,6 @@ nav.top .links a.nav-cta:hover { background: var(--studio-hover); color: var(--w
 }
 .founder-card .portrait {
   width: 100%; aspect-ratio: 16 / 6.3; overflow: hidden; background: #ddd;
-  position: relative;
 }
 .founder-card .portrait img {
   width: 100%; height: 100%; object-fit: cover; object-position: center 35%;
