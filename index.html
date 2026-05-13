@@ -641,7 +641,7 @@
 <script>
   /* ── Lenis smooth scroll ─────────────────────────────────────── */
   const lenis = new Lenis({
-    duration: 1.2,
+    duration: 0.9,
     easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
     smoothWheel: true,
     syncTouch: false,
@@ -747,28 +747,26 @@
     }, 3200);
   })();
 
-  /* ── Scroll-triggered fly-ins (no getBoundingClientRect in handler) ── */
-  /* Compute trigger offsets once at load — no layout reflow on scroll    */
-  function scrollTrigger(el, offset, callback) {
-    const triggerAt = el.getBoundingClientRect().top + window.scrollY - offset;
-    let fired = false;
-    lenis.on('scroll', ({ scroll }) => {
-      if (fired || scroll < triggerAt) return;
-      fired = true;
+  /* ── Section fly-in triggers via IntersectionObserver (zero scroll cost) */
+  function onVisible(el, callback, margin) {
+    const io = new IntersectionObserver(([e]) => {
+      if (!e.isIntersecting) return;
+      io.disconnect();
       callback();
-    });
+    }, { rootMargin: margin || '0px', threshold: 0 });
+    io.observe(el);
   }
 
-  /* Practice cards */
+  /* Practice cards — fire when section top hits near nav */
   (function() {
     const section  = document.querySelector('.practices');
     const studio   = document.querySelector('.card-studio');
     const advisory = document.querySelector('.card-advisory');
     if (!section || !studio || !advisory) return;
-    scrollTrigger(section, 160, () => {
+    onVisible(section, () => {
       studio.classList.add('in');
       setTimeout(() => advisory.classList.add('in'), 750);
-    });
+    }, '-60% 0px 0px 0px');
   })();
 
   /* Services rows */
@@ -776,11 +774,11 @@
     const section = document.querySelector('.services');
     const rows    = ['svc-01','svc-02','svc-03'].map(id => document.getElementById(id));
     if (!section || rows.some(r => !r)) return;
-    scrollTrigger(section, 160, () => {
+    onVisible(section, () => {
       rows[0].classList.add('in');
       setTimeout(() => rows[1].classList.add('in'), 500);
       setTimeout(() => rows[2].classList.add('in'), 1000);
-    });
+    }, '-60% 0px 0px 0px');
   })();
 
   /* Work tiles */
@@ -791,11 +789,11 @@
     tiles.forEach(tile =>
       tile.addEventListener('animationend', () => tile.classList.add('done'), { once: true })
     );
-    scrollTrigger(section, 160, () => {
+    onVisible(section, () => {
       [0, 180, 340, 490, 630].forEach((delay, i) =>
         setTimeout(() => tiles[i].classList.add('in'), delay)
       );
-    });
+    }, '-40% 0px 0px 0px');
   })();
 
   /* ── Back to top ─────────────────────────────────────────────── */
