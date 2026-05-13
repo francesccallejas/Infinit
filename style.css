@@ -1025,7 +1025,8 @@ nav.top .links a.nav-cta:hover { background: var(--studio-hover); color: var(--w
 .bento-tile .kpi-note { font-size: 12px; color: var(--blue-gray); line-height: 1.45; max-width: 32ch; }
 
 /* Size variants */
-.bento-tile.xl  { grid-column: span 2; grid-row: span 2; padding: 28px; }
+.bento-tile.xl  { grid-column: span 2; grid-row: span 2; padding: 28px; align-content: end; }
+.bento-tile.xl .kpi-label { margin-bottom: auto; }
 .bento-tile.xl .kpi-val  { font-size: clamp(73px, 7.8vw, 120px); }
 .bento-tile.lg  { grid-column: span 2; }
 .bento-tile.lg .kpi-val  { font-size: 80px; }
@@ -1061,6 +1062,7 @@ nav.top .links a.nav-cta:hover { background: var(--studio-hover); color: var(--w
 }
 .founder-card .portrait {
   width: 100%; aspect-ratio: 16 / 6.3; overflow: hidden; background: #ddd;
+  position: relative;
 }
 .founder-card .portrait img {
   width: 100%; height: 100%; object-fit: cover; object-position: center 35%;
@@ -1092,17 +1094,20 @@ nav.top .links a.nav-cta:hover { background: var(--studio-hover); color: var(--w
   border-radius: 999px; color: var(--ink); letter-spacing: -.005em;
 }
 
-/* Name-tag overlay on portrait */
+/* Name-tag overlay on portrait — pill badge top-right, brand style */
 .name-tag-overlay {
-  position: absolute; left: 14px; bottom: 14px; right: 14px;
+  position: absolute;
+  top: 16px; right: 16px;
   display: inline-flex; align-items: center; gap: 8px;
-  padding: 8px 12px; border-radius: 999px;
-  background: rgba(0, 7, 40, .82); backdrop-filter: blur(8px);
-  color: var(--warm); font-size: 12px; font-weight: 500; letter-spacing: -.005em;
+  padding: 7px 10px 7px 12px; border-radius: 999px;
+  background: rgba(0, 7, 40, .72);
+  border: 1px solid rgba(255, 255, 255, .18);
+  color: var(--warm);
+  font-size: 11px; font-weight: 500; letter-spacing: .01em;
+  white-space: nowrap; pointer-events: auto;
 }
 .name-tag-overlay .tag-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--studio); flex-shrink: 0; }
 .name-tag-overlay .li-btn {
-  margin-left: auto;
   display: inline-grid; place-items: center;
   width: 22px; height: 22px; border-radius: 4px;
   background: var(--studio); color: var(--warm);
