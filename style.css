@@ -593,14 +593,14 @@ nav.top .links a.nav-cta:hover { background: var(--studio-hover); color: var(--w
 .marquee .track img:hover { opacity: 1; filter: grayscale(0) brightness(1); }
 
 /* Per-logo size tuning */
-.l-glovo    { height: 42px !important; }
+.l-glovo    { height: 46px !important; }
 .l-dronparc { height: 22px !important; }
-.l-11onze   { height: 22px !important; }
+.l-11onze   { height: 18px !important; }
 .l-instellar{ height: 24px !important; }
-.l-sap      { height: 36px !important; }
-.l-bunnker  { height: 28px !important; }
+.l-sap      { height: 34px !important; }
+.l-bunnker  { height: 32px !important; }
 .l-relats   { height: 26px !important; }
-.l-almirall { height: 28px !important; }
+.l-almirall { height: 31px !important; }
 
 @keyframes scrollMarquee {
   from { transform: translateX(0); }
