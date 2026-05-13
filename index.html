@@ -788,16 +788,19 @@
     const section = document.querySelector('.work');
     const tiles   = ['work-01','work-02','work-03','work-04','work-05'].map(id => document.getElementById(id));
     if (!section || tiles.some(t => !t)) return;
+
+    /* After animation ends, remove it so hover transitions work normally */
+    tiles.forEach(tile => {
+      tile.addEventListener('animationend', () => tile.classList.add('done'), { once: true });
+    });
+
+    const delays = [0, 200, 380, 540, 700];
     let fired = false;
     lenis.on('scroll', () => {
       if (fired) return;
       if (section.getBoundingClientRect().top <= 160) {
         fired = true;
-        tiles[0].classList.add('in');
-        setTimeout(() => tiles[1].classList.add('in'), 300);
-        setTimeout(() => tiles[2].classList.add('in'), 500);
-        setTimeout(() => tiles[3].classList.add('in'), 700);
-        setTimeout(() => tiles[4].classList.add('in'), 900);
+        tiles.forEach((tile, i) => setTimeout(() => tile.classList.add('in'), delays[i]));
       }
     });
   })();

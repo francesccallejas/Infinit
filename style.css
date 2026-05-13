@@ -233,6 +233,23 @@ nav.top .meta {
   animation: cardFlyIn 1.4s cubic-bezier(.16,1,.3,1) forwards;
 }
 
+/* Work tiles: lighter bg (no black flash), smaller Y, hover-safe cleanup */
+@keyframes workTileFlyIn {
+  from { opacity: 0; transform: translateY(60px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.work .card-fly {
+  background: var(--warm);
+  will-change: opacity, transform;
+}
+.work .card-fly.in {
+  animation: workTileFlyIn 1.1s cubic-bezier(.16,1,.3,1) forwards;
+}
+.work .card-fly.done {
+  opacity: 1;
+  animation: none;
+}
+
 /* Push-in fly from below with fade */
 .reveal-push {
   opacity: 0;
