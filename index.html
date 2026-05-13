@@ -132,7 +132,7 @@
   </header>
 
   <div class="cards-grid">
-    <a class="card-studio card-anim" href="#services">
+    <a class="card-studio reveal-scale d1" href="#services">
       <div class="card-head">
         <span class="card-tag">Primary practice</span>
         <span class="card-logo">
@@ -157,7 +157,7 @@
     </a>
 
     <!-- ADVISORY — additional practice, deep blue -->
-    <a class="card-advisory card-anim" href="#advisory">
+    <a class="card-advisory reveal-scale d2" href="#advisory">
       <div class="card-head">
         <span class="card-tag">Additional practice</span>
         <span class="card-logo">
@@ -708,24 +708,6 @@
       i = (i + 1) % slides.length;
       slides[i].classList.add('active');
     }, 3200);
-  })();
-
-  /* ── Practice cards fly-in — each on its own scroll position ── */
-  (function() {
-    const studio   = document.querySelector('.card-studio');
-    const advisory = document.querySelector('.card-advisory');
-    if (!studio || !advisory) return;
-
-    function makeObs(el, delay) {
-      const obs = new IntersectionObserver(entries => {
-        if (!entries[0].isIntersecting) return;
-        obs.disconnect();
-        setTimeout(() => el.classList.add('in'), delay);
-      }, { threshold: 0.08 });
-      obs.observe(el);
-    }
-    makeObs(studio,   60);
-    makeObs(advisory, 60);
   })();
 
   /* ── Back to top ─────────────────────────────────────────────── */
