@@ -829,7 +829,7 @@
             mask.className = 'word-mask';
             const inner = document.createElement('span');
             inner.className = 'word-reveal';
-            inner.style.transitionDelay = (wi++ * 0.06) + 's';
+            inner.style.transitionDelay = (wi++ * 0.10) + 's';
             inner.textContent = part;
             mask.appendChild(inner);
             frag.appendChild(mask);
@@ -840,7 +840,7 @@
         const mask = document.createElement('span');
         mask.className = 'word-mask';
         node.classList.add('word-reveal');
-        node.style.transitionDelay = (wi++ * 0.06) + 's';
+        node.style.transitionDelay = (wi++ * 0.10) + 's';
         node.replaceWith(mask);
         mask.appendChild(node);
       }
