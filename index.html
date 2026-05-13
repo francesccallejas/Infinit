@@ -649,15 +649,42 @@
   function lenisRaf(time) { lenis.raf(time); requestAnimationFrame(lenisRaf); }
   requestAnimationFrame(lenisRaf);
 
-  /* hook Lenis into the reel scale so it reads the real scroll pos */
-  lenis.on('scroll', () => {
+  /* hook Lenis into the reel scale — compute position once, no reflow per frame */
+  (function() {
     const reelEl = document.getElementById('reel');
     if (!reelEl) return;
-    const rect = reelEl.getBoundingClientRect();
-    const vh   = window.innerHeight;
-    const p    = Math.min(Math.max((vh - rect.top) / (vh * 0.55), 0), 1);
-    window.__reelTarget = 0.62 + 0.38 * p;
-  });
+    const vh = window.innerHeight;
+    /* Calculate reel's document-top once (no getBoundingClientRect in handler) */
+    const reelDocTop = reelEl.getBoundingClientRect().top + window.scrollY;
+
+    let current = 0.62;
+    window.__reelTarget = 0.62;
+    let reelVisible = false;
+    let rafId = null;
+
+    function tick() {
+      const next = current + (window.__reelTarget - current) * 0.08;
+      if (Math.abs(next - current) > 0.0001) {
+        current = next;
+        reelEl.style.setProperty('--reel-scale', current.toFixed(3));
+      }
+      rafId = requestAnimationFrame(tick);
+    }
+
+    /* Only run RAF while reel is near viewport */
+    new IntersectionObserver(([e]) => {
+      reelVisible = e.isIntersecting;
+      if (reelVisible && !rafId) { rafId = requestAnimationFrame(tick); }
+      else if (!reelVisible && rafId) { cancelAnimationFrame(rafId); rafId = null; }
+    }, { rootMargin: '200px' }).observe(reelEl);
+
+    /* Update target using scroll value — zero layout reflow */
+    lenis.on('scroll', ({ scroll }) => {
+      if (!reelVisible) return;
+      const p = Math.min(Math.max((vh - (reelDocTop - scroll)) / (vh * 0.55), 0), 1);
+      window.__reelTarget = 0.62 + 0.38 * p;
+    });
+  })();
 
   /* ── Intro splash ────────────────────────────────────────────── */
   const intro = document.getElementById('intro');
@@ -715,24 +742,6 @@
   }, { threshold: 0.3 });
   const kpiSection = document.querySelector('.bento');
   if (kpiSection) kpiObserver.observe(kpiSection);
-
-  /* ── Reel scroll scale (driven by Lenis) ────────────────────── */
-  (function() {
-    const reel = document.getElementById('reel');
-    if (!reel) return;
-    let current = 0.62;
-    window.__reelTarget = 0.62;
-    function tick() {
-      current += (window.__reelTarget - current) * 0.08;
-      reel.style.setProperty('--reel-scale', current.toFixed(4));
-      requestAnimationFrame(tick);
-    }
-    // seed initial target
-    const rect = reel.getBoundingClientRect();
-    const vh   = window.innerHeight;
-    window.__reelTarget = 0.62 + 0.38 * Math.min(Math.max((vh - rect.top) / (vh * 0.55), 0), 1);
-    tick();
-  })();
 
   /* ── Reel slideshow (no dots) ────────────────────────────────── */
   (function() {
