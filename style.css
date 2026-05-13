@@ -1133,8 +1133,11 @@ nav.top .links a.nav-cta:hover { background: var(--studio-hover); color: var(--w
   flex: 1;
 }
 .rec-track {
-  display: flex; align-items: center; gap: 40px; flex-wrap: wrap;
+  display: flex; align-items: center; gap: 40px;
+  width: max-content;
   padding: 20px 40px;
+  animation: scrollMarquee 28s linear infinite;
+  will-change: transform;
 }
 .rec-item {
   display: flex; align-items: center; gap: 10px;
