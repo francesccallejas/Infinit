@@ -214,7 +214,8 @@ nav.top .meta {
 }
 .reveal-scale.in { opacity: 1; transform: none; }
 .reveal-scale.d1 { transition-delay: .10s; }
-.reveal-scale.d2 { transition-delay: .20s; }
+.reveal-scale.d2 { transition-delay: .22s; }
+.reveal-scale.d3 { transition-delay: .34s; }
 
 .reveal-fade {
   opacity: 0;
