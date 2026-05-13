@@ -1091,30 +1091,41 @@ nav.top .links a.nav-cta:hover { background: var(--studio-hover); color: var(--w
    RECOGNITION STRIP
    ========================================================================== */
 .recognition-strip {
-  padding: 28px 52px;
+  display: flex; align-items: center;
   border-top: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
+  overflow: hidden;
+  padding: 0;
 }
-.rec-inner {
-  display: flex; align-items: center; gap: 32px;
-  max-width: 1400px; margin: 0 auto;
-}
-.rec-label {
+.rec-label-fixed {
+  padding: 22px 28px 22px 52px;
   font-size: 10px; letter-spacing: .16em; text-transform: uppercase;
-  opacity: .4; white-space: nowrap; flex-shrink: 0;
+  opacity: .38; white-space: nowrap; flex-shrink: 0;
+  border-right: 1px solid var(--line);
 }
-.rec-items {
-  display: flex; align-items: center; gap: 20px; flex-wrap: wrap;
+.rec-marquee {
+  overflow: hidden;
+  flex: 1;
+}
+.rec-track {
+  display: flex; align-items: center; gap: 40px;
+  width: max-content;
+  padding: 20px 40px;
+  animation: scrollMarquee 28s linear infinite;
 }
 .rec-item {
-  display: flex; align-items: center; gap: 8px;
-  font-size: 12px; opacity: .55; white-space: nowrap;
+  display: flex; align-items: center; gap: 10px;
+  font-size: 13px; opacity: .5; white-space: nowrap;
+  letter-spacing: .01em;
 }
 .rec-item img {
-  height: 13px; width: auto; opacity: .45;
-  filter: grayscale(1);
+  height: 14px; width: auto;
+  filter: brightness(0) opacity(.5);
 }
-.rec-dot { opacity: .25; font-size: 16px; }
+.rec-sep { opacity: .2; font-size: 14px; }
+
+/* COAC badge override — slightly bigger logo */
+.badge-coac img { height: 20px; }
 
 /* ==========================================================================
    MANIFESTO
