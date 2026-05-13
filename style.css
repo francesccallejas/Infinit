@@ -223,6 +223,16 @@ nav.top .meta {
 }
 .reveal-fade.in { opacity: 1; }
 
+/* Practice cards: explicit keyframe fly-in */
+@keyframes cardFlyIn {
+  from { opacity: 0; transform: translateY(110px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.card-fly { opacity: 0; }
+.card-fly.in {
+  animation: cardFlyIn 1.4s cubic-bezier(.16,1,.3,1) forwards;
+}
+
 /* Push-in fly from below with fade */
 .reveal-push {
   opacity: 0;
