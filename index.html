@@ -100,7 +100,7 @@
 
 
 <!-- ========== CLIENTS MARQUEE ========== -->
-<section class="marquee" aria-label="Selected clients">
+<section class="marquee reveal-push" aria-label="Selected clients">
   <p class="marquee-label eyebrow">Selected clients &amp; collaborations</p>
   <div class="track" aria-hidden="true">
     <img class="l-sap"       src="project/assets/clients/sap.png"       alt="SAP"/>
@@ -602,7 +602,16 @@
 </footer>
 
 
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
 <script>
+  /* ── Lenis smooth scroll ─────────────────────────────────────── */
+  const lenis = new Lenis({
+    duration: 1.4,
+    easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+  });
+  function lenisRaf(time) { lenis.raf(time); requestAnimationFrame(lenisRaf); }
+  requestAnimationFrame(lenisRaf);
+
   /* ── Intro splash ────────────────────────────────────────────── */
   const intro = document.getElementById('intro');
   document.body.classList.add('intro-running');
@@ -626,7 +635,7 @@
       if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
     });
   }, { threshold: 0.1 });
-  document.querySelectorAll('.reveal:not(.in), .reveal-scale, .reveal-fade').forEach(el => io.observe(el));
+  document.querySelectorAll('.reveal:not(.in), .reveal-scale, .reveal-fade, .reveal-push').forEach(el => io.observe(el));
 
   /* ── KPI counter: counts up when entering viewport ───────────── */
   function countUp(valEl, target, duration) {
