@@ -81,9 +81,13 @@
   </div>
 
   <div class="reel" id="reel">
-    <video class="reel-video" autoplay muted loop playsinline poster="project/assets/images/knob-orange.webp">
-      <!-- src="your-reel.mp4" -->
-    </video>
+    <div class="reel-stage">
+      <div class="slide active"><img src="project/assets/images/knob-orange.webp" alt="" loading="lazy"/></div>
+      <div class="slide"><img src="project/assets/images/astronaut-pink-full.avif" alt="" loading="lazy"/></div>
+      <div class="slide"><img src="project/assets/images/ipad-sunset.jpg" alt="" loading="lazy"/></div>
+      <div class="slide"><img src="project/assets/images/hero-speaker.webp" alt="" loading="lazy"/></div>
+      <div class="slide"><img src="project/assets/images/rainy-day.webp" alt="" loading="lazy"/></div>
+    </div>
     <div class="scrim" aria-hidden="true"></div>
     <button class="play-badge" aria-label="Play full reel">
       <span class="play-thumb">
@@ -656,20 +660,38 @@
   const kpiSection = document.querySelector('.bento');
   if (kpiSection) kpiObserver.observe(kpiSection);
 
-  /* ── Reel scroll scale ───────────────────────────────────────── */
+  /* ── Reel scroll scale (lerp smooth) ────────────────────────── */
   (function() {
     const reel = document.getElementById('reel');
     if (!reel) return;
-    function updateScale() {
+    let current = 0.62, target = 0.62;
+    function getTarget() {
       const rect = reel.getBoundingClientRect();
       const vh   = window.innerHeight;
-      // progress: 0 when top of reel hits bottom of screen, 1 when reel top reaches viewport top
-      const progress = Math.min(Math.max((vh - rect.top) / (vh * 0.9), 0), 1);
-      const scale    = 0.62 + 0.38 * progress;
-      reel.style.setProperty('--reel-scale', scale);
+      // reaches 1.0 when reel top is at 55% of viewport (still plenty of title visible)
+      const p = Math.min(Math.max((vh - rect.top) / (vh * 0.55), 0), 1);
+      return 0.62 + 0.38 * p;
     }
-    window.addEventListener('scroll', updateScale, { passive: true });
-    updateScale();
+    function tick() {
+      target  = getTarget();
+      current += (target - current) * 0.09;
+      reel.style.setProperty('--reel-scale', current.toFixed(4));
+      requestAnimationFrame(tick);
+    }
+    tick();
+  })();
+
+  /* ── Reel slideshow (no dots) ────────────────────────────────── */
+  (function() {
+    const reel = document.getElementById('reel');
+    if (!reel) return;
+    const slides = reel.querySelectorAll('.slide');
+    let i = 0;
+    setInterval(() => {
+      slides[i].classList.remove('active');
+      i = (i + 1) % slides.length;
+      slides[i].classList.add('active');
+    }, 3200);
   })();
 
   /* ── Back to top ─────────────────────────────────────────────── */

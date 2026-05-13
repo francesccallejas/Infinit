@@ -9,7 +9,7 @@
 /* ---- Reset --------------------------------------------------------------- */
 *, *::before, *::after { box-sizing: border-box; }
 html, body { margin: 0; padding: 0; }
-html { scrollbar-gutter: stable; scrollbar-color: transparent transparent; }
+html { scrollbar-gutter: stable; scrollbar-color: transparent transparent; scroll-behavior: smooth; }
 html:hover { scrollbar-color: rgba(0,7,40,.2) transparent; }
 img { max-width: 100%; display: block; }
 a { color: inherit; text-decoration: none; }
@@ -473,11 +473,15 @@ nav.top .links a.nav-cta:hover { background: var(--studio-hover); color: var(--w
   transform-origin: center top;
   will-change: transform;
 }
-.reel-video {
+.reel .reel-stage { position: absolute; inset: 0; }
+.reel .slide {
   position: absolute; inset: 0;
-  width: 100%; height: 100%;
-  object-fit: cover;
+  opacity: 0;
+  transition: opacity 1.4s cubic-bezier(.4,0,.2,1), transform 7s linear;
+  transform: scale(1.06);
 }
+.reel .slide.active { opacity: 1; transform: scale(1.0); }
+.reel .slide img { width: 100%; height: 100%; object-fit: cover; }
 .reel .scrim {
   position: absolute; inset: 0;
   pointer-events: none;
