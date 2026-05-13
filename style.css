@@ -61,7 +61,7 @@ blockquote { margin: 0; padding: 0; }
    BASE
    ========================================================================== */
 body {
-  background: var(--warm);
+  background: #060818;
   color: var(--ink);
   font-family: var(--sans);
   font-size: 16px;
@@ -374,7 +374,7 @@ nav.top .links a.nav-cta:hover { background: var(--studio-hover); color: var(--w
   transition: border-radius .6s cubic-bezier(.16,1,.3,1);
 }
 .hero:hover {
-  border-radius: 0 0 28px 28px;
+  border-radius: 0 0 12px 12px;
 }
 
 .hero-bg {
@@ -538,6 +538,7 @@ nav.top .links a.nav-cta:hover { background: var(--studio-hover); color: var(--w
 .marquee {
   overflow: hidden;
   padding: 56px 0;
+  background: var(--warm);
   border-top: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
 }
@@ -583,6 +584,7 @@ nav.top .links a.nav-cta:hover { background: var(--studio-hover); color: var(--w
   padding: 144px 52px 96px;
   display: grid;
   gap: 80px;
+  background: var(--warm);
 }
 .practices header {
   display: grid;
@@ -739,7 +741,7 @@ nav.top .links a.nav-cta:hover { background: var(--studio-hover); color: var(--w
 /* ==========================================================================
    SERVICES
    ========================================================================== */
-.services { padding: 80px 52px 48px; }
+.services { padding: 80px 52px 48px; background: var(--warm); }
 
 .services header {
   display: grid; grid-template-columns: 1.2fr 1fr; gap: 64px; align-items: end; margin-bottom: 56px;
@@ -854,7 +856,7 @@ nav.top .links a.nav-cta:hover { background: var(--studio-hover); color: var(--w
 /* ==========================================================================
    WORK GRID
    ========================================================================== */
-.work { padding: 68px 52px 80px; }
+.work { padding: 68px 52px 80px; background: var(--warm); }
 .work header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 48px; gap: 32px; }
 .work header h2 {
   font-family: var(--sans); font-weight: 400;
