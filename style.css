@@ -443,7 +443,7 @@ nav.top .links a.nav-cta:hover { background: var(--studio-hover); color: var(--w
   margin: 0;
   max-width: 30ch;
 }
-.reel-meta h3 .serif-r { color: var(--studio); }
+.reel-meta h3 .serif-r { color: var(--studio); font-weight: 400; }
 .reel-meta .stamp {
   display: inline-flex;
   align-items: center;
