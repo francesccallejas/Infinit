@@ -795,10 +795,14 @@
     const section = document.querySelector('.work');
     const tiles   = ['work-01','work-02','work-03','work-04','work-05'].map(id => document.getElementById(id));
     if (!section || tiles.some(t => !t)) return;
-    tiles.forEach(tile =>
-      tile.addEventListener('animationend', () => tile.classList.add('done'), { once: true })
-    );
+    tiles.forEach(tile => {
+      tile.addEventListener('animationend', () => {
+        tile.classList.add('done');
+        tile.style.willChange = '';
+      }, { once: true });
+    });
     onVisible(section, () => {
+      tiles.forEach(tile => { tile.style.willChange = 'opacity, transform'; });
       [0, 180, 340, 490, 630].forEach((delay, i) =>
         setTimeout(() => tiles[i].classList.add('in'), delay)
       );
