@@ -939,7 +939,7 @@ nav.top .links a.nav-cta:hover { background: var(--studio-hover); color: var(--w
   pointer-events: none;
 }
 .awwwards-badge img {
-  height: 16px; width: auto;
+  height: 14px; width: auto;
   filter: brightness(0) invert(1);
 }
 
