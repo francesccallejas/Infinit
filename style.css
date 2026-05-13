@@ -1088,6 +1088,35 @@ nav.top .links a.nav-cta:hover { background: var(--studio-hover); color: var(--w
 .name-tag-overlay .li-btn:hover { background: var(--warm); color: var(--studio); }
 
 /* ==========================================================================
+   RECOGNITION STRIP
+   ========================================================================== */
+.recognition-strip {
+  padding: 28px 52px;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+.rec-inner {
+  display: flex; align-items: center; gap: 32px;
+  max-width: 1400px; margin: 0 auto;
+}
+.rec-label {
+  font-size: 10px; letter-spacing: .16em; text-transform: uppercase;
+  opacity: .4; white-space: nowrap; flex-shrink: 0;
+}
+.rec-items {
+  display: flex; align-items: center; gap: 20px; flex-wrap: wrap;
+}
+.rec-item {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 12px; opacity: .55; white-space: nowrap;
+}
+.rec-item img {
+  height: 13px; width: auto; opacity: .45;
+  filter: grayscale(1);
+}
+.rec-dot { opacity: .25; font-size: 16px; }
+
+/* ==========================================================================
    MANIFESTO
    ========================================================================== */
 .manifesto {
