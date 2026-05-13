@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Hero Concepts Preview</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Source+Serif+4:opsz,wght@8..60,300;8..60,400&display=swap"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body { font-family: "Inter", sans-serif; background: #F3F0EF; color: #000728; -webkit-font-smoothing: antialiased; }
+
+  .label {
+    font-size: 11px; letter-spacing: .18em; text-transform: uppercase;
+    color: #7F838B; font-weight: 500; padding: 32px 52px 16px;
+  }
+  .sep { border: none; border-top: 2px solid #000728; margin: 0 0 0; }
+  .serif-r { font-family: "Source Serif 4", serif; font-weight: 300; letter-spacing: -.012em; }
+  .studio { color: #2C5BFF; }
+  .reg { font-size: .42em; color: #2C5BFF; vertical-align: super; line-height: 1; margin-left: 1px; }
+
+  /* ─── CONCEPT A — Full-bleed editorial split ─────────────── */
+  .concept-a {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 100vh;
+    position: relative;
+    overflow: hidden;
+  }
+  .ca-left {
+    background: #F3F0EF;
+    padding: 80px 52px 56px;
+    display: flex; flex-direction: column;
+    justify-content: space-between;
+  }
+  .ca-nav {
+    display: flex; align-items: center; gap: 10px;
+    font-size: 20px; letter-spacing: -.04em; font-weight: 400;
+  }
+  .ca-nav svg { display: block; }
+  .ca-heading {
+    font-size: clamp(56px, 6.5vw, 96px);
+    line-height: .92; letter-spacing: -.038em;
+    font-weight: 400; margin: 0;
+  }
+  .ca-sub {
+    font-size: 17px; line-height: 1.5; color: #7F838B;
+    max-width: 38ch; margin: 0;
+  }
+  .ca-cta {
+    display: inline-flex; align-items: center; gap: 12px;
+    font-size: 14px; padding: 14px 24px;
+    background: #2C5BFF; color: #F3F0EF;
+    border-radius: 999px; font-weight: 500;
+    text-decoration: none; align-self: flex-start;
+  }
+  .ca-right {
+    position: relative; overflow: hidden;
+    background: #1a1a2e;
+  }
+  .ca-right img {
+    width: 100%; height: 100%; object-fit: cover; object-position: center 20%;
+    filter: brightness(.88) saturate(1.1);
+  }
+  .ca-right-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, rgba(0,4,28,0) 40%, rgba(0,4,28,.55) 100%);
+  }
+  .ca-badge {
+    position: absolute; bottom: 32px; left: 32px;
+    font-size: 11px; letter-spacing: .16em; text-transform: uppercase;
+    color: rgba(243,240,239,.65); font-weight: 500;
+  }
+
+  /* ─── CONCEPT B — Large type + image inset ───────────────── */
+  .concept-b {
+    min-height: 100vh;
+    padding: 140px 52px 56px;
+    display: flex; flex-direction: column;
+    justify-content: flex-end;
+    position: relative;
+    background: #F3F0EF;
+    overflow: hidden;
+  }
+  .cb-heading {
+    font-size: clamp(64px, 9.5vw, 148px);
+    line-height: .88; letter-spacing: -.042em;
+    font-weight: 400; margin: 0 0 0;
+    position: relative; z-index: 2;
+    max-width: 14ch;
+  }
+  .cb-image {
+    position: absolute;
+    right: 52px; top: 80px;
+    width: clamp(280px, 36vw, 560px);
+    height: clamp(320px, 55vh, 620px);
+    border-radius: 6px; overflow: hidden;
+  }
+  .cb-image img {
+    width: 100%; height: 100%; object-fit: cover; object-position: center 15%;
+  }
+  .cb-bottom {
+    display: grid; grid-template-columns: 1fr auto;
+    align-items: end; gap: 48px;
+    margin-top: 40px; padding-top: 28px;
+    border-top: 1px solid rgba(0,7,40,.1);
+    position: relative; z-index: 2;
+  }
+  .cb-explain {
+    font-size: 18px; line-height: 1.45; max-width: 52ch;
+    color: #000728; margin: 0;
+  }
+  .cb-tag {
+    font-size: 11px; letter-spacing: .18em; text-transform: uppercase;
+    color: #7F838B; font-weight: 500; white-space: nowrap;
+    display: flex; flex-direction: column; align-items: flex-end; gap: 6px;
+  }
+</style>
+</head>
+<body>
+
+<p class="label">Concept A — Split layout: text left · image right</p>
+<hr class="sep"/>
+
+<div class="concept-a">
+  <div class="ca-left">
+    <div class="ca-nav">
+      <svg width="35" height="18" viewBox="0 0 62 32" fill="none" stroke="#000728" stroke-width="4.2">
+        <circle cx="16" cy="16" r="13.5"/><circle cx="46" cy="16" r="13.5"/>
+      </svg>
+      infinit<span style="font-size:.42em;color:#2C5BFF;vertical-align:super;margin-left:1px">®</span>
+    </div>
+
+    <div style="display:grid;gap:28px">
+      <h1 class="ca-heading">
+        Designed<br/>to <span class="studio"><span class="serif-r">scale</span>.</span>
+      </h1>
+      <p class="ca-sub">
+        Brand &amp; Strategy for companies entering their next stage of growth — identity, digital and operating systems built to expand.
+      </p>
+    </div>
+
+    <div style="display:flex;gap:16px;align-items:center">
+      <a class="ca-cta" href="#">Start a project ↗</a>
+      <span style="font-size:13px;color:#7F838B">Barcelona · Est. 2019</span>
+    </div>
+  </div>
+
+  <div class="ca-right">
+    <img src="project/assets/images/astronaut-red-portrait.png" alt=""/>
+    <div class="ca-right-overlay"></div>
+    <span class="ca-badge">Brand &amp; Strategy Studio · Barcelona</span>
+  </div>
+</div>
+
+
+<p class="label" style="margin-top:64px">Concept B — Full-width type · image inset top-right</p>
+<hr class="sep"/>
+
+<div class="concept-b">
+  <div class="cb-image">
+    <img src="project/assets/images/astronaut-red-portrait.png" alt=""/>
+  </div>
+
+  <h1 class="cb-heading">
+    <svg style="display:inline-block;vertical-align:middle;width:clamp(80px,10vw,148px);height:auto;margin-right:clamp(8px,1vw,16px);transform:translateY(-.04em)" viewBox="0 0 62 32" fill="none" stroke="currentColor" stroke-width="4.2">
+      <circle cx="16" cy="16" r="13.5"/><circle cx="46" cy="16" r="13.5"/>
+    </svg>Designed<br/>to <span class="studio"><span class="serif-r">scale</span>.</span>
+  </h1>
+
+  <div class="cb-bottom">
+    <p class="cb-explain">
+      <strong style="font-weight:500">Infinit<span class="reg">®</span></strong> is a Brand &amp; Strategy studio for companies entering their <span style="font-family:'Source Serif 4',serif;color:#2C5BFF;font-size:1.04em">next stage of growth</span> — identity, digital and operating systems built to expand across markets, time and complexity.
+    </p>
+    <div class="cb-tag">
+      <span>Here's how we work</span>
+      <span style="font-size:22px;color:#000728;line-height:1">↓</span>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
