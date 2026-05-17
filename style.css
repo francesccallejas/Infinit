@@ -738,7 +738,7 @@ nav.top { opacity: 0; animation: navIn .6s var(--ease-out) .2s forwards; }
 .founder-meta a:hover { text-decoration: underline; text-underline-offset: 2px; }
 .founder-img {
   aspect-ratio: 4/5; border-radius: 4px;
-  background-size: cover; background-position: center;
+  background-size: cover; background-position: center 22%;
   width: 100%;
 }
 
