@@ -91,22 +91,27 @@ em { font-family: var(--serif); font-style: normal; font-weight: 400; }
 nav.top {
   position: fixed; top: 0; left: 0; right: 0;
   z-index: 500;
-  padding: 24px clamp(20px, 4vw, 40px);
-  display: flex; align-items: flex-start; justify-content: space-between;
+  padding: 24px var(--pad-x);
+  display: flex; align-items: flex-start; justify-content: flex-end;
   pointer-events: none;
-  opacity: 0; animation: navIn .6s var(--ease-out) .2s forwards;
 }
 nav.top > * { pointer-events: auto; }
-body.intro-running nav.top { opacity: 0 !important; animation: none; }
 @keyframes navIn { to { opacity: 1; } }
 
-/* Logo — alone on the left, colour adapts to whatever is underneath */
+/* Logo — standalone fixed element so mix-blend blends against the
+   page content behind it (adaptive colour), aligned to the content grid */
 .logo-lockup {
+  position: fixed; top: 24px; left: var(--pad-x); z-index: 550;
+  height: 42px;
   display: inline-flex; align-items: center; gap: 9px;
   flex-shrink: 0;
   color: var(--warm);
   mix-blend-mode: difference;
+  opacity: 0; animation: navIn .7s var(--ease-out) .25s forwards;
 }
+body.intro-running .logo-lockup,
+body.intro-running nav.top { opacity: 0 !important; animation: none; }
+nav.top { opacity: 0; animation: navIn .6s var(--ease-out) .2s forwards; }
 .logo-lockup svg { height: 22px; width: auto; color: currentColor; }
 .logo-lockup .word {
   font-family: var(--sans); font-weight: 900;
