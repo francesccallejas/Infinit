@@ -75,7 +75,7 @@ em { font-family: var(--serif); font-style: normal; font-weight: 400; }
   position: fixed; inset: 0; z-index: 9000;
   background: var(--deep);
   display: flex; align-items: center; justify-content: center;
-  animation: introOut .6s var(--ease-out) 2.2s forwards;
+  animation: introOut .9s cubic-bezier(.76,0,.24,1) 2.2s forwards;
 }
 .intro-mark {
   width: clamp(80px, 14vw, 160px); color: var(--warm);
@@ -83,7 +83,7 @@ em { font-family: var(--serif); font-style: normal; font-weight: 400; }
 .intro-mark .ip1 { opacity: 0; animation: fadeUp .7s var(--ease-out) .25s forwards; }
 .intro-mark .ip2 { opacity: 0; animation: fadeUp .7s var(--ease-out) .5s forwards; }
 @keyframes fadeUp  { to { opacity: 1; } }
-@keyframes introOut { to { opacity: 0; pointer-events: none; } }
+@keyframes introOut { to { transform: translateY(-100%); pointer-events: none; } }
 
 /* =========================================================================
    NAV
