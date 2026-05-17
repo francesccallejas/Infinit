@@ -30,16 +30,16 @@
     <span class="word">infinit<span class="reg">®</span></span>
   </a>
 
-  <button class="nav-combo" id="navCombo" aria-label="Open menu" aria-expanded="false">
-    <span class="combo-lines" aria-hidden="true">
+  <div class="nav-combo">
+    <button class="combo-lines" id="navMenuBtn" aria-label="Open menu" aria-expanded="false">
       <span></span><span></span><span></span>
-    </span>
-    <span class="combo-arrow-btn" aria-hidden="true">
+    </button>
+    <a class="combo-arrow-btn" href="#contact" aria-label="Contact">
       <svg width="13" height="13" viewBox="0 0 24 24" fill="none">
         <path d="M8 16 L16 8 M9 8 H16 V15" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
-    </span>
-  </button>
+    </a>
+  </div>
 </nav>
 
 <!-- NAV PANEL -->
@@ -478,7 +478,7 @@
 
   /* ── Nav panel (hover desktop / click mobile) ────────────────── */
   (function() {
-    const btn   = document.getElementById('navCombo');
+    const btn   = document.getElementById('navMenuBtn');
     const panel = document.getElementById('navPanel');
     if (!btn || !panel) return;
     let closeTimer;
