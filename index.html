@@ -65,6 +65,16 @@
 
 <!-- ========== HERO ========== -->
 <section class="hero" id="hero">
+  <div class="hero-bg" aria-hidden="true">
+    <div class="hero-slide active"><img src="project/assets/imagery/raincoat.webp" style="object-position:center center" alt=""/></div>
+    <div class="hero-slide"><img src="project/assets/images/astronaut-red-portrait.png" alt=""/></div>
+    <div class="hero-slide"><img src="project/assets/images/ipad-sunset.webp" alt=""/></div>
+    <div class="hero-slide"><img src="project/assets/images/knob-orange.webp" alt=""/></div>
+    <div class="hero-slide"><img src="project/assets/images/rainy-day.webp" style="object-position:center 78%" alt=""/></div>
+    <div class="hero-slide"><img src="project/assets/images/astronaut-pink-full.avif" style="object-position:75% center" alt=""/></div>
+    <div class="hero-slide"><img src="project/assets/imagery/Almirall.webp" style="object-position:center 55%" alt=""/></div>
+    <div class="hero-slide"><img src="project/assets/images/Bunnker Final.webp" alt=""/></div>
+  </div>
   <div class="frame">
     <div class="hero-meta">
       <span>V01 · 2026 — Brand &amp; Strategy Firm</span>
@@ -453,6 +463,18 @@
   document.body.classList.add('intro-running');
   setTimeout(() => document.body.classList.remove('intro-running'), 2000);
   setTimeout(() => intro && intro.remove(), 2900);
+
+  /* ── Hero background slideshow ────────────────────────────────── */
+  (function() {
+    const slides = document.querySelectorAll('.hero-slide');
+    if (slides.length < 2) return;
+    let i = 0;
+    setInterval(() => {
+      slides[i].classList.remove('active');
+      i = (i + 1) % slides.length;
+      slides[i].classList.add('active');
+    }, 4500);
+  })();
 
   /* ── Nav scroll ──────────────────────────────────────────────── */
   const nav = document.getElementById('nav');
