@@ -1,47 +1,43 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="description" content="Infinit® is a Brand &amp; Strategy studio for companies entering their next stage of growth — identity, digital and operating systems built to expand across markets, time and complexity."/>
-  <meta property="og:title" content="Infinit® — Brand &amp; Strategy designed to scale"/>
-  <meta property="og:description" content="One studio, two practices. Brand, identity and digital systems designed to scale."/>
-  <meta property="og:type" content="website"/>
-  <title>Infinit® — Brand &amp; Strategy designed to scale</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com"/>
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link rel="stylesheet" href="style.css"/>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Infinit® — Brand &amp; Strategy</title>
+<meta name="description" content="Strategic brand and digital systems for companies navigating growth and transformation. Built through real operational experience.">
+<link rel="stylesheet" href="style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300..900&family=Inter:wght@700&family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 </head>
 <body>
 
-<!-- ========== INTRO SPLASH ========== -->
-<div id="intro" aria-hidden="true">
-  <div class="intro-lockup">
-    <svg class="intro-mark" width="72" height="37" viewBox="0 0 62 32" fill="none" stroke="currentColor" stroke-width="4.2">
-      <circle class="intro-dot-l" cx="16" cy="16" r="13.5"/>
-      <circle class="intro-dot-r" cx="46" cy="16" r="13.5"/>
-    </svg>
-    <div class="intro-word-wrap">
-      <span class="intro-word">infinit</span>
-    </div>
-  </div>
+<!-- INTRO SPLASH -->
+<div class="intro" id="intro" aria-hidden="true">
+  <svg class="intro-mark" viewBox="0 0 374 206" fill="none">
+    <path class="ip1" d="M108.196 34h74Q201.196 34 194.14 51.641L153.056 154.359Q146 172 127 172H53Q34 172 41.056 154.359L82.14 51.641Q89.196 34 108.196 34Z" fill="currentColor"/>
+    <path class="ip2" d="M108.196 34h74Q201.196 34 194.14 51.641L153.056 154.359Q146 172 127 172H53Q34 172 41.056 154.359L82.14 51.641Q89.196 34 108.196 34Z" fill="currentColor" transform="translate(139 0)"/>
+  </svg>
 </div>
 
-<!-- ========== NAV ========== -->
+<!-- CURSOR -->
+<div class="cursor-ring" aria-hidden="true"></div>
+<div class="cursor-dot"  aria-hidden="true"></div>
+
+<!-- NAV -->
 <nav class="top" id="nav">
   <a class="logo-lockup" href="#" aria-label="Infinit — home">
-    <svg width="47" height="25" viewBox="0 0 62 32" fill="none" stroke="currentColor" stroke-width="4.2" aria-hidden="true">
-      <circle cx="16" cy="16" r="13.5"/>
-      <circle cx="46" cy="16" r="13.5"/>
+    <svg class="nav-mark" viewBox="0 0 374 206" fill="none" aria-hidden="true">
+      <path d="M108.196 34h74Q201.196 34 194.14 51.641L153.056 154.359Q146 172 127 172H53Q34 172 41.056 154.359L82.14 51.641Q89.196 34 108.196 34Z" fill="currentColor"/>
+      <path d="M108.196 34h74Q201.196 34 194.14 51.641L153.056 154.359Q146 172 127 172H53Q34 172 41.056 154.359L82.14 51.641Q89.196 34 108.196 34Z" fill="currentColor" transform="translate(139 0)"/>
     </svg>
     <span class="word">infinit<span class="reg">®</span></span>
   </a>
 
   <nav class="links" aria-label="Primary">
-    <a href="#practices">Studio</a>
-    <a href="#services">Services</a>
     <a href="#work">Work</a>
-    <a href="#advisory" class="advisory-link">Advisory<span class="arrow"> ↗</span></a>
+    <a href="#services">Services</a>
+    <a href="#approach">Approach</a>
     <a href="#contact" class="nav-cta">Contact</a>
   </nav>
 
@@ -50,7 +46,7 @@
   </button>
 </nav>
 
-<!-- ===== MOBILE MENU OVERLAY ===== -->
+<!-- MOBILE OVERLAY -->
 <div class="mob-overlay" id="mobOverlay" aria-hidden="true">
   <div class="mob-overlay-inner">
     <button class="mob-close" id="mobClose" aria-label="Close menu">
@@ -59,645 +55,309 @@
       </svg>
     </button>
     <nav class="mob-links" aria-label="Mobile primary">
-      <a href="#practices" class="mob-link">Studio</a>
+      <a href="#work"     class="mob-link">Work</a>
       <a href="#services" class="mob-link">Services</a>
-      <a href="#work" class="mob-link">Work</a>
-      <a href="#advisory" class="mob-link mob-advisory">Advisory <span class="arrow">↗</span></a>
+      <a href="#approach" class="mob-link">Approach</a>
+      <a href="#contact"  class="mob-link">Contact</a>
     </nav>
     <div class="mob-footer">
-      <a href="#contact" class="mob-cta">Contact us</a>
+      <a href="#contact" class="mob-cta">Start the conversation</a>
       <a href="tel:+34689022383" class="mob-phone">+34 689 022 383</a>
     </div>
   </div>
 </div>
 
-
 <!-- ========== HERO ========== -->
-<header class="hero">
-  <div class="hero-bg" aria-hidden="true">
-    <div class="hero-slide active"><img src="project/assets/images/astronaut-red-portrait.png" alt=""/></div>
-    <div class="hero-slide"><img src="project/assets/images/ipad-sunset.webp" alt=""/></div>
-    <div class="hero-slide"><img src="project/assets/images/knob-orange.webp" alt=""/></div>
-    <div class="hero-slide"><img src="project/assets/images/rainy-day.webp" style="object-position: center 78%" alt=""/></div>
-    <div class="hero-slide"><img src="project/assets/images/astronaut-pink-full.avif" style="object-position: 75% center" alt=""/></div>
-    <div class="hero-slide"><img src="project/assets/imagery/raincoat.webp" style="object-position: center center" alt=""/></div>
-    <div class="hero-slide"><img src="project/assets/imagery/Almirall.webp" style="object-position: center 55%" alt=""/></div>
-    <div class="hero-slide"><img src="project/assets/images/Bunnker Final.webp" alt=""/></div>
-  </div>
+<section class="hero" id="hero">
+  <div class="frame">
+    <div class="hero-meta">
+      <span>V01 · 2026 — Brand &amp; Strategy Firm</span>
+      <span>Barcelona — Worldwide</span>
+    </div>
 
-  <div class="hero-services" aria-hidden="true">
-    <span>Strategy</span>
-    <span>Brand &amp; Identity</span>
-    <span>Digital</span>
-    <span>Advisory</span>
-  </div>
+    <div class="tagline-wrap">
+      <h1>
+        <span class="line"><span class="w">Brands built</span></span>
+        <span class="line"><span class="w">to <span class="scale-word">scale.</span></span></span>
+      </h1>
+    </div>
 
-  <div class="hero-center">
-    <h1>
-      <span class="infinit-anim" aria-hidden="true">
-        <svg viewBox="0 0 62 32" fill="none" stroke="currentColor" stroke-width="4.2">
-          <circle class="dot-left"  cx="16" cy="16" r="13.5"/>
-          <circle class="dot-right" cx="46" cy="16" r="13.5"/>
-        </svg>
-      </span>Designed<br/>to <span class="scale"><span class="serif-r">scale</span>.</span>
-    </h1>
-  </div>
-
-  <p class="hero-explain">
-    <strong class="brand">Infinit<span class="reg">®</span></strong> is a Brand &amp; Strategy studio for companies entering their <span class="accent">next stage of growth</span> — identity, digital and operating systems built to expand across markets, time and complexity.
-  </p>
-
-  <div class="hero-bottom">
-    <div class="hero-scroll-hint" aria-hidden="true">
-      <span>Here's how we work</span>
-      <span class="arrow">↓</span>
+    <div class="hero-bottom-row">
+      <p class="hero-sub">Strategic branding and digital experiences designed for growth. Built through real transformation experience and operational depth.</p>
+      <div class="hero-scroll-cue">
+        <span>Scroll</span>
+        <div class="scroll-bar"></div>
+      </div>
     </div>
   </div>
-</header>
+</section>
 
-
-
-
-<!-- ========== CLIENTS MARQUEE ========== -->
-<section class="marquee" aria-label="Selected clients">
-  <p class="marquee-label eyebrow reveal-push">Selected clients &amp; collaborations</p>
-  <div class="track reveal-push d1" aria-hidden="true">
-    <img class="l-sap"       src="project/assets/clients/sap.png"       alt="SAP"/>
-    <img class="l-glovo"     src="project/assets/clients/glovo.png"     alt="Glovo"/>
-    <img class="l-almirall"  src="project/assets/clients/almirall.png"  alt="Almirall"/>
-    <img class="l-instellar" src="project/assets/clients/instellar.png" alt="Instellar"/>
-    <img class="l-relats"    src="project/assets/clients/relats.png"    alt="Relats"/>
-    <img class="l-bunnker"   src="project/assets/clients/bunnker.png"   alt="Bunnker"/>
-    <img class="l-11onze"    src="project/assets/clients/11onze.png"    alt="11onze"/>
-    <img class="l-dronparc"  src="project/assets/clients/dronparc.png"  alt="DronParc"/>
-    <!-- Duplicate for seamless loop -->
-    <img class="l-sap"       src="project/assets/clients/sap.png"       alt=""/>
-    <img class="l-glovo"     src="project/assets/clients/glovo.png"     alt=""/>
-    <img class="l-almirall"  src="project/assets/clients/almirall.png"  alt=""/>
-    <img class="l-instellar" src="project/assets/clients/instellar.png" alt=""/>
-    <img class="l-relats"    src="project/assets/clients/relats.png"    alt=""/>
-    <img class="l-bunnker"   src="project/assets/clients/bunnker.png"   alt=""/>
-    <img class="l-11onze"    src="project/assets/clients/11onze.png"    alt=""/>
-    <img class="l-dronparc"  src="project/assets/clients/dronparc.png"  alt=""/>
+<!-- ========== NARRATIVE ========== -->
+<section class="narrative" id="approach">
+  <div class="narr-head">
+    <span class="mono-label">02 · Narrative</span>
+    <h2>Five statements. Read at <em>your</em> pace.</h2>
+    <span class="mono-label">Scroll →</span>
+  </div>
+  <div class="narr-track" id="narrTrack">
+    <div class="narr-slide" style="background-image:url('project/assets/imagery/relats-industrial.webp')">
+      <span class="narr-tag">01 · Clarity</span>
+      <div class="narr-frosted">
+        <h4>Clarity in <em>complexity.</em></h4>
+        <p>Direction through change.</p>
+      </div>
+    </div>
+    <div class="narr-slide" style="background-image:url('project/assets/imagery/raincoat.webp')">
+      <span class="narr-tag">02 · Identity</span>
+      <div class="narr-frosted">
+        <h4>Identity with <em>purpose.</em></h4>
+        <p>Built from positioning, not decoration.</p>
+      </div>
+    </div>
+    <div class="narr-slide" style="background-image:url('project/assets/imagery/ipad-gradient.jpg')">
+      <span class="narr-tag">03 · Execution</span>
+      <div class="narr-frosted">
+        <h4>Strategy connected to <em>execution.</em></h4>
+        <p>Ideas transformed into experience.</p>
+      </div>
+    </div>
+    <div class="narr-slide" style="background-image:url('project/assets/imagery/astronaut-blue.avif')">
+      <span class="narr-tag">04 · Growth</span>
+      <div class="narr-frosted">
+        <h4>Digital designed for <em>growth.</em></h4>
+        <p>Quietly accelerated through technology.</p>
+      </div>
+    </div>
+    <div class="narr-slide" style="background-image:url('project/assets/imagery/device-knob.webp')">
+      <span class="narr-tag">05 · Modernization</span>
+      <div class="narr-frosted">
+        <h4>Modernization without <em>noise.</em></h4>
+        <p>Sharper brands. Lasting impact.</p>
+      </div>
+    </div>
+  </div>
+  <div class="narr-controls">
+    <span class="mono-label">01 / 05 — drag or use arrows</span>
+    <div class="narr-nav">
+      <button id="narrPrev" aria-label="Previous">←</button>
+      <button id="narrNext" aria-label="Next">→</button>
+    </div>
   </div>
 </section>
 
-
-<!-- ========== PRACTICES ========== -->
-<section class="practices" id="practices" aria-label="Our practices">
-  <header>
-    <h2 class="reveal">One studio.<br/><span class="serif-r">Two</span> practices.</h2>
-    <p class="reveal d2">Studio is the brand &amp; strategy firm. Advisory is the operating model behind it — for when complexity makes design alone insufficient.</p>
-  </header>
-
-  <div class="cards-grid">
-    <a class="card-studio card-fly" href="#services">
-      <div class="card-head">
-        <span class="card-tag">Primary practice</span>
-        <span class="card-logo">
-          <svg width="22" height="11" viewBox="0 0 62 32" fill="none" stroke="currentColor" stroke-width="4.2" aria-hidden="true">
-            <circle cx="16" cy="16" r="13.5"/><circle cx="46" cy="16" r="13.5"/>
-          </svg>
-          infinit
-        </span>
-      </div>
-      <h3>Brand, identity and digital systems <span class="serif-r">designed</span> to scale across markets and time.</h3>
-      <div class="pills">
-        <span class="pill">Strategy</span>
-        <span class="pill">Identity</span>
-        <span class="pill">Digital</span>
-        <span class="pill">Verbal</span>
-        <span class="pill">Motion</span>
-      </div>
-      <div class="card-foot">
-        <span class="location">Brand &amp; Strategy · Barcelona</span>
-        <span class="cta">Explore Studio<span class="arrow"> ↗</span></span>
-      </div>
-    </a>
-
-    <!-- ADVISORY — additional practice, deep blue -->
-    <a class="card-advisory card-fly" href="#advisory">
-      <div class="card-head">
-        <span class="card-tag">Additional practice</span>
-        <span class="card-logo">
-          <svg width="22" height="11" viewBox="0 0 62 32" fill="none" stroke="currentColor" stroke-width="4.2" aria-hidden="true">
-            <circle cx="16" cy="16" r="13.5"/><circle cx="46" cy="16" r="13.5"/>
-          </svg>
-          infinit <span class="adv-label">Advisory</span>
-        </span>
-      </div>
-      <h3>Structure <span class="serif-r">made</span> visible — for digital ecosystems and enterprise architecture.</h3>
-      <div class="pills">
-        <span class="pill">Architecture</span>
-        <span class="pill">Platforms</span>
-        <span class="pill">Data &amp; AI</span>
-      </div>
-      <span class="cta">Read more<span class="arrow"> ↗</span></span>
-      <svg class="deco" width="380" height="200" viewBox="0 0 62 32" fill="none" stroke-width="2" aria-hidden="true">
-        <circle cx="16" cy="16" r="13.5"/><circle cx="46" cy="16" r="13.5"/>
-      </svg>
-    </a>
-  </div>
+<!-- ========== BIG CLAIM ========== -->
+<section class="claim">
+  <h2>Strategy. Identity. Digital. <em>Connected.</em></h2>
+  <p class="mono-label">Built through real transformation experience</p>
 </section>
-
 
 <!-- ========== SERVICES ========== -->
-<section class="services" id="services" aria-label="Studio services">
-  <span class="studio-mark reveal-push">
-    <span class="dot" aria-hidden="true"></span>
-    <svg width="18" height="9" viewBox="0 0 62 32" fill="none" stroke="currentColor" stroke-width="4.2" aria-hidden="true">
-      <circle cx="16" cy="16" r="13.5"/><circle cx="46" cy="16" r="13.5"/>
-    </svg>
-    <span class="pipe" aria-hidden="true"></span>
-    Infinit Studio
-  </span>
-
-  <header>
-    <h2 class="reveal d1">Three connected <span class="serif-r">disciplines.</span><br/>One operating system.</h2>
-    <p class="reveal d2">Hover any discipline to expand its capability list. Click to open the full service page.</p>
-  </header>
-
-  <div class="services-list">
-    <div class="service card-fly" id="svc-01">
-      <span class="svc-num">01</span>
-      <div class="svc-title-block">
-        <h3 class="svc-title">Strategy</h3>
-        <span class="svc-sub">The discipline behind growth.</span>
-      </div>
-      <div class="svc-desc-stack">
-        <p class="svc-desc">Direction aligning business ambition, market opportunity and execution. Positioning, growth, founder voice and fractional CMO support.</p>
-        <div class="svc-tags" aria-hidden="true">
-          <span>Brand Strategy</span>
-          <span>Positioning</span>
-          <span>Growth Strategy</span>
-          <span>Founder Positioning</span>
-          <span>Fractional CMO</span>
-        </div>
-      </div>
-      <div class="svc-right">
-        <div class="svc-img"><img src="project/assets/images/rainy-day.webp" alt=""/></div>
-        <div class="svc-plus" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><line x1="7" y1="0" x2="7" y2="14"/><line x1="0" y1="7" x2="14" y2="7"/></svg></div>
-      </div>
+<section class="services" id="services">
+  <div class="services-head">
+    <span class="mono-label">04 · Services</span>
+    <h2>Three connected pillars. <em>One firm.</em></h2>
+    <span class="mono-label">Strategy · Identity · Digital</span>
+  </div>
+  <div class="services-grid">
+    <div class="svc-col reveal">
+      <span class="mono-label">01 · Strategy</span>
+      <h3>The discipline behind <em>growth.</em></h3>
+      <p>Direction aligning business ambition, market opportunity and execution. Positioning, growth systems, strategic clarity.</p>
+      <ul>
+        <li>Brand Strategy</li>
+        <li>Positioning</li>
+        <li>Growth Strategy</li>
+        <li>Founder Positioning</li>
+        <li>Fractional CMO</li>
+        <li>AI Opportunity Mapping</li>
+        <li>Brand Architecture</li>
+        <li>Strategic Workshops</li>
+      </ul>
     </div>
-
-    <div class="service card-fly" id="svc-02">
-      <span class="svc-num">02</span>
-      <div class="svc-title-block">
-        <h3 class="svc-title">Identity</h3>
-        <span class="svc-sub">Structure made visible.</span>
-      </div>
-      <div class="svc-desc-stack">
-        <p class="svc-desc">Scalable visual &amp; verbal systems for digital, physical and cultural environments. Identity, design systems, creative direction, motion.</p>
-        <div class="svc-tags" aria-hidden="true">
-          <span>Visual Identity</span>
-          <span>Verbal Identity</span>
-          <span>Design Systems</span>
-          <span>Creative Direction</span>
-          <span>Motion Systems</span>
-        </div>
-      </div>
-      <div class="svc-right">
-        <div class="svc-img"><img src="project/assets/images/knob-orange.webp" alt=""/></div>
-        <div class="svc-plus" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><line x1="7" y1="0" x2="7" y2="14"/><line x1="0" y1="7" x2="14" y2="7"/></svg></div>
-      </div>
+    <div class="svc-col reveal">
+      <span class="mono-label">02 · Identity</span>
+      <h3>Structure made <em>visible.</em></h3>
+      <p>Scalable visual and verbal systems designed for digital, physical and cultural environments. Recognition, consistency, long-term growth.</p>
+      <ul>
+        <li>Visual Identity</li>
+        <li>Verbal Identity</li>
+        <li>Design Systems</li>
+        <li>Creative Direction</li>
+        <li>Motion Systems</li>
+        <li>Naming</li>
+        <li>Brand Guidelines</li>
+        <li>Campaign Concepts</li>
+      </ul>
     </div>
-
-    <div class="service card-fly" id="svc-03">
-      <span class="svc-num">03</span>
-      <div class="svc-title-block">
-        <h3 class="svc-title">Digital</h3>
-        <span class="svc-sub">Where identity scales.</span>
-      </div>
-      <div class="svc-desc-stack">
-        <p class="svc-desc">Digital ecosystems generating visibility, engagement and measurable business impact. Websites, UX/UI, performance, SEO/GEO, AI experiences.</p>
-        <div class="svc-tags" aria-hidden="true">
-          <span>Websites &amp; Platforms</span>
-          <span>UX / UI Direction</span>
-          <span>Performance</span>
-          <span>SEO &amp; GEO</span>
-          <span>AI Experiences</span>
-        </div>
-      </div>
-      <div class="svc-right">
-        <div class="svc-img"><img src="project/assets/images/ipad-sunset.jpg" alt=""/></div>
-        <div class="svc-plus" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><line x1="7" y1="0" x2="7" y2="14"/><line x1="0" y1="7" x2="14" y2="7"/></svg></div>
-      </div>
+    <div class="svc-col reveal">
+      <span class="mono-label">03 · Digital</span>
+      <h3>Systems designed for <em>growth.</em></h3>
+      <p>Digital ecosystems built for visibility, discoverability, engagement and measurable business growth.</p>
+      <ul>
+        <li>Websites &amp; Platforms</li>
+        <li>UX / UI Direction</li>
+        <li>SEO Strategy</li>
+        <li>GEO / LLM Optimization</li>
+        <li>Performance Marketing</li>
+        <li>AI Experiences</li>
+        <li>Analytics &amp; Conversion</li>
+        <li>Interactive Experiences</li>
+      </ul>
     </div>
   </div>
 </section>
 
-
-<!-- ========== WORK GRID ========== -->
-<section class="work" id="work" aria-label="Recent work">
-  <header>
-    <h2 class="reveal-push">Recent <span class="serif-r">work.</span></h2>
-  </header>
-
+<!-- ========== WORK ========== -->
+<section class="work" id="work">
+  <div class="work-head">
+    <span class="mono-label">05 · Selected work</span>
+    <h2>Recent <em>transformations.</em></h2>
+    <span class="mono-label">2024 — 2026</span>
+  </div>
   <div class="work-grid">
-    <div class="work-tile span2 card-fly" id="work-01">
-      <img class="cover" decoding="async" src="project/assets/images/Bunnker Final.webp" alt="Bunnker project — beyond renting" loading="lazy"/>
-      <div class="tile-scrim"></div>
-      <div class="logo-over">
-        <img class="lg-bunnker" src="project/assets/clients/bunnker.png" alt="Bunnker"/>
-      </div>
-      <div class="awwwards-badge badge-coac">
-        <img src="project/assets/clients/Coac.png" alt="COAC"/>
-        <span>Architectural Awards</span>
-      </div>
-      <div class="tile-meta">
+    <article class="wcard c1">
+      <span class="wcard-tag">Architecture &amp; Brand</span>
+      <div class="wcard-bg" style="background-image:url('project/assets/imagery/bunnker-product.webp')"></div>
+      <div class="wcard-frosted">
         <div>
-          <div class="work-tag">Strategy · Brand · Growth</div>
-          <div class="client-name">Bunnker — beyond renting</div>
+          <div class="wcard-meta">Strategy · Brand · Growth</div>
+          <h4>Bunnker — beyond renting.</h4>
         </div>
-        <span class="work-tag">2026</span>
+        <span class="wcard-yr">2026</span>
       </div>
-    </div>
-
-    <div class="work-tile card-fly" id="work-02">
-      <img class="cover" decoding="async" src="project/assets/images/Relats Brand.webp" alt="Relats project — brand" loading="lazy"/>
-      <div class="tile-scrim"></div>
-      <div class="logo-over">
-        <img class="lg-relats" src="project/assets/clients/relats.png" alt="Relats"/>
-      </div>
-      <div class="awwwards-badge">
-        <img src="project/assets/clients/Awwwards-Logo-Vector.svg-.png" alt="Awwwards"/>
-      </div>
-      <div class="tile-meta">
+    </article>
+    <article class="wcard c2">
+      <span class="wcard-tag">awwwards.</span>
+      <div class="wcard-bg" style="background-image:url('project/assets/imagery/relats-industrial.webp')"></div>
+      <div class="wcard-frosted">
         <div>
-          <div class="work-tag">Strategy · Brand · Digital</div>
-          <div class="client-name">Relats — ahead of the curve</div>
+          <div class="wcard-meta">Strategy · Brand · Digital</div>
+          <h4>Relats — ahead of the curve.</h4>
         </div>
-        <span class="work-tag">2025</span>
+        <span class="wcard-yr">2025</span>
       </div>
-    </div>
-
-    <div class="work-tile card-fly" id="work-03">
-      <img class="cover" decoding="async" src="project/assets/images/ipad-sunset.webp" alt="Instellar project — platform UX" loading="lazy"/>
-      <div class="tile-scrim"></div>
-      <div class="logo-over">
-        <img class="lg-instellar" src="project/assets/clients/instellar.png" alt="Instellar"/>
-      </div>
-      <div class="tile-meta">
+    </article>
+    <article class="wcard c3">
+      <div class="wcard-bg" style="background-image:url('project/assets/imagery/ipad-gradient.jpg')"></div>
+      <div class="wcard-frosted">
         <div>
-          <div class="work-tag">Strategy · Brand · Digital</div>
-          <div class="client-name">Instellar — mission performance</div>
+          <div class="wcard-meta">Strategy · Brand · Digital</div>
+          <h4>Instellar — mission performance.</h4>
         </div>
-        <span class="work-tag">2026</span>
+        <span class="wcard-yr">2026</span>
       </div>
-    </div>
-
-    <div class="work-tile card-fly" id="work-04">
-      <img class="cover" decoding="async" src="project/assets/imagery/Almirall.webp" alt="Almirall project" loading="lazy"/>
-      <div class="tile-scrim"></div>
-      <div class="logo-over">
-        <img class="lg-almirall" src="project/assets/clients/almirall.png" alt="Almirall"/>
-      </div>
-      <div class="tile-meta">
+    </article>
+    <article class="wcard c4">
+      <div class="wcard-bg" style="background-image:url('project/assets/imagery/almirall-product.webp')"></div>
+      <div class="wcard-frosted">
         <div>
-          <div class="work-tag">Strategy · Digital</div>
-          <div class="client-name">Almirall — beautifully clinical</div>
+          <div class="wcard-meta">Strategy · Digital</div>
+          <h4>Almirall — beautifully clinical.</h4>
         </div>
-        <span class="work-tag">2025</span>
+        <span class="wcard-yr">2025</span>
       </div>
-    </div>
-
-    <div class="work-tile card-fly" id="work-05">
-      <img class="cover" decoding="async" src="project/assets/imagery/Julia Yosemite.webp" alt="Julià Camper — premium adventure vans" loading="lazy"/>
-      <div class="tile-scrim"></div>
-      <div class="logo-over">
-        <img class="lg-julia" src="project/assets/clients/Julia Camper Logo.png" alt="Julià Camper"/>
-        <span class="wip-tag">Work in progress</span>
-      </div>
-      <div class="tile-meta">
+    </article>
+    <article class="wcard c5">
+      <div class="wcard-bg" style="background-image:url('project/assets/imagery/julia-camper.webp')"></div>
+      <div class="wcard-frosted">
         <div>
-          <div class="work-tag">Strategy · Brand · Digital</div>
-          <div class="client-name">Julià — premium adventure vans</div>
+          <div class="wcard-meta">Strategy · Brand · Digital</div>
+          <h4>Julià — premium adventure vans.</h4>
         </div>
-        <span class="work-tag">2026</span>
+        <span class="wcard-yr">2026</span>
       </div>
-    </div>
+    </article>
   </div>
 </section>
 
-
-<!-- ========== KPIs + FOUNDER ========== -->
-<section class="kpis-founder" id="outcomes" aria-label="Track record">
-  <span class="studio-mark reveal-push">
-    <span class="dot" aria-hidden="true"></span>
-    <svg width="18" height="9" viewBox="0 0 62 32" fill="none" stroke="currentColor" stroke-width="4.2" aria-hidden="true">
-      <circle cx="16" cy="16" r="13.5"/><circle cx="46" cy="16" r="13.5"/>
-    </svg>
-    <span class="pipe" aria-hidden="true"></span>
-    Track record &amp; founder
-  </span>
-
-  <header>
-    <h2 class="reveal d1"><span class="serif-r">Outcomes</span>, not outputs — led by a founder who's been there.</h2>
-  </header>
-
-  <div class="kf-split">
-    <div class="bento">
-      <div class="bento-tile xl studio-bg reveal-push">
-        <span class="kpi-label">Average business growth</span>
-        <span class="kpi-val">+40<span class="unit">%</span></span>
-        <p class="kpi-note">YoY revenue lift across re-positioned Studio brands (2023–2025).</p>
-      </div>
-      <div class="bento-tile lg reveal-push d1">
-        <span class="kpi-label">Customer satisfaction</span>
-        <span class="kpi-val">98<span class="unit">%</span></span>
-      </div>
-      <div class="bento-tile lg deep-bg reveal-push d1">
-        <span class="kpi-label">Operational efficiency</span>
-        <span class="kpi-val">+35<span class="unit">%</span></span>
-      </div>
-      <div class="bento-tile lg reveal-push d2">
-        <span class="kpi-label">Time-to-market</span>
-        <span class="kpi-val">−50<span class="unit">%</span></span>
-      </div>
-      <div class="bento-tile lg reveal-push d2">
-        <span class="kpi-label">Conversion</span>
-        <span class="kpi-val">+62<span class="unit">%</span></span>
-      </div>
-    </div>
-
-    <!-- Founder -->
-    <div class="founder-card reveal-scale d3">
-      <div class="portrait">
-        <img src="project/assets/founder/edu-portrait-v3.png" alt="Francesc Callejas — Founder" loading="lazy"/>
-      </div>
-      <span class="name-tag-overlay">
-        <span class="tag-dot" aria-hidden="true"></span>
-        Francesc Callejas
-        <a class="li-btn" href="https://www.linkedin.com/in/francesc-callejas-%E2%98%81%EF%B8%8F%E2%98%98%EF%B8%8F-99416a90/" target="_blank" rel="noopener noreferrer" aria-label="Francesc Callejas on LinkedIn">in</a>
-      </span>
-      <div class="founder-body">
-        <div class="founder-role">
-          <span class="role-tag">Founder · Principal · Barcelona</span>
-          <span class="role-sep" aria-hidden="true"></span>
-        </div>
-        <h3>Twenty years <span class="serif-r">across</span> brand, platforms and growth.</h3>
-        <p>From enterprise platforms at <span class="ink">SAP</span> and <span class="ink">Seidor</span> to industrial-scale operations at <span class="ink">Girbau</span> and <span class="ink">Relats</span> — and the schools (<span class="ink">IESE</span>, <span class="ink">INSEAD</span>) that taught me to think about both at once.</p>
-        <div class="interests" aria-label="Interests">
-          <span>Mountains</span>
-          <span>4x4Campers</span>
-          <span>Ski</span>
-          <span>Running</span>
-          <span>Console</span>
-        </div>
-      </div>
-    </div>
+<!-- ========== CLIENTS ========== -->
+<section class="clients">
+  <div class="clients-head">
+    <span class="mono-label">06 · Selected experience</span>
+    <h2>Experience across enterprise, industrial and <em>international.</em></h2>
+    <span class="mono-label">+20 years</span>
+  </div>
+  <div class="clients-row">
+    <div class="cli"><img src="project/assets/clients/sap.png" alt="SAP"></div>
+    <div class="cli"><span class="cli-text">Seidor</span></div>
+    <div class="cli"><img src="project/assets/clients/relats.png" alt="Relats"></div>
+    <div class="cli"><span class="cli-text">Girbau</span></div>
+    <div class="cli"><img src="project/assets/clients/almirall.png" alt="Almirall"></div>
+    <div class="cli"><img src="project/assets/clients/instellar.png" alt="Instellar"></div>
+    <div class="cli"><img src="project/assets/clients/bunnker.png" alt="Bunnker"></div>
   </div>
 </section>
 
-<!-- ========== RECOGNITION STRIP ========== -->
-<section class="recognition-strip reveal-push" aria-label="Industry recognition">
-  <span class="rec-label-fixed eyebrow">Recognised by</span>
-  <div class="rec-marquee">
-    <div class="rec-track">
-      <div class="rec-item">
-        <img src="project/assets/clients/Awwwards-Logo-Vector.svg-.png" alt="Awwwards"/>
-        <span>Various nominations · Site of the Day &amp; Site of the Month</span>
-      </div>
-      <span class="rec-sep" aria-hidden="true">—</span>
-      <div class="rec-item">
-        <img src="project/assets/clients/Coac.png" alt="COAC"/>
-        <span>Premis d'Arquitectura · Architecture &amp; Design</span>
-      </div>
-      <span class="rec-sep" aria-hidden="true">—</span>
-      <div class="rec-item">
-        <span>Featured across leading design &amp; brand publications</span>
-      </div>
-      <span class="rec-sep" aria-hidden="true">—</span>
-      <!-- Duplicate for seamless loop -->
-      <div class="rec-item">
-        <img src="project/assets/clients/Awwwards-Logo-Vector.svg-.png" alt=""/>
-        <span>Various nominations · Site of the Day &amp; Site of the Month</span>
-      </div>
-      <span class="rec-sep" aria-hidden="true">—</span>
-      <div class="rec-item">
-        <img src="project/assets/clients/Coac.png" alt=""/>
-        <span>Premis d'Arquitectura · Architecture &amp; Design</span>
-      </div>
-      <span class="rec-sep" aria-hidden="true">—</span>
-      <div class="rec-item">
-        <span>Featured across leading design &amp; brand publications</span>
-      </div>
-      <span class="rec-sep" aria-hidden="true">—</span>
-    </div>
+<!-- ========== OUTCOMES ========== -->
+<section class="outcomes">
+  <div class="outcomes-head">
+    <span class="mono-label">07 · Outcomes</span>
+    <h2>Transformation outcomes, not <em>vanity</em> metrics.</h2>
+    <span class="mono-label">Never metrics</span>
+  </div>
+  <div class="outcomes-carousel" id="ocCarousel">
+    <div class="oc-card"><span class="oc-num">01</span><h5>Stronger <em>positioning.</em></h5></div>
+    <div class="oc-card"><span class="oc-num">02</span><h5>Faster <em>execution.</em></h5></div>
+    <div class="oc-card"><span class="oc-num">03</span><h5>Scalable digital <em>ecosystems.</em></h5></div>
+    <div class="oc-card"><span class="oc-num">04</span><h5>Better market <em>perception.</em></h5></div>
+    <div class="oc-card"><span class="oc-num">05</span><h5>Modernized brand <em>systems.</em></h5></div>
+    <div class="oc-card"><span class="oc-num">06</span><h5>Clearer growth <em>direction.</em></h5></div>
+    <div class="oc-card" aria-hidden="true"><span class="oc-num">01</span><h5>Stronger <em>positioning.</em></h5></div>
+    <div class="oc-card" aria-hidden="true"><span class="oc-num">02</span><h5>Faster <em>execution.</em></h5></div>
+    <div class="oc-card" aria-hidden="true"><span class="oc-num">03</span><h5>Scalable digital <em>ecosystems.</em></h5></div>
+    <div class="oc-card" aria-hidden="true"><span class="oc-num">04</span><h5>Better market <em>perception.</em></h5></div>
+    <div class="oc-card" aria-hidden="true"><span class="oc-num">05</span><h5>Modernized brand <em>systems.</em></h5></div>
+    <div class="oc-card" aria-hidden="true"><span class="oc-num">06</span><h5>Clearer growth <em>direction.</em></h5></div>
   </div>
 </section>
 
-
-<!-- ========== MANIFESTO ========== -->
-<section class="manifesto" aria-label="Our position">
-  <div class="manifesto-inner">
-    <p class="manifesto-eyebrow eyebrow reveal-push">Our position</p>
-    <blockquote class="manifesto-quote">
-      We don't build brands for today. We build brands <span class="serif-r">prepared</span> for what's next.
-    </blockquote>
-    <p class="manifesto-src reveal d2">— Infinit Studio · Manifesto</p>
-  </div>
+<!-- ========== CTA ========== -->
+<section class="cta" id="contact">
+  <h2>Ready to evolve your business?</h2>
+  <a class="cta-email" href="mailto:hello@weareinfinit.com">hello@weareinfinit.com &nbsp;→</a>
 </section>
-
-
-<!-- ========== ADVISORY ========== -->
-<section class="advisory-block" id="advisory" aria-label="Infinit Advisory">
-  <div class="adv-inner">
-    <span class="adv-mark reveal-push">
-      <span class="dot" aria-hidden="true"></span>
-      <svg width="18" height="9" viewBox="0 0 62 32" fill="none" stroke="currentColor" stroke-width="4.2" aria-hidden="true">
-        <circle cx="16" cy="16" r="13.5"/><circle cx="46" cy="16" r="13.5"/>
-      </svg>
-      <span class="pipe" aria-hidden="true"></span>
-      Infinit Advisory
-    </span>
-
-    <div class="adv-head-row">
-      <h2 class="reveal d1">For when <span class="serif-r">design</span><br/>alone is insufficient.</h2>
-      <p class="adv-lead reveal d2">Fractional CIO/CDO depth for enterprise architecture, platform strategy and data &amp; AI. Operates separately from Studio with shared leadership and direction.</p>
-    </div>
-
-    <div class="advisory-list">
-      <div class="advisory-service card-fly" id="adv-01">
-        <span class="adv-num">01</span>
-        <div class="adv-title-block">
-          <h3 class="adv-title">Architecture</h3>
-          <span class="adv-sub">Fragmented systems, made coherent.</span>
-        </div>
-        <div class="adv-desc-stack">
-          <p class="adv-desc">From audit to integration design — technology selection, target-state architecture, roadmap to value, vendor &amp; risk governance.</p>
-          <div class="adv-tags" aria-hidden="true">
-            <span>Architecture Audit</span>
-            <span>Integration Design</span>
-            <span>Technology Selection</span>
-            <span>Target State</span>
-            <span>Roadmap</span>
-          </div>
-        </div>
-        <div class="adv-right">
-          <div class="adv-svg" aria-hidden="true">
-            <svg viewBox="0 0 140 90" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="46" y="28" width="48" height="34" rx="6"/>
-              <circle cx="14" cy="14" r="11"/>
-              <circle cx="126" cy="14" r="11"/>
-              <circle cx="14" cy="76" r="11"/>
-              <circle cx="126" cy="76" r="11"/>
-              <line x1="24" y1="20" x2="46" y2="34"/>
-              <line x1="116" y1="20" x2="94" y2="34"/>
-              <line x1="24" y1="70" x2="46" y2="56"/>
-              <line x1="116" y1="70" x2="94" y2="56"/>
-            </svg>
-          </div>
-          <div class="adv-plus" aria-hidden="true">
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
-              <line x1="7" y1="0" x2="7" y2="14"/><line x1="0" y1="7" x2="14" y2="7"/>
-            </svg>
-          </div>
-        </div>
-      </div>
-
-      <div class="advisory-service card-fly" id="adv-02">
-        <span class="adv-num">02</span>
-        <div class="adv-title-block">
-          <h3 class="adv-title">Platform Strategy</h3>
-          <span class="adv-sub">How platforms scale, governed.</span>
-        </div>
-        <div class="adv-desc-stack">
-          <p class="adv-desc">ERP/CRM definition, implementation direction, operating-model design and vendor management for enterprise platform rollouts.</p>
-          <div class="adv-tags" aria-hidden="true">
-            <span>ERP &amp; CRM Strategy</span>
-            <span>Implementation Direction</span>
-            <span>Operating Model</span>
-            <span>Vendor Management</span>
-            <span>Governance</span>
-          </div>
-        </div>
-        <div class="adv-right">
-          <div class="adv-svg" aria-hidden="true">
-            <svg viewBox="0 0 140 90" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round">
-              <circle cx="46" cy="45" r="28"/>
-              <circle cx="94" cy="45" r="28"/>
-              <circle cx="70" cy="24" r="20" opacity=".55"/>
-            </svg>
-          </div>
-          <div class="adv-plus" aria-hidden="true">
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
-              <line x1="7" y1="0" x2="7" y2="14"/><line x1="0" y1="7" x2="14" y2="7"/>
-            </svg>
-          </div>
-        </div>
-      </div>
-
-      <div class="advisory-service card-fly" id="adv-03">
-        <span class="adv-num">03</span>
-        <div class="adv-title-block">
-          <h3 class="adv-title">Data &amp; AI</h3>
-          <span class="adv-sub">Information turned into action.</span>
-        </div>
-        <div class="adv-desc-stack">
-          <p class="adv-desc">Data strategy, analytics &amp; decision systems, AI use-case definition, opportunity mapping and adoption frameworks.</p>
-          <div class="adv-tags" aria-hidden="true">
-            <span>Data Strategy</span>
-            <span>Analytics</span>
-            <span>Decision Systems</span>
-            <span>AI Use-cases</span>
-            <span>Adoption</span>
-          </div>
-        </div>
-        <div class="adv-right">
-          <div class="adv-svg" aria-hidden="true">
-            <svg viewBox="0 0 140 90" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round">
-              <line x1="12" y1="78" x2="132" y2="78" opacity=".3"/>
-              <line x1="12" y1="78" x2="12" y2="10" opacity=".3"/>
-              <line x1="12" y1="72" x2="132" y2="16" stroke-dasharray="4 3" opacity=".5"/>
-              <circle cx="22" cy="68" r="4" fill="currentColor" stroke="none" opacity=".7"/>
-              <circle cx="38" cy="60" r="3" fill="currentColor" stroke="none" opacity=".6"/>
-              <circle cx="52" cy="55" r="5" fill="currentColor" stroke="none"/>
-              <circle cx="66" cy="48" r="3" fill="currentColor" stroke="none" opacity=".7"/>
-              <circle cx="82" cy="40" r="4" fill="currentColor" stroke="none" opacity=".8"/>
-              <circle cx="98" cy="32" r="5" fill="currentColor" stroke="none"/>
-              <circle cx="112" cy="28" r="3" fill="currentColor" stroke="none" opacity=".6"/>
-              <circle cx="126" cy="20" r="4" fill="currentColor" stroke="none" opacity=".8"/>
-            </svg>
-          </div>
-          <div class="adv-plus" aria-hidden="true">
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
-              <line x1="7" y1="0" x2="7" y2="14"/><line x1="0" y1="7" x2="14" y2="7"/>
-            </svg>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
 
 <!-- ========== FOOTER ========== -->
-<footer class="site-footer" id="contact" aria-label="Site footer">
-  <div class="ftr-grid">
-    <div class="ftr-lead reveal-push">
-      <span class="logo-lockup">
-        <svg width="28" height="14.5" viewBox="0 0 62 32" fill="none" stroke="currentColor" stroke-width="4.2" aria-hidden="true">
-          <circle cx="16" cy="16" r="13.5"/><circle cx="46" cy="16" r="13.5"/>
+<footer class="foot">
+  <div class="foot-grid">
+    <div class="foot-brand">
+      <a class="foot-lockup" href="#">
+        <svg viewBox="0 0 374 206" fill="none" aria-hidden="true">
+          <path d="M108.196 34h74Q201.196 34 194.14 51.641L153.056 154.359Q146 172 127 172H53Q34 172 41.056 154.359L82.14 51.641Q89.196 34 108.196 34Z" fill="currentColor"/>
+          <path d="M108.196 34h74Q201.196 34 194.14 51.641L153.056 154.359Q146 172 127 172H53Q34 172 41.056 154.359L82.14 51.641Q89.196 34 108.196 34Z" fill="currentColor" transform="translate(139 0)"/>
         </svg>
-        <span class="word">infinit</span>
-      </span>
-      <p>Brand &amp; Strategy designed to scale. A studio for the next stage of growth — Barcelona, with engagements across Europe &amp; the Americas.</p>
-      <a class="ftr-email" href="mailto:hello@weareinfinit.com">hello@weareinfinit.com →</a>
+        <span class="foot-word">infinit<span class="foot-r">®</span></span>
+      </a>
+      <p>Strategic brand and digital firm built for companies navigating growth, transformation and modernization.</p>
     </div>
-
-    <div class="reveal-push d1">
-      <h4>Studio</h4>
-      <ul>
-        <li><a href="#services">Strategy</a></li>
-        <li><a href="#services">Brand</a></li>
-        <li><a href="#services">Digital</a></li>
-        <li><a href="#services">Content</a></li>
-      </ul>
+    <div class="foot-col">
+      <h5>Practice</h5>
+      <a href="#services">Strategy</a>
+      <a href="#services">Identity</a>
+      <a href="#services">Digital</a>
     </div>
-
-    <div class="reveal-push d1">
-      <h4>Advisory</h4>
-      <ul>
-        <li><a href="#advisory">Architecture</a></li>
-        <li><a href="#advisory">Platform Strategy</a></li>
-        <li><a href="#advisory">Data &amp; AI</a></li>
-      </ul>
+    <div class="foot-col">
+      <h5>Contact</h5>
+      <a href="mailto:hello@weareinfinit.com">hello@weareinfinit.com</a>
+      <a href="tel:+34689022383">+34 689 022 383</a>
+      <a href="https://www.linkedin.com/in/francesc-callejas-%E2%98%81%EF%B8%8F%E2%98%98%EF%B8%8F-99416a90/" target="_blank" rel="noopener">LinkedIn →</a>
+      <span>Barcelona — c/ Pau Claris 95</span>
     </div>
-
-    <div class="reveal-push d2">
-      <h4>Contact</h4>
-      <ul>
-        <li><a href="#">Barcelona — c/ Pau Claris 95</a></li>
-        <li><a href="tel:+34689022383">+34 689 022 383</a></li>
-        <li><a href="https://www.linkedin.com/in/francesc-callejas-%E2%98%81%EF%B8%8F%E2%98%98%EF%B8%8F-99416a90/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a></li>
-        <li><a href="mailto:hello@weareinfinit.com">hello@weareinfinit.com ↗</a></li>
-      </ul>
-    </div>
-  </div>
-
-  <!-- Big wordmark -->
-  <div class="ftr-mark reveal-push" aria-hidden="true">
-    <div class="word">
-      <svg viewBox="0 0 62 32" fill="none" stroke="currentColor" stroke-width="4.2">
-        <circle cx="16" cy="16" r="13.5"/><circle cx="46" cy="16" r="13.5"/>
-      </svg>
-      infinit<span class="reg">®</span>
-    </div>
-  </div>
-
-  <div class="ftr-bottom">
-    <span>© 2026 Infinit · All rights reserved · Barcelona, ES</span>
-    <div class="ftr-legal">
+    <div class="foot-col">
+      <h5>Legal</h5>
       <a href="#">Privacy</a>
       <a href="#">Cookies</a>
-      <a href="#" class="back-top">Back to top ↑</a>
+      <span>© 2026 Infinit</span>
     </div>
+  </div>
+  <div class="foot-base">
+    <span>Infinit · V01 · 2026</span>
+    <em class="foot-designed">designed to scale.</em>
+    <span>Barcelona — Worldwide</span>
   </div>
 </footer>
 
-
-<!-- ========== COOKIE BANNER ========== -->
+<!-- COOKIE BANNER -->
 <div class="cookie-bar" id="cookieBar" role="dialog" aria-label="Cookie consent">
   <p>We use cookies to improve your experience. <a href="#" class="cookie-link">Learn more</a></p>
   <div class="cookie-actions">
@@ -708,241 +368,91 @@
 
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
 <script>
-  /* ── Lenis smooth scroll ─────────────────────────────────────── */
-  const lenis = new Lenis({
-    duration: 0.9,
-    easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-    smoothWheel: true,
-    syncTouch: false,
-  });
-  function lenisRaf(time) { lenis.raf(time); requestAnimationFrame(lenisRaf); }
+  /* ── Lenis ───────────────────────────────────────────────────── */
+  const lenis = new Lenis({ duration: 0.9, smoothWheel: true, syncTouch: false });
+  function lenisRaf(t) { lenis.raf(t); requestAnimationFrame(lenisRaf); }
   requestAnimationFrame(lenisRaf);
 
-
-  /* ── Hero background slideshow ──────────────────────────────── */
+  /* ── Cursor ──────────────────────────────────────────────────── */
   (function() {
-    const slides = document.querySelectorAll('.hero-slide');
-    if (slides.length < 2) return;
-    let i = 0;
-    setInterval(() => {
-      slides[i].classList.remove('active');
-      i = (i + 1) % slides.length;
-      slides[i].classList.add('active');
-    }, 4500);
+    const dot = document.querySelector('.cursor-dot');
+    const ring = document.querySelector('.cursor-ring');
+    if (!dot) return;
+    let mx = innerWidth/2, my = innerHeight/2, rx = mx, ry = my;
+    addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+    (function loop() {
+      dot.style.transform  = `translate(${mx}px,${my}px) translate(-50%,-50%)`;
+      rx += (mx-rx)*.16; ry += (my-ry)*.16;
+      ring.style.transform = `translate(${rx}px,${ry}px) translate(-50%,-50%)`;
+      requestAnimationFrame(loop);
+    })();
+    document.querySelectorAll('a,button').forEach(el => {
+      el.addEventListener('mouseenter', () => document.body.classList.add('is-hover'));
+      el.addEventListener('mouseleave', () => document.body.classList.remove('is-hover'));
+    });
   })();
 
   /* ── Intro splash ────────────────────────────────────────────── */
   const intro = document.getElementById('intro');
   document.body.classList.add('intro-running');
+  setTimeout(() => document.body.classList.remove('intro-running'), 2000);
+  setTimeout(() => intro && intro.remove(), 2900);
 
-  setTimeout(() => {
-    intro.classList.add('slide-up');
-    document.body.classList.remove('intro-running');
-  }, 2000);
-
-  setTimeout(() => intro.remove(), 2900);
-
-  /* ── Nav scroll border ───────────────────────────────────────── */
+  /* ── Nav scroll ──────────────────────────────────────────────── */
   const nav = document.getElementById('nav');
   window.addEventListener('scroll', () => {
-    nav.classList.toggle('scrolled', window.scrollY > 8);
+    nav.classList.toggle('scrolled', window.scrollY > 80);
   }, { passive: true });
 
-  /* ── Reveal on scroll ───────────────────────────────────────── */
+  /* ── Reveal on scroll ────────────────────────────────────────── */
   const io = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
-    });
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
   }, { threshold: 0, rootMargin: '0px 0px -60px 0px' });
-  document.querySelectorAll('.reveal:not(.in), .reveal-scale, .reveal-fade, .reveal-push').forEach(el => io.observe(el));
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
-  /* ── KPI counter: counts up when entering viewport ───────────── */
-  function countUp(valEl, target, duration) {
-    const prefix = target.startsWith('+') ? '+' : target.startsWith('−') ? '−' : '';
-    const num    = parseFloat(target.replace(/[^0-9.]/g, ''));
-    const suffix = target.replace(/[^%a-zA-Z]/g, '');
-    const start  = performance.now();
-    function tick(now) {
-      const p = Math.min((now - start) / duration, 1);
-      const eased = 1 - Math.pow(1 - p, 3);  /* ease-out cubic */
-      valEl.childNodes[0].textContent = prefix + Math.round(num * eased) + suffix;
-      if (p < 1) requestAnimationFrame(tick);
+  /* ── Narrative carousel ──────────────────────────────────────── */
+  (function() {
+    const track = document.getElementById('narrTrack');
+    if (!track) return;
+    function slideBy(dir) {
+      const s = track.querySelector('.narr-slide');
+      if (!s) return;
+      track.scrollBy({ left: dir * (s.getBoundingClientRect().width + 24), behavior: 'smooth' });
     }
-    requestAnimationFrame(tick);
-  }
-
-  const kpiObserver = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (!e.isIntersecting) return;
-      e.target.querySelectorAll('.kpi-val').forEach(el => {
-        /* store original text, replace with 0 until animated */
-        const original = el.childNodes[0]?.textContent?.trim();
-        if (!original) return;
-        const unit = el.querySelector('.unit');
-        el.childNodes[0].textContent = original.replace(/[0-9]+/g, '0');
-        setTimeout(() => countUp(el, original, 1350), 200);
-      });
-      kpiObserver.unobserve(e.target);
-    });
-  }, { threshold: 0.3 });
-  const kpiSection = document.querySelector('.bento');
-  if (kpiSection) kpiObserver.observe(kpiSection);
-
-
-  /* ── Section fly-in triggers via IntersectionObserver (zero scroll cost) */
-  function onVisible(el, callback, margin) {
-    const io = new IntersectionObserver(([e]) => {
-      if (!e.isIntersecting) return;
-      io.disconnect();
-      callback();
-    }, { rootMargin: margin || '0px', threshold: 0 });
-    io.observe(el);
-  }
-
-  /* Practice cards — fire when section top hits near nav */
-  (function() {
-    const section  = document.querySelector('.practices');
-    const studio   = document.querySelector('.card-studio');
-    const advisory = document.querySelector('.card-advisory');
-    if (!section || !studio || !advisory) return;
-    onVisible(section, () => {
-      studio.classList.add('in');
-      setTimeout(() => advisory.classList.add('in'), 180);
-    }, '0px 0px -65% 0px');
+    document.getElementById('narrPrev').addEventListener('click', () => slideBy(-1));
+    document.getElementById('narrNext').addEventListener('click', () => slideBy(1));
   })();
 
-  /* Services rows */
+  /* ── Mobile hamburger ────────────────────────────────────────── */
   (function() {
-    const section = document.querySelector('.services');
-    const rows    = ['svc-01','svc-02','svc-03'].map(id => document.getElementById(id));
-    if (!section || rows.some(r => !r)) return;
-    onVisible(section, () => {
-      rows[0].classList.add('in');
-      setTimeout(() => rows[1].classList.add('in'), 500);
-      setTimeout(() => rows[2].classList.add('in'), 1000);
-    }, '0px 0px -65% 0px');
-  })();
-
-  /* Advisory services */
-  (function() {
-    const section = document.querySelector('.advisory-block');
-    const rows    = ['adv-01','adv-02','adv-03'].map(id => document.getElementById(id));
-    if (!section || rows.some(r => !r)) return;
-    onVisible(section, () => {
-      rows[0].classList.add('in');
-      setTimeout(() => rows[1].classList.add('in'), 500);
-      setTimeout(() => rows[2].classList.add('in'), 1000);
-    }, '0px 0px -65% 0px');
-  })();
-
-  /* Work tiles */
-  (function() {
-    const section = document.querySelector('.work');
-    const tiles   = ['work-01','work-02','work-03','work-04','work-05'].map(id => document.getElementById(id));
-    if (!section || tiles.some(t => !t)) return;
-    tiles.forEach(tile =>
-      tile.addEventListener('animationend', () => {
-        tile.classList.add('done');
-        tile.style.willChange = '';
-      }, { once: true })
-    );
-    onVisible(section, () => {
-      tiles.forEach(t => { t.style.willChange = 'opacity, transform'; });
-      [0, 220, 420, 600, 780].forEach((delay, i) =>
-        setTimeout(() => tiles[i].classList.add('in'), delay)
-      );
-    }, '0px 0px -55% 0px');
-  })();
-
-  /* ── Manifesto word-wave reveal ─────────────────────────────── */
-  (function() {
-    const quote = document.querySelector('.manifesto-quote');
-    if (!quote) return;
-
-    let wi = 0;
-    const children = Array.from(quote.childNodes);
-
-    children.forEach(node => {
-      if (node.nodeType === 3) {
-        const frag = document.createDocumentFragment();
-        node.textContent.split(/(\s+)/).forEach(part => {
-          if (/^\s*$/.test(part)) {
-            frag.appendChild(document.createTextNode(part));
-          } else {
-            const mask = document.createElement('span');
-            mask.className = 'word-mask';
-            const inner = document.createElement('span');
-            inner.className = 'word-reveal';
-            inner.style.transitionDelay = (wi++ * 0.10) + 's';
-            inner.textContent = part;
-            mask.appendChild(inner);
-            frag.appendChild(mask);
-          }
-        });
-        node.replaceWith(frag);
-      } else if (node.nodeType === 1) {
-        const mask = document.createElement('span');
-        mask.className = 'word-mask';
-        node.classList.add('word-reveal');
-        node.style.transitionDelay = (wi++ * 0.10) + 's';
-        node.replaceWith(mask);
-        mask.appendChild(node);
-      }
-    });
-
-    onVisible(document.querySelector('.manifesto'), () => {
-      quote.querySelectorAll('.word-reveal').forEach(w => w.classList.add('in'));
-    }, '0px 0px -20% 0px');
+    const burger  = document.getElementById('navBurger');
+    const overlay = document.getElementById('mobOverlay');
+    const close   = document.getElementById('mobClose');
+    function open() {
+      overlay.classList.add('open'); overlay.setAttribute('aria-hidden','false');
+      burger.setAttribute('aria-expanded','true'); burger.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function shut() {
+      overlay.classList.remove('open'); overlay.setAttribute('aria-hidden','true');
+      burger.setAttribute('aria-expanded','false'); burger.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    burger.addEventListener('click', open);
+    close.addEventListener('click', shut);
+    overlay.querySelectorAll('.mob-link,.mob-cta').forEach(l => l.addEventListener('click', shut));
+    overlay.addEventListener('click', e => { if (e.target === overlay) shut(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') shut(); });
   })();
 
   /* ── Cookie banner ───────────────────────────────────────────── */
   (function() {
     const bar = document.getElementById('cookieBar');
     if (!bar) return;
-    if (localStorage.getItem('cookie-consent')) { bar.remove(); return; }
-    setTimeout(() => bar.classList.add('visible'), 1800);
-    function dismiss(val) {
-      localStorage.setItem('cookie-consent', val);
-      bar.classList.remove('visible');
-      setTimeout(() => bar.remove(), 400);
-    }
-    document.getElementById('cookieAccept').addEventListener('click', () => dismiss('accepted'));
-    document.getElementById('cookieDecline').addEventListener('click', () => dismiss('declined'));
-  })();
-
-  /* ── Back to top ─────────────────────────────────────────────── */
-  document.querySelector('.back-top').addEventListener('click', e => {
-    e.preventDefault();
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  });
-
-  /* ── Mobile hamburger menu ───────────────────────────────────── */
-  (function() {
-    const burger  = document.getElementById('navBurger');
-    const overlay = document.getElementById('mobOverlay');
-    const close   = document.getElementById('mobClose');
-    const links   = overlay.querySelectorAll('.mob-link, .mob-cta');
-
-    function openMenu() {
-      overlay.classList.add('open');
-      overlay.setAttribute('aria-hidden', 'false');
-      burger.setAttribute('aria-expanded', 'true');
-      burger.classList.add('open');
-      document.body.style.overflow = 'hidden';
-    }
-    function closeMenu() {
-      overlay.classList.remove('open');
-      overlay.setAttribute('aria-hidden', 'true');
-      burger.setAttribute('aria-expanded', 'false');
-      burger.classList.remove('open');
-      document.body.style.overflow = '';
-    }
-
-    burger.addEventListener('click', openMenu);
-    close.addEventListener('click', closeMenu);
-    links.forEach(l => l.addEventListener('click', closeMenu));
-    overlay.addEventListener('click', e => { if (e.target === overlay) closeMenu(); });
-    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
+    if (localStorage.getItem('cookies')) { bar.remove(); return; }
+    setTimeout(() => bar.classList.add('visible'), 2500);
+    document.getElementById('cookieAccept').addEventListener('click', () => { localStorage.setItem('cookies','accepted'); bar.remove(); });
+    document.getElementById('cookieDecline').addEventListener('click', () => { localStorage.setItem('cookies','declined'); bar.remove(); });
   })();
 </script>
 
