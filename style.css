@@ -24,7 +24,7 @@
   --serif:  "Instrument Serif", Georgia, serif;
   --mono:   "IBM Plex Mono", ui-monospace, Menlo, monospace;
 
-  --pad-x:     clamp(24px, 4vw, 64px);
+  --pad-x:     clamp(20px, 3.4vw, 52px);
   --section-y: clamp(80px, 12vw, 160px);
 
   --ease:     cubic-bezier(0.2, 0.6, 0.2, 1);
@@ -91,7 +91,7 @@ em { font-family: var(--serif); font-style: normal; font-weight: 400; }
 nav.top {
   position: fixed; top: 0; left: 0; right: 0;
   z-index: 500;
-  padding: 22px clamp(24px, 4vw, 64px);
+  padding: 22px clamp(20px, 3.4vw, 52px);
   display: flex; align-items: flex-start; justify-content: flex-end;
   pointer-events: none;
 }
@@ -101,7 +101,7 @@ nav.top > * { pointer-events: auto; }
 /* Logo — standalone fixed element so mix-blend blends against the
    page content behind it (adaptive colour), aligned to the content grid */
 .logo-lockup {
-  position: fixed; top: 22px; left: clamp(24px, 4vw, 64px); z-index: 550;
+  position: fixed; top: 22px; left: clamp(20px, 3.4vw, 52px); z-index: 550;
   height: 42px;
   display: inline-flex; align-items: center; gap: 9px;
   flex-shrink: 0;
@@ -170,7 +170,7 @@ nav.top { opacity: 0; animation: navIn .6s var(--ease-out) .2s forwards; }
    NAV PANEL
    ========================================================================= */
 .nav-panel {
-  position: fixed; top: 74px; right: clamp(24px, 4vw, 64px);
+  position: fixed; top: 74px; right: clamp(20px, 3.4vw, 52px);
   left: auto;
   width: min(416px, calc(100vw - 36px));
   z-index: 600;
