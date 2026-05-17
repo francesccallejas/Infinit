@@ -25,7 +25,7 @@
   --mono:   "IBM Plex Mono", ui-monospace, Menlo, monospace;
 
   --pad-x:     clamp(20px, 3.4vw, 52px);
-  --section-y: clamp(72px, 9vw, 128px);
+  --section-y: clamp(64px, 8vw, 112px);
 
   --ease:     cubic-bezier(0.2, 0.6, 0.2, 1);
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
@@ -409,7 +409,7 @@ nav.top { opacity: 0; animation: navIn .6s var(--ease-out) .2s forwards; }
    ========================================================================= */
 .claim {
   background: var(--deep);
-  padding: clamp(112px, 18vw, 220px) var(--pad-x);
+  padding: var(--section-y) var(--pad-x);
   text-align: center; position: relative; overflow: hidden;
 }
 .claim::before {
@@ -673,7 +673,7 @@ nav.top { opacity: 0; animation: navIn .6s var(--ease-out) .2s forwards; }
    ========================================================================= */
 .cta {
   background: var(--cream);
-  padding: clamp(112px, 18vw, 220px) var(--pad-x);
+  padding: var(--section-y) var(--pad-x);
   text-align: center; position: relative; overflow: hidden;
 }
 .cta::before {
@@ -703,7 +703,7 @@ nav.top { opacity: 0; animation: navIn .6s var(--ease-out) .2s forwards; }
    ========================================================================= */
 .foot {
   background: var(--deep);
-  padding: clamp(80px, 11vw, 140px) var(--pad-x) 52px;
+  padding: var(--section-y) var(--pad-x) 52px;
 }
 .foot-grid {
   display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
