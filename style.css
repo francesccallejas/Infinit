@@ -25,7 +25,7 @@
   --mono:   "IBM Plex Mono", ui-monospace, Menlo, monospace;
 
   --pad-x:     clamp(20px, 3.4vw, 52px);
-  --section-y: clamp(80px, 12vw, 160px);
+  --section-y: clamp(72px, 9vw, 128px);
 
   --ease:     cubic-bezier(0.2, 0.6, 0.2, 1);
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
@@ -64,8 +64,8 @@ em { font-family: var(--serif); font-style: normal; font-weight: 400; }
 
 .mono-label {
   font-family: var(--mono);
-  font-size: 11px; letter-spacing: .18em; text-transform: uppercase;
-  color: var(--blue-gray);
+  font-size: 13px; font-weight: 500; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--clay);
 }
 
 /* =========================================================================
@@ -210,8 +210,7 @@ nav.top { opacity: 0; animation: navIn .6s var(--ease-out) .2s forwards; }
 .panel-bottom {
   display: flex; flex-direction: column; align-items: stretch;
   gap: 14px;
-  padding-top: 16px;
-  border-top: 1px solid rgba(243,240,239,.10);
+  padding-top: 18px;
 }
 .panel-contact {
   display: flex; flex-direction: column; gap: 4px;
@@ -301,7 +300,6 @@ nav.top { opacity: 0; animation: navIn .6s var(--ease-out) .2s forwards; }
 .hero-bottom-row {
   display: grid; grid-template-columns: 1fr auto;
   gap: 40px; align-items: end;
-  border-top: 1px solid rgba(243,240,239,.10);
   padding-top: 24px; margin-top: 32px;
 }
 .hero-sub {
@@ -330,15 +328,12 @@ nav.top { opacity: 0; animation: navIn .6s var(--ease-out) .2s forwards; }
 .narrative {
   background: var(--warm);
   padding: var(--section-y) 0;
-  border-bottom: 1px solid var(--line);
 }
 .narr-head {
-  display: flex; justify-content: space-between; align-items: baseline;
-  flex-wrap: wrap; gap: 12px;
-  padding: 0 var(--pad-x) clamp(32px, 4vw, 56px);
-  border-bottom: 1px solid var(--line);
-  margin-bottom: clamp(32px, 4vw, 56px);
+  padding: 0 var(--pad-x);
+  margin-bottom: clamp(40px, 5vw, 72px);
 }
+.narr-head .mono-label { display: block; margin-bottom: 16px; }
 .narr-head h2 {
   font-family: var(--sans); font-weight: 500;
   font-size: clamp(28px, 4.5vw, 58px); letter-spacing: -.05em; line-height: 1.02;
@@ -404,7 +399,6 @@ nav.top { opacity: 0; animation: navIn .6s var(--ease-out) .2s forwards; }
   background: var(--deep);
   padding: clamp(112px, 18vw, 220px) var(--pad-x);
   text-align: center; position: relative; overflow: hidden;
-  border-top: 1px solid rgba(243,240,239,.08);
 }
 .claim::before {
   content: ''; position: absolute; inset: 0;
@@ -425,11 +419,9 @@ nav.top { opacity: 0; animation: navIn .6s var(--ease-out) .2s forwards; }
    ========================================================================= */
 .services { background: var(--warm); padding: var(--section-y) var(--pad-x); }
 .services-head {
-  display: flex; justify-content: space-between; align-items: baseline;
-  flex-wrap: wrap; gap: 12px;
-  padding-bottom: 28px; margin-bottom: clamp(48px, 7vw, 96px);
-  border-bottom: 1px solid var(--line-strong);
+  margin-bottom: clamp(40px, 5vw, 72px);
 }
+.services-head .mono-label { display: block; margin-bottom: 16px; }
 .services-head h2 {
   font-family: var(--sans); font-weight: 500;
   font-size: clamp(32px, 5vw, 72px); letter-spacing: -.054em; line-height: .95;
@@ -437,8 +429,11 @@ nav.top { opacity: 0; animation: navIn .6s var(--ease-out) .2s forwards; }
 }
 .services-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: clamp(24px, 5vw, 80px); }
 .svc-col {
-  border-top: 1px solid var(--line-strong); padding-top: 22px;
-  display: flex; flex-direction: column; gap: 18px;
+  display: flex; flex-direction: column; gap: 16px;
+}
+.svc-col .mono-label {
+  padding-bottom: 16px;
+  color: var(--ink);
 }
 .svc-col h3 {
   font-family: var(--sans); font-weight: 500;
@@ -458,14 +453,15 @@ nav.top { opacity: 0; animation: navIn .6s var(--ease-out) .2s forwards; }
 /* =========================================================================
    WORK GRID
    ========================================================================= */
-.work { background: var(--warm); padding: var(--section-y) var(--pad-x); border-top: 1px solid var(--line); }
-.work header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: clamp(32px, 5vw, 64px); gap: 32px; }
-.work header h2 {
+.work { background: var(--warm); padding: var(--section-y) var(--pad-x); }
+.work-head { margin-bottom: clamp(40px, 5vw, 72px); }
+.work-head .mono-label { display: block; margin-bottom: 16px; }
+.work-head h2 {
   font-family: var(--sans); font-weight: 500;
   font-size: clamp(32px, 5vw, 72px); line-height: 1; letter-spacing: -.054em;
   color: var(--ink); margin: 0;
 }
-.work header h2 em { font-family: var(--serif); font-style: normal; font-weight: 400; }
+.work-head h2 em { font-family: var(--serif); font-style: normal; font-weight: 400; }
 
 .work-grid {
   display: grid;
@@ -553,13 +549,11 @@ nav.top { opacity: 0; animation: navIn .6s var(--ease-out) .2s forwards; }
 /* =========================================================================
    CLIENTS
    ========================================================================= */
-.clients { background: var(--warm); padding: var(--section-y) var(--pad-x); border-top: 1px solid var(--line); }
+.clients { background: var(--warm); padding: var(--section-y) var(--pad-x); }
 .clients-head {
-  display: flex; justify-content: space-between; align-items: baseline;
-  flex-wrap: wrap; gap: 12px;
-  margin-bottom: clamp(32px, 4vw, 56px);
-  padding-bottom: 20px; border-bottom: 1px solid var(--line);
+  margin-bottom: clamp(40px, 5vw, 72px);
 }
+.clients-head .mono-label { display: block; margin-bottom: 16px; }
 .clients-head h2 {
   font-family: var(--sans); font-weight: 500;
   font-size: clamp(24px, 3.5vw, 52px); letter-spacing: -.048em; line-height: 1;
@@ -568,8 +562,7 @@ nav.top { opacity: 0; animation: navIn .6s var(--ease-out) .2s forwards; }
 .clients-row {
   display: grid; grid-template-columns: repeat(7,1fr);
   gap: clamp(20px, 3vw, 40px); align-items: center;
-  padding: clamp(24px, 3.5vw, 40px) 0;
-  border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+  padding: 0;
 }
 .cli {
   height: 52px; display: flex; align-items: center; justify-content: center;
@@ -590,11 +583,10 @@ nav.top { opacity: 0; animation: navIn .6s var(--ease-out) .2s forwards; }
   background: var(--deep); padding: var(--section-y) 0; overflow: hidden;
 }
 .outcomes-head {
-  display: flex; justify-content: space-between; align-items: baseline;
-  flex-wrap: wrap; gap: 12px;
-  margin-bottom: clamp(32px, 5vw, 64px);
+  margin-bottom: clamp(40px, 5vw, 72px);
   padding: 0 var(--pad-x);
 }
+.outcomes-head .mono-label { display: block; margin-bottom: 16px; }
 .outcomes-head h2 {
   font-family: var(--sans); font-weight: 500;
   font-size: clamp(28px, 5vw, 68px); letter-spacing: -.054em; line-height: 1;
@@ -628,8 +620,9 @@ nav.top { opacity: 0; animation: navIn .6s var(--ease-out) .2s forwards; }
 /* =========================================================================
    FOUNDER
    ========================================================================= */
-.founder { background: var(--warm); padding: var(--section-y) var(--pad-x); border-top: 1px solid var(--line); }
-.founder-head { margin-bottom: clamp(32px, 4vw, 56px); }
+.founder { background: var(--warm); padding: var(--section-y) var(--pad-x); }
+.founder-head { margin-bottom: clamp(40px, 5vw, 72px); }
+.founder-head > .mono-label { display: block; margin-bottom: 16px; }
 .founder-grid {
   display: grid; grid-template-columns: 1.4fr 1fr;
   gap: clamp(40px, 6vw, 88px); align-items: center;
@@ -672,7 +665,6 @@ nav.top { opacity: 0; animation: navIn .6s var(--ease-out) .2s forwards; }
   background: var(--cream);
   padding: clamp(112px, 18vw, 220px) var(--pad-x);
   text-align: center; position: relative; overflow: hidden;
-  border-top: 1px solid rgba(11,14,38,.07);
 }
 .cta::before {
   content: ''; position: absolute; inset: 0;
@@ -702,13 +694,11 @@ nav.top { opacity: 0; animation: navIn .6s var(--ease-out) .2s forwards; }
 .foot {
   background: var(--deep);
   padding: clamp(80px, 11vw, 140px) var(--pad-x) 52px;
-  border-top: 1px solid rgba(243,240,239,.09);
 }
 .foot-grid {
   display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
   gap: clamp(32px, 5vw, 80px);
   padding-bottom: clamp(48px, 6vw, 80px);
-  border-bottom: 1px solid rgba(243,240,239,.11);
   margin-bottom: 40px;
 }
 .foot-brand { display: flex; flex-direction: column; gap: 20px; }
