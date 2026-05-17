@@ -24,7 +24,7 @@
   --serif:  "Instrument Serif", Georgia, serif;
   --mono:   "IBM Plex Mono", ui-monospace, Menlo, monospace;
 
-  --pad-x:     clamp(24px, 6vw, 112px);
+  --pad-x:     clamp(18px, 3vw, 44px);
   --section-y: clamp(80px, 12vw, 160px);
 
   --ease:     cubic-bezier(0.2, 0.6, 0.2, 1);
