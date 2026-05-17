@@ -612,6 +612,46 @@ nav.top.scrolled .links a.nav-cta:hover { background: var(--cream); color: var(-
 }
 
 /* =========================================================================
+   FOUNDER
+   ========================================================================= */
+.founder { background: var(--warm); padding: var(--section-y) var(--pad-x); border-top: 1px solid var(--line); }
+.founder-head { margin-bottom: clamp(32px, 4vw, 56px); }
+.founder-grid {
+  display: grid; grid-template-columns: 1.4fr 1fr;
+  gap: clamp(40px, 6vw, 88px); align-items: center;
+}
+.founder-text h2 {
+  font-family: var(--sans); font-weight: 400;
+  font-size: clamp(26px, 3.5vw, 52px); letter-spacing: -.034em; line-height: 1.08;
+  margin: 0 0 28px; max-width: 22ch; color: var(--ink);
+}
+.founder-text p {
+  font-size: 17px; line-height: 1.55; color: rgba(11,14,38,.68);
+  max-width: 50ch; margin: 0 0 36px;
+}
+.founder-meta {
+  display: grid; grid-template-columns: repeat(3,1fr);
+  gap: 24px; max-width: 500px;
+}
+.founder-meta > div { display: flex; flex-direction: column; gap: 5px; }
+.founder-meta .mono-label { display: block; margin-bottom: 2px; }
+.founder-meta strong, .founder-meta a {
+  font-size: 16px; font-weight: 500; color: var(--ink); text-decoration: none;
+}
+.founder-meta a:hover { text-decoration: underline; text-underline-offset: 2px; }
+.founder-img {
+  aspect-ratio: 4/5; border-radius: 4px;
+  background-size: cover; background-position: center;
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .founder-grid { grid-template-columns: 1fr; }
+  .founder-img { aspect-ratio: 3/2; }
+  .founder-meta { grid-template-columns: 1fr 1fr; }
+}
+
+/* =========================================================================
    CTA
    ========================================================================= */
 .cta {
