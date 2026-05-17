@@ -341,7 +341,8 @@ nav.top { opacity: 0; animation: navIn .6s var(--ease-out) .2s forwards; }
 .founder-head > .mono-label {
   display: inline-flex; align-items: center;
   margin-bottom: clamp(20px, 2.4vw, 28px);
-  padding: 7px 14px 8px;
+  padding: 5px 11px 6px;
+  font-size: 13px;
   border: 1px solid var(--line-strong);
   border-radius: 4px;
   color: var(--blue-gray);
@@ -711,7 +712,7 @@ nav.top { opacity: 0; animation: navIn .6s var(--ease-out) .2s forwards; }
    FOUNDER
    ========================================================================= */
 .founder { background: var(--warm); padding: var(--section-y) var(--pad-x); }
-.founder-head { margin-bottom: clamp(40px, 5vw, 72px); }
+.founder-head { margin-bottom: clamp(16px, 2vw, 28px); }
 .founder-grid {
   display: grid; grid-template-columns: 1.4fr 1fr;
   gap: clamp(40px, 6vw, 88px); align-items: center;
