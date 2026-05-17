@@ -857,41 +857,6 @@ nav.top { opacity: 0; animation: navIn .6s var(--ease-out) .2s forwards; }
 .cookie-accept:hover { background: var(--cream-hover); }
 
 /* =========================================================================
-   PROGRESSIVE BOTTOM BLUR
-   ========================================================================= */
-.scroll-blur {
-  position: fixed; left: 0; right: 0; bottom: 0;
-  height: clamp(90px, 13vh, 150px);
-  z-index: 470; pointer-events: none;
-}
-.scroll-blur > div { position: absolute; inset: 0; border-radius: inherit; }
-.scroll-blur > div:nth-child(1) {
-  backdrop-filter: blur(1px); -webkit-backdrop-filter: blur(1px);
-  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 12.5%, #000 25%, transparent 37.5%);
-          mask-image: linear-gradient(to bottom, transparent 0%, #000 12.5%, #000 25%, transparent 37.5%);
-}
-.scroll-blur > div:nth-child(2) {
-  backdrop-filter: blur(2px); -webkit-backdrop-filter: blur(2px);
-  -webkit-mask-image: linear-gradient(to bottom, transparent 12.5%, #000 25%, #000 37.5%, transparent 50%);
-          mask-image: linear-gradient(to bottom, transparent 12.5%, #000 25%, #000 37.5%, transparent 50%);
-}
-.scroll-blur > div:nth-child(3) {
-  backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
-  -webkit-mask-image: linear-gradient(to bottom, transparent 25%, #000 37.5%, #000 50%, transparent 62.5%);
-          mask-image: linear-gradient(to bottom, transparent 25%, #000 37.5%, #000 50%, transparent 62.5%);
-}
-.scroll-blur > div:nth-child(4) {
-  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
-  -webkit-mask-image: linear-gradient(to bottom, transparent 37.5%, #000 50%, #000 62.5%, transparent 75%);
-          mask-image: linear-gradient(to bottom, transparent 37.5%, #000 50%, #000 62.5%, transparent 75%);
-}
-.scroll-blur > div:nth-child(5) {
-  backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
-  -webkit-mask-image: linear-gradient(to bottom, transparent 50%, #000 62.5%, #000 100%);
-          mask-image: linear-gradient(to bottom, transparent 50%, #000 62.5%, #000 100%);
-}
-
-/* =========================================================================
    RESPONSIVE
    ========================================================================= */
 @media (max-width: 1100px) {
