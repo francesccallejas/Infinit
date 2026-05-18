@@ -100,41 +100,33 @@
       <div class="approach-grid">
         <div class="approach-text">
           <span class="mono-label">01 · Approach</span>
-          <ol class="ap-steps">
-            <li class="ap-step is-active" data-i="0">
+          <div class="ap-stage">
+            <div class="ap-step is-active" data-i="0">
               <span class="ap-num">01</span>
               <h3 class="ap-line">Clarity in complexity.</h3>
-              <p class="ap-sub">Direction through change.</p>
-            </li>
-            <li class="ap-step" data-i="1">
+            </div>
+            <div class="ap-step" data-i="1">
               <span class="ap-num">02</span>
               <h3 class="ap-line">Identity with purpose.</h3>
-              <p class="ap-sub">Built from positioning, not decoration.</p>
-            </li>
-            <li class="ap-step" data-i="2">
+            </div>
+            <div class="ap-step" data-i="2">
               <span class="ap-num">03</span>
               <h3 class="ap-line">Strategy connected to execution.</h3>
-              <p class="ap-sub">Ideas transformed into experience.</p>
-            </li>
-            <li class="ap-step" data-i="3">
+            </div>
+            <div class="ap-step" data-i="3">
               <span class="ap-num">04</span>
               <h3 class="ap-line">Digital designed for growth.</h3>
-              <p class="ap-sub">Quietly accelerated through technology.</p>
-            </li>
-            <li class="ap-step" data-i="4">
+            </div>
+            <div class="ap-step" data-i="4">
               <span class="ap-num">05</span>
               <h3 class="ap-line">Modernization without noise.</h3>
-              <p class="ap-sub">Sharper brands. Lasting impact.</p>
-            </li>
-          </ol>
+            </div>
+          </div>
           <div class="ap-progress" aria-hidden="true"><span class="ap-bar" id="apBar"></span></div>
         </div>
         <div class="approach-media">
-          <div class="ap-frame is-active" style="background-image:url('project/assets/imagery/relats-industrial.webp')"></div>
-          <div class="ap-frame" style="background-image:url('project/assets/imagery/raincoat.webp')"></div>
-          <div class="ap-frame" style="background-image:url('project/assets/imagery/ipad-gradient.jpg')"></div>
-          <div class="ap-frame" style="background-image:url('project/assets/imagery/astronaut-blue.avif')"></div>
-          <div class="ap-frame" style="background-image:url('project/assets/imagery/device-knob.webp')"></div>
+          <canvas class="ap-canvas" id="apCanvas" data-frames="159" data-seq="project/assets/imagery/approach-seq/"></canvas>
+          <div class="ap-poster" style="background-image:url('project/assets/imagery/approach-seq/frame_0001.jpg')"></div>
         </div>
       </div>
     </div>
@@ -490,62 +482,115 @@
 
   /* ── Approach: pinned scroll storytelling ────────────────────── */
   (function() {
-    const track = document.getElementById('approachTrack');
+    const track  = document.getElementById('approachTrack');
     if (!track) return;
     const steps  = Array.from(track.querySelectorAll('.ap-step'));
-    const frames = Array.from(track.querySelectorAll('.ap-frame'));
     const bar    = document.getElementById('apBar');
-    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const media  = track.querySelector('.approach-media');
+    const canvas = document.getElementById('apCanvas');
     const isMobile = () => window.matchMedia('(max-width: 768px)').matches;
 
-    /* split each line into per-letter spans for the reveal */
-    steps.forEach(s => {
+    /* split each statement into per-character spans */
+    const charSets = steps.map(s => {
       const line = s.querySelector('.ap-line');
       const text = line.textContent;
       line.textContent = '';
+      const chars = [];
       [...text].forEach(chr => {
-        const outer = document.createElement('span'); outer.className = 'ap-ch';
-        const inner = document.createElement('span'); inner.className = 'ap-ch-i';
-        inner.textContent = chr === ' ' ? ' ' : chr;
-        outer.appendChild(inner); line.appendChild(outer);
+        const sp = document.createElement('span');
+        if (chr === ' ') { sp.className = 'ap-char ap-space'; sp.textContent = ' '; }
+        else { sp.className = 'ap-char'; sp.textContent = chr; chars.push(sp); }
+        line.appendChild(sp);
       });
+      return chars;
     });
 
-    let cur = -1;
-    function setActive(idx) {
-      if (idx === cur) return;
-      cur = idx;
-      steps.forEach((s, k)  => s.classList.toggle('is-active', k === idx));
-      frames.forEach((f, k) => f.classList.toggle('is-active', k === idx));
-      if (reduce) return;
-      const letters = steps[idx].querySelectorAll('.ap-ch-i');
-      letters.forEach(el => {
-        el.style.transition = 'none';
-        el.style.transform  = 'translateY(115%)';
-        el.style.opacity    = '0';
-      });
-      void steps[idx].offsetWidth; /* reflow → replay */
-      letters.forEach((el, n) => {
-        el.style.transition    = 'transform .62s var(--ease-out), opacity .5s var(--ease-out)';
-        el.style.transitionDelay = (n * 0.016) + 's';
-        el.style.transform     = 'none';
-        el.style.opacity       = '1';
-      });
+    /* video frame sequence, scrubbed on canvas */
+    const FRAMES = parseInt(canvas.dataset.frames, 10) || 0;
+    const SEQ    = canvas.dataset.seq || '';
+    const ctx    = canvas.getContext('2d');
+    const imgs   = [];
+    let ready = false;
+    if (FRAMES > 0 && !isMobile()) {
+      for (let i = 1; i <= FRAMES; i++) {
+        const im = new Image();
+        im.src = SEQ + 'frame_' + String(i).padStart(4, '0') + '.jpg';
+        imgs.push(im);
+        if (i === 1) im.onload = () => { ready = true; canvas.classList.add('ready'); sizeCanvas(); render(); };
+      }
+    }
+    function sizeCanvas() {
+      const r = media.getBoundingClientRect();
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      canvas.width  = Math.max(1, Math.round(r.width  * dpr));
+      canvas.height = Math.max(1, Math.round(r.height * dpr));
+    }
+    function pickFrame(p) {
+      let idx = Math.round(p * (FRAMES - 1));
+      idx = Math.max(0, Math.min(FRAMES - 1, idx));
+      if (imgs[idx] && imgs[idx].complete && imgs[idx].naturalWidth) return imgs[idx];
+      for (let d = 1; d < FRAMES; d++) {
+        const a = imgs[idx - d], b = imgs[idx + d];
+        if (a && a.complete && a.naturalWidth) return a;
+        if (b && b.complete && b.naturalWidth) return b;
+      }
+      return null;
+    }
+    function drawCover(img) {
+      const cw = canvas.width, ch = canvas.height;
+      const ir = img.naturalWidth / img.naturalHeight, cr = cw / ch;
+      let dw, dh, dx, dy;
+      if (ir > cr) { dh = ch; dw = ch * ir; dx = (cw - dw) / 2; dy = 0; }
+      else         { dw = cw; dh = cw / ir; dx = 0; dy = (ch - dh) / 2; }
+      ctx.drawImage(img, dx, dy, dw, dh);
     }
 
+    /* statement fill: read = ink, leading char = gold, future = grey */
+    let activeIdx = -1;
+    function setActive(idx) {
+      if (idx === activeIdx) return;
+      activeIdx = idx;
+      steps.forEach((s, k) => s.classList.toggle('is-active', k === idx));
+    }
+    function paintFill(idx, fill) {
+      const chars = charSets[idx];
+      const lead = Math.floor(fill * chars.length);
+      for (let j = 0; j < chars.length; j++) {
+        const c = chars[j];
+        const want = j < lead ? 'r' : (j === lead ? 'l' : 'f');
+        if (c._st !== want) {
+          c.classList.toggle('is-read', want === 'r');
+          c.classList.toggle('is-lead', want === 'l');
+          c._st = want;
+        }
+      }
+    }
+
+    let curP = 0, rafQ = false;
+    function render() {
+      rafQ = false;
+      const p = curP;
+      if (bar) bar.style.width = (p * 100).toFixed(2) + '%';
+      if (ready) { const fr = pickFrame(p); if (fr) drawCover(fr); }
+      const N = steps.length;
+      const f = Math.min(N - 0.0001, p * N);
+      const idx = Math.min(N - 1, Math.floor(f));
+      const sub = f - idx;
+      setActive(idx);
+      paintFill(idx, Math.max(0, Math.min(1, sub / 0.78)));
+    }
     function onScroll() {
       if (isMobile()) { steps.forEach(s => s.classList.add('is-active')); return; }
       const total = track.offsetHeight - window.innerHeight;
-      let p = (-track.getBoundingClientRect().top) / total;
-      p = Math.max(0, Math.min(0.9999, p));
-      if (bar) bar.style.width = (p * 100).toFixed(2) + '%';
-      setActive(Math.min(steps.length - 1, Math.floor(p * steps.length)));
+      const p = (-track.getBoundingClientRect().top) / total;
+      curP = Math.max(0, Math.min(0.9999, p));
+      if (!rafQ) { rafQ = true; requestAnimationFrame(render); }
     }
 
-    setActive(0);
+    setActive(0); paintFill(0, 0);
     if (window.lenis) window.lenis.on('scroll', onScroll);
     window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', onScroll);
+    window.addEventListener('resize', () => { sizeCanvas(); onScroll(); });
     onScroll();
   })();
 
