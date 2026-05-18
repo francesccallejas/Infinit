@@ -292,6 +292,12 @@ nav.top { opacity: 0; animation: navIn .6s var(--ease-out) .2s forwards; }
   -webkit-text-fill-color: transparent;
   animation: bgDrift 18s ease-in-out infinite;
 }
+.reg {
+  font-family: var(--sans); font-weight: 400;
+  font-size: .26em; vertical-align: super;
+  color: rgba(243,240,239,.7); letter-spacing: 0;
+  margin: 0 .02em 0 .06em;
+}
 @keyframes bgDrift {
   0%,100% { background-position: 20% 50%; }
   50%      { background-position: 80% 50%; }
