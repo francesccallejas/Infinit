@@ -737,14 +737,14 @@ nav.top { opacity: 0; animation: navIn .6s var(--ease-out) .2s forwards; }
 }
 .founder-meta a:hover { text-decoration: underline; text-underline-offset: 2px; }
 .founder-img {
-  aspect-ratio: 1702 / 3024; border-radius: 4px;
+  aspect-ratio: 1 / 1; border-radius: 4px;
   background-size: cover; background-position: center center;
   width: 100%;
 }
 
 @media (max-width: 768px) {
   .founder-grid { grid-template-columns: 1fr; }
-  .founder-img { aspect-ratio: 1702 / 3024; }
+  .founder-img { aspect-ratio: 1 / 1; }
   .founder-meta { grid-template-columns: 1fr 1fr; }
 }
 
