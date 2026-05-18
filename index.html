@@ -97,9 +97,9 @@
 <section class="approach" id="approach">
   <div class="approach-track" id="approachTrack">
     <div class="approach-sticky">
+      <span class="mono-label ap-eyebrow">01 · Approach</span>
       <div class="approach-grid">
         <div class="approach-text">
-          <span class="mono-label">01 · Approach</span>
           <div class="ap-stage">
             <div class="ap-step is-active" data-i="0">
               <span class="ap-num">01</span>
@@ -552,21 +552,18 @@
       activeIdx = idx;
       steps.forEach((s, k) => s.classList.toggle('is-active', k === idx));
     }
-    function paintFill(idx, fill) {
+    /* yellow only travels with the scroll; settles back to grey when idle */
+    function paintFill(idx, fill, moving) {
       const chars = charSets[idx];
       const lead = Math.floor(fill * chars.length);
       for (let j = 0; j < chars.length; j++) {
         const c = chars[j];
-        const want = j < lead ? 'r' : (j === lead ? 'l' : 'f');
-        if (c._st !== want) {
-          c.classList.toggle('is-read', want === 'r');
-          c.classList.toggle('is-lead', want === 'l');
-          c._st = want;
-        }
+        const on = moving && j <= lead && j > lead - 3;
+        if (c._on !== on) { c.classList.toggle('is-on', on); c._on = on; }
       }
     }
 
-    let curP = 0, rafQ = false;
+    let curP = 0, rafQ = false, moving = false, idleT;
     function render() {
       rafQ = false;
       const p = curP;
@@ -577,17 +574,23 @@
       const idx = Math.min(N - 1, Math.floor(f));
       const sub = f - idx;
       setActive(idx);
-      paintFill(idx, Math.max(0, Math.min(1, sub / 0.78)));
+      paintFill(idx, Math.max(0, Math.min(1, sub / 0.78)), moving);
     }
     function onScroll() {
       if (isMobile()) { steps.forEach(s => s.classList.add('is-active')); return; }
       const total = track.offsetHeight - window.innerHeight;
       const p = (-track.getBoundingClientRect().top) / total;
       curP = Math.max(0, Math.min(0.9999, p));
+      moving = true;
+      clearTimeout(idleT);
+      idleT = setTimeout(() => {
+        moving = false;
+        if (!rafQ) { rafQ = true; requestAnimationFrame(render); }
+      }, 140);
       if (!rafQ) { rafQ = true; requestAnimationFrame(render); }
     }
 
-    setActive(0); paintFill(0, 0);
+    setActive(0); paintFill(0, 0, false);
     if (window.lenis) window.lenis.on('scroll', onScroll);
     window.addEventListener('scroll', onScroll, { passive: true });
     window.addEventListener('resize', () => { sizeCanvas(); onScroll(); });

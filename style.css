@@ -14,8 +14,8 @@
   --blue-gray:   #7F838B;
   --sage:        #C4D8B5;
   --sage-ink:    #3A5424;
-  --gold:        #B7891D;
-  --ap-future:   rgba(11,14,38,.18);
+  --gold:        #C9A21A;
+  --ap-future:   rgba(11,14,38,.20);
 
   --line:        rgba(11,14,38,.10);
   --line-strong: rgba(11,14,38,.20);
@@ -341,8 +341,8 @@ nav.top { opacity: 0; animation: navIn .6s var(--ease-out) .2s forwards; }
 }
 .approach-grid {
   width: 100%; max-width: 1640px; margin: 0 auto;
-  display: grid; grid-template-columns: 1.05fr 1fr;
-  gap: clamp(32px, 5vw, 104px); align-items: center;
+  display: grid; grid-template-columns: minmax(0,0.82fr) minmax(0,1.18fr);
+  gap: clamp(28px, 4vw, 80px); align-items: center;
   padding: 0 var(--pad-x);
 }
 .approach .mono-label,
@@ -358,6 +358,13 @@ nav.top { opacity: 0; animation: navIn .6s var(--ease-out) .2s forwards; }
   border: 1px solid var(--line-strong);
   border-radius: 4px;
   color: var(--blue-gray);
+}
+.ap-eyebrow {
+  position: absolute;
+  top: clamp(96px, 13vh, 140px);
+  left: var(--pad-x);
+  margin: 0 !important;
+  z-index: 3;
 }
 .ap-stage {
   position: relative;
@@ -385,10 +392,12 @@ nav.top { opacity: 0; animation: navIn .6s var(--ease-out) .2s forwards; }
 }
 .ap-char {
   color: var(--ap-future);
-  transition: color .12s linear;
+  transition: color .28s var(--ease-out);
 }
-.ap-char.is-read { color: var(--ink); }
-.ap-char.is-lead { color: var(--gold); }
+.ap-char.is-on {
+  color: var(--gold);
+  transition: color .04s linear;
+}
 .ap-space { white-space: pre; }
 .ap-progress {
   margin-top: clamp(28px,5vh,60px);
@@ -402,7 +411,7 @@ nav.top { opacity: 0; animation: navIn .6s var(--ease-out) .2s forwards; }
 }
 .approach-media {
   position: relative; width: 100%;
-  aspect-ratio: 4/5; max-height: 82vh;
+  aspect-ratio: 4/5; max-height: 90vh;
   border-radius: 10px; overflow: hidden; justify-self: end;
   background: var(--ink);
   box-shadow: 0 30px 80px -40px rgba(8,9,15,.45);
@@ -915,7 +924,7 @@ nav.top { opacity: 0; animation: navIn .6s var(--ease-out) .2s forwards; }
     padding: 14px 0 14px 40px;
   }
   .ap-line { font-size: clamp(30px,8vw,46px); }
-  .ap-char, .ap-char.is-lead { color: var(--ink); }
+  .ap-char, .ap-char.is-on { color: var(--ink); }
   .ap-canvas { display: none; }
   .ap-progress { display: none; }
 
