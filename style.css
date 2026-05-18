@@ -381,7 +381,7 @@ nav.top { opacity: 0; animation: navIn .6s var(--ease-out) .2s forwards; }
 .ap-step.is-active { opacity: 1; transform: none; }
 .ap-line {
   font-family: var(--sans); font-weight: 600;
-  font-size: clamp(40px,6.4vw,108px); letter-spacing: -.046em; line-height: 1.0;
+  font-size: clamp(40px,6.4vw,108px); letter-spacing: -.018em; line-height: 1.06;
   margin: 0;
 }
 .ap-char {
@@ -405,8 +405,8 @@ nav.top { opacity: 0; animation: navIn .6s var(--ease-out) .2s forwards; }
   transition: width .15s linear;
 }
 .approach-media {
-  position: relative; width: 100%;
-  aspect-ratio: 4/5; max-height: 90vh;
+  position: relative; width: 90%;
+  aspect-ratio: 4/5; max-height: 81vh;
   border-radius: 10px; overflow: hidden; justify-self: end;
   background: var(--ink);
   box-shadow: 0 30px 80px -40px rgba(8,9,15,.45);
@@ -432,25 +432,51 @@ nav.top { opacity: 0; animation: navIn .6s var(--ease-out) .2s forwards; }
    BIG CLAIM
    ========================================================================= */
 .claim {
-  background: var(--deep);
-  min-height: 100vh;
-  display: flex; flex-direction: column; align-items: center; justify-content: center;
-  padding: clamp(72px, 12vh, 140px) var(--pad-x);
-  text-align: center; position: relative; overflow: hidden;
+  --cp: 0; --ci: 0;
+  background: var(--warm);
+  position: relative;
 }
-.claim::before {
+.claim-track { height: 230vh; }
+.claim-sticky {
+  position: sticky; top: 0; height: 100vh;
+  display: flex; align-items: center; justify-content: center;
+  padding:
+    calc(14px + (1 - var(--cp)) * 12vh)
+    calc(16px + (1 - var(--cp)) * 15vw);
+}
+.claim-window {
+  position: relative; width: 100%; height: 100%;
+  background: var(--deep);
+  border-radius: calc(18px + (1 - var(--cp)) * 16px);
+  overflow: hidden;
+  display: flex; align-items: center; justify-content: center;
+  text-align: center;
+  box-shadow: 0 50px 130px -55px rgba(8,9,15,.55);
+}
+.claim-window::before {
   content: ''; position: absolute; inset: 0;
-  background: radial-gradient(60% 50% at 50% 50%, rgba(44,91,255,.05), transparent 65%);
+  background: radial-gradient(60% 50% at 50% 50%, rgba(44,91,255,.06), transparent 65%);
+}
+.claim-inner {
+  position: relative;
+  padding: clamp(40px, 8vh, 120px) clamp(24px, 6vw, 96px);
+  opacity: var(--ci);
+  transform: translateY(calc((1 - var(--ci)) * 26px));
 }
 .claim h2 {
-  position: relative;
   font-family: var(--sans); font-weight: 500;
   font-size: clamp(58px, 9.5vw, 193px);
   letter-spacing: -.072em; line-height: .92;
   margin: 0 auto clamp(32px, 4vw, 56px); max-width: 14ch;
   color: var(--warm);
 }
-.claim .mono-label { position: relative; color: rgba(243,240,239,.40); }
+.claim .mono-label { color: rgba(243,240,239,.40); }
+@media (max-width: 768px) {
+  .claim-track { height: auto; }
+  .claim-sticky { position: static; height: auto; padding: 14px; min-height: 90vh; }
+  .claim-inner { opacity: 1; transform: none; }
+  .claim-window { border-radius: 18px; }
+}
 
 /* =========================================================================
    SERVICES

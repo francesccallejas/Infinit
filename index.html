@@ -129,9 +129,17 @@
 </section>
 
 <!-- ========== BIG CLAIM ========== -->
-<section class="claim">
-  <h2>Strategy. Identity. Digital. <em>Connected.</em></h2>
-  <p class="mono-label">Built through real transformation experience</p>
+<section class="claim" id="claim">
+  <div class="claim-track">
+    <div class="claim-sticky">
+      <div class="claim-window">
+        <div class="claim-inner">
+          <h2>Strategy. Identity. Digital. <em>Connected.</em></h2>
+          <p class="mono-label">Built through real transformation experience</p>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
 <!-- ========== SERVICES ========== -->
@@ -591,6 +599,31 @@
     window.addEventListener('scroll', onScroll, { passive: true });
     window.addEventListener('resize', () => { sizeCanvas(); onScroll(); });
     onScroll();
+  })();
+
+  /* ── Claim: window grows from centre to near-full-bleed ──────── */
+  (function() {
+    const sec   = document.getElementById('claim');
+    if (!sec) return;
+    const track = sec.querySelector('.claim-track');
+    const isMobile = () => window.matchMedia('(max-width: 768px)').matches;
+    let qd = false;
+    function apply() {
+      qd = false;
+      if (isMobile()) { sec.style.setProperty('--cp', 1); sec.style.setProperty('--ci', 1); return; }
+      const total = track.offsetHeight - window.innerHeight;
+      let p = (-track.getBoundingClientRect().top) / total;
+      p = Math.max(0, Math.min(1, p));
+      const cp = Math.max(0, Math.min(1, p / 0.62));        /* grow done at 62% */
+      const ci = Math.max(0, Math.min(1, (p - 0.34) / 0.4)); /* text fades in */
+      sec.style.setProperty('--cp', cp.toFixed(4));
+      sec.style.setProperty('--ci', ci.toFixed(4));
+    }
+    function onScroll() { if (!qd) { qd = true; requestAnimationFrame(apply); } }
+    if (window.lenis) window.lenis.on('scroll', onScroll);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    apply();
   })();
 
   /* ── Nav panel (hover desktop / click mobile) ────────────────── */
