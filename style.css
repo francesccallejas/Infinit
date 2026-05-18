@@ -715,7 +715,7 @@ nav.top { opacity: 0; animation: navIn .6s var(--ease-out) .2s forwards; }
 .founder-head { margin-bottom: clamp(16px, 2vw, 28px); }
 .founder-grid {
   display: grid; grid-template-columns: 1.4fr 1fr;
-  gap: clamp(40px, 6vw, 88px); align-items: center;
+  gap: clamp(40px, 6vw, 88px); align-items: start;
 }
 .founder-text h2 {
   font-family: var(--sans); font-weight: 400;
@@ -739,7 +739,7 @@ nav.top { opacity: 0; animation: navIn .6s var(--ease-out) .2s forwards; }
 .founder-img {
   aspect-ratio: 1 / 1; border-radius: 4px;
   background-size: cover; background-position: center center;
-  width: 100%;
+  width: 85%; margin-left: auto;
 }
 
 @media (max-width: 768px) {
