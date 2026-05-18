@@ -102,23 +102,18 @@
         <div class="approach-text">
           <div class="ap-stage">
             <div class="ap-step is-active" data-i="0">
-              <span class="ap-num">01</span>
               <h3 class="ap-line">Clarity in complexity.</h3>
             </div>
             <div class="ap-step" data-i="1">
-              <span class="ap-num">02</span>
               <h3 class="ap-line">Identity with purpose.</h3>
             </div>
             <div class="ap-step" data-i="2">
-              <span class="ap-num">03</span>
               <h3 class="ap-line">Strategy connected to execution.</h3>
             </div>
             <div class="ap-step" data-i="3">
-              <span class="ap-num">04</span>
               <h3 class="ap-line">Digital designed for growth.</h3>
             </div>
             <div class="ap-step" data-i="4">
-              <span class="ap-num">05</span>
               <h3 class="ap-line">Modernization without noise.</h3>
             </div>
           </div>
@@ -545,25 +540,32 @@
       ctx.drawImage(img, dx, dy, dw, dh);
     }
 
-    /* statement fill: read = ink, leading char = gold, future = grey */
+    /* statement reveal: grey → gold (moving edge) → ink (settled) */
     let activeIdx = -1;
     function setActive(idx) {
       if (idx === activeIdx) return;
       activeIdx = idx;
       steps.forEach((s, k) => s.classList.toggle('is-active', k === idx));
     }
-    /* yellow only travels with the scroll; settles back to grey when idle */
-    function paintFill(idx, fill, moving) {
+    const BAND = 3;
+    function paintFill(idx, fill) {
       const chars = charSets[idx];
-      const lead = Math.floor(fill * chars.length);
+      const lead = fill * chars.length;
       for (let j = 0; j < chars.length; j++) {
         const c = chars[j];
-        const on = moving && j <= lead && j > lead - 3;
-        if (c._on !== on) { c.classList.toggle('is-on', on); c._on = on; }
+        let st;
+        if (j >= lead) st = 'f';                 /* future → grey */
+        else if (j >= lead - BAND) st = 'o';     /* edge → gold  */
+        else st = 'r';                           /* settled → ink */
+        if (c._st !== st) {
+          c.classList.toggle('is-read', st === 'r');
+          c.classList.toggle('is-on',   st === 'o');
+          c._st = st;
+        }
       }
     }
 
-    let curP = 0, rafQ = false, moving = false, idleT;
+    let curP = 0, rafQ = false;
     function render() {
       rafQ = false;
       const p = curP;
@@ -574,23 +576,17 @@
       const idx = Math.min(N - 1, Math.floor(f));
       const sub = f - idx;
       setActive(idx);
-      paintFill(idx, Math.max(0, Math.min(1, sub / 0.78)), moving);
+      paintFill(idx, Math.max(0, Math.min(1, sub / 0.78)));
     }
     function onScroll() {
       if (isMobile()) { steps.forEach(s => s.classList.add('is-active')); return; }
       const total = track.offsetHeight - window.innerHeight;
       const p = (-track.getBoundingClientRect().top) / total;
       curP = Math.max(0, Math.min(0.9999, p));
-      moving = true;
-      clearTimeout(idleT);
-      idleT = setTimeout(() => {
-        moving = false;
-        if (!rafQ) { rafQ = true; requestAnimationFrame(render); }
-      }, 140);
       if (!rafQ) { rafQ = true; requestAnimationFrame(render); }
     }
 
-    setActive(0); paintFill(0, 0, false);
+    setActive(0); paintFill(0, 0);
     if (window.lenis) window.lenis.on('scroll', onScroll);
     window.addEventListener('scroll', onScroll, { passive: true });
     window.addEventListener('resize', () => { sizeCanvas(); onScroll(); });

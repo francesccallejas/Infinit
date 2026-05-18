@@ -340,10 +340,10 @@ nav.top { opacity: 0; animation: navIn .6s var(--ease-out) .2s forwards; }
   display: flex; align-items: center;
 }
 .approach-grid {
-  width: 100%; max-width: 1640px; margin: 0 auto;
-  display: grid; grid-template-columns: minmax(0,0.82fr) minmax(0,1.18fr);
-  gap: clamp(28px, 4vw, 80px); align-items: center;
-  padding: 0 var(--pad-x);
+  width: 100%; max-width: none; margin: 0;
+  display: grid; grid-template-columns: minmax(0,0.8fr) minmax(0,1.2fr);
+  gap: clamp(28px, 4vw, 90px); align-items: center;
+  padding: 0 clamp(16px, 1.8vw, 30px);
 }
 .approach .mono-label,
 .services-head .mono-label,
@@ -361,8 +361,8 @@ nav.top { opacity: 0; animation: navIn .6s var(--ease-out) .2s forwards; }
 }
 .ap-eyebrow {
   position: absolute;
-  top: clamp(96px, 13vh, 140px);
-  left: var(--pad-x);
+  top: clamp(90px, 12vh, 132px);
+  left: clamp(16px, 1.8vw, 30px);
   margin: 0 !important;
   z-index: 3;
 }
@@ -374,29 +374,24 @@ nav.top { opacity: 0; animation: navIn .6s var(--ease-out) .2s forwards; }
 .ap-step {
   position: absolute; inset: 0;
   display: flex; flex-direction: column; justify-content: center;
-  padding-left: clamp(46px,3.6vw,70px);
   opacity: 0; transform: translateY(18px);
   pointer-events: none;
   transition: opacity .55s var(--ease-out), transform .65s var(--ease-out);
 }
 .ap-step.is-active { opacity: 1; transform: none; }
-.ap-num {
-  position: absolute; left: 0; top: 4px;
-  font-family: var(--mono); font-size: 13px; letter-spacing: .16em;
-  color: var(--blue-gray);
-}
 .ap-line {
   font-family: var(--sans); font-weight: 600;
-  font-size: clamp(36px,5.4vw,86px); letter-spacing: -.046em; line-height: 1.02;
+  font-size: clamp(40px,6.4vw,108px); letter-spacing: -.046em; line-height: 1.0;
   margin: 0;
 }
 .ap-char {
   color: var(--ap-future);
-  transition: color .28s var(--ease-out);
+  transition: color .35s var(--ease-out);
 }
+.ap-char.is-read { color: var(--ink); }
 .ap-char.is-on {
   color: var(--gold);
-  transition: color .04s linear;
+  transition: color .1s linear;
 }
 .ap-space { white-space: pre; }
 .ap-progress {
