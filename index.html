@@ -94,53 +94,49 @@
 </section>
 
 <!-- ========== NARRATIVE ========== -->
-<section class="narrative" id="approach">
-  <div class="narr-head">
-    <span class="mono-label">01 · Approach</span>
-    <h2>Five statements. Read at <em>your</em> pace.</h2>
-  </div>
-  <div class="narr-track" id="narrTrack">
-    <div class="narr-slide" style="background-image:url('project/assets/imagery/relats-industrial.webp')">
-      <span class="narr-tag">01 · Clarity</span>
-      <div class="narr-frosted">
-        <h4>Clarity in <em>complexity.</em></h4>
-        <p>Direction through change.</p>
+<section class="approach" id="approach">
+  <div class="approach-track" id="approachTrack">
+    <div class="approach-sticky">
+      <div class="approach-grid">
+        <div class="approach-text">
+          <span class="mono-label">01 · Approach</span>
+          <ol class="ap-steps">
+            <li class="ap-step is-active" data-i="0">
+              <span class="ap-num">01</span>
+              <h3 class="ap-line">Clarity in complexity.</h3>
+              <p class="ap-sub">Direction through change.</p>
+            </li>
+            <li class="ap-step" data-i="1">
+              <span class="ap-num">02</span>
+              <h3 class="ap-line">Identity with purpose.</h3>
+              <p class="ap-sub">Built from positioning, not decoration.</p>
+            </li>
+            <li class="ap-step" data-i="2">
+              <span class="ap-num">03</span>
+              <h3 class="ap-line">Strategy connected to execution.</h3>
+              <p class="ap-sub">Ideas transformed into experience.</p>
+            </li>
+            <li class="ap-step" data-i="3">
+              <span class="ap-num">04</span>
+              <h3 class="ap-line">Digital designed for growth.</h3>
+              <p class="ap-sub">Quietly accelerated through technology.</p>
+            </li>
+            <li class="ap-step" data-i="4">
+              <span class="ap-num">05</span>
+              <h3 class="ap-line">Modernization without noise.</h3>
+              <p class="ap-sub">Sharper brands. Lasting impact.</p>
+            </li>
+          </ol>
+          <div class="ap-progress" aria-hidden="true"><span class="ap-bar" id="apBar"></span></div>
+        </div>
+        <div class="approach-media">
+          <div class="ap-frame is-active" style="background-image:url('project/assets/imagery/relats-industrial.webp')"></div>
+          <div class="ap-frame" style="background-image:url('project/assets/imagery/raincoat.webp')"></div>
+          <div class="ap-frame" style="background-image:url('project/assets/imagery/ipad-gradient.jpg')"></div>
+          <div class="ap-frame" style="background-image:url('project/assets/imagery/astronaut-blue.avif')"></div>
+          <div class="ap-frame" style="background-image:url('project/assets/imagery/device-knob.webp')"></div>
+        </div>
       </div>
-    </div>
-    <div class="narr-slide" style="background-image:url('project/assets/imagery/raincoat.webp')">
-      <span class="narr-tag">02 · Identity</span>
-      <div class="narr-frosted">
-        <h4>Identity with <em>purpose.</em></h4>
-        <p>Built from positioning, not decoration.</p>
-      </div>
-    </div>
-    <div class="narr-slide" style="background-image:url('project/assets/imagery/ipad-gradient.jpg')">
-      <span class="narr-tag">03 · Execution</span>
-      <div class="narr-frosted">
-        <h4>Strategy connected to <em>execution.</em></h4>
-        <p>Ideas transformed into experience.</p>
-      </div>
-    </div>
-    <div class="narr-slide" style="background-image:url('project/assets/imagery/astronaut-blue.avif')">
-      <span class="narr-tag">04 · Growth</span>
-      <div class="narr-frosted">
-        <h4>Digital designed for <em>growth.</em></h4>
-        <p>Quietly accelerated through technology.</p>
-      </div>
-    </div>
-    <div class="narr-slide" style="background-image:url('project/assets/imagery/device-knob.webp')">
-      <span class="narr-tag">05 · Modernization</span>
-      <div class="narr-frosted">
-        <h4>Modernization without <em>noise.</em></h4>
-        <p>Sharper brands. Lasting impact.</p>
-      </div>
-    </div>
-  </div>
-  <div class="narr-controls">
-    <span class="mono-label">01 / 05 — drag or use arrows</span>
-    <div class="narr-nav">
-      <button id="narrPrev" aria-label="Previous">←</button>
-      <button id="narrNext" aria-label="Next">→</button>
     </div>
   </div>
 </section>
@@ -452,7 +448,13 @@
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
 <script>
   /* ── Lenis ───────────────────────────────────────────────────── */
-  const lenis = new Lenis({ duration: 0.9, smoothWheel: true, syncTouch: false });
+  const lenis = new Lenis({
+    lerp: 0.085,
+    wheelMultiplier: 1,
+    smoothWheel: true,
+    syncTouch: false
+  });
+  window.lenis = lenis;
   function lenisRaf(t) { lenis.raf(t); requestAnimationFrame(lenisRaf); }
   requestAnimationFrame(lenisRaf);
 
@@ -486,17 +488,65 @@
   }, { threshold: 0, rootMargin: '0px 0px -60px 0px' });
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
-  /* ── Narrative carousel ──────────────────────────────────────── */
+  /* ── Approach: pinned scroll storytelling ────────────────────── */
   (function() {
-    const track = document.getElementById('narrTrack');
+    const track = document.getElementById('approachTrack');
     if (!track) return;
-    function slideBy(dir) {
-      const s = track.querySelector('.narr-slide');
-      if (!s) return;
-      track.scrollBy({ left: dir * (s.getBoundingClientRect().width + 24), behavior: 'smooth' });
+    const steps  = Array.from(track.querySelectorAll('.ap-step'));
+    const frames = Array.from(track.querySelectorAll('.ap-frame'));
+    const bar    = document.getElementById('apBar');
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const isMobile = () => window.matchMedia('(max-width: 768px)').matches;
+
+    /* split each line into per-letter spans for the reveal */
+    steps.forEach(s => {
+      const line = s.querySelector('.ap-line');
+      const text = line.textContent;
+      line.textContent = '';
+      [...text].forEach(chr => {
+        const outer = document.createElement('span'); outer.className = 'ap-ch';
+        const inner = document.createElement('span'); inner.className = 'ap-ch-i';
+        inner.textContent = chr === ' ' ? ' ' : chr;
+        outer.appendChild(inner); line.appendChild(outer);
+      });
+    });
+
+    let cur = -1;
+    function setActive(idx) {
+      if (idx === cur) return;
+      cur = idx;
+      steps.forEach((s, k)  => s.classList.toggle('is-active', k === idx));
+      frames.forEach((f, k) => f.classList.toggle('is-active', k === idx));
+      if (reduce) return;
+      const letters = steps[idx].querySelectorAll('.ap-ch-i');
+      letters.forEach(el => {
+        el.style.transition = 'none';
+        el.style.transform  = 'translateY(115%)';
+        el.style.opacity    = '0';
+      });
+      void steps[idx].offsetWidth; /* reflow → replay */
+      letters.forEach((el, n) => {
+        el.style.transition    = 'transform .62s var(--ease-out), opacity .5s var(--ease-out)';
+        el.style.transitionDelay = (n * 0.016) + 's';
+        el.style.transform     = 'none';
+        el.style.opacity       = '1';
+      });
     }
-    document.getElementById('narrPrev').addEventListener('click', () => slideBy(-1));
-    document.getElementById('narrNext').addEventListener('click', () => slideBy(1));
+
+    function onScroll() {
+      if (isMobile()) { steps.forEach(s => s.classList.add('is-active')); return; }
+      const total = track.offsetHeight - window.innerHeight;
+      let p = (-track.getBoundingClientRect().top) / total;
+      p = Math.max(0, Math.min(0.9999, p));
+      if (bar) bar.style.width = (p * 100).toFixed(2) + '%';
+      setActive(Math.min(steps.length - 1, Math.floor(p * steps.length)));
+    }
+
+    setActive(0);
+    if (window.lenis) window.lenis.on('scroll', onScroll);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    onScroll();
   })();
 
   /* ── Nav panel (hover desktop / click mobile) ────────────────── */
