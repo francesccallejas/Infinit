@@ -14,10 +14,14 @@
   --serif: "Instrument Serif", Georgia, serif;
   --mono:  "IBM Plex Mono", ui-monospace, monospace;
 
-  /* one horizontal grid edge — centred gutter so content never hugs the wall.
-     logo + nav + every section share this exact value → perfect alignment. */
-  --maxw:    1360px;
-  --edge:    max(clamp(40px, 8vw, 150px), calc((100vw - var(--maxw)) / 2));
+  /* centred container model (same as the V3 you liked).
+     --side = symmetric outer margin · --pad = inner gutter
+     --edge = --side + --pad  → logo/nav/full-bleed sections all line up
+     exactly with the centred .wrap content. */
+  --maxw:    1280px;
+  --pad:     clamp(24px, 5vw, 60px);
+  --side:    max(0px, calc((100vw - var(--maxw)) / 2));
+  --edge:    calc(var(--side) + var(--pad));
   --section: clamp(96px, 15vh, 200px);
   --ease:    cubic-bezier(.22, 1, .36, 1);
 }
@@ -39,7 +43,7 @@ a { color: inherit; text-decoration: none; }
 img { display: block; max-width: 100%; }
 
 /* ---- shared grid wrapper ---- */
-.wrap { padding-inline: var(--edge); }
+.wrap { width: 100%; max-width: var(--maxw); margin-inline: auto; padding-inline: var(--pad); }
 .measure { max-width: 16ch; }
 
 /* ---- eyebrow / mono label ---- */
