@@ -440,19 +440,22 @@ em { font-family: var(--serif); font-style: normal; font-weight: 400; }
    FOUNDER
    ========================================================================= */
 .founder, .studio { padding-block: var(--section); }
-.studio-clients { margin-top: clamp(64px, 9vw, 130px); }
+.studio-clients { margin-top: clamp(48px, 7vw, 96px); }
 .studio-clients .eyebrow { display: block; margin-bottom: clamp(20px, 2.6vw, 34px); }
-.studio-kpis { margin-top: clamp(64px, 9vw, 130px); }
-.founder-grid { display: grid; grid-template-columns: 1fr clamp(280px, 32vw, 460px); gap: clamp(40px, 6vw, 100px); align-items: start; }
+.founder-grid { display: grid; grid-template-columns: 1.18fr .92fr .66fr; gap: clamp(28px, 3.4vw, 60px); align-items: stretch; }
+.founder-bio { align-self: start; }
 .founder-grid h2 {
   font-weight: 600; font-size: clamp(30px, 3.6vw, 60px);
-  letter-spacing: -.03em; line-height: 1.12; max-width: 20ch;
+  letter-spacing: -.03em; line-height: 1.12; max-width: 18ch;
 }
-.founder-grid p { margin-top: 26px; color: var(--muted); max-width: 52ch; font-size: 17px; line-height: 1.7; }
-.founder-meta { margin-top: 40px; display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; max-width: 540px; }
+.founder-grid p { margin-top: 26px; color: var(--muted); max-width: 46ch; font-size: 17px; line-height: 1.7; }
+.founder-meta { margin-top: clamp(28px,3vw,40px); display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; max-width: 540px; }
 .founder-meta .k { font-family: var(--mono); font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
 .founder-meta .v { margin-top: 6px; font-weight: 600; }
-.founder-photo { aspect-ratio: 4/5; border-radius: 12px; overflow: hidden; background: #e7e4e1; }
+.founder-grid .kpi-grid { grid-template-columns: repeat(2,1fr); grid-auto-rows: 1fr; align-self: stretch; }
+.founder-grid .kpi { padding: clamp(16px,1.9vw,28px); min-height: clamp(96px,9vw,128px); }
+.founder-grid .kpi h4 { font-size: clamp(16px,1.5vw,22px); }
+.founder-photo { aspect-ratio: 6/7; align-self: start; border-radius: 12px; overflow: hidden; background: #e7e4e1; }
 .founder-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
 
 /* =========================================================================
@@ -525,6 +528,7 @@ em { font-family: var(--serif); font-style: normal; font-weight: 400; }
   .founder-grid { grid-template-columns: 1fr; }
   .founder-photo { order: -1; aspect-ratio: 4/3; }
   .founder-meta { grid-template-columns: 1fr 1fr; }
+  .founder-grid .kpi-grid { grid-template-columns: 1fr 1fr; }
 }
 
 /* =========================================================================
