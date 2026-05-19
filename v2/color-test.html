@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Infinit® — accent colour test</title>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300..900&family=Inter:wght@700&family=Instrument+Serif:ital@1&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#F4F2F0;--grey:#E8E5E1;--deep:#070A14;--ink:#0A0E1A}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:"Hanken Grotesk",sans-serif;background:var(--bg);color:var(--ink);padding:48px}
+  h1.t{font-size:14px;font-family:"IBM Plex Mono",monospace;letter-spacing:.2em;text-transform:uppercase;opacity:.5;margin-bottom:28px}
+  .lock{display:inline-flex;align-items:center;gap:9px;margin-bottom:48px}
+  .lock svg{height:30px}
+  .lock .w{font-weight:900;font-size:30px;letter-spacing:-.045em;line-height:1;display:inline-flex;align-items:flex-start;gap:1px}
+  .lock .r{font-family:"Inter",sans-serif;font-weight:700;font-size:11px;margin-top:3px}
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .card{border-radius:16px;overflow:hidden;border:1px solid rgba(10,14,26,.12)}
+  .row{padding:34px 30px}
+  .row.light{background:var(--bg)}
+  .row.grey{background:var(--grey)}
+  .row.deep{background:var(--deep);color:#F3F0EF}
+  .lab{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;opacity:.55;margin-bottom:18px}
+  .big{font-weight:600;font-size:34px;letter-spacing:-.03em;line-height:1.08}
+  .big em{font-style:normal}
+  .ln{display:inline-block;margin-top:18px;font-size:15px;border-bottom:2px solid;padding-bottom:2px}
+  .tags{margin-top:18px;display:flex;gap:8px;flex-wrap:wrap}
+  .tags span{font-family:"IBM Plex Mono",monospace;font-size:11px;border:1px solid currentColor;border-radius:999px;padding:6px 12px;opacity:.9}
+  .hd{font-weight:700;font-size:13px;font-family:"IBM Plex Mono",monospace;letter-spacing:.14em;text-transform:uppercase;margin:40px 0 16px}
+  /* candidates */
+  .c1{--a:#EDE3A8}.c2{--a:#E8C84A}.c3{--a:#C9A21A}
+  .big em,.ln,.dot{color:var(--a)}
+  .ln{border-color:var(--a)}
+  .tags span{border-color:var(--a);color:var(--a)}
+  .name{font-size:12px;font-family:"IBM Plex Mono",monospace;opacity:.6;margin-bottom:14px}
+</style>
+</head>
+<body>
+  <div class="lock"><svg viewBox="0 0 374 206" fill="none"><path d="M 108.196 34 L 182.196 34 Q 201.196 34 194.140 51.641 L 153.056 154.359 Q 146 172 127 172 L 53 172 Q 34 172 41.056 154.359 L 82.140 51.641 Q 89.196 34 108.196 34 Z" fill="currentColor"/><path d="M 108.196 34 L 182.196 34 Q 201.196 34 194.140 51.641 L 153.056 154.359 Q 146 172 127 172 L 53 172 Q 34 172 41.056 154.359 L 82.140 51.641 Q 89.196 34 108.196 34 Z" fill="currentColor" transform="translate(139 0)"/></svg><span class="w">infinit<span class="r">®</span></span></div>
+  <h1 class="t">Accent — 3 grocs · sobre clar / gris / deep · logo opció A (-.045em)</h1>
+
+  <div class="grid">
+    <!-- col 1 -->
+    <div>
+      <div class="name">Opció 1 — Cream marca · #EDE3A8</div>
+      <div class="card c1">
+        <div class="row light"><div class="lab">sobre clar</div><div class="big">Brands built to <em>scale.</em></div><a class="ln">hello@weareinfinit.com</a><div class="tags"><span>Positioning</span><span>Narrative</span></div></div>
+        <div class="row grey"><div class="lab">sobre gris</div><div class="big">Brands built to <em>scale.</em></div><a class="ln">hello@weareinfinit.com</a></div>
+        <div class="row deep"><div class="lab">sobre deep</div><div class="big">Brands built to <em>scale.</em></div><a class="ln">hello@weareinfinit.com</a><div class="tags"><span>Web</span><span>Motion</span></div></div>
+      </div>
+    </div>
+    <!-- col 2 -->
+    <div>
+      <div class="name">Opció 2 — Cream viu · #E8C84A</div>
+      <div class="card c2">
+        <div class="row light"><div class="lab">sobre clar</div><div class="big">Brands built to <em>scale.</em></div><a class="ln">hello@weareinfinit.com</a><div class="tags"><span>Positioning</span><span>Narrative</span></div></div>
+        <div class="row grey"><div class="lab">sobre gris</div><div class="big">Brands built to <em>scale.</em></div><a class="ln">hello@weareinfinit.com</a></div>
+        <div class="row deep"><div class="lab">sobre deep</div><div class="big">Brands built to <em>scale.</em></div><a class="ln">hello@weareinfinit.com</a><div class="tags"><span>Web</span><span>Motion</span></div></div>
+      </div>
+    </div>
+    <!-- col 3 -->
+    <div>
+      <div class="name">Opció 3 — Gold · #C9A21A</div>
+      <div class="card c3">
+        <div class="row light"><div class="lab">sobre clar</div><div class="big">Brands built to <em>scale.</em></div><a class="ln">hello@weareinfinit.com</a><div class="tags"><span>Positioning</span><span>Narrative</span></div></div>
+        <div class="row grey"><div class="lab">sobre gris</div><div class="big">Brands built to <em>scale.</em></div><a class="ln">hello@weareinfinit.com</a></div>
+        <div class="row deep"><div class="lab">sobre deep</div><div class="big">Brands built to <em>scale.</em></div><a class="ln">hello@weareinfinit.com</a><div class="tags"><span>Web</span><span>Motion</span></div></div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

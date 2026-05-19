@@ -81,7 +81,7 @@ img { display: block; max-width: 100%; }
 .logo svg { height: 28px; width: auto; color: currentColor; }
 .logo .word {
   font-family: var(--sans); font-weight: 900;
-  font-size: 28px; letter-spacing: -.03em; line-height: 1;
+  font-size: 28px; letter-spacing: -.045em; line-height: 1;
   display: inline-flex; align-items: flex-start; gap: 1px; color: currentColor;
 }
 .logo .reg {
@@ -336,7 +336,7 @@ img { display: block; max-width: 100%; }
 .foot-mark svg { height: clamp(60px, 7vw, 116px); width: auto; color: currentColor; }
 .foot-mark .w {
   font-family: var(--sans); font-weight: 900;
-  font-size: clamp(60px, 7vw, 116px); letter-spacing: -.03em; line-height: 1;
+  font-size: clamp(60px, 7vw, 116px); letter-spacing: -.045em; line-height: 1;
   display: inline-flex; align-items: flex-start; gap: 3px; color: inherit;
 }
 .foot-mark .reg { font-family: "Inter", sans-serif; font-weight: 700;
