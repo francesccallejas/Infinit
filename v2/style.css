@@ -356,11 +356,22 @@ img { display: block; max-width: 100%; }
    WORK
    ========================================================================= */
 .work { padding-block: var(--section); }
-.work-grid {
-  display: grid; grid-template-columns: 1fr 1fr;
-  gap: clamp(16px, 2vw, 28px);
+.work-list {
+  display: flex; flex-direction: column;
+  gap: clamp(64px, 11vw, 170px);
 }
-.work-tile { display: block; }
+.work-tile {
+  display: block; width: 56%;
+  opacity: 0;
+  transition: opacity .9s var(--ease), transform .95s var(--ease);
+}
+.work-tile.wt-l { margin-right: auto; transform: translateX(-72px); }
+.work-tile.wt-r { margin-left: auto;  transform: translateX(72px); }
+.work-tile.in { opacity: 1; transform: none; }
+.work-list .work-tile:nth-child(1) { width: 62%; }
+.work-list .work-tile:nth-child(2) { width: 47%; }
+.work-list .work-tile:nth-child(3) { width: 51%; }
+.work-list .work-tile:nth-child(4) { width: 57%; }
 .work-tile .shot {
   position: relative; overflow: hidden; border-radius: 12px;
   aspect-ratio: 16/11; background: var(--deep);
@@ -491,7 +502,8 @@ img { display: block; max-width: 100%; }
   .claim-sticky { position: static; height: auto; min-height: 88svh; padding: 14px; }
   .claim-inner { opacity: 1; transform: none; }
   .svc { grid-template-columns: 1fr; gap: 16px; }
-  .work-grid { grid-template-columns: 1fr; }
+  .work-list .work-tile,
+  .work-list .work-tile:nth-child(n) { width: 100%; margin: 0; transform: none; }
   .founder-grid { grid-template-columns: 1fr; }
   .founder-photo { order: -1; aspect-ratio: 4/3; }
   .founder-meta { grid-template-columns: 1fr 1fr; }

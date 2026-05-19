@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Infinit® — Brand &amp; Strategy · V2</title>
 <meta name="description" content="Strategic brand, identity and digital systems for companies navigating growth and transformation.">
-<link rel="stylesheet" href="style.css?v=70">
+<link rel="stylesheet" href="style.css?v=71">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300..900&family=Inter:wght@700&family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -170,8 +170,8 @@
     <div class="section-head r">
       <h2>Recent <em>work.</em></h2>
     </div>
-    <div class="work-grid">
-      <a class="work-tile big r" href="#">
+    <div class="work-list" id="workList">
+      <a class="work-tile big wt-l" href="#">
         <div class="shot">
           <img class="cover" src="../project/assets/images/Bunnker Final.webp" alt="Bunnker — beyond renting" loading="lazy">
           <div class="tile-scrim"></div>
@@ -179,7 +179,7 @@
         </div>
         <div class="cap"><span class="cn">Bunnker</span><span class="cn-sub">beyond renting</span><span class="work-tag">Strategy · Brand · Growth</span></div>
       </a>
-      <a class="work-tile big r d1" href="#">
+      <a class="work-tile big wt-r" href="#">
         <div class="shot">
           <img class="cover" src="../project/assets/images/Relats Brand.webp" alt="Relats — ahead of the curve" loading="lazy">
           <div class="tile-scrim"></div>
@@ -187,7 +187,7 @@
         </div>
         <div class="cap"><span class="cn">Relats</span><span class="cn-sub">ahead of the curve</span><span class="work-tag">Strategy · Brand · Digital</span></div>
       </a>
-      <a class="work-tile r" href="#">
+      <a class="work-tile wt-l" href="#">
         <div class="shot">
           <img class="cover" src="../project/assets/images/ipad-sunset.webp" alt="Instellar — mission performance" loading="lazy">
           <div class="tile-scrim"></div>
@@ -195,7 +195,7 @@
         </div>
         <div class="cap"><span class="cn">Instellar</span><span class="cn-sub">mission performance</span><span class="work-tag">Strategy · Brand · Digital</span></div>
       </a>
-      <a class="work-tile r d1" href="#">
+      <a class="work-tile wt-r" href="#">
         <div class="shot">
           <img class="cover" src="../project/assets/imagery/Julia Yosemite.webp" alt="Julià — premium adventure vans" loading="lazy">
           <div class="tile-scrim"></div>
@@ -440,6 +440,16 @@
         snap: { snapTo: 1, duration: { min: .15, max: .4 }, ease: 'power1.inOut', delay: .08 }
       });
     }
+  })();
+
+  /* ---- work: editorial tiles enter from left / right ---- */
+  (function(){
+    const tiles = [...document.querySelectorAll('#workList .work-tile')];
+    if (!tiles.length) return;
+    const io = new IntersectionObserver((es,o)=>es.forEach(e=>{
+      if (e.isIntersecting) { e.target.classList.add('in'); o.unobserve(e.target); }
+    }), { threshold: .15, rootMargin: '0px 0px -8% 0px' });
+    tiles.forEach(t => io.observe(t));
   })();
 
   /* ---- reel: grow on scroll + fast montage → video → logo ---- */
