@@ -29,6 +29,17 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
 html { -webkit-text-size-adjust: 100%; scrollbar-width: none; -ms-overflow-style: none; }
 html::-webkit-scrollbar, body::-webkit-scrollbar { width: 0; height: 0; display: none; }
+.scroll-pill {
+  position: fixed; right: 9px; top: 0; width: 6px;
+  border-radius: 999px; z-index: 90; pointer-events: none;
+  background: rgba(140,140,140,.28);
+  backdrop-filter: blur(10px) saturate(170%);
+  -webkit-backdrop-filter: blur(10px) saturate(170%);
+  border: 1px solid rgba(255,255,255,.32);
+  box-shadow: 0 4px 16px -6px rgba(10,11,15,.35);
+  opacity: 0; transition: opacity .45s var(--ease);
+}
+.scroll-pill.show { opacity: 1; }
 body {
   font-family: var(--sans);
   background: var(--bg);

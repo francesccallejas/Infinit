@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Infinit® — Brand &amp; Strategy · V2</title>
 <meta name="description" content="Strategic brand, identity and digital systems for companies navigating growth and transformation.">
-<link rel="stylesheet" href="style.css?v=11">
+<link rel="stylesheet" href="style.css?v=12">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300..900&family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -254,6 +254,30 @@
   const lenis = new Lenis({ lerp: 0.085, smoothWheel: true });
   window.lenis = lenis;
   (function raf(t){ lenis.raf(t); requestAnimationFrame(raf); })();
+
+  /* ---- custom frosted scroll pill (shows while scrolling) ---- */
+  (function(){
+    const pill = document.createElement('div');
+    pill.className = 'scroll-pill';
+    document.body.appendChild(pill);
+    const M = 10; let hideT;
+    function update(){
+      const docH = document.documentElement.scrollHeight;
+      const vh = innerHeight, trackH = vh - M * 2;
+      if (docH <= vh + 4) { pill.style.opacity = 0; return; }
+      const thumb = Math.max(44, (vh / docH) * trackH);
+      const prog  = scrollY / (docH - vh);
+      pill.style.height = thumb + 'px';
+      pill.style.transform = 'translateY(' + (M + prog * (trackH - thumb)) + 'px)';
+      pill.classList.add('show');
+      clearTimeout(hideT);
+      hideT = setTimeout(() => pill.classList.remove('show'), 750);
+    }
+    lenis.on('scroll', update);
+    addEventListener('scroll', update, { passive:true });
+    addEventListener('resize', update);
+    update();
+  })();
   document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click', e => {
     const t = document.querySelector(a.getAttribute('href'));
     if (t) { e.preventDefault(); lenis.scrollTo(t, { offset: 0 }); }
