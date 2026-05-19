@@ -8,7 +8,7 @@
   --muted:   rgba(11,12,17,.56);
   --faint:   rgba(11,12,17,.20);
   --line:    rgba(11,12,17,.11);
-  --accent:  #EFE6AE;
+  --accent:  #EADFA0;
   --clay:    #A89887;
   --blue-gray: #7F838B;
   --paper:   #FBFAF9;
@@ -296,17 +296,67 @@ img { display: block; max-width: 100%; }
    WORK
    ========================================================================= */
 .work { padding-block: var(--section); }
-.work-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: clamp(20px, 3vw, 40px); }
-.tile { display: block; }
-.tile .frame {
-  aspect-ratio: 16/11; border-radius: 12px; overflow: hidden; background: #e7e4e1;
+.work-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: clamp(16px, 2vw, 28px);
 }
-.tile.tall .frame { aspect-ratio: 4/5; }
-.tile .frame img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.1s var(--ease); }
-.tile:hover .frame img { transform: scale(1.04); }
-.tile .cap { display: flex; justify-content: space-between; margin-top: 16px; font-size: 15px; }
-.tile .cap b { font-weight: 600; }
-.tile .cap span { color: var(--muted); }
+.work-tile {
+  position: relative; overflow: hidden; border-radius: 12px;
+  background: var(--deep); color: var(--bg);
+  aspect-ratio: 16/11;
+  transition: transform .5s var(--ease);
+}
+.work-tile:hover { transform: translateY(-4px); }
+.work-tile .cover {
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform .8s var(--ease), filter .55s ease;
+}
+.work-tile:hover .cover { transform: scale(1.04); filter: blur(11px) brightness(.5); }
+.work-tile .tile-scrim {
+  position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(180deg, rgba(8,8,12,0) 45%, rgba(8,8,12,.72) 100%);
+}
+.work-tile .logo-over {
+  position: absolute; inset: 0; display: grid; place-items: center;
+  opacity: 0; transition: opacity .45s ease; pointer-events: none;
+}
+.work-tile:hover .logo-over { opacity: 1; }
+.work-tile .logo-over img {
+  max-width: 40%; max-height: 38%; width: auto; height: auto; object-fit: contain;
+  filter: brightness(0) invert(1);
+  transform: translateY(8px); transition: transform .45s ease;
+}
+.work-tile:hover .logo-over img { transform: translateY(0); }
+.work-tile .logo-over img.lg-bunnker  { max-width: 34%; }
+.work-tile .logo-over img.lg-relats   { max-width: 42%; }
+.work-tile .logo-over img.lg-instellar{ max-width: 44%; }
+.work-tile .logo-over img.lg-julia    { max-width: 38%; }
+.work-tile .tile-meta {
+  position: absolute; left: clamp(22px,2.4vw,36px); right: clamp(22px,2.4vw,36px);
+  bottom: clamp(20px,2.2vw,32px); z-index: 2;
+}
+.work-tile .tile-meta .work-tag {
+  font-family: var(--mono); font-size: clamp(13px,1vw,16px);
+  letter-spacing: .14em; text-transform: uppercase; opacity: .82; margin-bottom: 8px;
+}
+.work-tile .tile-meta .client-name {
+  font-family: var(--sans); font-weight: 600;
+  font-size: clamp(22px,2.2vw,34px); letter-spacing: -.02em; line-height: 1.12;
+}
+.awwwards-badge {
+  position: absolute; top: 16px; right: 16px; z-index: 2;
+  display: flex; align-items: center; gap: 8px; padding: 8px 13px;
+  background: rgba(8,8,12,.38); border: 1px solid rgba(244,242,240,.18);
+  border-radius: 999px; color: #fff; font-family: var(--mono);
+  font-size: 11px; letter-spacing: .12em; text-transform: uppercase;
+  pointer-events: none;
+}
+.awwwards-badge img { height: 14px; width: auto; filter: brightness(0) invert(1); }
+.wip-tag {
+  position: absolute; top: 18px; left: 50%; transform: translateX(-50%);
+  font-family: var(--mono); font-size: 12px; letter-spacing: .14em;
+  text-transform: uppercase; color: rgba(244,242,240,.6); white-space: nowrap;
+}
 
 /* =========================================================================
    FOUNDER
@@ -327,7 +377,10 @@ img { display: block; max-width: 100%; }
 /* =========================================================================
    FOOTER
    ========================================================================= */
-.foot { background: var(--ink); color: var(--bg); padding: clamp(120px, 16vw, 240px) 0 clamp(40px,5vw,72px); }
+.foot { background: var(--ink); color: var(--bg);
+  min-height: 100vh; display: flex; flex-direction: column; justify-content: center;
+  padding: clamp(120px, 16vw, 240px) 0 clamp(40px,5vw,72px); }
+.foot .wrap { width: 100%; }
 .foot-top {
   display: grid; grid-template-columns: 1.4fr 1fr;
   gap: clamp(40px, 7vw, 130px);
@@ -484,16 +537,26 @@ img { display: block; max-width: 100%; }
 /* =========================================================================
    CTA band
    ========================================================================= */
-.cta-band { padding-block: clamp(110px,16vw,220px); text-align: left; }
-.cta-band h2 { font-weight: 600; font-size: clamp(40px,6.4vw,116px);
-  letter-spacing: -.045em; line-height: 1.0; max-width: 16ch; }
-.cta-band h2 em { font-family: var(--serif); font-style: italic; font-weight: 400; }
-.cta-band h2 em { color: var(--accent); }
-.cta-band .cta-mail { display: inline-flex; align-items: baseline; gap: 14px;
-  margin-top: clamp(36px,5vw,70px); font-weight: 700; font-size: clamp(24px,3.2vw,52px);
-  letter-spacing: -.03em; color: var(--accent); }
-.cta-band .cta-mail .ar { font-family: var(--mono); transition: transform .35s var(--ease); }
-.cta-band .cta-mail:hover .ar { transform: translate(7px,-7px); color: var(--accent); }
+.cta-band {
+  background: var(--accent); color: var(--ink);
+  min-height: 92vh; display: flex; align-items: center;
+  padding-block: clamp(110px,16vw,220px);
+}
+.cta-band .wrap { text-align: center; }
+.cta-band h2 { font-weight: 600; font-size: clamp(44px,7vw,128px);
+  letter-spacing: -.045em; line-height: 1.0; max-width: 16ch; margin-inline: auto; }
+.cta-band h2 em { font-family: var(--serif); font-style: italic; font-weight: 400; color: var(--ink); }
+.cta-band .cta-mail {
+  display: inline-flex; align-items: center; gap: 14px;
+  margin-top: clamp(40px,5vw,72px);
+  font-weight: 600; font-size: clamp(17px,1.5vw,22px); letter-spacing: -.01em;
+  background: var(--ink); color: var(--bg);
+  padding: 18px 30px; border-radius: 999px;
+  transition: transform .3s var(--ease), background .3s var(--ease);
+}
+.cta-band .cta-mail .ar { font-family: var(--mono); transition: transform .3s var(--ease); }
+.cta-band .cta-mail:hover { transform: translateY(-3px); }
+.cta-band .cta-mail:hover .ar { transform: translateX(5px); }
 
 @media (max-width: 900px) {
   .sv-track { height: auto; }
