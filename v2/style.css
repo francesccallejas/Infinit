@@ -357,26 +357,23 @@ img { display: block; max-width: 100%; }
    ========================================================================= */
 .work { padding-block: var(--section); }
 .work-list {
-  display: flex; flex-direction: column;
-  gap: clamp(64px, 11vw, 170px);
+  display: flex; align-items: flex-start;
+  gap: clamp(12px, 1.4vw, 24px);
 }
 .work-tile {
-  display: block; width: 56%;
-  opacity: 0;
-  transition: opacity .9s var(--ease), transform .95s var(--ease);
+  flex: 1; min-width: 0;
+  opacity: 0; transform: translateY(46px);
+  transition: opacity .85s var(--ease), transform .9s var(--ease);
 }
-.work-tile.wt-l { margin-right: auto; transform: translateX(-72px); }
-.work-tile.wt-r { margin-left: auto;  transform: translateX(72px); }
+.work-tile.wt-r { transition-delay: .08s; }
+.work-tile:nth-child(2) { margin-top: clamp(80px, 13vw, 190px); }
+.work-tile:nth-child(3) { transition-delay: .12s; }
+.work-tile:nth-child(4) { margin-top: clamp(80px, 13vw, 190px); transition-delay: .18s; }
 .work-tile.in { opacity: 1; transform: none; }
-.work-list .work-tile:nth-child(1) { width: 62%; }
-.work-list .work-tile:nth-child(2) { width: 47%; }
-.work-list .work-tile:nth-child(3) { width: 51%; }
-.work-list .work-tile:nth-child(4) { width: 57%; }
 .work-tile .shot {
-  position: relative; overflow: hidden; border-radius: 12px;
-  aspect-ratio: 16/11; background: var(--deep);
+  position: relative; overflow: hidden; border-radius: 14px;
+  aspect-ratio: 4/5; background: var(--deep);
 }
-.work-tile.big .shot { aspect-ratio: 4/5; }
 .work-tile .cover {
   width: 100%; height: 100%; object-fit: cover;
   transition: transform .8s var(--ease), filter .55s ease;
@@ -502,8 +499,9 @@ img { display: block; max-width: 100%; }
   .claim-sticky { position: static; height: auto; min-height: 88svh; padding: 14px; }
   .claim-inner { opacity: 1; transform: none; }
   .svc { grid-template-columns: 1fr; gap: 16px; }
+  .work-list { flex-direction: column; gap: 28px; }
   .work-list .work-tile,
-  .work-list .work-tile:nth-child(n) { width: 100%; margin: 0; transform: none; }
+  .work-list .work-tile:nth-child(n) { width: 100%; margin-top: 0; }
   .founder-grid { grid-template-columns: 1fr; }
   .founder-photo { order: -1; aspect-ratio: 4/3; }
   .founder-meta { grid-template-columns: 1fr 1fr; }
