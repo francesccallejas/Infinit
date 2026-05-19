@@ -109,19 +109,19 @@ img { display: block; max-width: 100%; }
 .nav .menu-btn.open span:nth-child(3) { transform: translateY(-5.5px) rotate(-45deg); }
 .nav .cta {
   padding: 0 14px; font-size: 14px; font-weight: 600;
-  background: var(--paper); color: var(--ink); border: 1px solid var(--line);
+  background: var(--accent); color: var(--ink); border: 0;
   gap: 0;
 }
 .nav .cta .ct-tx { padding-right: 0; transition: padding-right .35s var(--ease); }
 .nav .cta .ct-ar {
   width: 0; height: 32px; opacity: 0; overflow: hidden; flex: none;
   display: grid; place-items: center; border-radius: 8px;
-  background: var(--accent); color: var(--ink);
-  box-shadow: inset 0 0 0 1px rgba(11,12,17,.07);
+  background: var(--ink); color: var(--accent);
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.06);
   transition: width .35s var(--ease), opacity .25s var(--ease);
 }
 .nav .cta .ct-ar svg { width: 15px; height: 15px; }
-.nav .cta:hover { background: #fff; padding-right: 7px; }
+.nav .cta:hover { background: var(--cream-hover, #E7DA92); padding-right: 7px; }
 .nav .cta:hover .ct-ar { width: 32px; opacity: 1; }
 .nav .cta:hover .ct-tx { padding-right: 12px; }
 
