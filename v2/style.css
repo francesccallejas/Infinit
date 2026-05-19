@@ -183,8 +183,15 @@ img { display: block; max-width: 100%; }
   padding-top: 14vh; padding-bottom: clamp(56px, 11vh, 120px);
 }
 .hero-h {
-  font-weight: 600; font-size: clamp(58px, 11vw, 220px);
+  font-weight: 600; font-size: clamp(70px, 13.2vw, 264px);
   letter-spacing: -.05em; line-height: 1.0; max-width: 16ch;
+}
+.hero-reg {
+  font-family: var(--sans); font-style: normal; font-weight: 600;
+  font-size: .24em; vertical-align: super; line-height: 0;
+  letter-spacing: 0; margin: 0 .02em 0 .04em;
+  color: var(--muted);
+  -webkit-text-fill-color: var(--muted);
 }
 .hero-h .ln { display: block; }
 .hero-h .w { display: inline-block; overflow: hidden; vertical-align: top;
