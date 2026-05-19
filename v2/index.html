@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Infinit® — Brand &amp; Strategy · V2</title>
 <meta name="description" content="Strategic brand, identity and digital systems for companies navigating growth and transformation.">
-<link rel="stylesheet" href="style.css?v=34">
+<link rel="stylesheet" href="style.css?v=35">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300..900&family=Inter:wght@700&family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -115,47 +115,35 @@
   </section>
 
   <!-- SERVICES -->
-  <section class="services" id="services">
-    <div class="sv-track" id="svTrack">
-      <div class="sv-sticky">
-        <div class="sv-grid">
-          <div class="sv-stage">
-            <div class="sv-item on" data-i="0">
-              <div class="sv-n">01 — Strategy</div>
-              <h3 class="sv-title">Strategy that holds <em>under pressure.</em></h3>
-              <p class="sv-desc">Positioning, narrative and brand architecture grounded in business reality — the foundation everything else is built on.</p>
-              <div class="sv-tags"><span>Positioning</span><span>Narrative</span><span>Brand architecture</span><span>Research</span><span>Messaging</span></div>
-            </div>
-            <div class="sv-item" data-i="1">
-              <div class="sv-n">02 — Identity</div>
-              <h3 class="sv-title">Identity built to <em>last.</em></h3>
-              <p class="sv-desc">Visual and verbal systems coherent across every surface — from product to pitch, designed to scale without losing tension.</p>
-              <div class="sv-tags"><span>Identity systems</span><span>Art direction</span><span>Verbal identity</span><span>Guidelines</span></div>
-            </div>
-            <div class="sv-item" data-i="2">
-              <div class="sv-n">03 — Digital</div>
-              <h3 class="sv-title">Digital that becomes <em>experience.</em></h3>
-              <p class="sv-desc">Websites and digital products that turn the brand into something people use — fast, considered, measurable.</p>
-              <div class="sv-tags"><span>Web</span><span>Digital product</span><span>Motion</span><span>Build</span><span>Performance</span></div>
-            </div>
-            <div class="sv-all" data-i="3">
-              <h3 class="sv-all-title">Three connected pillars. <em>One firm.</em></h3>
-              <div class="sv-all-grid">
-                <div class="sv-col"><div class="sv-n">01 — Strategy</div><div class="sv-mini"><span>Positioning</span><span>Narrative</span><span>Architecture</span><span>Research</span></div></div>
-                <div class="sv-col"><div class="sv-n">02 — Identity</div><div class="sv-mini"><span>Identity systems</span><span>Art direction</span><span>Verbal</span><span>Guidelines</span></div></div>
-                <div class="sv-col"><div class="sv-n">03 — Digital</div><div class="sv-mini"><span>Web</span><span>Product</span><span>Motion</span><span>Build</span></div></div>
-              </div>
-            </div>
-          </div>
-          <div class="sv-media">
-            <div class="sv-img on" style="background-image:url('../project/assets/imagery/relats-industrial.webp')"></div>
-            <div class="sv-img" style="background-image:url('../project/assets/imagery/device-knob.webp')"></div>
-            <div class="sv-img" style="background-image:url('../project/assets/imagery/ipad-gradient.jpg')"></div>
-            <div class="sv-img sv-img-all" style="background-image:url('../project/assets/imagery/raincoat.webp')"></div>
-          </div>
+  <section class="services wrap" id="services">
+    <div class="section-head r">
+      <h2>Three connected pillars. <em>One firm.</em></h2>
+    </div>
+    <div class="svc-rows" id="svcRows">
+      <a class="svc-row" href="#contact">
+        <div class="svc-main">
+          <h3>Strategy</h3>
+          <div class="svc-desc">Positioning, narrative and brand architecture grounded in business reality — the foundation everything else is built on.</div>
+          <div class="svc-subs"><span>Positioning</span><span>Narrative</span><span>Brand architecture</span><span>Research</span><span>Messaging</span></div>
         </div>
-        <div class="sv-rail"><i id="svRail"></i></div>
-      </div>
+        <div class="plus"></div>
+      </a>
+      <a class="svc-row" href="#contact">
+        <div class="svc-main">
+          <h3>Identity</h3>
+          <div class="svc-desc">Visual and verbal systems coherent across every surface — from product to pitch, designed to scale without losing tension.</div>
+          <div class="svc-subs"><span>Identity systems</span><span>Art direction</span><span>Verbal identity</span><span>Guidelines</span></div>
+        </div>
+        <div class="plus"></div>
+      </a>
+      <a class="svc-row" href="#contact">
+        <div class="svc-main">
+          <h3>Digital</h3>
+          <div class="svc-desc">Websites and digital products that turn the brand into something people use — fast, considered, measurable.</div>
+          <div class="svc-subs"><span>Web</span><span>Digital product</span><span>Motion</span><span>Build</span><span>Performance</span></div>
+        </div>
+        <div class="plus"></div>
+      </a>
     </div>
   </section>
 
@@ -428,36 +416,17 @@
     });
   })();
 
-  /* ---- services: one pillar at a time → all three ---- */
+  /* ---- services: rows slide in from the right, staggered, bounce ---- */
   (function(){
-    const track = document.getElementById('svTrack');
-    if (!track) return;
-    const items = [...track.querySelectorAll('.sv-item')];
-    const all   = track.querySelector('.sv-all');
-    const imgs  = [...track.querySelectorAll('.sv-img:not(.sv-img-all)')];
-    const imgAll= track.querySelector('.sv-img-all');
-    const rail  = document.getElementById('svRail');
-    const STAGES = 4;
-    let cur = -1;
-    function show(i){
-      if (i === cur) return; cur = i;
-      const last = (i === STAGES - 1);
-      items.forEach((el,k)=> el.classList.toggle('on', !last && k === i));
-      all.classList.toggle('on', last);
-      imgs.forEach((el,k)=> el.classList.toggle('on', !last && k === i));
-      imgAll.classList.toggle('on', last);
-    }
-    show(0);
-    if (isMobile() || !hasGSAP) { items.forEach(e=>e.classList.add('on')); all.classList.add('on'); return; }
-    ScrollTrigger.create({
-      trigger: track, start: 'top top', end: 'bottom bottom', scrub: true,
-      onUpdate: self => {
-        const p = self.progress;
-        if (rail) rail.style.width = (p*100).toFixed(1)+'%';
-        const f = Math.min(STAGES - 1e-4, p*STAGES);
-        show(Math.min(STAGES-1, Math.floor(f)));
-      }
-    });
+    const rows = [...document.querySelectorAll('#svcRows .svc-row')];
+    if (!rows.length) return;
+    const io = new IntersectionObserver((es,o)=>es.forEach(e=>{
+      if (!e.isIntersecting) return;
+      o.unobserve(e.target);
+      const idx = rows.indexOf(e.target);
+      setTimeout(() => e.target.classList.add('in'), idx * 110);
+    }), { threshold: .3 });
+    rows.forEach(r => io.observe(r));
   })();
 
   /* ---- reel: grow on scroll + fast montage → video → logo ---- */

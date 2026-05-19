@@ -669,3 +669,43 @@ img { display: block; max-width: 100%; }
   .reel-track { height: auto; }
   .reel-stick { position: static; height: 70svh; padding: 14px; }
 }
+
+/* ---- Services: editorial rows (option E) · slide-in from right + bounce ---- */
+.services { padding-block: var(--section); background: var(--bg); border: 0; position: static; }
+.svc-rows { margin-top: clamp(36px, 5vw, 76px); }
+.svc-row {
+  display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 30px;
+  padding: clamp(20px, 2.3vw, 38px) clamp(16px, 2vw, 36px);
+  border-top: 1px solid var(--line); color: var(--ink);
+  opacity: 0; transform: translateX(72px);
+  transition: opacity .5s var(--ease),
+              transform .62s cubic-bezier(.22, 1.4, .36, 1),
+              background .4s var(--ease), color .4s var(--ease),
+              border-radius .4s var(--ease), border-color .4s var(--ease);
+}
+.svc-row:last-child { border-bottom: 1px solid var(--line); }
+.svc-row.in { opacity: 1; transform: none; }
+.svc-row h3 { font-weight: 600; font-size: clamp(28px, 3.8vw, 66px);
+  letter-spacing: -.035em; line-height: 1; }
+.svc-desc { color: var(--muted); font-size: clamp(15px, 1.2vw, 19px);
+  line-height: 1.55; max-width: 52ch; margin-top: 14px; }
+.svc-subs { display: none; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+.svc-subs span { font-family: var(--mono); font-size: 12px;
+  border: 1px solid var(--line); border-radius: 999px; padding: 6px 13px; }
+.svc-row .plus {
+  width: 46px; height: 46px; border: 1px solid var(--line); border-radius: 999px;
+  flex: none; display: grid; place-items: center; position: relative;
+  transition: transform .45s cubic-bezier(.22,1.4,.36,1), border-color .3s;
+}
+.svc-row .plus::before, .svc-row .plus::after { content: ''; position: absolute; background: currentColor; }
+.svc-row .plus::before { width: 15px; height: 1.6px; }
+.svc-row .plus::after { height: 15px; width: 1.6px; }
+.svc-row:hover { background: var(--ink); color: var(--bg); border-radius: 20px; border-color: transparent; }
+.svc-row:hover .svc-desc { display: none; }
+.svc-row:hover .svc-subs { display: flex; }
+.svc-row:hover .svc-subs span { border-color: rgba(255,255,255,.3); }
+.svc-row:hover .plus { transform: rotate(135deg); }
+@media (max-width: 760px) {
+  .svc-row { gap: 20px; }
+  .svc-row h3 { font-size: clamp(30px, 9vw, 52px); }
+}
