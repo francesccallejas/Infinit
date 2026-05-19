@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Infinit® — brand palette</title>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;900&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:"Hanken Grotesk",sans-serif;background:#0A0E1A;color:#F4F2F0;min-height:100vh;
+    display:flex;flex-direction:column;gap:48px;padding:56px clamp(24px,5vw,80px)}
+  .h{font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:.22em;text-transform:uppercase;opacity:.55}
+  /* swatch board — squares that touch */
+  .board{display:grid;grid-template-columns:repeat(7,1fr);border-radius:18px;overflow:hidden}
+  .sw{aspect-ratio:1/1;display:flex;flex-direction:column;justify-content:flex-end;padding:18px}
+  .sw .n{font-size:13px;font-weight:600}
+  .sw .x{font-family:"IBM Plex Mono",monospace;font-size:11px;opacity:.7;margin-top:3px}
+  .dark .n,.dark .x{color:#F4F2F0}
+  .light .n,.light .x{color:#0A0E1A}
+  /* accent-on-light preview */
+  .prev{display:grid;grid-template-columns:1fr 1fr;gap:2px;border-radius:18px;overflow:hidden}
+  .p{background:#F4F2F0;color:#0A0E1A;padding:48px clamp(24px,4vw,60px)}
+  .p:last-child{background:#FBFAF9}
+  .p .lab{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;opacity:.5;margin-bottom:20px}
+  .p .big{font-weight:600;font-size:clamp(28px,3.4vw,52px);letter-spacing:-.03em;line-height:1.08}
+  .p .a1{color:#EDE3A8}.p .a2{color:#EAD98C}.p .a3{color:#E4CF6B}
+  .p .ln{display:inline-block;margin-top:16px;font-size:15px;border-bottom:2px solid;padding-bottom:2px}
+</style>
+</head>
+<body>
+  <div>
+    <div class="h">Infinit® — paleta de marca · quadrats que es toquen</div>
+  </div>
+
+  <div class="board">
+    <div class="sw light" style="background:#F4F2F0"><span class="n">Warm BG</span><span class="x">#F4F2F0</span></div>
+    <div class="sw light" style="background:#FBFAF9"><span class="n">Paper</span><span class="x">#FBFAF9</span></div>
+    <div class="sw light" style="background:#EDE3A8"><span class="n">Cream</span><span class="x">#EDE3A8</span></div>
+    <div class="sw light" style="background:#EAD98C"><span class="n">Cream+ </span><span class="x">#EAD98C</span></div>
+    <div class="sw light" style="background:#E4CF6B"><span class="n">Cream++ </span><span class="x">#E4CF6B</span></div>
+    <div class="sw light" style="background:#A89887"><span class="n">Clay</span><span class="x">#A89887</span></div>
+    <div class="sw dark"  style="background:#7F838B"><span class="n">Blue-gray</span><span class="x">#7F838B</span></div>
+  </div>
+
+  <div class="board" style="grid-template-columns:repeat(3,1fr)">
+    <div class="sw dark" style="background:#0A0E1A"><span class="n">Ink (blue-black)</span><span class="x">#0A0E1A</span></div>
+    <div class="sw dark" style="background:#070A14"><span class="n">Deep</span><span class="x">#070A14</span></div>
+    <div class="sw dark" style="background:#11162A"><span class="n">Ink soft</span><span class="x">#11162A</span></div>
+  </div>
+
+  <div>
+    <div class="h" style="margin-bottom:18px">Cream pujat de color · sobre fons clar</div>
+    <div class="prev">
+      <div class="p">
+        <div class="lab">Warm BG · #F4F2F0</div>
+        <div class="big">Brands built to <span class="a1">scale.</span></div>
+        <div class="big" style="margin-top:8px">Brands built to <span class="a2">scale.</span></div>
+        <div class="big" style="margin-top:8px">Brands built to <span class="a3">scale.</span></div>
+        <a class="ln a2">hello@weareinfinit.com</a>
+      </div>
+      <div class="p">
+        <div class="lab">Paper · #FBFAF9</div>
+        <div class="big">Brands built to <span class="a1">scale.</span> <span style="font-size:13px;opacity:.5">#EDE3A8</span></div>
+        <div class="big" style="margin-top:8px">Brands built to <span class="a2">scale.</span> <span style="font-size:13px;opacity:.5">#EAD98C</span></div>
+        <div class="big" style="margin-top:8px">Brands built to <span class="a3">scale.</span> <span style="font-size:13px;opacity:.5">#E4CF6B</span></div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
