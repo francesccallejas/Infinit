@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Infinit® — Brand &amp; Strategy · V2</title>
 <meta name="description" content="Strategic brand, identity and digital systems for companies navigating growth and transformation.">
-<link rel="stylesheet" href="style.css?v=23">
+<link rel="stylesheet" href="style.css?v=24">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300..900&family=Inter:wght@700&family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -340,18 +340,14 @@
   /* ---- intro ---- */
   setTimeout(() => { const i = document.getElementById('intro'); if (i) i.remove(); if (hasGSAP) ScrollTrigger.refresh(); }, 3100);
 
-  /* ---- reveal (GSAP batch, with no-JS-safe fallback) ---- */
+  /* ---- reveal (IntersectionObserver — reliable for in-view elements) ---- */
   (function(){
     const els = [...document.querySelectorAll('.r')];
-    if (!hasGSAP) { els.forEach(e=>e.classList.add('in')); return; }
-    els.forEach(el => {
-      gsap.set(el, { autoAlpha: 0, y: 26 });
-      ScrollTrigger.create({
-        trigger: el, start: 'top 88%',
-        once: true,
-        onEnter: () => gsap.to(el, { autoAlpha: 1, y: 0, duration: 1, ease: 'power3.out' })
-      });
-    });
+    if (!('IntersectionObserver' in window)) { els.forEach(e=>e.classList.add('in')); return; }
+    const io = new IntersectionObserver(es => es.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+    }), { threshold: 0, rootMargin: '0px 0px -8% 0px' });
+    els.forEach(el => io.observe(el));
   })();
 
   /* ---- nav panel ---- */
