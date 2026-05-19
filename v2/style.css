@@ -18,8 +18,8 @@
      --side = symmetric outer margin · --pad = inner gutter
      --edge = --side + --pad  → logo/nav/full-bleed sections all line up
      exactly with the centred .wrap content. */
-  --maxw:    1280px;
-  --pad:     clamp(24px, 5vw, 60px);
+  --maxw:    1840px;
+  --pad:     clamp(26px, 4.5vw, 80px);
   --side:    max(0px, calc((100vw - var(--maxw)) / 2));
   --edge:    calc(var(--side) + var(--pad));
   --section: clamp(96px, 15vh, 200px);
