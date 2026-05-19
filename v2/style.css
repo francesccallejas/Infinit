@@ -357,7 +357,9 @@ img { display: block; max-width: 100%; }
    ========================================================================= */
 .work { padding-block: var(--section); }
 .work-list {
+  --off: clamp(70px, 11vw, 150px);   /* right column drop */
   display: grid; grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto;
   column-gap: clamp(24px, 3.4vw, 64px);
   row-gap: clamp(24px, 3.4vw, 64px);
   align-items: start;
@@ -367,10 +369,16 @@ img { display: block; max-width: 100%; }
   transition: opacity .85s var(--ease), transform .9s var(--ease);
 }
 .work-tile.in { opacity: 1; transform: none; }
-/* right column dropped down — masonry desnivell */
-.work-list .work-tile:nth-child(2) { margin-top: clamp(80px, 12vw, 160px); transition-delay: .06s; }
-.work-list .work-tile:nth-child(3) { transition-delay: .1s; }
-.work-list .work-tile:nth-child(4) { transition-delay: .15s; }
+/* explicit placement so each column stacks independently */
+.work-list .work-tile:nth-child(1) { grid-column: 1; grid-row: 1; }
+.work-list .work-tile:nth-child(3) { grid-column: 1; grid-row: 2; transition-delay: .1s; }
+.work-list .work-tile:nth-child(2) { grid-column: 2; grid-row: 1;
+  transform: translateY(calc(var(--off) + 48px)); transition-delay: .06s; }
+.work-list .work-tile:nth-child(4) { grid-column: 2; grid-row: 2;
+  transform: translateY(calc(var(--off) + 48px)); transition-delay: .15s; }
+/* right column keeps its drop in the resting state (transform, not layout) */
+.work-list .work-tile:nth-child(2).in,
+.work-list .work-tile:nth-child(4).in { transform: translateY(var(--off)); }
 .work-tile .shot {
   position: relative; overflow: hidden; border-radius: 14px;
   aspect-ratio: 4/5; background: var(--deep);
@@ -508,6 +516,10 @@ img { display: block; max-width: 100%; }
   .work-list { position: static; display: flex; flex-direction: column; gap: 28px; min-height: 0; }
   .work-list .work-tile,
   .work-list .work-tile:nth-child(n) { position: static; width: 100%; left: auto; top: auto; margin: 0; }
+  .work-list .work-tile:nth-child(2),
+  .work-list .work-tile:nth-child(4) { transform: translateY(40px); }
+  .work-list .work-tile:nth-child(2).in,
+  .work-list .work-tile:nth-child(4).in { transform: none; }
   .founder-grid { grid-template-columns: 1fr; }
   .founder-photo { order: -1; aspect-ratio: 4/3; }
   .founder-meta { grid-template-columns: 1fr 1fr; }
