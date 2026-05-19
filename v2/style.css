@@ -200,14 +200,14 @@ img { display: block; max-width: 100%; }
 .hero-h .w > i.hero-fill {
   font-family: var(--serif); font-style: italic; font-weight: 400; letter-spacing: -.012em;
   background-image: url('../project/assets/imagery/relats-industrial.webp');
-  background-repeat: no-repeat; background-size: cover; background-position: 0% 50%;
+  background-repeat: no-repeat; background-size: auto 220%; background-position: 100% 50%;
   -webkit-background-clip: text; background-clip: text;
   -webkit-text-fill-color: transparent; color: transparent;
   animation: heroRise .95s var(--ease) .24s forwards,
-             bgDrift 16s ease-in-out infinite;
+             bgDrift 22s linear infinite;
 }
 @keyframes heroRise { to { transform: translateY(0); } }
-@keyframes bgDrift { 0%,100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
+@keyframes bgDrift { from { background-position: 100% 50%; } to { background-position: 0% 50%; } }
 .hero-sub {
   position: absolute; right: var(--pad); bottom: clamp(80px, 13vh, 150px);
   max-width: 42ch; text-align: left;
