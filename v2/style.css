@@ -8,7 +8,9 @@
   --muted:   rgba(10,14,26,.56);
   --faint:   rgba(10,14,26,.20);
   --line:    rgba(10,14,26,.11);
-  --accent:  #C9A21A;
+  --accent:  #EAD98C;
+  --clay:    #A89887;
+  --blue-gray: #7F838B;
   --paper:   #FBFAF9;
 
   --sans:  "Hanken Grotesk", system-ui, sans-serif;
@@ -392,6 +394,7 @@ img { display: block; max-width: 100%; }
 .sv-item.on, .sv-all.on { opacity: 1; transform: none; }
 .sv-n { font-family: var(--mono); font-size: 13px; letter-spacing: .16em;
   text-transform: uppercase; color: var(--muted); margin-bottom: clamp(16px,2vw,26px); }
+.sv-item.on .sv-n { color: var(--accent); }
 .sv-title { font-weight: 600; font-size: clamp(38px,5.4vw,92px); letter-spacing: -.04em;
   line-height: 1.02; max-width: 14ch; }
 .sv-title em { font-family: var(--serif); font-style: italic; font-weight: 400; }
