@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Infinit® — Brand &amp; Strategy · V2</title>
 <meta name="description" content="Strategic brand, identity and digital systems for companies navigating growth and transformation.">
-<link rel="stylesheet" href="style.css?v=28">
+<link rel="stylesheet" href="style.css?v=29">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300..900&family=Inter:wght@700&family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -60,14 +60,16 @@
     <span class="hero-cue">Scroll ↓</span>
   </section>
 
-  <!-- APPROACH (statements — presentation under review) -->
-  <section class="approach wrap" id="approach">
-    <div class="ap-list">
-      <h3 class="ap-line r" data-fill>Clarity in complexity.</h3>
-      <h3 class="ap-line r" data-fill>Identity with purpose.</h3>
-      <h3 class="ap-line r" data-fill>Strategy connected to execution.</h3>
-      <h3 class="ap-line r" data-fill>Digital designed for growth.</h3>
-      <h3 class="ap-line r" data-fill>Modernization without noise.</h3>
+  <!-- APPROACH (pinned · one statement at a time) -->
+  <section class="approach" id="approach">
+    <div class="ap-track" id="apTrack">
+      <div class="ap-stick">
+        <div class="ap-st on">Clarity in <em>complexity.</em></div>
+        <div class="ap-st">Identity with <em>purpose.</em></div>
+        <div class="ap-st">Strategy connected to <em>execution.</em></div>
+        <div class="ap-st">Digital designed for <em>growth.</em></div>
+        <div class="ap-st">Modernization without <em>noise.</em></div>
+      </div>
     </div>
   </section>
 
@@ -349,7 +351,7 @@
     const el = document.querySelector('.hero-fill');
     if (!el) return;
     const SEQ = '../project/assets/imagery/approach-seq/';
-    const TOTAL = 159, STEP = 2;          /* sample every 2nd frame */
+    const TOTAL = 159, STEP = 1;          /* every frame, slower playback */
     const frames = [];
     for (let i = 1; i <= TOTAL; i += STEP) {
       const u = SEQ + 'frame_' + String(i).padStart(4,'0') + '.jpg';
@@ -357,7 +359,7 @@
     }
     if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     let i = 0, last = 0;
-    const FPS = 20, intv = 1000 / FPS;
+    const FPS = 11, intv = 1000 / FPS;
     function tick(t){
       if (t - last >= intv) {
         el.style.backgroundImage = 'url(' + frames[i] + ')';
@@ -391,70 +393,19 @@
 
   const isMobile = () => matchMedia('(max-width: 900px)').matches;
 
-  /* ---- approach: scrubbed video + grey→accent→ink letter reveal ---- */
+  /* ---- approach: pinned · one statement at a time ---- */
   (function(){
     const track = document.getElementById('apTrack');
     if (!track) return;
-    const steps = [...track.querySelectorAll('.ap-step')];
-    const rail  = document.getElementById('apRail');
-    const canvas = document.getElementById('apCanvas');
-
-    const sets = steps.map(s => {
-      const line = s.querySelector('.ap-line'), txt = line.textContent;
-      line.textContent = ''; const cs = [];
-      [...txt].forEach(ch => {
-        const sp = document.createElement('span');
-        if (ch === ' ') { sp.className = 'ap-c ap-space'; sp.textContent = ' '; }
-        else { sp.className = 'ap-c'; sp.textContent = ch; cs.push(sp); }
-        line.appendChild(sp);
-      });
-      return cs;
+    const st = [...track.querySelectorAll('.ap-st')];
+    let cur = -1;
+    function show(i){ if (i===cur) return; cur=i; st.forEach((s,k)=>s.classList.toggle('on', k===i)); }
+    show(0);
+    if (isMobile() || !hasGSAP) return;   /* mobile: CSS stacks them */
+    ScrollTrigger.create({
+      trigger: track, start: 'top top', end: 'bottom bottom', scrub: true,
+      onUpdate: self => { const N = st.length; show(Math.min(N-1, Math.floor(self.progress * N))); }
     });
-
-    const FR = parseInt(canvas.dataset.frames, 10) || 0;
-    const SEQ = canvas.dataset.seq, ctx = canvas.getContext('2d'), imgs = [];
-    let ready = false;
-    if (FR > 0 && !isMobile()) {
-      for (let i = 1; i <= FR; i++) {
-        const im = new Image();
-        im.src = SEQ + 'frame_' + String(i).padStart(4,'0') + '.jpg';
-        imgs.push(im);
-        if (i === 1) im.onload = () => { ready = true; canvas.classList.add('ready'); size(); paint(lastP); };
-      }
-    }
-    function size(){ const r = canvas.getBoundingClientRect(), d = Math.min(devicePixelRatio||1,2);
-      canvas.width = Math.round(r.width*d); canvas.height = Math.round(r.height*d); }
-    function frame(p){ let i = Math.round(p*(FR-1)); i = Math.max(0, Math.min(FR-1, i));
-      if (imgs[i] && imgs[i].complete && imgs[i].naturalWidth) return imgs[i];
-      for (let d=1; d<FR; d++){ const a=imgs[i-d], b=imgs[i+d];
-        if (a&&a.complete&&a.naturalWidth) return a; if (b&&b.complete&&b.naturalWidth) return b; } return null; }
-    function cover(im){ const cw=canvas.width, ch=canvas.height, ir=im.naturalWidth/im.naturalHeight, cr=cw/ch;
-      let w,h,x,y; if(ir>cr){h=ch;w=ch*ir;x=(cw-w)/2;y=0;} else {w=cw;h=cw/ir;x=0;y=(ch-h)/2;} ctx.drawImage(im,x,y,w,h); }
-
-    let ai = -1;
-    function active(i){ if(i===ai)return; ai=i; steps.forEach((s,k)=>s.classList.toggle('on',k===i)); }
-    const BAND = 3;
-    function fill(i, f){ const cs = sets[i], lead = f*cs.length;
-      for (let j=0;j<cs.length;j++){ const c=cs[j]; let st = j>=lead?'f':(j>=lead-BAND?'l':'r');
-        if (c._s!==st){ c.classList.toggle('read',st==='r'); c.classList.toggle('lead',st==='l'); c._s=st; } } }
-
-    let lastP = 0;
-    function paint(p){ lastP = p;
-      if (rail) rail.style.width = (p*100).toFixed(1)+'%';
-      if (ready){ const fm=frame(p); if(fm) cover(fm); }
-      const N=steps.length, ff=Math.min(N-1e-4,p*N), i=Math.min(N-1,Math.floor(ff)), sub=ff-i;
-      active(i); fill(i, Math.max(0,Math.min(1, sub/0.8))); }
-
-    active(0); fill(0,0);
-    if (isMobile() || !hasGSAP) { steps.forEach(s=>s.classList.add('on')); }
-    else {
-      ScrollTrigger.create({
-        trigger: track, start: 'top top', end: 'bottom bottom', scrub: true,
-        onUpdate: self => paint(self.progress),
-        onRefresh: () => { size(); paint(lastP); }
-      });
-    }
-    addEventListener('resize', () => { size(); paint(lastP); });
   })();
 
   /* ---- claim: window grows from centre ---- */

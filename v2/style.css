@@ -602,3 +602,27 @@ img { display: block; max-width: 100%; }
 .approach .ap-list .ap-line .c { color: var(--faint); transition: color .5s var(--ease); }
 .approach .ap-list .ap-line .c.read { color: var(--ink); }
 .approach .ap-list .ap-line .c.lead { color: var(--accent); }
+
+/* ---- Approach: pinned, one statement at a time (option B) ---- */
+.approach { position: relative; background: var(--bg); }
+.ap-track { height: 520vh; }
+.ap-stick {
+  position: sticky; top: 0; height: 100svh;
+  display: flex; align-items: center; padding: 0 var(--edge);
+}
+.ap-st {
+  position: absolute; left: var(--edge); right: var(--edge); max-width: 17ch;
+  font-weight: 700; font-size: clamp(46px, 8.4vw, 156px);
+  letter-spacing: -.045em; line-height: .98; color: var(--ink);
+  opacity: 0; transform: translateY(44px);
+  transition: opacity .6s var(--ease), transform .7s var(--ease);
+}
+.ap-st.on { opacity: 1; transform: none; }
+.ap-st em { font-family: var(--serif); font-style: italic; font-weight: 400; color: var(--ink); }
+@media (max-width: 900px) {
+  .ap-track { height: auto; }
+  .ap-stick { position: static; height: auto; flex-direction: column; align-items: flex-start;
+    gap: clamp(20px,5vw,44px); padding: var(--section) var(--edge); }
+  .ap-st { position: relative; left: auto; right: auto; opacity: 1; transform: none;
+    font-size: clamp(36px,9vw,64px); }
+}
