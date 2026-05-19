@@ -197,14 +197,13 @@ img { display: block; max-width: 100%; }
 .hero-h .w:nth-child(3) > i { animation-delay: .2s; }
 .hero-fill {
   font-family: var(--serif); font-style: italic; font-weight: 400; letter-spacing: -.012em;
-  background-image: url('../project/assets/imagery/relats-industrial.webp');
-  background-size: 175% 195%; background-position: 18% 50%;
+  background-image: url('../project/assets/imagery/approach-seq/frame_0001.jpg');
+  background-size: cover; background-position: center;
   -webkit-background-clip: text; background-clip: text;
   -webkit-text-fill-color: transparent; color: transparent;
-  animation: heroRise .95s var(--ease) .2s forwards, heroDrift 18s ease-in-out infinite;
+  animation: heroRise .95s var(--ease) .2s forwards;
 }
 @keyframes heroRise { to { transform: translateY(0); } }
-@keyframes heroDrift { 0%,100% { background-position: 16% 50%; } 50% { background-position: 84% 50%; } }
 .hero-sub {
   margin-top: clamp(40px, 8vh, 96px);
   display: flex; justify-content: space-between; align-items: end;
