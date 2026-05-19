@@ -357,23 +357,24 @@ img { display: block; max-width: 100%; }
    ========================================================================= */
 .work { padding-block: var(--section); }
 .work-list {
-  display: flex; align-items: flex-start;
-  gap: clamp(12px, 1.4vw, 24px);
+  position: relative; min-height: 138vh;
 }
 .work-tile {
-  flex: 1; min-width: 0;
-  opacity: 0; transform: translateY(46px);
+  position: absolute; width: 29%;
+  opacity: 0; transform: translateY(48px);
   transition: opacity .85s var(--ease), transform .9s var(--ease);
 }
-.work-tile.wt-r { transition-delay: .08s; }
-.work-tile:nth-child(2) { margin-top: clamp(80px, 13vw, 190px); }
-.work-tile:nth-child(3) { transition-delay: .12s; }
-.work-tile:nth-child(4) { margin-top: clamp(80px, 13vw, 190px); transition-delay: .18s; }
 .work-tile.in { opacity: 1; transform: none; }
+.work-list .work-tile:nth-child(1) { left: 0;    top: 0;    width: 27%; }
+.work-list .work-tile:nth-child(2) { left: 33%;  top: 17vh; width: 30%; transition-delay: .06s; }
+.work-list .work-tile:nth-child(3) { left: 68%;  top: 5vh;  width: 30%; transition-delay: .1s; }
+.work-list .work-tile:nth-child(4) { left: 22%;  top: 62vh; width: 30%; transition-delay: .15s; }
 .work-tile .shot {
   position: relative; overflow: hidden; border-radius: 14px;
   aspect-ratio: 4/5; background: var(--deep);
 }
+.work-list .work-tile:nth-child(3) .shot,
+.work-list .work-tile:nth-child(4) .shot { aspect-ratio: 4/3; }
 .work-tile .cover {
   width: 100%; height: 100%; object-fit: cover;
   transition: transform .8s var(--ease), filter .55s ease;
@@ -499,9 +500,9 @@ img { display: block; max-width: 100%; }
   .claim-sticky { position: static; height: auto; min-height: 88svh; padding: 14px; }
   .claim-inner { opacity: 1; transform: none; }
   .svc { grid-template-columns: 1fr; gap: 16px; }
-  .work-list { flex-direction: column; gap: 28px; }
+  .work-list { position: static; display: flex; flex-direction: column; gap: 28px; min-height: 0; }
   .work-list .work-tile,
-  .work-list .work-tile:nth-child(n) { width: 100%; margin-top: 0; }
+  .work-list .work-tile:nth-child(n) { position: static; width: 100%; left: auto; top: auto; margin: 0; }
   .founder-grid { grid-template-columns: 1fr; }
   .founder-photo { order: -1; aspect-ratio: 4/3; }
   .founder-meta { grid-template-columns: 1fr 1fr; }
