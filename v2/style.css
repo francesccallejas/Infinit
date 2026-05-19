@@ -178,22 +178,54 @@ img { display: block; max-width: 100%; }
    HERO
    ========================================================================= */
 .hero {
+  position: relative;
   min-height: 100svh; display: flex; flex-direction: column; justify-content: center;
-  padding-top: 14vh; padding-bottom: clamp(40px, 8vh, 90px);
+  padding-top: 14vh; padding-bottom: clamp(56px, 11vh, 120px);
 }
-.hero h1 {
-  font-weight: 600; font-size: clamp(48px, 8.4vw, 152px);
-  letter-spacing: -.045em; line-height: .98; max-width: 15ch;
+.hero-h {
+  font-weight: 700; font-size: clamp(52px, 9.2vw, 176px);
+  letter-spacing: -.046em; line-height: .96; max-width: 15ch;
 }
-.hero h1 em { font-family: var(--serif); font-style: italic; font-weight: 400; letter-spacing: -.01em; }
-.hero-foot {
+.hero-h .w { display: inline-block; overflow: hidden; vertical-align: top;
+  padding-bottom: .08em; margin-bottom: -.08em; }
+.hero-h .w > i {
+  display: inline-block; font-style: normal;
+  transform: translateY(112%);
+  animation: heroRise .95s var(--ease) forwards;
+}
+.hero-h .w:nth-child(2) > i { animation-delay: .1s; }
+.hero-h .w:nth-child(3) > i { animation-delay: .2s; }
+.hero-fill {
+  font-family: var(--serif); font-style: italic; font-weight: 400; letter-spacing: -.012em;
+  background-image: url('../project/assets/imagery/relats-industrial.webp');
+  background-size: 175% 195%; background-position: 18% 50%;
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent; color: transparent;
+  animation: heroRise .95s var(--ease) .2s forwards, heroDrift 18s ease-in-out infinite;
+}
+@keyframes heroRise { to { transform: translateY(0); } }
+@keyframes heroDrift { 0%,100% { background-position: 16% 50%; } 50% { background-position: 84% 50%; } }
+.hero-sub {
   margin-top: clamp(40px, 8vh, 96px);
   display: flex; justify-content: space-between; align-items: end;
   gap: 24px; flex-wrap: wrap;
   border-top: 1px solid var(--line); padding-top: 22px;
+  opacity: 0; transform: translateY(20px);
+  animation: heroSub 1s var(--ease) 1s forwards;
 }
-.hero-foot p { color: var(--muted); font-size: 16px; max-width: 42ch; }
-.hero-foot .tag { font-family: var(--mono); font-size: 12px; letter-spacing: .18em; text-transform: uppercase; color: var(--muted); }
+@keyframes heroSub { to { opacity: 1; transform: none; } }
+.hero-sub p { color: var(--muted); font-size: clamp(15px,1.2vw,19px); max-width: 46ch; }
+.hero-sub .tag { font-family: var(--mono); font-size: 12px; letter-spacing: .18em; text-transform: uppercase; color: var(--muted); }
+.hero-cue {
+  position: absolute; right: var(--pad); bottom: clamp(28px,5vh,52px);
+  font-family: var(--mono); font-size: 12px; letter-spacing: .18em; text-transform: uppercase;
+  color: var(--muted);
+  opacity: 0; animation: heroSub 1s var(--ease) 1.3s forwards;
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-h .w > i, .hero-fill { animation: heroDrift 18s ease-in-out infinite; transform: none; }
+  .hero-sub, .hero-cue { animation: none; opacity: 1; transform: none; }
+}
 
 /* =========================================================================
    APPROACH  (pinned · statements left, video right · grid-aligned)
