@@ -197,7 +197,7 @@ img { display: block; max-width: 100%; }
 .hero-h .ln:nth-child(1) .w:nth-child(2) > i { animation-delay: .08s; }
 .hero-h .ln:nth-child(2) .w:nth-child(1) > i { animation-delay: .16s; }
 .hero-h .ln:nth-child(2) .w:nth-child(2) > i { animation-delay: .24s; }
-.hero-fill {
+.hero-h .w > i.hero-fill {
   font-family: var(--serif); font-style: italic; font-weight: 400; letter-spacing: -.012em;
   background-image: url('../project/assets/imagery/relats-industrial.webp');
   background-size: 180% 200%; background-position: 30% 50%;
