@@ -697,7 +697,7 @@ img { display: block; max-width: 100%; }
 .svc-row {
   display: grid; grid-template-columns: auto minmax(0,.82fr) minmax(0,1.55fr) auto;
   align-items: center; gap: clamp(20px,3vw,56px);
-  padding: clamp(13px, 1.6vw, 26px) clamp(16px, 2vw, 36px);
+  padding: clamp(16px, 1.9vw, 32px) clamp(16px, 2vw, 36px);
   border-top: 1px solid var(--line); color: var(--ink);
   opacity: 0; transform: translateX(72px);
   transition: opacity .5s var(--ease),
@@ -707,15 +707,15 @@ img { display: block; max-width: 100%; }
 }
 .svc-row:last-child { border-bottom: 1px solid var(--line); }
 .svc-row.in { opacity: 1; transform: none; }
-.svc-n { font-family: var(--mono); font-size: 13px; letter-spacing: .14em;
+.svc-n { font-family: var(--mono); font-size: 14px; letter-spacing: .14em;
   color: var(--muted); align-self: start; padding-top: .55em; }
-.svc-head h3 { font-weight: 600; font-size: clamp(28px, 4vw, 72px);
+.svc-head h3 { font-weight: 600; font-size: clamp(33px, 4.6vw, 84px);
   letter-spacing: -.035em; line-height: .98; }
-.svc-tag { display: block; margin-top: 6px; font-family: var(--serif);
-  font-style: italic; font-size: clamp(16px, 1.5vw, 24px); color: var(--muted); }
+.svc-tag { display: block; margin-top: 7px; font-family: var(--serif);
+  font-style: italic; font-size: clamp(18px, 1.75vw, 29px); color: var(--muted); }
 .svc-row:hover .svc-tag { color: rgba(244,242,240,.6); }
 .svc-body { position: relative; }
-.svc-desc { color: var(--muted); font-size: clamp(15px, 1.15vw, 18px);
+.svc-desc { color: var(--muted); font-size: clamp(16px, 1.3vw, 21px);
   line-height: 1.55; max-width: 52ch; margin: 0;
   transition: opacity .35s var(--ease); }
 .svc-subs {
