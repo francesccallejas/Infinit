@@ -756,7 +756,7 @@ em { font-family: var(--serif); font-style: normal; font-weight: 400; }
 /* ---- Services: editorial rows (option E) · slide-in from right + bounce ---- */
 .services { padding-top: clamp(60px, 8vh, 120px); padding-bottom: clamp(56px, 8vh, 104px);
   background: var(--bg); border: 0; position: static; }
-.svc-rows { margin-top: clamp(8px, 1.1vw, 18px); }
+.svc-rows { margin-top: clamp(8px, 1.1vw, 18px); padding-inline: 3%; }
 .svc-row {
   display: grid; grid-template-columns: auto minmax(0,.82fr) minmax(0,1.55fr) auto;
   align-items: center; gap: clamp(20px,3vw,56px);
@@ -804,6 +804,7 @@ em { font-family: var(--serif); font-style: normal; font-weight: 400; }
 .svc-row:hover .svc-subs span { border-color: rgba(255,255,255,.28); color: var(--bg); }
 .svc-row:hover .plus { transform: rotate(135deg); color: var(--accent); border-color: rgba(239,230,174,.4); }
 @media (max-width: 860px) {
+  .svc-rows { padding-inline: 0; }
   .svc-row {
     grid-template-columns: 1fr auto; gap: 8px 20px;
     grid-template-areas: "n plus" "head plus" "body plus";
