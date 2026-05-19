@@ -190,8 +190,6 @@ img { display: block; max-width: 100%; }
   font-family: var(--sans); font-style: normal; font-weight: 600;
   font-size: .24em; vertical-align: super; line-height: 0;
   letter-spacing: 0; margin: 0 .02em 0 .04em;
-  color: var(--muted);
-  -webkit-text-fill-color: var(--muted);
 }
 .hero-h .ln { display: block; }
 .hero-h .w { display: inline-block; overflow: hidden; vertical-align: top;
