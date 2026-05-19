@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Infinit® — Contact button lab</title>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#F4F2F0;--ink:#0B0C11;--accent:#EFE6AE;--muted:rgba(11,12,17,.55);
+   --sans:"Hanken Grotesk",sans-serif;--mono:"IBM Plex Mono",monospace;--ease:cubic-bezier(.22,1,.36,1)}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:var(--sans);background:var(--bg);color:var(--ink);
+   min-height:100vh;display:flex;flex-direction:column;gap:54px;
+   align-items:flex-start;justify-content:center;padding:8vh clamp(30px,8vw,140px)}
+  .h{font-family:var(--mono);font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+  .row{display:flex;align-items:center;gap:28px}
+  .lab{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);width:230px}
+  /* base button */
+  .cta{position:relative;display:inline-flex;align-items:center;height:46px;padding:0 22px;
+   font-size:15px;font-weight:600;border-radius:12px;background:var(--accent);color:var(--ink);
+   overflow:hidden;cursor:pointer;border:0;white-space:nowrap}
+  .cta .tx{position:relative;z-index:2;display:inline-flex;align-items:center;gap:0;
+   transition:gap .35s var(--ease),transform .35s var(--ease)}
+  .cta .ar{width:0;opacity:0;overflow:hidden;display:inline-flex;transition:width .35s var(--ease),opacity .3s var(--ease)}
+  .cta .ar svg{width:15px;height:15px}
+
+  /* 1 — arrow reveal */
+  .c1:hover .tx{gap:9px}
+  .c1:hover .ar{width:16px;opacity:1}
+
+  /* 2 — ink fill swipe + arrow */
+  .c2::before{content:"";position:absolute;inset:0;background:var(--ink);
+   transform:translateX(-101%);transition:transform .42s var(--ease);z-index:1}
+  .c2:hover::before{transform:none}
+  .c2:hover{color:var(--bg)}
+  .c2:hover .tx{gap:9px}
+  .c2:hover .ar{width:16px;opacity:1}
+
+  /* 3 — cream dot badge scales in */
+  .c3 .dot{width:0;height:22px;opacity:0;margin-left:0;border-radius:999px;background:var(--ink);
+   display:inline-grid;place-items:center;color:var(--accent);
+   transition:width .35s var(--ease),opacity .3s var(--ease),margin-left .35s var(--ease)}
+  .c3 .dot svg{width:12px;height:12px}
+  .c3:hover .dot{width:22px;opacity:1;margin-left:10px}
+
+  /* 4 — underline grows + arrow nudge */
+  .c4{background:transparent;border:1px solid rgba(11,12,17,.18)}
+  .c4 .tx::after{content:"";position:absolute;left:0;right:0;bottom:-3px;height:1.5px;
+   background:var(--ink);transform:scaleX(0);transform-origin:left;transition:transform .4s var(--ease)}
+  .c4 .tx{position:relative}
+  .c4:hover .tx::after{transform:scaleX(1)}
+  .c4:hover .ar{width:16px;opacity:1}
+  .c4:hover .tx{gap:9px}
+  .c4:hover{background:var(--accent);border-color:transparent}
+
+  /* 5 — splits: label + round accent arrow button */
+  .c5{padding-right:6px;gap:0}
+  .c5 .pill{display:inline-grid;place-items:center;width:0;height:36px;opacity:0;
+   border-radius:10px;background:var(--ink);color:var(--accent);margin-left:0;
+   transition:width .4s var(--ease),opacity .3s var(--ease),margin-left .35s var(--ease),transform .4s var(--ease)}
+  .c5 .pill svg{width:14px;height:14px}
+  .c5:hover .pill{width:36px;opacity:1;margin-left:12px;transform:rotate(0)}
+  .c5:hover{padding-right:6px}
+</style>
+</head>
+<body>
+  <div class="h">Contact — 5 animacions de hover · passa-hi el ratolí</div>
+
+  <div class="row">
+    <span class="lab">01 · Fletxa apareix</span>
+    <button class="cta c1"><span class="tx">Contact<span class="ar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span></span></button>
+  </div>
+
+  <div class="row">
+    <span class="lab">02 · Ompliment tinta + fletxa</span>
+    <button class="cta c2"><span class="tx">Contact<span class="ar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span></span></button>
+  </div>
+
+  <div class="row">
+    <span class="lab">03 · Botonet rodó que entra</span>
+    <button class="cta c3"><span class="tx">Contact</span><span class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span></button>
+  </div>
+
+  <div class="row">
+    <span class="lab">04 · Subratllat + fons cream</span>
+    <button class="cta c4"><span class="tx">Contact<span class="ar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span></span></button>
+  </div>
+
+  <div class="row">
+    <span class="lab">05 · Pastilla d'accent separada</span>
+    <button class="cta c5"><span class="tx">Contact</span><span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span></button>
+  </div>
+</body>
+</html>
