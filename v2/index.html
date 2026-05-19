@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Infinit® — Brand &amp; Strategy · V2</title>
 <meta name="description" content="Strategic brand, identity and digital systems for companies navigating growth and transformation.">
-<link rel="stylesheet" href="style.css?v=22">
+<link rel="stylesheet" href="style.css?v=23">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300..900&family=Inter:wght@700&family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -294,13 +294,23 @@
 </main>
 
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
 <script>
-  /* ---- smooth scroll ---- */
-  const lenis = new Lenis({ lerp: 0.085, smoothWheel: true });
+  /* ---- Lenis + GSAP ticker + ScrollTrigger ---- */
+  const lenis = new Lenis({ lerp: 0.09, smoothWheel: true });
   window.lenis = lenis;
-  (function raf(t){ lenis.raf(t); requestAnimationFrame(raf); })();
+  const hasGSAP = window.gsap && window.ScrollTrigger;
+  if (hasGSAP) {
+    gsap.registerPlugin(ScrollTrigger);
+    lenis.on('scroll', ScrollTrigger.update);
+    gsap.ticker.add((t) => lenis.raf(t * 1000));
+    gsap.ticker.lagSmoothing(0);
+  } else {
+    (function raf(t){ lenis.raf(t); requestAnimationFrame(raf); })();
+  }
 
-  /* ---- custom frosted scroll pill (shows while scrolling) ---- */
+  /* ---- custom frosted scroll pill ---- */
   (function(){
     const pill = document.createElement('div');
     pill.className = 'scroll-pill';
@@ -319,7 +329,6 @@
       hideT = setTimeout(() => pill.classList.remove('show'), 750);
     }
     lenis.on('scroll', update);
-    addEventListener('scroll', update, { passive:true });
     addEventListener('resize', update);
     update();
   })();
@@ -329,13 +338,21 @@
   }));
 
   /* ---- intro ---- */
-  setTimeout(() => { const i = document.getElementById('intro'); if (i) i.remove(); }, 3100);
+  setTimeout(() => { const i = document.getElementById('intro'); if (i) i.remove(); if (hasGSAP) ScrollTrigger.refresh(); }, 3100);
 
-  /* ---- reveal ---- */
-  const io = new IntersectionObserver(es => es.forEach(e => {
-    if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
-  }), { threshold: 0, rootMargin: '0px 0px -8% 0px' });
-  document.querySelectorAll('.r').forEach(el => io.observe(el));
+  /* ---- reveal (GSAP batch, with no-JS-safe fallback) ---- */
+  (function(){
+    const els = [...document.querySelectorAll('.r')];
+    if (!hasGSAP) { els.forEach(e=>e.classList.add('in')); return; }
+    els.forEach(el => {
+      gsap.set(el, { autoAlpha: 0, y: 26 });
+      ScrollTrigger.create({
+        trigger: el, start: 'top 88%',
+        once: true,
+        onEnter: () => gsap.to(el, { autoAlpha: 1, y: 0, duration: 1, ease: 'power3.out' })
+      });
+    });
+  })();
 
   /* ---- nav panel ---- */
   (function(){
@@ -346,14 +363,15 @@
     document.addEventListener('keydown', e => { if (e.key === 'Escape') set(false); });
   })();
 
-  /* ---- approach: pinned · grey→accent→ink reveal + scrubbed video ---- */
+  const isMobile = () => matchMedia('(max-width: 900px)').matches;
+
+  /* ---- approach: scrubbed video + grey→accent→ink letter reveal ---- */
   (function(){
     const track = document.getElementById('apTrack');
     if (!track) return;
     const steps = [...track.querySelectorAll('.ap-step')];
     const rail  = document.getElementById('apRail');
     const canvas = document.getElementById('apCanvas');
-    const isMobile = () => matchMedia('(max-width: 900px)').matches;
 
     const sets = steps.map(s => {
       const line = s.querySelector('.ap-line'), txt = line.textContent;
@@ -375,7 +393,7 @@
         const im = new Image();
         im.src = SEQ + 'frame_' + String(i).padStart(4,'0') + '.jpg';
         imgs.push(im);
-        if (i === 1) im.onload = () => { ready = true; canvas.classList.add('ready'); size(); paint(); };
+        if (i === 1) im.onload = () => { ready = true; canvas.classList.add('ready'); size(); paint(lastP); };
       }
     }
     function size(){ const r = canvas.getBoundingClientRect(), d = Math.min(devicePixelRatio||1,2);
@@ -394,41 +412,41 @@
       for (let j=0;j<cs.length;j++){ const c=cs[j]; let st = j>=lead?'f':(j>=lead-BAND?'l':'r');
         if (c._s!==st){ c.classList.toggle('read',st==='r'); c.classList.toggle('lead',st==='l'); c._s=st; } } }
 
-    let cp = 0, q = false;
-    function paint(){ q=false; const p=cp;
+    let lastP = 0;
+    function paint(p){ lastP = p;
       if (rail) rail.style.width = (p*100).toFixed(1)+'%';
       if (ready){ const fm=frame(p); if(fm) cover(fm); }
       const N=steps.length, ff=Math.min(N-1e-4,p*N), i=Math.min(N-1,Math.floor(ff)), sub=ff-i;
       active(i); fill(i, Math.max(0,Math.min(1, sub/0.8))); }
-    function onScroll(){ if (isMobile()){ steps.forEach(s=>s.classList.add('on')); return; }
-      const tot=track.offsetHeight-innerHeight, p=(-track.getBoundingClientRect().top)/tot;
-      cp=Math.max(0,Math.min(0.9999,p)); if(!q){ q=true; requestAnimationFrame(paint); } }
+
     active(0); fill(0,0);
-    window.lenis.on('scroll', onScroll);
-    addEventListener('scroll', onScroll, { passive:true });
-    addEventListener('resize', () => { size(); onScroll(); });
-    onScroll();
+    if (isMobile() || !hasGSAP) { steps.forEach(s=>s.classList.add('on')); }
+    else {
+      ScrollTrigger.create({
+        trigger: track, start: 'top top', end: 'bottom bottom', scrub: true,
+        onUpdate: self => paint(self.progress),
+        onRefresh: () => { size(); paint(lastP); }
+      });
+    }
+    addEventListener('resize', () => { size(); paint(lastP); });
   })();
 
-  /* ---- claim window grow ---- */
+  /* ---- claim: window grows from centre ---- */
   (function(){
     const sec = document.getElementById('claim'); if (!sec) return;
     const track = sec.querySelector('.claim-track');
-    const isMobile = () => matchMedia('(max-width: 900px)').matches;
-    let q = false;
-    function apply(){ q=false;
-      if (isMobile()){ sec.style.setProperty('--cp',1); sec.style.setProperty('--ci',1); return; }
-      const tot = track.offsetHeight - innerHeight;
-      let p = (-track.getBoundingClientRect().top) / tot; p = Math.max(0, Math.min(1, p));
+    function apply(p){
       sec.style.setProperty('--cp', Math.max(0,Math.min(1, p/0.6)).toFixed(4));
-      sec.style.setProperty('--ci', Math.max(0,Math.min(1,(p-0.32)/0.4)).toFixed(4)); }
-    function onScroll(){ if(!q){ q=true; requestAnimationFrame(apply); } }
-    window.lenis.on('scroll', onScroll);
-    addEventListener('scroll', onScroll, { passive:true });
-    addEventListener('resize', onScroll); apply();
+      sec.style.setProperty('--ci', Math.max(0,Math.min(1,(p-0.32)/0.4)).toFixed(4));
+    }
+    if (isMobile() || !hasGSAP) { sec.style.setProperty('--cp',1); sec.style.setProperty('--ci',1); return; }
+    ScrollTrigger.create({
+      trigger: track, start: 'top top', end: 'bottom bottom', scrub: true,
+      onUpdate: self => apply(self.progress)
+    });
   })();
 
-  /* ---- services: pinned · one pillar at a time → all three ---- */
+  /* ---- services: one pillar at a time → all three ---- */
   (function(){
     const track = document.getElementById('svTrack');
     if (!track) return;
@@ -437,9 +455,8 @@
     const imgs  = [...track.querySelectorAll('.sv-img:not(.sv-img-all)')];
     const imgAll= track.querySelector('.sv-img-all');
     const rail  = document.getElementById('svRail');
-    const isMobile = () => matchMedia('(max-width: 900px)').matches;
-    const STAGES = 4;                       /* 3 pillars + the trio */
-    let cur = -1, q = false, cp = 0;
+    const STAGES = 4;
+    let cur = -1;
     function show(i){
       if (i === cur) return; cur = i;
       const last = (i === STAGES - 1);
@@ -448,22 +465,20 @@
       imgs.forEach((el,k)=> el.classList.toggle('on', !last && k === i));
       imgAll.classList.toggle('on', last);
     }
-    function paint(){ q=false;
-      if (rail) rail.style.width = (cp*100).toFixed(1)+'%';
-      const f = Math.min(STAGES - 1e-4, cp*STAGES);
-      show(Math.min(STAGES-1, Math.floor(f)));
-    }
-    function onScroll(){
-      if (isMobile()){ items.forEach(e=>e.classList.add('on')); all.classList.add('on'); return; }
-      const tot = track.offsetHeight - innerHeight;
-      cp = Math.max(0, Math.min(0.9999, (-track.getBoundingClientRect().top)/tot));
-      if (!q){ q=true; requestAnimationFrame(paint); }
-    }
     show(0);
-    window.lenis.on('scroll', onScroll);
-    addEventListener('scroll', onScroll, { passive:true });
-    addEventListener('resize', onScroll); onScroll();
+    if (isMobile() || !hasGSAP) { items.forEach(e=>e.classList.add('on')); all.classList.add('on'); return; }
+    ScrollTrigger.create({
+      trigger: track, start: 'top top', end: 'bottom bottom', scrub: true,
+      onUpdate: self => {
+        const p = self.progress;
+        if (rail) rail.style.width = (p*100).toFixed(1)+'%';
+        const f = Math.min(STAGES - 1e-4, p*STAGES);
+        show(Math.min(STAGES-1, Math.floor(f)));
+      }
+    });
   })();
+
+  if (hasGSAP) requestAnimationFrame(() => ScrollTrigger.refresh());
 </script>
 </body>
 </html>
