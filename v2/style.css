@@ -16,8 +16,8 @@
 
   /* one horizontal grid edge — centred gutter so content never hugs the wall.
      logo + nav + every section share this exact value → perfect alignment. */
-  --maxw:    1480px;
-  --edge:    max(clamp(28px, 6vw, 88px), calc((100vw - var(--maxw)) / 2));
+  --maxw:    1360px;
+  --edge:    max(clamp(40px, 8vw, 150px), calc((100vw - var(--maxw)) / 2));
   --section: clamp(96px, 15vh, 200px);
   --ease:    cubic-bezier(.22, 1, .36, 1);
 }
@@ -172,7 +172,7 @@ img { display: block; max-width: 100%; }
    APPROACH  (pinned · statements left, video right · grid-aligned)
    ========================================================================= */
 .approach { position: relative; background: var(--bg); }
-.approach-track { height: 560vh; }
+.approach-track { height: 360vh; }
 .approach-sticky {
   position: sticky; top: 0; height: 100svh; overflow: hidden;
   display: grid; grid-template-columns: 1fr clamp(360px, 40vw, 620px);
