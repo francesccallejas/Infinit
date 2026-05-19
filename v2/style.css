@@ -14,8 +14,10 @@
   --serif: "Instrument Serif", Georgia, serif;
   --mono:  "IBM Plex Mono", ui-monospace, monospace;
 
-  /* one horizontal grid edge — logo + every section share this */
-  --edge:    clamp(28px, 6.5vw, 132px);
+  /* one horizontal grid edge — centred gutter so content never hugs the wall.
+     logo + nav + every section share this exact value → perfect alignment. */
+  --maxw:    1480px;
+  --edge:    max(clamp(28px, 6vw, 88px), calc((100vw - var(--maxw)) / 2));
   --section: clamp(96px, 15vh, 200px);
   --ease:    cubic-bezier(.22, 1, .36, 1);
 }
