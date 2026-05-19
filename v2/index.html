@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Infinit® — Brand &amp; Strategy · V2</title>
 <meta name="description" content="Strategic brand, identity and digital systems for companies navigating growth and transformation.">
-<link rel="stylesheet" href="style.css?v=29">
+<link rel="stylesheet" href="style.css?v=30">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300..900&family=Inter:wght@700&family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -346,29 +346,7 @@
     document.addEventListener('keydown', e => { if (e.key === 'Escape') set(false); });
   })();
 
-  /* ---- hero: real moving video inside "scale" (frame loop, clipped to text) ---- */
-  (function(){
-    const el = document.querySelector('.hero-fill');
-    if (!el) return;
-    const SEQ = '../project/assets/imagery/approach-seq/';
-    const TOTAL = 159, STEP = 1;          /* every frame, slower playback */
-    const frames = [];
-    for (let i = 1; i <= TOTAL; i += STEP) {
-      const u = SEQ + 'frame_' + String(i).padStart(4,'0') + '.jpg';
-      const im = new Image(); im.src = u; frames.push(u);
-    }
-    if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    let i = 0, last = 0;
-    const FPS = 11, intv = 1000 / FPS;
-    function tick(t){
-      if (t - last >= intv) {
-        el.style.backgroundImage = 'url(' + frames[i] + ')';
-        i = (i + 1) % frames.length; last = t;
-      }
-      requestAnimationFrame(tick);
-    }
-    requestAnimationFrame(tick);
-  })();
+  /* hero "scale" fill: static Relats image panning left↔right (CSS only) */
 
   /* ---- approach statements: grey → accent → ink fill on enter ---- */
   document.querySelectorAll('.ap-line[data-fill]').forEach(line => {
