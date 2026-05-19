@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Infinit® — Brand &amp; Strategy · V2</title>
 <meta name="description" content="Strategic brand, identity and digital systems for companies navigating growth and transformation.">
-<link rel="stylesheet" href="style.css?v=44">
+<link rel="stylesheet" href="style.css?v=45">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300..900&family=Inter:wght@700&family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -81,6 +81,19 @@
               <path d="M 108.196 34 L 182.196 34 Q 201.196 34 194.140 51.641 L 153.056 154.359 Q 146 172 127 172 L 53 172 Q 34 172 41.056 154.359 L 82.140 51.641 Q 89.196 34 108.196 34 Z" fill="currentColor"/>
               <path d="M 108.196 34 L 182.196 34 Q 201.196 34 194.140 51.641 L 153.056 154.359 Q 146 172 127 172 L 53 172 Q 34 172 41.056 154.359 L 82.140 51.641 Q 89.196 34 108.196 34 Z" fill="currentColor" transform="translate(139 0)"/>
             </svg>
+          </div>
+          <div class="reel-ctrls">
+            <button class="rc-btn rc-sound" id="rcSound" aria-label="Toggle sound">
+              <svg class="ic ic-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H3v6h3l5 4z"/><line x1="22" y1="9" x2="16" y2="15"/><line x1="16" y1="9" x2="22" y2="15"/></svg>
+              <svg class="ic ic-on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/></svg>
+            </button>
+            <button class="rc-btn rc-play" id="rcPlay" aria-label="Pause / play">
+              <svg class="ic ic-pause" viewBox="0 0 24 24" fill="currentColor"><rect x="7" y="6" width="3.4" height="12" rx="1"/><rect x="13.6" y="6" width="3.4" height="12" rx="1"/></svg>
+              <svg class="ic ic-playi" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></svg>
+            </button>
+            <button class="rc-btn rc-reload" id="rcReload" aria-label="Replay">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 3v5h-5"/></svg>
+            </button>
           </div>
         </div>
       </div>
@@ -461,36 +474,63 @@
       let w,h,x,y; if(ir>cr){h=ch;w=ch*ir;x=(cw-w)/2;y=0;} else {w=cw;h=cw/ir;x=0;y=(ch-h)/2;}
       ctx.drawImage(im,x,y,w,h); }
 
-    /* montage state machine, runs only while visible */
-    let running = false, raf = 0, t0 = 0, phase = 0, idx = 0, vfi = 0;
+    /* montage state machine + controls */
+    let visible = false, userPaused = false, raf = 0;
+    let t0 = 0, lastTs = 0, phase = 0, idx = -1, vfi = 0, rebase = 0;
     const SHOT_MS = 620, VID_MS = 4000, LOGO_MS = 2600;
+    const running = () => visible && !userPaused;
     function setShot(i){ shots.forEach((s,k)=>s.classList.toggle('on',k===i)); }
+    function resetStage(){ phase = 0; idx = -1; vfi = 0; t0 = 0;
+      shots.forEach(s=>s.classList.remove('on')); vid.classList.remove('on');
+      logo.classList.remove('on'); setShot(0); }
     function loop(ts){
-      if (!running) return;
+      if (!running()) return;
+      lastTs = ts;
       if (!t0) t0 = ts;
+      if (rebase) { t0 = ts - rebase; rebase = 0; }
       const e = ts - t0;
-      if (phase === 0) {                       /* fast image montage */
+      if (phase === 0) {
         const i = Math.floor(e / SHOT_MS);
         if (i !== idx) { idx = i; if (idx < shots.length) setShot(idx); }
         if (e >= shots.length * SHOT_MS) { phase = 1; t0 = ts;
           shots.forEach(s=>s.classList.remove('on')); sizeVid(); vid.classList.add('on'); }
-      } else if (phase === 1) {                /* mountain video */
+      } else if (phase === 1) {
         const f = Math.floor((ts - t0) / (VID_MS / imgs.length)) % imgs.length;
         if (f !== vfi) { vfi = f; drawVid(imgs[f]); }
         if (ts - t0 >= VID_MS) { phase = 2; t0 = ts;
           vid.classList.remove('on'); logo.classList.add('on'); }
-      } else {                                 /* logo */
+      } else {
         if (ts - t0 >= LOGO_MS) { phase = 0; t0 = ts; idx = -1;
           logo.classList.remove('on'); setShot(0); }
       }
       raf = requestAnimationFrame(loop);
     }
+    function kick(){ if (running()) { cancelAnimationFrame(raf); raf = requestAnimationFrame(loop); } }
+
     new IntersectionObserver(es => es.forEach(e => {
-      if (e.isIntersecting && !running) { running = true; t0 = 0; phase = 0; idx = -1;
-        setShot(0); raf = requestAnimationFrame(loop); }
-      else if (!e.isIntersecting && running) { running = false; cancelAnimationFrame(raf); }
+      visible = e.isIntersecting;
+      if (visible) kick();
+      else cancelAnimationFrame(raf);
     }), { threshold: .15 }).observe(sec);
     addEventListener('resize', sizeVid);
+
+    /* ---- controls ---- */
+    const bSound = document.getElementById('rcSound');
+    const bPlay  = document.getElementById('rcPlay');
+    const bReload= document.getElementById('rcReload');
+    bSound.addEventListener('click', () => bSound.classList.toggle('on'));
+    bPlay.addEventListener('click', () => {
+      userPaused = !userPaused;
+      bPlay.classList.toggle('paused', userPaused);
+      if (userPaused) { cancelAnimationFrame(raf); rebase = lastTs ? (lastTs - t0) : 0; }
+      else { t0 = 0; kick(); }
+    });
+    bReload.addEventListener('click', () => {
+      bReload.classList.remove('spin'); void bReload.offsetWidth; bReload.classList.add('spin');
+      resetStage();
+      if (userPaused) { userPaused = false; bPlay.classList.remove('paused'); }
+      kick();
+    });
   })();
 
   if (hasGSAP) requestAnimationFrame(() => ScrollTrigger.refresh());
