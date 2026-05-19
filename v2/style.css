@@ -429,7 +429,10 @@ img { display: block; max-width: 100%; }
 /* =========================================================================
    FOUNDER
    ========================================================================= */
-.founder { padding-block: var(--section); }
+.founder, .studio { padding-block: var(--section); }
+.studio-clients { margin-top: clamp(64px, 9vw, 130px); }
+.studio-clients .eyebrow { display: block; margin-bottom: clamp(20px, 2.6vw, 34px); }
+.studio-kpis { margin-top: clamp(64px, 9vw, 130px); }
 .founder-grid { display: grid; grid-template-columns: 1fr clamp(280px, 32vw, 460px); gap: clamp(40px, 6vw, 100px); align-items: start; }
 .founder-grid h2 {
   font-weight: 600; font-size: clamp(30px, 3.6vw, 60px);
