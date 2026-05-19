@@ -434,6 +434,22 @@
         snap: { snapTo: 1, duration: { min: .15, max: .4 }, ease: 'power1.inOut', delay: .08 }
       });
     }
+    /* scroll brake — slow Lenis while the user is crossing the Services section */
+    if (window.lenis && !isMobile()) {
+      const sec = document.getElementById('services');
+      const NORMAL = { wheel: 1, touch: 1 };
+      const BRAKE  = { wheel: 0.42, touch: 0.55 };
+      const apply = v => {
+        if (lenis.options) {
+          lenis.options.wheelMultiplier = v.wheel;
+          lenis.options.touchMultiplier = v.touch;
+        }
+      };
+      const brakeIO = new IntersectionObserver(es => es.forEach(e => {
+        apply(e.isIntersecting ? BRAKE : NORMAL);
+      }), { rootMargin: '-22% 0% -22% 0%', threshold: 0 });
+      brakeIO.observe(sec);
+    }
   })();
 
   /* ---- work: editorial tiles enter from left / right ---- */
