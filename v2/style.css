@@ -331,10 +331,15 @@ img { display: block; max-width: 100%; }
 .foot .cta .ar { font-family: var(--mono); transition: transform .35s var(--ease); }
 .foot .cta:hover .ar { transform: translate(8px, -8px); }
 .foot-row { margin-top: clamp(60px, 9vw, 120px); display: flex; justify-content: space-between; align-items: end; gap: 30px; flex-wrap: wrap; }
-.foot-mark { display: flex; align-items: center; gap: 14px; }
-.foot-mark svg { height: clamp(48px, 6vw, 84px); color: var(--bg); }
-.foot-mark .w { font-weight: 700; font-size: clamp(48px, 6vw, 84px); letter-spacing: -.03em; }
-.foot-mark .reg { font-size: .4em; vertical-align: super; }
+.foot-mark { display: inline-flex; align-items: center; gap: 16px; color: var(--bg); }
+.foot-mark svg { height: clamp(60px, 7vw, 116px); width: auto; color: currentColor; }
+.foot-mark .w {
+  font-family: var(--sans); font-weight: 900;
+  font-size: clamp(60px, 7vw, 116px); letter-spacing: -.055em; line-height: 1;
+  display: inline-flex; align-items: flex-start; gap: 3px; color: inherit;
+}
+.foot-mark .reg { font-family: "Inter", sans-serif; font-weight: 700;
+  font-size: clamp(16px, 1.3vw, 24px); margin-top: 8px; }
 .foot-links { display: flex; gap: 30px; font-size: 15px; color: rgba(244,242,240,.6); }
 .foot-links a:hover { color: var(--bg); }
 .foot-legal { margin-top: 48px; font-size: 13px; color: rgba(244,242,240,.4); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
