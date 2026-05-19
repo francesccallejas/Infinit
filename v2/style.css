@@ -671,11 +671,12 @@ img { display: block; max-width: 100%; }
 }
 
 /* ---- Services: editorial rows (option E) · slide-in from right + bounce ---- */
-.services { padding-block: var(--section); background: var(--bg); border: 0; position: static; }
-.svc-rows { margin-top: clamp(36px, 5vw, 76px); }
+.services { padding-block: clamp(56px, 8vh, 104px); background: var(--bg); border: 0; position: static; }
+.services .section-head { margin-bottom: clamp(20px, 2.6vw, 40px); }
+.svc-rows { margin-top: clamp(14px, 1.8vw, 28px); }
 .svc-row {
   display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 30px;
-  padding: clamp(20px, 2.3vw, 38px) clamp(16px, 2vw, 36px);
+  padding: clamp(13px, 1.6vw, 26px) clamp(16px, 2vw, 36px);
   border-top: 1px solid var(--line); color: var(--ink);
   opacity: 0; transform: translateX(72px);
   transition: opacity .5s var(--ease),
