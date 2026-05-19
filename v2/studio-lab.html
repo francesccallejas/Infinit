@@ -45,12 +45,19 @@
   #s1 .kpis{margin-top:clamp(28px,3vw,44px)}
 
   /* 2 — photo tall right, bio + kpis stacked left */
-  #s2 .grid{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(30px,4vw,70px);align-items:start}
-  #s2 .photo{aspect-ratio:3/4;grid-row:span 2;align-self:stretch}
-  #s2 h2{margin-bottom:18px}
-  #s2 .meta{margin:24px 0 36px}
+  #s2 .grid{display:grid;grid-template-columns:1.62fr .68fr;gap:clamp(30px,4vw,64px);align-items:start}
+  #s2 .photo{aspect-ratio:6/7;width:80%;margin-left:auto;grid-row:span 2;align-self:start}
+  #s2 h2{margin-bottom:18px;max-width:22ch}
+  #s2 .bio{max-width:64ch}
+  #s2 .meta{margin:24px 0 34px}
   #s2 .kpis{grid-template-columns:repeat(2,1fr);margin-top:8px}
-  #s2 .who{margin:36px 0 14px}
+  #s2 .kpi{min-height:clamp(96px,9vw,128px);padding:clamp(16px,1.7vw,24px)}
+  #s2 .kpi h4{font-size:clamp(16px,1.4vw,21px)}
+  #s2 .who{margin:34px 0 14px}
+  #s2 .wave{display:flex;flex-wrap:wrap;gap:clamp(24px,3vw,48px);align-items:center}
+  #s2 .wave img{height:24px;filter:grayscale(1);opacity:.55;
+   transition:transform .45s var(--ease),opacity .45s var(--ease)}
+  #s2 .wave.flip img{transform:translateY(-10px) rotateX(70deg);opacity:0}
 
   /* 3 — unified card */
   #s3 .card{border:1px solid var(--line);border-radius:20px;background:var(--paper);overflow:hidden}
@@ -124,18 +131,22 @@
   <div class="lab">Opció 2 · Foto vertical dreta · bio + KPIs apilats esquerra</div>
   <div class="grid">
     <div>
-      <h2>A small senior studio. <em>Transformation experience.</em></h2>
-      <p class="bio">Led hands-on, not delegated. Experience across enterprise, industrial and international — from SAP, Glovo or Almirall to founder-led companies.</p>
+      <h2>A small senior studio. Built through real <em>transformation experience.</em></h2>
+      <p class="bio">Infinit® is led hands-on, not delegated — run by people who have sat on both sides: building brands and running the operations that depend on them. Experience across enterprise, industrial and international: Almirall, Desigual, Casa Tarradellas, Mercadona, Santander, MartiDerm, Girbau, Seidor, Repsol, SAP and Glovo — alongside founder-led companies. No layers, no noise: strategy, identity and digital, connected.</p>
       <div class="meta"><div><div class="k">Founder</div><div class="v">Francesc Callejas</div></div><div><div class="k">Based</div><div class="v">Barcelona</div></div><div><div class="k">Working</div><div class="v">Worldwide</div></div></div>
       <div class="who"><span class="eyebrow">Who we've scaled</span></div>
-      <div class="logos"><img src="../project/assets/clients/sap.png"><img src="../project/assets/clients/glovo.png"><img src="../project/assets/clients/almirall.png"><img src="../project/assets/clients/relats.png"><img src="../project/assets/clients/bunnker.png"></div>
+      <div class="wave" id="s2wave">
+        <img src="../project/assets/clients/sap.png" alt=""><img src="../project/assets/clients/glovo.png" alt=""><img src="../project/assets/clients/almirall.png" alt=""><img src="../project/assets/clients/relats.png" alt=""><img src="../project/assets/clients/bunnker.png" alt=""><img src="../project/assets/clients/11onze.png" alt=""><img src="../project/assets/clients/instellar.png" alt="">
+      </div>
     </div>
     <div class="photo"><img src="../project/assets/imagery/francesc.jpg" alt=""></div>
     <div class="kpis">
       <div class="kpi"><span class="n">01</span><h4>Clearer <em>positioning.</em></h4></div>
       <div class="kpi"><span class="n">02</span><h4>Faster <em>execution.</em></h4></div>
       <div class="kpi"><span class="n">03</span><h4>Better digital <em>visibility.</em></h4></div>
-      <div class="kpi"><span class="n">04</span><h4>Scalable brand <em>experiences.</em></h4></div>
+      <div class="kpi"><span class="n">04</span><h4>Stronger market <em>perception.</em></h4></div>
+      <div class="kpi"><span class="n">05</span><h4>Scalable brand <em>experiences.</em></h4></div>
+      <div class="kpi"><span class="n">06</span><h4>Modernized digital <em>presence.</em></h4></div>
     </div>
   </div>
 </section>
@@ -222,6 +233,25 @@
     }
   }),{threshold:.2});
   document.querySelectorAll('section').forEach(s=>io.observe(s));
+
+  /* s2 — logos wave: 7 visible, all swap at once to the hidden ones */
+  (function(){
+    const box=document.getElementById('s2wave'); if(!box) return;
+    const C='../project/assets/clients/';
+    const pool=['sap','glovo','almirall','relats','bunnker','11onze','instellar','dronparc']
+      .map(n=>C+n+'.png');
+    const imgs=[...box.querySelectorAll('img')];
+    let start=0;
+    setInterval(()=>{
+      imgs.forEach((im,i)=>im.style.transitionDelay=(i*60)+'ms');
+      box.classList.add('flip');
+      setTimeout(()=>{
+        start=(start+imgs.length)%pool.length;
+        imgs.forEach((im,i)=>{ im.src=pool[(start+i)%pool.length]; });
+        box.classList.remove('flip');
+      }, 60*imgs.length + 420);
+    }, 4200);
+  })();
 </script>
 </body>
 </html>
