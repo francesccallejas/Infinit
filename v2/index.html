@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Infinit® — Brand &amp; Strategy · V2</title>
 <meta name="description" content="Strategic brand, identity and digital systems for companies navigating growth and transformation.">
-<link rel="stylesheet" href="style.css?v=27">
+<link rel="stylesheet" href="style.css?v=28">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300..900&family=Inter:wght@700&family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -53,34 +53,21 @@
   <!-- HERO -->
   <section class="hero wrap">
     <h1 class="hero-h">
-      <span class="w"><i>Brands</i></span>
-      <span class="w"><i>built to</i></span>
-      <span class="w"><i class="hero-fill">scale.</i></span>
+      <span class="ln"><span class="w"><i>Brands</i></span> <span class="w"><i>built</i></span></span>
+      <span class="ln"><span class="w"><i>to</i></span> <span class="w"><i class="hero-fill">scale.</i></span></span>
     </h1>
-    <div class="hero-sub">
-      <p>Strategy, identity and digital systems for companies navigating growth and transformation — built through real operational experience.</p>
-      <span class="tag">Barcelona — Worldwide</span>
-    </div>
+    <p class="hero-sub">Strategy, identity and digital systems for companies navigating growth and transformation — built through real operational experience.</p>
     <span class="hero-cue">Scroll ↓</span>
   </section>
 
-  <!-- APPROACH -->
-  <section class="approach" id="approach">
-    <div class="approach-track" id="apTrack">
-      <div class="approach-sticky">
-        <div class="ap-stage">
-          <div class="ap-step on"><h3 class="ap-line">Clarity in complexity.</h3></div>
-          <div class="ap-step"><h3 class="ap-line">Identity with purpose.</h3></div>
-          <div class="ap-step"><h3 class="ap-line">Strategy connected to execution.</h3></div>
-          <div class="ap-step"><h3 class="ap-line">Digital designed for growth.</h3></div>
-          <div class="ap-step"><h3 class="ap-line">Modernization without noise.</h3></div>
-        </div>
-        <div class="approach-media">
-          <canvas id="apCanvas" data-frames="159" data-seq="../project/assets/imagery/approach-seq/"></canvas>
-          <div class="poster" style="background-image:url('../project/assets/imagery/approach-seq/frame_0001.jpg')"></div>
-        </div>
-        <div class="ap-rail"><i id="apRail"></i></div>
-      </div>
+  <!-- APPROACH (statements — presentation under review) -->
+  <section class="approach wrap" id="approach">
+    <div class="ap-list">
+      <h3 class="ap-line r" data-fill>Clarity in complexity.</h3>
+      <h3 class="ap-line r" data-fill>Identity with purpose.</h3>
+      <h3 class="ap-line r" data-fill>Strategy connected to execution.</h3>
+      <h3 class="ap-line r" data-fill>Digital designed for growth.</h3>
+      <h3 class="ap-line r" data-fill>Modernization without noise.</h3>
     </div>
   </section>
 
@@ -380,6 +367,27 @@
     }
     requestAnimationFrame(tick);
   })();
+
+  /* ---- approach statements: grey → accent → ink fill on enter ---- */
+  document.querySelectorAll('.ap-line[data-fill]').forEach(line => {
+    const txt = line.textContent; line.textContent = '';
+    const cs = [];
+    [...txt].forEach(ch => {
+      const s = document.createElement('span');
+      s.className = 'c'; s.textContent = ch;
+      if (ch !== ' ') cs.push(s);
+      line.appendChild(s);
+    });
+    const ob = new IntersectionObserver(es => es.forEach(e => {
+      if (!e.isIntersecting) return;
+      ob.unobserve(line);
+      cs.forEach((c, i) => setTimeout(() => {
+        c.classList.add('lead');
+        setTimeout(() => { c.classList.remove('lead'); c.classList.add('read'); }, 170);
+      }, i * 32));
+    }), { threshold: .55 });
+    ob.observe(line);
+  });
 
   const isMobile = () => matchMedia('(max-width: 900px)').matches;
 
