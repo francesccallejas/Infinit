@@ -440,7 +440,28 @@ em { font-family: var(--serif); font-style: normal; font-weight: 400; }
    FOUNDER
    ========================================================================= */
 .founder, .studio { padding-block: var(--section); }
+.studio { padding-top: clamp(150px, 24vh, 300px); }
 .studio-clients { margin-top: clamp(48px, 7vw, 96px); }
+.founder-side { display: flex; flex-direction: column; gap: clamp(18px, 2vw, 28px); }
+.connect-btn {
+  display: inline-flex; align-items: center; align-self: start;
+  height: 52px; padding: 0 7px 0 22px; font-size: 15px; font-weight: 600;
+  border: 1px solid var(--line); border-radius: 12px;
+  background: var(--paper); color: var(--ink); text-decoration: none;
+  transition: background .25s var(--ease), padding-right .35s var(--ease);
+}
+.connect-btn .cb-tx { padding-right: 0; transition: padding-right .35s var(--ease); }
+.connect-btn .cb-ar {
+  width: 0; height: 38px; opacity: 0; overflow: hidden; flex: none;
+  display: grid; place-items: center; border-radius: 9px;
+  background: var(--accent); color: var(--ink);
+  box-shadow: inset 0 0 0 1px rgba(11,12,17,.07);
+  transition: width .35s var(--ease), opacity .25s var(--ease);
+}
+.connect-btn .cb-ar svg { width: 16px; height: 16px; }
+.connect-btn:hover { background: #fff; padding-right: 7px; }
+.connect-btn:hover .cb-ar { width: 38px; opacity: 1; }
+.connect-btn:hover .cb-tx { padding-right: 14px; }
 .studio-clients .eyebrow { display: block; margin-bottom: clamp(20px, 2.6vw, 34px); }
 .founder-grid { display: grid; grid-template-columns: 1.18fr .92fr .66fr; gap: clamp(28px, 3.4vw, 60px); align-items: stretch; }
 .founder-bio { align-self: start; }
