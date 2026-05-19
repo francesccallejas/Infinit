@@ -278,12 +278,20 @@ img { display: block; max-width: 100%; }
    CLAIM  (window grows from centre → near full-bleed)
    ========================================================================= */
 .claim { position: relative; background: transparent; margin-top: -100vh; z-index: 2; }
-.claim-track { height: 260vh; }
-.claim-panel {
+.claim-track { height: 300vh; }
+.claim-stick {
   position: sticky; top: 0; height: 100svh;
+  display: flex; align-items: center; justify-content: center;
+  padding: clamp(18px, 4vh, 54px) clamp(18px, 4vw, 80px);
+  pointer-events: none;
+}
+.claim-panel {
+  width: 100%; height: 100%;
   background: var(--ink); color: var(--bg);
+  border-radius: clamp(18px, 2vw, 30px); overflow: hidden;
   display: flex; align-items: center; justify-content: center; text-align: center;
-  transform: translateY(100%); will-change: transform;
+  box-shadow: 0 60px 140px -60px rgba(8,8,12,.6);
+  transform: translateY(112%); will-change: transform;
 }
 .claim-inner {
   padding: clamp(40px, 8vh, 120px) clamp(24px, 6vw, 110px);
@@ -301,7 +309,8 @@ img { display: block; max-width: 100%; }
 @media (max-width: 900px) {
   .claim { margin-top: 0; }
   .claim-track { height: auto; }
-  .claim-panel { position: static; height: auto; min-height: 80svh; transform: none; padding: var(--section) 0; }
+  .claim-stick { position: static; height: auto; min-height: 80svh; padding: 14px; }
+  .claim-panel { transform: none; }
   .claim-inner { opacity: 1; transform: none; }
 }
 

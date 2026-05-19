@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Infinit® — Services lab · 5 opcions</title>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300..900&family=Instrument+Serif:ital@1&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#F4F2F0;--ink:#0B0C11;--accent:#EFE6AE;--muted:rgba(11,12,17,.55);--line:rgba(11,12,17,.13);
+   --sans:"Hanken Grotesk",sans-serif;--serif:"Instrument Serif",serif;--mono:"IBM Plex Mono",monospace;
+   --ease:cubic-bezier(.22,1,.36,1);--edge:clamp(28px,5vw,80px)}
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scrollbar-width:none}html::-webkit-scrollbar{display:none}
+  body{font-family:var(--sans);background:var(--bg);color:var(--ink);overflow-x:hidden}
+  em{font-family:var(--serif);font-style:italic;font-weight:400}
+  section{min-height:100vh;padding:18vh var(--edge);position:relative}
+  .lab{position:absolute;top:26px;left:var(--edge);font-family:var(--mono);font-size:12px;
+   letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+  .hd{font-weight:600;font-size:clamp(30px,4vw,64px);letter-spacing:-.035em;margin-bottom:7vh}
+  .hd em{}
+  /* shared pill bits */
+  .plus{width:42px;height:42px;border:1px solid var(--line);border-radius:999px;flex:none;
+   display:grid;place-items:center;position:relative;transition:.35s var(--ease)}
+  .plus:before,.plus:after{content:'';position:absolute;background:currentColor;transition:.35s var(--ease)}
+  .plus:before{width:14px;height:1.6px}.plus:after{height:14px;width:1.6px}
+  .subs{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+  .subs span{font-family:var(--mono);font-size:12px;border:1px solid var(--line);border-radius:999px;padding:6px 13px}
+  .desc{color:var(--muted);font-size:17px;line-height:1.6;max-width:48ch;margin-top:10px}
+
+  /* ---- A: pills slide from right, stagger; hover swaps desc→subs ---- */
+  #a .list{display:flex;flex-direction:column;gap:18px}
+  #a .pill{display:flex;align-items:center;gap:30px;padding:clamp(26px,3vw,44px);
+   border:1px solid var(--line);border-radius:18px;background:#fbfaf8;
+   opacity:0;transform:translateX(80px);transition:opacity .7s var(--ease),transform .8s var(--ease),background .3s}
+  #a .pill.in{opacity:1;transform:none}
+  #a .pill:nth-child(2){transition-delay:.1s}#a .pill:nth-child(3){transition-delay:.2s}
+  #a .pill h3{font-weight:600;font-size:clamp(24px,2.6vw,40px);letter-spacing:-.03em;flex:none;width:34%}
+  #a .pill .body{flex:1}
+  #a .pill .subs{display:none}
+  #a .pill:hover{background:var(--ink);color:var(--bg)}
+  #a .pill:hover .desc{display:none}#a .pill:hover .subs{display:flex}
+  #a .pill:hover .subs span{border-color:rgba(255,255,255,.3)}
+  #a .pill:hover .plus{transform:rotate(135deg)}
+
+  /* ---- B: pinned, pills fly in one by one ---- */
+  #b{padding:0}#b .track{height:340vh}
+  #b .stick{position:sticky;top:0;height:100vh;display:flex;flex-direction:column;
+   justify-content:center;gap:16px;padding:0 var(--edge)}
+  #b .pill{display:flex;align-items:center;gap:30px;padding:clamp(24px,2.6vw,40px);
+   border:1px solid var(--line);border-radius:16px;background:#fbfaf8;
+   opacity:0;transform:translateX(120px) scale(.96);transition:.7s var(--ease)}
+  #b .pill.on{opacity:1;transform:none}
+  #b .pill h3{font-weight:600;font-size:clamp(22px,2.4vw,38px);width:32%;flex:none}
+  #b .pill .body{flex:1}#b .pill .subs{display:none}
+  #b .pill:hover .desc{display:none}#b .pill:hover .subs{display:flex}
+  #b .pill:hover .plus{transform:rotate(135deg)}
+
+  /* ---- C: vertical accordion pills ---- */
+  #c .pill{border-top:1px solid var(--line);padding:clamp(26px,3vw,44px) 0;cursor:pointer}
+  #c .pill:last-child{border-bottom:1px solid var(--line)}
+  #c .row{display:flex;align-items:center;gap:24px}
+  #c .row h3{font-weight:600;font-size:clamp(26px,3.4vw,56px);letter-spacing:-.03em;flex:1;
+   color:rgba(11,12,17,.4);transition:color .3s}
+  #c .pill:hover .row h3{color:var(--ink)}
+  #c .panel{max-height:0;opacity:0;overflow:hidden;transition:.5s var(--ease)}
+  #c .pill:hover .panel{max-height:120px;opacity:1;margin-top:18px}
+  #c .pill:hover .plus{transform:rotate(135deg)}
+  #c .pill:hover .desc{display:none}
+
+  /* ---- D: overlapping card deck ---- */
+  #d .deck{display:flex;gap:-40px}
+  #d .card{flex:1;margin-left:-40px;background:#fbfaf8;border:1px solid var(--line);
+   border-radius:20px;padding:clamp(26px,2.4vw,40px);min-height:46vh;
+   display:flex;flex-direction:column;justify-content:space-between;
+   transition:.5s var(--ease);transform:translateY(0)}
+  #d .card:first-child{margin-left:0}
+  #d .card:hover{transform:translateY(-26px);background:var(--ink);color:var(--bg);z-index:2}
+  #d .card h3{font-weight:600;font-size:clamp(24px,2.4vw,38px);letter-spacing:-.03em}
+  #d .card .subs{display:none}#d .card:hover .desc{display:none}#d .card:hover .subs{display:flex}
+  #d .card:hover .subs span{border-color:rgba(255,255,255,.3)}
+  #d .card:hover .plus{transform:rotate(135deg)}
+
+  /* ---- E: big editorial rows, hover fill + swap ---- */
+  #e .row{display:grid;grid-template-columns:1fr auto;align-items:center;gap:30px;
+   padding:clamp(34px,4vw,64px) clamp(20px,3vw,48px);border-top:1px solid var(--line);
+   transition:background .4s var(--ease),color .4s var(--ease)}
+  #e .row:last-child{border-bottom:1px solid var(--line)}
+  #e .row h3{font-weight:600;font-size:clamp(30px,4.4vw,76px);letter-spacing:-.035em}
+  #e .row .subs{display:none}
+  #e .row:hover{background:var(--ink);color:var(--bg);border-radius:18px}
+  #e .row:hover .desc{display:none}#e .row:hover .subs{display:flex}
+  #e .row:hover .subs span{border-color:rgba(255,255,255,.3)}
+  #e .row:hover .plus{transform:rotate(135deg)}
+</style>
+</head>
+<body>
+
+<section id="a">
+  <span class="lab">Opció A · Pastilles que entren des de la dreta (stagger) — hover canvia text→subserveis</span>
+  <div class="hd">Three connected pillars. <em>One firm.</em></div>
+  <div class="list">
+    <div class="pill"><h3>Strategy</h3><div class="body"><div class="desc">Positioning, narrative and brand architecture grounded in business reality.</div><div class="subs"><span>Positioning</span><span>Narrative</span><span>Architecture</span><span>Research</span></div></div><div class="plus"></div></div>
+    <div class="pill"><h3>Identity</h3><div class="body"><div class="desc">Visual and verbal systems coherent across every surface — product to pitch.</div><div class="subs"><span>Identity systems</span><span>Art direction</span><span>Verbal</span><span>Guidelines</span></div></div><div class="plus"></div></div>
+    <div class="pill"><h3>Digital</h3><div class="body"><div class="desc">Websites and products that turn the brand into experience.</div><div class="subs"><span>Web</span><span>Product</span><span>Motion</span><span>Build</span></div></div><div class="plus"></div></div>
+  </div>
+</section>
+
+<section id="b">
+  <span class="lab">Opció B · Pinned — les pastilles entren una darrere l'altra amb l'scroll</span>
+  <div class="track" id="bTrack"><div class="stick">
+    <div class="pill"><h3>Strategy</h3><div class="body"><div class="desc">Positioning, narrative and brand architecture grounded in business reality.</div><div class="subs"><span>Positioning</span><span>Narrative</span><span>Architecture</span></div></div><div class="plus"></div></div>
+    <div class="pill"><h3>Identity</h3><div class="body"><div class="desc">Visual and verbal systems coherent across every surface.</div><div class="subs"><span>Identity systems</span><span>Art direction</span><span>Guidelines</span></div></div><div class="plus"></div></div>
+    <div class="pill"><h3>Digital</h3><div class="body"><div class="desc">Websites and products that turn the brand into experience.</div><div class="subs"><span>Web</span><span>Product</span><span>Motion</span></div></div><div class="plus"></div></div>
+  </div></div>
+</section>
+
+<section id="c">
+  <span class="lab">Opció C · Acordió vertical — hover obre subserveis, oculta el text llarg</span>
+  <div class="hd">Three connected pillars. <em>One firm.</em></div>
+  <div class="pill"><div class="row"><h3>Strategy</h3><div class="plus"></div></div><div class="panel"><div class="desc">Positioning, narrative and brand architecture.</div><div class="subs"><span>Positioning</span><span>Narrative</span><span>Architecture</span><span>Research</span></div></div></div>
+  <div class="pill"><div class="row"><h3>Identity</h3><div class="plus"></div></div><div class="panel"><div class="desc">Visual and verbal systems that last.</div><div class="subs"><span>Identity systems</span><span>Art direction</span><span>Guidelines</span></div></div></div>
+  <div class="pill"><div class="row"><h3>Digital</h3><div class="plus"></div></div><div class="panel"><div class="desc">Brand turned into experience.</div><div class="subs"><span>Web</span><span>Product</span><span>Motion</span><span>Build</span></div></div></div>
+</section>
+
+<section id="d">
+  <span class="lab">Opció D · Targetes solapades — hover puja la targeta i mostra subserveis</span>
+  <div class="hd">Three connected pillars. <em>One firm.</em></div>
+  <div class="deck">
+    <div class="card"><h3>Strategy</h3><div><div class="desc">Positioning, narrative and brand architecture grounded in reality.</div><div class="subs"><span>Positioning</span><span>Narrative</span><span>Architecture</span></div></div><div class="plus"></div></div>
+    <div class="card"><h3>Identity</h3><div><div class="desc">Visual and verbal systems coherent everywhere.</div><div class="subs"><span>Identity</span><span>Art direction</span><span>Guidelines</span></div></div><div class="plus"></div></div>
+    <div class="card"><h3>Digital</h3><div><div class="desc">Brand into experience — fast, considered.</div><div class="subs"><span>Web</span><span>Product</span><span>Motion</span></div></div><div class="plus"></div></div>
+  </div>
+</section>
+
+<section id="e">
+  <span class="lab">Opció E · Files editorials grans — hover omple i intercanvia text→subserveis</span>
+  <div class="hd">Three connected pillars. <em>One firm.</em></div>
+  <div class="row"><div><h3>Strategy</h3><div class="desc">Positioning, narrative and brand architecture grounded in business reality.</div><div class="subs"><span>Positioning</span><span>Narrative</span><span>Architecture</span><span>Research</span></div></div><div class="plus"></div></div>
+  <div class="row"><div><h3>Identity</h3><div class="desc">Visual and verbal systems coherent across every surface.</div><div class="subs"><span>Identity systems</span><span>Art direction</span><span>Guidelines</span></div></div><div class="plus"></div></div>
+  <div class="row"><div><h3>Digital</h3><div class="desc">Websites and digital products that turn the brand into experience.</div><div class="subs"><span>Web</span><span>Product</span><span>Motion</span><span>Build</span></div></div><div class="plus"></div></div>
+</section>
+
+<script>
+  {
+    const io=new IntersectionObserver((es,o)=>es.forEach(e=>{
+      if(e.isIntersecting){e.target.classList.add('in');o.unobserve(e.target);}}),{threshold:.25});
+    document.querySelectorAll('#a .pill').forEach(p=>io.observe(p));
+  }
+  /* B pinned stepper */
+  (function(){
+    const tr=document.getElementById('bTrack'),ps=[...tr.querySelectorAll('.pill')];
+    function on(){const r=tr.getBoundingClientRect(),tot=tr.offsetHeight-innerHeight;
+      let p=Math.max(0,Math.min(.999,(-r.top)/tot));
+      const n=Math.floor(p*(ps.length+1));
+      ps.forEach((el,k)=>el.classList.toggle('on',k<n));}
+    addEventListener('scroll',on,{passive:true});on();
+  })();
+</script>
+</body>
+</html>
