@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Infinit® — Brand &amp; Strategy · V2</title>
 <meta name="description" content="Strategic brand, identity and digital systems for companies navigating growth and transformation.">
-<link rel="stylesheet" href="style.css?v=30">
+<link rel="stylesheet" href="style.css?v=31">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300..900&family=Inter:wght@700&family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -58,6 +58,33 @@
     </h1>
     <p class="hero-sub">Strategy, identity and digital systems for companies navigating growth and transformation — built through real operational experience.</p>
     <span class="hero-cue">Scroll ↓</span>
+  </section>
+
+  <!-- REEL (grows from small → full, fast montage + video + logo) -->
+  <section class="reel" id="reel">
+    <div class="reel-track" id="reelTrack">
+      <div class="reel-stick">
+        <div class="reel-win">
+          <div class="reel-shot on" style="background-image:url('../project/assets/images/Bunnker Final.webp')"></div>
+          <div class="reel-shot" style="background-image:url('../project/assets/imagery/relats-industrial.webp')"></div>
+          <div class="reel-shot" style="background-image:url('../project/assets/imagery/Almirall.webp')"></div>
+          <div class="reel-shot" style="background-image:url('../project/assets/imagery/Julia Yosemite.webp')"></div>
+          <div class="reel-shot" style="background-image:url('../project/assets/imagery/raincoat.webp')"></div>
+          <div class="reel-shot" style="background-image:url('../project/assets/images/astronaut-red-portrait.png')"></div>
+          <div class="reel-shot" style="background-image:url('../project/assets/images/ipad-sunset.webp')"></div>
+          <div class="reel-shot" style="background-image:url('../project/assets/images/knob-orange.webp')"></div>
+          <div class="reel-shot" style="background-image:url('../project/assets/images/astronaut-pink-full.avif')"></div>
+          <div class="reel-shot" style="background-image:url('../project/assets/images/rainy-day.webp')"></div>
+          <canvas class="reel-vid" id="reelVid" data-frames="159" data-seq="../project/assets/imagery/approach-seq/"></canvas>
+          <div class="reel-logo" id="reelLogo">
+            <svg viewBox="0 0 374 206" fill="none" aria-hidden="true">
+              <path d="M 108.196 34 L 182.196 34 Q 201.196 34 194.140 51.641 L 153.056 154.359 Q 146 172 127 172 L 53 172 Q 34 172 41.056 154.359 L 82.140 51.641 Q 89.196 34 108.196 34 Z" fill="currentColor"/>
+              <path d="M 108.196 34 L 182.196 34 Q 201.196 34 194.140 51.641 L 153.056 154.359 Q 146 172 127 172 L 53 172 Q 34 172 41.056 154.359 L 82.140 51.641 Q 89.196 34 108.196 34 Z" fill="currentColor" transform="translate(139 0)"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
 
   <!-- APPROACH (pinned · one statement at a time) -->
@@ -431,6 +458,67 @@
         show(Math.min(STAGES-1, Math.floor(f)));
       }
     });
+  })();
+
+  /* ---- reel: grow on scroll + fast montage → video → logo ---- */
+  (function(){
+    const sec = document.getElementById('reel'); if (!sec) return;
+    const track = document.getElementById('reelTrack');
+    const win = sec.querySelector('.reel-win');
+    const shots = [...win.querySelectorAll('.reel-shot')];
+    const vid = document.getElementById('reelVid');
+    const logo = document.getElementById('reelLogo');
+    /* grow with scroll (like the claim window) */
+    if (!isMobile() && hasGSAP) {
+      ScrollTrigger.create({
+        trigger: track, start: 'top top', end: 'bottom bottom', scrub: true,
+        onUpdate: self => sec.style.setProperty('--rp',
+          Math.max(0, Math.min(1, self.progress / 0.55)).toFixed(4))
+      });
+    } else { sec.style.setProperty('--rp', 1); }
+
+    /* preload video frames */
+    const FR = parseInt(vid.dataset.frames,10)||0, SEQ = vid.dataset.seq;
+    const ctx = vid.getContext('2d'), imgs = [];
+    for (let i = 1; i <= FR; i += 3) { const im = new Image();
+      im.src = SEQ + 'frame_' + String(i).padStart(4,'0') + '.jpg'; imgs.push(im); }
+    function sizeVid(){ const r = vid.getBoundingClientRect(), d = Math.min(devicePixelRatio||1,2);
+      vid.width = Math.round(r.width*d); vid.height = Math.round(r.height*d); }
+    function drawVid(im){ if(!im||!im.naturalWidth) return;
+      const cw=vid.width,ch=vid.height,ir=im.naturalWidth/im.naturalHeight,cr=cw/ch;
+      let w,h,x,y; if(ir>cr){h=ch;w=ch*ir;x=(cw-w)/2;y=0;} else {w=cw;h=cw/ir;x=0;y=(ch-h)/2;}
+      ctx.drawImage(im,x,y,w,h); }
+
+    /* montage state machine, runs only while visible */
+    let running = false, raf = 0, t0 = 0, phase = 0, idx = 0, vfi = 0;
+    const SHOT_MS = 620, VID_MS = 4000, LOGO_MS = 2600;
+    function setShot(i){ shots.forEach((s,k)=>s.classList.toggle('on',k===i)); }
+    function loop(ts){
+      if (!running) return;
+      if (!t0) t0 = ts;
+      const e = ts - t0;
+      if (phase === 0) {                       /* fast image montage */
+        const i = Math.floor(e / SHOT_MS);
+        if (i !== idx) { idx = i; if (idx < shots.length) setShot(idx); }
+        if (e >= shots.length * SHOT_MS) { phase = 1; t0 = ts;
+          shots.forEach(s=>s.classList.remove('on')); sizeVid(); vid.classList.add('on'); }
+      } else if (phase === 1) {                /* mountain video */
+        const f = Math.floor((ts - t0) / (VID_MS / imgs.length)) % imgs.length;
+        if (f !== vfi) { vfi = f; drawVid(imgs[f]); }
+        if (ts - t0 >= VID_MS) { phase = 2; t0 = ts;
+          vid.classList.remove('on'); logo.classList.add('on'); }
+      } else {                                 /* logo */
+        if (ts - t0 >= LOGO_MS) { phase = 0; t0 = ts; idx = -1;
+          logo.classList.remove('on'); setShot(0); }
+      }
+      raf = requestAnimationFrame(loop);
+    }
+    new IntersectionObserver(es => es.forEach(e => {
+      if (e.isIntersecting && !running) { running = true; t0 = 0; phase = 0; idx = -1;
+        setShot(0); raf = requestAnimationFrame(loop); }
+      else if (!e.isIntersecting && running) { running = false; cancelAnimationFrame(raf); }
+    }), { threshold: .15 }).observe(sec);
+    addEventListener('resize', sizeVid);
   })();
 
   if (hasGSAP) requestAnimationFrame(() => ScrollTrigger.refresh());
