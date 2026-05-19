@@ -675,7 +675,8 @@ img { display: block; max-width: 100%; }
 .services .section-head { margin-bottom: clamp(20px, 2.6vw, 40px); }
 .svc-rows { margin-top: clamp(14px, 1.8vw, 28px); }
 .svc-row {
-  display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 30px;
+  display: grid; grid-template-columns: auto minmax(0,1fr) minmax(0,1.05fr) auto;
+  align-items: center; gap: clamp(20px,3vw,56px);
   padding: clamp(13px, 1.6vw, 26px) clamp(16px, 2vw, 36px);
   border-top: 1px solid var(--line); color: var(--ink);
   opacity: 0; transform: translateX(72px);
@@ -686,10 +687,15 @@ img { display: block; max-width: 100%; }
 }
 .svc-row:last-child { border-bottom: 1px solid var(--line); }
 .svc-row.in { opacity: 1; transform: none; }
-.svc-row h3 { font-weight: 600; font-size: clamp(28px, 3.8vw, 66px);
-  letter-spacing: -.035em; line-height: 1; }
-.svc-desc { color: var(--muted); font-size: clamp(15px, 1.2vw, 19px);
-  line-height: 1.55; max-width: 52ch; margin-top: 14px; }
+.svc-n { font-family: var(--mono); font-size: 13px; letter-spacing: .14em;
+  color: var(--muted); align-self: start; padding-top: .55em; }
+.svc-head h3 { font-weight: 600; font-size: clamp(28px, 4vw, 72px);
+  letter-spacing: -.035em; line-height: .98; }
+.svc-tag { display: block; margin-top: 6px; font-family: var(--serif);
+  font-style: italic; font-size: clamp(16px, 1.5vw, 24px); color: var(--muted); }
+.svc-row:hover .svc-tag { color: rgba(244,242,240,.6); }
+.svc-desc { color: var(--muted); font-size: clamp(15px, 1.15vw, 18px);
+  line-height: 1.55; max-width: 46ch; margin: 0; }
 .svc-subs { display: none; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
 .svc-subs span { font-family: var(--mono); font-size: 12px;
   border: 1px solid var(--line); border-radius: 999px; padding: 6px 13px; }
@@ -706,7 +712,14 @@ img { display: block; max-width: 100%; }
 .svc-row:hover .svc-subs { display: flex; }
 .svc-row:hover .svc-subs span { border-color: rgba(255,255,255,.3); }
 .svc-row:hover .plus { transform: rotate(135deg); }
-@media (max-width: 760px) {
-  .svc-row { gap: 20px; }
-  .svc-row h3 { font-size: clamp(30px, 9vw, 52px); }
+@media (max-width: 860px) {
+  .svc-row {
+    grid-template-columns: 1fr auto; gap: 8px 20px;
+    grid-template-areas: "n plus" "head plus" "body plus";
+  }
+  .svc-n { grid-area: n; padding-top: 0; }
+  .svc-head { grid-area: head; }
+  .svc-body { grid-area: body; margin-top: 8px; }
+  .svc-row .plus { grid-area: plus; align-self: start; }
+  .svc-head h3 { font-size: clamp(30px, 9vw, 52px); }
 }
