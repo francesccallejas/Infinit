@@ -356,6 +356,7 @@ img { display: block; max-width: 100%; }
    WORK
    ========================================================================= */
 .work { padding-block: var(--section); }
+.work .section-head { margin-bottom: clamp(24px, 3vw, 48px); }
 .work-list {
   --off: clamp(70px, 11vw, 150px);   /* right column drop */
   display: grid; grid-template-columns: 1fr 1fr;
@@ -732,7 +733,8 @@ img { display: block; max-width: 100%; }
 }
 
 /* ---- Services: editorial rows (option E) · slide-in from right + bounce ---- */
-.services { padding-block: clamp(56px, 8vh, 104px); background: var(--bg); border: 0; position: static; }
+.services { padding-top: clamp(104px, 15vh, 200px); padding-bottom: clamp(56px, 8vh, 104px);
+  background: var(--bg); border: 0; position: static; }
 .services .section-head { margin-bottom: clamp(20px, 2.6vw, 40px); }
 .svc-rows { margin-top: clamp(14px, 1.8vw, 28px); }
 .svc-row {
