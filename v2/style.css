@@ -277,23 +277,20 @@ img { display: block; max-width: 100%; }
 /* =========================================================================
    CLAIM  (window grows from centre → near full-bleed)
    ========================================================================= */
-.claim { --cp: 0; --ci: 0; position: relative; background: var(--bg); }
-.claim-track { height: 240vh; }
-.claim-sticky {
+.claim { position: relative; background: transparent; margin-top: -100vh; z-index: 2; }
+.claim-track { height: 260vh; }
+.claim-panel {
   position: sticky; top: 0; height: 100svh;
-  display: flex; align-items: center; justify-content: center;
-  padding: calc(14px + (1 - var(--cp)) * 13vh) calc(14px + (1 - var(--cp)) * 16vw);
-}
-.claim-window {
-  position: relative; width: 100%; height: 100%; background: var(--ink);
-  border-radius: calc(16px + (1 - var(--cp)) * 18px); overflow: hidden;
+  background: var(--ink); color: var(--bg);
   display: flex; align-items: center; justify-content: center; text-align: center;
-  box-shadow: 0 60px 140px -60px rgba(10,11,15,.6);
+  transform: translateY(100%); will-change: transform;
 }
 .claim-inner {
   padding: clamp(40px, 8vh, 120px) clamp(24px, 6vw, 110px);
-  opacity: var(--ci); transform: translateY(calc((1 - var(--ci)) * 28px));
+  opacity: 0; transform: translateY(28px);
+  transition: opacity .7s var(--ease), transform .8s var(--ease);
 }
+.claim-inner.show { opacity: 1; transform: none; }
 .claim-inner h2 {
   font-weight: 500; font-size: clamp(46px, 8vw, 168px);
   letter-spacing: -.05em; line-height: .96; color: var(--bg); max-width: 14ch; margin: 0 auto;
@@ -301,6 +298,12 @@ img { display: block; max-width: 100%; }
 .claim-inner h2 em { font-family: var(--serif); font-style: italic; font-weight: 400; color: #fff; }
 .claim-inner p { margin-top: clamp(22px, 3vw, 40px); color: rgba(244,242,240,.5);
   font-family: var(--mono); font-size: 13px; letter-spacing: .18em; text-transform: uppercase; }
+@media (max-width: 900px) {
+  .claim { margin-top: 0; }
+  .claim-track { height: auto; }
+  .claim-panel { position: static; height: auto; min-height: 80svh; transform: none; padding: var(--section) 0; }
+  .claim-inner { opacity: 1; transform: none; }
+}
 
 /* =========================================================================
    SERVICES
@@ -641,7 +644,6 @@ img { display: block; max-width: 100%; }
   position: relative; width: 100%; height: 100%;
   background: var(--ink); overflow: hidden;
   border-radius: calc(16px + (1 - var(--rp)) * 18px);
-  box-shadow: 0 60px 140px -60px rgba(8,8,12,.6);
 }
 .reel-shot, .reel-vid {
   position: absolute; inset: 0; width: 100%; height: 100%;

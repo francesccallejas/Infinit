@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Infinit® — Brand &amp; Strategy · V2</title>
 <meta name="description" content="Strategic brand, identity and digital systems for companies navigating growth and transformation.">
-<link rel="stylesheet" href="style.css?v=31">
+<link rel="stylesheet" href="style.css?v=32">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300..900&family=Inter:wght@700&family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -102,13 +102,11 @@
 
   <!-- CLAIM -->
   <section class="claim" id="claim">
-    <div class="claim-track">
-      <div class="claim-sticky">
-        <div class="claim-window">
-          <div class="claim-inner">
-            <h2>Strategy. Identity. Digital. <em>Connected.</em></h2>
-            <p>Built through real transformation experience</p>
-          </div>
+    <div class="claim-track" id="claimTrack">
+      <div class="claim-panel">
+        <div class="claim-inner">
+          <h2>Strategy. Identity. Digital. <em>Connected.</em></h2>
+          <p>Built through real transformation experience</p>
         </div>
       </div>
     </div>
@@ -413,18 +411,21 @@
     });
   })();
 
-  /* ---- claim: window grows from centre ---- */
+  /* ---- claim: slides up from below, covering the Approach ---- */
   (function(){
     const sec = document.getElementById('claim'); if (!sec) return;
-    const track = sec.querySelector('.claim-track');
-    function apply(p){
-      sec.style.setProperty('--cp', Math.max(0,Math.min(1, p/0.6)).toFixed(4));
-      sec.style.setProperty('--ci', Math.max(0,Math.min(1,(p-0.32)/0.4)).toFixed(4));
-    }
-    if (isMobile() || !hasGSAP) { sec.style.setProperty('--cp',1); sec.style.setProperty('--ci',1); return; }
+    const track = document.getElementById('claimTrack');
+    const panel = sec.querySelector('.claim-panel');
+    const inner = sec.querySelector('.claim-inner');
+    if (isMobile() || !hasGSAP) { panel.style.transform = 'none'; inner.classList.add('show'); return; }
     ScrollTrigger.create({
       trigger: track, start: 'top top', end: 'bottom bottom', scrub: true,
-      onUpdate: self => apply(self.progress)
+      onUpdate: self => {
+        const p = self.progress;
+        const up = 1 - Math.max(0, Math.min(1, p / 0.42));   /* 100% → 0 */
+        panel.style.transform = 'translateY(' + (up * 100) + '%)';
+        inner.classList.toggle('show', p > 0.48);
+      }
     });
   })();
 
