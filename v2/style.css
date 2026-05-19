@@ -183,7 +183,7 @@ img { display: block; max-width: 100%; }
   padding-top: 14vh; padding-bottom: clamp(56px, 11vh, 120px);
 }
 .hero-h {
-  font-weight: 600; font-size: clamp(70px, 13.2vw, 264px);
+  font-weight: 600; font-size: clamp(63px, 11.9vw, 238px);
   letter-spacing: -.05em; line-height: 1.0; max-width: 16ch;
 }
 .hero-reg {
