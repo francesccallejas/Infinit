@@ -671,7 +671,7 @@ img { display: block; max-width: 100%; }
 }
 
 /* ---- Services: editorial rows (option E) · slide-in from right + bounce ---- */
-.services { padding-block: clamp(56px, 8vh, 104px); background: var(--bg); border: 0; position: static; }
+.services { padding-block: clamp(56px, 8vh, 104px); background: var(--bg); border: 0; position: relative; z-index: 1; margin-top: clamp(28px, 5vh, 70px); }
 .services .section-head { margin-bottom: clamp(20px, 2.6vw, 40px); }
 .svc-rows { margin-top: clamp(14px, 1.8vw, 28px); }
 .svc-row {
