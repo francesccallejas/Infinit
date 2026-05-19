@@ -357,24 +357,26 @@ img { display: block; max-width: 100%; }
    ========================================================================= */
 .work { padding-block: var(--section); }
 .work-list {
-  position: relative; min-height: 138vh;
+  display: grid; grid-template-columns: 1fr 1fr;
+  column-gap: clamp(24px, 3.4vw, 64px);
+  row-gap: clamp(48px, 7vw, 110px);
+  align-items: start;
 }
 .work-tile {
-  position: absolute; width: 29%;
   opacity: 0; transform: translateY(48px);
   transition: opacity .85s var(--ease), transform .9s var(--ease);
 }
 .work-tile.in { opacity: 1; transform: none; }
-.work-list .work-tile:nth-child(1) { left: 0;    top: 0;    width: 27%; }
-.work-list .work-tile:nth-child(2) { left: 33%;  top: 17vh; width: 30%; transition-delay: .06s; }
-.work-list .work-tile:nth-child(3) { left: 68%;  top: 5vh;  width: 30%; transition-delay: .1s; }
-.work-list .work-tile:nth-child(4) { left: 22%;  top: 62vh; width: 30%; transition-delay: .15s; }
+/* right column dropped down — masonry desnivell */
+.work-list .work-tile:nth-child(2) { margin-top: clamp(80px, 12vw, 160px); transition-delay: .06s; }
+.work-list .work-tile:nth-child(3) { transition-delay: .1s; }
+.work-list .work-tile:nth-child(4) { transition-delay: .15s; }
 .work-tile .shot {
   position: relative; overflow: hidden; border-radius: 14px;
   aspect-ratio: 4/5; background: var(--deep);
 }
-.work-list .work-tile:nth-child(3) .shot,
-.work-list .work-tile:nth-child(4) .shot { aspect-ratio: 4/3; }
+.work-list .work-tile:nth-child(3) .shot { aspect-ratio: 4/3; }   /* Instellar — shorter */
+.work-list .work-tile:nth-child(4) .shot { aspect-ratio: 5/4; }   /* Julià — a touch shorter */
 .work-tile .cover {
   width: 100%; height: 100%; object-fit: cover;
   transition: transform .8s var(--ease), filter .55s ease;
