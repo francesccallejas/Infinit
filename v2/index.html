@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Infinit® — Brand &amp; Strategy · V2</title>
 <meta name="description" content="Strategic brand, identity and digital systems for companies navigating growth and transformation.">
-<link rel="stylesheet" href="style.css?v=49">
+<link rel="stylesheet" href="style.css?v=50">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300..900&family=Inter:wght@700&family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -538,13 +538,19 @@
     bPlay.addEventListener('click', () => {
       userPaused = !userPaused;
       bPlay.classList.toggle('paused', userPaused);
-      if (userPaused) { cancelAnimationFrame(raf); rebase = lastTs ? (lastTs - t0) : 0; }
-      else { t0 = 0; kick(); }
+      if (userPaused) {
+        cancelAnimationFrame(raf); rebase = lastTs ? (lastTs - t0) : 0;
+        if (soundOn) audio.pause();
+      } else {
+        t0 = 0; kick();
+        if (soundOn) audio.play().catch(()=>{});
+      }
     });
     bReload.addEventListener('click', () => {
       bReload.classList.remove('spin'); void bReload.offsetWidth; bReload.classList.add('spin');
       resetStage();
       if (userPaused) { userPaused = false; bPlay.classList.remove('paused'); }
+      if (soundOn) { audio.currentTime = 0; audio.play().catch(()=>{}); }
       kick();
     });
   })();
