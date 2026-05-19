@@ -198,7 +198,7 @@ em { font-family: var(--serif); font-style: normal; font-weight: 400; }
   padding-top: 14vh; padding-bottom: clamp(56px, 11vh, 120px);
 }
 .hero-h {
-  font-weight: 600; font-size: clamp(63px, 11.9vw, 238px);
+  font-weight: 600; font-size: clamp(78px, 12.5vw, 238px);
   letter-spacing: -.05em; line-height: 1.0; max-width: 16ch;
 }
 .hero-reg {
