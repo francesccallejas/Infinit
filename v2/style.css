@@ -107,9 +107,22 @@ img { display: block; max-width: 100%; }
 .nav .menu-btn.open span:nth-child(1) { transform: translateY(5.5px) rotate(45deg); }
 .nav .menu-btn.open span:nth-child(2) { opacity: 0; }
 .nav .menu-btn.open span:nth-child(3) { transform: translateY(-5.5px) rotate(-45deg); }
-.nav .cta { padding: 0 20px; font-size: 14px; font-weight: 600;
-  background: var(--accent); color: var(--ink); border-color: transparent; }
-.nav .cta:hover { background: var(--ink); color: var(--bg); }
+.nav .cta {
+  padding: 0 8px 0 18px; font-size: 14px; font-weight: 600;
+  background: rgba(251,250,249,.7); color: var(--ink); border: 1px solid var(--line);
+  gap: 0;
+}
+.nav .cta .ct-tx { transition: padding-right .35s var(--ease); padding-right: 12px; }
+.nav .cta .ct-ar {
+  width: 0; height: 30px; opacity: 0; overflow: hidden; flex: none;
+  display: grid; place-items: center; border-radius: 9px;
+  background: var(--accent); color: var(--ink);
+  transition: width .35s var(--ease), opacity .3s var(--ease);
+}
+.nav .cta .ct-ar svg { width: 15px; height: 15px; }
+.nav .cta:hover { background: rgba(251,250,249,.92); }
+.nav .cta:hover .ct-ar { width: 30px; opacity: 1; }
+.nav .cta:hover .ct-tx { padding-right: 0; }
 
 /* frosted-glass overlay panel (floats over the page below) */
 .panel {
