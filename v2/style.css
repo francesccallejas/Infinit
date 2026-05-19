@@ -3,10 +3,11 @@
    ========================================================================= */
 :root {
   --bg:      #F4F2F0;
-  --ink:     #0A0B0F;
-  --muted:   rgba(10,11,15,.56);
-  --faint:   rgba(10,11,15,.20);
-  --line:    rgba(10,11,15,.10);
+  --ink:     #0A0E1A;
+  --deep:    #070A14;
+  --muted:   rgba(10,14,26,.56);
+  --faint:   rgba(10,14,26,.20);
+  --line:    rgba(10,14,26,.11);
   --accent:  #C9A21A;
   --paper:   #FBFAF9;
 
@@ -135,7 +136,7 @@ img { display: block; max-width: 100%; }
 .panel.open a.big:nth-child(3) { transition-delay: .20s; }
 .panel.open a.big:nth-child(4) { transition-delay: .26s; }
 .panel.open a.big:nth-child(5) { transition-delay: .32s; }
-.panel a.big:hover { opacity: 1; transform: translateX(12px); }
+.panel a.big:hover { opacity: 1; transform: translateX(12px); color: var(--accent); }
 .panel .meta {
   color: var(--muted); font-size: 15px; line-height: 1.9;
   opacity: 0; transition: opacity .6s var(--ease) .3s;
@@ -464,7 +465,7 @@ img { display: block; max-width: 100%; }
   margin-top: clamp(36px,5vw,70px); font-weight: 600; font-size: clamp(22px,3vw,46px);
   letter-spacing: -.03em; }
 .cta-band .cta-mail .ar { font-family: var(--mono); transition: transform .35s var(--ease); }
-.cta-band .cta-mail:hover .ar { transform: translate(7px,-7px); }
+.cta-band .cta-mail:hover .ar { transform: translate(7px,-7px); color: var(--accent); }
 
 @media (max-width: 900px) {
   .sv-track { height: auto; }
