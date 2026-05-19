@@ -30,8 +30,7 @@
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
-html { -webkit-text-size-adjust: 100%; scrollbar-width: none; -ms-overflow-style: none;
-  overflow-x: hidden; touch-action: pan-y; overscroll-behavior-x: none; }
+html { -webkit-text-size-adjust: 100%; scrollbar-width: none; -ms-overflow-style: none; }
 html::-webkit-scrollbar, body::-webkit-scrollbar { width: 0; height: 0; display: none; }
 .scroll-pill {
   position: fixed; right: 9px; top: 0; width: 6px;
@@ -53,9 +52,6 @@ body {
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   overflow-x: hidden;
-  width: 100%;
-  touch-action: pan-y;
-  overscroll-behavior-x: none;
 }
 ::selection { background: var(--accent); color: var(--ink); }
 a { color: inherit; text-decoration: none; }
@@ -532,7 +528,6 @@ em { font-family: var(--serif); font-style: normal; font-weight: 400; }
    RESPONSIVE
    ========================================================================= */
 @media (max-width: 900px) {
-  :root { --section: clamp(56px, 8vh, 96px); --pad: clamp(18px, 4vw, 28px); }
   body { font-size: 17px; }
   .panel-grid { grid-template-columns: 1fr; }
   .approach-track { height: auto; }
@@ -720,14 +715,15 @@ em { font-family: var(--serif); font-style: normal; font-weight: 400; }
 .ap-st.on { opacity: 1; transform: none; }
 .ap-st em { font-family: var(--serif); font-style: normal; font-weight: 400; color: var(--ink); }
 @media (max-width: 900px) {
-  /* Approach: keep pinned on mobile too, but with shorter track and tighter type */
-  .ap-track { height: 360vh; }
-  .ap-stick { position: sticky; top: 0; height: 100svh;
-    display: flex; align-items: center; padding: 0 var(--edge); }
-  .ap-st { position: absolute;
-    left: var(--edge); right: var(--edge); max-width: none;
-    font-size: clamp(40px, 11vw, 80px); line-height: 1.04;
-    transform: translateY(32px); }
+  .ap-track { height: auto; }
+  .ap-stick { position: static; height: auto; flex-direction: column; align-items: flex-start;
+    gap: 0; padding: var(--section) var(--edge); }
+  .ap-st { position: relative; left: auto; right: auto;
+    min-height: 62vh; display: flex; flex-direction: column; justify-content: center;
+    font-size: clamp(36px,9vw,64px);
+    opacity: 0; transform: translateY(24px);
+    transition: opacity .8s var(--ease), transform .8s var(--ease); }
+  .ap-st.ap-vis { opacity: 1; transform: none; }
 }
 
 /* ---- Reel: grows from small → full, fast montage + video + logo ---- */
