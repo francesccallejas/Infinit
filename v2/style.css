@@ -1019,7 +1019,7 @@ body.menu-open .fab.show { opacity: 0; transform: translateY(12px); pointer-even
    STATEMENT — warm-gray positioning manifest (under hero, word reveal)
    ========================================================================= */
 .statement { position: relative; overflow: hidden; background: var(--bg); color: var(--ink);
-  padding-block: clamp(96px,17vh,220px); text-align: center;
+  padding-block: clamp(20px,3vh,56px) clamp(96px,17vh,220px); text-align: center;
   opacity: 0; transform: translateY(28px); transition: opacity 1s var(--ease), transform 1s var(--ease); }
 .statement.in { opacity: 1; transform: none; }
 .statement .wrap { position: relative; z-index: 2; }
@@ -1029,4 +1029,4 @@ body.menu-open .fab.show { opacity: 0; transform: translateY(12px); pointer-even
 .stmt-line em { font-family: var(--serif); font-style: normal; font-weight: 400; }
 .stmt-line .wd { opacity: .2; transition: opacity .5s var(--ease); }
 .stmt-line.lit .wd { opacity: 1; }
-@media (max-width: 760px) { .statement { padding-block: clamp(72px,12vh,150px); } }
+@media (max-width: 760px) { .statement { padding-block: clamp(16px,3vh,40px) clamp(72px,12vh,150px); } }
