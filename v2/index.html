@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Infinit® — Brand &amp; Strategy · V2</title>
 <meta name="description" content="Strategic brand, identity and digital systems for companies navigating growth and transformation.">
-<link rel="stylesheet" href="style.css?v=100">
+<link rel="stylesheet" href="style.css?v=101">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300..900&family=Inter:wght@700&family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -407,10 +407,10 @@
     let cur = -1;
     function show(i){ if (i===cur) return; cur=i; st.forEach((s,k)=>s.classList.toggle('on', k===i)); }
     show(0);
-    if (isMobile() || !hasGSAP) {
-      /* mobile: reveal each statement individually as it crosses centre */
+    if (!hasGSAP) {
+      /* fallback only (no GSAP): reveal each statement as it crosses centre */
       const io = new IntersectionObserver(es => es.forEach(e => {
-        if (e.isIntersecting) { e.target.classList.add('ap-vis'); io.unobserve(e.target); }
+        if (e.isIntersecting) { e.target.classList.add('on'); io.unobserve(e.target); }
       }), { rootMargin: '-30% 0px -30% 0px', threshold: 0 });
       st.forEach(s => io.observe(s));
       return;
