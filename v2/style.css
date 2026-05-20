@@ -712,12 +712,12 @@ em { font-family: var(--serif); font-style: normal; font-weight: 400; }
 /* ---- Approach: "built for growth" — image-filled giant word ---- */
 .approach { position: relative; background: var(--bg); padding-block: clamp(90px,16vh,200px); overflow: hidden; }
 .approach .gr-lead { font-weight: 600; font-size: clamp(28px,3vw,52px); letter-spacing: -.03em; line-height: 1.04; margin-top: 6px; }
-.approach .gr-word { font-weight: 700; font-size: clamp(96px,23vw,440px); letter-spacing: -.05em; line-height: .86; margin: 0; }
+.approach .gr-word { font-family: var(--serif); font-weight: 400; font-size: clamp(104px,25vw,480px); letter-spacing: -.02em; line-height: .82; margin: 0; }
 .gr-fill { -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent;
   background-image: url('../project/assets/imagery/Julia Yosemite.webp'); background-size: 180% 200%; background-position: 30% 50%;
   animation: grDrift 20s ease-in-out infinite; }
 @keyframes grDrift { 0%,100% { background-position: 18% 50%; } 50% { background-position: 82% 50%; } }
-.approach .gr-sub { margin-top: clamp(20px,2.4vw,36px); max-width: 48ch; color: var(--muted);
+.approach .gr-sub { margin-top: clamp(44px,6vw,90px); max-width: 48ch; color: var(--muted);
   font-size: clamp(15px,1.3vw,19px); line-height: 1.6; }
 @media (max-width: 600px) {
   .approach .gr-word { font-size: clamp(58px,19vw,96px); }
