@@ -453,7 +453,7 @@ em { font-family: var(--serif); font-style: normal; font-weight: 400; }
    FOUNDER
    ========================================================================= */
 .founder, .studio { padding-block: var(--section); }
-.studio { padding-top: clamp(150px, 21vh, 270px); padding-bottom: clamp(44px, 6.5vh, 92px); }
+.studio { padding-block: clamp(150px, 21vh, 270px) clamp(48px, 7vh, 96px); }
 .studio-clients { margin-top: clamp(48px, 7vw, 96px); }
 .founder-side { display: flex; flex-direction: column; gap: clamp(18px, 2vw, 28px); align-self: start; }
 .connect-btn {
@@ -475,7 +475,7 @@ em { font-family: var(--serif); font-style: normal; font-weight: 400; }
 .connect-btn .cb-ar svg { width: 20px; height: 20px; }
 .connect-btn:hover { background: #fff; }
 .connect-btn:hover .cb-ar { background: #0A66C2; color: #fff; box-shadow: inset 0 0 0 1px rgba(255,255,255,.18); }
-.studio-clients .eyebrow { display: block; margin-bottom: clamp(44px, 6.5vh, 92px); }
+.studio-clients .eyebrow { display: block; line-height: 1; margin-bottom: clamp(48px, 7vh, 96px); }
 .founder-grid { display: grid; grid-template-columns: 1.18fr .92fr .66fr; gap: clamp(28px, 3.4vw, 60px); align-items: start; }
 .founder-bio { align-self: start; }
 .founder-grid h2 {
