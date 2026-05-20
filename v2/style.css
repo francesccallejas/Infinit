@@ -420,6 +420,17 @@ em { font-family: var(--serif); font-style: normal; font-weight: 400; }
   font-family: var(--mono); font-size: 11px; letter-spacing: .14em;
   text-transform: uppercase; color: rgba(244,242,240,.7); white-space: nowrap;
 }
+.work-tile .awwwards-badge {
+  position: absolute; top: 16px; right: 16px; z-index: 3;
+  display: flex; align-items: center; gap: 8px;
+  padding: 8px 12px; border-radius: 999px;
+  background: rgba(8,9,15,.38); border: 1px solid rgba(243,240,239,.18);
+  backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+  color: #fff; font-family: var(--mono);
+  font-size: 11px; letter-spacing: .12em; text-transform: uppercase; font-weight: 500;
+  pointer-events: none;
+}
+.work-tile .awwwards-badge img { height: 13px; width: auto; filter: brightness(0) invert(1); }
 .work-tile .cap {
   display: flex; align-items: baseline; gap: 10px;
   margin-top: 15px; flex-wrap: wrap;
