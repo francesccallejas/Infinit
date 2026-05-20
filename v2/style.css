@@ -131,7 +131,8 @@ em { font-family: var(--serif); font-style: normal; font-weight: 400; }
 /* pull-down drawer menu (cream frosted, rounded bottom, push-up to close) */
 .panel {
   position: fixed; left: 0; right: 0; top: 0; z-index: 65; min-height: 100svh;
-  padding: clamp(100px, 15vh, 156px) var(--edge) clamp(40px, 6vh, 66px);
+  display: flex; flex-direction: column; justify-content: flex-end;
+  padding: clamp(96px, 14vh, 150px) var(--edge) clamp(44px, 7vh, 80px);
   background: rgba(244,242,240,.62);
   backdrop-filter: blur(28px) saturate(150%);
   -webkit-backdrop-filter: blur(28px) saturate(150%);
