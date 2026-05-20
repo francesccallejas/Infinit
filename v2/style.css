@@ -1050,11 +1050,16 @@ body.menu-open .fab.show { opacity: 0; transform: translateY(12px); pointer-even
 .ov-claim h3 { position: relative; z-index: 2; margin-bottom: auto;
   font-weight: 600; font-size: clamp(18px,1.7vw,28px); letter-spacing: -.03em; line-height: 1.06; }
 .ov-claim h3 em { font-family: var(--serif); font-style: normal; font-weight: 400; }
+.ov-contact { display: none; background: var(--accent); color: var(--ink); border-color: transparent; }
+.ov-contact h3 { position: relative; z-index: 2; margin-bottom: auto;
+  font-weight: 600; font-size: clamp(20px,5vw,30px); letter-spacing: -.03em; line-height: 1.04; }
+.ov-contact h3 em { font-family: var(--serif); font-style: normal; font-weight: 400; }
 @media (max-width: 860px) {
   .ov { padding-top: 80px; }
   .ov-bento { grid-template-columns: 1fr 1fr; grid-template-rows: none; grid-auto-rows: minmax(130px,22vh); overflow: auto; }
   .ov-work { grid-column: 1 / 3; grid-row: auto; }
   .ov-services, .ov-studio, .ov-claim { grid-column: auto; grid-row: auto; }
+  .ov-contact { display: flex; }
 }
 
 /* =========================================================================
