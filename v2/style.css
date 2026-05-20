@@ -735,8 +735,14 @@ em { font-family: var(--serif); font-style: normal; font-weight: 400; }
 .approach .gr-sub { margin-top: clamp(44px,6vw,90px); max-width: 48ch; color: rgba(11,12,17,.82);
   font-size: clamp(15px,1.3vw,19px); line-height: 1.6; }
 @media (max-width: 600px) {
+  .approach { padding-block: clamp(48px,8vh,88px); }
   .approach .gr-word { font-size: clamp(81px,27vw,134px); }
   .approach .gr-lead { font-size: clamp(30px,8.5vw,50px); }
+}
+@media (max-width: 900px) {
+  .claim-inner { opacity: 0; transform: translateY(30px);
+    transition: opacity .8s var(--ease), transform .8s var(--ease); }
+  .claim-inner.cin { opacity: 1; transform: none; }
 }
 @media (prefers-reduced-motion: reduce) { .gr-fill { animation: none; } }
 

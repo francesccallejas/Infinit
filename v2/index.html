@@ -6,7 +6,7 @@
 <title>Infinit® — Brand &amp; Strategy · V2</title>
 <meta name="description" content="Strategic brand, identity and digital systems for companies navigating growth and transformation.">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
-<link rel="stylesheet" href="style.css?v=163">
+<link rel="stylesheet" href="style.css?v=164">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300..900&family=Inter:wght@700&family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -385,6 +385,17 @@
       if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
     }), { threshold: 0, rootMargin: '0px 0px -8% 0px' });
     els.forEach(el => io.observe(el));
+  })();
+
+  /* ---- claim heading reveal (mobile) ---- */
+  (function(){
+    const el = document.querySelector('.claim-inner');
+    if (!el) return;
+    if (!('IntersectionObserver' in window)) { el.classList.add('cin'); return; }
+    const io = new IntersectionObserver(es => es.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('cin'); io.unobserve(e.target); }
+    }), { threshold: .25 });
+    io.observe(el);
   })();
 
   /* ---- statement: smooth fade-up + word-by-word reveal ---- */
