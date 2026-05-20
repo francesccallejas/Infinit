@@ -176,7 +176,10 @@ em { font-family: var(--serif); font-style: normal; font-weight: 400; }
 .intro .p1 { opacity: 0; animation: fadeIn .7s var(--ease) .25s forwards; }
 .intro .p2 { opacity: 0; animation: fadeIn .7s var(--ease) .5s forwards; }
 @keyframes fadeIn { to { opacity: 1; } }
-@keyframes introOut { to { transform: translateY(-100%); } }
+@keyframes introOut {
+  0%   { transform: translateY(0);     border-bottom-left-radius: 0;    border-bottom-right-radius: 0; }
+  to   { transform: translateY(-100%); border-bottom-left-radius: 44px; border-bottom-right-radius: 44px; }
+}
 
 /* =========================================================================
    REVEAL  (single motion primitive)
@@ -505,6 +508,7 @@ em { font-family: var(--serif); font-style: normal; font-weight: 400; }
    FOOTER
    ========================================================================= */
 .foot { background: var(--ink); color: var(--bg);
+  position: relative; z-index: 1; border-top-left-radius: 44px; border-top-right-radius: 44px;
   min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;
   gap: clamp(24px,3.6vh,44px); padding: clamp(80px,12vh,150px) var(--edge) clamp(36px,5vh,64px); }
 .foot-eyebrow { font-family: var(--mono); font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: rgba(244,242,240,.42); }
@@ -524,7 +528,7 @@ em { font-family: var(--serif); font-style: normal; font-weight: 400; }
 .foot-nav a { font-size: 15px; color: rgba(244,242,240,.6); transition: color .25s var(--ease); }
 .foot-nav a:hover { color: #fff; }
 .foot-base { display: flex; gap: 24px; flex-wrap: wrap; justify-content: center;
-  font-family: var(--mono); font-size: 12px; letter-spacing: .04em; color: rgba(244,242,240,.4); }
+  font-family: var(--mono); font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: rgba(244,242,240,.4); }
 @media (prefers-reduced-motion: reduce) { .foot-flag svg { animation: none; } }
 
 /* =========================================================================
@@ -656,6 +660,7 @@ em { font-family: var(--serif); font-style: normal; font-weight: 400; }
 .cta-band {
   background: #DCD5C8; color: var(--ink);
   padding-block: clamp(140px,20vh,260px);
+  position: sticky; bottom: 0; z-index: 0;
 }
 .cta-band .wrap { text-align: center; }
 .cta-band h2 { font-weight: 600; font-size: clamp(44px,7vw,128px);
