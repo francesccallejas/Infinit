@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Infinit® — Brand &amp; Strategy · V2</title>
 <meta name="description" content="Strategic brand, identity and digital systems for companies navigating growth and transformation.">
-<link rel="stylesheet" href="style.css?v=110">
+<link rel="stylesheet" href="style.css?v=111">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300..900&family=Inter:wght@700&family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -72,8 +72,8 @@
 
 <!-- floating card — appears on scroll, opens overview -->
 <button class="fab" id="ovFab" type="button">
-  <span class="fab-thumb"><span class="fab-badge">NEW</span><img src="../project/assets/images/Bunnker Final.webp" alt=""></span>
-  <span class="fab-tx"><b>A quick look</b><i>Overview of the studio</i></span>
+  <span class="fab-thumb"><img src="../project/assets/images/Bunnker Final.webp" alt=""></span>
+  <span class="fab-tx"><b>A quick look <span class="fab-new">NEW</span></b><i>Overview of the studio</i></span>
   <span class="fab-cta">View</span>
 </button>
 
@@ -405,7 +405,7 @@
   let closeMenu = () => {};
   (function(){
     const b = document.getElementById('menuBtn'), p = document.getElementById('panel');
-    function set(o){ p.classList.toggle('open', o); b.classList.toggle('open', o); b.setAttribute('aria-expanded', o); }
+    function set(o){ p.classList.toggle('open', o); b.classList.toggle('open', o); b.setAttribute('aria-expanded', o); document.body.classList.toggle('menu-open', o); }
     closeMenu = () => set(false);
     b.addEventListener('click', () => set(!p.classList.contains('open')));
     p.querySelectorAll('a').forEach(a => a.addEventListener('click', () => set(false)));
