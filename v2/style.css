@@ -267,7 +267,7 @@ em { font-family: var(--serif); font-style: normal; font-weight: 400; }
   opacity: 0; animation: heroSub 1s var(--ease) 1.3s forwards;
 }
 @media (max-width: 760px) {
-  .hero-h { font-size: clamp(88px, 24vw, 96px); line-height: .98; }
+  .hero-h { font-size: clamp(97px, 26vw, 106px); line-height: .98; }
   .hero-sub { position: static; margin-top: clamp(36px,7vh,72px); max-width: none; }
 }
 @media (prefers-reduced-motion: reduce) {
