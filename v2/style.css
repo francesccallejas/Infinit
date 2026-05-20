@@ -162,6 +162,7 @@ em { font-family: var(--serif); font-style: normal; font-weight: 400; }
 .panel a.big:hover { opacity: 1; transform: translateX(12px); color: var(--accent); }
 .panel .meta {
   color: var(--muted); font-size: 15px; line-height: 1.9;
+  margin-top: clamp(10px, 1.1vw, 22px);
   opacity: 0; transition: opacity .6s var(--ease) .3s;
 }
 .panel.open .meta { opacity: 1; }
