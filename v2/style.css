@@ -1026,3 +1026,20 @@ body.menu-open .fab.show { opacity: 0; transform: translateY(12px); pointer-even
   .ov-work { grid-column: 1 / 3; grid-row: auto; }
   .ov-services, .ov-studio, .ov-claim { grid-column: auto; grid-row: auto; }
 }
+
+/* =========================================================================
+   STATEMENT — dark positioning manifest (centred, word reveal)
+   ========================================================================= */
+.statement { position: relative; overflow: hidden; background: var(--deep); color: var(--bg);
+  padding-block: clamp(110px,20vh,260px); text-align: center; }
+.statement .wrap { position: relative; z-index: 2; }
+.statement .eyebrow { color: rgba(244,242,240,.45); margin-bottom: clamp(26px,3.5vw,48px); }
+.stmt-glow { position: absolute; z-index: 1; width: 62vw; height: 62vw; max-width: 900px; max-height: 900px;
+  left: 50%; top: 50%; transform: translate(-50%,-50%); pointer-events: none;
+  background: radial-gradient(circle, rgba(239,230,174,.10), transparent 60%); }
+.stmt-line { font-weight: 500; font-size: clamp(30px,4.6vw,82px); letter-spacing: -.035em; line-height: 1.1;
+  max-width: 24ch; margin: 0 auto; }
+.stmt-line em { font-family: var(--serif); font-style: normal; font-weight: 400; color: #fff; }
+.stmt-line .wd { opacity: .14; transition: opacity .5s var(--ease); }
+.stmt-line.lit .wd { opacity: 1; }
+@media (max-width: 760px) { .statement { padding-block: clamp(80px,14vh,160px); } }
