@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Infinit® — Palette iterations · 5</title>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300..900&family=Instrument+Serif&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  :root{--sans:"Hanken Grotesk",system-ui,sans-serif;--serif:"Instrument Serif",Georgia,serif;--mono:"IBM Plex Mono",ui-monospace,monospace;--ease:cubic-bezier(.22,1,.36,1)}
+  body{font-family:var(--sans);background:#0e0e0e;color:#fff}
+  .head{padding:34px clamp(24px,5vw,70px) 10px;font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.6)}
+  .pal{display:grid;grid-template-columns:300px 1fr;min-height:62vh;border-top:1px solid rgba(255,255,255,.1)}
+  @media(max-width:880px){.pal{grid-template-columns:1fr}}
+  .info{padding:clamp(24px,3vw,44px);display:flex;flex-direction:column;gap:18px;background:#141414;color:#fff}
+  .info h3{font-weight:600;font-size:clamp(26px,2.4vw,40px);letter-spacing:-.02em}
+  .info .num{font-family:var(--mono);font-size:12px;letter-spacing:.16em;color:rgba(255,255,255,.5)}
+  .info p{font-size:14px;line-height:1.6;color:rgba(255,255,255,.65);max-width:34ch}
+  .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:auto}
+  .chips span{font-family:var(--mono);font-size:10px;letter-spacing:.04em;padding:7px 9px;border-radius:8px;border:1px solid rgba(255,255,255,.14);display:flex;align-items:center;gap:7px;color:rgba(255,255,255,.7)}
+  .chips span i{width:14px;height:14px;border-radius:4px;display:block}
+
+  .demo{display:grid;grid-template-columns:1fr 1fr}
+  @media(max-width:560px){.demo{grid-template-columns:1fr}}
+  .d-light,.d-dark{padding:clamp(26px,3vw,50px);display:flex;flex-direction:column;justify-content:space-between;gap:30px;min-height:300px}
+  .d-light{background:var(--bg);color:var(--ink)}
+  .d-dark{background:var(--ink);color:var(--paper)}
+  .eb{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;opacity:.55}
+  .big{font-weight:600;font-size:clamp(28px,2.6vw,46px);letter-spacing:-.035em;line-height:1.04}
+  .big em{font-family:var(--serif);font-style:normal}
+  .d-light .big em{color:var(--ink)}
+  .d-dark .big em{color:#fff}
+  .row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  .btn{display:inline-flex;align-items:center;gap:8px;height:44px;padding:0 8px 0 18px;border-radius:11px;font-weight:600;font-size:14px}
+  .btn .sq{width:30px;height:30px;border-radius:8px;display:grid;place-items:center}
+  .btn-primary{background:var(--ink);color:var(--bg)}
+  .btn-primary .sq{background:var(--ac);color:var(--ink)}
+  .tag{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;padding:6px 11px;border-radius:999px;border:1px solid currentColor;opacity:.8}
+  .acc-pill{display:inline-block;background:var(--ac);color:var(--ink);font-weight:600;font-size:13px;padding:8px 14px;border-radius:10px}
+  .dot{color:var(--ac)}
+</style>
+</head>
+<body>
+<div class="head">Infinit® · 5 iteracions de paleta — negre blau base · accent signatura propi · neutres lluny del terreny terrós de Julià</div>
+
+<!-- 1 Cobalt -->
+<section class="pal" style="--bg:#F2F1EE;--paper:#FBFAF9;--ink:#0B0C13;--ac:#2B43FF">
+  <div class="info">
+    <div class="num">01</div><h3>Cobalt</h3>
+    <p>Cream net + negre blau + un cobalt elèctric com a signatura. Intel·lectual, segur, MUY editorial. El blau elèctric no el té cap marca terrosa.</p>
+    <div class="chips"><span><i style="background:#F2F1EE"></i>#F2F1EE</span><span><i style="background:#0B0C13"></i>#0B0C13</span><span><i style="background:#2B43FF"></i>#2B43FF</span></div>
+  </div>
+  <div class="demo">
+    <div class="d-light"><span class="eb">Brand & Strategy</span><div class="big">Brands built to <em>scale<span class="dot">®</span>.</em></div><div class="row"><span class="btn btn-primary">Contact<span class="sq">↗</span></span><span class="acc-pill">NEW</span></div></div>
+    <div class="d-dark"><span class="eb" style="color:var(--ac)">What we do</span><div class="big">Clarity of <em>strategy.</em></div><span class="tag">Three pillars ↗</span></div>
+  </div>
+</section>
+
+<!-- 2 Ember -->
+<section class="pal" style="--bg:#F4F1EE;--paper:#FBFAF9;--ink:#0C0B0C;--ac:#FF4A2E">
+  <div class="info">
+    <div class="num">02</div><h3>Ember</h3>
+    <p>Negre + paper càlid + un vermell-taronja vibrant (signal, no terrós). Energia i caràcter. Diferent del taronja-KTM de Julià: més saturat i "signal".</p>
+    <div class="chips"><span><i style="background:#F4F1EE"></i>#F4F1EE</span><span><i style="background:#0C0B0C"></i>#0C0B0C</span><span><i style="background:#FF4A2E"></i>#FF4A2E</span></div>
+  </div>
+  <div class="demo">
+    <div class="d-light"><span class="eb">Brand & Strategy</span><div class="big">Brands built to <em>scale<span class="dot">®</span>.</em></div><div class="row"><span class="btn btn-primary">Contact<span class="sq">↗</span></span><span class="acc-pill">NEW</span></div></div>
+    <div class="d-dark"><span class="eb" style="color:var(--ac)">What we do</span><div class="big">Clarity of <em>strategy.</em></div><span class="tag">Three pillars ↗</span></div>
+  </div>
+</section>
+
+<!-- 3 Acid -->
+<section class="pal" style="--bg:#ECEEE9;--paper:#F7F8F4;--ink:#0F1115;--ac:#C7ED3F">
+  <div class="info">
+    <div class="num">03</div><h3>Acid</h3>
+    <p>Off-white fred + ink grafit + un lima/chartreuse tech. Atrevit, contemporani, molt Motto. Neutres FREDS = oposat al càlid de Julià.</p>
+    <div class="chips"><span><i style="background:#ECEEE9"></i>#ECEEE9</span><span><i style="background:#0F1115"></i>#0F1115</span><span><i style="background:#C7ED3F"></i>#C7ED3F</span></div>
+  </div>
+  <div class="demo">
+    <div class="d-light"><span class="eb">Brand & Strategy</span><div class="big">Brands built to <em>scale<span class="dot">®</span>.</em></div><div class="row"><span class="btn btn-primary">Contact<span class="sq">↗</span></span><span class="acc-pill">NEW</span></div></div>
+    <div class="d-dark"><span class="eb" style="color:var(--ac)">What we do</span><div class="big">Clarity of <em>strategy.</em></div><span class="tag">Three pillars ↗</span></div>
+  </div>
+</section>
+
+<!-- 4 Indigo -->
+<section class="pal" style="--bg:#F0EFF3;--paper:#FAFAFC;--ink:#0C0D16;--ac:#5A45F0">
+  <div class="info">
+    <div class="num">04</div><h3>Indigo</h3>
+    <p>Paper fred lila + negre molt blau + violeta-indigo elèctric. Creatiu i digital sense ser infantil. Cap punt en comú amb Julià.</p>
+    <div class="chips"><span><i style="background:#F0EFF3"></i>#F0EFF3</span><span><i style="background:#0C0D16"></i>#0C0D16</span><span><i style="background:#5A45F0"></i>#5A45F0</span></div>
+  </div>
+  <div class="demo">
+    <div class="d-light"><span class="eb">Brand & Strategy</span><div class="big">Brands built to <em>scale<span class="dot">®</span>.</em></div><div class="row"><span class="btn btn-primary">Contact<span class="sq">↗</span></span><span class="acc-pill">NEW</span></div></div>
+    <div class="d-dark"><span class="eb" style="color:var(--ac)">What we do</span><div class="big">Clarity of <em>strategy.</em></div><span class="tag">Three pillars ↗</span></div>
+  </div>
+</section>
+
+<!-- 5 Mono + Klein -->
+<section class="pal" style="--bg:#EFEFEE;--paper:#FFFFFF;--ink:#101012;--ac:#1B1B1E">
+  <div class="info">
+    <div class="num">05</div><h3>Mono (Motto pur)</h3>
+    <p>Gairebé sense color: blanc·gris·negre d'alt contrast, l'accent és el propi NEGRE i la tipografia. Màxima sobrietat editorial; el color el posen les fotos del Work.</p>
+    <div class="chips"><span><i style="background:#EFEFEE"></i>#EFEFEE</span><span><i style="background:#FFFFFF;border:1px solid #ccc"></i>#FFFFFF</span><span><i style="background:#101012"></i>#101012</span></div>
+  </div>
+  <div class="demo">
+    <div class="d-light"><span class="eb">Brand & Strategy</span><div class="big">Brands built to <em>scale®.</em></div><div class="row"><span class="btn btn-primary">Contact<span class="sq">↗</span></span><span class="tag">NEW</span></div></div>
+    <div class="d-dark"><span class="eb">What we do</span><div class="big">Clarity of <em>strategy.</em></div><span class="tag">Three pillars ↗</span></div>
+  </div>
+</section>
+
+</body>
+</html>
