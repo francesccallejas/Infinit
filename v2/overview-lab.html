@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Infinit® — Overview (refinat)</title>
+<title>Infinit® — Overview floating card</title>
 <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300..900&family=Inter:wght@700&family=Instrument+Serif&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root{
@@ -20,7 +20,7 @@
   em{font-family:var(--serif);font-style:normal;font-weight:400}
   body.locked{overflow:hidden}
 
-  /* ---- nav (menu stays untouched) ---- */
+  /* ---- nav (unchanged) ---- */
   .logo{position:fixed;top:clamp(20px,3vh,36px);left:var(--edge);z-index:70;height:42px;
     display:inline-flex;align-items:center;gap:9px;mix-blend-mode:difference;color:#fff}
   .logo svg{height:26px;width:auto}
@@ -28,61 +28,76 @@
   .logo .reg{font-family:"Inter";font-weight:700;font-size:10px;margin-top:3px}
   .nav{position:fixed;top:clamp(20px,3vh,36px);right:var(--edge);z-index:70;display:flex;gap:8px}
   .nav button,.nav a.btn{height:42px;border:1px solid rgba(11,12,17,.06);background:rgba(251,250,249,.7);
-    backdrop-filter:blur(12px);border-radius:10px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--ink);
-    font-family:var(--sans);transition:background .25s var(--ease),color .25s var(--ease)}
-  .nav .overview-btn{padding:0 16px;font-size:14px;font-weight:600;gap:8px;background:transparent}
-  .nav .overview-btn .dot{width:7px;height:7px;border-radius:50%;background:var(--ink);transition:transform .4s var(--ease)}
-  .nav .overview-btn:hover{background:rgba(251,250,249,.7)}
-  .nav .overview-btn:hover .dot{transform:scale(1.25)}
+    backdrop-filter:blur(12px);border-radius:10px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--ink);font-family:var(--sans)}
   .nav .cta{padding:0 16px;font-size:14px;font-weight:600;background:var(--accent);border-color:transparent}
-  .nav .cta:hover{background:#e9dd92}
   .menu-btn{width:42px;flex-direction:column;gap:4px}
-  .menu-btn span{width:18px;height:2px;border-radius:2px;background:currentColor;transition:transform .3s var(--ease),opacity .2s}
+  .menu-btn span{width:18px;height:2px;border-radius:2px;background:currentColor}
 
-  /* ---- OVERVIEW overlay — above everything ---- */
+  /* ============ FLOATING CARD (Motto / Relats style) ============ */
+  .fab{position:fixed;left:var(--edge);bottom:26px;z-index:66;
+    display:flex;align-items:center;gap:14px;padding:10px 10px 10px 12px;border:0;cursor:pointer;
+    border-radius:18px;font-family:var(--sans);text-align:left;
+    opacity:0;transform:translateY(22px);pointer-events:none;
+    transition:opacity .55s var(--ease),transform .55s var(--ease),background .25s var(--ease)}
+  .fab.show{opacity:1;transform:none;pointer-events:auto}
+  .fab-thumb{width:54px;height:54px;border-radius:13px;overflow:hidden;flex:none;position:relative;background:#222}
+  .fab-thumb img{width:100%;height:100%;object-fit:cover}
+  .fab-tx{display:flex;flex-direction:column;gap:1px;padding-right:6px}
+  .fab-tx b{font-weight:600;font-size:15px;letter-spacing:-.01em}
+  .fab-tx i{font-style:normal;font-size:13px;color:var(--muted)}
+  .fab-cta{flex:none;height:38px;padding:0 18px;border-radius:11px;display:grid;place-items:center;
+    font-size:13px;font-weight:600;letter-spacing:.02em}
+  .fab .badge{position:absolute;top:-7px;left:-7px;z-index:3;font-family:var(--sans);font-weight:700;
+    font-size:10px;letter-spacing:.06em;background:var(--accent);color:var(--ink);padding:3px 7px;border-radius:8px}
+
+  /* light (Motto) */
+  .fab.light{background:#fff;color:var(--ink);box-shadow:0 22px 54px -26px rgba(10,11,15,.4)}
+  .fab.light .fab-cta{background:#f0eeec;color:var(--ink)}
+  .fab.light:hover{background:#fff}
+  .fab.light:hover .fab-cta{background:var(--accent)}
+  /* dark (Relats) */
+  .fab.dark{background:#15161c;color:var(--bg);box-shadow:0 22px 54px -26px rgba(0,0,0,.6)}
+  .fab.dark .fab-tx i{color:rgba(244,242,240,.55)}
+  .fab.dark .fab-cta{background:rgba(244,242,240,.1);color:var(--bg)}
+  .fab.dark:hover .fab-cta{background:var(--accent);color:var(--ink)}
+
+  /* ============ OVERVIEW overlay ============ */
   .ov{position:fixed;inset:0;z-index:120;display:flex;flex-direction:column;
     padding:clamp(70px,9vh,110px) var(--edge) clamp(36px,6vh,70px);
     background:rgba(8,8,12,.55);backdrop-filter:blur(30px) saturate(150%);-webkit-backdrop-filter:blur(30px) saturate(150%);
     opacity:0;visibility:hidden;transition:opacity .55s var(--ease),visibility .55s}
   .ov.open{opacity:1;visibility:visible}
-  .ov-top{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;
-    max-width:1500px;width:100%;margin:0 auto clamp(24px,3vw,44px)}
+  .ov-top{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;max-width:1500px;width:100%;margin:0 auto clamp(24px,3vw,44px)}
   .ov-top .eb{font-family:var(--mono);font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:rgba(244,242,240,.5);display:block;margin-bottom:12px}
   .ov-top h2{color:var(--bg);font-weight:600;font-size:clamp(28px,3.6vw,58px);letter-spacing:-.035em;line-height:1.04}
-  .ov-top h2 em{color:#fff}
-  .ov-close{flex:none;width:48px;height:48px;border-radius:12px;border:1px solid rgba(244,242,240,.18);
-    background:transparent;color:var(--bg);cursor:pointer;display:grid;place-items:center;transition:background .25s var(--ease)}
+  .ov-close{flex:none;width:48px;height:48px;border-radius:12px;border:1px solid rgba(244,242,240,.18);background:transparent;color:var(--bg);cursor:pointer;display:grid;place-items:center}
   .ov-close:hover{background:rgba(244,242,240,.12)}
   .ov-close svg{width:18px;height:18px}
-  .ov-bento{max-width:1500px;width:100%;margin:0 auto;flex:1;
-    display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:1fr 1fr;gap:clamp(12px,1.1vw,18px);min-height:0}
-  .ov-card{position:relative;overflow:hidden;border-radius:18px;background:#111219;border:1px solid rgba(244,242,240,.08);
-    display:flex;flex-direction:column;justify-content:flex-end;padding:clamp(18px,1.6vw,28px);color:var(--bg);
-    opacity:0;transform:translateY(26px) scale(.985);transition:opacity .6s var(--ease),transform .6s var(--ease)}
+  .ov-bento{max-width:1500px;width:100%;margin:0 auto;flex:1;display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:1fr 1fr;gap:clamp(12px,1.1vw,18px);min-height:0}
+  .ov-card{position:relative;overflow:hidden;border-radius:18px;background:#111219;border:1px solid rgba(244,242,240,.08);display:flex;flex-direction:column;justify-content:flex-end;padding:clamp(18px,1.6vw,28px);color:var(--bg);opacity:0;transform:translateY(26px) scale(.985);transition:opacity .6s var(--ease),transform .6s var(--ease)}
   .ov.open .ov-card{opacity:1;transform:none}
-  .ov.open .ov-card:nth-child(1){transition-delay:.05s}
-  .ov.open .ov-card:nth-child(2){transition-delay:.12s}
-  .ov.open .ov-card:nth-child(3){transition-delay:.19s}
-  .ov.open .ov-card:nth-child(4){transition-delay:.26s}
+  .ov.open .ov-card:nth-child(1){transition-delay:.05s}.ov.open .ov-card:nth-child(2){transition-delay:.12s}.ov.open .ov-card:nth-child(3){transition-delay:.19s}.ov.open .ov-card:nth-child(4){transition-delay:.26s}
   .ov-work{grid-column:1/3;grid-row:1/3}
   .ov-services{grid-column:3/5;grid-row:1;background:var(--accent);color:var(--ink);border-color:transparent}
-  .ov-studio{grid-column:3;grid-row:2}
-  .ov-claim{grid-column:4;grid-row:2}
+  .ov-studio{grid-column:3;grid-row:2}.ov-claim{grid-column:4;grid-row:2}
   .ov-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;transition:transform 1s var(--ease)}
   .ov-card:hover img{transform:scale(1.06)}
   .ov-scrim{position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(8,8,12,0) 36%,rgba(8,8,12,.74) 100%)}
-  .ov-label{position:relative;z-index:2;display:flex;align-items:center;justify-content:space-between;
-    font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase}
-  .ov-ar{transition:transform .4s var(--ease)}
-  .ov-card:hover .ov-ar{transform:translate(3px,-3px)}
-  .ov-svc-list{position:relative;z-index:2;margin-bottom:auto;display:flex;flex-direction:column;gap:2px;
-    font-weight:600;font-size:clamp(22px,2.4vw,40px);letter-spacing:-.025em;line-height:1.12}
+  .ov-label{position:relative;z-index:2;display:flex;align-items:center;justify-content:space-between;font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase}
+  .ov-ar{transition:transform .4s var(--ease)}.ov-card:hover .ov-ar{transform:translate(3px,-3px)}
+  .ov-svc-list{position:relative;z-index:2;margin-bottom:auto;display:flex;flex-direction:column;gap:2px;font-weight:600;font-size:clamp(22px,2.4vw,40px);letter-spacing:-.025em;line-height:1.12}
   .ov-claim h3{position:relative;z-index:2;margin-bottom:auto;font-weight:600;font-size:clamp(18px,1.7vw,28px);letter-spacing:-.03em;line-height:1.06}
 
+  /* style toggle */
+  .toggle{position:fixed;left:50%;bottom:18px;transform:translateX(-50%);z-index:300;display:flex;gap:6px;padding:6px;border-radius:13px;background:rgba(11,12,17,.9);box-shadow:0 18px 50px -22px rgba(0,0,0,.6)}
+  .toggle button{font-family:var(--mono);font-size:11px;color:rgba(244,242,240,.6);background:transparent;border:0;padding:9px 14px;border-radius:9px;cursor:pointer}
+  .toggle button.on{background:var(--accent);color:var(--ink)}
+
   /* page filler */
-  .hero{min-height:92vh;display:flex;flex-direction:column;justify-content:center;padding:0 var(--edge)}
+  .hero{min-height:94vh;display:flex;flex-direction:column;justify-content:center;padding:0 var(--edge)}
   .hero h1{font-weight:600;font-size:clamp(54px,9vw,150px);letter-spacing:-.05em;line-height:1}
   .hero h1 em{font-family:var(--serif)}
+  .hero small{display:block;margin-top:20px;font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
   .filler{padding:clamp(80px,16vh,200px) var(--edge);border-top:1px solid var(--line)}
   .filler h2{font-weight:600;font-size:clamp(30px,4vw,64px);letter-spacing:-.03em}
   .filler.dark{background:var(--ink);color:var(--bg)}
@@ -90,9 +105,8 @@
   @media(max-width:860px){
     .ov{padding-top:80px}
     .ov-bento{grid-template-columns:1fr 1fr;grid-template-rows:none;grid-auto-rows:minmax(130px,22vh);overflow:auto}
-    .ov-work{grid-column:1/3;grid-row:auto}
-    .ov-services,.ov-studio,.ov-claim{grid-column:auto;grid-row:auto}
-    .nav .overview-btn .dot{display:none}
+    .ov-work{grid-column:1/3;grid-row:auto}.ov-services,.ov-studio,.ov-claim{grid-column:auto;grid-row:auto}
+    .fab{right:var(--edge);left:var(--edge)}
   }
 </style>
 </head>
@@ -101,12 +115,18 @@
 <a class="logo"><svg viewBox="0 0 374 206" fill="none"><path d="M 108.196 34 L 182.196 34 Q 201.196 34 194.140 51.641 L 153.056 154.359 Q 146 172 127 172 L 53 172 Q 34 172 41.056 154.359 L 82.140 51.641 Q 89.196 34 108.196 34 Z" fill="currentColor"/><path d="M 108.196 34 L 182.196 34 Q 201.196 34 194.140 51.641 L 153.056 154.359 Q 146 172 127 172 L 53 172 Q 34 172 41.056 154.359 L 82.140 51.641 Q 89.196 34 108.196 34 Z" fill="currentColor" transform="translate(139 0)"/></svg><span class="word">infinit<span class="reg">®</span></span></a>
 
 <nav class="nav">
-  <button class="btn overview-btn" id="ovBtn"><span class="dot"></span>Overview</button>
   <a class="btn cta">Contact</a>
-  <button class="menu-btn" id="menuBtn"><span></span><span></span><span></span></button>
+  <button class="menu-btn"><span></span><span></span><span></span></button>
 </nav>
 
-<!-- OVERVIEW overlay (above everything) -->
+<!-- floating card -->
+<button class="fab light" id="fab">
+  <span class="fab-thumb"><span class="badge">NEW</span><img src="../project/assets/images/Bunnker Final.webp" alt=""></span>
+  <span class="fab-tx"><b>A quick look</b><i>Overview of the studio</i></span>
+  <span class="fab-cta">View</span>
+</button>
+
+<!-- OVERVIEW overlay -->
 <div class="ov" id="ov" aria-hidden="true">
   <div class="ov-top">
     <div><span class="eb">A quick look</span><h2>One studio, <em>everything connected.</em></h2></div>
@@ -121,25 +141,38 @@
 </div>
 
 <main>
-  <section class="hero"><h1>Brands built<br>to <em>scale®.</em></h1></section>
+  <section class="hero"><h1>Brands built<br>to <em>scale®.</em></h1><small>Fes scroll ↓ — el card flotant apareixerà</small></section>
   <section class="filler dark"><h2>Reel</h2></section>
   <section class="filler"><h2>Approach</h2></section>
   <section class="filler"><h2>Services</h2></section>
   <section class="filler"><h2>Work</h2></section>
 </main>
 
+<div class="toggle">
+  <button data-s="light" class="on">Estil clar (Motto)</button>
+  <button data-s="dark">Estil fosc (Relats)</button>
+</div>
+
 <script>
-  const ov = document.getElementById('ov');
-  const open = ()=>{ ov.classList.add('open'); ov.setAttribute('aria-hidden','false'); document.body.classList.add('locked'); };
-  const close = ()=>{ ov.classList.remove('open'); ov.setAttribute('aria-hidden','true'); document.body.classList.remove('locked'); };
-  document.getElementById('ovBtn').addEventListener('click', open);
-  document.getElementById('ovClose').addEventListener('click', close);
-  ov.addEventListener('click', e=>{ if(e.target===ov) close(); });
-  document.addEventListener('keydown', e=>{ if(e.key==='Escape') close(); });
-  // cards also close after navigating (demo)
+  const ov=document.getElementById('ov'), fab=document.getElementById('fab');
+  const open=()=>{ov.classList.add('open');ov.setAttribute('aria-hidden','false');document.body.classList.add('locked');};
+  const close=()=>{ov.classList.remove('open');ov.setAttribute('aria-hidden','true');document.body.classList.remove('locked');};
+  fab.addEventListener('click',open);
+  document.getElementById('ovClose').addEventListener('click',close);
+  ov.addEventListener('click',e=>{if(e.target===ov)close();});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')close();});
   ov.querySelectorAll('.ov-card').forEach(c=>c.addEventListener('click',()=>setTimeout(close,150)));
-  // menu button is just a placeholder here — menu stays as-is in the real site
-  document.getElementById('menuBtn').addEventListener('click',()=>alert('El menú es queda igual que ara — aquí només és un placeholder.'));
+
+  // appear on scroll past hero
+  const onScroll=()=>{ if(window.scrollY>window.innerHeight*0.7) fab.classList.add('show'); else fab.classList.remove('show'); };
+  window.addEventListener('scroll',onScroll,{passive:true}); onScroll();
+
+  // style toggle
+  document.querySelectorAll('.toggle button').forEach(b=>b.addEventListener('click',()=>{
+    document.querySelectorAll('.toggle button').forEach(x=>x.classList.toggle('on',x===b));
+    fab.classList.toggle('light',b.dataset.s==='light');
+    fab.classList.toggle('dark',b.dataset.s==='dark');
+  }));
 </script>
 </body>
 </html>
