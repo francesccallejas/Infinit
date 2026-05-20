@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Infinit® — Icon motion · 5 personalitats</title>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  :root{--bg:#F4F2F0;--paper:#FBFAF9;--ink:#0B0C11;--muted:rgba(11,12,17,.55);--line:rgba(11,12,17,.12);
+    --accent:#EFE6AE;--mono:"IBM Plex Mono",monospace;--sans:"Hanken Grotesk",sans-serif;--ease:cubic-bezier(.22,1,.36,1)}
+  body{font-family:var(--sans);background:var(--bg);color:var(--ink);padding:0 0 14vh}
+  .lab{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);padding:30px clamp(24px,5vw,70px) 0}
+  .opt{padding:clamp(30px,4vw,52px) clamp(24px,5vw,70px);border-top:1px solid var(--line);display:flex;align-items:center;gap:clamp(24px,5vw,80px);flex-wrap:wrap}
+  .opt .info{min-width:200px;max-width:280px}
+  .opt h3{font-weight:600;font-size:clamp(18px,1.6vw,24px);letter-spacing:-.02em}
+  .opt p{font-size:14px;line-height:1.55;color:var(--muted);margin-top:6px}
+  .row{display:flex;gap:14px;flex-wrap:wrap}
+  /* base button (frosted like reel controls) */
+  .ic{width:54px;height:54px;border-radius:14px;border:1px solid var(--line);background:rgba(251,250,249,.7);
+    backdrop-filter:blur(10px);display:grid;place-items:center;cursor:pointer;color:var(--ink);position:relative;overflow:hidden}
+  .ic svg{width:20px;height:20px;position:relative;z-index:2}
+  .ic .ic-fill{position:absolute;inset:0;background:var(--accent);z-index:1;transform:translateY(101%);transition:transform .45s var(--ease)}
+  .plus{position:relative}
+  .plus::before,.plus::after{content:"";position:absolute;top:50%;left:50%;width:18px;height:2px;background:currentColor;transform:translate(-50%,-50%);z-index:2}
+  .plus::after{transform:translate(-50%,-50%) rotate(90deg)}
+  /* sound/play icon swap */
+  .ic .on-off .a{display:none}.ic.on .on-off .a{display:block}.ic.on .on-off .b{display:none}
+  .ic .pp .play{display:none}.ic.paused .pp .play{display:block}.ic.paused .pp .pause{display:none}
+
+  /* ===== 1 · CALM (Apple) ===== */
+  .o1 .ic{transition:transform .4s var(--ease),background .3s var(--ease),border-color .3s var(--ease)}
+  .o1 .ic:hover{transform:scale(1.07);background:#fff;border-color:rgba(11,12,17,.2)}
+  .o1 .ic svg,.o1 .plus::before,.o1 .plus::after{transition:opacity .3s var(--ease)}
+  .o1 .ic:active{transform:scale(.96)}
+
+  /* ===== 2 · MAGNETIC SPRING ===== */
+  .o2 .ic{transition:transform .5s cubic-bezier(.34,1.56,.64,1),background .3s var(--ease)}
+  .o2 .ic:hover{transform:translateY(-4px) scale(1.04);background:#fff}
+  .o2 .ic svg{transition:transform .5s cubic-bezier(.34,1.56,.64,1)}
+  .o2 .arrow:hover svg{transform:translate(3px,-3px)}
+  .o2 .replay:hover svg{transform:rotate(-28deg)}
+  .o2 .ic:active{transform:scale(.94)}
+
+  /* ===== 3 · MORPH / DRAW ===== */
+  .o3 .replay svg path{stroke-dasharray:60;stroke-dashoffset:0;transition:stroke-dashoffset .6s var(--ease)}
+  .o3 .replay:hover svg path{stroke-dashoffset:60}
+  .o3 .arrow svg path{stroke-dasharray:34;transition:stroke-dashoffset .5s var(--ease)}
+  .o3 .arrow:hover svg path{stroke-dashoffset:34;animation:redraw .6s var(--ease) .15s}
+  @keyframes redraw{from{stroke-dashoffset:-34}to{stroke-dashoffset:0}}
+  .o3 .ic{transition:background .3s var(--ease)}
+  .o3 .ic:hover{background:#fff}
+  .o3 .ic svg *{transition:opacity .3s var(--ease)}
+
+  /* ===== 4 · DIRECTIONAL KINETIC ===== */
+  .o4 .ic{transition:background .3s var(--ease)}
+  .o4 .ic:hover{background:#fff}
+  .o4 .arrow:hover svg{animation:fly .6s var(--ease)}
+  @keyframes fly{40%{transform:translate(14px,-14px);opacity:0}41%{transform:translate(-14px,14px);opacity:0}100%{transform:none;opacity:1}}
+  .o4 .replay.spin svg{animation:spin360 .7s var(--ease)}
+  @keyframes spin360{to{transform:rotate(-360deg)}}
+  .o4 .sound:hover .on-off{animation:none}
+  .o4 .plus{transition:transform .5s cubic-bezier(.34,1.56,.64,1)}
+  .o4 .plus:hover{transform:rotate(135deg)}
+  .o4 .plus:hover::before,.o4 .plus:hover::after{background:var(--ink)}
+
+  /* ===== 5 · FILL SWEEP + INVERT ===== */
+  .o5 .ic:hover .ic-fill{transform:translateY(0)}
+  .o5 .ic:hover{border-color:transparent;color:var(--ink)}
+  .o5 .ic svg,.o5 .plus::before,.o5 .plus::after{transition:color .3s .1s}
+</style>
+</head>
+<body>
+<div class="lab">Icon motion · 5 personalitats — passa el ratolí · clica sound / play / replay</div>
+
+<!-- template row reused; class on .opt switches treatment -->
+<section class="opt o1">
+  <div class="info"><h3>1 · Calm (Apple)</h3><p>Escala suau i precisa, fons a blanc, lleuger press. Màxima contenció premium.</p></div>
+  <div class="row" data-set></div>
+</section>
+<section class="opt o2">
+  <div class="info"><h3>2 · Magnetic spring</h3><p>Rebot subtil amb overshoot; la fletxa fa nudge ↗, el replay fa wind-up. Viu però elegant.</p></div>
+  <div class="row" data-set></div>
+</section>
+<section class="opt o3">
+  <div class="info"><h3>3 · Morph / draw</h3><p>El replay i la fletxa es "redibuixen" (stroke), play↔pause net. Caràcter artesà.</p></div>
+  <div class="row" data-set></div>
+</section>
+<section class="opt o4">
+  <div class="info"><h3>4 · Directional kinetic</h3><p>Cada icona es mou pel seu significat: fletxa vola i torna, replay gira 360°, "+" → ×.</p></div>
+  <div class="row" data-set></div>
+</section>
+<section class="opt o5">
+  <div class="info"><h3>5 · Fill sweep + invert</h3><p>El quadrat s'omple d'accent des de baix i la icona s'inverteix. Tàctil i marcat.</p></div>
+  <div class="row" data-set></div>
+</section>
+
+<script>
+  const SVG = {
+    sound: `<span class="on-off"><svg class="b" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H3v6h3l5 4z"/><line x1="22" y1="9" x2="16" y2="15"/><line x1="16" y1="9" x2="22" y2="15"/></svg><svg class="a" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/></svg></span>`,
+    pp: `<span class="pp"><svg class="pause" viewBox="0 0 24 24" fill="currentColor"><rect x="7" y="6" width="3.4" height="12" rx="1"/><rect x="13.6" y="6" width="3.4" height="12" rx="1"/></svg><svg class="play" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></svg></span>`,
+    replay: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 3v5h-5"/></svg>`,
+    arrow: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg>`
+  };
+  document.querySelectorAll('[data-set]').forEach(row=>{
+    row.innerHTML = `
+      <button class="ic sound on"><span class="ic-fill"></span>${SVG.sound}</button>
+      <button class="ic play"><span class="ic-fill"></span>${SVG.pp}</button>
+      <button class="ic replay"><span class="ic-fill"></span>${SVG.replay}</button>
+      <button class="ic arrow"><span class="ic-fill"></span>${SVG.arrow}</button>
+      <button class="ic plus"><span class="ic-fill"></span></button>`;
+  });
+  document.addEventListener('click',e=>{
+    const b=e.target.closest('.ic'); if(!b) return;
+    if(b.classList.contains('sound')) b.classList.toggle('on');
+    if(b.classList.contains('play')) b.classList.toggle('paused');
+    if(b.classList.contains('replay')){ b.classList.add('spin'); setTimeout(()=>b.classList.remove('spin'),700); }
+  });
+</script>
+</body>
+</html>
