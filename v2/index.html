@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Infinit® — Brand &amp; Strategy · V2</title>
 <meta name="description" content="Strategic brand, identity and digital systems for companies navigating growth and transformation.">
-<link rel="stylesheet" href="style.css?v=114">
+<link rel="stylesheet" href="style.css?v=115">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300..900&family=Inter:wght@700&family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -88,6 +88,14 @@
     <span class="hero-cue">Scroll ↓</span>
   </section>
 
+  <!-- STATEMENT (warm-gray manifest, under hero) -->
+  <section class="statement" id="statement">
+    <div class="wrap">
+      <span class="eyebrow">What we do</span>
+      <p class="stmt-line" data-words>We build brands with the <em>clarity</em> of strategy, the <em>discipline</em> of real operations, and the <em>invisible line</em> of technology.</p>
+    </div>
+  </section>
+
   <!-- REEL (grows from small → full, fast montage + video + logo) -->
   <section class="reel" id="reel">
     <div class="reel-track" id="reelTrack">
@@ -126,15 +134,6 @@
           </div>
         </div>
       </div>
-    </div>
-  </section>
-
-  <!-- STATEMENT (dark manifest) -->
-  <section class="statement" id="statement">
-    <div class="stmt-glow" aria-hidden="true"></div>
-    <div class="wrap">
-      <span class="eyebrow">What we do</span>
-      <p class="stmt-line" data-words>We build brands with the <em>clarity</em> of strategy, the <em>discipline</em> of real operations, and the <em>invisible line</em> of technology.</p>
     </div>
   </section>
 
@@ -409,16 +408,22 @@
     els.forEach(el => io.observe(el));
   })();
 
-  /* ---- statement: word-by-word reveal ---- */
+  /* ---- statement: smooth fade-up + word-by-word reveal ---- */
   (function(){
-    const el = document.querySelector('[data-words]'); if (!el) return;
+    const sec = document.getElementById('statement'); if (!sec) return;
+    const el = sec.querySelector('[data-words]');
     el.innerHTML = el.innerHTML.replace(/(<[^>]+>)|([^<\s]+)/g, (m, tag, word) => tag ? tag : `<span class="wd">${word}</span> `);
     const words = [...el.querySelectorAll('.wd')];
-    if (!('IntersectionObserver' in window)) { el.classList.add('lit'); return; }
+    if (!('IntersectionObserver' in window)) { sec.classList.add('in'); el.classList.add('lit'); return; }
     const io = new IntersectionObserver(es => es.forEach(e => {
-      if (e.isIntersecting) { words.forEach((w,i)=> w.style.transitionDelay = (i*45)+'ms'); el.classList.add('lit'); io.unobserve(el); }
-    }), { threshold: .45 });
-    io.observe(el);
+      if (e.isIntersecting) {
+        sec.classList.add('in');
+        words.forEach((w,i)=> w.style.transitionDelay = (220 + i*45)+'ms');
+        el.classList.add('lit');
+        io.unobserve(sec);
+      }
+    }), { threshold: .35 });
+    io.observe(sec);
   })();
 
   /* ---- nav panel ---- */

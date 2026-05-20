@@ -1028,18 +1028,17 @@ body.menu-open .fab.show { opacity: 0; transform: translateY(12px); pointer-even
 }
 
 /* =========================================================================
-   STATEMENT — dark positioning manifest (centred, word reveal)
+   STATEMENT — warm-gray positioning manifest (under hero, word reveal)
    ========================================================================= */
-.statement { position: relative; overflow: hidden; background: var(--deep); color: var(--bg);
-  padding-block: clamp(110px,20vh,260px); text-align: center; }
+.statement { position: relative; overflow: hidden; background: #C8C1B6; color: var(--ink);
+  padding-block: clamp(96px,17vh,220px); text-align: center;
+  opacity: 0; transform: translateY(28px); transition: opacity 1s var(--ease), transform 1s var(--ease); }
+.statement.in { opacity: 1; transform: none; }
 .statement .wrap { position: relative; z-index: 2; }
-.statement .eyebrow { color: rgba(244,242,240,.45); margin-bottom: clamp(26px,3.5vw,48px); }
-.stmt-glow { position: absolute; z-index: 1; width: 62vw; height: 62vw; max-width: 900px; max-height: 900px;
-  left: 50%; top: 50%; transform: translate(-50%,-50%); pointer-events: none;
-  background: radial-gradient(circle, rgba(239,230,174,.10), transparent 60%); }
+.statement .eyebrow { color: rgba(11,12,17,.5); margin-bottom: clamp(26px,3.5vw,48px); }
 .stmt-line { font-weight: 500; font-size: clamp(30px,4.6vw,82px); letter-spacing: -.035em; line-height: 1.1;
   max-width: 24ch; margin: 0 auto; }
-.stmt-line em { font-family: var(--serif); font-style: normal; font-weight: 400; color: #fff; }
-.stmt-line .wd { opacity: .14; transition: opacity .5s var(--ease); }
+.stmt-line em { font-family: var(--serif); font-style: normal; font-weight: 400; }
+.stmt-line .wd { opacity: .2; transition: opacity .5s var(--ease); }
 .stmt-line.lit .wd { opacity: 1; }
-@media (max-width: 760px) { .statement { padding-block: clamp(80px,14vh,160px); } }
+@media (max-width: 760px) { .statement { padding-block: clamp(72px,12vh,150px); } }
