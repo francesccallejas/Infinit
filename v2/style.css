@@ -584,6 +584,8 @@ em { font-family: var(--serif); font-style: normal; font-weight: 400; }
   .claim-window.cin .claim-inner p { opacity: 1; transform: none; }
   .svc { grid-template-columns: 1fr; gap: 16px; }
   .work-tile .cap .work-tag { letter-spacing: .05em; word-spacing: -1px; }
+  .services { padding-bottom: clamp(10px,2vh,24px); }
+  .work { padding-top: clamp(44px,7vh,80px); }
   .work-list { position: static; display: flex; flex-direction: column; gap: 28px; min-height: 0; }
   .work-list .work-tile,
   .work-list .work-tile:nth-child(n) { position: static; width: 100%; left: auto; top: auto; margin: 0; }
