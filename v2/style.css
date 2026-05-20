@@ -554,6 +554,7 @@ em { font-family: var(--serif); font-style: normal; font-weight: 400; }
    ========================================================================= */
 @media (max-width: 900px) {
   body { font-size: 17px; touch-action: pan-y; overscroll-behavior-x: none; }
+  .panel { justify-content: flex-start; padding-top: clamp(124px, 19vh, 184px); }
   .panel-grid { grid-template-columns: 1fr; }
   .approach-track { height: auto; }
   .approach-sticky { position: static; height: auto; grid-template-columns: 1fr; gap: 40px; padding-block: var(--section); }
