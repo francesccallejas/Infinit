@@ -585,7 +585,8 @@ em { font-family: var(--serif); font-style: normal; font-weight: 400; }
   .svc { grid-template-columns: 1fr; gap: 16px; }
   .work-tile .cap .work-tag { letter-spacing: .05em; word-spacing: -1px; }
   .services { padding-bottom: 0; }
-  .work { padding-top: clamp(36px,6vh,64px); }
+  .work { padding-top: clamp(36px,6vh,64px); padding-bottom: 0; }
+  .studio { padding-top: clamp(48px,8vh,88px); }
   .work-list { position: static; display: flex; flex-direction: column; gap: 28px; min-height: 0; }
   .work-list .work-tile,
   .work-list .work-tile:nth-child(n) { position: static; width: 100%; left: auto; top: auto; margin: 0; }
