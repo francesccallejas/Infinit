@@ -470,7 +470,7 @@ em { font-family: var(--serif); font-style: normal; font-weight: 400; }
 .work-tile .cap .work-tag {
   font-family: var(--mono); font-size: clamp(11px,.85vw,13px);
   letter-spacing: .12em; text-transform: uppercase; color: var(--muted);
-  margin-left: auto;
+  margin-left: auto; white-space: nowrap;
 }
 
 /* =========================================================================
@@ -583,6 +583,7 @@ em { font-family: var(--serif); font-style: normal; font-weight: 400; }
     transition: opacity .7s var(--ease) .6s, transform .7s var(--ease) .6s; }
   .claim-window.cin .claim-inner p { opacity: 1; transform: none; }
   .svc { grid-template-columns: 1fr; gap: 16px; }
+  .work-tile .cap .work-tag { letter-spacing: .05em; word-spacing: -1px; }
   .work-list { position: static; display: flex; flex-direction: column; gap: 28px; min-height: 0; }
   .work-list .work-tile,
   .work-list .work-tile:nth-child(n) { position: static; width: 100%; left: auto; top: auto; margin: 0; }
