@@ -494,7 +494,7 @@ em { font-family: var(--serif); font-style: normal; font-weight: 400; }
 .founder-meta .k { font-family: var(--mono); font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
 .founder-meta .v { margin-top: 6px; font-weight: 600; white-space: nowrap; }
 .founder-grid .kpi-grid { grid-template-columns: repeat(2,1fr); align-self: start; }
-.founder-grid .kpi { padding: clamp(14px,1.7vw,24px); min-height: clamp(108px,10.5vw,144px); justify-content: flex-start; gap: clamp(18px,3.5vh,48px); }
+.founder-grid .kpi { padding: clamp(14px,1.7vw,24px); min-height: clamp(108px,10.5vw,144px); justify-content: flex-start; gap: clamp(8px,1.4vh,18px); }
 .founder-grid .kpi h4 { font-size: clamp(16px,1.5vw,22px); }
 .founder-grid .kpi h4 em { display: block; margin-top: 3px; }
 .founder-photo { aspect-ratio: 6/7; width: 100%; border-radius: 16px; overflow: hidden; background: #e7e4e1; }
