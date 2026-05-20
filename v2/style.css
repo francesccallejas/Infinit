@@ -667,7 +667,7 @@ em { font-family: var(--serif); font-style: normal; font-weight: 400; }
    CTA band
    ========================================================================= */
 .cta-band {
-  background: var(--accent); color: var(--ink);
+  background: #E2DCD0; color: var(--ink);
   padding-block: clamp(140px,20vh,260px);
 }
 .cta-band .wrap { text-align: center; }
@@ -675,16 +675,22 @@ em { font-family: var(--serif); font-style: normal; font-weight: 400; }
   letter-spacing: -.045em; line-height: 1.0; max-width: 16ch; margin-inline: auto; }
 .cta-band h2 em { font-family: var(--serif); font-style: normal; font-weight: 400; color: var(--ink); }
 .cta-band .cta-mail {
-  display: inline-flex; align-items: center; gap: 14px;
+  display: inline-flex; align-items: center; gap: 0;
   margin-top: clamp(40px,5vw,72px);
   font-weight: 600; font-size: clamp(17px,1.5vw,22px); letter-spacing: -.01em;
   background: var(--ink); color: var(--bg);
-  padding: 18px 30px; border-radius: 14px;
-  transition: transform .3s var(--ease), background .3s var(--ease);
+  height: 62px; padding: 0 8px 0 26px; border-radius: 14px;
+  transition: transform .3s var(--ease);
 }
-.cta-band .cta-mail .ar { font-family: var(--mono); transition: transform .3s var(--ease); }
+.cta-band .cta-mail .cm-tx { padding-right: 16px; }
+.cta-band .cta-mail .cm-ar {
+  width: 46px; height: 46px; flex: none; border-radius: 11px;
+  display: grid; place-items: center; background: var(--accent); color: var(--ink);
+  transition: transform .35s var(--ease);
+}
+.cta-band .cta-mail .cm-ar svg { width: 17px; height: 17px; }
 .cta-band .cta-mail:hover { transform: translateY(-3px); }
-.cta-band .cta-mail:hover .ar { transform: translateX(5px); }
+.cta-band .cta-mail:hover .cm-ar { transform: translate(2px,-2px); }
 
 @media (max-width: 900px) {
   .sv-track { height: auto; }
