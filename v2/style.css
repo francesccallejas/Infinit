@@ -480,7 +480,7 @@ em { font-family: var(--serif); font-style: normal; font-weight: 400; }
 .founder-bio { align-self: start; }
 .founder-grid h2 {
   font-weight: 600; font-size: clamp(30px, 2.8vw, 50px);
-  letter-spacing: -.03em; line-height: 1.08; max-width: 26ch;
+  letter-spacing: -.03em; line-height: 1.08; max-width: 26ch; margin-top: -.14em;
 }
 .founder-grid p { margin-top: 24px;
   color: var(--muted); max-width: 58ch; font-size: 17px; line-height: 1.65; }
@@ -495,7 +495,7 @@ em { font-family: var(--serif); font-style: normal; font-weight: 400; }
 .founder-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
 /* more pronounced reveal for the studio text + photo */
 .founder-bio.r { transform: translateY(40px); }
-.founder-photo.r { transform: translateY(48px) scale(.985); }
+.founder-photo.r { transform: translateY(40px) scale(.985); }
 .founder-photo.r.in { transform: none; }
 
 /* =========================================================================
@@ -953,7 +953,7 @@ em { font-family: var(--serif); font-style: normal; font-weight: 400; }
 .menu-card:hover .mc-ar svg { transform: translate(3px,-3px); }
 
 /* floating card — light frosted, bottom-left, appears on scroll */
-.fab { position: fixed; right: var(--edge); bottom: 26px; z-index: 66;
+.fab { position: fixed; left: var(--edge); bottom: 26px; z-index: 66;
   display: flex; align-items: center; gap: 14px; padding: 10px 10px 10px 12px;
   border: 1px solid rgba(255,255,255,.5); border-radius: 18px; cursor: pointer; text-align: left; color: var(--ink);
   font-family: var(--sans); background: rgba(255,255,255,.62);
