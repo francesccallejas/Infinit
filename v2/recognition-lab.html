@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Infinit® — Recognition · 5 iteracions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300..900&family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  :root{
+    --bg:#F4F2F0;--paper:#FBFAF9;--ink:#0B0C11;--deep:#08080C;
+    --mist:#E7E2D9;--sand:#DCD5C8;--accent:#EFE6AE;
+    --muted:rgba(11,12,17,.56);--line:rgba(11,12,17,.11);
+    --sans:"Hanken Grotesk",sans-serif;--serif:"Instrument Serif",serif;--mono:"IBM Plex Mono",monospace;
+    --ease:cubic-bezier(.22,1,.36,1);--edge:clamp(20px,5vw,80px);
+  }
+  body{font-family:var(--sans);background:var(--bg);color:var(--ink);padding-bottom:14vh}
+  .lab{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);padding:34px var(--edge) 0}
+  .opt-head{padding:46px var(--edge) 14px;display:flex;align-items:baseline;gap:16px;flex-wrap:wrap}
+  .opt-head h2{font-family:var(--mono);font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink)}
+  .opt-head p{font-size:14px;color:var(--muted);max-width:60ch}
+  .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+
+  /* shared marquee */
+  .mq{overflow:hidden;position:relative;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+  .mq-track{display:flex;align-items:center;gap:0;width:max-content;animation:scroll 34s linear infinite}
+  .mq:hover .mq-track{animation-play-state:paused}
+  @keyframes scroll{to{transform:translateX(-50%)}}
+  .rec-item{display:flex;align-items:center;gap:14px;padding:0 clamp(24px,3.5vw,52px);white-space:nowrap}
+  .rec-item img{height:19px;width:auto;opacity:.9}
+  .rec-item span{font-size:14px;color:var(--muted)}
+  .rec-sep{color:var(--line);font-size:18px}
+
+  /* ============ 1 · FOOTER LINE (ultra simple, dins el footer fosc) ============ */
+  .o1{background:var(--ink);color:var(--bg);padding:clamp(40px,7vh,80px) var(--edge)}
+  .o1 .foot-mock{display:flex;flex-direction:column;align-items:center;gap:26px;text-align:center}
+  .o1 .foot-mock .mk{font-family:var(--serif);font-size:clamp(26px,3vw,42px)}
+  .o1 .rec-line{display:flex;align-items:center;gap:18px;flex-wrap:wrap;justify-content:center;
+    font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:rgba(244,242,240,.5)}
+  .o1 .rec-line img{height:15px;filter:brightness(0) invert(1);opacity:.7}
+  .o1 .rec-line .d{color:rgba(244,242,240,.28)}
+  .o1 .foot-base{margin-top:8px;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:rgba(244,242,240,.4)}
+
+  /* ============ 2 · WARM-GRAY CARROUSEL BAND (label fix + marquee) ============ */
+  .o2{background:var(--mist);padding:clamp(34px,6vh,60px) 0}
+  .o2 .inner{display:grid;grid-template-columns:auto 1fr;align-items:center;gap:clamp(20px,3vw,48px);padding-inline:var(--edge)}
+  .o2 .rec-label{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);white-space:nowrap}
+  @media(max-width:680px){.o2 .inner{grid-template-columns:1fr;gap:16px}}
+
+  /* ============ 3 · STATIC CENTERED TRIO (sand, sense moviment) ============ */
+  .o3{background:var(--sand);padding:clamp(56px,9vh,110px) var(--edge);text-align:center}
+  .o3 .eyebrow{display:block;margin-bottom:clamp(28px,4vh,48px)}
+  .o3 .trio{display:flex;align-items:center;justify-content:center;gap:clamp(28px,5vw,80px);flex-wrap:wrap}
+  .o3 .t-item{display:flex;flex-direction:column;align-items:center;gap:12px;max-width:230px}
+  .o3 .t-item img{height:26px;width:auto}
+  .o3 .t-item .lbl{font-family:var(--serif);font-size:clamp(20px,2vw,28px);line-height:1.1}
+  .o3 .t-item small{font-size:13px;color:var(--muted);line-height:1.45}
+  .o3 .t-sep{width:1px;height:48px;background:var(--line)}
+  @media(max-width:680px){.o3 .t-sep{display:none}}
+
+  /* ============ 4 · PILL CARROUSEL (frosted chips scrolling) ============ */
+  .o4{background:var(--mist);padding:clamp(40px,6vh,70px) 0}
+  .o4 .eyebrow{display:block;text-align:center;margin-bottom:clamp(22px,3vh,34px)}
+  .o4 .pill{display:flex;align-items:center;gap:12px;margin:0 8px;padding:11px 20px;border:1px solid var(--line);
+    border-radius:999px;background:rgba(251,250,249,.6);backdrop-filter:blur(8px);white-space:nowrap}
+  .o4 .pill img{height:17px;width:auto;opacity:.9}
+  .o4 .pill span{font-size:14px;color:var(--ink)}
+  .o4 .pill small{font-size:13px;color:var(--muted)}
+  .o4 .mq-track{animation-duration:40s}
+
+  /* ============ 5 · SPLIT LABEL + AUTO-ROTATING ITEM (crossfade, calm) ============ */
+  .o5{background:var(--sand);padding:clamp(48px,8vh,96px) var(--edge)}
+  .o5 .inner{display:flex;align-items:center;justify-content:space-between;gap:30px;flex-wrap:wrap}
+  .o5 .lead{font-family:var(--serif);font-size:clamp(28px,3.4vw,52px);line-height:1.04;max-width:14ch}
+  .o5 .lead em{font-style:normal}
+  .o5 .rotor{position:relative;min-width:min(420px,86vw);height:64px}
+  .o5 .r-slide{position:absolute;inset:0;display:flex;align-items:center;gap:16px;opacity:0;transform:translateY(10px);
+    transition:opacity .7s var(--ease),transform .7s var(--ease)}
+  .o5 .r-slide.on{opacity:1;transform:none}
+  .o5 .r-slide img{height:24px;width:auto}
+  .o5 .r-slide .rx{display:flex;flex-direction:column}
+  .o5 .r-slide .rx b{font-weight:600;font-size:16px}
+  .o5 .r-slide .rx small{font-size:13px;color:var(--muted)}
+</style>
+</head>
+<body>
+<div class="lab">Recognition · 5 iteracions — Awwwards + COAC · passa el ratolí per pausar els carrousels</div>
+
+<!-- 1 -->
+<div class="opt-head"><h2>1 · Footer line</h2><p>Ultra simple, integrat al footer fosc actual: una línia discreta "Recognised by" amb els logos invertits, just sobre el © base.</p></div>
+<section class="o1">
+  <div class="foot-mock">
+    <span class="mk">Built to scale.</span>
+    <div class="rec-line">
+      <span>Recognised by</span>
+      <img src="../project/assets/clients/Awwwards-Logo-Vector.svg-.png" alt="Awwwards">
+      <span class="d">·</span>
+      <img src="../project/assets/clients/Coac.png" alt="COAC">
+      <span class="d">·</span>
+      <span>Featured in leading design press</span>
+    </div>
+    <div class="foot-base">Barcelona — Worldwide · © 2026 Infinit®</div>
+  </div>
+</section>
+
+<!-- 2 -->
+<div class="opt-head"><h2>2 · Warm-gray carrousel band</h2><p>Franja en gris càlid (mist) entre els logos i el CTA. Etiqueta fixa "Recognised by" + marquee continu amb logos i textos.</p></div>
+<section class="o2">
+  <div class="inner">
+    <span class="rec-label">Recognised by</span>
+    <div class="mq">
+      <div class="mq-track" id="t2"></div>
+    </div>
+  </div>
+</section>
+
+<!-- 3 -->
+<div class="opt-head"><h2>3 · Static centered trio</h2><p>Gris càlid (sand), sense moviment. Eyebrow centrat + tres reconeixements en línia amb separadors. Sobri i editorial.</p></div>
+<section class="o3">
+  <span class="eyebrow">Recognised by</span>
+  <div class="trio">
+    <div class="t-item"><img src="../project/assets/clients/Awwwards-Logo-Vector.svg-.png" alt="Awwwards"><span class="lbl">Awwwards</span><small>Site of the Day &amp; Site of the Month nominations</small></div>
+    <div class="t-sep"></div>
+    <div class="t-item"><img src="../project/assets/clients/Coac.png" alt="COAC"><span class="lbl">COAC</span><small>Premis d'Arquitectura · Architecture &amp; Design</small></div>
+    <div class="t-sep"></div>
+    <div class="t-item"><span class="lbl">In the press</span><small>Featured across leading design &amp; brand publications</small></div>
+  </div>
+</section>
+
+<!-- 4 -->
+<div class="opt-head"><h2>4 · Pill carrousel</h2><p>Gris càlid amb chips frosted lliscant en bucle. Tàctil i lleuger, lliga amb els controls del reel.</p></div>
+<section class="o4">
+  <span class="eyebrow">Recognised by</span>
+  <div class="mq"><div class="mq-track" id="t4"></div></div>
+</section>
+
+<!-- 5 -->
+<div class="opt-head"><h2>5 · Split label + auto-rotating item</h2><p>Gris càlid, calmat i premium: a l'esquerra una frase serif, a la dreta un sol reconeixement que va alternant amb crossfade.</p></div>
+<section class="o5">
+  <div class="inner">
+    <p class="lead">Work that gets <em>noticed.</em></p>
+    <div class="rotor" id="rotor">
+      <div class="r-slide on"><img src="../project/assets/clients/Awwwards-Logo-Vector.svg-.png" alt="Awwwards"><div class="rx"><b>Awwwards</b><small>Site of the Day &amp; Site of the Month</small></div></div>
+      <div class="r-slide"><img src="../project/assets/clients/Coac.png" alt="COAC"><div class="rx"><b>COAC</b><small>Premis d'Arquitectura · Architecture &amp; Design</small></div></div>
+      <div class="r-slide"><div class="rx"><b>In the press</b><small>Featured across leading design &amp; brand publications</small></div></div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const AW='../project/assets/clients/Awwwards-Logo-Vector.svg-.png';
+  const CO='../project/assets/clients/Coac.png';
+  // 2 · text marquee
+  const items2=[
+    {img:AW,t:'Various nominations · Site of the Day & Site of the Month'},
+    {img:CO,t:"Premis d'Arquitectura · Architecture & Design"},
+    {t:'Featured across leading design & brand publications'},
+  ];
+  const html2 = items2.map(i=>`<div class="rec-item">${i.img?`<img src="${i.img}" alt="">`:''}<span>${i.t}</span></div><span class="rec-sep">—</span>`).join('');
+  document.getElementById('t2').innerHTML = html2 + html2;
+
+  // 4 · pill marquee
+  const items4=[
+    {img:AW,s:'Awwwards',sm:'Site of the Day'},
+    {img:CO,s:'COAC',sm:"Premis d'Arquitectura"},
+    {s:'Design press',sm:'Featured & published'},
+    {img:AW,s:'Awwwards',sm:'Site of the Month'},
+  ];
+  const html4 = items4.map(i=>`<div class="pill">${i.img?`<img src="${i.img}" alt="">`:''}<span>${i.s}</span><small>${i.sm}</small></div>`).join('');
+  document.getElementById('t4').innerHTML = html4 + html4;
+
+  // 5 · rotor crossfade
+  (function(){
+    const slides=[...document.querySelectorAll('#rotor .r-slide')];let i=0;
+    setInterval(()=>{slides[i].classList.remove('on');i=(i+1)%slides.length;slides[i].classList.add('on');},2600);
+  })();
+</script>
+</body>
+</html>
