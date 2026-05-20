@@ -495,6 +495,7 @@ em { font-family: var(--serif); font-style: normal; font-weight: 400; }
 .founder-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
 /* more pronounced reveal for the studio text + photo */
 .founder-bio.r { transform: translateY(40px); }
+.founder-bio.r.in { transform: none; }
 .founder-photo.r { transform: translateY(40px) scale(.985); }
 .founder-photo.r.in { transform: none; }
 
@@ -953,7 +954,7 @@ em { font-family: var(--serif); font-style: normal; font-weight: 400; }
 .menu-card:hover .mc-ar svg { transform: translate(3px,-3px); }
 
 /* floating card — light frosted, bottom-left, appears on scroll */
-.fab { position: fixed; left: var(--edge); bottom: 26px; z-index: 66;
+.fab { position: fixed; right: 26px; bottom: 26px; z-index: 66;
   display: flex; align-items: center; gap: 14px; padding: 10px 10px 10px 12px;
   border: 1px solid rgba(255,255,255,.5); border-radius: 18px; cursor: pointer; text-align: left; color: var(--ink);
   font-family: var(--sans); background: rgba(255,255,255,.62);
