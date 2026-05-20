@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Infinit® — Growth section · 5 propostes</title>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300..900&family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  :root{--bg:#F4F2F0;--ink:#0B0C11;--muted:rgba(11,12,17,.5);--faint:rgba(11,12,17,.16);
+    --accent:#2B43FF;--sans:"Hanken Grotesk",system-ui,sans-serif;--serif:"Instrument Serif",Georgia,serif;
+    --mono:"IBM Plex Mono",ui-monospace,monospace;--ease:cubic-bezier(.22,1,.36,1);--edge:clamp(24px,5vw,70px)}
+  body{font-family:var(--sans);background:var(--bg);color:var(--ink);overflow-x:hidden}
+  em{font-family:var(--serif);font-style:normal;font-weight:400}
+  .lab{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);padding:30px var(--edge) 0}
+  section{position:relative;border-bottom:1px solid var(--faint);overflow:hidden}
+  .tag{position:absolute;top:18px;left:var(--edge);z-index:9;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+  .note{position:absolute;bottom:34px;left:var(--edge);max-width:34ch;font-size:14px;line-height:1.6;color:var(--muted);z-index:9}
+
+  /* shared image-fill word */
+  .fill{-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;
+    background-image:url('../project/assets/imagery/Julia Yosemite.webp');background-size:180% 200%;background-position:30% 50%;
+    animation:drift 18s ease-in-out infinite}
+  @keyframes drift{0%,100%{background-position:20% 50%}50%{background-position:80% 50%}}
+
+  /* 1 — overlapping editorial (reference) */
+  #s1{height:100vh;display:flex;align-items:center}
+  #s1 .stage{position:relative;width:100%;height:64vh;font-weight:600;color:#bdbdbd;line-height:.9}
+  #s1 .w1{position:absolute;top:0;right:6%;font-size:clamp(60px,13vw,200px);letter-spacing:-.03em}
+  #s1 .w2{position:absolute;top:34%;left:2%;font-size:clamp(70px,15vw,240px);letter-spacing:-.04em}
+  #s1 .w3{position:absolute;top:66%;left:34%;font-family:var(--serif);font-style:italic;font-size:clamp(64px,14vw,220px)}
+
+  /* 2 — image-fill giant word */
+  #s2{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:0 var(--edge)}
+  #s2 .eb{font-family:var(--mono);font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+  #s2 .lead{font-weight:600;font-size:clamp(28px,3vw,48px);letter-spacing:-.03em}
+  #s2 .huge{font-weight:700;font-size:clamp(90px,22vw,420px);letter-spacing:-.05em;line-height:.9}
+  #s2 .sub{margin-top:24px;max-width:46ch;color:var(--muted);font-size:clamp(15px,1.3vw,19px);line-height:1.6}
+
+  /* 3 — pinned scrub statements */
+  #s3 .track{height:420vh}
+  #s3 .stick{position:sticky;top:0;height:100vh;display:flex;align-items:center;padding:0 var(--edge)}
+  #s3 .st{position:absolute;left:var(--edge);right:var(--edge);max-width:16ch;font-weight:600;
+    font-size:clamp(46px,8vw,150px);letter-spacing:-.045em;line-height:1.0;opacity:0;transform:translateY(40px);
+    transition:opacity .6s var(--ease),transform .7s var(--ease)}
+  #s3 .st.on{opacity:1;transform:none}
+  #s3 .st em{font-style:normal}
+
+  /* 4 — kinetic marquee */
+  #s4{padding:16vh 0}
+  #s4 .row{display:flex;gap:.4em;width:max-content;font-weight:700;font-size:clamp(60px,13vw,190px);letter-spacing:-.04em;
+    line-height:1;white-space:nowrap;animation:mq 26s linear infinite}
+  #s4 .row.alt{animation-duration:34s;animation-direction:reverse;color:#cbcbcb;margin-top:.05em}
+  #s4 .row em{font-style:italic;color:var(--accent)}
+  #s4 .row.alt em{color:#cbcbcb}
+  @keyframes mq{to{transform:translateX(-50%)}}
+  #s4 .note{position:static;padding:6vh var(--edge) 0;max-width:40ch}
+
+  /* 5 — stacked lines scale-in */
+  #s5{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:0 var(--edge);gap:.02em}
+  #s5 .ln{font-weight:700;font-size:clamp(56px,12vw,190px);letter-spacing:-.045em;line-height:.96;
+    opacity:0;transform:translateY(40px) scale(.96);transform-origin:left;transition:opacity .8s var(--ease),transform .9s var(--ease)}
+  #s5 .ln.in{opacity:1;transform:none}
+  #s5 .ln:nth-child(2){transition-delay:.1s}#s5 .ln:nth-child(3){transition-delay:.2s}
+  #s5 .ln em{font-style:normal}
+  #s5 .sub{margin-top:34px;max-width:44ch;color:var(--muted);font-size:16px;line-height:1.6;opacity:0;transition:opacity 1s var(--ease) .4s}
+  #s5 .sub.in{opacity:1}
+</style>
+</head>
+<body>
+<div class="lab">Growth section · 5 propostes per substituir l'Approach</div>
+
+<!-- 1 -->
+<section id="s1">
+  <span class="tag">01 · Overlapping editorial (estil referència)</span>
+  <div class="stage">
+    <span class="w1">Preparing</span>
+    <span class="w2">your next</span>
+    <span class="w3">growth.</span>
+  </div>
+  <p class="note">We turn strategy, identity and digital into momentum — preparing brands for the growth that comes next.</p>
+</section>
+
+<!-- 2 -->
+<section id="s2">
+  <span class="tag">02 · Paraula gegant amb imatge dins (com el "scale" del hero)</span>
+  <span class="eb">Our approach</span>
+  <span class="lead">We're built for</span>
+  <span class="huge fill">growth.</span>
+  <p class="sub">Strategy connected to execution, identity that scales, digital designed to compound. Real growth, not noise.</p>
+</section>
+
+<!-- 3 -->
+<section id="s3">
+  <span class="tag">03 · Pinned · una frase Growth a la vegada (scroll)</span>
+  <div class="track" id="s3track">
+    <div class="stick">
+      <div class="st on">Clarity before <em>growth.</em></div>
+      <div class="st">Identity that <em>scales.</em></div>
+      <div class="st">Strategy meets <em>execution.</em></div>
+      <div class="st">Digital that <em>compounds.</em></div>
+      <div class="st">Preparing your next <em>chapter.</em></div>
+    </div>
+  </div>
+</section>
+
+<!-- 4 -->
+<section id="s4">
+  <span class="tag">04 · Marquee cinètic de paraules Growth</span>
+  <div class="row"><span>Growth</span><em>scale</em><span>momentum</span><em>clarity</em><span>Growth</span><em>scale</em><span>momentum</span><em>clarity</em></div>
+  <div class="row alt"><span>strategy</span><span>identity</span><span>digital</span><span>strategy</span><span>identity</span><span>digital</span></div>
+  <p class="note">A living strip of what drives every project.</p>
+</section>
+
+<!-- 5 -->
+<section id="s5">
+  <span class="tag">05 · Línies gegants apilades · scale-in</span>
+  <div class="ln">Preparing</div>
+  <div class="ln">your next</div>
+  <div class="ln"><em>growth.</em></div>
+  <p class="sub">We are united by a clear method: people first, strategy that scales, and digital built to compound over time.</p>
+</section>
+
+<script>
+  // 3 — pinned scrub
+  (function(){
+    const track=document.getElementById('s3track'); if(!track) return;
+    const st=[...track.querySelectorAll('.st')]; let cur=0;
+    window.addEventListener('scroll',()=>{
+      const r=track.getBoundingClientRect();const total=track.offsetHeight-window.innerHeight;
+      const p=Math.min(1,Math.max(0,(-r.top)/total));
+      const i=Math.min(st.length-1,Math.floor(p*st.length));
+      if(i!==cur){cur=i;st.forEach((s,k)=>s.classList.toggle('on',k===i));}
+    },{passive:true});
+  })();
+  // 5 — scale in
+  (function(){
+    const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in');}),{threshold:.3});
+    document.querySelectorAll('#s5 .ln,#s5 .sub').forEach(el=>io.observe(el));
+  })();
+</script>
+</body>
+</html>
