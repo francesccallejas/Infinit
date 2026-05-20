@@ -571,7 +571,7 @@ em { font-family: var(--serif); font-style: normal; font-weight: 400; }
   .approach-media canvas { display: none; }
   .ap-rail { display: none; }
   .claim-track { height: auto; }
-  .claim-sticky { position: static; height: auto; min-height: 0; padding: 0; align-items: stretch; }
+  .claim-sticky { position: static; height: auto; min-height: 0; padding: clamp(18px,5vw,32px) clamp(16px,4.5vw,28px); align-items: stretch; }
   .claim-window { min-height: 66svh; }
   .claim-inner { opacity: 0; transform: translateY(34px);
     transition: opacity .8s var(--ease), transform .8s var(--ease); }
