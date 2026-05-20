@@ -483,7 +483,7 @@ em { font-family: var(--serif); font-style: normal; font-weight: 400; }
   letter-spacing: -.03em; line-height: 1.08; max-width: 26ch; margin-top: -.14em;
 }
 .founder-grid p { margin-top: 24px;
-  color: var(--muted); max-width: 58ch; font-size: 17px; line-height: 1.65; }
+  color: var(--ink); max-width: 58ch; font-size: 17px; line-height: 1.65; }
 .founder-meta { margin-top: clamp(28px, 3.2vw, 48px);
   display: grid; grid-template-columns: repeat(3,1fr); gap: 26px; max-width: 600px; }
 .founder-meta .k { font-family: var(--mono); font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
@@ -717,7 +717,7 @@ em { font-family: var(--serif); font-style: normal; font-weight: 400; }
   background-image: url('../project/assets/imagery/Julia Yosemite.webp'); background-size: 180% 200%; background-position: 30% 50%;
   animation: grDrift 20s ease-in-out infinite; }
 @keyframes grDrift { 0%,100% { background-position: 18% 50%; } 50% { background-position: 82% 50%; } }
-.approach .gr-sub { margin-top: clamp(44px,6vw,90px); max-width: 48ch; color: var(--muted);
+.approach .gr-sub { margin-top: clamp(44px,6vw,90px); max-width: 48ch; color: var(--ink);
   font-size: clamp(15px,1.3vw,19px); line-height: 1.6; }
 @media (max-width: 600px) {
   .approach .gr-word { font-size: clamp(58px,19vw,96px); }
@@ -786,7 +786,7 @@ em { font-family: var(--serif); font-style: normal; font-weight: 400; }
   font-style: normal; font-size: clamp(18px, 1.75vw, 29px); color: var(--muted); }
 .svc-row:hover .svc-tag { color: rgba(244,242,240,.6); }
 .svc-body { position: relative; }
-.svc-desc { color: var(--muted); font-size: clamp(16px, 1.3vw, 21px);
+.svc-desc { color: var(--ink); font-size: clamp(16px, 1.3vw, 21px);
   line-height: 1.55; max-width: 52ch; margin: 0;
   transition: opacity .35s var(--ease); }
 .svc-subs {
