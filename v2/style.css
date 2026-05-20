@@ -1039,17 +1039,27 @@ body.menu-open .fab.show { opacity: 0; transform: translateY(12px); pointer-even
 .svc-stack .sc1 { background: var(--paper); }
 .svc-stack .sc2 { background: #E7E2D9; }
 .svc-stack .sc3 { background: #DCD5C8; }
-.svc-card-top { display: flex; align-items: center; justify-content: space-between; gap: 20px; margin-bottom: auto; }
-.svc-card-top .n { font-family: var(--mono); font-size: 13px; letter-spacing: .12em; color: var(--muted); }
-.svc-card h3 { font-weight: 600; font-size: clamp(54px,10vw,180px); letter-spacing: -.05em; line-height: .92;
-  margin: clamp(20px,4vh,56px) 0 clamp(10px,1.6vh,20px); }
+.svc-card-grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: clamp(36px,6vw,110px);
+  align-items: stretch; width: 100%; max-width: var(--maxw); margin-inline: auto; }
+.svc-left { align-self: center; }
+.svc-card-top { margin-bottom: clamp(20px,3vh,40px); }
+.svc-card-top .n { font-family: var(--mono); font-size: 13px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+.svc-card h3 { font-weight: 600; font-size: clamp(54px,9vw,150px); letter-spacing: -.05em; line-height: .92;
+  margin: 0 0 clamp(10px,1.6vh,20px); }
 .svc-card .svc-tag2 { font-family: var(--serif); font-style: normal; color: var(--muted);
-  font-size: clamp(22px,2.6vw,40px); display: block; margin-bottom: clamp(22px,3.4vh,42px); }
-.svc-card .svc-card-desc { color: rgba(11,12,17,.82); max-width: 52ch;
-  font-size: clamp(16px,1.25vw,20px); line-height: 1.6; margin-bottom: clamp(24px,3vh,38px); }
-.svc-card .svc-subs2 { display: flex; flex-wrap: wrap; gap: 9px; max-width: 66ch; }
+  font-size: clamp(22px,2.4vw,38px); display: block; line-height: 1.05; }
+.svc-right { display: flex; flex-direction: column; justify-content: space-between; gap: clamp(40px,8vh,90px);
+  min-height: 52vh; padding-top: clamp(0px,2vh,18px); }
+.svc-card .svc-card-desc { color: rgba(11,12,17,.82); max-width: 42ch; margin: 0;
+  font-size: clamp(16px,1.3vw,21px); line-height: 1.6; }
+.svc-card .svc-subs2 { display: flex; flex-wrap: wrap; gap: 9px; max-width: 60ch; }
 .svc-card .svc-subs2 span { font-family: var(--mono); font-size: 12px; border: 1px solid var(--line);
-  border-radius: 999px; padding: 7px 13px; white-space: nowrap; }
+  border-radius: 999px; padding: 7px 13px; white-space: nowrap; color: var(--muted); }
+@media (max-width: 860px) {
+  .svc-card-grid { grid-template-columns: 1fr; gap: clamp(24px,5vh,48px); }
+  .svc-left { align-self: start; }
+  .svc-right { min-height: 0; justify-content: flex-start; gap: clamp(20px,3vh,32px); }
+}
 @media (max-width: 700px) {
   .svc-stack .svc-card { min-height: 92vh; padding-block: clamp(40px,8vh,80px); }
   .svc-card h3 { font-size: clamp(48px,15vw,90px); }
