@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Infinit® — Statement bg + warm grays</title>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300..900&family=Instrument+Serif&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  :root{--bg:#F4F2F0;--paper:#FBFAF9;--ink:#0B0C11;--muted:rgba(11,12,17,.55);--accent:#EFE6AE;
+    /* warm grays candidats — afinats per lligar amb el groc */
+    --mist:#E2DCD0;   /* warm greige clar */
+    --stone:#D2CABB;  /* warm gray mig */
+    --stone-d:#C3BAA9;/* warm gray + */
+    --sans:"Hanken Grotesk",system-ui,sans-serif;--serif:"Instrument Serif",Georgia,serif;
+    --mono:"IBM Plex Mono",ui-monospace,monospace;--ease:cubic-bezier(.22,1,.36,1);--edge:clamp(28px,6vw,90px)}
+  body{font-family:var(--sans);background:var(--bg);color:var(--ink)}
+  em{font-family:var(--serif);font-style:normal}
+  .lab{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);padding:30px var(--edge) 6px}
+
+  .swatches{display:flex;flex-wrap:wrap;gap:12px;padding:14px var(--edge) 30px}
+  .swatches .c{font-family:var(--mono);font-size:11px;display:flex;align-items:center;gap:8px;padding:8px 12px;border-radius:10px;border:1px solid rgba(11,12,17,.1);background:var(--paper)}
+  .swatches .c i{width:18px;height:18px;border-radius:5px;display:block}
+
+  .stmt{position:relative;text-align:center;padding:clamp(80px,16vh,200px) var(--edge);border-top:1px solid rgba(11,12,17,.1)}
+  .stmt .eb{font-family:var(--mono);font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);display:inline-flex;align-items:center;gap:9px;margin-bottom:clamp(26px,3.5vw,46px)}
+  .stmt .eb::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:inset 0 0 0 1px rgba(11,12,17,.12)}
+  .stmt p{font-weight:500;font-size:clamp(30px,4.4vw,76px);letter-spacing:-.035em;line-height:1.1;max-width:24ch;margin:0 auto}
+  .stmt p em{font-family:var(--serif)}
+  .stmt .btn{display:inline-flex;align-items:center;gap:8px;height:46px;padding:0 8px 0 20px;border-radius:12px;font-weight:600;font-size:14px;background:var(--ink);color:var(--bg);margin-top:clamp(34px,4vw,56px)}
+  .stmt .btn .sq{width:32px;height:32px;border-radius:9px;display:grid;place-items:center;background:var(--accent);color:var(--ink)}
+  .lbl{position:absolute;top:18px;left:var(--edge);font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+
+  .bg-cream{background:var(--bg)}
+  .bg-mist{background:var(--mist)}
+  .bg-stone{background:var(--stone)}
+  .bg-stoned{background:var(--stone-d)}
+</style>
+</head>
+<body>
+<div class="lab">Statement · fons + warm grays afinats (amb toc de groc per provar harmonia)</div>
+<div class="swatches">
+  <span class="c"><i style="background:#F4F2F0"></i>Cream #F4F2F0</span>
+  <span class="c"><i style="background:#E2DCD0"></i>Mist #E2DCD0</span>
+  <span class="c"><i style="background:#D2CABB"></i>Stone #D2CABB</span>
+  <span class="c"><i style="background:#C3BAA9"></i>Stone+ #C3BAA9</span>
+  <span class="c"><i style="background:#EFE6AE"></i>Groc accent #EFE6AE</span>
+</div>
+
+<section class="stmt bg-cream"><span class="lbl">A · Cream (= hero, actual)</span>
+  <span class="eb">What we do</span>
+  <p>We build brands with the <em>clarity</em> of strategy, the <em>discipline</em> of real operations, and the <em>invisible line</em> of technology.</p>
+  <span class="btn">Contact <span class="sq">↗</span></span>
+</section>
+
+<section class="stmt bg-mist"><span class="lbl">B · Mist (warm greige clar)</span>
+  <span class="eb">What we do</span>
+  <p>We build brands with the <em>clarity</em> of strategy, the <em>discipline</em> of real operations, and the <em>invisible line</em> of technology.</p>
+  <span class="btn">Contact <span class="sq">↗</span></span>
+</section>
+
+<section class="stmt bg-stone"><span class="lbl">C · Stone (warm gray mig)</span>
+  <span class="eb">What we do</span>
+  <p>We build brands with the <em>clarity</em> of strategy, the <em>discipline</em> of real operations, and the <em>invisible line</em> of technology.</p>
+  <span class="btn">Contact <span class="sq">↗</span></span>
+</section>
+
+<section class="stmt bg-stoned"><span class="lbl">D · Stone+ (warm gray més marcat)</span>
+  <span class="eb">What we do</span>
+  <p>We build brands with the <em>clarity</em> of strategy, the <em>discipline</em> of real operations, and the <em>invisible line</em> of technology.</p>
+  <span class="btn">Contact <span class="sq">↗</span></span>
+</section>
+
+</body>
+</html>
