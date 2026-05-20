@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Infinit® — Overview floating card</title>
+<title>Infinit® — Overview floating card (frosted)</title>
 <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300..900&family=Inter:wght@700&family=Instrument+Serif&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root{
@@ -20,46 +20,62 @@
   em{font-family:var(--serif);font-style:normal;font-weight:400}
   body.locked{overflow:hidden}
 
-  /* ---- nav (unchanged) ---- */
+  /* ---- nav ---- */
   .logo{position:fixed;top:clamp(20px,3vh,36px);left:var(--edge);z-index:70;height:42px;
     display:inline-flex;align-items:center;gap:9px;mix-blend-mode:difference;color:#fff}
   .logo svg{height:26px;width:auto}
   .logo .word{font-weight:900;font-size:26px;letter-spacing:-.045em;line-height:1;display:inline-flex;align-items:flex-start;gap:1px}
   .logo .reg{font-family:"Inter";font-weight:700;font-size:10px;margin-top:3px}
-  .nav{position:fixed;top:clamp(20px,3vh,36px);right:var(--edge);z-index:70;display:flex;gap:8px}
+  .nav{position:fixed;top:clamp(20px,3vh,36px);right:var(--edge);z-index:90;display:flex;gap:8px}
   .nav button,.nav a.btn{height:42px;border:1px solid rgba(11,12,17,.06);background:rgba(251,250,249,.7);
     backdrop-filter:blur(12px);border-radius:10px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--ink);font-family:var(--sans)}
   .nav .cta{padding:0 16px;font-size:14px;font-weight:600;background:var(--accent);border-color:transparent}
   .menu-btn{width:42px;flex-direction:column;gap:4px}
-  .menu-btn span{width:18px;height:2px;border-radius:2px;background:currentColor}
+  .menu-btn span{width:18px;height:2px;border-radius:2px;background:currentColor;transition:transform .3s var(--ease),opacity .2s}
+  .menu-btn.open span:nth-child(1){transform:translateY(6px) rotate(45deg)}
+  .menu-btn.open span:nth-child(2){opacity:0}
+  .menu-btn.open span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
 
-  /* ============ FLOATING CARD (Motto / Relats style) ============ */
+  /* ============ MENU panel (frosted) ============ */
+  .panel{position:fixed;inset:0;z-index:65;display:grid;grid-template-columns:1.3fr .7fr;align-items:center;gap:clamp(30px,5vw,80px);
+    padding:clamp(110px,16vh,180px) var(--edge) clamp(48px,8vh,90px);
+    background:rgba(244,242,240,.55);backdrop-filter:blur(28px) saturate(150%);-webkit-backdrop-filter:blur(28px) saturate(150%);
+    opacity:0;visibility:hidden;transition:opacity .5s var(--ease),visibility .5s}
+  .panel.open{opacity:1;visibility:visible}
+  .panel .links a{display:block;font-weight:700;font-size:clamp(40px,6.5vw,92px);letter-spacing:-.035em;line-height:1.12;opacity:.5;transition:.3s var(--ease)}
+  .panel .links a:hover{opacity:1;color:var(--ink);transform:translateX(10px)}
+  /* mini overview card inside the menu */
+  .menu-ov{align-self:center}
+  .menu-ov .eb{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:14px}
+  .menu-card{display:flex;align-items:center;gap:14px;padding:12px;border-radius:18px;cursor:pointer;width:100%;border:1px solid var(--line);
+    background:rgba(255,255,255,.5);backdrop-filter:blur(8px);transition:.25s var(--ease)}
+  .menu-card:hover{background:rgba(255,255,255,.85);transform:translateY(-2px)}
+  .menu-card .mc-thumb{width:64px;height:64px;border-radius:14px;overflow:hidden;flex:none}
+  .menu-card .mc-thumb img{width:100%;height:100%;object-fit:cover}
+  .menu-card .mc-tx{text-align:left;display:flex;flex-direction:column;gap:2px}
+  .menu-card .mc-tx b{font-weight:600;font-size:16px}
+  .menu-card .mc-tx i{font-style:normal;font-size:13px;color:var(--muted)}
+  .menu-card .mc-ar{margin-left:auto;margin-right:6px}
+
+  /* ============ FLOATING CARD — light frosted (Motto) ============ */
   .fab{position:fixed;left:var(--edge);bottom:26px;z-index:66;
-    display:flex;align-items:center;gap:14px;padding:10px 10px 10px 12px;border:0;cursor:pointer;
-    border-radius:18px;font-family:var(--sans);text-align:left;
+    display:flex;align-items:center;gap:14px;padding:10px 10px 10px 12px;border:1px solid rgba(255,255,255,.5);cursor:pointer;
+    border-radius:18px;font-family:var(--sans);text-align:left;color:var(--ink);
+    background:rgba(255,255,255,.62);backdrop-filter:blur(22px) saturate(180%);-webkit-backdrop-filter:blur(22px) saturate(180%);
+    box-shadow:0 22px 54px -26px rgba(10,11,15,.4);
     opacity:0;transform:translateY(22px);pointer-events:none;
     transition:opacity .55s var(--ease),transform .55s var(--ease),background .25s var(--ease)}
   .fab.show{opacity:1;transform:none;pointer-events:auto}
+  .fab:hover{background:rgba(255,255,255,.86)}
   .fab-thumb{width:54px;height:54px;border-radius:13px;overflow:hidden;flex:none;position:relative;background:#222}
   .fab-thumb img{width:100%;height:100%;object-fit:cover}
+  .fab .badge{position:absolute;top:-7px;left:-7px;z-index:3;font-weight:700;font-size:10px;letter-spacing:.06em;background:var(--accent);color:var(--ink);padding:3px 7px;border-radius:8px}
   .fab-tx{display:flex;flex-direction:column;gap:1px;padding-right:6px}
   .fab-tx b{font-weight:600;font-size:15px;letter-spacing:-.01em}
   .fab-tx i{font-style:normal;font-size:13px;color:var(--muted)}
-  .fab-cta{flex:none;height:38px;padding:0 18px;border-radius:11px;display:grid;place-items:center;
-    font-size:13px;font-weight:600;letter-spacing:.02em}
-  .fab .badge{position:absolute;top:-7px;left:-7px;z-index:3;font-family:var(--sans);font-weight:700;
-    font-size:10px;letter-spacing:.06em;background:var(--accent);color:var(--ink);padding:3px 7px;border-radius:8px}
-
-  /* light (Motto) */
-  .fab.light{background:#fff;color:var(--ink);box-shadow:0 22px 54px -26px rgba(10,11,15,.4)}
-  .fab.light .fab-cta{background:#f0eeec;color:var(--ink)}
-  .fab.light:hover{background:#fff}
-  .fab.light:hover .fab-cta{background:var(--accent)}
-  /* dark (Relats) */
-  .fab.dark{background:#15161c;color:var(--bg);box-shadow:0 22px 54px -26px rgba(0,0,0,.6)}
-  .fab.dark .fab-tx i{color:rgba(244,242,240,.55)}
-  .fab.dark .fab-cta{background:rgba(244,242,240,.1);color:var(--bg)}
-  .fab.dark:hover .fab-cta{background:var(--accent);color:var(--ink)}
+  .fab-cta{flex:none;height:38px;padding:0 18px;border-radius:11px;display:grid;place-items:center;font-size:13px;font-weight:600;
+    background:rgba(11,12,17,.06);color:var(--ink);transition:background .25s var(--ease)}
+  .fab:hover .fab-cta{background:var(--accent)}
 
   /* ============ OVERVIEW overlay ============ */
   .ov{position:fixed;inset:0;z-index:120;display:flex;flex-direction:column;
@@ -88,11 +104,6 @@
   .ov-svc-list{position:relative;z-index:2;margin-bottom:auto;display:flex;flex-direction:column;gap:2px;font-weight:600;font-size:clamp(22px,2.4vw,40px);letter-spacing:-.025em;line-height:1.12}
   .ov-claim h3{position:relative;z-index:2;margin-bottom:auto;font-weight:600;font-size:clamp(18px,1.7vw,28px);letter-spacing:-.03em;line-height:1.06}
 
-  /* style toggle */
-  .toggle{position:fixed;left:50%;bottom:18px;transform:translateX(-50%);z-index:300;display:flex;gap:6px;padding:6px;border-radius:13px;background:rgba(11,12,17,.9);box-shadow:0 18px 50px -22px rgba(0,0,0,.6)}
-  .toggle button{font-family:var(--mono);font-size:11px;color:rgba(244,242,240,.6);background:transparent;border:0;padding:9px 14px;border-radius:9px;cursor:pointer}
-  .toggle button.on{background:var(--accent);color:var(--ink)}
-
   /* page filler */
   .hero{min-height:94vh;display:flex;flex-direction:column;justify-content:center;padding:0 var(--edge)}
   .hero h1{font-weight:600;font-size:clamp(54px,9vw,150px);letter-spacing:-.05em;line-height:1}
@@ -103,10 +114,11 @@
   .filler.dark{background:var(--ink);color:var(--bg)}
 
   @media(max-width:860px){
+    .panel{grid-template-columns:1fr;gap:30px;align-content:center}
     .ov{padding-top:80px}
     .ov-bento{grid-template-columns:1fr 1fr;grid-template-rows:none;grid-auto-rows:minmax(130px,22vh);overflow:auto}
     .ov-work{grid-column:1/3;grid-row:auto}.ov-services,.ov-studio,.ov-claim{grid-column:auto;grid-row:auto}
-    .fab{right:var(--edge);left:var(--edge)}
+    .fab{right:var(--edge)}
   }
 </style>
 </head>
@@ -116,11 +128,26 @@
 
 <nav class="nav">
   <a class="btn cta">Contact</a>
-  <button class="menu-btn"><span></span><span></span><span></span></button>
+  <button class="menu-btn" id="menuBtn"><span></span><span></span><span></span></button>
 </nav>
 
+<!-- MENU panel -->
+<div class="panel" id="panel">
+  <div class="links">
+    <a href="#">Approach</a><a href="#">Services</a><a href="#">Work</a><a href="#">Studio</a><a href="#">Contact</a>
+  </div>
+  <div class="menu-ov">
+    <span class="eb">A quick look</span>
+    <button class="menu-card" id="menuCard">
+      <span class="mc-thumb"><img src="../project/assets/images/Bunnker Final.webp" alt=""></span>
+      <span class="mc-tx"><b>Overview</b><i>The studio at a glance</i></span>
+      <span class="mc-ar"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
+    </button>
+  </div>
+</div>
+
 <!-- floating card -->
-<button class="fab light" id="fab">
+<button class="fab" id="fab">
   <span class="fab-thumb"><span class="badge">NEW</span><img src="../project/assets/images/Bunnker Final.webp" alt=""></span>
   <span class="fab-tx"><b>A quick look</b><i>Overview of the studio</i></span>
   <span class="fab-cta">View</span>
@@ -141,38 +168,34 @@
 </div>
 
 <main>
-  <section class="hero"><h1>Brands built<br>to <em>scale®.</em></h1><small>Fes scroll ↓ — el card flotant apareixerà</small></section>
+  <section class="hero"><h1>Brands built<br>to <em>scale®.</em></h1><small>Fes scroll ↓ — apareix el card flotant · obre el menú ☰ per veure la mini-card</small></section>
   <section class="filler dark"><h2>Reel</h2></section>
   <section class="filler"><h2>Approach</h2></section>
   <section class="filler"><h2>Services</h2></section>
   <section class="filler"><h2>Work</h2></section>
 </main>
 
-<div class="toggle">
-  <button data-s="light" class="on">Estil clar (Motto)</button>
-  <button data-s="dark">Estil fosc (Relats)</button>
-</div>
-
 <script>
-  const ov=document.getElementById('ov'), fab=document.getElementById('fab');
-  const open=()=>{ov.classList.add('open');ov.setAttribute('aria-hidden','false');document.body.classList.add('locked');};
-  const close=()=>{ov.classList.remove('open');ov.setAttribute('aria-hidden','true');document.body.classList.remove('locked');};
-  fab.addEventListener('click',open);
-  document.getElementById('ovClose').addEventListener('click',close);
-  ov.addEventListener('click',e=>{if(e.target===ov)close();});
-  document.addEventListener('keydown',e=>{if(e.key==='Escape')close();});
-  ov.querySelectorAll('.ov-card').forEach(c=>c.addEventListener('click',()=>setTimeout(close,150)));
+  const ov=document.getElementById('ov'), fab=document.getElementById('fab'),
+        panel=document.getElementById('panel'), menuBtn=document.getElementById('menuBtn');
+  const openOv=()=>{closeMenu();ov.classList.add('open');ov.setAttribute('aria-hidden','false');document.body.classList.add('locked');};
+  const closeOv=()=>{ov.classList.remove('open');ov.setAttribute('aria-hidden','true');document.body.classList.remove('locked');};
+  const closeMenu=()=>{panel.classList.remove('open');menuBtn.classList.remove('open');};
 
-  // appear on scroll past hero
+  fab.addEventListener('click',openOv);
+  document.getElementById('menuCard').addEventListener('click',openOv);
+  document.getElementById('ovClose').addEventListener('click',closeOv);
+  ov.addEventListener('click',e=>{if(e.target===ov)closeOv();});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeOv();closeMenu();}});
+  ov.querySelectorAll('.ov-card').forEach(c=>c.addEventListener('click',()=>setTimeout(closeOv,150)));
+
+  menuBtn.addEventListener('click',()=>{
+    const open=!panel.classList.contains('open');
+    panel.classList.toggle('open',open);menuBtn.classList.toggle('open',open);
+  });
+
   const onScroll=()=>{ if(window.scrollY>window.innerHeight*0.7) fab.classList.add('show'); else fab.classList.remove('show'); };
   window.addEventListener('scroll',onScroll,{passive:true}); onScroll();
-
-  // style toggle
-  document.querySelectorAll('.toggle button').forEach(b=>b.addEventListener('click',()=>{
-    document.querySelectorAll('.toggle button').forEach(x=>x.classList.toggle('on',x===b));
-    fab.classList.toggle('light',b.dataset.s==='light');
-    fab.classList.toggle('dark',b.dataset.s==='dark');
-  }));
 </script>
 </body>
 </html>
