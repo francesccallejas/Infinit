@@ -528,7 +528,7 @@ em { font-family: var(--serif); font-style: normal; font-weight: 400; }
    RESPONSIVE
    ========================================================================= */
 @media (max-width: 900px) {
-  body { font-size: 17px; }
+  body { font-size: 17px; touch-action: pan-y; overscroll-behavior-x: none; }
   .panel-grid { grid-template-columns: 1fr; }
   .approach-track { height: auto; }
   .approach-sticky { position: static; height: auto; grid-template-columns: 1fr; gap: 40px; padding-block: var(--section); }
@@ -618,7 +618,7 @@ em { font-family: var(--serif); font-style: normal; font-weight: 400; }
 /* =========================================================================
    CLIENTS — marquee
    ========================================================================= */
-.marquee { width: 100%; -webkit-mask-image: linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);
+.marquee { width: 100%; overflow: hidden; -webkit-mask-image: linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);
   mask-image: linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent); }
 .mq-track { display: flex; align-items: center; gap: clamp(48px,7vw,110px);
   width: max-content; animation: mq 40s linear infinite; }
