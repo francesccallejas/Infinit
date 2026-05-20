@@ -953,7 +953,7 @@ em { font-family: var(--serif); font-style: normal; font-weight: 400; }
 .menu-card:hover .mc-ar svg { transform: translate(3px,-3px); }
 
 /* floating card — light frosted, bottom-left, appears on scroll */
-.fab { position: fixed; left: var(--edge); bottom: 26px; z-index: 66;
+.fab { position: fixed; right: var(--edge); bottom: 26px; z-index: 66;
   display: flex; align-items: center; gap: 14px; padding: 10px 10px 10px 12px;
   border: 1px solid rgba(255,255,255,.5); border-radius: 18px; cursor: pointer; text-align: left; color: var(--ink);
   font-family: var(--sans); background: rgba(255,255,255,.62);
@@ -1022,5 +1022,4 @@ em { font-family: var(--serif); font-style: normal; font-weight: 400; }
   .ov-bento { grid-template-columns: 1fr 1fr; grid-template-rows: none; grid-auto-rows: minmax(130px,22vh); overflow: auto; }
   .ov-work { grid-column: 1 / 3; grid-row: auto; }
   .ov-services, .ov-studio, .ov-claim { grid-column: auto; grid-row: auto; }
-  .fab { right: var(--edge); }
 }
