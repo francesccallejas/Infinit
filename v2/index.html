@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Infinit® — Brand &amp; Strategy · V2</title>
 <meta name="description" content="Strategic brand, identity and digital systems for companies navigating growth and transformation.">
-<link rel="stylesheet" href="style.css?v=103">
+<link rel="stylesheet" href="style.css?v=104">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300..900&family=Inter:wght@700&family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -454,6 +454,13 @@
       setTimeout(() => e.target.classList.add('in'), idx * 110);
     }), { threshold: .3 });
     rows.forEach(r => io.observe(r));
+    /* minimal smooth brake — gentle settle to the section start (no hard pin) */
+    if (hasGSAP && !isMobile()) {
+      ScrollTrigger.create({
+        trigger: '#services', start: 'top 82%', end: 'top top',
+        snap: { snapTo: 1, duration: { min: 0.25, max: 0.6 }, ease: 'power2.inOut', delay: 0.12 }
+      });
+    }
   })();
 
   /* ---- work: editorial tiles enter from left / right ---- */
