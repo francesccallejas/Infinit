@@ -55,7 +55,11 @@
   .menu-card .mc-tx{text-align:left;display:flex;flex-direction:column;gap:2px}
   .menu-card .mc-tx b{font-weight:600;font-size:16px}
   .menu-card .mc-tx i{font-style:normal;font-size:13px;color:var(--muted)}
-  .menu-card .mc-ar{margin-left:auto;margin-right:6px}
+  .menu-card .mc-ar{margin-left:auto;width:42px;height:42px;border-radius:12px;flex:none;display:grid;place-items:center;
+    background:rgba(11,12,17,.06);color:var(--ink);transition:background .3s var(--ease)}
+  .menu-card .mc-ar svg{transition:transform .42s var(--ease)}
+  .menu-card:hover .mc-ar{background:var(--accent)}
+  .menu-card:hover .mc-ar svg{transform:translate(3px,-3px)}
 
   /* ============ FLOATING CARD — light frosted (Motto) ============ */
   .fab{position:fixed;left:var(--edge);bottom:26px;z-index:66;
