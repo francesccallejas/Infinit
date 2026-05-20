@@ -703,39 +703,21 @@ em { font-family: var(--serif); font-style: normal; font-weight: 400; }
   .foot-tag { order: -1; }
 }
 
-/* ---- Approach: clean statements (presentation under review) ---- */
-.approach.wrap { padding-block: var(--section); }
-.approach .ap-list { display: flex; flex-direction: column; gap: clamp(10px,2vw,28px); }
-.approach .ap-list .ap-line {
-  font-weight: 600; font-size: clamp(34px,5.6vw,92px);
-  letter-spacing: -.032em; line-height: 1.06; margin: 0; color: var(--faint);
+/* ---- Approach: "built for growth" — image-filled giant word ---- */
+.approach { position: relative; background: var(--bg); padding-block: clamp(90px,16vh,200px); overflow: hidden; }
+.approach .gr-lead { font-weight: 600; font-size: clamp(28px,3vw,52px); letter-spacing: -.03em; line-height: 1.04; margin-top: 6px; }
+.approach .gr-word { font-weight: 700; font-size: clamp(96px,23vw,440px); letter-spacing: -.05em; line-height: .86; margin: 0; }
+.gr-fill { -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent;
+  background-image: url('../project/assets/imagery/Julia Yosemite.webp'); background-size: 180% 200%; background-position: 30% 50%;
+  animation: grDrift 20s ease-in-out infinite; }
+@keyframes grDrift { 0%,100% { background-position: 18% 50%; } 50% { background-position: 82% 50%; } }
+.approach .gr-sub { margin-top: clamp(20px,2.4vw,36px); max-width: 48ch; color: var(--muted);
+  font-size: clamp(15px,1.3vw,19px); line-height: 1.6; }
+@media (max-width: 600px) {
+  .approach .gr-word { font-size: clamp(58px,19vw,96px); }
+  .approach .gr-lead { font-size: clamp(24px,7vw,40px); }
 }
-.approach .ap-list .ap-line .c { color: var(--faint); transition: color .5s var(--ease); }
-.approach .ap-list .ap-line .c.read { color: var(--ink); }
-.approach .ap-list .ap-line .c.lead { color: var(--accent); }
-
-/* ---- Approach: pinned, one statement at a time (option B) ---- */
-.approach { position: relative; background: var(--bg); }
-.ap-track { height: 520vh; }
-.ap-stick {
-  position: sticky; top: 0; height: 100svh;
-  display: flex; align-items: center; padding: 0 var(--edge);
-}
-.ap-st {
-  position: absolute; left: var(--edge); right: var(--edge); max-width: 17ch;
-  font-weight: 600; font-size: clamp(46px, 8.4vw, 156px);
-  letter-spacing: -.045em; line-height: 1.02; color: var(--ink);
-  opacity: 0; transform: translateY(44px);
-  transition: opacity .6s var(--ease), transform .7s var(--ease);
-}
-.ap-st.on { opacity: 1; transform: none; }
-.ap-st em { font-family: var(--serif); font-style: normal; font-weight: 400; color: var(--ink); }
-@media (max-width: 900px) {
-  /* keep pinned on mobile too — shorter track + tighter type */
-  .ap-track { height: 340vh; }
-  .ap-st { max-width: none; font-size: clamp(38px, 10vw, 72px);
-    line-height: 1.06; transform: translateY(28px); }
-}
+@media (prefers-reduced-motion: reduce) { .gr-fill { animation: none; } }
 
 /* ---- Reel: grows from small → full, fast montage + video + logo ---- */
 .reel { --rp: 0; position: relative; background: var(--bg); }

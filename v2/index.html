@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Infinit® — Brand &amp; Strategy · V2</title>
 <meta name="description" content="Strategic brand, identity and digital systems for companies navigating growth and transformation.">
-<link rel="stylesheet" href="style.css?v=116">
+<link rel="stylesheet" href="style.css?v=117">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300..900&family=Inter:wght@700&family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -137,16 +137,13 @@
     </div>
   </section>
 
-  <!-- APPROACH (pinned · one statement at a time) -->
+  <!-- APPROACH (built for growth — image-filled word) -->
   <section class="approach" id="approach">
-    <div class="ap-track" id="apTrack">
-      <div class="ap-stick">
-        <div class="ap-st on">Clarity in <em>complexity.</em></div>
-        <div class="ap-st">Identity with <em>purpose.</em></div>
-        <div class="ap-st">Strategy connected to <em>execution.</em></div>
-        <div class="ap-st">Digital designed for <em>growth.</em></div>
-        <div class="ap-st">Modernization without <em>noise.</em></div>
-      </div>
+    <div class="wrap">
+      <span class="eyebrow">Our approach</span>
+      <p class="gr-lead">We're built for</p>
+      <h2 class="gr-word"><span class="gr-fill">growth.</span></h2>
+      <p class="gr-sub">Strategy connected to execution, identity that scales, digital designed to compound. Real growth, not noise.</p>
     </div>
   </section>
 
@@ -492,27 +489,6 @@
 
   const isMobile = () => matchMedia('(max-width: 900px)').matches;
 
-  /* ---- approach: pinned · one statement at a time ---- */
-  (function(){
-    const track = document.getElementById('apTrack');
-    if (!track) return;
-    const st = [...track.querySelectorAll('.ap-st')];
-    let cur = -1;
-    function show(i){ if (i===cur) return; cur=i; st.forEach((s,k)=>s.classList.toggle('on', k===i)); }
-    show(0);
-    if (!hasGSAP) {
-      /* fallback only (no GSAP): reveal each statement as it crosses centre */
-      const io = new IntersectionObserver(es => es.forEach(e => {
-        if (e.isIntersecting) { e.target.classList.add('on'); io.unobserve(e.target); }
-      }), { rootMargin: '-30% 0px -30% 0px', threshold: 0 });
-      st.forEach(s => io.observe(s));
-      return;
-    }
-    ScrollTrigger.create({
-      trigger: track, start: 'top top', end: 'bottom bottom', scrub: true,
-      onUpdate: self => { const N = st.length; show(Math.min(N-1, Math.floor(self.progress * N))); }
-    });
-  })();
 
   /* ---- claim: window grows from centre ---- */
   (function(){
