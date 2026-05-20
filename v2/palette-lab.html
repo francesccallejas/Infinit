@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Infinit® — Palette lab</title>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300..900&family=Instrument+Serif&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#F4F2F0;--paper:#FBFAF9;--ink:#0B0C11;--deep:#08080C;
+    --accent:#EFE6AE;            /* groc crema — només accent */
+    --stone:#C7C0B4;             /* warm gray */
+    --stone-d:#B4AB9D;           /* warm gray fosc */
+    --sage:#9BA298;              /* green-gray */
+    --sage-d:#828A7E;            /* green-gray fosc */
+    --mist:#DAD5CC;              /* warm gray clar */
+    --sans:"Hanken Grotesk",system-ui,sans-serif;--serif:"Instrument Serif",Georgia,serif;
+    --mono:"IBM Plex Mono",ui-monospace,monospace;--ease:cubic-bezier(.22,1,.36,1);--edge:clamp(24px,5vw,70px);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:var(--sans);background:var(--bg);color:var(--ink)}
+  em{font-family:var(--serif);font-style:normal}
+  h3{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:rgba(11,12,17,.55);
+    padding:0 var(--edge);margin:8vh 0 24px}
+  .lab{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:rgba(11,12,17,.55);padding:34px var(--edge) 0}
+
+  /* swatches */
+  .sw{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px;padding:0 var(--edge)}
+  .chip{border-radius:14px;overflow:hidden;border:1px solid rgba(11,12,17,.1)}
+  .chip .c{height:96px}
+  .chip .t{padding:10px 12px;font-family:var(--mono);font-size:11px;letter-spacing:.04em;background:var(--paper)}
+  .chip .t b{display:block;font-family:var(--sans);font-size:13px;letter-spacing:0;margin-bottom:2px;text-transform:none}
+
+  /* zone preview cells */
+  .zones{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;padding:0 var(--edge)}
+  @media(max-width:860px){.zones{grid-template-columns:1fr}}
+  .band{min-height:300px;border-radius:18px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:40px;gap:22px}
+  .band h2{font-weight:600;font-size:clamp(24px,2.4vw,40px);letter-spacing:-.03em;line-height:1.05;max-width:14ch}
+  .band .pill{display:inline-flex;align-items:center;gap:10px;height:46px;padding:0 22px;border-radius:12px;font-weight:600;font-size:14px}
+  .lab-tag{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;opacity:.6}
+
+  .b-dark{background:var(--ink);color:var(--bg)}
+  .b-dark .pill{background:var(--accent);color:var(--ink)}
+  .b-stone{background:var(--stone);color:var(--ink)}
+  .b-stone .pill{background:var(--ink);color:var(--bg)}
+  .b-sage{background:var(--sage);color:var(--ink)}
+  .b-sage .pill{background:var(--ink);color:var(--bg)}
+
+  /* bento card variants */
+  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;padding:0 var(--edge) 12vh}
+  @media(max-width:860px){.cards{grid-template-columns:1fr}}
+  .card{aspect-ratio:16/10;border-radius:18px;padding:24px;display:flex;flex-direction:column;justify-content:space-between}
+  .card .lst{display:flex;flex-direction:column;gap:2px;font-weight:600;font-size:clamp(20px,2vw,32px);letter-spacing:-.02em;line-height:1.12}
+  .card .lab-row{display:flex;justify-content:space-between;font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase}
+  .c-yellow{background:var(--accent);color:var(--ink)}
+  .c-stone{background:var(--stone);color:var(--ink)}
+  .c-sage{background:var(--sage);color:var(--ink)}
+  .c-dark{background:#15161c;color:var(--bg);border:1px solid rgba(244,242,240,.08)}
+  .c-dark .accent{color:var(--accent)}
+</style>
+</head>
+<body>
+<div class="lab">Palette lab · groc només accent · tons warm gray / green-gray · negre blau</div>
+
+<h3>1 · Paleta proposada</h3>
+<div class="sw">
+  <div class="chip"><div class="c" style="background:#F4F2F0"></div><div class="t"><b>Cream — bg</b>#F4F2F0</div></div>
+  <div class="chip"><div class="c" style="background:#FBFAF9"></div><div class="t"><b>Paper</b>#FBFAF9</div></div>
+  <div class="chip"><div class="c" style="background:#DAD5CC"></div><div class="t"><b>Mist (warm gray clar)</b>#DAD5CC</div></div>
+  <div class="chip"><div class="c" style="background:#C7C0B4"></div><div class="t"><b>Stone (warm gray)</b>#C7C0B4</div></div>
+  <div class="chip"><div class="c" style="background:#9BA298"></div><div class="t"><b>Sage (green-gray)</b>#9BA298</div></div>
+  <div class="chip"><div class="c" style="background:#828A7E"></div><div class="t"><b>Sage fosc</b>#828A7E</div></div>
+  <div class="chip"><div class="c" style="background:#0B0C11"></div><div class="t"><b>Ink (negre blau)</b>#0B0C11</div></div>
+  <div class="chip"><div class="c" style="background:#EFE6AE"></div><div class="t"><b>Accent groc ⚠ només accent</b>#EFE6AE</div></div>
+</div>
+
+<h3>2 · CTA band — ara és groc ple. Alternatives:</h3>
+<div class="zones">
+  <div class="band b-dark"><span class="lab-tag">A · negre blau + groc accent</span><h2>Let's build the next <em>version</em> of your brand.</h2><span class="pill">hello@weareinfinit.com →</span></div>
+  <div class="band b-stone"><span class="lab-tag">B · stone (warm gray)</span><h2>Let's build the next <em>version</em> of your brand.</h2><span class="pill">hello@weareinfinit.com →</span></div>
+  <div class="band b-sage"><span class="lab-tag">C · sage (green-gray)</span><h2>Let's build the next <em>version</em> of your brand.</h2><span class="pill">hello@weareinfinit.com →</span></div>
+</div>
+
+<h3>3 · Card "Three pillars" del bento — ara és groc. Alternatives:</h3>
+<div class="cards">
+  <div class="card c-stone"><div class="lst"><span>Strategy</span><span>Identity</span><span>Digital</span></div><div class="lab-row"><span>Three pillars</span><span>↗</span></div></div>
+  <div class="card c-sage"><div class="lst"><span>Strategy</span><span>Identity</span><span>Digital</span></div><div class="lab-row"><span>Three pillars</span><span>↗</span></div></div>
+  <div class="card c-dark"><div class="lst"><span>Strategy</span><span class="accent">Identity</span><span>Digital</span></div><div class="lab-row"><span>Three pillars</span><span class="accent">↗</span></div></div>
+</div>
+</body>
+</html>
