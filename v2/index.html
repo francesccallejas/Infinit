@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Infinit® — Brand &amp; Strategy · V2</title>
 <meta name="description" content="Strategic brand, identity and digital systems for companies navigating growth and transformation.">
-<link rel="stylesheet" href="style.css?v=128">
+<link rel="stylesheet" href="style.css?v=129">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300..900&family=Inter:wght@700&family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -162,38 +162,30 @@
   </section>
 
   <!-- SERVICES -->
-  <section class="services wrap" id="services">
-    <div class="section-head r">
-      <h2>Three connected pillars. <em>One firm.</em></h2>
-    </div>
-    <div class="svc-rows" id="svcRows">
-      <a class="svc-row" href="#contact">
-        <span class="svc-n">01</span>
-        <div class="svc-head"><h3>Strategy</h3><span class="svc-tag">The discipline behind growth.</span></div>
-        <div class="svc-body">
-          <p class="svc-desc">Direction aligning business ambition, market opportunity and execution. Positioning, growth systems, strategic clarity and modern brand evolution.</p>
-          <div class="svc-subs"><span>Brand Strategy</span><span>Positioning</span><span>Growth Strategy</span><span>Fractional CMO</span><span>Research</span><span>AI Opportunity Mapping</span></div>
-        </div>
-        <div class="plus"></div>
-      </a>
-      <a class="svc-row" href="#contact">
-        <span class="svc-n">02</span>
-        <div class="svc-head"><h3>Identity</h3><span class="svc-tag">Structure made visible.</span></div>
-        <div class="svc-body">
-          <p class="svc-desc">Scalable visual and verbal systems designed for clarity, recognition and consistency across every touchpoint.</p>
-          <div class="svc-subs"><span>Visual Identity</span><span>Naming</span><span>Design Systems</span><span>Art Direction</span><span>Motion</span><span>Creative Direction</span></div>
-        </div>
-        <div class="plus"></div>
-      </a>
-      <a class="svc-row" href="#contact">
-        <span class="svc-n">03</span>
-        <div class="svc-head"><h3>Digital</h3><span class="svc-tag">Where identity scales.</span></div>
-        <div class="svc-body">
-          <p class="svc-desc">Digital experiences built for discoverability, engagement and measurable business impact.</p>
-          <div class="svc-subs"><span>Websites &amp; Platforms</span><span>UX / UI Direction</span><span>SEO &amp; GEO</span><span>Performance Marketing</span><span>Analytics &amp; Conversion</span><span>AI Experiences</span></div>
-        </div>
-        <div class="plus"></div>
-      </a>
+  <section class="services" id="services">
+    <div class="wrap"><div class="section-head r"><h2>Three connected pillars. <em>One firm.</em></h2></div></div>
+    <div class="svc-stack">
+      <div class="svc-card sc1">
+        <div class="svc-card-top"><span class="n">01 — Strategy</span><span class="n">Brand &amp; Strategy</span></div>
+        <h3>Strategy</h3>
+        <span class="svc-tag2">The discipline behind growth.</span>
+        <p class="svc-card-desc">Direction aligning business ambition, market opportunity and execution. Positioning, growth systems, strategic clarity and modern brand evolution.</p>
+        <div class="svc-subs2"><span>Brand Strategy</span><span>Positioning</span><span>Growth Strategy</span><span>Fractional CMO</span><span>Research</span><span>AI Opportunity Mapping</span></div>
+      </div>
+      <div class="svc-card sc2">
+        <div class="svc-card-top"><span class="n">02 — Identity</span><span class="n">Visual &amp; verbal systems</span></div>
+        <h3>Identity</h3>
+        <span class="svc-tag2">Structure made visible.</span>
+        <p class="svc-card-desc">Scalable visual and verbal systems designed for clarity, recognition and consistency across every touchpoint.</p>
+        <div class="svc-subs2"><span>Visual Identity</span><span>Naming</span><span>Design Systems</span><span>Art Direction</span><span>Motion</span><span>Creative Direction</span></div>
+      </div>
+      <div class="svc-card sc3">
+        <div class="svc-card-top"><span class="n">03 — Digital</span><span class="n">Where it scales</span></div>
+        <h3>Digital</h3>
+        <span class="svc-tag2">Where identity scales.</span>
+        <p class="svc-card-desc">Digital experiences built for discoverability, engagement and measurable business impact.</p>
+        <div class="svc-subs2"><span>Websites &amp; Platforms</span><span>UX / UI Direction</span><span>SEO &amp; GEO</span><span>Performance Marketing</span><span>Analytics &amp; Conversion</span><span>AI Experiences</span></div>
+      </div>
     </div>
   </section>
 
@@ -505,24 +497,20 @@
     });
   })();
 
-  /* ---- services: rows slide in from the right, staggered, bounce ---- */
+  /* ---- services: sticky stack with depth (scale + dim previous cards) ---- */
   (function(){
-    const rows = [...document.querySelectorAll('#svcRows .svc-row')];
-    if (!rows.length) return;
-    const io = new IntersectionObserver((es,o)=>es.forEach(e=>{
-      if (!e.isIntersecting) return;
-      o.unobserve(e.target);
-      const idx = rows.indexOf(e.target);
-      setTimeout(() => e.target.classList.add('in'), idx * 110);
-    }), { threshold: .3 });
-    rows.forEach(r => io.observe(r));
-    /* minimal smooth brake — gentle settle to the section start (no hard pin) */
-    if (hasGSAP && !isMobile()) {
-      ScrollTrigger.create({
-        trigger: '#services', start: 'top 82%', end: 'top top',
-        snap: { snapTo: 1, duration: { min: 0.25, max: 0.6 }, ease: 'power2.inOut', delay: 0.12 }
+    const cards = [...document.querySelectorAll('#services .svc-card')];
+    if (!cards.length) return;
+    function upd(){
+      cards.forEach((c,i) => {
+        const next = cards[i+1];
+        if (!next) { c.style.transform = ''; c.style.filter = ''; return; }
+        const p = Math.min(1, Math.max(0, 1 - next.getBoundingClientRect().top / window.innerHeight));
+        c.style.transform = `scale(${(1 - p*0.07).toFixed(4)}) translateY(${(-p*26).toFixed(1)}px)`;
+        c.style.filter = `brightness(${(1 - p*0.05).toFixed(3)})`;
       });
     }
+    window.addEventListener('scroll', upd, { passive: true }); upd();
   })();
 
   /* ---- work: editorial tiles enter from left / right ---- */
