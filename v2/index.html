@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Infinit® — Brand &amp; Strategy · V2</title>
 <meta name="description" content="Strategic brand, identity and digital systems for companies navigating growth and transformation.">
-<link rel="stylesheet" href="style.css?v=119">
+<link rel="stylesheet" href="style.css?v=120">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300..900&family=Inter:wght@700&family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -452,15 +452,24 @@
       close();
       if (target) requestAnimationFrame(() => { if (window.lenis) lenis.scrollTo(target, { offset: 0 }); else target.scrollIntoView({ behavior: 'smooth' }); });
     }));
-    /* show floating card after the hero · hide it over the footer */
+    /* show floating card once the hero is scrolled past · hide it over the footer */
     if (fab) {
-      let footerIn = false;
+      let footerIn = false, heroIn = true;
       const foot = document.getElementById('contact');
-      if (foot && 'IntersectionObserver' in window) {
-        new IntersectionObserver(es => { footerIn = es[0].isIntersecting; update(); }, { threshold: 0 }).observe(foot);
+      const hero = document.querySelector('.hero');
+      function update(){ fab.classList.toggle('show', !heroIn && !footerIn); }
+      if ('IntersectionObserver' in window) {
+        const io = new IntersectionObserver(es => {
+          es.forEach(e => {
+            if (e.target === foot) footerIn = e.isIntersecting;
+            if (e.target === hero) heroIn = e.isIntersecting;
+          });
+          update();
+        }, { threshold: 0 });
+        foot && io.observe(foot);
+        hero && io.observe(hero);
       }
-      function update(){ fab.classList.toggle('show', window.scrollY > window.innerHeight * 0.85 && !footerIn); }
-      window.addEventListener('scroll', update, { passive: true }); update();
+      update();
     }
   })();
 
