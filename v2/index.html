@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Infinit® — Brand &amp; Strategy · V2</title>
 <meta name="description" content="Strategic brand, identity and digital systems for companies navigating growth and transformation.">
-<link rel="stylesheet" href="style.css?v=107">
+<link rel="stylesheet" href="style.css?v=108">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300..900&family=Inter:wght@700&family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -44,9 +44,38 @@
     <div class="meta">
       <p><b>Infinit®</b><br>Brand &amp; Strategy firm</p>
       <p style="margin-top:20px">Barcelona — Worldwide<br><b>hello@weareinfinit.com</b></p>
+      <div class="menu-ov">
+        <span class="menu-ov-eb">A quick look</span>
+        <button class="menu-card" id="menuCard" type="button">
+          <span class="mc-thumb"><img src="../project/assets/images/Bunnker Final.webp" alt=""></span>
+          <span class="mc-tx"><b>Overview</b><i>The studio at a glance</i></span>
+          <span class="mc-ar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
+        </button>
+      </div>
     </div>
   </div>
 </div>
+
+<!-- OVERVIEW overlay (above everything) -->
+<div class="ov" id="ov" aria-hidden="true">
+  <div class="ov-top">
+    <div><span class="eb">A quick look</span><h2>One studio, <em>everything connected.</em></h2></div>
+    <button class="ov-close" id="ovClose" aria-label="Close overview"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  </div>
+  <div class="ov-bento">
+    <a class="ov-card ov-work" href="#work" data-ovlink><img src="../project/assets/images/Bunnker Final.webp" alt="" loading="lazy"><div class="ov-scrim"></div><div class="ov-label"><span>Selected work</span><span class="ov-ar">↗</span></div></a>
+    <a class="ov-card ov-services" href="#services" data-ovlink><div class="ov-svc-list"><span>Strategy</span><span>Identity</span><span>Digital</span></div><div class="ov-label"><span>Three pillars</span><span class="ov-ar">↗</span></div></a>
+    <a class="ov-card ov-studio" href="#founder" data-ovlink><img src="../project/assets/imagery/francesc.jpg" alt="" loading="lazy"><div class="ov-scrim"></div><div class="ov-label"><span>The studio</span><span class="ov-ar">↗</span></div></a>
+    <a class="ov-card ov-claim" href="#approach" data-ovlink><h3>Brands built to <em>scale.</em></h3><div class="ov-label"><span>Our approach</span><span class="ov-ar">↗</span></div></a>
+  </div>
+</div>
+
+<!-- floating card — appears on scroll, opens overview -->
+<button class="fab" id="ovFab" type="button">
+  <span class="fab-thumb"><span class="fab-badge">NEW</span><img src="../project/assets/images/Bunnker Final.webp" alt=""></span>
+  <span class="fab-tx"><b>A quick look</b><i>Overview of the studio</i></span>
+  <span class="fab-cta">View</span>
+</button>
 
 <main id="top">
 
@@ -97,36 +126,6 @@
             </button>
           </div>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- OVERVIEW (dark bento — visual index of the site) -->
-  <section class="overview" id="overview">
-    <div class="wrap">
-      <div class="ov-head r">
-        <span class="eyebrow">A quick look</span>
-        <h2>One studio, <em>everything connected.</em></h2>
-      </div>
-      <div class="ov-bento">
-        <a class="ov-card ov-work r" href="#work">
-          <img src="../project/assets/images/Bunnker Final.webp" alt="" loading="lazy">
-          <div class="ov-scrim"></div>
-          <div class="ov-label"><span>Selected work</span><span class="ov-ar">↗</span></div>
-        </a>
-        <a class="ov-card ov-services r d1" href="#services">
-          <div class="ov-svc-list"><span>Strategy</span><span>Identity</span><span>Digital</span></div>
-          <div class="ov-label"><span>Three pillars</span><span class="ov-ar">↗</span></div>
-        </a>
-        <a class="ov-card ov-studio r d2" href="#founder">
-          <img src="../project/assets/imagery/francesc.jpg" alt="" loading="lazy">
-          <div class="ov-scrim"></div>
-          <div class="ov-label"><span>The studio</span><span class="ov-ar">↗</span></div>
-        </a>
-        <a class="ov-card ov-claim r d3" href="#approach">
-          <h3>Brands built to <em>scale.</em></h3>
-          <div class="ov-label"><span>Our approach</span><span class="ov-ar">↗</span></div>
-        </a>
       </div>
     </div>
   </section>
@@ -403,12 +402,39 @@
   })();
 
   /* ---- nav panel ---- */
+  let closeMenu = () => {};
   (function(){
     const b = document.getElementById('menuBtn'), p = document.getElementById('panel');
     function set(o){ p.classList.toggle('open', o); b.classList.toggle('open', o); b.setAttribute('aria-expanded', o); }
+    closeMenu = () => set(false);
     b.addEventListener('click', () => set(!p.classList.contains('open')));
     p.querySelectorAll('a').forEach(a => a.addEventListener('click', () => set(false)));
     document.addEventListener('keydown', e => { if (e.key === 'Escape') set(false); });
+  })();
+
+  /* ---- overview: floating card + menu card → frosted bento overlay ---- */
+  (function(){
+    const ov = document.getElementById('ov'); if (!ov) return;
+    const fab = document.getElementById('ovFab');
+    const open = () => { closeMenu(); ov.classList.add('open'); ov.setAttribute('aria-hidden','false'); document.body.style.overflow = 'hidden'; if (window.lenis) lenis.stop(); };
+    const close = () => { ov.classList.remove('open'); ov.setAttribute('aria-hidden','true'); document.body.style.overflow = ''; if (window.lenis) lenis.start(); };
+    fab && fab.addEventListener('click', open);
+    const mc = document.getElementById('menuCard'); mc && mc.addEventListener('click', open);
+    document.getElementById('ovClose').addEventListener('click', close);
+    ov.addEventListener('click', e => { if (e.target === ov) close(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
+    /* card links: close overlay, then smooth-scroll to the target */
+    ov.querySelectorAll('[data-ovlink]').forEach(a => a.addEventListener('click', e => {
+      e.preventDefault();
+      const target = document.querySelector(a.getAttribute('href'));
+      close();
+      if (target) requestAnimationFrame(() => { if (window.lenis) lenis.scrollTo(target, { offset: 0 }); else target.scrollIntoView({ behavior: 'smooth' }); });
+    }));
+    /* show floating card after the hero */
+    if (fab) {
+      const onScroll = () => { fab.classList.toggle('show', window.scrollY > window.innerHeight * 0.85); };
+      window.addEventListener('scroll', onScroll, { passive: true }); onScroll();
+    }
   })();
 
   /* hero "scale" fill: static Relats image panning left↔right (CSS only) */
