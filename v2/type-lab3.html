@@ -48,12 +48,10 @@
   @media(max-width:760px){.serif-cmp{grid-template-columns:1fr}}
   .sc h4{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:18px}
   .serif-big{font-weight:400;font-size:clamp(40px,6vw,92px);line-height:1.02;letter-spacing:-.01em;margin-bottom:18px}
-  .sc .is,.sc .is .serif-big{font-family:"Instrument Serif",serif}
-  .sc .nr,.sc .nr .serif-big{font-family:"Newsreader",serif}
   .scp{font-family:"Inter Tight",sans-serif;font-weight:400;font-size:17px;line-height:1.6;color:var(--body);max-width:46ch}
   .scp em{font-style:normal;font-size:1.07em}
-  .is .scp em{font-family:"Instrument Serif",serif}
-  .nr .scp em{font-family:"Newsreader",serif}
+  .sc.is .serif-big,.sc.is .scp em{font-family:"Instrument Serif",serif}
+  .sc.nr .serif-big,.sc.nr .scp em{font-family:"Newsreader",serif}
 
   .o1{--sans:"General Sans",sans-serif;--logo-w:700}
   .o2{--sans:"Inter Tight",sans-serif;--logo-w:800}
