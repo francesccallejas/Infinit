@@ -6,7 +6,7 @@
 <title>Infinit® — Sans fines · text petit + logo</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300..900&family=Geist:wght@300..900&family=Instrument+Serif&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300..900&family=Geist:wght@300..900&family=Instrument+Serif:ital@0;1&family=Newsreader:ital,opsz,wght@0,6..72,300..500;1,6..72,300..400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link href="https://api.fontshare.com/v2/css?f[]=general-sans@300,400,500,600,700&f[]=satoshi@300,400,500,700,900&f[]=switzer@300,400,500,600,700&display=swap" rel="stylesheet">
 <style>
   *{margin:0;padding:0;box-sizing:border-box}
@@ -43,6 +43,18 @@
   .ui{font-family:var(--sans);font-weight:400;font-size:15px;color:var(--muted)}
   .ui b{font-weight:600;color:var(--ink)}
 
+  /* secondary serif comparison */
+  .serif-cmp{grid-template-columns:1fr 1fr}
+  @media(max-width:760px){.serif-cmp{grid-template-columns:1fr}}
+  .sc h4{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:18px}
+  .serif-big{font-weight:400;font-size:clamp(40px,6vw,92px);line-height:1.02;letter-spacing:-.01em;margin-bottom:18px}
+  .sc .is,.sc .is .serif-big{font-family:"Instrument Serif",serif}
+  .sc .nr,.sc .nr .serif-big{font-family:"Newsreader",serif}
+  .scp{font-family:"Inter Tight",sans-serif;font-weight:400;font-size:17px;line-height:1.6;color:var(--body);max-width:46ch}
+  .scp em{font-style:normal;font-size:1.07em}
+  .is .scp em{font-family:"Instrument Serif",serif}
+  .nr .scp em{font-family:"Newsreader",serif}
+
   .o1{--sans:"General Sans",sans-serif;--logo-w:700}
   .o2{--sans:"Inter Tight",sans-serif;--logo-w:800}
   .o3{--sans:"Satoshi",sans-serif;--logo-w:900}
@@ -53,6 +65,20 @@
 <body>
 <div class="lab">Sans fines · text petit + logo — 5 iteracions clean (cos a 300/400) · serif accent = Instrument · labels = IBM Plex Mono</div>
 <div class="note">Inter Tight + Geist = Google · General Sans / Satoshi / Switzer = Fontshare. El logo es mostra amb el brandmark actual + el wordmark en cada tipografia (per veure si encaixa).</div>
+
+<section class="opt serif-cmp">
+  <div class="meta"><span class="tag">Secundària</span><span class="pair">Instrument Serif vs Newsreader</span><span class="feel">— les paraules accent (scale. · connected. · growth.)</span></div>
+  <div class="sc is">
+    <h4>Instrument Serif (actual)</h4>
+    <div class="serif-big">scale.<br>growth.<br>connected.</div>
+    <p class="scp">A firm for companies navigating <em>growth</em>, transformation and modernization. Built to <em>scale.</em></p>
+  </div>
+  <div class="sc nr">
+    <h4>Newsreader</h4>
+    <div class="serif-big">scale.<br>growth.<br>connected.</div>
+    <p class="scp">A firm for companies navigating <em>growth</em>, transformation and modernization. Built to <em>scale.</em></p>
+  </div>
+</section>
 
 <section class="opt o1">
   <div class="meta"><span class="tag">01</span><span class="pair">General Sans</span><span class="feel">— versàtil, neutra premium</span></div>
