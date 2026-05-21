@@ -83,7 +83,7 @@ em { font-family: var(--serif); font-style: normal; font-weight: 400; }
 }
 .logo svg { height: 26px; width: auto; color: currentColor; }
 .logo .word {
-  font-family: var(--sans); font-weight: 600;
+  font-family: var(--sans); font-weight: 700;
   font-size: 26px; letter-spacing: -.045em; line-height: 1;
   display: inline-flex; align-items: flex-start; gap: 1px; color: currentColor;
 }
