@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Infinit® — Typography · 5 parelles</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300..900&family=Space+Grotesk:wght@400;500;700&family=Schibsted+Grotesk:wght@400..900&family=Archivo:wght@400..800&family=Familjen+Grotesk:wght@400..700&family=Instrument+Serif:ital@0;1&family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..600&family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..500&family=Spectral:ital,wght@0,300;0,400;0,500;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  :root{
+    --bg:#F4F2F0;--paper:#FBFAF9;--ink:#0B0C11;--mist:#E7E2D9;--sand:#DCD5C8;--accent:#EFE6AE;
+    --muted:rgba(11,12,17,.56);--body:rgba(11,12,17,.82);--line:rgba(11,12,17,.12);
+    --mono:"IBM Plex Mono",monospace;--ease:cubic-bezier(.22,1,.36,1);
+    --edge:clamp(22px,5vw,72px);
+  }
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans,"Hanken Grotesk",sans-serif)}
+  .lab{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);padding:32px var(--edge) 0}
+
+  .opt{padding:clamp(48px,7vh,96px) var(--edge);border-top:1px solid var(--line)}
+  .meta{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin-bottom:clamp(26px,4vh,46px)}
+  .tag{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink);
+    border:1px solid var(--line);border-radius:999px;padding:6px 12px}
+  .pair{font-family:var(--mono);font-size:12px;letter-spacing:.06em;color:var(--muted)}
+  .feel{font-family:var(--mono);font-size:12px;color:var(--muted)}
+
+  .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:18px}
+  .hero{font-family:var(--sans);font-weight:600;font-size:clamp(50px,8.5vw,128px);letter-spacing:-.045em;line-height:.96;margin-bottom:6px}
+  .hero em{font-family:var(--serif);font-style:normal;font-weight:var(--serif-w,400)}
+  .sub{font-family:var(--sans);font-weight:600;font-size:clamp(26px,3.6vw,52px);letter-spacing:-.03em;line-height:1.05;
+    max-width:20ch;margin:clamp(26px,4vh,46px) 0 14px}
+  .sub em{font-family:var(--serif);font-style:normal;font-weight:var(--serif-w,400)}
+  .body{font-family:var(--sans);font-weight:400;font-size:clamp(16px,1.25vw,19px);line-height:1.6;color:var(--body);max-width:54ch}
+  .body em{font-family:var(--serif);font-style:normal;font-weight:var(--serif-w,400);font-size:1.06em}
+  .row{display:flex;gap:10px;flex-wrap:wrap;margin-top:24px}
+  .chip{font-family:var(--mono);font-size:12px;border:1px solid var(--line);border-radius:999px;padding:7px 13px;color:var(--muted)}
+
+  /* ===== current ===== */
+  .o0{--sans:"Hanken Grotesk",sans-serif;--serif:"Instrument Serif",serif;--serif-w:400}
+  /* ===== 1 · Hanken Grotesk × Fraunces ===== */
+  .o1{--sans:"Hanken Grotesk",sans-serif;--serif:"Fraunces",serif;--serif-w:400}
+  /* ===== 2 · Schibsted Grotesk × Newsreader ===== */
+  .o2{--sans:"Schibsted Grotesk",sans-serif;--serif:"Newsreader",serif;--serif-w:400}
+  /* ===== 3 · Space Grotesk × Fraunces ===== */
+  .o3{--sans:"Space Grotesk",sans-serif;--serif:"Fraunces",serif;--serif-w:400}
+  /* ===== 4 · Archivo × Spectral ===== */
+  .o4{--sans:"Archivo",sans-serif;--serif:"Spectral",serif;--serif-w:400}
+  /* ===== 5 · Familjen Grotesk × Instrument Serif ===== */
+  .o5{--sans:"Familjen Grotesk",sans-serif;--serif:"Instrument Serif",serif;--serif-w:400}
+</style>
+</head>
+<body>
+<div class="lab">Typography · 5 parelles — primària (grotesk) + secundària (serif accent) · labels sempre IBM Plex Mono</div>
+
+<!-- CURRENT -->
+<section class="opt o0">
+  <div class="meta"><span class="tag">Actual</span><span class="pair">Hanken Grotesk × Instrument Serif</span><span class="feel">— el que tens ara</span></div>
+  <span class="eyebrow">Infinit® — Brand &amp; Strategy</span>
+  <div class="hero">Brands built to <em>scale.</em></div>
+  <p class="sub">Strategy, identity and digital — <em>connected.</em></p>
+  <p class="body">A strategic brand and digital firm for companies navigating <em>growth</em>, transformation and modernization. Built through real transformation experience.</p>
+  <div class="row"><span class="chip">Strategy</span><span class="chip">Identity</span><span class="chip">Digital</span></div>
+</section>
+
+<!-- 1 -->
+<section class="opt o1">
+  <div class="meta"><span class="tag">01</span><span class="pair">Hanken Grotesk × Fraunces</span><span class="feel">— mateix grotesk, serif amb més ànima/contrast</span></div>
+  <span class="eyebrow">Infinit® — Brand &amp; Strategy</span>
+  <div class="hero">Brands built to <em>scale.</em></div>
+  <p class="sub">Strategy, identity and digital — <em>connected.</em></p>
+  <p class="body">A strategic brand and digital firm for companies navigating <em>growth</em>, transformation and modernization. Built through real transformation experience.</p>
+  <div class="row"><span class="chip">Strategy</span><span class="chip">Identity</span><span class="chip">Digital</span></div>
+</section>
+
+<!-- 2 -->
+<section class="opt o2">
+  <div class="meta"><span class="tag">02</span><span class="pair">Schibsted Grotesk × Newsreader</span><span class="feel">— editorial modern, premium i net</span></div>
+  <span class="eyebrow">Infinit® — Brand &amp; Strategy</span>
+  <div class="hero">Brands built to <em>scale.</em></div>
+  <p class="sub">Strategy, identity and digital — <em>connected.</em></p>
+  <p class="body">A strategic brand and digital firm for companies navigating <em>growth</em>, transformation and modernization. Built through real transformation experience.</p>
+  <div class="row"><span class="chip">Strategy</span><span class="chip">Identity</span><span class="chip">Digital</span></div>
+</section>
+
+<!-- 3 -->
+<section class="opt o3">
+  <div class="meta"><span class="tag">03</span><span class="pair">Space Grotesk × Fraunces</span><span class="feel">— digital/tech boutique, més caràcter</span></div>
+  <span class="eyebrow">Infinit® — Brand &amp; Strategy</span>
+  <div class="hero">Brands built to <em>scale.</em></div>
+  <p class="sub">Strategy, identity and digital — <em>connected.</em></p>
+  <p class="body">A strategic brand and digital firm for companies navigating <em>growth</em>, transformation and modernization. Built through real transformation experience.</p>
+  <div class="row"><span class="chip">Strategy</span><span class="chip">Identity</span><span class="chip">Digital</span></div>
+</section>
+
+<!-- 4 -->
+<section class="opt o4">
+  <div class="meta"><span class="tag">04</span><span class="pair">Archivo × Spectral</span><span class="feel">— segur, sòlid, editorial confiat</span></div>
+  <span class="eyebrow">Infinit® — Brand &amp; Strategy</span>
+  <div class="hero">Brands built to <em>scale.</em></div>
+  <p class="sub">Strategy, identity and digital — <em>connected.</em></p>
+  <p class="body">A strategic brand and digital firm for companies navigating <em>growth</em>, transformation and modernization. Built through real transformation experience.</p>
+  <div class="row"><span class="chip">Strategy</span><span class="chip">Identity</span><span class="chip">Digital</span></div>
+</section>
+
+<!-- 5 -->
+<section class="opt o5">
+  <div class="meta"><span class="tag">05</span><span class="pair">Familjen Grotesk × Instrument Serif</span><span class="feel">— grotesk amb personalitat + el serif actual</span></div>
+  <span class="eyebrow">Infinit® — Brand &amp; Strategy</span>
+  <div class="hero">Brands built to <em>scale.</em></div>
+  <p class="sub">Strategy, identity and digital — <em>connected.</em></p>
+  <p class="body">A strategic brand and digital firm for companies navigating <em>growth</em>, transformation and modernization. Built through real transformation experience.</p>
+  <div class="row"><span class="chip">Strategy</span><span class="chip">Identity</span><span class="chip">Digital</span></div>
+</section>
+
+</body>
+</html>
