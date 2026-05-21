@@ -26,9 +26,9 @@
   .feel{font-family:var(--mono);font-size:12px;color:var(--muted)}
 
   .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:18px}
-  .hero{font-family:var(--sans);font-weight:600;font-size:clamp(50px,8.5vw,128px);letter-spacing:-.045em;line-height:.96;margin-bottom:6px}
+  .hero{font-family:var(--sans);font-weight:var(--disp-w,500);font-size:clamp(50px,8.5vw,128px);letter-spacing:-.045em;line-height:.96;margin-bottom:6px}
   .hero em{font-family:var(--serif);font-style:normal;font-weight:var(--serif-w,400)}
-  .sub{font-family:var(--sans);font-weight:600;font-size:clamp(26px,3.6vw,52px);letter-spacing:-.03em;line-height:1.05;
+  .sub{font-family:var(--sans);font-weight:var(--disp-w,500);font-size:clamp(26px,3.6vw,52px);letter-spacing:-.03em;line-height:1.05;
     max-width:20ch;margin:clamp(26px,4vh,46px) 0 14px}
   .sub em{font-family:var(--serif);font-style:normal;font-weight:var(--serif-w,400)}
   .body{font-family:var(--sans);font-weight:400;font-size:clamp(16px,1.25vw,19px);line-height:1.6;color:var(--body);max-width:54ch}
@@ -37,7 +37,7 @@
   .chip{font-family:var(--mono);font-size:12px;border:1px solid var(--line);border-radius:999px;padding:7px 13px;color:var(--muted)}
 
   /* ===== current ===== */
-  .o0{--sans:"Hanken Grotesk",sans-serif;--serif:"Instrument Serif",serif;--serif-w:400}
+  .o0{--sans:"Hanken Grotesk",sans-serif;--serif:"Instrument Serif",serif;--serif-w:400;--disp-w:600}
   /* ===== 1 · Hanken Grotesk × Fraunces ===== */
   .o1{--sans:"Hanken Grotesk",sans-serif;--serif:"Fraunces",serif;--serif-w:400}
   /* ===== 2 · Schibsted Grotesk × Newsreader ===== */
@@ -52,6 +52,16 @@
 </head>
 <body>
 <div class="lab">Typography · 5 parelles — primària (grotesk) + secundària (serif accent) · labels sempre IBM Plex Mono</div>
+
+<!-- WEIGHT LADDER (Hanken Grotesk) -->
+<section class="opt" style="--sans:'Hanken Grotesk',sans-serif;--serif:'Instrument Serif',serif;border-top:0">
+  <div class="meta"><span class="tag">Pes</span><span class="pair">Mateixa frase · Hanken Grotesk a 5 pesos</span><span class="feel">— tria el pes a part de la parella</span></div>
+  <div class="hero" style="--disp-w:300;font-size:clamp(34px,5vw,72px);margin:0 0 2px">Brands built to <em>scale.</em> <span style="font-family:var(--mono);font-size:13px;color:var(--muted);letter-spacing:.1em;vertical-align:middle">300 LIGHT</span></div>
+  <div class="hero" style="--disp-w:400;font-size:clamp(34px,5vw,72px);margin:0 0 2px">Brands built to <em>scale.</em> <span style="font-family:var(--mono);font-size:13px;color:var(--muted);letter-spacing:.1em;vertical-align:middle">400 REGULAR</span></div>
+  <div class="hero" style="--disp-w:500;font-size:clamp(34px,5vw,72px);margin:0 0 2px">Brands built to <em>scale.</em> <span style="font-family:var(--mono);font-size:13px;color:var(--muted);letter-spacing:.1em;vertical-align:middle">500 MEDIUM</span></div>
+  <div class="hero" style="--disp-w:600;font-size:clamp(34px,5vw,72px);margin:0 0 2px">Brands built to <em>scale.</em> <span style="font-family:var(--mono);font-size:13px;color:var(--muted);letter-spacing:.1em;vertical-align:middle">600 SEMIBOLD · ACTUAL</span></div>
+  <div class="hero" style="--disp-w:700;font-size:clamp(34px,5vw,72px);margin:0 0 2px">Brands built to <em>scale.</em> <span style="font-family:var(--mono);font-size:13px;color:var(--muted);letter-spacing:.1em;vertical-align:middle">700 BOLD</span></div>
+</section>
 
 <!-- CURRENT -->
 <section class="opt o0">
