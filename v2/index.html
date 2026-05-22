@@ -3,187 +3,663 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Infinit® — V2 · Real-world brands, digitally scaled</title>
+<title>Infinit® — Brand &amp; Strategy · V2</title>
+<meta name="description" content="Strategic brand, identity and digital systems for companies navigating growth and transformation.">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="stylesheet" href="style.css?v=202">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://api.fontshare.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700&display=swap" rel="stylesheet">
-<style>
-  *{margin:0;padding:0;box-sizing:border-box}
-  :root{
-    --bg:#E9E7E2;--ink:#15151A;--paper:#F2F1ED;--stone:#D7D3CB;--deep:#0F0E0B;
-    --muted:rgba(21,21,26,.5);--line:rgba(21,21,26,.13);
-    --accent:#D5FAD3;--accent-ink:#0F0E0B;            /* default = mint (Aptos) */
-    --sans:"Satoshi",sans-serif;--serif:"Instrument Serif",serif;--mono:"IBM Plex Mono",monospace;
-    --ease:cubic-bezier(.16,1,.3,1);--edge:clamp(20px,4.5vw,80px)
-  }
-  body.yellow{--accent:#EFE6AE}
-  body{font-family:var(--sans);background:var(--bg);color:var(--ink);overflow-x:hidden;font-weight:400}
-  .mono{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase}
-  .reveal{opacity:0;transform:translateY(30px);transition:opacity 1s var(--ease),transform 1s var(--ease)}
-  .reveal.in{opacity:1;transform:none}
-
-  /* bar */
-  .bar{position:fixed;inset:0 0 auto 0;display:flex;justify-content:space-between;align-items:center;padding:18px var(--edge);z-index:30}
-  .bar .lg{font-weight:700;font-size:18px;letter-spacing:-.02em}
-  .bar .r{display:flex;gap:8px;align-items:center}
-  .bar button{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;cursor:pointer;background:rgba(242,241,237,.65);backdrop-filter:blur(16px);border:0;border-radius:9px;padding:11px 16px;color:var(--ink)}
-  .bar .th .dot{width:9px;height:9px;border-radius:50%;background:var(--accent);display:inline-block;margin-right:7px;vertical-align:-1px;box-shadow:inset 0 0 0 1px rgba(21,21,26,.15)}
-  /* overlay menu */
-  .ix{position:fixed;inset:0;background:var(--deep);color:var(--bg);z-index:40;opacity:0;pointer-events:none;transition:opacity .5s var(--ease);display:flex;flex-direction:column;justify-content:center;padding:0 var(--edge);gap:4px}
-  .ix.open{opacity:1;pointer-events:auto}
-  .ix a{font-weight:300;font-size:clamp(40px,9vw,118px);letter-spacing:-.04em;color:var(--bg);text-decoration:none;line-height:1.04;opacity:.55;transition:opacity .3s,transform .4s var(--ease)}
-  .ix a em{font-family:var(--serif);font-style:italic}
-  .ix a:hover{opacity:1;transform:translateX(14px)}
-  .ix .x{position:absolute;top:18px;right:var(--edge);font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;cursor:pointer;background:none;border:0;color:var(--bg)}
-  .ix .foot{position:absolute;bottom:var(--edge);left:var(--edge);font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:rgba(244,242,240,.5)}
-
-  /* HERO long */
-  .hero{min-height:140vh;padding:30vh var(--edge) 0;position:relative}
-  .hero .ey{color:var(--muted);margin-bottom:clamp(26px,5vh,54px);display:block}
-  .hl{font-weight:300;font-size:clamp(46px,9.5vw,176px);line-height:.95;letter-spacing:-.045em;max-width:15ch}
-  .hl b{font-weight:500}.hl em{font-family:var(--serif);font-style:normal}
-  .hero .lede{position:absolute;right:var(--edge);bottom:16vh;max-width:38ch;font-weight:300;font-size:clamp(15px,1.3vw,19px);line-height:1.65;color:rgba(21,21,26,.72)}
-  .hero .lede em{font-family:var(--serif);font-style:italic}
-  .triad{position:absolute;left:var(--edge);bottom:7vh;display:flex;gap:18px;align-items:center;color:var(--muted)}
-  .triad b{color:var(--ink);font-weight:500}
-
-  /* REEL grows mid-entry */
-  .reelwrap{height:230vh;position:relative}
-  .reelstick{position:sticky;top:0;height:100vh;display:grid;place-items:center;overflow:hidden}
-  .reelbox{width:var(--w,40%);aspect-ratio:16/10;border-radius:14px;overflow:hidden;will-change:width;box-shadow:0 30px 80px -40px rgba(10,10,14,.5)}
-  .reelbox img{width:100%;height:100%;object-fit:cover}
-  .reelcap{position:absolute;left:var(--edge);bottom:8vh;color:var(--muted)}
-
-  .sec{padding:clamp(80px,14vh,200px) var(--edge)}
-  .kic{color:var(--muted);margin-bottom:clamp(28px,5vh,56px);display:block}
-  .belief{font-weight:300;font-size:clamp(28px,4.4vw,76px);line-height:1.1;letter-spacing:-.03em;max-width:20ch}
-  .belief em{font-family:var(--serif);font-style:normal}
-
-  /* CAPABILITIES — benefit-led, Aptos voice */
-  .caps{border-top:1px solid var(--line)}
-  .cap-row{display:grid;grid-template-columns:.4fr 1fr;gap:clamp(16px,4vw,60px);padding:clamp(28px,4vw,54px) 0;border-bottom:1px solid var(--line);align-items:baseline}
-  .cap-row .n{color:var(--muted)}
-  .cap-row h3{font-weight:400;font-size:clamp(28px,3.6vw,58px);letter-spacing:-.03em;line-height:1.05}
-  .cap-row h3 em{font-family:var(--serif);font-style:italic}
-  .cap-row p{margin-top:14px;font-weight:300;font-size:clamp(15px,1.2vw,18px);line-height:1.6;color:rgba(21,21,26,.7);max-width:48ch}
-  @media(max-width:760px){.cap-row{grid-template-columns:1fr;gap:10px}}
-
-  /* PROOF / SCALE band */
-  .proof{background:var(--deep);color:var(--bg)}
-  .proof .kic{color:rgba(244,242,240,.5)}
-  .proof .big{font-weight:300;font-size:clamp(30px,4.6vw,80px);line-height:1.08;letter-spacing:-.03em;max-width:20ch}
-  .proof .big b{font-weight:500}.proof .big em{font-family:var(--serif);font-style:normal;color:var(--accent)}
-  .kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(16px,2vw,40px);margin-top:clamp(50px,8vh,90px)}
-  .kpi .n{font-weight:300;font-size:clamp(40px,5vw,84px);letter-spacing:-.04em;line-height:1}
-  .kpi .n em{font-family:var(--serif);font-style:italic}
-  .kpi .l{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:rgba(244,242,240,.55);margin-top:10px;max-width:24ch}
-  @media(max-width:680px){.kpis{grid-template-columns:1fr}}
-  .clients{margin-top:clamp(50px,8vh,90px);font-weight:300;font-size:clamp(17px,1.6vw,24px);line-height:1.5;color:rgba(244,242,240,.85);max-width:40ch}
-  .clients b{font-weight:500;color:#fff}
-  .rec{margin-top:24px;display:flex;align-items:center;gap:22px;flex-wrap:wrap}
-  .rec img{height:18px;filter:brightness(0) invert(1);opacity:.7}
-  .rec .lbl{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:rgba(244,242,240,.45)}
-
-  /* WORK central grid */
-  .pgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(10px,1.2vw,18px)}
-  .pcard{border-radius:10px;overflow:hidden;aspect-ratio:4/3;position:relative;opacity:0;transform:translateY(60px) scale(.93);transition:opacity .9s var(--ease),transform 1s var(--ease)}
-  .pgrid.in .pcard{opacity:1;transform:none}
-  .pgrid.in .pcard:nth-child(2){transition-delay:.1s}.pgrid.in .pcard:nth-child(3){transition-delay:.2s}.pgrid.in .pcard:nth-child(4){transition-delay:.3s}
-  .pcard img{width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ease)}
-  .pcard:hover img{transform:scale(1.05)}
-  .pcard .cap{position:absolute;left:16px;bottom:14px;color:#fff;font-weight:500;font-size:19px;text-shadow:0 1px 14px rgba(0,0,0,.45)}
-  .pcard .tag{position:absolute;right:14px;top:14px;font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#fff;background:rgba(15,14,11,.4);backdrop-filter:blur(8px);padding:6px 10px;border-radius:8px}
-
-  /* CTA / footer */
-  .cta{background:var(--accent);color:var(--accent-ink);padding:clamp(90px,16vh,220px) var(--edge);text-align:center}
-  .cta h2{font-weight:300;font-size:clamp(40px,7vw,128px);line-height:.98;letter-spacing:-.04em;max-width:16ch;margin:0 auto}
-  .cta h2 em{font-family:var(--serif);font-style:italic}
-  .cta a{display:inline-flex;align-items:center;gap:12px;margin-top:clamp(34px,5vh,60px);background:var(--deep);color:#fff;font-weight:500;font-size:clamp(15px,1.3vw,18px);padding:16px 26px;border-radius:12px;text-decoration:none}
-  .foot{background:var(--deep);color:var(--bg);padding:clamp(50px,8vh,90px) var(--edge);display:flex;justify-content:space-between;flex-wrap:wrap;gap:18px;font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:rgba(244,242,240,.55)}
-</style>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300..900&family=Inter:wght@700&family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 </head>
-<body class="mint">
-<div class="bar">
-  <span class="lg">Infinit®</span>
-  <span class="r">
-    <button class="th" id="th"><span class="dot"></span>Theme</button>
-    <button id="mn">Menu</button>
-  </span>
+<body>
+
+<div class="intro" id="intro" aria-hidden="true">
+  <svg viewBox="0 0 374 206" fill="none">
+    <path class="p1" d="M 108.196 34 L 182.196 34 Q 201.196 34 194.140 51.641 L 153.056 154.359 Q 146 172 127 172 L 53 172 Q 34 172 41.056 154.359 L 82.140 51.641 Q 89.196 34 108.196 34 Z" fill="currentColor"/>
+    <path class="p2" d="M 108.196 34 L 182.196 34 Q 201.196 34 194.140 51.641 L 153.056 154.359 Q 146 172 127 172 L 53 172 Q 34 172 41.056 154.359 L 82.140 51.641 Q 89.196 34 108.196 34 Z" fill="currentColor" transform="translate(139 0)"/>
+  </svg>
 </div>
-<nav class="ix" id="ix"><button class="x" id="x">Close</button><a href="#work">Work</a><a href="#approach"><em>Approach</em></a><a href="#studio">Studio</a><a href="#contact">Contact</a><span class="foot">Barcelona — Worldwide · hello@weareinfinit.com</span></nav>
 
-<!-- HERO -->
-<section class="hero">
-  <span class="mono ey">A strategy &amp; creative firm — Barcelona</span>
-  <h1 class="hl">Real-world brands. <em>Digitally</em> scaled.</h1>
-  <div class="triad mono"><b>Position.</b> <b>Build.</b> <b>Scale.</b></div>
-  <p class="lede">We take companies that build real things — industrial, B2B, founder-led — and bring them into the digital era. <em>Built to scale,</em> refined in loops.</p>
-</section>
+<a class="logo" href="#top" aria-label="Infinit — home">
+  <svg viewBox="0 0 374 206" fill="none" aria-hidden="true">
+    <path d="M 108.196 34 L 182.196 34 Q 201.196 34 194.140 51.641 L 153.056 154.359 Q 146 172 127 172 L 53 172 Q 34 172 41.056 154.359 L 82.140 51.641 Q 89.196 34 108.196 34 Z" fill="currentColor"/>
+    <path d="M 108.196 34 L 182.196 34 Q 201.196 34 194.140 51.641 L 153.056 154.359 Q 146 172 127 172 L 53 172 Q 34 172 41.056 154.359 L 82.140 51.641 Q 89.196 34 108.196 34 Z" fill="currentColor" transform="translate(139 0)"/>
+  </svg>
+  <span class="word">infinit<span class="reg">®</span></span>
+</a>
 
-<!-- REEL -->
-<section class="reelwrap" id="reelwrap">
-  <div class="reelstick">
-    <div class="reelbox" id="reelbox"><img src="../project/assets/imagery/relats-industrial.webp" alt=""></div>
-    <span class="reelcap mono">Real work, in motion</span>
+<nav class="nav">
+  <a class="btn cta" href="#contact"><span class="ct-tx">Contact</span><span class="ct-ar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span></a>
+  <button class="menu-btn" id="menuBtn" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+</nav>
+
+<div class="panel" id="panel">
+  <div class="panel-grid">
+    <div class="links">
+      <a class="big" href="#approach">Approach</a>
+      <a class="big" href="#services">Services</a>
+      <a class="big" href="#work">Work</a>
+      <a class="big" href="#founder">Studio</a>
+      <a class="big" href="#contact">Contact</a>
+    </div>
+    <div class="meta">
+      <p><b>Infinit®</b><br>Brand &amp; Strategy firm</p>
+      <p style="margin-top:20px">Barcelona — Worldwide<br><b>hello@weareinfinit.com</b></p>
+      <div class="menu-ov">
+        <span class="menu-ov-eb">A quick look</span>
+        <button class="menu-card" id="menuCard" type="button">
+          <span class="mc-thumb"><img src="../project/assets/images/Bunnker Final.webp" alt=""></span>
+          <span class="mc-tx"><b>Overview</b><i>The studio at a glance</i></span>
+          <span class="mc-ar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
+        </button>
+      </div>
+    </div>
   </div>
-</section>
+</div>
 
-<!-- BELIEF -->
-<section class="sec">
-  <span class="kic mono">Our belief — 01</span>
-  <p class="belief reveal">Most studios polish the surface. We <em>rewire</em> how a brand shows up — and keep refining it, loop after loop.</p>
-</section>
-
-<!-- CAPABILITIES -->
-<section class="sec caps" id="approach">
-  <span class="kic mono">What we do — 02 · 01 → ∞</span>
-  <div class="cap-row reveal"><span class="n mono">01 — Strategy</span><div><h3>Position with <em>clarity.</em></h3><p>Direction that aligns business ambition, market opportunity and execution. The thesis everything else is built on.</p></div></div>
-  <div class="cap-row reveal"><span class="n mono">02 — Identity</span><div><h3>Build an identity that <em>scales.</em></h3><p>Visual and verbal systems designed for recognition and consistency across every touchpoint — physical to digital.</p></div></div>
-  <div class="cap-row reveal"><span class="n mono">03 — Digital</span><div><h3>Ship digital that <em>compounds.</em></h3><p>Websites, products and platforms that perform, convert and keep getting sharper — loop after loop.</p></div></div>
-</section>
-
-<!-- PROOF / SCALE -->
-<section class="sec proof" id="studio">
-  <span class="kic mono">Built on real experience — 03</span>
-  <p class="big reveal">Trusted by companies that <b>build real things</b> — and need to <em>scale.</em></p>
-  <div class="kpis reveal">
-    <div class="kpi"><div class="n">20<em> yrs</em></div><div class="l">across industrial, enterprise &amp; founder-led brands</div></div>
-    <div class="kpi"><div class="n">3<em> pillars</em></div><div class="l">strategy · identity · digital, connected</div></div>
-    <div class="kpi"><div class="n">∞</div><div class="l">refined in loops — never delivered and left</div></div>
+<!-- OVERVIEW overlay (above everything) -->
+<div class="ov" id="ov" aria-hidden="true">
+  <div class="ov-top">
+    <div><span class="eb">A quick look</span><h2>One studio, <em>everything connected.</em></h2></div>
+    <button class="ov-close" id="ovClose" aria-label="Close overview"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
   </div>
-  <p class="clients reveal"><b>Relats. Girbau. Almirall. Mercadona. Santander. SAP. Glovo. Seidor.</b> Real-world companies, now digital.</p>
-  <div class="rec reveal"><span class="lbl">Recognised by</span><img src="../project/assets/clients/Awwwards-Logo-Vector.svg-.png" alt="Awwwards"><img src="../project/assets/clients/Coac.png" alt="COAC"></div>
-</section>
-
-<!-- WORK -->
-<section class="sec" id="work">
-  <span class="kic mono">Selected work — 04</span>
-  <div class="pgrid" id="pgrid">
-    <div class="pcard"><img src="../project/assets/images/Bunnker Final.webp" alt=""><span class="tag">Strategy · Brand · Growth</span><span class="cap">Bunnker</span></div>
-    <div class="pcard"><img src="../project/assets/images/Relats Brand.webp" alt=""><span class="tag">Strategy · Brand · Digital</span><span class="cap">Relats</span></div>
-    <div class="pcard"><img src="../project/assets/images/ipad-sunset.webp" alt=""><span class="tag">Strategy · Brand · Digital</span><span class="cap">Instellar</span></div>
-    <div class="pcard"><img src="../project/assets/imagery/Julia Yosemite.webp" alt=""><span class="tag">Strategy · Brand · Digital</span><span class="cap">Julià</span></div>
+  <div class="ov-bento">
+    <a class="ov-card ov-work" href="#work" data-ovlink><img src="../project/assets/images/Bunnker Final.webp" alt="" loading="lazy"><div class="ov-scrim"></div><div class="ov-label"><span>Selected work</span><span class="ov-ar">↗</span></div></a>
+    <a class="ov-card ov-services" href="#services" data-ovlink><div class="ov-svc-list"><span>Strategy</span><span>Identity</span><span>Digital</span></div><div class="ov-label"><span>Three pillars</span><span class="ov-ar">↗</span></div></a>
+    <a class="ov-card ov-studio" href="#founder" data-ovlink><img src="../project/assets/imagery/francesc.jpg" alt="" loading="lazy"><div class="ov-scrim"></div><div class="ov-label"><span>The studio</span><span class="ov-ar">↗</span></div></a>
+    <a class="ov-card ov-claim" href="#approach" data-ovlink><h3>Brands built to <em>scale.</em></h3><div class="ov-label"><span>Our approach</span><span class="ov-ar">↗</span></div></a>
+    <a class="ov-card ov-contact" href="#contact" data-ovlink><h3>Let's <em>talk.</em></h3><div class="ov-label"><span>Get in touch</span><span class="ov-ar">↗</span></div></a>
   </div>
-</section>
+</div>
 
-<!-- CTA -->
-<section class="cta" id="contact">
-  <h2>Let's build the next <em>version</em> of your brand.</h2>
-  <a href="mailto:hello@weareinfinit.com">Start the conversation →</a>
-</section>
-<footer class="foot"><span>hello@weareinfinit.com</span><span>+34 689 022 383</span><span>Barcelona — Worldwide</span><span>© 2026 Infinit®</span></footer>
+<!-- floating card — appears on scroll, opens overview -->
+<button class="fab" id="ovFab" type="button">
+  <span class="fab-thumb"><img src="../project/assets/images/Bunnker Final.webp" alt=""></span>
+  <span class="fab-tx"><b>A quick look <span class="fab-new">NEW</span></b><i>Overview of the studio</i></span>
+  <span class="fab-cta">View</span>
+</button>
 
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero wrap">
+    <h1 class="hero-h">
+      <span class="ln"><span class="w"><i>Brands</i></span> <span class="w"><i>built</i></span></span>
+      <span class="ln"><span class="w"><i>to</i></span> <span class="w"><i class="hero-fill">scale<sup class="hero-reg">&reg;</sup>.</i></span></span>
+    </h1>
+    <span class="hero-cue">Scroll ↓</span>
+  </section>
+
+  <!-- STATEMENT (warm-gray manifest, under hero) -->
+  <section class="statement" id="statement">
+    <div class="wrap">
+      <span class="eyebrow">Infinit®</span>
+      <p class="stmt-line" data-words>A strategic brand and digital firm for companies navigating <em>growth</em>, transformation and <em>modernization</em>.</p>
+    </div>
+  </section>
+
+  <!-- REEL (grows from small → full, fast montage + video + logo) -->
+  <section class="reel" id="reel">
+    <div class="reel-track" id="reelTrack">
+      <div class="reel-stick">
+        <div class="reel-win">
+          <div class="reel-shot on" style="background-image:url('../project/assets/images/Bunnker Final.webp')"></div>
+          <div class="reel-shot" style="background-image:url('../project/assets/imagery/relats-industrial.webp')"></div>
+          <div class="reel-shot" style="background-image:url('../project/assets/imagery/Almirall.webp')"></div>
+          <div class="reel-shot" style="background-image:url('../project/assets/imagery/Julia Yosemite.webp')"></div>
+          <div class="reel-shot" style="background-image:url('../project/assets/imagery/raincoat.webp')"></div>
+          <div class="reel-shot" style="background-image:url('../project/assets/images/astronaut-red-portrait.png')"></div>
+          <div class="reel-shot" style="background-image:url('../project/assets/images/ipad-sunset.webp')"></div>
+          <div class="reel-shot" style="background-image:url('../project/assets/images/knob-orange.webp')"></div>
+          <div class="reel-shot" style="background-image:url('../project/assets/images/astronaut-pink-full.avif')"></div>
+          <div class="reel-shot" style="background-image:url('../project/assets/images/rainy-day.webp')"></div>
+          <canvas class="reel-vid" id="reelVid" data-frames="159" data-seq="../project/assets/imagery/approach-seq/"></canvas>
+          <audio id="reelAudio" loop preload="auto" src="../project/assets/audio/reel.mp3"></audio>
+          <div class="reel-logo" id="reelLogo">
+            <svg viewBox="0 0 374 206" fill="none" aria-hidden="true">
+              <path d="M 108.196 34 L 182.196 34 Q 201.196 34 194.140 51.641 L 153.056 154.359 Q 146 172 127 172 L 53 172 Q 34 172 41.056 154.359 L 82.140 51.641 Q 89.196 34 108.196 34 Z" fill="currentColor"/>
+              <path d="M 108.196 34 L 182.196 34 Q 201.196 34 194.140 51.641 L 153.056 154.359 Q 146 172 127 172 L 53 172 Q 34 172 41.056 154.359 L 82.140 51.641 Q 89.196 34 108.196 34 Z" fill="currentColor" transform="translate(139 0)"/>
+            </svg>
+          </div>
+          <div class="reel-ctrls">
+            <button class="rc-btn rc-sound" id="rcSound" aria-label="Toggle sound">
+              <svg class="ic ic-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H3v6h3l5 4z"/><line x1="22" y1="9" x2="16" y2="15"/><line x1="16" y1="9" x2="22" y2="15"/></svg>
+              <svg class="ic ic-on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/></svg>
+            </button>
+            <button class="rc-btn rc-play" id="rcPlay" aria-label="Pause / play">
+              <svg class="ic ic-pause" viewBox="0 0 24 24" fill="currentColor"><rect x="7" y="6" width="3.4" height="12" rx="1"/><rect x="13.6" y="6" width="3.4" height="12" rx="1"/></svg>
+              <svg class="ic ic-playi" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></svg>
+            </button>
+            <button class="rc-btn rc-reload" id="rcReload" aria-label="Replay">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 3v5h-5"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- APPROACH (built for growth — image-filled word) -->
+  <section class="approach" id="approach">
+    <div class="wrap">
+      <span class="eyebrow r">Our approach</span>
+      <p class="gr-lead r d1">We're built for</p>
+      <h2 class="gr-word r d2"><span class="gr-fill">growth.</span></h2>
+      <p class="gr-sub r d3">Strategy connected to execution, identity that scales, digital designed to compound. Real growth, not noise.</p>
+    </div>
+  </section>
+
+  <!-- CLAIM (growing black window) -->
+  <section class="claim" id="claim">
+    <div class="claim-track">
+      <div class="claim-sticky">
+        <div class="claim-window">
+          <div class="claim-inner">
+            <h2>Strategic credibility, <em>aesthetic</em> sophistication.</h2>
+            <p>Built through real transformation experience</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="services" id="services">
+    <div class="wrap"><div class="section-head r"><span class="eyebrow">Capabilities</span><h2>Strategy, identity and digital — <em>connected.</em></h2></div></div>
+    <div class="svc-stack">
+      <div class="svc-card sc1">
+        <div class="svc-card-top"><span class="n">01 — Strategy</span><span class="n">Brand &amp; Strategy</span></div>
+        <h3>Strategy</h3>
+        <span class="svc-tag2">The discipline behind growth.</span>
+        <p class="svc-card-desc">Direction aligning business ambition, market opportunity and execution. Positioning, growth systems, strategic clarity and modern brand evolution.</p>
+        <div class="svc-subs2"><span>Brand Strategy</span><span>Positioning</span><span>Growth Strategy</span><span>Fractional CMO</span><span>Research</span><span>AI Opportunity Mapping</span></div>
+      </div>
+      <div class="svc-card sc2">
+        <div class="svc-card-top"><span class="n">02 — Identity</span><span class="n">Visual &amp; verbal systems</span></div>
+        <h3>Identity</h3>
+        <span class="svc-tag2">Structure made visible.</span>
+        <p class="svc-card-desc">Scalable visual and verbal systems designed for clarity, recognition and consistency across every touchpoint.</p>
+        <div class="svc-subs2"><span>Visual Identity</span><span>Naming</span><span>Design Systems</span><span>Art Direction</span><span>Motion</span><span>Creative Direction</span></div>
+      </div>
+      <div class="svc-card sc3">
+        <div class="svc-card-top"><span class="n">03 — Digital</span><span class="n">Visibility &amp; growth</span></div>
+        <h3>Digital</h3>
+        <span class="svc-tag2">Where identity scales.</span>
+        <p class="svc-card-desc">Digital experiences built for discoverability, engagement and measurable business impact.</p>
+        <div class="svc-subs2"><span>Websites &amp; Platforms</span><span>UX / UI Direction</span><span>SEO &amp; GEO</span><span>Performance Marketing</span><span>Analytics &amp; Conversion</span><span>AI Experiences</span></div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- WORK -->
+  <section class="work wrap" id="work">
+    <div class="section-head r">
+      <h2>Selected <em>work.</em></h2>
+    </div>
+    <div class="work-list" id="workList">
+      <a class="work-tile big wt-l" href="#">
+        <div class="shot">
+          <img class="cover" src="../project/assets/images/Bunnker Final.webp" alt="Bunnker — beyond renting" loading="lazy">
+          <div class="tile-scrim"></div>
+          <div class="logo-over"><img class="lg-bunnker" src="../project/assets/clients/bunnker.png" alt="Bunnker"></div>
+          <div class="awwwards-badge badge-coac">
+            <img src="../project/assets/clients/Coac.png" alt="COAC">
+            <span>Architectural Awards</span>
+          </div>
+        </div>
+        <div class="cap"><span class="cn">Bunnker</span><span class="cn-sub">beyond renting</span><span class="work-tag">Strategy · Brand · Growth</span></div>
+      </a>
+      <a class="work-tile big wt-r" href="#">
+        <div class="shot">
+          <img class="cover" src="../project/assets/images/Relats Brand.webp" alt="Relats — ahead of the curve" loading="lazy">
+          <div class="tile-scrim"></div>
+          <div class="logo-over"><img class="lg-relats" src="../project/assets/clients/relats.png" alt="Relats"></div>
+          <div class="awwwards-badge">
+            <img src="../project/assets/clients/Awwwards-Logo-Vector.svg-.png" alt="Awwwards">
+          </div>
+        </div>
+        <div class="cap"><span class="cn">Relats</span><span class="cn-sub">ahead of the curve</span><span class="work-tag">Strategy · Brand · Digital</span></div>
+      </a>
+      <a class="work-tile wt-l" href="#">
+        <div class="shot">
+          <img class="cover" src="../project/assets/images/ipad-sunset.webp" alt="Instellar — mission performance" loading="lazy">
+          <div class="tile-scrim"></div>
+          <div class="logo-over"><img class="lg-instellar" src="../project/assets/clients/instellar.png" alt="Instellar"></div>
+        </div>
+        <div class="cap"><span class="cn">Instellar</span><span class="cn-sub">mission performance</span><span class="work-tag">Strategy · Brand · Digital</span></div>
+      </a>
+      <a class="work-tile wt-r" href="#">
+        <div class="shot">
+          <img class="cover" src="../project/assets/imagery/Julia Yosemite.webp" alt="Julià — premium adventure vans" loading="lazy">
+          <div class="tile-scrim"></div>
+          <div class="logo-over"><img class="lg-julia" src="../project/assets/clients/Julia Camper Logo.png" alt="Julià Camper"></div>
+          <span class="wip-tag">Work in progress</span>
+        </div>
+        <div class="cap"><span class="cn">Julià</span><span class="cn-sub">premium adventure vans</span><span class="work-tag">Strategy · Brand · Digital</span></div>
+      </a>
+    </div>
+  </section>
+
+  <!-- STUDIO (profile + who we've scaled + outcomes, unified) -->
+  <section class="studio wrap" id="founder">
+    <div class="founder-grid">
+      <div class="founder-bio r">
+        <h2>Small by design.<br>Senior by default.<br><em>Built for value.</em></h2>
+        <p>Infinit® is led hands-on, not delegated — run by people who have sat on both sides: building brands and running the operations that depend on them. Experience across enterprise, industrial and international: Almirall, Desigual, Casa Tarradellas, Mercadona, Santander, MartiDerm, Girbau, Seidor, Repsol, SAP and Glovo — alongside founder-led companies. No layers, no noise: strategy, identity and digital, connected.</p>
+        <div class="founder-meta">
+          <div><div class="k">Founder</div><div class="v">Francesc Callejas</div></div>
+          <div><div class="k">Based</div><div class="v">Barcelona</div></div>
+          <div><div class="k">Working</div><div class="v">Worldwide</div></div>
+        </div>
+      </div>
+      <div class="kpi-grid">
+        <div class="kpi r"><div class="k-n">01</div><h4>€0 → €1.7M <em>Built from scratch.</em></h4></div>
+        <div class="kpi r d1"><div class="k-n">02</div><h4>+50% growth <em>In 2 years.</em></h4></div>
+        <div class="kpi r d1"><div class="k-n">03</div><h4>×10 visibility <em>Presence that compounds.</em></h4></div>
+        <div class="kpi r d2"><div class="k-n">04</div><h4>×3 awareness <em>Recognition that scales.</em></h4></div>
+        <div class="kpi r d2"><div class="k-n">05</div><h4>Better positioning <em>Markets that notice.</em></h4></div>
+        <div class="kpi r d3"><div class="k-n">06</div><h4>×3 to market <em>Without the noise.</em></h4></div>
+      </div>
+      <div class="founder-side">
+        <div class="founder-photo r d2"><img src="../project/assets/imagery/francesc.jpg" alt="Francesc Callejas"></div>
+        <a class="connect-btn r d3" href="https://www.linkedin.com/in/francesc-callejas-%E2%98%81%EF%B8%8F%E2%98%98%EF%B8%8F-99416a90/" target="_blank" rel="noopener">
+          <span class="cb-tx">You want to connect?</span>
+          <span class="cb-ar" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.5 2h-17A1.5 1.5 0 0 0 2 3.5v17A1.5 1.5 0 0 0 3.5 22h17a1.5 1.5 0 0 0 1.5-1.5v-17A1.5 1.5 0 0 0 20.5 2zM8 19H5v-9h3v9zM6.5 8.25A1.75 1.75 0 1 1 8.25 6.5 1.75 1.75 0 0 1 6.5 8.25zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0 0 13 14.19a.66.66 0 0 0 0 .14V19h-3v-9h2.9v1.3a3.11 3.11 0 0 1 2.7-1.4c1.55 0 3.36.86 3.36 3.66z"/></svg></span>
+        </a>
+      </div>
+    </div>
+
+    <div class="studio-clients r">
+      <span class="eyebrow">Experience across</span>
+      <div class="marquee" aria-hidden="true">
+        <div class="mq-track">
+          <img class="l-sap" src="../project/assets/clients/sap.png" alt=""><img class="l-glovo" src="../project/assets/clients/glovo.png" alt=""><img class="l-almirall" src="../project/assets/clients/almirall.png" alt=""><img class="l-instellar" src="../project/assets/clients/instellar.png" alt=""><img class="l-relats" src="../project/assets/clients/relats.png" alt=""><img class="l-bunnker" src="../project/assets/clients/bunnker.png" alt=""><img class="l-11onze" src="../project/assets/clients/11onze.png" alt=""><img class="l-dronparc" src="../project/assets/clients/dronparc.png" alt="">
+          <img class="l-sap" src="../project/assets/clients/sap.png" alt=""><img class="l-glovo" src="../project/assets/clients/glovo.png" alt=""><img class="l-almirall" src="../project/assets/clients/almirall.png" alt=""><img class="l-instellar" src="../project/assets/clients/instellar.png" alt=""><img class="l-relats" src="../project/assets/clients/relats.png" alt=""><img class="l-bunnker" src="../project/assets/clients/bunnker.png" alt=""><img class="l-11onze" src="../project/assets/clients/11onze.png" alt=""><img class="l-dronparc" src="../project/assets/clients/dronparc.png" alt="">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-band" id="cta">
+    <div class="wrap">
+      <h2 class="r">Brands built <em>to scale.</em></h2>
+      <a class="cta-mail r d1" href="mailto:hello@weareinfinit.com"><span class="cm-tx">Start the conversation</span><span class="cm-ar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span></a>
+    </div>
+  </section>
+
+  <!-- FOOTER (waving flag mark) -->
+  <footer class="foot" id="contact">
+    <span class="foot-eyebrow">Brand &amp; Strategy</span>
+    <div class="foot-flag" aria-hidden="true">
+      <svg viewBox="0 0 374 206" fill="none">
+        <path d="M 108.196 34 L 182.196 34 Q 201.196 34 194.140 51.641 L 153.056 154.359 Q 146 172 127 172 L 53 172 Q 34 172 41.056 154.359 L 82.140 51.641 Q 89.196 34 108.196 34 Z" fill="currentColor"/>
+        <path d="M 108.196 34 L 182.196 34 Q 201.196 34 194.140 51.641 L 153.056 154.359 Q 146 172 127 172 L 53 172 Q 34 172 41.056 154.359 L 82.140 51.641 Q 89.196 34 108.196 34 Z" fill="currentColor" transform="translate(139 0)"/>
+      </svg>
+    </div>
+    <p class="foot-claim">Built to <em>scale.</em></p>
+    <div class="foot-contact">
+      <a href="mailto:hello@weareinfinit.com">hello@weareinfinit.com</a>
+      <span class="dot">·</span>
+      <a href="tel:+34689022383">+34 689 022 383</a>
+    </div>
+    <nav class="foot-nav">
+      <a href="#services">Services</a>
+      <a href="#work">Work</a>
+      <a href="#founder">Studio</a>
+      <a href="https://www.linkedin.com/in/francesc-callejas-%E2%98%81%EF%B8%8F%E2%98%98%EF%B8%8F-99416a90/" target="_blank" rel="noopener">LinkedIn ↗</a>
+    </nav>
+    <div class="foot-rec">
+      <span class="foot-rec-label">Recognised by</span>
+      <div class="foot-rec-logos">
+        <a href="https://www.awwwards.com/" target="_blank" rel="noopener" aria-label="Awwwards"><img src="../project/assets/clients/Awwwards-Logo-Vector.svg-.png" alt="Awwwards"></a>
+        <a href="https://www.arquitectes.cat/" target="_blank" rel="noopener" aria-label="COAC"><img src="../project/assets/clients/Coac.png" alt="COAC"></a>
+      </div>
+    </div>
+    <div class="foot-base">
+      <span>Barcelona — Worldwide</span>
+      <span>© 2026 Infinit®</span>
+    </div>
+  </footer>
+
+</main>
+
+<div class="bottom-blur" aria-hidden="true"></div>
+
+<aside class="cookies" id="cookies" hidden>
+  <div class="ck-inner">
+    <p class="ck-msg">We use cookies to enhance your experience and analyse traffic.</p>
+    <div class="ck-actions">
+      <a class="ck-link" href="#contact">Learn more</a>
+      <button class="ck-btn ck-reject" id="ckReject">Decline</button>
+      <button class="ck-btn ck-accept" id="ckAccept">Accept</button>
+    </div>
+  </div>
+</aside>
+
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
 <script>
-  const mn=document.getElementById('mn'),ix=document.getElementById('ix'),x=document.getElementById('x'),th=document.getElementById('th');
-  mn.onclick=()=>ix.classList.add('open');x.onclick=()=>ix.classList.remove('open');
-  ix.querySelectorAll('a').forEach(a=>a.onclick=()=>ix.classList.remove('open'));
-  th.onclick=()=>document.body.classList.toggle('yellow');
-  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.18});
-  document.querySelectorAll('.reveal,#pgrid').forEach(el=>io.observe(el));
-  const rw=document.getElementById('reelwrap'),rb=document.getElementById('reelbox');
-  function onScroll(){const r=rw.getBoundingClientRect();const total=rw.offsetHeight-window.innerHeight;const p=Math.min(1,Math.max(0,-r.top/total));const t=Math.min(1,Math.max(0,(p-.22)/.6));rb.style.setProperty('--w',(40+t*60)+'%');rb.style.borderRadius=(14-t*14)+'px'}
-  document.addEventListener('scroll',onScroll,{passive:true});onScroll();
+  /* ---- Lenis + GSAP ticker + ScrollTrigger ---- */
+  const lenis = new Lenis({ lerp: 0.09, smoothWheel: true });
+  window.lenis = lenis;
+  const hasGSAP = window.gsap && window.ScrollTrigger;
+  if (hasGSAP) {
+    gsap.registerPlugin(ScrollTrigger);
+    lenis.on('scroll', ScrollTrigger.update);
+    gsap.ticker.add((t) => lenis.raf(t * 1000));
+    gsap.ticker.lagSmoothing(0);
+  } else {
+    (function raf(t){ lenis.raf(t); requestAnimationFrame(raf); })();
+  }
+
+  /* ---- custom frosted scroll pill ---- */
+  (function(){
+    const pill = document.createElement('div');
+    pill.className = 'scroll-pill';
+    document.body.appendChild(pill);
+    const M = 10; let hideT;
+    function update(){
+      const docH = document.documentElement.scrollHeight;
+      const vh = innerHeight, trackH = vh - M * 2;
+      if (docH <= vh + 4) { pill.style.opacity = 0; return; }
+      const thumb = Math.max(44, (vh / docH) * trackH);
+      const prog  = scrollY / (docH - vh);
+      pill.style.height = thumb + 'px';
+      pill.style.transform = 'translateY(' + (M + prog * (trackH - thumb)) + 'px)';
+      pill.classList.add('show');
+      clearTimeout(hideT);
+      hideT = setTimeout(() => pill.classList.remove('show'), 750);
+    }
+    lenis.on('scroll', update);
+    addEventListener('resize', update);
+    update();
+  })();
+  document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click', e => {
+    const t = document.querySelector(a.getAttribute('href'));
+    if (t) { e.preventDefault(); lenis.scrollTo(t, { offset: 0 }); }
+  }));
+
+  /* ---- intro ---- */
+  setTimeout(() => { const i = document.getElementById('intro'); if (i) i.remove(); if (hasGSAP) ScrollTrigger.refresh(); }, 3100);
+
+  /* ---- reveal (IntersectionObserver — reliable for in-view elements) ---- */
+  (function(){
+    const els = [...document.querySelectorAll('.r')];
+    if (!('IntersectionObserver' in window)) { els.forEach(e=>e.classList.add('in')); return; }
+    const io = new IntersectionObserver(es => es.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+    }), { threshold: 0, rootMargin: '0px 0px -8% 0px' });
+    els.forEach(el => io.observe(el));
+  })();
+
+  /* ---- claim reveal (mobile) ---- */
+  (function(){
+    const el = document.querySelector('.claim-window');
+    if (!el) return;
+    if (!('IntersectionObserver' in window)) { el.classList.add('cin'); return; }
+    const io = new IntersectionObserver(es => es.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('cin'); io.unobserve(e.target); }
+    }), { threshold: .2 });
+    io.observe(el);
+  })();
+
+  /* ---- statement: smooth fade-up + word-by-word reveal ---- */
+  (function(){
+    const sec = document.getElementById('statement'); if (!sec) return;
+    const el = sec.querySelector('[data-words]');
+    el.innerHTML = el.innerHTML.replace(/(<[^>]+>)|([^<\s]+)/g, (m, tag, word) => tag ? tag : `<span class="wd">${word}</span> `);
+    const words = [...el.querySelectorAll('.wd')];
+    if (!('IntersectionObserver' in window)) { sec.classList.add('in'); el.classList.add('lit'); return; }
+    const io = new IntersectionObserver(es => es.forEach(e => {
+      if (e.isIntersecting) {
+        sec.classList.add('in');
+        words.forEach((w,i)=> w.style.transitionDelay = (220 + i*45)+'ms');
+        el.classList.add('lit');
+        io.unobserve(sec);
+      }
+    }), { threshold: .35 });
+    io.observe(sec);
+  })();
+
+  /* ---- nav panel ---- */
+  let closeMenu = () => {};
+  (function(){
+    const b = document.getElementById('menuBtn'), p = document.getElementById('panel');
+    function set(o){ p.classList.toggle('open', o); b.classList.toggle('open', o); b.setAttribute('aria-expanded', o); document.body.classList.toggle('menu-open', o); }
+    closeMenu = () => set(false);
+    b.addEventListener('click', () => set(!p.classList.contains('open')));
+    p.querySelectorAll('a').forEach(a => a.addEventListener('click', () => set(false)));
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') set(false); });
+  })();
+
+  /* ---- overview: floating card + menu card → frosted bento overlay ---- */
+  (function(){
+    const ov = document.getElementById('ov'); if (!ov) return;
+    const fab = document.getElementById('ovFab');
+    const open = () => { closeMenu(); ov.classList.add('open'); ov.setAttribute('aria-hidden','false'); document.body.style.overflow = 'hidden'; if (window.lenis) lenis.stop(); };
+    const close = () => { ov.classList.remove('open'); ov.setAttribute('aria-hidden','true'); document.body.style.overflow = ''; if (window.lenis) lenis.start(); };
+    fab && fab.addEventListener('click', open);
+    const mc = document.getElementById('menuCard'); mc && mc.addEventListener('click', open);
+    document.getElementById('ovClose').addEventListener('click', close);
+    ov.addEventListener('click', e => { if (e.target === ov) close(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
+    /* card links: close overlay, then smooth-scroll to the target */
+    ov.querySelectorAll('[data-ovlink]').forEach(a => a.addEventListener('click', e => {
+      e.preventDefault();
+      const target = document.querySelector(a.getAttribute('href'));
+      close();
+      if (target) requestAnimationFrame(() => { if (window.lenis) lenis.scrollTo(target, { offset: 0 }); else target.scrollIntoView({ behavior: 'smooth' }); });
+    }));
+    /* show floating card once you enter the statement (past ~half the hero) · hide over the footer */
+    if (fab) {
+      let footerIn = false;
+      const foot = document.getElementById('contact');
+      if (foot && 'IntersectionObserver' in window) {
+        new IntersectionObserver(es => { footerIn = es[0].isIntersecting; update(); }, { threshold: 0 }).observe(foot);
+      }
+      function update(){ fab.classList.toggle('show', window.scrollY > window.innerHeight * 0.5 && !footerIn); }
+      window.addEventListener('scroll', update, { passive: true }); update();
+    }
+  })();
+
+  /* hero "scale" fill: static Relats image panning left↔right (CSS only) */
+
+  /* ---- approach statements: grey → accent → ink fill on enter ---- */
+  document.querySelectorAll('.ap-line[data-fill]').forEach(line => {
+    const txt = line.textContent; line.textContent = '';
+    const cs = [];
+    [...txt].forEach(ch => {
+      const s = document.createElement('span');
+      s.className = 'c'; s.textContent = ch;
+      if (ch !== ' ') cs.push(s);
+      line.appendChild(s);
+    });
+    const ob = new IntersectionObserver(es => es.forEach(e => {
+      if (!e.isIntersecting) return;
+      ob.unobserve(line);
+      cs.forEach((c, i) => setTimeout(() => {
+        c.classList.add('lead');
+        setTimeout(() => { c.classList.remove('lead'); c.classList.add('read'); }, 170);
+      }, i * 32));
+    }), { threshold: .55 });
+    ob.observe(line);
+  });
+
+  const isMobile = () => matchMedia('(max-width: 900px)').matches;
+
+
+  /* ---- claim: window grows from centre ---- */
+  (function(){
+    const sec = document.getElementById('claim'); if (!sec) return;
+    const track = sec.querySelector('.claim-track');
+    function apply(p){
+      sec.style.setProperty('--cp', Math.max(0,Math.min(1, p/0.6)).toFixed(4));
+      sec.style.setProperty('--ci', Math.max(0,Math.min(1,(p-0.32)/0.4)).toFixed(4));
+    }
+    if (isMobile() || !hasGSAP) { sec.style.setProperty('--cp',1); sec.style.setProperty('--ci',1); return; }
+    ScrollTrigger.create({
+      trigger: track, start: 'top top', end: 'bottom bottom', scrub: true,
+      onUpdate: self => apply(self.progress)
+    });
+  })();
+
+  /* ---- services: sticky stack with depth (scale + dim previous cards) ---- */
+  (function(){
+    const cards = [...document.querySelectorAll('#services .svc-card')];
+    if (!cards.length) return;
+    function upd(){
+      cards.forEach((c,i) => {
+        const next = cards[i+1];
+        if (!next) { c.style.transform = ''; c.style.filter = ''; return; }
+        const p = Math.min(1, Math.max(0, 1 - next.getBoundingClientRect().top / window.innerHeight));
+        c.style.transform = `scale(${(1 - p*0.07).toFixed(4)}) translateY(${(-p*26).toFixed(1)}px)`;
+        c.style.filter = `brightness(${(1 - p*0.05).toFixed(3)})`;
+      });
+    }
+    window.addEventListener('scroll', upd, { passive: true }); upd();
+  })();
+
+  /* ---- work: editorial tiles enter from left / right ---- */
+  (function(){
+    const tiles = [...document.querySelectorAll('#workList .work-tile')];
+    if (!tiles.length) return;
+    const io = new IntersectionObserver((es,o)=>es.forEach(e=>{
+      if (e.isIntersecting) { e.target.classList.add('in'); o.unobserve(e.target); }
+    }), { threshold: .15, rootMargin: '0px 0px -8% 0px' });
+    tiles.forEach(t => io.observe(t));
+  })();
+
+  /* ---- reel: grow on scroll + fast montage → video → logo ---- */
+  (function(){
+    const sec = document.getElementById('reel'); if (!sec) return;
+    const track = document.getElementById('reelTrack');
+    const win = sec.querySelector('.reel-win');
+    const shots = [...win.querySelectorAll('.reel-shot')];
+    const vid = document.getElementById('reelVid');
+    const logo = document.getElementById('reelLogo');
+    const ctrls = sec.querySelector('.reel-ctrls');
+    /* grow with scroll (like the claim window); controls appear when fully grown */
+    if (!isMobile() && hasGSAP) {
+      ScrollTrigger.create({
+        trigger: track, start: 'top top', end: 'bottom bottom', scrub: true,
+        onUpdate: self => {
+          const rp = Math.max(0, Math.min(1, self.progress / 0.55));
+          sec.style.setProperty('--rp', rp.toFixed(4));
+          ctrls.classList.toggle('show', rp > 0.8);
+        }
+      });
+    } else { sec.style.setProperty('--rp', 1); ctrls.classList.add('show'); }
+
+    /* preload video frames */
+    const FR = parseInt(vid.dataset.frames,10)||0, SEQ = vid.dataset.seq;
+    const ctx = vid.getContext('2d'), imgs = [];
+    for (let i = 1; i <= FR; i += 3) { const im = new Image();
+      im.src = SEQ + 'frame_' + String(i).padStart(4,'0') + '.jpg'; imgs.push(im); }
+    function sizeVid(){ const r = vid.getBoundingClientRect(), d = Math.min(devicePixelRatio||1,2);
+      vid.width = Math.round(r.width*d); vid.height = Math.round(r.height*d); }
+    function drawVid(im){ if(!im||!im.naturalWidth) return;
+      const cw=vid.width,ch=vid.height,ir=im.naturalWidth/im.naturalHeight,cr=cw/ch;
+      let w,h,x,y; if(ir>cr){h=ch;w=ch*ir;x=(cw-w)/2;y=0;} else {w=cw;h=cw/ir;x=0;y=(ch-h)/2;}
+      ctx.drawImage(im,x,y,w,h); }
+
+    /* montage state machine + controls */
+    let visible = false, userPaused = false, raf = 0;
+    let t0 = 0, lastTs = 0, phase = 0, idx = -1, vfi = 0, rebase = 0;
+    const SHOT_MS = 620, VID_MS = 4000, LOGO_MS = 2600;
+    const running = () => visible && !userPaused;
+    function setShot(i){ shots.forEach((s,k)=>s.classList.toggle('on',k===i)); }
+    function resetStage(){ phase = 0; idx = -1; vfi = 0; t0 = 0;
+      shots.forEach(s=>s.classList.remove('on')); vid.classList.remove('on');
+      logo.classList.remove('on'); setShot(0); }
+    function loop(ts){
+      if (!running()) return;
+      lastTs = ts;
+      if (!t0) t0 = ts;
+      if (rebase) { t0 = ts - rebase; rebase = 0; }
+      const e = ts - t0;
+      if (phase === 0) {
+        const i = Math.floor(e / SHOT_MS);
+        if (i !== idx) { idx = i; if (idx < shots.length) setShot(idx); }
+        if (e >= shots.length * SHOT_MS) { phase = 1; t0 = ts;
+          shots.forEach(s=>s.classList.remove('on')); sizeVid(); vid.classList.add('on'); }
+      } else if (phase === 1) {
+        const f = Math.floor((ts - t0) / (VID_MS / imgs.length)) % imgs.length;
+        if (f !== vfi) { vfi = f; drawVid(imgs[f]); }
+        if (ts - t0 >= VID_MS) { phase = 2; t0 = ts;
+          vid.classList.remove('on'); logo.classList.add('on'); }
+      } else {
+        if (ts - t0 >= LOGO_MS) { phase = 0; t0 = ts; idx = -1;
+          logo.classList.remove('on'); setShot(0); }
+      }
+      raf = requestAnimationFrame(loop);
+    }
+    function kick(){ if (running()) { cancelAnimationFrame(raf); raf = requestAnimationFrame(loop); } }
+
+    new IntersectionObserver(es => es.forEach(e => {
+      visible = e.isIntersecting;
+      const a = document.getElementById('reelAudio');
+      if (visible) { kick(); if (typeof soundOn !== 'undefined' && soundOn) a.play().catch(()=>{}); }
+      else { cancelAnimationFrame(raf); a.pause(); }
+    }), { threshold: .15 }).observe(sec);
+    addEventListener('resize', sizeVid);
+
+    /* ---- controls ---- */
+    const bSound = document.getElementById('rcSound');
+    const bPlay  = document.getElementById('rcPlay');
+    const bReload= document.getElementById('rcReload');
+    const audio = document.getElementById('reelAudio');
+    let soundOn = false;
+    bSound.addEventListener('click', () => {
+      soundOn = !soundOn;
+      bSound.classList.toggle('on', soundOn);
+      if (soundOn) { audio.volume = 0; audio.play().then(() => {
+        let v = 0; const fade = setInterval(() => { v = Math.min(.55, v + .05);
+          audio.volume = v; if (v >= .55) clearInterval(fade); }, 60);
+      }).catch(()=>{}); }
+      else { audio.pause(); }
+    });
+    bPlay.addEventListener('click', () => {
+      userPaused = !userPaused;
+      bPlay.classList.toggle('paused', userPaused);
+      if (userPaused) {
+        cancelAnimationFrame(raf); rebase = lastTs ? (lastTs - t0) : 0;
+        if (soundOn) audio.pause();
+      } else {
+        t0 = 0; kick();
+        if (soundOn) audio.play().catch(()=>{});
+      }
+    });
+    bReload.addEventListener('click', () => {
+      bReload.classList.remove('spin'); void bReload.offsetWidth; bReload.classList.add('spin');
+      resetStage();
+      if (userPaused) { userPaused = false; bPlay.classList.remove('paused'); }
+      if (soundOn) { audio.currentTime = 0; audio.play().catch(()=>{}); }
+      kick();
+    });
+  })();
+
+  /* ---- cookies banner ---- */
+  (function(){
+    const el = document.getElementById('cookies');
+    if (!el) return;
+    let stored = null;
+    try { stored = localStorage.getItem('ck-consent'); } catch(_){}
+    if (stored) return;
+    el.hidden = false;
+    setTimeout(() => el.classList.add('show'), 900);
+    const dismiss = v => {
+      try { localStorage.setItem('ck-consent', v); } catch(_){}
+      el.classList.remove('show');
+      setTimeout(() => { el.hidden = true; }, 500);
+    };
+    document.getElementById('ckAccept').addEventListener('click', () => dismiss('accept'));
+    document.getElementById('ckReject').addEventListener('click', () => dismiss('decline'));
+  })();
+
+  if (hasGSAP) requestAnimationFrame(() => ScrollTrigger.refresh());
 </script>
 </body>
 </html>
