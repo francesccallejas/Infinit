@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lab · tipografia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- Google -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300..700&family=Geist:wght@300..700&family=Schibsted+Grotesk:wght@400..700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<!-- Fontshare: Satoshi + General Sans -->
+<link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&f[]=general-sans@400,500,600&display=swap" rel="stylesheet">
+<style>
+  :root{ --bg:#0e0e12; --ink:#f4f2f0; --grey:#9a9aa0; }
+  *{box-sizing:border-box;margin:0}
+  body{ background:var(--bg); color:var(--ink); font-family:Inter,system-ui,sans-serif;
+    padding:clamp(28px,5vw,72px); }
+  h1{ font-weight:600; font-size:clamp(22px,2.4vw,30px); letter-spacing:-.02em; }
+  .hint{ font-family:"IBM Plex Mono",monospace; font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:var(--grey); margin-top:8px; }
+  .controls{ margin:22px 0 6px; display:flex; gap:8px; flex-wrap:wrap; }
+  .wbtn{ font:inherit; font-size:12px; letter-spacing:.06em; text-transform:uppercase; cursor:pointer;
+    background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.16); color:var(--ink);
+    border-radius:9px; padding:8px 13px; }
+  .wbtn.on{ background:var(--ink); color:var(--bg); }
+  .row{ border-top:1px solid rgba(255,255,255,.12); padding:clamp(26px,3.4vw,48px) 0; }
+  .row .meta{ font-family:"IBM Plex Mono",monospace; font-size:12px; letter-spacing:.12em; text-transform:uppercase; color:var(--grey); margin-bottom:18px; }
+  .h{ font-size:clamp(44px,7vw,104px); line-height:.92; letter-spacing:-.045em; font-weight:var(--w,600); }
+  .h em{ font-family:"Instrument Serif",Georgia,serif; font-style:normal; font-weight:400; }
+  .reg{ font-size:.26em; vertical-align:super; }
+  .sub{ margin-top:18px; max-width:60ch; color:rgba(244,242,240,.7); font-size:17px; line-height:1.55; font-weight:var(--w,400); }
+
+  .f-inter{ font-family:"Inter",sans-serif; }
+  .f-geist{ font-family:"Geist",sans-serif; }
+  .f-satoshi{ font-family:"Satoshi",sans-serif; }
+  .f-general{ font-family:"General Sans",sans-serif; }
+  .f-schibsted{ font-family:"Schibsted Grotesk",sans-serif; }
+</style>
+</head>
+<body>
+  <h1>Tipografia — el titular del hero en 5 opcions</h1>
+  <p class="hint">Tria el pes amb els botons · compara quina et sembla més premium</p>
+  <div class="controls" id="weights">
+    <button class="wbtn" data-w="300">Light 300</button>
+    <button class="wbtn" data-w="400">Regular 400</button>
+    <button class="wbtn on" data-w="500">Medium 500</button>
+    <button class="wbtn" data-w="600">Semibold 600</button>
+    <button class="wbtn" data-w="700">Bold 700</button>
+  </div>
+
+  <div class="row"><div class="meta">01 · Inter</div>
+    <div class="h f-inter">Brands built to <em>scale</em><span class="reg">&reg;</span></div>
+    <p class="sub f-inter">A strategic brand and digital firm for companies navigating growth, transformation and modernization.</p></div>
+
+  <div class="row"><div class="meta">02 · Geist</div>
+    <div class="h f-geist">Brands built to <em>scale</em><span class="reg">&reg;</span></div>
+    <p class="sub f-geist">A strategic brand and digital firm for companies navigating growth, transformation and modernization.</p></div>
+
+  <div class="row"><div class="meta">03 · Satoshi</div>
+    <div class="h f-satoshi">Brands built to <em>scale</em><span class="reg">&reg;</span></div>
+    <p class="sub f-satoshi">A strategic brand and digital firm for companies navigating growth, transformation and modernization.</p></div>
+
+  <div class="row"><div class="meta">04 · General Sans</div>
+    <div class="h f-general">Brands built to <em>scale</em><span class="reg">&reg;</span></div>
+    <p class="sub f-general">A strategic brand and digital firm for companies navigating growth, transformation and modernization.</p></div>
+
+  <div class="row"><div class="meta">05 · Schibsted Grotesk</div>
+    <div class="h f-schibsted">Brands built to <em>scale</em><span class="reg">&reg;</span></div>
+    <p class="sub f-schibsted">A strategic brand and digital firm for companies navigating growth, transformation and modernization.</p></div>
+
+<script>
+  const set = w => { document.documentElement.style.setProperty('--w', w);
+    document.querySelectorAll('.wbtn').forEach(b => b.classList.toggle('on', b.dataset.w === w)); };
+  document.getElementById('weights').addEventListener('click', e => { if (e.target.dataset.w) set(e.target.dataset.w); });
+  set('500');
+</script>
+</body>
+</html>

@@ -1133,11 +1133,11 @@ body.menu-open { overflow: hidden; }
   backdrop-filter: blur(20px) saturate(150%); -webkit-backdrop-filter: blur(20px) saturate(150%);
   box-shadow: 0 10px 36px rgba(8,8,12,.18);
   color: #fff;
-  transform: translateX(-50%) translateY(-14px); opacity: 0;
-  animation: mbarIn .7s var(--ease) 3.2s forwards;
+  transform: translateX(-50%) translateY(-42px); opacity: 0;
+  animation: mbarIn .9s var(--ease) 3.25s forwards;
   transition: background .4s var(--ease), box-shadow .4s var(--ease), color .4s var(--ease);
 }
-@keyframes mbarIn { to { transform: translateX(-50%); opacity: 1; } }
+@keyframes mbarIn { to { transform: translateX(-50%) translateY(0); opacity: 1; } }
 .mbar-logo { display: inline-flex; align-items: center; gap: 8px; color: inherit; }
 .mbar-logo svg { width: clamp(21px, 1.7vw, 25px); height: auto; }
 .mbar-logo .word { font-family: var(--menu-font); font-weight: 700; font-size: clamp(16px, 1.3vw, 19px); letter-spacing: -.02em; display: inline-flex; align-items: flex-start; line-height: 1; }
