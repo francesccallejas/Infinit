@@ -13,8 +13,8 @@
   --blue-gray: #7F838B;
   --paper:   #FBFAF9;
 
-  --sans:  "Inter", "Hanken Grotesk", system-ui, sans-serif;
-  --menu-font: "Inter", system-ui, sans-serif;
+  --sans:  "Geist", "Inter", system-ui, sans-serif;
+  --menu-font: "Geist", system-ui, sans-serif;
   --serif: "Instrument Serif", Georgia, serif;
   --mono:  "IBM Plex Mono", ui-monospace, monospace;
 
@@ -230,7 +230,7 @@ em { font-family: var(--serif); font-style: normal; font-weight: 400; }
 }
 .hero-h {
   font-family: var(--sans);
-  font-weight: 700; font-size: clamp(52px, 10.5vw, 168px); line-height: .9; letter-spacing: -.05em;
+  font-weight: 500; font-size: clamp(52px, 10.5vw, 168px); line-height: .92; letter-spacing: -.04em;
   margin-bottom: clamp(24px, 3vw, 44px);
   opacity: 0; transform: translateY(26px); animation: heroRise 1.1s var(--ease) 2s forwards;
 }
