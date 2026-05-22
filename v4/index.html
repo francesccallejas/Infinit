@@ -6,7 +6,7 @@
 <title>Infinit® — Brand &amp; Strategy · V2</title>
 <meta name="description" content="Strategic brand, identity and digital systems for companies navigating growth and transformation.">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
-<link rel="stylesheet" href="style.css?v=207">
+<link rel="stylesheet" href="style.css?v=208">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300..900&family=Inter:wght@300..900&family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -425,6 +425,7 @@
     const c = document.getElementById('menuClose');
     function set(o){ p.classList.toggle('open', o); b.classList.toggle('open', o); b.setAttribute('aria-expanded', o); p.setAttribute('aria-hidden', !o); document.body.classList.toggle('menu-open', o); }
     closeMenu = () => set(false);
+    b.addEventListener('mouseenter', () => set(true));
     b.addEventListener('click', () => set(!p.classList.contains('open')));
     c && c.addEventListener('click', () => set(false));
     p.querySelectorAll('a').forEach(a => a.addEventListener('click', () => set(false)));
