@@ -1176,9 +1176,10 @@ body.menu-open .mbar { opacity: 0 !important; pointer-events: none; }
 .mbar.on-light { background: rgba(248,247,245,.62); color: var(--ink); box-shadow: 0 14px 50px rgba(8,8,12,.12); }
 
 /* ---- expanded overlay — drops straight down to half-screen height ---- */
-.mmenu { position: fixed; inset: 0; z-index: 210; opacity: 0; pointer-events: none; transition: opacity .4s var(--ease); }
+.mmenu { position: fixed; inset: 0; z-index: 210; opacity: 0; pointer-events: none; transition: opacity .45s var(--ease); }
+.mmenu::before { content: ""; position: absolute; inset: 0; background: rgba(8,8,12,.22); opacity: 0; transition: opacity .6s var(--ease); }
 .mmenu.open { opacity: 1; pointer-events: auto; }
-/* no backdrop dim — the rest of the page stays fully visible */
+.mmenu.open::before { opacity: 1; }
 
 .mmenu-card {
   position: absolute;
