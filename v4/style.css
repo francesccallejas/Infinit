@@ -214,7 +214,6 @@ em { font-family: var(--serif); font-style: normal; font-weight: 400; }
 .hero-card {
   position: relative; flex: 1; overflow: hidden; color: #fff;
   border-radius: clamp(10px, .9vw, 15px);
-  box-shadow: 0 36px 110px -55px rgba(10,11,15,.30);
 }
 .hero-media { position: absolute; inset: 0; }
 .hm-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 22%; opacity: 0; transition: opacity .9s var(--ease); }
@@ -1072,13 +1071,13 @@ body.menu-open .fab.show { opacity: 0; transform: translateY(12px); pointer-even
    STATEMENT — warm-gray positioning manifest (under hero, word reveal)
    ========================================================================= */
 .statement { position: relative; overflow: hidden; background: var(--bg); color: var(--ink);
-  padding-block: clamp(20px,3vh,56px) clamp(96px,17vh,220px); text-align: center;
+  padding-block: clamp(56px,9vh,130px) clamp(96px,17vh,220px); text-align: center;
   opacity: 0; transform: translateY(28px); transition: opacity 1s var(--ease), transform 1s var(--ease); }
 .statement.in { opacity: 1; transform: none; }
 .statement .wrap { position: relative; z-index: 2; }
 .statement .eyebrow { color: rgba(11,12,17,.5); margin-bottom: clamp(26px,3.5vw,48px); }
-.stmt-line { font-weight: 400; font-size: clamp(30px,4.6vw,82px); letter-spacing: -.03em; line-height: 1.14;
-  max-width: 24ch; margin: 0 auto; }
+.stmt-line { font-weight: 400; font-size: clamp(25px,3.4vw,56px); letter-spacing: -.025em; line-height: 1.22;
+  max-width: 26ch; margin: 0 auto; }
 .stmt-line em { font-family: var(--serif); font-style: normal; font-weight: 400; }
 .stmt-line .wd { opacity: .2; transition: opacity .5s var(--ease); }
 .stmt-line.lit .wd { opacity: 1; }
