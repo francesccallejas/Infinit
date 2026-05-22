@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lab · nav motion</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{ --ease:cubic-bezier(.22,1,.36,1); --grey:#9a9aa0; --gold:#d8c9a8; }
+  *{box-sizing:border-box;margin:0}
+  body{ font-family:Inter,system-ui,sans-serif; background:#0e0e12; color:#fff; padding:clamp(24px,4vw,56px); }
+  h1{ font-weight:500; font-size:clamp(20px,2.2vw,28px); letter-spacing:-.02em; }
+  .hint{ font-family:"IBM Plex Mono",monospace; font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:var(--grey); margin:8px 0 4px; }
+  .btn{ font-family:"IBM Plex Mono",monospace; font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:#fff;
+    background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.16); border-radius:9px; padding:8px 13px; cursor:pointer; }
+  .grid{ margin-top:28px; display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:16px; }
+  .card{ position:relative; border:1px solid rgba(255,255,255,.10); border-radius:16px; padding:26px 28px 30px;
+    background:rgba(255,255,255,.03); min-height:330px; }
+  .lab{ font-family:"IBM Plex Mono",monospace; font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--grey); margin-bottom:20px; }
+
+  .nav{ display:flex; flex-direction:column; gap:6px; }
+  .nav a{ color:#fff; text-decoration:none; font-weight:500; font-size:clamp(26px,2.4vw,38px);
+    letter-spacing:-.01em; line-height:1.12; width:fit-content; cursor:pointer; }
+  .nav a .t{ display:inline-block; }
+
+  /* V1 — slide + arrow */
+  .v1 a{ transition:transform .42s var(--ease); }
+  .v1 a::after{ content:"↗"; display:inline-block; margin-left:.28em; font-size:.5em; opacity:0; transform:translateX(-8px);
+    transition:opacity .35s var(--ease), transform .42s var(--ease); }
+  .v1 a.go, .v1 a:hover{ transform:translateX(18px); }
+  .v1 a.go::after, .v1 a:hover::after{ opacity:.85; transform:none; }
+
+  /* V2 — underline wipe */
+  .v2 a{ position:relative; }
+  .v2 a::after{ content:""; position:absolute; left:0; bottom:.04em; height:2px; width:100%; background:currentColor;
+    transform:scaleX(0); transform-origin:left; transition:transform .45s var(--ease); }
+  .v2 a.go::after, .v2 a:hover::after{ transform:scaleX(1); }
+
+  /* V3 — dim the rest, highlight one */
+  .v3.dimmed a{ opacity:.3; transition:opacity .4s var(--ease), transform .4s var(--ease); }
+  .v3:hover a{ opacity:.3; transition:opacity .4s var(--ease), transform .4s var(--ease); }
+  .v3 a{ transition:opacity .4s var(--ease), transform .4s var(--ease); }
+  .v3 a.go, .v3 a:hover{ opacity:1; transform:translateX(12px); }
+
+  /* V4 — vertical swap (roll to a grey copy) */
+  .v4 a{ overflow:hidden; height:1.15em; line-height:1.12; }
+  .v4 a .t{ display:block; transition:transform .5s var(--ease); }
+  .v4 a .t::after{ content:attr(data-t); display:block; color:var(--grey); }
+  .v4 a.go .t, .v4 a:hover .t{ transform:translateY(-1.12em); }
+
+  /* V5 — swap to serif italic + slide */
+  .v5 a .t{ transition:transform .42s var(--ease), color .35s var(--ease); display:inline-block; }
+  .v5 a.go .t, .v5 a:hover .t{ font-family:"Instrument Serif",serif; font-style:italic; font-weight:400;
+    transform:translateX(12px); color:var(--gold); }
+</style>
+</head>
+<body>
+  <h1>Accessos del menú — 5 animacions</h1>
+  <p class="hint">Cada prova s'activa sola en bucle · o passa el ratolí pels enllaços</p>
+  <button class="btn" id="toggle">Pausa bucle</button>
+
+  <div class="grid" id="grid">
+    <div class="card"><div class="lab">01 · slide + fletxa</div>
+      <nav class="nav v1"><a><span class="t" data-t="Work">Work</span></a><a><span class="t" data-t="Services">Services</span></a><a><span class="t" data-t="Studio">Studio</span></a><a><span class="t" data-t="Journal">Journal</span></a><a><span class="t" data-t="Contact">Contact</span></a></nav></div>
+
+    <div class="card"><div class="lab">02 · subratllat wipe</div>
+      <nav class="nav v2"><a><span class="t" data-t="Work">Work</span></a><a><span class="t" data-t="Services">Services</span></a><a><span class="t" data-t="Studio">Studio</span></a><a><span class="t" data-t="Journal">Journal</span></a><a><span class="t" data-t="Contact">Contact</span></a></nav></div>
+
+    <div class="card"><div class="lab">03 · dim + highlight</div>
+      <nav class="nav v3"><a><span class="t" data-t="Work">Work</span></a><a><span class="t" data-t="Services">Services</span></a><a><span class="t" data-t="Studio">Studio</span></a><a><span class="t" data-t="Journal">Journal</span></a><a><span class="t" data-t="Contact">Contact</span></a></nav></div>
+
+    <div class="card"><div class="lab">04 · roll vertical</div>
+      <nav class="nav v4"><a><span class="t" data-t="Work">Work</span></a><a><span class="t" data-t="Services">Services</span></a><a><span class="t" data-t="Studio">Studio</span></a><a><span class="t" data-t="Journal">Journal</span></a><a><span class="t" data-t="Contact">Contact</span></a></nav></div>
+
+    <div class="card"><div class="lab">05 · serif italic swap</div>
+      <nav class="nav v5"><a><span class="t" data-t="Work">Work</span></a><a><span class="t" data-t="Services">Services</span></a><a><span class="t" data-t="Studio">Studio</span></a><a><span class="t" data-t="Journal">Journal</span></a><a><span class="t" data-t="Contact">Contact</span></a></nav></div>
+  </div>
+
+<script>
+  const navs = [...document.querySelectorAll('.nav')];
+  let i = 0, iv = null, looping = true;
+  function step(){
+    navs.forEach(n => {
+      const links = [...n.children];
+      links.forEach((a,k) => a.classList.toggle('go', k === i));
+      if (n.classList.contains('v3')) n.classList.add('dimmed');
+    });
+    i = (i + 1) % 5;
+  }
+  function start(){ looping = true; clearInterval(iv); step(); iv = setInterval(step, 1000); }
+  function stop(){ looping = false; clearInterval(iv); navs.forEach(n => { [...n.children].forEach(a=>a.classList.remove('go')); n.classList.remove('dimmed'); }); }
+  document.getElementById('toggle').addEventListener('click', e => {
+    if (looping) { stop(); e.target.textContent = 'Reprèn bucle'; } else { start(); e.target.textContent = 'Pausa bucle'; }
+  });
+  start();
+</script>
+</body>
+</html>
