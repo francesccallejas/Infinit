@@ -6,8 +6,8 @@
 <title>Infinit® — Type specimens</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&family=Inter:wght@300..700&family=Schibsted+Grotesk:wght@400..700&family=Hanken+Grotesk:wght@300..700&family=Space+Grotesk:wght@400..700&family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,600,700,900&f[]=general-sans@300,400,500,600,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&family=Inter:wght@300..700&family=Schibsted+Grotesk:wght@400..700&family=Hanken+Grotesk:wght@300..700&family=Space+Grotesk:wght@400..700&family=Manrope:wght@300..700&family=Bricolage+Grotesque:opsz,wght@12..96,400..700&family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,600,700,900&f[]=general-sans@300,400,500,600,700&f[]=switzer@300,400,500,600,700&f[]=cabinet-grotesk@400,500,700,800&display=swap" rel="stylesheet">
 <style>
   :root{ --ink:#0B0C11; --bg:#F4F2F0; --paper:#FBFAF9; --muted:rgba(11,12,17,.55); --line:rgba(11,12,17,.12); --serif:"Instrument Serif",Georgia,serif; --mono:"IBM Plex Mono",monospace; }
   *{box-sizing:border-box;margin:0}
@@ -18,7 +18,12 @@
   .grid{ padding:clamp(24px,3vw,44px); display:grid; gap:18px; }
 
   .spec{ background:var(--paper); border-radius:20px; box-shadow:inset 0 0 0 1px var(--line); padding:clamp(26px,3vw,46px); position:relative; }
-  .num{ position:absolute; top:clamp(20px,2vw,30px); right:clamp(22px,2.4vw,34px); font-family:var(--mono); font-size:12px; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); }
+  .num{ position:absolute; top:clamp(20px,2vw,30px); right:clamp(22px,2.4vw,34px); font-family:var(--mono); font-size:12px; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); z-index:3; }
+  .hero{ position:relative; height:clamp(220px,32vw,360px); border-radius:14px; overflow:hidden; margin-bottom:26px; color:#fff; }
+  .hero img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center 20%; }
+  .hero-scrim{ position:absolute; inset:0; background:linear-gradient(180deg,rgba(8,8,12,.25),rgba(8,8,12,0) 40%,rgba(8,8,12,.6)); }
+  .hero-h{ position:absolute; left:clamp(18px,2vw,30px); bottom:clamp(16px,2vw,26px); right:20px; font-weight:600; font-size:clamp(30px,4.4vw,64px); letter-spacing:-.04em; line-height:.95; }
+  .hero-h em{ font-family:var(--serif); font-style:normal; font-weight:400; }
   .eyebrow{ font-family:var(--mono); font-size:12px; letter-spacing:.16em; text-transform:uppercase; color:var(--muted); }
   .spec h2{ font-weight:600; font-size:clamp(40px,6vw,92px); letter-spacing:-.04em; line-height:.95; margin:14px 0 6px; }
   .spec h2 em{ font-family:var(--serif); font-style:normal; font-weight:400; }
@@ -47,10 +52,19 @@
     ['Schibsted Grotesk', "'Schibsted Grotesk'"],
     ['Hanken Grotesk', "'Hanken Grotesk'"],
     ['Space Grotesk', "'Space Grotesk'"],
+    ['Switzer', "'Switzer'"],
+    ['Cabinet Grotesk', "'Cabinet Grotesk'"],
+    ['Bricolage Grotesque', "'Bricolage Grotesque'"],
+    ['Manrope', "'Manrope'"],
   ];
   document.getElementById('grid').innerHTML = fonts.map(([n,f],i)=>`
     <article class="spec" style="font-family:${f},system-ui,sans-serif">
-      <span class="num">0${i+1} · ${n}</span>
+      <span class="num">${(i+1).toString().padStart(2,'0')} · ${n}</span>
+      <div class="hero">
+        <img src="../project/assets/images/astronaut-red-portrait.png" alt="">
+        <div class="hero-scrim"></div>
+        <h3 class="hero-h">Brands built to <em>scale</em>®</h3>
+      </div>
       <span class="eyebrow">Infinit® · Brand &amp; Strategy</span>
       <h2>Brands built to <em>scale</em>®</h2>
       <p class="lead">A strategic brand and digital firm for companies navigating growth and transformation.</p>
