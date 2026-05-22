@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Infinit® — Logo motion · 3 proves</title>
-<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;900&family=Inter:wght@700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<title>Infinit® — Brandmark motion · 3 proves</title>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;900&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   *{margin:0;padding:0;box-sizing:border-box}
   :root{--bg:#0B0C11;--ink:#fff;--accent:#EFE6AE;--muted:rgba(255,255,255,.5);
@@ -15,80 +15,70 @@
   .info{min-width:240px;max-width:300px}
   .info h3{font-weight:900;font-size:22px;letter-spacing:-.02em}
   .info p{font-size:14px;line-height:1.55;color:var(--muted);margin-top:8px}
-  .stage{flex:1;min-width:280px;display:flex;align-items:center;gap:24px;flex-wrap:wrap}
+  .stage{flex:1;min-width:280px;display:flex;align-items:center;gap:40px;flex-wrap:wrap}
+  .bm{height:clamp(90px,13vw,170px);width:auto;overflow:visible}
   .btn{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink);
     border:1px solid rgba(255,255,255,.25);border-radius:999px;padding:8px 16px;background:none;cursor:pointer}
   .btn:hover{border-color:#fff}
 
-  /* shared infinity sizing */
-  .inf{height:clamp(90px,12vw,150px);width:auto;overflow:visible}
-  .inf path.track{fill:none;stroke:rgba(255,255,255,.12);stroke-width:11;stroke-linecap:round}
-  .inf path.line{fill:none;stroke:#fff;stroke-width:11;stroke-linecap:round}
+  /* ===== 1 · outline draws itself (es traça com un rellotge) ===== */
+  .t1 path{fill:none;stroke:#fff;stroke-width:9;stroke-linejoin:round;stroke-dasharray:100;stroke-dashoffset:100}
+  @keyframes drawmark{0%{stroke-dashoffset:100}45%{stroke-dashoffset:0}80%{stroke-dashoffset:0}100%{stroke-dashoffset:-100}}
+  .t1 .a{animation:drawmark 3.4s var(--ease) infinite}
+  .t1 .b{animation:drawmark 3.4s var(--ease) infinite .35s}
 
-  /* ===== 1 · draw-in loop ===== */
-  @keyframes draw{0%{stroke-dashoffset:100}50%{stroke-dashoffset:0}82%{stroke-dashoffset:0}100%{stroke-dashoffset:-100}}
-  .t1 path.line{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 3.4s var(--ease) infinite}
+  /* ===== 2 · llum pel reborde (clock) ===== */
+  .t2 path.fillshape{fill:none;stroke:rgba(255,255,255,.16);stroke-width:9;stroke-linejoin:round}
+  .t2 .glow{fill:var(--accent)}
 
-  /* ===== 2 · traveling accent dot ===== */
-  .t2 .dot{fill:var(--accent)}
-
-  /* ===== 3 · morph dots -> brandmark (esbós) ===== */
-  .t3wrap{position:relative;display:inline-flex;align-items:center;gap:12px}
-  .t3 .word{font-weight:900;font-size:clamp(40px,6vw,72px);letter-spacing:-.045em;position:relative;color:#fff}
-  /* the two i-dots overlay (we cover real dots and animate fake ones) */
-  .t3 .tittle{position:absolute;width:.13em;height:.13em;border-radius:50%;background:var(--accent);font-size:inherit}
-  .bm{height:clamp(40px,6vw,72px);width:auto;opacity:0;transform:scale(.4);transform-origin:left center}
-  .bm path{fill:var(--accent)}
-  .t3.run .tittle{animation:tittleOut 1.5s var(--ease) forwards}
-  .t3.run .bm{animation:bmIn 1.2s var(--ease) .5s forwards}
-  @keyframes tittleOut{0%{opacity:1;transform:translateY(0) scale(1)}60%{opacity:1;transform:translateY(40px) scale(2.2)}100%{opacity:0;transform:translateY(40px) scale(3)}}
-  @keyframes bmIn{0%{opacity:0;transform:scale(.4)}100%{opacity:1;transform:scale(1)}}
+  /* ===== 3 · figura plena + glint que recorre el reborde ===== */
+  .t3 path.solid{fill:#fff}
+  .t3 path.edge{fill:none;stroke:var(--accent);stroke-width:7;stroke-linejoin:round;stroke-linecap:round;
+    stroke-dasharray:18 82}
+  @keyframes glint{to{stroke-dashoffset:-100}}
+  .t3 .e1{animation:glint 2.6s linear infinite}
+  .t3 .e2{animation:glint 2.6s linear infinite 1.3s}
 </style>
 </head>
 <body>
-<div class="lab">Logo motion · 3 proves — Infinit ∞ · fons fosc com el logo real</div>
+<div class="lab">Brandmark motion · 3 proves — el logo actual (les 2 figures) · fons fosc com el logo real</div>
 
 <!-- 1 -->
 <section class="opt">
-  <div class="info"><h3>1 · ∞ es dibuixa</h3><p>L'infinit es traça sol amb un stroke continu i es repeteix en loop. Net, segur, ideal per l'intro.</p></div>
+  <div class="info"><h3>1 · es traça sol</h3><p>Les dues figures es dibuixen amb un stroke, una rere l'altra (efecte rellotge / escriptura), i es repeteix en loop. Per l'intro.</p></div>
   <div class="stage">
-    <svg class="inf t1" viewBox="0 0 200 100" aria-hidden="true">
-      <path class="line" pathLength="100" d="M100,50 C100,18 42,18 42,50 C42,82 100,82 100,50 C100,18 158,18 158,50 C158,82 100,82 100,50 Z"/>
+    <svg class="bm t1" viewBox="0 0 374 206" aria-hidden="true">
+      <path class="a" pathLength="100" d="M 108.196 34 L 182.196 34 Q 201.196 34 194.140 51.641 L 153.056 154.359 Q 146 172 127 172 L 53 172 Q 34 172 41.056 154.359 L 82.140 51.641 Q 89.196 34 108.196 34 Z"/>
+      <path class="b" pathLength="100" d="M 108.196 34 L 182.196 34 Q 201.196 34 194.140 51.641 L 153.056 154.359 Q 146 172 127 172 L 53 172 Q 34 172 41.056 154.359 L 82.140 51.641 Q 89.196 34 108.196 34 Z" transform="translate(139 0)"/>
     </svg>
   </div>
 </section>
 
 <!-- 2 -->
 <section class="opt">
-  <div class="info"><h3>2 · punt accent en loop</h3><p>Un punt groc recorre el camí de l'infinit sense parar, sobre un traç tènue. Hipnòtic i premium — per footer o hover.</p></div>
+  <div class="info"><h3>2 · llum pel reborde</h3><p>Un punt groc recorre el contorn de cada figura sense parar, com una busca de rellotge. Sobre el contorn tènue. Per footer / hover.</p></div>
   <div class="stage">
-    <svg class="inf t2" viewBox="0 0 200 100" aria-hidden="true">
-      <path id="infpath" class="track" pathLength="100" d="M100,50 C100,18 42,18 42,50 C42,82 100,82 100,50 C100,18 158,18 158,50 C158,82 100,82 100,50 Z"/>
-      <circle class="dot" r="9">
-        <animateMotion dur="4s" repeatCount="indefinite" rotate="auto"><mpath href="#infpath"/></animateMotion>
-      </circle>
+    <svg class="bm t2" viewBox="0 0 374 206" aria-hidden="true">
+      <path id="e1" class="fillshape" pathLength="100" d="M 108.196 34 L 182.196 34 Q 201.196 34 194.140 51.641 L 153.056 154.359 Q 146 172 127 172 L 53 172 Q 34 172 41.056 154.359 L 82.140 51.641 Q 89.196 34 108.196 34 Z"/>
+      <path id="e2" class="fillshape" pathLength="100" d="M 108.196 34 L 182.196 34 Q 201.196 34 194.140 51.641 L 153.056 154.359 Q 146 172 127 172 L 53 172 Q 34 172 41.056 154.359 L 82.140 51.641 Q 89.196 34 108.196 34 Z" transform="translate(139 0)"/>
+      <circle class="glow" r="9"><animateMotion dur="3.2s" repeatCount="indefinite" rotate="auto"><mpath href="#e1"/></animateMotion></circle>
+      <circle class="glow" r="9"><animateMotion dur="3.2s" begin="1.6s" repeatCount="indefinite" rotate="auto"><mpath href="#e2"/></animateMotion></circle>
     </svg>
   </div>
 </section>
 
 <!-- 3 -->
 <section class="opt">
-  <div class="info"><h3>3 · punts → brandmark (esbós)</h3><p>Els punts de les "i" cauen, creixen i es transformen en el brandmark. Aquí és un esbós amb crossfade; la versió fina necessita morph de paths (GSAP).</p></div>
+  <div class="info"><h3>3 · figura plena + glint</h3><p>El logo ple de sempre, amb un petit reflex groc que llisca pel reborde de cada figura. Subtil — es podria activar al hover del logo real.</p></div>
   <div class="stage">
-    <div class="t3wrap">
-      <div class="t3" id="t3">
-        <span class="word">infinit<span class="tittle" style="left:.06em;top:.16em"></span><span class="tittle" style="left:2.42em;top:.16em"></span><span class="tittle" style="left:3.66em;top:.16em"></span></span>
-        <svg class="bm" viewBox="0 0 374 206" aria-hidden="true"><path d="M 108.196 34 L 182.196 34 Q 201.196 34 194.140 51.641 L 153.056 154.359 Q 146 172 127 172 L 53 172 Q 34 172 41.056 154.359 L 82.140 51.641 Q 89.196 34 108.196 34 Z"/><path d="M 108.196 34 L 182.196 34 Q 201.196 34 194.140 51.641 L 153.056 154.359 Q 146 172 127 172 L 53 172 Q 34 172 41.056 154.359 L 82.140 51.641 Q 89.196 34 108.196 34 Z" transform="translate(139 0)"/></svg>
-      </div>
-      <button class="btn" id="replay3">▶ replay</button>
-    </div>
+    <svg class="bm t3" viewBox="0 0 374 206" aria-hidden="true">
+      <path class="solid" d="M 108.196 34 L 182.196 34 Q 201.196 34 194.140 51.641 L 153.056 154.359 Q 146 172 127 172 L 53 172 Q 34 172 41.056 154.359 L 82.140 51.641 Q 89.196 34 108.196 34 Z"/>
+      <path class="solid" d="M 108.196 34 L 182.196 34 Q 201.196 34 194.140 51.641 L 153.056 154.359 Q 146 172 127 172 L 53 172 Q 34 172 41.056 154.359 L 82.140 51.641 Q 89.196 34 108.196 34 Z" transform="translate(139 0)"/>
+      <path class="edge e1" pathLength="100" d="M 108.196 34 L 182.196 34 Q 201.196 34 194.140 51.641 L 153.056 154.359 Q 146 172 127 172 L 53 172 Q 34 172 41.056 154.359 L 82.140 51.641 Q 89.196 34 108.196 34 Z"/>
+      <path class="edge e2" pathLength="100" d="M 108.196 34 L 182.196 34 Q 201.196 34 194.140 51.641 L 153.056 154.359 Q 146 172 127 172 L 53 172 Q 34 172 41.056 154.359 L 82.140 51.641 Q 89.196 34 108.196 34 Z" transform="translate(139 0)"/>
+    </svg>
   </div>
 </section>
 
-<script>
-  const t3=document.getElementById('t3'),b=document.getElementById('replay3');
-  function run(){t3.classList.remove('run');void t3.offsetWidth;t3.classList.add('run');}
-  b.addEventListener('click',run); setTimeout(run,400);
-</script>
 </body>
 </html>
