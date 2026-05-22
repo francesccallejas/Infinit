@@ -912,15 +912,6 @@ em { font-family: var(--serif); font-style: normal; font-weight: 400; }
 /* =========================================================================
    bottom blur — minimal viewport-edge softening
    ========================================================================= */
-.bottom-blur {
-  position: fixed; left: 0; right: 0; bottom: 0;
-  height: 48px; z-index: 55; pointer-events: none;
-  backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px);
-  mask-image: linear-gradient(to bottom,
-    rgba(0,0,0,0) 0%, rgba(0,0,0,.30) 55%, rgba(0,0,0,.80) 85%, #000 100%);
-  -webkit-mask-image: linear-gradient(to bottom,
-    rgba(0,0,0,0) 0%, rgba(0,0,0,.30) 55%, rgba(0,0,0,.80) 85%, #000 100%);
-}
 
 /* =========================================================================
    cookies banner — frosted card, brand colors
