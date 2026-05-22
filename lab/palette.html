@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Infinit® — Color exploration</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{ --ink:#0B0C11; --deep:#08080C; --bg:#F4F2F0; --paper:#FBFAF9; --muted:rgba(11,12,17,.56); --line:rgba(11,12,17,.12); }
+  *{box-sizing:border-box;margin:0}
+  body{ font-family:Inter,system-ui,sans-serif; background:var(--bg); color:var(--ink); padding:clamp(24px,4vw,68px); line-height:1.5; }
+  .mono{ font-family:"IBM Plex Mono",monospace; }
+  header h1{ font-weight:600; font-size:clamp(26px,3vw,44px); letter-spacing:-.03em; }
+  header p{ color:var(--muted); max-width:60ch; margin-top:10px; font-size:16px; }
+  .eyebrow{ font-family:"IBM Plex Mono",monospace; font-size:12px; letter-spacing:.16em; text-transform:uppercase; color:var(--muted); }
+  section{ margin-top:clamp(40px,5vw,72px); }
+  .sec-h{ font-size:13px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); margin-bottom:20px; font-family:"IBM Plex Mono",monospace; }
+
+  /* neutrals */
+  .neutrals{ display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:14px; }
+  .nq{ border-radius:14px; overflow:hidden; box-shadow:inset 0 0 0 1px var(--line); }
+  .nq .chip{ height:96px; }
+  .nq .meta{ padding:12px 14px; background:var(--paper); }
+  .nq .nm{ font-weight:600; font-size:15px; }
+  .nq .hx{ font-family:"IBM Plex Mono",monospace; font-size:12px; color:var(--muted); margin-top:2px; }
+
+  /* accent block */
+  .accent{ border-radius:20px; background:var(--paper); box-shadow:inset 0 0 0 1px var(--line); padding:clamp(20px,2.4vw,34px); margin-bottom:18px; }
+  .accent-head{ display:flex; align-items:flex-start; gap:24px; flex-wrap:wrap; }
+  .ramp{ display:flex; border-radius:12px; overflow:hidden; box-shadow:inset 0 0 0 1px var(--line); min-width:240px; }
+  .ramp i{ display:block; width:48px; height:72px; }
+  .accent-id{ flex:1; min-width:240px; }
+  .accent-id .nm{ font-weight:600; font-size:22px; letter-spacing:-.02em; }
+  .accent-id .nm b{ font-family:"IBM Plex Mono",monospace; font-weight:500; font-size:14px; color:var(--muted); margin-left:10px; }
+  .accent-id .why{ color:var(--muted); margin-top:8px; max-width:64ch; font-size:15px; }
+  .accent-id .why em{ font-family:"Instrument Serif",serif; font-style:italic; color:var(--ink); }
+
+  .apps{ display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:22px; }
+  @media(max-width:760px){ .apps{ grid-template-columns:1fr; } }
+  .card{ border-radius:16px; padding:22px; display:flex; flex-direction:column; gap:15px; justify-content:center; min-height:172px; }
+  .card.dark{ background:#141419; color:#fff; } .card.light{ background:#fff; color:var(--ink); box-shadow:inset 0 0 0 1px var(--line); }
+  .eb2{ font-family:"IBM Plex Mono",monospace; font-size:10px; letter-spacing:.14em; text-transform:uppercase; opacity:.55; }
+  .line{ display:flex; align-items:center; gap:12px; flex-wrap:wrap; }
+  .h{ font-weight:600; font-size:21px; letter-spacing:-.02em; }
+  .h .u{ box-shadow:inset 0 -.32em 0 var(--a); }
+  .badge{ font-size:10px; font-weight:700; letter-spacing:.06em; padding:3px 8px; border-radius:8px; background:var(--a); color:var(--on); }
+  .cta{ display:inline-flex; align-items:center; gap:8px; height:42px; padding:0 20px; border-radius:11px; background:var(--a); color:var(--on); font-weight:600; font-size:14px; border:0; cursor:pointer; }
+  .view{ height:38px; padding:0 18px; border-radius:11px; font-weight:600; font-size:13px; cursor:pointer; border:0; background:rgba(255,255,255,.14); color:#fff; transition:.25s; }
+  .card.light .view{ background:rgba(11,12,17,.06); color:var(--ink); }
+  .view:hover{ background:var(--a); color:var(--on); }
+  .lnk{ color:var(--a); font-weight:600; text-decoration:none; border-bottom:1px solid currentColor; padding-bottom:1px; }
+  .card.light .lnk{ color:var(--a-dk); }
+  .sel{ background:var(--a); color:var(--on); padding:0 3px; border-radius:3px; }
+</style>
+</head>
+<body>
+  <header>
+    <span class="eyebrow">Infinit® · brand color</span>
+    <h1>Color exploration</h1>
+    <p>Sistema monocrom (negre tinta + beige) amb <b>un sol accent</b> usat amb mesura: badge, CTA, enllaços i selecció. L'accent ha de tenir prou contrast per llegir-se sobre fosc <i>i</i> clar, i ser distintiu sense trencar el to premium.</p>
+  </header>
+
+  <section>
+    <div class="sec-h">Neutres de marca</div>
+    <div class="neutrals" id="neutrals"></div>
+  </section>
+
+  <section>
+    <div class="sec-h">Accents candidats — amb aplicacions</div>
+    <div id="accents"></div>
+  </section>
+
+<script>
+  const neutrals = [
+    ['Ink', '#0B0C11'], ['Deep', '#08080C'], ['Beige (bg)', '#F4F2F0'], ['Paper', '#FBFAF9'],
+  ];
+  document.getElementById('neutrals').innerHTML = neutrals.map(([n,h])=>`
+    <div class="nq"><div class="chip" style="background:${h}"></div><div class="meta"><div class="nm">${n}</div><div class="hx">${h}</div></div></div>`).join('');
+
+  // accent: [name, hex, on-color(text over accent), rationale]
+  const accents = [
+    ['Cobalt', '#2E43E6', '#fff', 'Blau elèctric de <em>confiança i estratègia</em>. Contrasta moltíssim sobre el monocrom — el clàssic accent premium-tech (Stripe, Linear). Molt llegible sobre fosc i clar.'],
+    ['Emerald', '#0E9E6E', '#fff', 'Verd <em>creixement</em> ric (no pastel). Saludable, viu i sofisticat; lliga amb el discurs de “growth” sense ser infantil com un mint clar.'],
+    ['Tangerine', '#F0613A', '#1a0a04', 'Taronja càlid i <em>humà</em>, amb energia. Destaca molt i dona caràcter; cap a un to més atrevit i proper.'],
+    ['Golden', '#F3B72E', '#1a1404', 'Groc daurat <em>òptim i premium</em> (germà saturat del cream actual). Càlid, llumiós; sobre fosc brilla, sobre clar cal vora.'],
+    ['Ultraviolet', '#6A4CF0', '#fff', 'Violeta <em>creatiu</em> i distintiu. Modern i memorable; et separa de la competència, lleugerament més “studio creatiu”.'],
+    ['Petrol', '#0E7C73', '#fff', 'Verd-blau <em>autoritat tranquil·la</em>. Profund i serè, molt corporate-premium sense ser fred del tot.'],
+  ];
+  const ramp = h => `<div class="ramp">
+    <i style="background:color-mix(in srgb, ${h} 22%, #fff)"></i>
+    <i style="background:color-mix(in srgb, ${h} 55%, #fff)"></i>
+    <i style="background:${h}"></i>
+    <i style="background:color-mix(in srgb, ${h} 78%, #000)"></i>
+    <i style="background:color-mix(in srgb, ${h} 55%, #000)"></i></div>`;
+  const card = (cls,h,on) => `
+    <div class="card ${cls}" style="--a:${h};--on:${on};--a-dk:color-mix(in srgb, ${h} 78%, #000)">
+      <span class="eb2">A quick look</span>
+      <div class="line"><span class="h"><span class="u">Overview</span></span><span class="badge">NEW</span></div>
+      <div class="line"><button class="cta">Start the conversation</button><button class="view">View</button></div>
+      <div class="line" style="font-size:14px"><a class="lnk">hello@weareinfinit.com</a><span style="opacity:.6">Selecció: <span class="sel">scale®</span></span></div>
+    </div>`;
+  document.getElementById('accents').innerHTML = accents.map(([n,h,on,why],i)=>`
+    <div class="accent">
+      <div class="accent-head">
+        ${ramp(h)}
+        <div class="accent-id"><div class="nm">0${i+1} · ${n}<b>${h}</b></div><div class="why">${why}</div></div>
+      </div>
+      <div class="apps">${card('dark',h,on)}${card('light',h,on)}</div>
+    </div>`).join('');
+</script>
+</body>
+</html>
