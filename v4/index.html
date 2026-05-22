@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Infinit® — V4 · Monochrome (Tommas Quinn style)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  :root{
+    --bg:#F7F6F2;--ink:#0B0B0B;--gray:#EAE8E2;--paper:#FFFFFF;
+    --muted:rgba(11,11,11,.5);--line:rgba(11,11,11,.12);
+    --font:"Inter",system-ui,sans-serif;
+    --ease:cubic-bezier(.16,1,.3,1);--edge:clamp(20px,4vw,72px);--gap:clamp(110px,18vh,240px)
+  }
+  body{font-family:var(--font);background:var(--bg);color:var(--ink);overflow-x:hidden;font-weight:400;-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  .lbl{font-size:12px;letter-spacing:.02em;font-weight:500;text-transform:uppercase}
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+  .reveal.in{opacity:1;transform:none}
+
+  /* NAV */
+  .bar{position:fixed;inset:0 0 auto 0;display:flex;justify-content:space-between;align-items:center;padding:20px var(--edge);z-index:30;mix-blend-mode:difference;color:#fff}
+  .logo{display:inline-flex;align-items:center;gap:9px}
+  .logo svg{height:18px;width:auto}
+  .logo .w{font-weight:700;font-size:17px;letter-spacing:-.02em;display:inline-flex;align-items:flex-start}
+  .logo .r{font-size:8px;margin-top:2px}
+  .nav-r{display:flex;gap:26px;align-items:center;font-size:14px;font-weight:500}
+  .nav-r .mn{cursor:pointer;background:none;border:0;color:#fff;font:inherit}
+  /* overlay menu */
+  .ix{position:fixed;inset:0;background:var(--ink);color:var(--bg);z-index:40;opacity:0;pointer-events:none;transition:opacity .45s var(--ease);display:flex;flex-direction:column;justify-content:center;padding:0 var(--edge);gap:2px}
+  .ix.open{opacity:1;pointer-events:auto}
+  .ix a{font-weight:500;font-size:clamp(38px,8vw,104px);letter-spacing:-.04em;line-height:1.08;opacity:.45;transition:opacity .3s,transform .4s var(--ease)}
+  .ix a:hover{opacity:1;transform:translateX(12px)}
+  .ix .x{position:absolute;top:20px;right:var(--edge);font-size:14px;font-weight:500;cursor:pointer;background:none;border:0;color:var(--bg)}
+
+  /* HERO */
+  .hero{min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;padding:0 var(--edge) clamp(40px,7vh,90px)}
+  .hero .top{margin-bottom:auto;padding-top:30vh}
+  .hero .lbl{color:var(--muted)}
+  .hl{font-weight:600;font-size:clamp(54px,11.5vw,224px);line-height:.9;letter-spacing:-.055em;margin-top:18px}
+  .hero .row{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;flex-wrap:wrap;margin-top:clamp(30px,5vh,60px)}
+  .hero .row p{max-width:42ch;font-weight:400;font-size:clamp(16px,1.4vw,21px);line-height:1.5;color:rgba(11,11,11,.7)}
+  .hero .row .sc{font-size:13px;font-weight:500;color:var(--muted);white-space:nowrap}
+
+  .sec{padding:var(--gap) var(--edge)}
+  .head{display:flex;justify-content:space-between;align-items:baseline;gap:20px;flex-wrap:wrap;margin-bottom:clamp(34px,5vh,64px)}
+  .head h2{font-weight:600;font-size:clamp(30px,4vw,64px);letter-spacing:-.04em}
+  .head .lbl{color:var(--muted)}
+
+  /* WORK grid — big images, hover */
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(14px,2vw,40px) clamp(14px,2vw,30px)}
+  @media(max-width:760px){.grid{grid-template-columns:1fr}}
+  .tile{opacity:0;transform:translateY(40px);transition:opacity .9s var(--ease),transform 1s var(--ease)}
+  .tile.in{opacity:1;transform:none}
+  .tile:nth-child(2){transition-delay:.08s}.tile:nth-child(3){transition-delay:.16s}.tile:nth-child(4){transition-delay:.24s}
+  .tile .ph{aspect-ratio:4/3;overflow:hidden;border-radius:4px;background:var(--gray)}
+  .tile.tall .ph{aspect-ratio:3/4}
+  .tile .ph img{width:100%;height:100%;object-fit:cover;transition:transform .9s var(--ease)}
+  .tile:hover .ph img{transform:scale(1.04)}
+  .tile .cap{display:flex;justify-content:space-between;align-items:baseline;margin-top:16px;gap:14px}
+  .tile .cap .nm{font-weight:600;font-size:clamp(18px,1.7vw,26px);letter-spacing:-.02em}
+  .tile .cap .ct{font-size:13px;font-weight:500;color:var(--muted);text-align:right}
+
+  /* CAPABILITIES */
+  .caps{border-top:1px solid var(--line)}
+  .cap{display:grid;grid-template-columns:60px 1fr;gap:clamp(16px,3vw,50px);padding:clamp(28px,3.4vw,48px) 0;border-bottom:1px solid var(--line);align-items:baseline}
+  .cap .n{font-size:13px;font-weight:500;color:var(--muted)}
+  .cap h3{font-weight:500;font-size:clamp(26px,3.4vw,54px);letter-spacing:-.03em}
+  .cap p{margin-top:12px;font-weight:400;font-size:clamp(15px,1.2vw,18px);line-height:1.55;color:rgba(11,11,11,.66);max-width:50ch}
+  @media(max-width:600px){.cap{grid-template-columns:1fr;gap:8px}}
+
+  /* STUDIO + clients */
+  .studio{background:var(--gray)}
+  .st-h{font-weight:600;font-size:clamp(34px,5.5vw,96px);line-height:.98;letter-spacing:-.05em}
+  .st-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:clamp(30px,5vw,80px);margin-top:clamp(40px,6vh,80px)}
+  @media(max-width:760px){.st-grid{grid-template-columns:1fr}}
+  .st-grid p{font-weight:400;font-size:clamp(16px,1.3vw,19px);line-height:1.65;color:rgba(11,11,11,.7)}
+  .kpis{display:grid;grid-template-columns:1fr 1fr;gap:22px 30px}
+  .kpi .n{font-weight:600;font-size:clamp(30px,3vw,48px);letter-spacing:-.03em}
+  .kpi .l{font-size:12px;font-weight:500;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);margin-top:6px}
+  .clients{margin-top:clamp(40px,6vh,72px);font-weight:400;font-size:clamp(18px,2vw,30px);line-height:1.45;letter-spacing:-.02em;max-width:30ch}
+  .clients .m{color:var(--muted)}
+
+  /* CTA */
+  .cta{background:var(--ink);color:var(--bg);padding:var(--gap) var(--edge);text-align:center}
+  .cta h2{font-weight:600;font-size:clamp(42px,8vw,170px);line-height:.92;letter-spacing:-.055em;max-width:13ch;margin:0 auto}
+  .cta a{display:inline-flex;align-items:center;gap:10px;margin-top:clamp(34px,5vh,60px);background:var(--bg);color:var(--ink);font-weight:600;font-size:15px;padding:16px 28px;border-radius:4px;transition:transform .3s var(--ease)}
+  .cta a:hover{transform:translateY(-3px)}
+  .foot{background:var(--ink);color:rgba(255,255,255,.5);padding:0 var(--edge) clamp(40px,6vh,70px);display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px;font-size:13px;font-weight:500}
+</style>
+</head>
+<body>
+<div class="bar">
+  <a class="logo" href="#top"><svg viewBox="0 0 374 206" fill="currentColor"><path d="M 108.196 34 L 182.196 34 Q 201.196 34 194.140 51.641 L 153.056 154.359 Q 146 172 127 172 L 53 172 Q 34 172 41.056 154.359 L 82.140 51.641 Q 89.196 34 108.196 34 Z"/><path d="M 108.196 34 L 182.196 34 Q 201.196 34 194.140 51.641 L 153.056 154.359 Q 146 172 127 172 L 53 172 Q 34 172 41.056 154.359 L 82.140 51.641 Q 89.196 34 108.196 34 Z" transform="translate(139 0)"/></svg><span class="w">infinit<span class="r">®</span></span></a>
+  <div class="nav-r"><a href="#contact">Contact</a><button class="mn" id="mn">Menu</button></div>
+</div>
+<nav class="ix" id="ix"><button class="x" id="x">Close</button><a href="#work">Work</a><a href="#services">Services</a><a href="#studio">Studio</a><a href="#contact">Contact</a></nav>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="top"><span class="lbl">Strategy &amp; creative firm — Barcelona</span></div>
+  <h1 class="hl">Brands built<br>to scale.</h1>
+  <div class="row">
+    <p>A strategy and creative firm for companies navigating growth, transformation and modernization — from the physical world into digital.</p>
+    <span class="sc">Scroll ↓</span>
+  </div>
+</section>
+
+<!-- WORK -->
+<section class="sec" id="work">
+  <div class="head"><h2>Selected work</h2><span class="lbl">2018 — 2026</span></div>
+  <div class="grid" id="grid">
+    <div class="tile tall"><div class="ph"><img src="../project/assets/images/Bunnker Final.webp" alt=""></div><div class="cap"><span class="nm">Bunnker</span><span class="ct">Strategy · Brand · Growth</span></div></div>
+    <div class="tile tall"><div class="ph"><img src="../project/assets/images/Relats Brand.webp" alt=""></div><div class="cap"><span class="nm">Relats</span><span class="ct">Strategy · Brand · Digital</span></div></div>
+    <div class="tile"><div class="ph"><img src="../project/assets/images/ipad-sunset.webp" alt=""></div><div class="cap"><span class="nm">Instellar</span><span class="ct">Strategy · Brand · Digital</span></div></div>
+    <div class="tile"><div class="ph"><img src="../project/assets/imagery/Julia Yosemite.webp" alt=""></div><div class="cap"><span class="nm">Julià</span><span class="ct">Strategy · Brand · Digital</span></div></div>
+  </div>
+</section>
+
+<!-- CAPABILITIES -->
+<section class="sec caps" id="services">
+  <div class="head"><h2>What we do</h2><span class="lbl">Connected</span></div>
+  <div class="cap reveal"><span class="n">01</span><div><h3>Strategy</h3><p>Direction that aligns business ambition, market opportunity and execution.</p></div></div>
+  <div class="cap reveal"><span class="n">02</span><div><h3>Identity</h3><p>Visual and verbal systems built for recognition and consistency — physical to digital.</p></div></div>
+  <div class="cap reveal"><span class="n">03</span><div><h3>Digital</h3><p>Websites, products and platforms that perform, convert and keep compounding.</p></div></div>
+</section>
+
+<!-- STUDIO -->
+<section class="sec studio" id="studio">
+  <div class="head"><span class="lbl" style="color:var(--muted)">The studio</span></div>
+  <h2 class="st-h reveal">Small by design.<br>Senior by default.</h2>
+  <div class="st-grid reveal">
+    <p>Infinit® is led hands-on, not delegated — run by people who have sat on both sides: building brands and running the operations that depend on them. No layers, no noise.</p>
+    <div class="kpis">
+      <div class="kpi"><div class="n">20 yrs</div><div class="l">industrial · enterprise · founder-led</div></div>
+      <div class="kpi"><div class="n">3 pillars</div><div class="l">strategy · identity · digital</div></div>
+      <div class="kpi"><div class="n">×3</div><div class="l">awareness uplift</div></div>
+      <div class="kpi"><div class="n">∞</div><div class="l">refined in loops</div></div>
+    </div>
+  </div>
+  <p class="clients reveal">Relats · Girbau · Almirall · Mercadona · Santander · SAP · Glovo · Seidor. <span class="m">Real-world companies, now digital. Recognised by Awwwards &amp; COAC.</span></p>
+</section>
+
+<!-- CTA -->
+<section class="cta" id="contact">
+  <h2>Brands built to scale.</h2>
+  <a href="mailto:hello@weareinfinit.com">Start the conversation →</a>
+</section>
+<footer class="foot"><span>hello@weareinfinit.com</span><span>+34 689 022 383</span><span>Barcelona — Worldwide</span><span>© 2026 Infinit®</span></footer>
+
+<script>
+  const mn=document.getElementById('mn'),ix=document.getElementById('ix'),x=document.getElementById('x');
+  mn.onclick=()=>ix.classList.add('open');x.onclick=()=>ix.classList.remove('open');
+  ix.querySelectorAll('a').forEach(a=>a.onclick=()=>ix.classList.remove('open'));
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.16});
+  document.querySelectorAll('.reveal,.tile').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
