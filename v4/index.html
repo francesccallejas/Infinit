@@ -6,7 +6,7 @@
 <title>Infinit® — Brand &amp; Strategy · V2</title>
 <meta name="description" content="Strategic brand, identity and digital systems for companies navigating growth and transformation.">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
-<link rel="stylesheet" href="style.css?v=230">
+<link rel="stylesheet" href="style.css?v=231">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300..700&family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -427,9 +427,12 @@
     }
     closeMenu = () => set(false);
     const card = p.querySelector('.mmenu-card');
-    b.addEventListener('mouseenter', () => set(true));
+    const canHover = matchMedia('(hover: hover)').matches;
+    if (canHover) {
+      b.addEventListener('mouseenter', () => set(true));
+      card && card.addEventListener('mouseleave', () => set(false));
+    }
     b.addEventListener('click', () => set(!p.classList.contains('open')));
-    card && card.addEventListener('mouseleave', () => set(false));
     c && c.addEventListener('click', () => set(false));
     p.querySelectorAll('a').forEach(a => a.addEventListener('click', () => set(false)));
     p.addEventListener('click', e => { if (e.target === p) set(false); });
