@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Infinit® — Concept · Built in loops</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://api.fontshare.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  :root{
+    --bg:#F4F2F0;--ink:#0B0C11;--accent:#EFE6AE;--muted:rgba(11,12,17,.5);--line:rgba(11,12,17,.12);
+    --sans:"Satoshi",sans-serif;--serif:"Instrument Serif",serif;--mono:"IBM Plex Mono",monospace;
+    --ease:cubic-bezier(.16,1,.3,1);--edge:clamp(22px,5vw,72px);
+  }
+  body{font-family:var(--sans);background:var(--bg);color:var(--ink);overflow-x:hidden}
+  .lab{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);padding:24px var(--edge);border-bottom:1px solid var(--line);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+
+  /* ===== HERO MANIFESTO ===== */
+  .hero{position:relative;min-height:96vh;padding:clamp(40px,8vh,90px) var(--edge) 0;display:flex;flex-direction:column;justify-content:center;overflow:hidden}
+  .inf-bg{position:absolute;right:-8%;top:50%;transform:translateY(-50%);width:min(70vw,900px);height:auto;z-index:0;opacity:.9;pointer-events:none}
+  .inf-bg path{fill:none;stroke:var(--ink);stroke-width:1.2;opacity:.16}
+  .inf-bg .draw{stroke:var(--ink);stroke-width:2;opacity:.9;stroke-dasharray:1000;stroke-dashoffset:1000;animation:loop 7s var(--ease) infinite}
+  @keyframes loop{0%{stroke-dashoffset:1000}55%{stroke-dashoffset:0}100%{stroke-dashoffset:-1000}}
+
+  .ey{font-family:var(--mono);font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);position:relative;z-index:2;margin-bottom:clamp(22px,4vh,44px)}
+  .manifesto{position:relative;z-index:2;max-width:18ch;font-weight:500;font-size:clamp(40px,6.2vw,108px);line-height:1.02;letter-spacing:-.035em}
+  .manifesto em{font-family:var(--serif);font-style:italic;font-weight:400;letter-spacing:0}
+  .manifesto .thin{font-weight:300}
+  .sub{position:relative;z-index:2;margin-top:clamp(28px,4vh,52px);max-width:46ch;font-weight:300;font-size:clamp(16px,1.4vw,21px);line-height:1.65;color:rgba(11,12,17,.7)}
+
+  /* ===== THE LOOP (cyclical process) ===== */
+  .loopsec{padding:clamp(70px,12vh,160px) var(--edge);border-top:1px solid var(--line)}
+  .loopsec .ey{margin-bottom:clamp(30px,5vh,60px)}
+  .cycle{display:flex;align-items:baseline;gap:clamp(10px,1.4vw,22px);flex-wrap:wrap;font-weight:500;font-size:clamp(34px,5.4vw,86px);letter-spacing:-.03em;line-height:1.08}
+  .cycle .step{position:relative}
+  .cycle .n{font-family:var(--mono);font-size:.18em;vertical-align:super;color:var(--muted);margin-right:.15em;letter-spacing:0}
+  .cycle .arr{color:var(--muted);font-weight:300}
+  .cycle .ret{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--ink)}
+  .cycle .loopmark{display:inline-block;font-family:var(--serif);font-size:1.05em;color:var(--ink)}
+
+  /* ===== TYPE NOTE ===== */
+  .typenote{padding:clamp(60px,10vh,130px) var(--edge);border-top:1px solid var(--line);display:grid;grid-template-columns:1fr 1fr;gap:40px}
+  @media(max-width:760px){.typenote{grid-template-columns:1fr}}
+  .tn h4{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:18px}
+  .logoA{font-family:var(--sans);font-weight:700;font-size:clamp(40px,5vw,72px);letter-spacing:-.04em;display:inline-flex;align-items:flex-start}
+  .logoA .r{font-size:.3em;margin-top:.4em}
+  .lo-old{font-family:"IBM Plex Mono"} /* placeholder note */
+</style>
+</head>
+<body>
+<div class="lab"><span>Infinit® — Concept · Built in loops</span><span>Satoshi · Instrument Serif · prototip de direcció</span></div>
+
+<!-- HERO MANIFESTO -->
+<section class="hero">
+  <svg class="inf-bg" viewBox="0 0 400 200" aria-hidden="true">
+    <path d="M200,100 C200,40 80,40 80,100 C80,160 200,160 200,100 C200,40 320,40 320,100 C320,160 200,160 200,100 Z"/>
+    <path class="draw" d="M200,100 C200,40 80,40 80,100 C80,160 200,160 200,100 C200,40 320,40 320,100 C320,160 200,160 200,100 Z" pathLength="1000"/>
+  </svg>
+  <span class="ey">A strategy &amp; creative firm — Barcelona</span>
+  <h1 class="manifesto">Brands aren't built <span class="thin">once.</span> They're <em>refined</em> in loops.</h1>
+  <p class="sub">Strategy, identity and digital — connected in a continuous cycle. We don't deliver and leave; we compound. That's how brands actually <em>scale.</em></p>
+</section>
+
+<!-- THE LOOP -->
+<section class="loopsec">
+  <span class="ey">How we work · 01 → ∞</span>
+  <div class="cycle">
+    <span class="step"><span class="n">01</span>Strategy</span><span class="arr">→</span>
+    <span class="step"><span class="n">02</span>Identity</span><span class="arr">→</span>
+    <span class="step"><span class="n">03</span>Digital</span><span class="arr">→</span>
+    <span class="step"><span class="n">04</span><em class="ret">growth.</em></span>
+    <span class="loopmark">↺</span>
+  </div>
+  <p class="sub" style="margin-top:clamp(32px,5vh,60px)">Not a funnel. A loop — every cycle sharpens the last.</p>
+</section>
+
+<!-- TYPE NOTE -->
+<section class="typenote">
+  <div class="tn">
+    <h4>Display / logo — Satoshi 700 (vs grotesk black actual)</h4>
+    <span class="logoA">infinit<span class="r">®</span></span>
+    <p class="sub" style="margin-top:18px">Més tècnica i contemporània, menys "esportiva" que el black grotesk. Punts secs, no juguet.</p>
+  </div>
+  <div class="tn">
+    <h4>El serif fa la veu d'"idea"</h4>
+    <p style="font-family:var(--serif);font-size:clamp(28px,3.4vw,52px);line-height:1.15">refined · growth. · in loops · scale® · connected.</p>
+  </div>
+</section>
+
+</body>
+</html>
