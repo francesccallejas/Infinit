@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Infinit® — Palette</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#14110C;      /* warm near-black */
+    --deep:#0F0C07;
+    --sand:#DBD2C7;     /* warm taupe — alternating sections */
+    --bg:#F4F2F0;       /* beige */
+    --paper:#FBFAF9;
+    --mint:#D8F3D6;     /* accent */
+    --mint-ink:#2F8F66; /* accent text on light */
+    --muted:rgba(20,17,12,.56); --line:rgba(20,17,12,.12);
+  }
+  *{box-sizing:border-box;margin:0}
+  body{ font-family:Inter,system-ui,sans-serif; background:var(--bg); color:var(--ink); }
+  .wrap{ padding:clamp(24px,4vw,68px); }
+  .eyebrow{ font-family:"IBM Plex Mono",monospace; font-size:12px; letter-spacing:.16em; text-transform:uppercase; color:var(--muted); }
+  h1{ font-weight:600; font-size:clamp(28px,3.4vw,48px); letter-spacing:-.03em; margin-top:8px; }
+  .sub{ color:var(--muted); max-width:60ch; margin-top:10px; }
+  .sec-h{ font-family:"IBM Plex Mono",monospace; font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); margin:clamp(36px,4vw,56px) 0 18px; }
+
+  .swatches{ display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:14px; }
+  .sw{ border-radius:16px; overflow:hidden; box-shadow:inset 0 0 0 1px var(--line); }
+  .sw .chip{ height:120px; display:flex; align-items:flex-end; padding:12px; }
+  .sw .tag{ font-size:11px; font-family:"IBM Plex Mono",monospace; padding:3px 7px; border-radius:6px; background:rgba(255,255,255,.16); color:#fff; }
+  .sw.lighttag .tag{ background:rgba(20,17,12,.1); color:var(--ink); }
+  .sw .meta{ padding:13px 15px; background:var(--paper); }
+  .sw .role{ font-weight:600; font-size:15px; } .sw .hx{ font-family:"IBM Plex Mono",monospace; font-size:12px; color:var(--muted); margin-top:2px; }
+
+  /* composition bands */
+  .band{ padding:clamp(40px,6vw,90px) clamp(24px,4vw,68px); }
+  .band .eb{ font-family:"IBM Plex Mono",monospace; font-size:11px; letter-spacing:.16em; text-transform:uppercase; opacity:.6; }
+  .band h2{ font-weight:600; font-size:clamp(32px,5vw,72px); letter-spacing:-.035em; line-height:1; margin:14px 0 24px; }
+  .band h2 em{ font-family:"Instrument Serif",serif; font-style:italic; font-weight:400; }
+  .row{ display:flex; align-items:center; gap:14px; flex-wrap:wrap; }
+  .badge{ font-size:10px; font-weight:700; letter-spacing:.06em; padding:3px 8px; border-radius:8px; background:var(--mint); color:var(--ink); }
+  .cta{ display:inline-flex; align-items:center; height:46px; padding:0 24px; border-radius:12px; background:var(--mint); color:var(--ink); font-weight:600; font-size:15px; border:0; }
+  .ghost{ height:46px; padding:0 24px; border-radius:12px; font-weight:600; font-size:15px; border:0; cursor:pointer; }
+
+  .band-dark{ background:var(--ink); color:#fff; }
+  .band-dark .ghost{ background:rgba(255,255,255,.12); color:#fff; }
+  .band-sand{ background:var(--sand); color:var(--ink); }
+  .band-sand .ghost{ background:rgba(20,17,12,.07); color:var(--ink); }
+  .band-beige{ background:var(--bg); color:var(--ink); }
+  .band-beige .ghost{ background:rgba(20,17,12,.07); color:var(--ink); }
+  .lnk{ font-weight:600; text-decoration:none; border-bottom:1px solid currentColor; padding-bottom:1px; }
+  .band-dark .lnk{ color:var(--mint); } .band-sand .lnk, .band-beige .lnk{ color:var(--mint-ink); }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <span class="eyebrow">Infinit® · brand</span>
+    <h1>Palette</h1>
+    <p class="sub">Negre càlid + taupe + beige com a neutres, amb el <b>mint</b> com a accent. Seccions alternes beige ↔ taupe per donar ritme càlid; el mint apareix només en badge, CTA, enllaços i selecció.</p>
+
+    <div class="sec-h">Neutres</div>
+    <div class="swatches">
+      <div class="sw"><div class="chip" style="background:#14110C"><span class="tag">Ink · warm black</span></div><div class="meta"><div class="role">Text · seccions fosques</div><div class="hx">#14110C</div></div></div>
+      <div class="sw"><div class="chip" style="background:#0F0C07"><span class="tag">Deep</span></div><div class="meta"><div class="role">Footer · fons profund</div><div class="hx">#0F0C07</div></div></div>
+      <div class="sw lighttag"><div class="chip" style="background:#DBD2C7"><span class="tag">Sand · taupe</span></div><div class="meta"><div class="role">Seccions alternes (càlid)</div><div class="hx">#DBD2C7</div></div></div>
+      <div class="sw lighttag"><div class="chip" style="background:#F4F2F0"><span class="tag">Beige</span></div><div class="meta"><div class="role">Fons base</div><div class="hx">#F4F2F0</div></div></div>
+      <div class="sw lighttag"><div class="chip" style="background:#FBFAF9"><span class="tag">Paper</span></div><div class="meta"><div class="role">Targetes</div><div class="hx">#FBFAF9</div></div></div>
+    </div>
+
+    <div class="sec-h">Accent</div>
+    <div class="swatches">
+      <div class="sw lighttag"><div class="chip" style="background:#D8F3D6"><span class="tag">Mint</span></div><div class="meta"><div class="role">Accent · badge / CTA / selecció</div><div class="hx">#D8F3D6</div></div></div>
+      <div class="sw"><div class="chip" style="background:#2F8F66"><span class="tag">Mint deep</span></div><div class="meta"><div class="role">Accent text sobre clar</div><div class="hx">#2F8F66</div></div></div>
+    </div>
+  </div>
+
+  <div class="sec-h" style="padding:0 clamp(24px,4vw,68px)">En context — bandes alternes</div>
+  <div class="band band-dark">
+    <span class="eb">A quick look</span>
+    <h2>Brands built to <em>scale.</em></h2>
+    <div class="row"><span class="badge">NEW</span><button class="cta">Start the conversation</button><button class="ghost">View</button><a class="lnk">hello@weareinfinit.com</a></div>
+  </div>
+  <div class="band band-sand">
+    <span class="eb">Our approach</span>
+    <h2>Built for <em>growth.</em></h2>
+    <div class="row"><span class="badge">NEW</span><button class="cta">Start the conversation</button><button class="ghost">View</button><a class="lnk">hello@weareinfinit.com</a></div>
+  </div>
+  <div class="band band-beige">
+    <span class="eb">Capabilities</span>
+    <h2>Strategy, identity &amp; <em>digital.</em></h2>
+    <div class="row"><span class="badge">NEW</span><button class="cta">Start the conversation</button><button class="ghost">View</button><a class="lnk">hello@weareinfinit.com</a></div>
+  </div>
+</body>
+</html>
