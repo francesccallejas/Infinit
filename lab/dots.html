@@ -39,11 +39,11 @@
   .v1.go{ transform:rotate(45deg) scale(.66); }
   .v1.go span{ background:var(--grey); }
 
-  /* V2 — quarter turn + tighten */
-  .v2{ transition:transform .55s var(--ease), gap .45s var(--ease); }
-  .v2 span{ transition:background .4s var(--ease); }
-  .v2.go{ transform:rotate(90deg); gap:3px; }
-  .v2.go span{ background:var(--grey); }
+  /* V2 — quarter turn (fixed centre pivot) + tighten + translucent */
+  .dots.v2{ gap:5px; transform-origin:50% 50%; transition:transform .55s var(--ease), gap .5s var(--ease); }
+  .v2 span{ transition:opacity .45s var(--ease); }
+  .v2.go{ transform:rotate(90deg); gap:2px; }
+  .v2.go span{ opacity:.45; }
 
   /* V3 — staggered pulse (wave through the 4 dots) */
   .v3 span{ transition:transform .3s var(--ease), background .3s var(--ease); }
