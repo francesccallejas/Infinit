@@ -6,7 +6,7 @@
 <title>Infinit® — Brand &amp; Strategy · V2</title>
 <meta name="description" content="Strategic brand, identity and digital systems for companies navigating growth and transformation.">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
-<link rel="stylesheet" href="style.css?v=226">
+<link rel="stylesheet" href="style.css?v=227">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300..700&family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -420,7 +420,11 @@
   (function(){
     const b = document.getElementById('menuBtn'), p = document.getElementById('panel');
     const c = document.getElementById('menuClose');
-    function set(o){ p.classList.toggle('open', o); b.classList.toggle('open', o); b.setAttribute('aria-expanded', o); p.setAttribute('aria-hidden', !o); document.body.classList.toggle('menu-open', o); }
+    const bar = document.getElementById('mbar');
+    function set(o){
+      if (o) p.classList.toggle('on-light', bar.classList.contains('on-light')); // match bar's frost mode
+      p.classList.toggle('open', o); b.classList.toggle('open', o); b.setAttribute('aria-expanded', o); p.setAttribute('aria-hidden', !o); document.body.classList.toggle('menu-open', o);
+    }
     closeMenu = () => set(false);
     const card = p.querySelector('.mmenu-card');
     b.addEventListener('mouseenter', () => set(true));
