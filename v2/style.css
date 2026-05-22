@@ -376,7 +376,7 @@ em { font-family: var(--serif); font-style: normal; font-weight: 400; }
 .svc:last-child { border-bottom: 1px solid var(--line); }
 .svc .n { font-family: var(--mono); font-size: 13px; color: var(--muted); padding-top: 8px; }
 .svc h3 { font-weight: 700; font-size: clamp(24px, 2.6vw, 40px); letter-spacing: -.03em; line-height: 1.1; }
-.svc .body { color: var(--muted); font-size: 17px; line-height: 1.65; }
+.svc .body { color: var(--muted); font-weight: 300; font-size: 17px; line-height: 1.7; }
 .svc .body .tags { margin-top: 18px; display: flex; flex-wrap: wrap; gap: 8px; }
 .svc .body .tags span {
   font-family: var(--mono); font-size: 12px; letter-spacing: .04em;
@@ -510,8 +510,8 @@ em { font-family: var(--serif); font-style: normal; font-weight: 400; }
   font-weight: 700; font-size: clamp(30px, 2.8vw, 50px);
   letter-spacing: -.03em; line-height: 1.08; max-width: 26ch; margin-top: -.14em;
 }
-.founder-grid p { margin-top: 24px;
-  color: rgba(11,12,17,.82); max-width: 58ch; font-size: 17px; line-height: 1.65; }
+.founder-grid p { margin-top: 24px; font-weight: 300;
+  color: rgba(11,12,17,.82); max-width: 58ch; font-size: 17px; line-height: 1.7; }
 .founder-meta { margin-top: clamp(28px, 3.2vw, 48px);
   display: grid; grid-template-columns: repeat(3,1fr); gap: 26px; max-width: 600px; }
 .founder-meta .k { font-family: var(--mono); font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
@@ -756,7 +756,7 @@ em { font-family: var(--serif); font-style: normal; font-weight: 400; }
   animation: grDrift 20s ease-in-out infinite; }
 @keyframes grDrift { 0%,100% { background-position: 18% 50%; } 50% { background-position: 82% 50%; } }
 .approach .gr-sub { margin-top: clamp(44px,6vw,90px); max-width: 48ch; color: rgba(11,12,17,.82);
-  font-size: clamp(15px,1.3vw,19px); line-height: 1.6; }
+  font-weight: 300; font-size: clamp(15px,1.3vw,19px); line-height: 1.62; }
 /* growth word — extra travel on reveal */
 .gr-word.r { transform: translateY(72px); }
 .gr-word.r.in { transform: none; }
@@ -833,8 +833,8 @@ em { font-family: var(--serif); font-style: normal; font-weight: 400; }
   font-style: normal; font-size: clamp(18px, 1.75vw, 29px); color: var(--muted); }
 .svc-row:hover .svc-tag { color: rgba(244,242,240,.6); }
 .svc-body { position: relative; }
-.svc-desc { color: rgba(11,12,17,.82); font-size: clamp(16px, 1.3vw, 21px);
-  line-height: 1.55; max-width: 52ch; margin: 0;
+.svc-desc { color: rgba(11,12,17,.82); font-weight: 300; font-size: clamp(16px, 1.3vw, 21px);
+  line-height: 1.6; max-width: 52ch; margin: 0;
   transition: opacity .35s var(--ease); }
 .svc-subs {
   position: absolute; inset: 0; display: flex; align-items: center;
@@ -1106,7 +1106,7 @@ body.menu-open .fab.show { opacity: 0; transform: translateY(12px); pointer-even
 .svc-card .svc-tag2 { font-family: var(--serif); font-style: normal; color: var(--muted);
   font-size: clamp(22px,2.4vw,38px); display: block; line-height: 1.05; margin-bottom: clamp(20px,2.6vh,34px); }
 .svc-card .svc-card-desc { color: rgba(11,12,17,.82); max-width: 46ch; margin: 0 0 clamp(18px,2.4vh,30px);
-  font-size: clamp(16px,1.3vw,21px); line-height: 1.6; }
+  font-weight: 300; font-size: clamp(16px,1.3vw,21px); line-height: 1.62; }
 .svc-card .svc-subs2 { display: flex; flex-wrap: wrap; gap: 9px; max-width: 62ch; }
 .svc-card .svc-subs2 span { font-family: var(--mono); font-size: 12px; border: 1px solid var(--line);
   border-radius: 999px; padding: 7px 13px; white-space: nowrap; color: var(--muted); }
