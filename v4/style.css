@@ -3,11 +3,12 @@
    ========================================================================= */
 :root {
   --bg:      #F4F2F0;
-  --ink:     #0B0C11;
-  --deep:    #08080C;
-  --muted:   rgba(11,12,17,.56);
-  --faint:   rgba(11,12,17,.20);
-  --line:    rgba(11,12,17,.11);
+  --sand:    #DBD2C7;     /* warm taupe — alternating sections */
+  --ink:     #14110C;     /* warm near-black (no blue undertone) */
+  --deep:    #0F0C07;
+  --muted:   rgba(20,17,12,.56);
+  --faint:   rgba(20,17,12,.20);
+  --line:    rgba(20,17,12,.12);
   --accent:    #D8F3D6;   /* pale mint — bg/badge/selection/hover fills (with ink text) */
   --accent-ink: #2F8F66;  /* deeper mint — accent TEXT on light backgrounds */
   --clay:    #A89887;
@@ -284,7 +285,7 @@ main > section:not(.hero), main > footer { position: relative; z-index: 1; }
 /* =========================================================================
    APPROACH  (pinned · statements left, video right · grid-aligned)
    ========================================================================= */
-.approach { position: relative; background: var(--bg); }
+.approach { position: relative; background: var(--sand); }
 .approach-track { height: 360vh; }
 .approach-sticky {
   position: sticky; top: 0; height: 100svh; overflow: hidden;
@@ -389,7 +390,7 @@ main > section:not(.hero), main > footer { position: relative; z-index: 1; }
 /* =========================================================================
    WORK
    ========================================================================= */
-.work { padding-block: var(--section); }
+.work { padding-block: var(--section); background: var(--bg); }
 .work-list {
   --off: clamp(70px, 11vw, 150px);   /* right column drop */
   display: grid; grid-template-columns: 1fr 1fr;
@@ -484,7 +485,7 @@ main > section:not(.hero), main > footer { position: relative; z-index: 1; }
    FOUNDER
    ========================================================================= */
 .founder, .studio { padding-block: var(--section); }
-.studio { padding-block: clamp(180px, 25vh, 320px) clamp(48px, 7vh, 96px); }
+.studio { padding-block: clamp(180px, 25vh, 320px) clamp(48px, 7vh, 96px); background: var(--sand); }
 .studio-clients { margin-top: clamp(48px, 7vw, 96px); }
 .founder-side { display: flex; flex-direction: column; gap: clamp(18px, 2vw, 28px); align-self: start; }
 .connect-btn {
@@ -708,7 +709,7 @@ main > section:not(.hero), main > footer { position: relative; z-index: 1; }
    CTA band
    ========================================================================= */
 .cta-band {
-  background: #DCD5C8; color: var(--ink);
+  background: var(--sand); color: var(--ink);
   padding-block: clamp(140px,20vh,260px);
 }
 .cta-band .wrap { text-align: center; }
