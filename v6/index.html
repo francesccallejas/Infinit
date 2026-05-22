@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Infinit® — V6 · Expressive / Kinetic loop</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://api.fontshare.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  :root{
+    --bg:#E7E4DD;--ink:#121316;--paper:#F1EFEA;--stone:#CFC9BD;--accent:#C2683E;--muted:rgba(18,19,22,.5);--line:rgba(18,19,22,.14);
+    --sans:"Satoshi",sans-serif;--serif:"Instrument Serif",serif;--mono:"IBM Plex Mono",monospace;
+    --ease:cubic-bezier(.16,1,.3,1);--edge:clamp(20px,4.5vw,72px)
+  }
+  body{font-family:var(--sans);background:var(--bg);color:var(--ink);overflow-x:hidden}
+  .bar{position:fixed;inset:0 0 auto 0;display:flex;justify-content:space-between;align-items:center;padding:18px var(--edge);z-index:30;mix-blend-mode:difference;color:#fff}
+  .bar .lg{font-weight:900;font-size:19px;letter-spacing:-.03em}
+  .bar .mn{font-family:var(--mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase;cursor:pointer;background:none;border:0;color:#fff;display:flex;align-items:center;gap:8px}
+  .bar .mn .dot{width:8px;height:8px;border-radius:50%;background:var(--accent);display:inline-block}
+  .ix{position:fixed;inset:0;background:var(--accent);color:#fff;z-index:40;clip-path:circle(0% at calc(100% - 60px) 38px);transition:clip-path .7s var(--ease);display:flex;flex-direction:column;justify-content:center;padding:0 var(--edge);gap:0}
+  .ix.open{clip-path:circle(150% at calc(100% - 60px) 38px)}
+  .ix a{font-weight:500;font-size:clamp(44px,10vw,150px);letter-spacing:-.04em;color:#fff;text-decoration:none;line-height:.98}
+  .ix a em{font-family:var(--serif);font-style:italic;font-weight:400}
+  .ix .x{position:absolute;top:18px;right:var(--edge);font-family:var(--mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase;cursor:pointer;background:none;border:0;color:#fff}
+
+  .reveal{opacity:0;transform:translateY(34px);transition:opacity 1s var(--ease),transform 1s var(--ease)}
+  .reveal.in{opacity:1;transform:none}
+
+  /* HERO kinetic */
+  .hero{min-height:128vh;padding:26vh var(--edge) 0;position:relative}
+  .ey{font-family:var(--mono);font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:clamp(20px,4vh,44px)}
+  .hl{font-weight:700;font-size:clamp(48px,12vw,210px);line-height:.86;letter-spacing:-.05em;text-transform:uppercase}
+  .hl .ser{font-family:var(--serif);font-weight:400;font-style:italic;text-transform:none;letter-spacing:-.01em;display:block}
+  .hl .acc{color:var(--accent)}
+  .inf{position:absolute;right:var(--edge);top:30vh;width:min(34vw,420px);opacity:.9}
+  .inf path{fill:none;stroke:var(--ink);stroke-width:2.5;stroke-dasharray:560;stroke-dashoffset:560;animation:loop 6s var(--ease) infinite}
+  @keyframes loop{0%{stroke-dashoffset:560}55%{stroke-dashoffset:0}100%{stroke-dashoffset:-560}}
+  .hero .lede{position:absolute;left:var(--edge);bottom:7vh;max-width:38ch;font-weight:300;font-size:clamp(15px,1.3vw,19px);line-height:1.6;color:rgba(18,19,22,.72)}
+  .hero .lede em{font-family:var(--serif);font-style:italic}
+
+  /* kinetic marquee process */
+  .marq{overflow:hidden;border-block:1px solid var(--line);padding:clamp(20px,3vh,40px) 0;background:var(--ink);color:var(--bg)}
+  .marq .t{display:flex;gap:40px;width:max-content;animation:scroll 26s linear infinite;font-weight:500;font-size:clamp(30px,4vw,64px);letter-spacing:-.03em;white-space:nowrap}
+  .marq .t em{font-family:var(--serif);font-style:italic;color:var(--accent)}
+  .marq .t .d{color:rgba(244,242,240,.4)}
+  @keyframes scroll{to{transform:translateX(-50%)}}
+
+  .sec{padding:clamp(80px,14vh,200px) var(--edge)}
+  .kic{font-family:var(--mono);font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:clamp(28px,5vh,56px);display:block}
+  .belief{font-weight:500;font-size:clamp(30px,5vw,92px);line-height:1.04;letter-spacing:-.035em;max-width:18ch}
+  .belief em{font-family:var(--serif);font-style:italic;font-weight:400}
+
+  /* central project grid */
+  .pgrid{display:grid;grid-template-columns:repeat(6,1fr);gap:clamp(8px,1vw,16px);grid-auto-rows:minmax(120px,17vh)}
+  .pcard{border-radius:8px;overflow:hidden;position:relative;opacity:0;transform:scale(.92);transition:opacity .8s var(--ease),transform .9s var(--ease)}
+  .pgrid.in .pcard{opacity:1;transform:none}
+  .pgrid.in .pcard:nth-child(2){transition-delay:.08s}.pgrid.in .pcard:nth-child(3){transition-delay:.16s}.pgrid.in .pcard:nth-child(4){transition-delay:.24s}
+  .pcard img{width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ease)}.pcard:hover img{transform:scale(1.06)}
+  .pcard .cap{position:absolute;left:12px;bottom:10px;color:#fff;font-weight:600;text-shadow:0 1px 12px rgba(0,0,0,.4)}
+  .p1{grid-column:1/4;grid-row:span 2}.p2{grid-column:4/7;grid-row:span 1}.p3{grid-column:4/6;grid-row:span 1}.p4{grid-column:6/7;grid-row:span 1}
+  @media(max-width:760px){.pgrid{grid-template-columns:1fr 1fr}.p1,.p2,.p3,.p4{grid-column:auto;grid-row:auto}.pcard{aspect-ratio:4/3}}
+
+  .foot{background:var(--accent);color:#fff;padding:clamp(80px,14vh,180px) var(--edge);min-height:74vh;display:flex;flex-direction:column;justify-content:space-between}
+  .foot .big{font-weight:700;font-size:clamp(40px,9vw,150px);line-height:.92;letter-spacing:-.04em;text-transform:uppercase}
+  .foot .big em{font-family:var(--serif);font-style:italic;font-weight:400;text-transform:none}
+  .foot .base{display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.7);margin-top:50px}
+</style>
+</head>
+<body>
+<div class="bar"><span class="lg">Infinit®</span><button class="mn" id="mn"><span class="dot"></span> Menu</button></div>
+<nav class="ix" id="ix"><button class="x" id="x">Close</button><a href="#">Work</a><a href="#"><em>Approach</em></a><a href="#">Studio</a><a href="#">Contact</a></nav>
+
+<section class="hero">
+  <span class="ey">A strategy &amp; creative firm — Barcelona</span>
+  <h1 class="hl">Built<br>to <span class="acc">scale</span><span class="ser">— in infinite loops.</span></h1>
+  <svg class="inf" viewBox="0 0 200 100" aria-hidden="true"><path pathLength="560" d="M100,50 C100,18 42,18 42,50 C42,82 100,82 100,50 C100,18 158,18 158,50 C158,82 100,82 100,50 Z"/></svg>
+  <p class="lede">We take brands that build real things — industrial, B2B, founder-led — and bring them into the digital era. <em>Refined, loop after loop.</em></p>
+</section>
+
+<div class="marq"><div class="t"><span>Strategy</span><span class="d">→</span><span>Identity</span><span class="d">→</span><span>Digital</span><span class="d">→</span><em>growth.</em><span class="d">↺</span><span>Strategy</span><span class="d">→</span><span>Identity</span><span class="d">→</span><span>Digital</span><span class="d">→</span><em>growth.</em><span class="d">↺</span></div></div>
+
+<section class="sec">
+  <span class="kic">Our belief — 02</span>
+  <p class="belief reveal">Most studios polish surfaces. We <em>rewire</em> how a brand shows up.</p>
+</section>
+
+<section class="sec">
+  <span class="kic">Selected work — 03</span>
+  <div class="pgrid" id="pgrid">
+    <div class="pcard p1"><img src="../project/assets/images/Bunnker Final.webp" alt=""><span class="cap">Bunnker</span></div>
+    <div class="pcard p2"><img src="../project/assets/images/Relats Brand.webp" alt=""><span class="cap">Relats</span></div>
+    <div class="pcard p3"><img src="../project/assets/imagery/Julia Yosemite.webp" alt=""><span class="cap">Julià</span></div>
+    <div class="pcard p4"><img src="../project/assets/images/ipad-sunset.webp" alt=""><span class="cap">Instellar</span></div>
+  </div>
+</section>
+
+<footer class="foot">
+  <p class="big reveal">Let's <em>build</em> what's next.</p>
+  <div class="base"><span>hello@weareinfinit.com</span><span>+34 689 022 383</span><span>© 2026 Infinit®</span></div>
+</footer>
+
+<script>
+  const mn=document.getElementById('mn'),ix=document.getElementById('ix'),x=document.getElementById('x');
+  mn.onclick=()=>ix.classList.add('open');x.onclick=()=>ix.classList.remove('open');
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.2});
+  document.querySelectorAll('.reveal,#pgrid').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
