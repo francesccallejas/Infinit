@@ -230,7 +230,8 @@ em { font-family: var(--serif); font-style: normal; font-weight: 400; }
 }
 .hero-h {
   font-family: var(--sans);
-  font-weight: 500; font-size: clamp(52px, 10.5vw, 168px); line-height: .92; letter-spacing: -.04em;
+  font-weight: 500; font-size: clamp(48px, 9.6vw, 156px); line-height: .94; letter-spacing: -.02em;
+  text-transform: uppercase;
   margin-bottom: clamp(24px, 3vw, 44px);
   opacity: 0; transform: translateY(26px); animation: heroRise 1.1s var(--ease) 2s forwards;
 }
@@ -374,7 +375,7 @@ em { font-family: var(--serif); font-style: normal; font-weight: 400; }
 .svc:last-child { border-bottom: 1px solid var(--line); }
 .svc .n { font-family: var(--mono); font-size: 13px; color: var(--muted); padding-top: 8px; }
 .svc h3 { font-weight: 500; font-size: clamp(24px, 2.6vw, 40px); letter-spacing: -.03em; line-height: 1.1; }
-.svc .body { color: var(--muted); font-weight: 300; font-size: 17px; line-height: 1.7; }
+.svc .body { color: var(--muted); font-weight: 400; font-size: 17px; line-height: 1.7; }
 .svc .body .tags { margin-top: 18px; display: flex; flex-wrap: wrap; gap: 8px; }
 .svc .body .tags span {
   font-family: var(--mono); font-size: 12px; letter-spacing: .04em;
@@ -508,7 +509,7 @@ em { font-family: var(--serif); font-style: normal; font-weight: 400; }
   font-weight: 500; font-size: clamp(30px, 2.8vw, 50px);
   letter-spacing: -.03em; line-height: 1.08; max-width: 26ch; margin-top: -.14em;
 }
-.founder-grid p { margin-top: 24px; font-weight: 300;
+.founder-grid p { margin-top: 24px; font-weight: 400;
   color: rgba(11,12,17,.82); max-width: 58ch; font-size: 17px; line-height: 1.7; }
 .founder-meta { margin-top: clamp(28px, 3.2vw, 48px);
   display: grid; grid-template-columns: repeat(3,1fr); gap: 26px; max-width: 600px; }
@@ -747,14 +748,14 @@ em { font-family: var(--serif); font-style: normal; font-weight: 400; }
 
 /* ---- Approach: "built for growth" — image-filled giant word ---- */
 .approach { position: relative; background: var(--bg); padding-block: clamp(90px,16vh,200px); overflow: hidden; }
-.approach .gr-lead { font-weight: 300; font-size: clamp(28px,3vw,52px); letter-spacing: -.02em; line-height: 1.04; margin-top: 6px; }
+.approach .gr-lead { font-weight: 400; font-size: clamp(28px,3vw,52px); letter-spacing: -.02em; line-height: 1.04; margin-top: 6px; }
 .approach .gr-word { font-family: var(--serif); font-weight: 400; font-size: clamp(104px,25vw,480px); letter-spacing: -.022em; line-height: .82; margin: 0; }
 .gr-fill { -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent;
   background-image: url('../project/assets/imagery/Julia Yosemite.webp'); background-size: 180% 200%; background-position: 30% 50%;
   animation: grDrift 20s ease-in-out infinite; }
 @keyframes grDrift { 0%,100% { background-position: 18% 50%; } 50% { background-position: 82% 50%; } }
 .approach .gr-sub { margin-top: clamp(44px,6vw,90px); max-width: 48ch; color: rgba(11,12,17,.82);
-  font-weight: 300; font-size: clamp(15px,1.3vw,19px); line-height: 1.62; }
+  font-weight: 400; font-size: clamp(15px,1.3vw,19px); line-height: 1.62; }
 /* growth word — extra travel on reveal */
 .gr-word.r { transform: translateY(72px); }
 .gr-word.r.in { transform: none; }
@@ -831,7 +832,7 @@ em { font-family: var(--serif); font-style: normal; font-weight: 400; }
   font-style: normal; font-size: clamp(18px, 1.75vw, 29px); color: var(--muted); }
 .svc-row:hover .svc-tag { color: rgba(244,242,240,.6); }
 .svc-body { position: relative; }
-.svc-desc { color: rgba(11,12,17,.82); font-weight: 300; font-size: clamp(16px, 1.3vw, 21px);
+.svc-desc { color: rgba(11,12,17,.82); font-weight: 400; font-size: clamp(16px, 1.3vw, 21px);
   line-height: 1.6; max-width: 52ch; margin: 0;
   transition: opacity .35s var(--ease); }
 .svc-subs {
@@ -1077,8 +1078,8 @@ body.menu-open .fab.show { opacity: 0; transform: translateY(12px); pointer-even
 .statement.in { opacity: 1; transform: none; }
 .statement .wrap { position: relative; z-index: 2; }
 .statement .eyebrow { color: rgba(11,12,17,.5); margin-bottom: clamp(26px,3.5vw,48px); }
-.stmt-line { font-weight: 300; font-size: clamp(30px,4.6vw,82px); letter-spacing: -.03em; line-height: 1.14;
-  max-width: 24ch; margin: 0 auto; }
+.stmt-line { font-weight: 400; font-size: clamp(28px,4.2vw,72px); letter-spacing: -.01em; line-height: 1.14;
+  text-transform: uppercase; max-width: 26ch; margin: 0 auto; }
 .stmt-line em { font-family: var(--serif); font-style: normal; font-weight: 400; }
 .stmt-line .wd { opacity: .2; transition: opacity .5s var(--ease); }
 .stmt-line.lit .wd { opacity: 1; }
@@ -1104,7 +1105,7 @@ body.menu-open .fab.show { opacity: 0; transform: translateY(12px); pointer-even
 .svc-card .svc-tag2 { font-family: var(--serif); font-style: normal; color: var(--muted);
   font-size: clamp(22px,2.4vw,38px); display: block; line-height: 1.05; margin-bottom: clamp(20px,2.6vh,34px); }
 .svc-card .svc-card-desc { color: rgba(11,12,17,.82); max-width: 46ch; margin: 0 0 clamp(18px,2.4vh,30px);
-  font-weight: 300; font-size: clamp(16px,1.3vw,21px); line-height: 1.62; }
+  font-weight: 400; font-size: clamp(16px,1.3vw,21px); line-height: 1.62; }
 .svc-card .svc-subs2 { display: flex; flex-wrap: wrap; gap: 9px; max-width: 62ch; }
 .svc-card .svc-subs2 span { font-family: var(--mono); font-size: 12px; border: 1px solid var(--line);
   border-radius: 999px; padding: 7px 13px; white-space: nowrap; color: var(--muted); }
