@@ -1157,9 +1157,13 @@ body.menu-open { overflow: hidden; }
 .mbar-dots {
   width: 32px; height: 32px;
   display: grid; grid-template-columns: repeat(2, auto); grid-template-rows: repeat(2, auto);
-  place-content: center; gap: 5px; background: none;
-  color: inherit; transition: transform .55s var(--ease), gap .5s var(--ease), color .45s var(--ease);
+  place-content: center; gap: 5px;
+  background: none; border: none; outline: none; padding: 0;
+  -webkit-appearance: none; appearance: none; box-shadow: none;
+  color: inherit; cursor: pointer;
+  transition: transform .55s var(--ease), gap .5s var(--ease), color .45s var(--ease);
 }
+.mbar-dots:focus-visible { outline: 2px solid currentColor; outline-offset: 4px; }
 .mbar-dots span { width: 4.5px; height: 4.5px; border-radius: 1.5px; background: currentColor; }
 .mbar-dots:hover { transform: rotate(45deg); gap: 2px; color: rgba(160,160,166,.95); }
 
