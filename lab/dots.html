@@ -28,8 +28,8 @@
     letter-spacing:.12em; text-transform:uppercase; color:var(--grey); }
   .name{ position:absolute; left:16px; bottom:14px; font-size:14px; font-weight:600; }
 
-  /* base dots — 2x2 grid */
-  .dots{ width:44px; height:44px; display:grid; grid-template-columns:repeat(2,1fr); grid-template-rows:repeat(2,1fr);
+  /* base dots — content-sized 2x2 grid, centred in the box → true centre pivot */
+  .dots{ width:44px; height:44px; display:grid; grid-template-columns:repeat(2,auto); grid-template-rows:repeat(2,auto);
     place-content:center; gap:7px; }
   .dots span{ width:6px; height:6px; border-radius:2px; background:var(--ink); display:block; }
 
