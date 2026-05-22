@@ -6,7 +6,7 @@
 <title>Infinit® — Brand &amp; Strategy · V2</title>
 <meta name="description" content="Strategic brand, identity and digital systems for companies navigating growth and transformation.">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
-<link rel="stylesheet" href="style.css?v=212">
+<link rel="stylesheet" href="style.css?v=213">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -131,24 +131,6 @@
           <span class="hero-cue">Scroll ↓</span>
         </div>
       </div>
-    </div>
-  </section>
-
-  <!-- TRIO (3 media boxes · auto-cycling carousel) -->
-  <section class="trio" id="showcase">
-    <div class="trio-grid" id="trioGrid">
-      <figure class="trio-box is-active">
-        <img src="../project/assets/images/astronaut-pink-full.avif" alt="">
-        <figcaption><span class="tb-n">01</span><span class="tb-t">Concept</span></figcaption>
-      </figure>
-      <figure class="trio-box">
-        <img src="../project/assets/imagery/relats-industrial.webp" alt="">
-        <figcaption><span class="tb-n">02</span><span class="tb-t">Craft</span></figcaption>
-      </figure>
-      <figure class="trio-box">
-        <img src="../project/assets/images/ipad-sunset.webp" alt="">
-        <figcaption><span class="tb-n">03</span><span class="tb-t">Scale</span></figcaption>
-      </figure>
     </div>
   </section>
 
@@ -466,18 +448,6 @@
       el.textContent = t + ' BCN';
     };
     tick(); setInterval(tick, 1000);
-  })();
-
-  /* ---- trio: auto-cycle the active box ---- */
-  (function(){
-    const grid = document.getElementById('trioGrid'); if (!grid) return;
-    const boxes = [...grid.querySelectorAll('.trio-box')]; if (!boxes.length) return;
-    let i = 0, timer = null;
-    const show = n => boxes.forEach((b,k) => b.classList.toggle('is-active', k === n));
-    const start = () => { stop(); timer = setInterval(() => { i = (i+1) % boxes.length; show(i); }, 2600); };
-    const stop = () => { if (timer) clearInterval(timer); };
-    boxes.forEach((b,k) => { b.addEventListener('mouseenter', () => { i = k; show(i); stop(); }); b.addEventListener('mouseleave', start); });
-    show(0); start();
   })();
 
   /* ---- hero: crossfade through conceptual imagery every 1.5s ---- */
