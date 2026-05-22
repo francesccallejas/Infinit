@@ -888,30 +888,18 @@ em { font-family: var(--serif); font-style: normal; font-weight: 400; }
 }
 .reel-ctrls.show { opacity: 1; transform: none; pointer-events: auto; }
 .rc-btn {
-  position: relative; overflow: hidden;
   width: 40px; height: 40px; border-radius: 13px;
   display: grid; place-items: center; cursor: pointer; color: #fff;
-  background: linear-gradient(155deg, rgba(255,255,255,.30), rgba(255,255,255,.07));
-  backdrop-filter: blur(14px) saturate(185%) brightness(1.08);
-  -webkit-backdrop-filter: blur(14px) saturate(185%) brightness(1.08);
-  border: 1px solid rgba(255,255,255,.30);
-  box-shadow: inset 0 1px 0 rgba(255,255,255,.55), inset 0 -2px 3px rgba(0,0,0,.12), 0 6px 18px -8px rgba(0,0,0,.45);
-  transition: transform .35s var(--ease-rev), box-shadow .35s var(--ease), background .35s var(--ease);
+  background: rgba(255,255,255,.14);
+  backdrop-filter: blur(18px) saturate(160%);
+  -webkit-backdrop-filter: blur(18px) saturate(160%);
+  border: 0;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.4), 0 12px 30px -12px rgba(0,0,0,.4);
+  transition: background .3s var(--ease), transform .35s var(--ease-rev), box-shadow .3s var(--ease);
 }
-.rc-btn::before {
-  content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
-  background: radial-gradient(130% 90% at 28% -10%, rgba(255,255,255,.5), rgba(255,255,255,0) 58%);
-  opacity: .75; transition: opacity .35s var(--ease);
-}
-.rc-btn:hover {
-  transform: translateY(-2px);
-  background: linear-gradient(155deg, rgba(255,255,255,.38), rgba(255,255,255,.12));
-  box-shadow: inset 0 1px 0 rgba(255,255,255,.65), inset 0 -2px 3px rgba(0,0,0,.12), 0 12px 26px -8px rgba(0,0,0,.5);
-}
-.rc-btn:hover::before { opacity: 1; }
+.rc-btn:hover { background: rgba(255,255,255,.22); transform: translateY(-2px); }
 .rc-btn:active { transform: scale(.95); }
-.rc-btn svg.ic { width: 15px; height: 15px; grid-area: 1/1; position: relative; z-index: 1; }
-.rc-btn { display: grid; }
+.rc-btn svg.ic { width: 15px; height: 15px; grid-area: 1/1; }
 .rc-sound .ic-on, .rc-sound.on .ic-off { display: none; }
 .rc-sound.on .ic-on, .rc-sound .ic-off { display: block; }
 .rc-play .ic-playi, .rc-play.paused .ic-pause { display: none; }
