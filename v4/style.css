@@ -13,8 +13,8 @@
   --blue-gray: #7F838B;
   --paper:   #FBFAF9;
 
-  --sans:  "Geist", "Inter", system-ui, sans-serif;
-  --menu-font: "Geist", system-ui, sans-serif;
+  --sans:  "Inter", system-ui, sans-serif;
+  --menu-font: "Inter", system-ui, sans-serif;
   --serif: "Instrument Serif", Georgia, serif;
   --mono:  "IBM Plex Mono", ui-monospace, monospace;
 
@@ -230,8 +230,7 @@ em { font-family: var(--serif); font-style: normal; font-weight: 400; }
 }
 .hero-h {
   font-family: var(--sans);
-  font-weight: 500; font-size: clamp(48px, 9.6vw, 156px); line-height: .94; letter-spacing: -.02em;
-  text-transform: uppercase;
+  font-weight: 500; font-size: clamp(52px, 10.5vw, 168px); line-height: .92; letter-spacing: -.04em;
   margin-bottom: clamp(24px, 3vw, 44px);
   opacity: 0; transform: translateY(26px); animation: heroRise 1.1s var(--ease) 2s forwards;
 }
@@ -1078,8 +1077,8 @@ body.menu-open .fab.show { opacity: 0; transform: translateY(12px); pointer-even
 .statement.in { opacity: 1; transform: none; }
 .statement .wrap { position: relative; z-index: 2; }
 .statement .eyebrow { color: rgba(11,12,17,.5); margin-bottom: clamp(26px,3.5vw,48px); }
-.stmt-line { font-weight: 400; font-size: clamp(28px,4.2vw,72px); letter-spacing: -.01em; line-height: 1.14;
-  text-transform: uppercase; max-width: 26ch; margin: 0 auto; }
+.stmt-line { font-weight: 400; font-size: clamp(30px,4.6vw,82px); letter-spacing: -.03em; line-height: 1.14;
+  max-width: 24ch; margin: 0 auto; }
 .stmt-line em { font-family: var(--serif); font-style: normal; font-weight: 400; }
 .stmt-line .wd { opacity: .2; transition: opacity .5s var(--ease); }
 .stmt-line.lit .wd { opacity: 1; }
