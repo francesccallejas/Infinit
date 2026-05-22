@@ -6,7 +6,7 @@
 <title>Infinit® — Brand &amp; Strategy · V2</title>
 <meta name="description" content="Strategic brand, identity and digital systems for companies navigating growth and transformation.">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
-<link rel="stylesheet" href="style.css?v=189">
+<link rel="stylesheet" href="style.css?v=190">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300..900&family=Inter:wght@700&family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -142,10 +142,10 @@
   <!-- APPROACH (built for growth — image-filled word) -->
   <section class="approach" id="approach">
     <div class="wrap">
-      <span class="eyebrow">Our approach</span>
-      <p class="gr-lead">We're built for</p>
-      <h2 class="gr-word"><span class="gr-fill">growth.</span></h2>
-      <p class="gr-sub">Strategy connected to execution, identity that scales, digital designed to compound. Real growth, not noise.</p>
+      <span class="eyebrow r">Our approach</span>
+      <p class="gr-lead r d1">We're built for</p>
+      <h2 class="gr-word r d2"><span class="gr-fill">growth.</span></h2>
+      <p class="gr-sub r d3">Strategy connected to execution, identity that scales, digital designed to compound. Real growth, not noise.</p>
     </div>
   </section>
 
@@ -421,16 +421,6 @@
         io.unobserve(sec);
       }
     }), { threshold: .35 });
-    io.observe(sec);
-  })();
-
-  /* ---- approach (growth) signature reveal ---- */
-  (function(){
-    const sec = document.querySelector('.approach'); if (!sec) return;
-    if (!('IntersectionObserver' in window)) { sec.classList.add('lit'); return; }
-    const io = new IntersectionObserver(es => es.forEach(e => {
-      if (e.isIntersecting) { sec.classList.add('lit'); io.unobserve(sec); }
-    }), { threshold: 0, rootMargin: '0px 0px -18% 0px' });
     io.observe(sec);
   })();
 

@@ -197,7 +197,6 @@ em { font-family: var(--serif); font-style: normal; font-weight: 400; }
 @media (prefers-reduced-motion: reduce) {
   .r, .r.in { transition: opacity .4s linear; transform: none; }
   .intro { animation: introOut .4s linear 1.2s forwards; }
-  .approach .eyebrow, .approach .gr-lead, .approach .gr-sub, .approach .gr-word { opacity: 1; transform: none; }
 }
 
 /* =========================================================================
@@ -755,14 +754,9 @@ em { font-family: var(--serif); font-style: normal; font-weight: 400; }
 @keyframes grDrift { 0%,100% { background-position: 18% 50%; } 50% { background-position: 82% 50%; } }
 .approach .gr-sub { margin-top: clamp(44px,6vw,90px); max-width: 48ch; color: rgba(11,12,17,.82);
   font-size: clamp(15px,1.3vw,19px); line-height: 1.6; }
-/* signature reveal */
-.approach .eyebrow, .approach .gr-lead { opacity: 0; transform: translateY(28px); transition: opacity 1s var(--ease-rev), transform 1s var(--ease-rev); }
-.approach .gr-word { opacity: 0; transform: translateY(72px); transition: opacity 1.2s var(--ease-rev) .14s, transform 1.25s var(--ease-rev) .14s; }
-.approach .gr-sub { opacity: 0; transform: translateY(24px); transition: opacity 1s var(--ease-rev) .5s, transform 1s var(--ease-rev) .5s; }
-.approach.lit .eyebrow { opacity: 1; transform: none; }
-.approach.lit .gr-lead { opacity: 1; transform: none; transition-delay: .07s; }
-.approach.lit .gr-word { opacity: 1; transform: none; }
-.approach.lit .gr-sub { opacity: 1; transform: none; }
+/* growth word — extra travel on reveal */
+.gr-word.r { transform: translateY(72px); }
+.gr-word.r.in { transform: none; }
 @media (max-width: 600px) {
   .approach { padding-block: clamp(48px,8vh,88px); }
   .approach .gr-word { font-size: clamp(81px,27vw,134px); }
