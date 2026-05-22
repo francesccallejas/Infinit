@@ -97,13 +97,40 @@
 
 <main id="top">
 
-  <!-- HERO -->
-  <section class="hero wrap">
-    <h1 class="hero-h">
-      <span class="ln"><span class="w"><i>Brands</i></span> <span class="w"><i>built</i></span></span>
-      <span class="ln"><span class="w"><i>to</i></span> <span class="w"><i class="hero-fill">scale<sup class="hero-reg">&reg;</sup>.</i></span></span>
-    </h1>
-    <span class="hero-cue">Scroll ↓</span>
+  <!-- HERO (conceptual image · TQ-style) -->
+  <section class="hero" id="hero">
+    <div class="hero-media">
+      <img src="../project/assets/images/astronaut-red-portrait.png" alt="">
+      <div class="hero-scrim"></div>
+    </div>
+    <div class="hero-inner">
+      <h1 class="hero-h">
+        <span class="ln">Brands built</span>
+        <span class="ln">to <em>scale</em><sup class="hero-reg">&reg;</sup></span>
+      </h1>
+      <div class="hero-foot">
+        <p class="hero-tag">Brand &amp; Strategy firm · Barcelona — Worldwide</p>
+        <span class="hero-cue">Scroll ↓</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRIO (3 media boxes · auto-cycling carousel) -->
+  <section class="trio" id="showcase">
+    <div class="trio-grid" id="trioGrid">
+      <figure class="trio-box is-active">
+        <img src="../project/assets/images/astronaut-pink-full.avif" alt="">
+        <figcaption><span class="tb-n">01</span><span class="tb-t">Concept</span></figcaption>
+      </figure>
+      <figure class="trio-box">
+        <img src="../project/assets/imagery/relats-industrial.webp" alt="">
+        <figcaption><span class="tb-n">02</span><span class="tb-t">Craft</span></figcaption>
+      </figure>
+      <figure class="trio-box">
+        <img src="../project/assets/images/ipad-sunset.webp" alt="">
+        <figcaption><span class="tb-n">03</span><span class="tb-t">Scale</span></figcaption>
+      </figure>
+    </div>
   </section>
 
   <!-- STATEMENT (warm-gray manifest, under hero) -->
@@ -114,46 +141,6 @@
     </div>
   </section>
 
-  <!-- REEL (grows from small → full, fast montage + video + logo) -->
-  <section class="reel" id="reel">
-    <div class="reel-track" id="reelTrack">
-      <div class="reel-stick">
-        <div class="reel-win">
-          <div class="reel-shot on" style="background-image:url('../project/assets/images/Bunnker Final.webp')"></div>
-          <div class="reel-shot" style="background-image:url('../project/assets/imagery/relats-industrial.webp')"></div>
-          <div class="reel-shot" style="background-image:url('../project/assets/imagery/Almirall.webp')"></div>
-          <div class="reel-shot" style="background-image:url('../project/assets/imagery/Julia Yosemite.webp')"></div>
-          <div class="reel-shot" style="background-image:url('../project/assets/imagery/raincoat.webp')"></div>
-          <div class="reel-shot" style="background-image:url('../project/assets/images/astronaut-red-portrait.png')"></div>
-          <div class="reel-shot" style="background-image:url('../project/assets/images/ipad-sunset.webp')"></div>
-          <div class="reel-shot" style="background-image:url('../project/assets/images/knob-orange.webp')"></div>
-          <div class="reel-shot" style="background-image:url('../project/assets/images/astronaut-pink-full.avif')"></div>
-          <div class="reel-shot" style="background-image:url('../project/assets/images/rainy-day.webp')"></div>
-          <canvas class="reel-vid" id="reelVid" data-frames="159" data-seq="../project/assets/imagery/approach-seq/"></canvas>
-          <audio id="reelAudio" loop preload="auto" src="../project/assets/audio/reel.mp3"></audio>
-          <div class="reel-logo" id="reelLogo">
-            <svg viewBox="0 0 374 206" fill="none" aria-hidden="true">
-              <path d="M 108.196 34 L 182.196 34 Q 201.196 34 194.140 51.641 L 153.056 154.359 Q 146 172 127 172 L 53 172 Q 34 172 41.056 154.359 L 82.140 51.641 Q 89.196 34 108.196 34 Z" fill="currentColor"/>
-              <path d="M 108.196 34 L 182.196 34 Q 201.196 34 194.140 51.641 L 153.056 154.359 Q 146 172 127 172 L 53 172 Q 34 172 41.056 154.359 L 82.140 51.641 Q 89.196 34 108.196 34 Z" fill="currentColor" transform="translate(139 0)"/>
-            </svg>
-          </div>
-          <div class="reel-ctrls">
-            <button class="rc-btn rc-sound" id="rcSound" aria-label="Toggle sound">
-              <svg class="ic ic-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H3v6h3l5 4z"/><line x1="22" y1="9" x2="16" y2="15"/><line x1="16" y1="9" x2="22" y2="15"/></svg>
-              <svg class="ic ic-on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/></svg>
-            </button>
-            <button class="rc-btn rc-play" id="rcPlay" aria-label="Pause / play">
-              <svg class="ic ic-pause" viewBox="0 0 24 24" fill="currentColor"><rect x="7" y="6" width="3.4" height="12" rx="1"/><rect x="13.6" y="6" width="3.4" height="12" rx="1"/></svg>
-              <svg class="ic ic-playi" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></svg>
-            </button>
-            <button class="rc-btn rc-reload" id="rcReload" aria-label="Replay">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 3v5h-5"/></svg>
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
 
   <!-- APPROACH (built for growth — image-filled word) -->
   <section class="approach" id="approach">
@@ -472,6 +459,18 @@
       el.textContent = t + ' BCN';
     };
     tick(); setInterval(tick, 1000);
+  })();
+
+  /* ---- trio: auto-cycle the active box ---- */
+  (function(){
+    const grid = document.getElementById('trioGrid'); if (!grid) return;
+    const boxes = [...grid.querySelectorAll('.trio-box')]; if (!boxes.length) return;
+    let i = 0, timer = null;
+    const show = n => boxes.forEach((b,k) => b.classList.toggle('is-active', k === n));
+    const start = () => { stop(); timer = setInterval(() => { i = (i+1) % boxes.length; show(i); }, 2600); };
+    const stop = () => { if (timer) clearInterval(timer); };
+    boxes.forEach((b,k) => { b.addEventListener('mouseenter', () => { i = k; show(i); stop(); }); b.addEventListener('mouseleave', start); });
+    show(0); start();
   })();
 
   /* ---- overview: floating card + menu card → frosted bento overlay ---- */
