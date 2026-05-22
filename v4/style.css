@@ -14,8 +14,8 @@
   --blue-gray: #7F838B;
   --paper:   #FBFAF9;
 
-  --sans:  "Inter", system-ui, sans-serif;
-  --menu-font: "Inter", system-ui, sans-serif;
+  --sans:  "Geist", "Inter", system-ui, sans-serif;
+  --menu-font: "Geist", system-ui, sans-serif;
   --serif: "Instrument Serif", Georgia, serif;
   --mono:  "IBM Plex Mono", ui-monospace, monospace;
 
