@@ -1153,15 +1153,15 @@ body.menu-open { overflow: hidden; }
 .mbar-contact svg { width: 14px; height: 14px; }
 .mbar-contact:hover { gap: 12px; }
 
-/* dots: transparent · hover → rotate 45° like a clock, shrink, grey */
+/* dots: transparent · hover → rotate 45° on exact centre, tighten, go grey (no shrink) */
 .mbar-dots {
-  width: 34px; height: 36px;
-  display: grid; grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(2, 1fr);
+  width: 32px; height: 32px;
+  display: grid; grid-template-columns: repeat(2, auto); grid-template-rows: repeat(2, auto);
   place-content: center; gap: 5px; background: none;
-  color: inherit; transition: transform .45s var(--ease), color .35s var(--ease);
+  color: inherit; transition: transform .55s var(--ease), gap .5s var(--ease), color .45s var(--ease);
 }
 .mbar-dots span { width: 4.5px; height: 4.5px; border-radius: 1.5px; background: currentColor; }
-.mbar-dots:hover { transform: rotate(45deg) scale(.7); color: rgba(160,160,166,.95); }
+.mbar-dots:hover { transform: rotate(45deg); gap: 2px; color: rgba(160,160,166,.95); }
 
 /* scrolled onto light content: flip to light frost + ink text */
 .mbar.scrolled { background: rgba(248,247,245,.82); color: var(--ink); box-shadow: 0 12px 44px rgba(8,8,12,.12); }
@@ -1193,7 +1193,7 @@ body.menu-open { overflow: hidden; }
 .mmenu-top { display: flex; align-items: center; justify-content: space-between; height: clamp(46px, 3.2vw, 54px); flex: none; }
 .mmenu-top .mbar-logo { color: #fff; }
 .mmenu-close { color: rgba(255,255,255,.85); }
-.mmenu-close:hover { transform: rotate(45deg) scale(.7); color: rgba(160,160,166,.95); }
+.mmenu-close:hover { transform: rotate(45deg); gap: 2px; color: rgba(160,160,166,.95); }
 
 .mmenu-nav { display: flex; flex-direction: column; gap: clamp(6px, .8vw, 14px); margin: auto 0; }
 .mmenu-nav a {
