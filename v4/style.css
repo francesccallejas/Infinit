@@ -22,6 +22,7 @@
      --side = symmetric outer margin · --pad = inner gutter
      --edge = --side + --pad  → logo/nav/full-bleed sections all line up
      exactly with the centred .wrap content. */
+  --frame:   clamp(8px, .7vw, 11px);
   --maxw:    1840px;
   --pad:     clamp(26px, 4.5vw, 80px);
   --side:    max(0px, calc((100vw - var(--maxw)) / 2));
@@ -207,7 +208,7 @@ em { font-family: var(--serif); font-style: normal; font-weight: 400; }
    ========================================================================= */
 .hero {
   height: 100svh; min-height: 620px;
-  padding: clamp(12px, 1.1vw, 16px);
+  padding: var(--frame, clamp(8px, .7vw, 11px));
   background: var(--bg); display: flex;
 }
 .hero-card {
@@ -1117,26 +1118,30 @@ body.menu-open .fab.show { opacity: 0; transform: translateY(12px); pointer-even
    ========================================================================= */
 body.menu-open { overflow: hidden; }
 
-/* ---- collapsed bar — half-screen wide, centred, no border ---- */
+/* ---- collapsed bar — half-screen wide, centred, thin, no border ---- */
+/* gap to the photo edge == photo's gap to the chrome (= --frame) → top = 2·frame */
 .mbar {
   position: fixed; z-index: 200;
-  top: clamp(16px, 1.8vw, 26px);
-  left: 50%; transform: translateX(-50%);
+  top: calc(var(--frame) * 2);
+  left: 50%;
   width: 50vw; min-width: 440px;
-  height: clamp(58px, 4.4vw, 70px);
+  height: clamp(46px, 3.2vw, 54px);
   display: flex; align-items: center; justify-content: space-between;
-  padding: 0 16px 0 24px;
-  border-radius: 16px;
+  padding: 0 14px 0 22px;
+  border-radius: 13px;
   background: rgba(150,150,158,.22);
   backdrop-filter: blur(20px) saturate(150%); -webkit-backdrop-filter: blur(20px) saturate(150%);
-  box-shadow: 0 12px 44px rgba(8,8,12,.18);
+  box-shadow: 0 10px 36px rgba(8,8,12,.18);
   color: #fff;
+  transform: translateX(-50%) translateY(-14px); opacity: 0;
+  animation: mbarIn .7s var(--ease) 3.2s forwards;
   transition: background .4s var(--ease), box-shadow .4s var(--ease), color .4s var(--ease);
 }
+@keyframes mbarIn { to { transform: translateX(-50%); opacity: 1; } }
 .mbar-logo { display: inline-flex; align-items: center; gap: 8px; color: inherit; }
-.mbar-logo svg { width: clamp(24px, 2vw, 28px); height: auto; }
-.mbar-logo .word { font-family: var(--menu-font); font-weight: 700; font-size: clamp(18px, 1.5vw, 22px); letter-spacing: -.02em; display: inline-flex; align-items: flex-start; line-height: 1; }
-.mbar-logo .reg { font-size: 8px; margin-top: 3px; margin-left: 1px; }
+.mbar-logo svg { width: clamp(21px, 1.7vw, 25px); height: auto; }
+.mbar-logo .word { font-family: var(--menu-font); font-weight: 700; font-size: clamp(16px, 1.3vw, 19px); letter-spacing: -.02em; display: inline-flex; align-items: flex-start; line-height: 1; }
+.mbar-logo .reg { font-size: 7px; margin-top: 2px; margin-left: 1px; }
 
 .mbar-right { display: flex; align-items: center; gap: clamp(14px, 1.4vw, 22px); }
 .mbar-contact {
@@ -1169,7 +1174,7 @@ body.menu-open { overflow: hidden; }
 
 .mmenu-card {
   position: absolute;
-  top: clamp(16px, 1.8vw, 26px);
+  top: calc(var(--frame) * 2);
   left: 50%; width: 50vw; min-width: 440px;
   height: 50vh; min-height: 380px;
   display: flex; flex-direction: column;
@@ -1185,7 +1190,7 @@ body.menu-open { overflow: hidden; }
 }
 .mmenu.open .mmenu-card { opacity: 1; clip-path: inset(0 0 0 0 round 16px); }
 
-.mmenu-top { display: flex; align-items: center; justify-content: space-between; height: clamp(58px, 4.4vw, 70px); flex: none; }
+.mmenu-top { display: flex; align-items: center; justify-content: space-between; height: clamp(46px, 3.2vw, 54px); flex: none; }
 .mmenu-top .mbar-logo { color: #fff; }
 .mmenu-close { color: rgba(255,255,255,.85); }
 .mmenu-close:hover { transform: rotate(45deg) scale(.7); color: rgba(160,160,166,.95); }
@@ -1243,4 +1248,8 @@ body.menu-open { overflow: hidden; }
 .work .tile-cap .tag { font-family: var(--mono); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; opacity: .85; text-align: right; white-space: nowrap; }
 @media (max-width: 760px) {
   .work .work-grid .tile { grid-column: span 12 !important; aspect-ratio: 16/10 !important; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mbar { animation: none; opacity: 1; transform: translateX(-50%); }
 }
