@@ -6,7 +6,7 @@
 <title>Infinit® — Brand &amp; Strategy · V2</title>
 <meta name="description" content="Strategic brand, identity and digital systems for companies navigating growth and transformation.">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
-<link rel="stylesheet" href="style.css?v=228">
+<link rel="stylesheet" href="style.css?v=229">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300..700&family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -57,11 +57,11 @@
     </div>
     <div class="mmenu-body">
       <nav class="mmenu-nav">
-        <a href="#work"><span class="t" data-t="Work">Work</span></a>
-        <a href="#services"><span class="t" data-t="Services">Services</span></a>
-        <a href="#founder"><span class="t" data-t="Studio">Studio</span></a>
-        <a href="#statement"><span class="t" data-t="Journal">Journal</span></a>
-        <a href="#contact"><span class="t" data-t="Contact">Contact</span></a>
+        <a href="#work"><span class="reveal"><span class="t" data-t="Work">Work</span></span></a>
+        <a href="#services"><span class="reveal"><span class="t" data-t="Services">Services</span></span></a>
+        <a href="#founder"><span class="reveal"><span class="t" data-t="Studio">Studio</span></span></a>
+        <a href="#statement"><span class="reveal"><span class="t" data-t="Journal">Journal</span></span></a>
+        <a href="#contact"><span class="reveal"><span class="t" data-t="Contact">Contact</span></span></a>
       </nav>
       <aside class="mmenu-aside">
         <div class="mmenu-meta">
@@ -436,19 +436,22 @@
     document.addEventListener('keydown', e => { if (e.key === 'Escape') set(false); });
   })();
 
-  /* ---- bar: adaptive frost — light over light sections, dark over dark ---- */
+  /* ---- adaptive frost — light over light sections, dark over dark (bar + FAB) ---- */
   (function(){
-    const bar = document.getElementById('mbar'); if (!bar) return;
+    const bar = document.getElementById('mbar');
+    const fab = document.getElementById('ovFab');
     const secs = [...document.querySelectorAll('main > section, main > footer')].filter(e => e.id !== 'hero');
     const isDark = el => el.id === 'claim' || el.id === 'contact';
-    const Y = 46;
-    function upd(){
-      let light = false; // default: over the hero → dark bar
+    const lightAt = y => {
       for (const el of secs){
         const r = el.getBoundingClientRect();
-        if (r.top <= Y && r.bottom > Y){ light = !isDark(el); break; }
+        if (r.top <= y && r.bottom > y) return !isDark(el);
       }
-      bar.classList.toggle('on-light', light);
+      return false; // over the hero → dark
+    };
+    function upd(){
+      if (bar) bar.classList.toggle('on-light', lightAt(46));
+      if (fab) fab.classList.toggle('on-light', lightAt(window.innerHeight - 52));
     }
     window.addEventListener('scroll', upd, { passive: true });
     window.addEventListener('resize', upd); upd();
