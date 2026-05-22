@@ -97,20 +97,23 @@
 
 <main id="top">
 
-  <!-- HERO (conceptual image · TQ-style) -->
+  <!-- HERO (floating card · cycling conceptual imagery) -->
   <section class="hero" id="hero">
-    <div class="hero-media">
-      <img src="../project/assets/images/astronaut-red-portrait.png" alt="">
-      <div class="hero-scrim"></div>
-    </div>
-    <div class="hero-inner">
-      <h1 class="hero-h">
-        <span class="ln">Brands built</span>
-        <span class="ln">to <em>scale</em><sup class="hero-reg">&reg;</sup></span>
-      </h1>
-      <div class="hero-foot">
-        <p class="hero-tag">Brand &amp; Strategy firm · Barcelona — Worldwide</p>
-        <span class="hero-cue">Scroll ↓</span>
+    <div class="hero-card">
+      <div class="hero-media" id="heroMedia">
+        <img class="hm-img" alt="">
+        <img class="hm-img" alt="">
+        <div class="hero-scrim"></div>
+      </div>
+      <div class="hero-inner">
+        <h1 class="hero-h">
+          <span class="ln">Brands built</span>
+          <span class="ln">to <em>scale</em><sup class="hero-reg">&reg;</sup></span>
+        </h1>
+        <div class="hero-foot">
+          <p class="hero-tag">Brand &amp; Strategy firm · Barcelona — Worldwide</p>
+          <span class="hero-cue">Scroll ↓</span>
+        </div>
       </div>
     </div>
   </section>
@@ -471,6 +474,31 @@
     const stop = () => { if (timer) clearInterval(timer); };
     boxes.forEach((b,k) => { b.addEventListener('mouseenter', () => { i = k; show(i); stop(); }); b.addEventListener('mouseleave', start); });
     show(0); start();
+  })();
+
+  /* ---- hero: crossfade through conceptual imagery every 1.5s ---- */
+  (function(){
+    const media = document.getElementById('heroMedia'); if (!media) return;
+    const layers = [...media.querySelectorAll('.hm-img')]; if (layers.length < 2) return;
+    const base = '../project/assets/';
+    const srcs = [
+      base + 'images/astronaut-red-portrait.png',
+      base + 'imagery/relats-industrial.webp',
+      base + 'images/astronaut-pink-full.avif',
+      base + 'imagery/raincoat.webp',
+      base + 'images/ipad-sunset.webp'
+    ];
+    srcs.forEach(s => { const im = new Image(); im.src = s; });
+    let idx = 0, cur = 0;
+    layers[0].src = srcs[0]; layers[0].classList.add('on');
+    setInterval(() => {
+      idx = (idx + 1) % srcs.length;
+      const next = layers[(cur + 1) % 2];
+      next.src = srcs[idx];
+      next.classList.add('on');
+      layers[cur].classList.remove('on');
+      cur = (cur + 1) % 2;
+    }, 1500);
   })();
 
   /* ---- overview: floating card + menu card → frosted bento overlay ---- */
