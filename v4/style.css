@@ -8,7 +8,8 @@
   --muted:   rgba(11,12,17,.56);
   --faint:   rgba(11,12,17,.20);
   --line:    rgba(11,12,17,.11);
-  --accent:  #EFE6AE;
+  --accent:    #D8F3D6;   /* pale mint — bg/badge/selection/hover fills (with ink text) */
+  --accent-ink: #2F8F66;  /* deeper mint — accent TEXT on light backgrounds */
   --clay:    #A89887;
   --blue-gray: #7F838B;
   --paper:   #FBFAF9;
@@ -306,7 +307,7 @@ main > section:not(.hero), main > footer { position: relative; z-index: 1; }
 }
 .ap-c  { color: var(--faint); transition: color .4s var(--ease); }
 .ap-c.read { color: var(--ink); }
-.ap-c.lead { color: var(--accent); transition: color .1s linear; }
+.ap-c.lead { color: var(--accent-ink); transition: color .1s linear; }
 .ap-space { white-space: pre; }
 .approach-media {
   position: relative; aspect-ratio: 4/5; max-height: 76vh; width: 100%;
@@ -859,7 +860,7 @@ main > section:not(.hero), main > footer { position: relative; z-index: 1; }
 .svc-row:hover .svc-desc { opacity: 0; }
 .svc-row:hover .svc-subs { opacity: 1; }
 .svc-row:hover .svc-subs span { border-color: rgba(255,255,255,.28); color: var(--bg); }
-.svc-row:hover .plus { transform: rotate(135deg); color: var(--accent); border-color: rgba(239,230,174,.4); }
+.svc-row:hover .plus { transform: rotate(135deg); color: var(--accent-ink); border-color: rgba(47,143,102,.4); }
 @media (max-width: 860px) {
   .svc-row {
     grid-template-columns: 1fr; gap: 6px;
@@ -1012,7 +1013,7 @@ body.menu-open .fab.show { opacity: 0; transform: translateY(12px); pointer-even
 .fab-tx i { font-style: normal; font-size: 13px; color: var(--muted); }
 .fab-cta { flex: none; height: 38px; padding: 0 18px; border-radius: 12px; display: grid; place-items: center;
   font-size: 13px; font-weight: 600; background: rgba(11,12,17,.06); color: var(--ink); transition: background .25s var(--ease); }
-.fab:hover .fab-cta { background: var(--accent); }
+.fab:hover .fab-cta { background: var(--accent); color: var(--ink); }
 
 /* overlay (above everything) */
 .ov { position: fixed; inset: 0; z-index: 120; display: flex; flex-direction: column;
