@@ -39,10 +39,10 @@
   .v1.go{ transform:rotate(45deg) scale(.66); }
   .v1.go span{ background:var(--grey); }
 
-  /* V2 — rotate on fixed centre pivot + tighten + go grey (no shrink) */
-  .dots.v2{ gap:4px; transform-origin:50% 50%; transition:transform .6s var(--ease), gap .5s var(--ease); }
-  .v2 span{ transition:background .45s var(--ease); }
-  .v2.go{ transform:rotate(90deg); gap:1.5px; }
+  /* V2 — rotate 45° (visible diamond) on fixed centre pivot + tighten + go grey */
+  .dots.v2{ gap:4px; transform-origin:50% 50%; transition:transform .6s var(--ease), gap .55s var(--ease); }
+  .v2 span{ transition:background .5s var(--ease); }
+  .v2.go{ transform:rotate(45deg); gap:1.5px; }
   .v2.go span{ background:var(--grey); }
 
   /* V3 — staggered pulse (wave through the 4 dots) */
@@ -70,20 +70,21 @@
 
   <div class="grid" id="grid">
     <div class="card"><span class="label">01</span><div class="dots v1"><span></span><span></span><span></span><span></span></div><span class="name">Clock turn · 45° + shrink + grey</span></div>
-    <div class="card"><span class="label">02</span><div class="dots v2"><span></span><span></span><span></span><span></span></div><span class="name">Quarter turn · 90° + tighten</span></div>
+    <div class="card"><span class="label">02</span><div class="dots v2"><span></span><span></span><span></span><span></span></div><span class="name">Rotate 45° · pivot fix + grisos + més junts</span></div>
     <div class="card"><span class="label">03</span><div class="dots v3"><span></span><span></span><span></span><span></span></div><span class="name">Wave · staggered pulse</span></div>
     <div class="card"><span class="label">04</span><div class="dots v4"><span></span><span></span><span></span><span></span></div><span class="name">Spread · apart + shrink</span></div>
   </div>
 
 <script>
   const dots = [...document.querySelectorAll('.dots')];
-  let looping = true, t = null;
-  function loop(){
+  let looping = true, iv = null, to = null;
+  function activate(){
     dots.forEach(d => d.classList.add('go'));
-    t = setTimeout(() => dots.forEach(d => d.classList.remove('go')), 950);
+    clearTimeout(to);
+    to = setTimeout(() => dots.forEach(d => d.classList.remove('go')), 1500);
   }
-  function start(){ looping = true; loop(); t = setInterval(loop, 2000); }
-  function stop(){ looping = false; clearTimeout(t); clearInterval(t); dots.forEach(d => d.classList.remove('go')); }
+  function start(){ looping = true; clearInterval(iv); activate(); iv = setInterval(activate, 2600); }
+  function stop(){ looping = false; clearInterval(iv); clearTimeout(to); dots.forEach(d => d.classList.remove('go')); }
   // hover overrides loop on individual cards
   dots.forEach(d => {
     d.addEventListener('mouseenter', () => d.classList.add('go'));
