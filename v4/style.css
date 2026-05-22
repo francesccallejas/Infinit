@@ -1123,10 +1123,10 @@ body.menu-open { overflow: hidden; }
   display: flex; align-items: center; justify-content: space-between;
   padding: 0 14px 0 22px;
   border-radius: 13px;
-  background: rgba(248,247,245,.55);
-  backdrop-filter: blur(22px) saturate(160%); -webkit-backdrop-filter: blur(22px) saturate(160%);
-  box-shadow: inset 0 0 0 1px rgba(255,255,255,.45), 0 10px 36px rgba(8,8,12,.16);
-  color: var(--ink);
+  background: rgba(36,36,42,.42);
+  backdrop-filter: blur(34px) saturate(140%); -webkit-backdrop-filter: blur(34px) saturate(140%);
+  box-shadow: 0 14px 50px rgba(8,8,12,.30);
+  color: #fff;
   transform: translateX(-50%) translateY(-42px); opacity: 0;
   animation: mbarIn .9s var(--ease) 3.25s forwards;
   transition: background .4s var(--ease), box-shadow .4s var(--ease), color .4s var(--ease), opacity .3s var(--ease);
@@ -1142,8 +1142,8 @@ body.menu-open .mbar { opacity: 0 !important; pointer-events: none; }
 .mbar-right { display: flex; align-items: center; gap: clamp(14px, 1.4vw, 22px); }
 .mbar-contact {
   display: inline-flex; align-items: center; gap: 6px;
-  font-family: var(--menu-font); font-weight: 600; font-size: 13px;
-  letter-spacing: .04em; text-transform: uppercase; color: inherit;
+  font-family: var(--menu-font); font-weight: 600; font-size: 14px;
+  letter-spacing: 0; text-transform: lowercase; color: inherit;
   padding: 8px 2px; transition: gap .3s var(--ease);
 }
 .mbar-contact svg { width: 14px; height: 14px; }
@@ -1164,7 +1164,7 @@ body.menu-open .mbar { opacity: 0 !important; pointer-events: none; }
 .mbar-dots:hover { transform: rotate(45deg); gap: 2px; color: rgba(160,160,166,.95); }
 
 /* scrolled onto light content: flip to light frost + ink text */
-.mbar.scrolled { background: rgba(248,247,245,.66); box-shadow: inset 0 0 0 1px rgba(255,255,255,.45), 0 12px 44px rgba(8,8,12,.14); }
+/* one consistent frosted colour across the whole page — no second state */
 
 /* ---- expanded overlay — drops straight down to half-screen height ---- */
 .mmenu { position: fixed; inset: 0; z-index: 210; opacity: 0; pointer-events: none; transition: opacity .4s var(--ease); }
