@@ -1164,7 +1164,8 @@ body.menu-open .mbar { opacity: 0 !important; pointer-events: none; }
 .mbar-dots:hover { transform: rotate(45deg); gap: 2px; color: rgba(160,160,166,.95); }
 
 /* scrolled onto light content: flip to light frost + ink text */
-/* one consistent frosted colour across the whole page — no second state */
+/* adaptive: light frosted when the bar sits over a light section (smooth crossfade) */
+.mbar.on-light { background: rgba(248,247,245,.62); color: var(--ink); box-shadow: 0 14px 50px rgba(8,8,12,.12); }
 
 /* ---- expanded overlay — drops straight down to half-screen height ---- */
 .mmenu { position: fixed; inset: 0; z-index: 210; opacity: 0; pointer-events: none; transition: opacity .4s var(--ease); }

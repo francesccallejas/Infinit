@@ -6,7 +6,7 @@
 <title>Infinit® — Brand &amp; Strategy · V2</title>
 <meta name="description" content="Strategic brand, identity and digital systems for companies navigating growth and transformation.">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
-<link rel="stylesheet" href="style.css?v=225">
+<link rel="stylesheet" href="style.css?v=226">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300..700&family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -432,11 +432,22 @@
     document.addEventListener('keydown', e => { if (e.key === 'Escape') set(false); });
   })();
 
-  /* ---- bar: scrolled state (light frosted over content) ---- */
+  /* ---- bar: adaptive frost — light over light sections, dark over dark ---- */
   (function(){
     const bar = document.getElementById('mbar'); if (!bar) return;
-    const upd = () => bar.classList.toggle('scrolled', window.scrollY > window.innerHeight * 0.7);
-    window.addEventListener('scroll', upd, { passive: true }); upd();
+    const secs = [...document.querySelectorAll('main > section, main > footer')].filter(e => e.id !== 'hero');
+    const isDark = el => el.id === 'claim' || el.id === 'contact';
+    const Y = 46;
+    function upd(){
+      let light = false; // default: over the hero → dark bar
+      for (const el of secs){
+        const r = el.getBoundingClientRect();
+        if (r.top <= Y && r.bottom > Y){ light = !isDark(el); break; }
+      }
+      bar.classList.toggle('on-light', light);
+    }
+    window.addEventListener('scroll', upd, { passive: true });
+    window.addEventListener('resize', upd); upd();
   })();
 
   /* ---- live clock (Barcelona) ---- */
