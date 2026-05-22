@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lab · 4 dots motion</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400..700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{ --bg:#0e0e12; --ink:#fff; --grey:#9a9aa0; --ease:cubic-bezier(.22,1,.36,1); }
+  *{box-sizing:border-box;margin:0}
+  body{ font-family:"Inter",system-ui,sans-serif; background:var(--bg); color:var(--ink);
+    min-height:100vh; padding:clamp(28px,5vw,72px); }
+  h1{ font-weight:600; font-size:clamp(22px,2.4vw,32px); letter-spacing:-.02em; }
+  .sub{ font-family:"IBM Plex Mono",monospace; font-size:12px; letter-spacing:.12em; text-transform:uppercase;
+    color:var(--grey); margin-top:10px; }
+  .controls{ margin:26px 0 8px; display:flex; gap:10px; align-items:center; }
+  .btn{ font-family:"IBM Plex Mono",monospace; font-size:12px; letter-spacing:.08em; text-transform:uppercase;
+    color:var(--ink); background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.16);
+    border-radius:10px; padding:9px 14px; cursor:pointer; transition:background .2s; }
+  .btn:hover{ background:rgba(255,255,255,.16); }
+  .grid{ margin-top:30px; display:grid; grid-template-columns:repeat(2,1fr); gap:18px; max-width:760px; }
+  .card{ position:relative; aspect-ratio:16/10; border-radius:16px;
+    background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.10);
+    display:flex; flex-direction:column; align-items:center; justify-content:center; gap:22px; cursor:pointer; }
+  .label{ position:absolute; left:16px; top:14px; font-family:"IBM Plex Mono",monospace; font-size:11px;
+    letter-spacing:.12em; text-transform:uppercase; color:var(--grey); }
+  .name{ position:absolute; left:16px; bottom:14px; font-size:14px; font-weight:600; }
+
+  /* base dots — 2x2 grid */
+  .dots{ width:44px; height:44px; display:grid; grid-template-columns:repeat(2,1fr); grid-template-rows:repeat(2,1fr);
+    place-content:center; gap:7px; }
+  .dots span{ width:6px; height:6px; border-radius:2px; background:var(--ink); display:block; }
+
+  /* V1 — clock turn: rotate 45°, shrink, go grey */
+  .v1{ transition:transform .5s var(--ease); }
+  .v1 span{ transition:background .4s var(--ease); }
+  .v1.go{ transform:rotate(45deg) scale(.66); }
+  .v1.go span{ background:var(--grey); }
+
+  /* V2 — quarter turn + tighten */
+  .v2{ transition:transform .55s var(--ease), gap .45s var(--ease); }
+  .v2 span{ transition:background .4s var(--ease); }
+  .v2.go{ transform:rotate(90deg); gap:3px; }
+  .v2.go span{ background:var(--grey); }
+
+  /* V3 — staggered pulse (wave through the 4 dots) */
+  .v3 span{ transition:transform .3s var(--ease), background .3s var(--ease); }
+  .v3.go span{ background:var(--grey); }
+  .v3.go span:nth-child(1){ transform:scale(.45); transition-delay:0s; }
+  .v3.go span:nth-child(2){ transform:scale(.45); transition-delay:.07s; }
+  .v3.go span:nth-child(4){ transform:scale(.45); transition-delay:.14s; }
+  .v3.go span:nth-child(3){ transform:scale(.45); transition-delay:.21s; }
+
+  /* V4 — spread apart + shrink + grey */
+  .v4{ transition:gap .5s var(--ease); }
+  .v4 span{ transition:transform .5s var(--ease), background .45s var(--ease); }
+  .v4.go{ gap:13px; }
+  .v4.go span{ transform:scale(.7); background:var(--grey); }
+</style>
+</head>
+<body>
+  <h1>4 dots — motion lab</h1>
+  <p class="sub">Hover qualsevol caixa · o deixa-les en bucle automàtic</p>
+  <div class="controls">
+    <button class="btn" id="toggle">Pausa bucle</button>
+    <span class="sub" style="margin:0">Cada prova s'activa sola cada 2s</span>
+  </div>
+
+  <div class="grid" id="grid">
+    <div class="card"><span class="label">01</span><div class="dots v1"><span></span><span></span><span></span><span></span></div><span class="name">Clock turn · 45° + shrink + grey</span></div>
+    <div class="card"><span class="label">02</span><div class="dots v2"><span></span><span></span><span></span><span></span></div><span class="name">Quarter turn · 90° + tighten</span></div>
+    <div class="card"><span class="label">03</span><div class="dots v3"><span></span><span></span><span></span><span></span></div><span class="name">Wave · staggered pulse</span></div>
+    <div class="card"><span class="label">04</span><div class="dots v4"><span></span><span></span><span></span><span></span></div><span class="name">Spread · apart + shrink</span></div>
+  </div>
+
+<script>
+  const dots = [...document.querySelectorAll('.dots')];
+  let looping = true, t = null;
+  function loop(){
+    dots.forEach(d => d.classList.add('go'));
+    t = setTimeout(() => dots.forEach(d => d.classList.remove('go')), 950);
+  }
+  function start(){ looping = true; loop(); t = setInterval(loop, 2000); }
+  function stop(){ looping = false; clearTimeout(t); clearInterval(t); dots.forEach(d => d.classList.remove('go')); }
+  // hover overrides loop on individual cards
+  dots.forEach(d => {
+    d.addEventListener('mouseenter', () => d.classList.add('go'));
+    d.addEventListener('mouseleave', () => { if (!looping) d.classList.remove('go'); });
+  });
+  document.getElementById('toggle').addEventListener('click', e => {
+    if (looping) { stop(); e.target.textContent = 'Reprèn bucle'; }
+    else { start(); e.target.textContent = 'Pausa bucle'; }
+  });
+  start();
+</script>
+</body>
+</html>
