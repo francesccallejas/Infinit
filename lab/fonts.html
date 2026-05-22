@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Infinit® — Type specimens</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&family=Inter:wght@300..700&family=Schibsted+Grotesk:wght@400..700&family=Hanken+Grotesk:wght@300..700&family=Space+Grotesk:wght@400..700&family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,600,700,900&f[]=general-sans@300,400,500,600,700&display=swap" rel="stylesheet">
+<style>
+  :root{ --ink:#0B0C11; --bg:#F4F2F0; --paper:#FBFAF9; --muted:rgba(11,12,17,.55); --line:rgba(11,12,17,.12); --serif:"Instrument Serif",Georgia,serif; --mono:"IBM Plex Mono",monospace; }
+  *{box-sizing:border-box;margin:0}
+  body{ background:var(--bg); color:var(--ink); font-family:Satoshi,system-ui,sans-serif; }
+  .top{ padding:clamp(24px,4vw,60px) clamp(24px,4vw,60px) 0; }
+  .top h1{ font-weight:600; font-size:clamp(24px,2.6vw,36px); letter-spacing:-.03em; }
+  .top p{ color:var(--muted); margin-top:8px; max-width:60ch; }
+  .grid{ padding:clamp(24px,3vw,44px); display:grid; gap:18px; }
+
+  .spec{ background:var(--paper); border-radius:20px; box-shadow:inset 0 0 0 1px var(--line); padding:clamp(26px,3vw,46px); position:relative; }
+  .num{ position:absolute; top:clamp(20px,2vw,30px); right:clamp(22px,2.4vw,34px); font-family:var(--mono); font-size:12px; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); }
+  .eyebrow{ font-family:var(--mono); font-size:12px; letter-spacing:.16em; text-transform:uppercase; color:var(--muted); }
+  .spec h2{ font-weight:600; font-size:clamp(40px,6vw,92px); letter-spacing:-.04em; line-height:.95; margin:14px 0 6px; }
+  .spec h2 em{ font-family:var(--serif); font-style:normal; font-weight:400; }
+  .lead{ font-weight:400; font-size:clamp(19px,2vw,30px); letter-spacing:-.02em; line-height:1.18; max-width:30ch; color:var(--ink); }
+  .nav{ display:flex; gap:clamp(16px,2vw,30px); margin:22px 0 16px; flex-wrap:wrap; }
+  .nav span{ font-weight:600; font-size:clamp(18px,1.8vw,26px); letter-spacing:-.01em; }
+  .body{ font-weight:400; font-size:16px; line-height:1.6; color:var(--muted); max-width:64ch; }
+  .foot{ display:flex; align-items:center; gap:14px; margin-top:20px; flex-wrap:wrap; }
+  .cta{ height:46px; padding:0 22px; border-radius:12px; background:var(--ink); color:var(--bg); font-weight:600; font-size:15px; border:0; cursor:pointer; font-family:inherit; }
+  .badge{ font-family:var(--mono); font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); border:1px solid var(--line); border-radius:100px; padding:8px 14px; }
+</style>
+</head>
+<body>
+  <div class="top">
+    <h1>Type specimens — 7 candidates</h1>
+    <p>Cada tipografia aplicada al sistema real: eyebrow (mono), titular amb accent serif, lead, nav, body i CTA. El serif (“scale”) i el mono es mantenen iguals; només canvia la sans.</p>
+  </div>
+  <div class="grid" id="grid"></div>
+
+<script>
+  const fonts = [
+    ['Satoshi', "'Satoshi'"],
+    ['Geist', "'Geist'"],
+    ['Inter', "'Inter'"],
+    ['General Sans', "'General Sans'"],
+    ['Schibsted Grotesk', "'Schibsted Grotesk'"],
+    ['Hanken Grotesk', "'Hanken Grotesk'"],
+    ['Space Grotesk', "'Space Grotesk'"],
+  ];
+  document.getElementById('grid').innerHTML = fonts.map(([n,f],i)=>`
+    <article class="spec" style="font-family:${f},system-ui,sans-serif">
+      <span class="num">0${i+1} · ${n}</span>
+      <span class="eyebrow">Infinit® · Brand &amp; Strategy</span>
+      <h2>Brands built to <em>scale</em>®</h2>
+      <p class="lead">A strategic brand and digital firm for companies navigating growth and transformation.</p>
+      <nav class="nav"><span>Work</span><span>Services</span><span>Studio</span><span>Journal</span><span>Contact</span></nav>
+      <p class="body">We’re built for growth. Strategy connected to execution, identity that scales, digital designed to compound. Real growth, not noise — €0 → €1.7M built from scratch, +50% growth in two years.</p>
+      <div class="foot"><button class="cta">Start the conversation</button><span class="badge">A quick look</span></div>
+    </article>`).join('');
+</script>
+</body>
+</html>
