@@ -107,7 +107,7 @@ em { font-family: var(--serif); font-style: normal; font-weight: 400; }
   cursor: pointer; transition: background .25s var(--ease), color .25s var(--ease);
   color: var(--ink);
 }
-.nav .menu-btn { width: 42px; border-radius: 50%; flex-direction: column; gap: 4px; }
+.nav .menu-btn { width: 42px; flex-direction: column; gap: 4px; }
 .nav .menu-btn span { width: 18px; height: 2px; border-radius: 2px; background: currentColor; transition: transform .3s var(--ease), opacity .2s; }
 .nav .menu-btn.open span:nth-child(1) { transform: translateY(5.5px) rotate(45deg); }
 .nav .menu-btn.open span:nth-child(2) { opacity: 0; }
@@ -894,8 +894,8 @@ em { font-family: var(--serif); font-style: normal; font-weight: 400; }
   width: 40px; height: 40px; border-radius: 13px;
   display: grid; place-items: center; cursor: pointer; color: #fff;
   background: rgba(255,255,255,.12);
-  backdrop-filter: blur(22px) saturate(155%);
   -webkit-backdrop-filter: blur(22px) saturate(155%);
+  backdrop-filter: blur(4px) url(#navglass) saturate(160%) brightness(1.05);
   border: 0;
   box-shadow: 0 12px 30px -14px rgba(0,0,0,.4);
   transition: background .3s var(--ease), transform .35s var(--ease-rev), box-shadow .3s var(--ease);
