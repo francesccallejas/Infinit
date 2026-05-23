@@ -389,7 +389,7 @@ main > section:not(.hero), main > footer { position: relative; z-index: 1; }
 /* =========================================================================
    WORK
    ========================================================================= */
-.work { padding-block: var(--section); }
+.work { padding-block: var(--section); background: var(--bg); }
 .work-list {
   --off: clamp(70px, 11vw, 150px);   /* right column drop */
   display: grid; grid-template-columns: 1fr 1fr;
@@ -484,7 +484,7 @@ main > section:not(.hero), main > footer { position: relative; z-index: 1; }
    FOUNDER
    ========================================================================= */
 .founder, .studio { padding-block: var(--section); }
-.studio { padding-block: clamp(180px, 25vh, 320px) clamp(48px, 7vh, 96px); }
+.studio { padding-block: clamp(180px, 25vh, 320px) clamp(48px, 7vh, 96px); background: var(--bg); }
 .studio-clients { margin-top: clamp(48px, 7vw, 96px); }
 .founder-side { display: flex; flex-direction: column; gap: clamp(18px, 2vw, 28px); align-self: start; }
 .connect-btn {
@@ -1140,7 +1140,7 @@ body.menu-open { overflow: hidden; }
   animation: mbarIn .9s var(--ease) 3.25s forwards;
   transition: background .4s var(--ease), box-shadow .4s var(--ease), color .4s var(--ease), opacity .3s var(--ease);
 }
-@keyframes mbarIn { to { transform: translateX(-50%) translateY(0); opacity: 1; } }
+@keyframes mbarIn { 0% { opacity: 0; transform: translateX(-50%) translateY(-42px); } 30% { opacity: 1; } 100% { opacity: 1; transform: translateX(-50%) translateY(0); } }
 /* fade the bar out while the overlay is open → clean handoff, no dots/contact jump */
 body.menu-open .mbar { opacity: 0 !important; pointer-events: none; }
 .mbar-logo { display: inline-flex; align-items: center; gap: 8px; color: inherit; }
@@ -1258,7 +1258,7 @@ body.menu-open .mbar { opacity: 0 !important; pointer-events: none; }
 .mmenu-social a:hover { color: #fff; }
 .mmenu-clock { color: rgba(255,255,255,.75); }
 
-@keyframes mbarInM { to { transform: translateY(0); opacity: 1; } }
+@keyframes mbarInM { 0% { opacity: 0; transform: translateY(-42px); } 30% { opacity: 1; } 100% { opacity: 1; transform: translateY(0); } }
 @media (max-width: 760px) {
   /* full-width bar, no horizontal centring → entrance must NOT use translateX */
   .mbar { width: auto; left: clamp(12px,3vw,18px); right: clamp(12px,3vw,18px); min-width: 0;
