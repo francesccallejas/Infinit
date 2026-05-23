@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Induktor — logo type</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Chakra+Petch:wght@600;700&family=Rajdhani:wght@600;700&family=Saira:wght@700;800&family=Michroma&family=Audiowide&family=Exo+2:wght@700;800&family=Syncopate:wght@700&family=Zen+Dots&family=Space+Grotesk:wght@600;700&family=Unbounded:wght@700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://api.fontshare.com/v2/css?f[]=clash-display@600,700&f[]=cabinet-grotesk@700,800&display=swap" rel="stylesheet">
+<style>
+  :root{ --mono:"IBM Plex Mono",monospace; --acc:#D8F3D6; }
+  *{box-sizing:border-box;margin:0}
+  body{ background:#0b0b0e; color:#fff; font-family:system-ui,sans-serif; padding:clamp(24px,4vw,56px); }
+  h1{ font-weight:600; font-size:clamp(22px,2.4vw,32px); letter-spacing:-.02em; }
+  .hint{ font-family:var(--mono); font-size:12px; letter-spacing:.12em; text-transform:uppercase; color:#8a8a90; margin:8px 0 28px; }
+  .row{ border-top:1px solid rgba(255,255,255,.1); padding:clamp(22px,3vw,40px) 0; display:flex; align-items:center; gap:clamp(20px,4vw,70px); flex-wrap:wrap; }
+  .name{ font-family:var(--mono); font-size:12px; letter-spacing:.12em; text-transform:uppercase; color:#8a8a90; width:160px; flex:none; }
+  .word{ font-family:var(--f); font-weight:var(--w,700); font-size:clamp(34px,6vw,84px); letter-spacing:var(--ls,.02em); line-height:1; text-transform:uppercase; flex:1; min-width:280px; }
+  .word .k{ color:var(--acc); }
+  .big{ font-family:var(--f); font-weight:var(--w,700); font-size:clamp(60px,8vw,120px); line-height:.9; color:var(--acc); flex:none; }
+  .it .word, .it .big{ font-style:italic; transform:skewX(-8deg); }
+</style>
+</head>
+<body>
+  <h1>Induktor — exploració de logotip (K protagonista)</h1>
+  <p class="hint">"INDUKTOR" en tipografies tech/display · la K en verd · a la dreta, la K aïllada</p>
+  <div id="out"></div>
+
+<script>
+  // [name, font, weight, letterSpacing, italicSkew]
+  const fonts = [
+    ['Orbitron', "'Orbitron'", 900, '.04em', false],
+    ['Chakra Petch', "'Chakra Petch'", 700, '.02em', true],
+    ['Rajdhani', "'Rajdhani'", 700, '.04em', false],
+    ['Saira', "'Saira'", 800, '.01em', true],
+    ['Michroma', "'Michroma'", 400, '.02em', false],
+    ['Audiowide', "'Audiowide'", 400, '.02em', false],
+    ['Exo 2', "'Exo 2'", 800, '.01em', true],
+    ['Syncopate', "'Syncopate'", 700, '.04em', false],
+    ['Zen Dots', "'Zen Dots'", 400, '.02em', false],
+    ['Space Grotesk', "'Space Grotesk'", 700, '-.01em', false],
+    ['Unbounded', "'Unbounded'", 800, '-.01em', false],
+    ['Clash Display', "'Clash Display'", 700, '-.01em', true],
+    ['Cabinet Grotesk XB', "'Cabinet Grotesk'", 800, '-.02em', true],
+  ];
+  document.getElementById('out').innerHTML = fonts.map(([n,f,w,ls,it])=>`
+    <div class="row ${it?'it':''}" style="--f:${f},sans-serif;--w:${w};--ls:${ls}">
+      <span class="name">${n}</span>
+      <span class="word">indu<span class="k">k</span>tor</span>
+      <span class="big">K</span>
+    </div>`).join('');
+</script>
+</body>
+</html>
