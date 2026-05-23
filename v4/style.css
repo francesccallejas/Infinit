@@ -1088,7 +1088,7 @@ body.menu-open .fab.show { opacity: 0; transform: translateY(12px); pointer-even
 .stmt-line { font-weight: 500; font-size: clamp(30px,4.1vw,67px); letter-spacing: -.025em; line-height: 1.22;
   max-width: 26ch; margin: 0 auto; }
 .stmt-line em { font-family: var(--serif); font-style: normal; font-weight: 400; }
-.stmt-line .wd { opacity: .2; transition: opacity .5s var(--ease); }
+.stmt-line .wd { opacity: .2; transition: opacity .65s var(--ease); }
 .stmt-line.lit .wd { opacity: 1; }
 @media (max-width: 760px) { .statement { padding-block: clamp(16px,3vh,40px) clamp(72px,12vh,150px); } }
 
