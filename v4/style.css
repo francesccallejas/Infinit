@@ -1088,6 +1088,9 @@ body.menu-open .fab.show { opacity: 0; transform: translateY(12px); pointer-even
 .stmt-line { font-weight: 500; font-size: clamp(30px,4.1vw,67px); letter-spacing: -.025em; line-height: 1.22;
   max-width: 26ch; margin: 0 auto; }
 .stmt-line em { font-family: var(--serif); font-style: normal; font-weight: 400; }
+.statement.mid { border-top-left-radius: 0; border-top-right-radius: 0; }   /* no és el panell que puja sobre el hero */
+.stmt-sub { margin-top: clamp(20px,2.6vw,36px); font-size: clamp(15px,1.25vw,20px); color: rgba(11,12,17,.5); letter-spacing: -.01em; }
+.stmt-sub em { font-family: var(--serif); font-style: italic; color: var(--ink); }
 .stmt-line .wd { opacity: .2; transition: opacity .65s var(--ease); }
 .stmt-line.lit .wd { opacity: 1; }
 @media (max-width: 760px) { .statement { padding-block: clamp(16px,3vh,40px) clamp(72px,12vh,150px); } }

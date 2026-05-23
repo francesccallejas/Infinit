@@ -6,7 +6,7 @@
 <title>Infinit® — Brand &amp; Strategy · V2</title>
 <meta name="description" content="Strategic brand, identity and digital systems for companies navigating growth and transformation.">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
-<link rel="stylesheet" href="style.css?v=270">
+<link rel="stylesheet" href="style.css?v=271">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@600&family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -159,12 +159,11 @@
   </section>
 
   <!-- APPROACH (built for growth — image-filled word) -->
-  <section class="approach" id="approach">
+  <section class="statement mid" id="approach">
     <div class="wrap">
-      <span class="eyebrow r">Our approach</span>
-      <p class="gr-lead r d1">We're built for</p>
-      <h2 class="gr-word r d2"><span class="gr-fill">growth.</span></h2>
-      <p class="gr-sub r d3">Strategy connected to execution, identity that scales, digital designed to compound. Real growth, not noise.</p>
+      <span class="eyebrow">Our approach</span>
+      <p class="stmt-line" data-words>Building brands that <em>move</em> business <em>forward.</em></p>
+      <p class="stmt-sub">Strategy, identity and digital — <em>connected.</em></p>
     </div>
   </section>
 
@@ -381,10 +380,9 @@
     io.observe(el);
   })();
 
-  /* ---- statement: smooth fade-up + word-by-word reveal ---- */
-  (function(){
-    const sec = document.getElementById('statement'); if (!sec) return;
-    const el = sec.querySelector('[data-words]');
+  /* ---- statements: smooth fade-up + word-by-word reveal (totes les .statement) ---- */
+  document.querySelectorAll('.statement').forEach(sec => {
+    const el = sec.querySelector('[data-words]'); if (!el) return;
     el.innerHTML = el.innerHTML.replace(/(<[^>]+>)|([^<\s]+)/g, (m, tag, word) => tag ? tag : `<span class="wd">${word}</span> `);
     const words = [...el.querySelectorAll('.wd')];
     if (!('IntersectionObserver' in window)) { sec.classList.add('in'); el.classList.add('lit'); return; }
@@ -397,7 +395,7 @@
       }
     }), { threshold: .45 });
     io.observe(sec);
-  })();
+  });
 
   /* ---- frosted menu: bar dots → expanded overlay ---- */
   let closeMenu = () => {};
