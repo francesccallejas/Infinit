@@ -1281,8 +1281,9 @@ body.menu-open .mbar { opacity: 0 !important; pointer-events: none; }
    ========================================================================= */
 .work .work-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: var(--gap, clamp(10px,1vw,18px)); }
 .work .tile { position: relative; display: block; overflow: hidden; border-radius: 14px; background: #EBE9E4; }
-.work .tile.v { grid-column: span 3; aspect-ratio: 4/5; }   /* verticals */
+.work .tile.v { grid-column: span 4; aspect-ratio: 4/5; }   /* verticals */
 .work .tile.h { grid-column: span 6; aspect-ratio: 16/10; } /* horitzontals */
+.work .tile.b { grid-column: span 12; aspect-ratio: 21/8; } /* banner (a sota) */
 .work .tile img { width: 100%; height: 100%; object-fit: cover; transition: transform .9s var(--ease); }
 .work .tile:hover img { transform: scale(1.04); }
 .work .tile .tile-scrim { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(8,8,12,0) 46%, rgba(8,8,12,.66) 100%); }

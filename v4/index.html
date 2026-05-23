@@ -6,7 +6,7 @@
 <title>Infinit® — Brand &amp; Strategy · V2</title>
 <meta name="description" content="Strategic brand, identity and digital systems for companies navigating growth and transformation.">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
-<link rel="stylesheet" href="style.css?v=255">
+<link rel="stylesheet" href="style.css?v=256">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -218,11 +218,6 @@
         <div class="tile-scrim"></div>
         <div class="tile-cap"><div><span class="cn">Julià</span><span class="cn-sub">premium adventure vans</span></div><span class="tag">Brand · Digital</span></div>
       </a>
-      <a class="tile v r d3" href="#">
-        <img src="https://images.unsplash.com/photo-1642006030551-4e92bd4779d1?q=80&w=1200&auto=format&fit=crop" alt="" loading="lazy">
-        <div class="tile-scrim"></div>
-        <div class="tile-cap"><div><span class="cn">Concept</span><span class="cn-sub">in the studio</span></div><span class="tag">Work in progress</span></div>
-      </a>
       <a class="tile h r" href="#">
         <img src="../project/assets/images/ipad-sunset.webp" alt="Instellar — mission performance" loading="lazy">
         <div class="tile-scrim"></div>
@@ -232,6 +227,11 @@
         <img src="../project/assets/imagery/Almirall.webp" alt="Almirall — beautifully clinical" loading="lazy">
         <div class="tile-scrim"></div>
         <div class="tile-cap"><div><span class="cn">Almirall</span><span class="cn-sub">beautifully clinical</span></div><span class="tag">Strategy · Digital</span></div>
+      </a>
+      <a class="tile b r" href="#">
+        <img src="https://images.unsplash.com/photo-1778757949749-345b125f2ccb?q=80&w=2000&auto=format&fit=crop" alt="Induktor" loading="lazy">
+        <div class="tile-scrim"></div>
+        <div class="tile-cap"><div><span class="cn">Induktor</span><span class="cn-sub">sim racing hardware</span></div><span class="tag">Work in progress</span></div>
       </a>
     </div>
   </section>
@@ -483,12 +483,14 @@
     const base = '../project/assets/';
     const us = id => `https://images.unsplash.com/photo-${id}?q=80&w=2000&auto=format&fit=crop`;
     const srcs = [
-      us('1778757949749-345b125f2ccb'),   // 3D black render
+      us('1778757949749-345b125f2ccb'),   // Induktor render
       base + 'images/astronaut-red-portrait.png',
-      us('1642006030551-4e92bd4779d1'),   // recorder device
-      base + 'imagery/relats-industrial.webp',
+      us('1642006030551-4e92bd4779d1'),   // recorder
       us('1698913463941-e1a9046710b8'),   // architecture
-      base + 'images/astronaut-pink-full.avif'
+      us('1598121210875-08d6cf351459'),   // selected
+      us('1584036533827-45bce166ad94'),   // selected
+      us('1749953919783-100fbc23e39f'),   // selected (cameras)
+      base + 'imagery/relats-industrial.webp'
     ];
     srcs.forEach(s => { const im = new Image(); im.src = s; });
     let idx = 0, cur = 0;
