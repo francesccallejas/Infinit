@@ -821,7 +821,7 @@ main > section:not(.hero), main > footer { position: relative; z-index: 1; }
 .services { padding-top: clamp(80px, 12vh, 150px); padding-bottom: clamp(80px, 12vh, 150px);
   background: var(--ink); color: #fff; border: 0; position: static; }
 /* CAPABILITIES — accordion editorial (estil net, serif + toggle) */
-.cap-head { text-align: center; margin-bottom: clamp(48px,8vw,104px); }
+.cap-head { text-align: center; margin-bottom: clamp(34px,5vw,64px); }
 .cap-eb { font-family: var(--mono); font-size: 11px; letter-spacing: .18em; text-transform: uppercase; color: rgba(255,255,255,.5); }
 .cap-h { font-weight: 500; font-size: clamp(28px,3.4vw,52px); letter-spacing: -.03em; line-height: 1.08; margin-top: 18px; color: #fff; }
 .cap-acc { max-width: 1180px; margin: 0 auto; }

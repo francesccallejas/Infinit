@@ -6,7 +6,7 @@
 <title>Infinit® — Brand &amp; Strategy · V2</title>
 <meta name="description" content="Strategic brand, identity and digital systems for companies navigating growth and transformation.">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
-<link rel="stylesheet" href="style.css?v=275">
+<link rel="stylesheet" href="style.css?v=276">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@600&family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -170,7 +170,7 @@
   <!-- SERVICES -->
   <section class="services" id="services">
     <div class="wrap">
-      <div class="cap-head r"><span class="cap-eb">Capabilities</span><h2 class="cap-h">Three disciplines.<br>One studio.</h2></div>
+      <div class="cap-head r"><span class="cap-eb">Capabilities</span></div>
       <div class="cap-acc">
         <div class="cap-item on r">
           <button class="cap-row" aria-expanded="true"><span class="cap-ttl">Strategy</span><span class="cap-plus" aria-hidden="true"></span></button>
@@ -399,15 +399,24 @@
     io.observe(sec);
   });
 
-  /* ---- capabilities accordion (single open) ---- */
-  document.querySelectorAll('.cap-item').forEach(it => {
-    const row = it.querySelector('.cap-row');
-    row.addEventListener('click', () => {
-      const open = it.classList.contains('on');
-      document.querySelectorAll('.cap-item').forEach(x => { x.classList.remove('on'); x.querySelector('.cap-row').setAttribute('aria-expanded','false'); });
-      if (!open) { it.classList.add('on'); row.setAttribute('aria-expanded','true'); }
+  /* ---- capabilities accordion: obre en hover (desktop), toggle en click (tàctil) ---- */
+  (function(){
+    const items = [...document.querySelectorAll('.cap-item')];
+    const canHover = matchMedia('(hover: hover)').matches;
+    const openOnly = it => items.forEach(x => {
+      const on = x === it; x.classList.toggle('on', on);
+      x.querySelector('.cap-row').setAttribute('aria-expanded', on);
     });
-  });
+    items.forEach(it => {
+      const row = it.querySelector('.cap-row');
+      if (canHover) it.addEventListener('mouseenter', () => openOnly(it));
+      row.addEventListener('click', () => {
+        const isOpen = it.classList.contains('on');
+        if (isOpen && !canHover) { it.classList.remove('on'); row.setAttribute('aria-expanded','false'); }
+        else openOnly(it);
+      });
+    });
+  })();
 
   /* ---- frosted menu: bar dots → expanded overlay ---- */
   let closeMenu = () => {};
