@@ -1145,7 +1145,7 @@ body.menu-open { overflow: hidden; }
 body.menu-open .mbar { opacity: 0 !important; pointer-events: none; }
 .mbar-logo { display: inline-flex; align-items: center; gap: 9px; color: inherit; }
 /* brandmark sized by height to the wordmark (ratio fixed) → identical a la barra i a l'overlay */
-.mbar-logo svg { display: block; width: auto; height: clamp(15px, 1.25vw, 18px); flex: none; }
+.mbar-logo svg { display: block; width: auto; height: clamp(15px, 1.25vw, 18px); flex: none; transform: translateY(-3%); }
 .mbar-logo .word { font-family: var(--menu-font); font-weight: 900; font-size: clamp(18px, 1.5vw, 22px); letter-spacing: -.02em; display: inline-flex; align-items: flex-start; line-height: 1; }
 .mbar-logo .reg { font-size: 7px; margin-top: 2px; margin-left: 1px; }
 
