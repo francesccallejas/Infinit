@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Infinit® — Type pairings</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Fraunces:ital,opsz,wght@0,9..144,400..600;1,9..144,400..500&family=Syne:wght@400..800&family=Bricolage+Grotesque:opsz,wght@12..96,400..700&family=Inter:wght@300..700&family=Geist:wght@300..700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&f[]=switzer@400,500,700&f[]=general-sans@400,500,600&f[]=cabinet-grotesk@400,500,700,800&f[]=clash-display@400,500,600,700&display=swap" rel="stylesheet">
+<style>
+  :root{ --ink:#0B0C11; --bg:#F4F2F0; --paper:#FBFAF9; --muted:rgba(11,12,17,.55); --line:rgba(11,12,17,.12); --mono:"IBM Plex Mono",monospace; }
+  *{box-sizing:border-box;margin:0}
+  body{ background:var(--bg); color:var(--ink); font-family:Satoshi,system-ui,sans-serif; }
+  .top{ padding:clamp(24px,4vw,60px) clamp(24px,4vw,60px) 0; }
+  .top h1{ font-weight:600; font-size:clamp(24px,2.6vw,36px); letter-spacing:-.03em; }
+  .top p{ color:var(--muted); margin-top:8px; max-width:64ch; }
+  .grid{ padding:clamp(24px,3vw,44px); display:grid; gap:18px; }
+
+  .pair{ background:var(--paper); border-radius:20px; box-shadow:inset 0 0 0 1px var(--line); padding:clamp(26px,3vw,46px); position:relative; }
+  .num{ position:absolute; top:clamp(20px,2vw,30px); right:clamp(22px,2.4vw,34px); font-family:var(--mono); font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); text-align:right; line-height:1.5; }
+  .logo{ display:inline-flex; align-items:center; gap:10px; }
+  .logo svg{ width:30px; height:auto; }
+  .logo .word{ font-family:var(--disp); font-weight:var(--dw); font-size:30px; letter-spacing:-.02em; line-height:1; display:inline-flex; align-items:flex-start; }
+  .logo .reg{ font-size:10px; margin-top:3px; }
+  .head{ font-family:var(--disp); font-weight:var(--dw); font-size:clamp(40px,6vw,86px); letter-spacing:-.035em; line-height:.96; margin:22px 0 6px; }
+  .head em{ font-style:italic; }
+  .eyebrow{ font-family:var(--mono); font-size:12px; letter-spacing:.16em; text-transform:uppercase; color:var(--muted); }
+  .nav{ display:flex; gap:clamp(16px,2vw,30px); margin:20px 0 14px; flex-wrap:wrap; font-family:var(--body); }
+  .nav span{ font-weight:600; font-size:clamp(17px,1.7vw,22px); }
+  .body{ font-family:var(--body); font-weight:400; font-size:16px; line-height:1.6; color:var(--muted); max-width:64ch; }
+  .cta{ font-family:var(--body); height:46px; padding:0 22px; border-radius:12px; background:var(--ink); color:var(--bg); font-weight:600; font-size:15px; border:0; margin-top:18px; cursor:pointer; }
+</style>
+</head>
+<body>
+  <div class="top">
+    <h1>Type pairings — logo/títol display + body sans</h1>
+    <p>L'enfocament Motto/Instrument: una tipo amb caràcter al logotip i titulars, i una neutra al text. El símbol és el mateix SVG; canvia la parella.</p>
+  </div>
+  <div class="grid" id="grid"></div>
+
+<script>
+  const MARK = `<svg viewBox="0 0 374 206" fill="none" aria-hidden="true"><path d="M 108.196 34 L 182.196 34 Q 201.196 34 194.140 51.641 L 153.056 154.359 Q 146 172 127 172 L 53 172 Q 34 172 41.056 154.359 L 82.140 51.641 Q 89.196 34 108.196 34 Z" fill="currentColor"/><path d="M 108.196 34 L 182.196 34 Q 201.196 34 194.140 51.641 L 153.056 154.359 Q 146 172 127 172 L 53 172 Q 34 172 41.056 154.359 L 82.140 51.641 Q 89.196 34 108.196 34 Z" fill="currentColor" transform="translate(139 0)"/></svg>`;
+  // [name, displayFont, displayWeight, bodyFont, note]
+  const pairs = [
+    ['Instrument Serif', "'Instrument Serif',serif", 400, "'Satoshi',sans-serif", 'editorial · estil Instrument'],
+    ['Fraunces', "'Fraunces',serif", 500, "'Geist',sans-serif", 'serif modern càlid'],
+    ['Cabinet Grotesk', "'Cabinet Grotesk',sans-serif", 700, "'Inter',sans-serif", 'grotesque display refinada'],
+    ['Syne', "'Syne',sans-serif", 700, "'Switzer',sans-serif", 'contemporani / distintiu'],
+    ['Clash Display', "'Clash Display',sans-serif", 600, "'Satoshi',sans-serif", 'display segur i bold'],
+    ['Bricolage Grotesque', "'Bricolage Grotesque',sans-serif", 600, "'General Sans',sans-serif", 'caràcter contemporani'],
+  ];
+  document.getElementById('grid').innerHTML = pairs.map(([n,disp,dw,body,note],i)=>`
+    <article class="pair" style="--disp:${disp};--dw:${dw};--body:${body}">
+      <span class="num">${(i+1).toString().padStart(2,'0')} · LOGO/TÍTOL: ${n}<br>BODY: ${body.split(',')[0].replace(/'/g,'')}<br><span style="color:var(--ink)">${note}</span></span>
+      <a class="logo">${MARK}<span class="word">infinit<span class="reg">®</span></span></a>
+      <h1 class="head">Brands built to <em>scale</em>®</h1>
+      <span class="eyebrow">Infinit® · Brand &amp; Strategy</span>
+      <nav class="nav"><span>Work</span><span>Services</span><span>Studio</span><span>Journal</span><span>Contact</span></nav>
+      <p class="body">A strategic brand and digital firm for companies navigating growth and transformation. Strategy connected to execution, identity that scales, digital designed to compound — €0 → €1.7M built from scratch.</p>
+      <button class="cta">Start the conversation</button>
+    </article>`).join('');
+</script>
+</body>
+</html>
