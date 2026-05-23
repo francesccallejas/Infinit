@@ -309,7 +309,7 @@ main > section:not(.hero), main > footer { position: relative; z-index: 1; }
 }
 .ap-c  { color: var(--faint); transition: color .4s var(--ease); }
 .ap-c.read { color: var(--ink); }
-.ap-c.lead { color: var(--accent-ink); transition: color .1s linear; }
+.ap-c.lead { color: var(--ink); transition: color .1s linear; }
 .ap-space { white-space: pre; }
 .approach-media {
   position: relative; aspect-ratio: 4/5; max-height: 76vh; width: 100%;
@@ -864,7 +864,7 @@ main > section:not(.hero), main > footer { position: relative; z-index: 1; }
 .svc-row:hover .svc-desc { opacity: 0; }
 .svc-row:hover .svc-subs { opacity: 1; }
 .svc-row:hover .svc-subs span { border-color: rgba(255,255,255,.28); color: var(--bg); }
-.svc-row:hover .plus { transform: rotate(135deg); color: var(--accent-ink); border-color: rgba(47,143,102,.4); }
+.svc-row:hover .plus { transform: rotate(135deg); color: var(--accent); border-color: rgba(216,243,214,.4); }
 @media (max-width: 860px) {
   .svc-row {
     grid-template-columns: 1fr; gap: 6px;
