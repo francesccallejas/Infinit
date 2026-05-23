@@ -129,29 +129,37 @@
     return root.querySelectorAll('.ch');
   }
 
-  const hasGSAP = !!(window.gsap);
-  document.getElementById('eng').textContent = 'engine: ' + (hasGSAP ? 'GSAP ✓' : 'CSS fallback');
+  const hasGSAP = !!(window.gsap && window.ScrollTrigger);
+  if(hasGSAP) gsap.registerPlugin(ScrollTrigger);   // ← sense això, els triggers s'ignoren
+  document.getElementById('eng').textContent = 'engine: ' + (hasGSAP ? 'GSAP ✓' : 'CSS fallback (CDN bloquejat)');
 
   document.querySelectorAll('[data-reveal]').forEach(el=>{
     const chars = splitChars(el);
     const mode = el.dataset.reveal;
-    if(!hasGSAP){ return; } // fallback: chars visible as authored
+    if(!hasGSAP){ return; } // fallback: lletres visibles tal com estan
 
     if(mode==='scrub'){
-      gsap.set(chars,{ clipPath:'inset(46% 0% 46% 0%)', opacity:.15, yPercent:8 });
+      // les lletres s'obren des de dins (banda central que creix) lligat a l'scroll
+      gsap.set(chars,{ clipPath:'inset(50% 0% 50% 0%)', opacity:.08, yPercent:6 });
       gsap.to(chars,{ clipPath:'inset(0% 0% 0% 0%)', opacity:1, yPercent:0, ease:'none',
-        stagger:{ each:.05, from:'start' },
-        scrollTrigger:{ trigger:el, start:'top 82%', end:'top 22%', scrub:.6 } });
+        stagger:{ each:.045, from:'start' },
+        scrollTrigger:{ trigger:el, start:'top 80%', end:'bottom 60%', scrub:.7 } });
     } else if(mode==='rise'){
-      gsap.set(chars,{ yPercent:108 });
-      gsap.to(chars,{ yPercent:0, ease:'expo.out', duration:1.1, stagger:.03,
-        scrollTrigger:{ trigger:el, start:'top 78%', toggleActions:'play none none reverse' } });
+      gsap.set(chars,{ yPercent:110 });
+      gsap.to(chars,{ yPercent:0, ease:'expo.out', duration:1.15, stagger:.035,
+        scrollTrigger:{ trigger:el, start:'top 80%', toggleActions:'play none none reverse' } });
     } else if(mode==='pop'){
-      gsap.set(chars,{ filter:'blur(14px)', opacity:0, scale:.6, transformOrigin:'50% 50%' });
-      gsap.to(chars,{ filter:'blur(0px)', opacity:1, scale:1, ease:'power3.out', duration:1, stagger:.04,
-        scrollTrigger:{ trigger:el, start:'top 72%', toggleActions:'play none none reverse' } });
+      gsap.set(chars,{ clipPath:'inset(0% 50% 0% 50%)', opacity:0, scaleY:.7, transformOrigin:'50% 50%' });
+      gsap.to(chars,{ clipPath:'inset(0% 0% 0% 0%)', opacity:1, scaleY:1, ease:'power3.out', duration:1, stagger:.05,
+        scrollTrigger:{ trigger:el, start:'top 74%', toggleActions:'play none none reverse' } });
     }
   });
+
+  // recalcula posicions quan tot ha carregat (fonts canvien l'alçada de les línies)
+  if(hasGSAP){
+    window.addEventListener('load', ()=>ScrollTrigger.refresh());
+    if(document.fonts && document.fonts.ready) document.fonts.ready.then(()=>ScrollTrigger.refresh());
+  }
 </script>
 </body>
 </html>
