@@ -80,9 +80,7 @@
     font-weight:600; font-size:16px; border:1px solid rgba(255,255,255,.45); border-radius:999px; padding:12px 22px; transition:.3s var(--ease,ease); }
   .cta .go:hover{ background:#fff; color:var(--ink); }
 
-  /* subtle reveal */
-  .rv{ opacity:0; transform:translateY(26px); transition:opacity 1s var(--ease,cubic-bezier(.22,1,.36,1)), transform 1s var(--ease,cubic-bezier(.22,1,.36,1)); }
-  .rv.in{ opacity:1; transform:none; }
+  /* reveal: fem servir .r / .r.in de style.css (mateix easing que la landing) */
 </style>
 </head>
 <body class="st studio-page">
@@ -160,8 +158,8 @@
     <img src="../project/assets/images/astronaut-red-portrait.png" alt="">
     <div class="scrim"></div>
     <div class="cap wrap">
-      <span class="eb">The studio</span>
-      <h1>Built by senior hands.<br>No layers, <em>no noise.</em></h1>
+      <span class="eb r">The studio</span>
+      <h1 class="r d1">Built by senior hands.<br>No layers, <em>no noise.</em></h1>
     </div>
   </header>
 
@@ -169,8 +167,8 @@
   <section class="intro">
     <div class="wrap">
       <div class="grid">
-        <p><b>Infinit® is a brand &amp; strategy studio of one</b>, led hands-on by Francesc Callejas. I've sat on both sides of the table — building brands and running the operations that depend on them — and that's where the method comes from.</p>
-        <p>Strategy connected to execution, identity that scales, digital that compounds. No account managers, no hand-offs: you work directly with the person doing the work. Real growth, not noise.</p>
+        <p class="r"><b>Infinit® is a brand &amp; strategy studio of one</b>, led hands-on by Francesc Callejas. I've sat on both sides of the table — building brands and running the operations that depend on them — and that's where the method comes from.</p>
+        <p class="r d1">Strategy connected to execution, identity that scales, digital that compounds. No account managers, no hand-offs: you work directly with the person doing the work. Real growth, not noise.</p>
       </div>
     </div>
   </section>
@@ -178,10 +176,10 @@
   <!-- FOUNDER (solo) -->
   <section class="founder">
     <div class="wrap">
-      <div class="head rv"><h2>The founder.</h2><span class="eb">Barcelona — Worldwide</span></div>
+      <div class="head r"><h2>The founder.</h2><span class="eb">Barcelona — Worldwide</span></div>
       <div class="row">
-        <div class="portrait rv"><img src="../project/assets/imagery/francesc.jpg" alt="Francesc Callejas"></div>
-        <div class="who rv">
+        <div class="portrait r"><img src="../project/assets/imagery/francesc.jpg" alt="Francesc Callejas"></div>
+        <div class="who r d1">
           <div class="nm">Francesc<br>Callejas</div>
           <div class="rl">Founder · Strategy &amp; Brand</div>
           <p><b>Small by design. Senior by default.</b> Two decades across enterprise, industrial and international work — Almirall, Desigual, Casa Tarradellas, Mercadona, Santander, SAP and Glovo — alongside founder-led companies.</p>
@@ -202,17 +200,17 @@
   <!-- VALUE -->
   <section class="value">
     <div class="wrap">
-      <span class="eb">What I stand for</span>
-      <h2>Branding should be a recognised craft — built by people, <span class="acc">fairly valued.</span></h2>
-      <p>A more recognised branding sector: one that counts on its people, values their craft, and rewards it as the discipline it is. People first, always.</p>
+      <span class="eb r">What I stand for</span>
+      <h2 class="r d1">Branding should be a recognised craft — built by people, <span class="acc">fairly valued.</span></h2>
+      <p class="r d2">A more recognised branding sector: one that counts on its people, values their craft, and rewards it as the discipline it is. People first, always.</p>
     </div>
   </section>
 
   <!-- CLIENTS -->
   <section class="clients">
     <div class="wrap">
-      <span class="eb">Experience across</span>
-      <p class="list">Almirall, Desigual, Casa Tarradellas, Mercadona, Santander, MartiDerm, Girbau, Seidor, Repsol, SAP <span class="q">&amp;</span> Glovo.</p>
+      <span class="eb r">Experience across</span>
+      <p class="list r d1">Almirall, Desigual, Casa Tarradellas, Mercadona, Santander, MartiDerm, Girbau, Seidor, Repsol, SAP <span class="q">&amp;</span> Glovo.</p>
     </div>
   </section>
 
@@ -221,8 +219,8 @@
     <img src="../project/assets/images/Bunnker Final.webp" alt="">
     <div class="scrim"></div>
     <div class="in">
-      <h2>Let's build something <em>that scales.</em></h2>
-      <a class="go" href="mailto:hello@weareinfinit.com">Start the conversation →</a>
+      <h2 class="r">Let's build something <em>that scales.</em></h2>
+      <a class="go r d1" href="mailto:hello@weareinfinit.com">Start the conversation →</a>
     </div>
   </section>
 
@@ -260,10 +258,28 @@
     </div>
   </footer>
 
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
 <script>
-  // subtle reveal
-  const io = new IntersectionObserver((es)=>es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } }), { threshold:.2 });
-  document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+  // smooth scroll (Lenis) — mateixa fluïdesa que la landing; resilient si el CDN falla
+  let lenis = null;
+  try { if (window.Lenis) { lenis = new Lenis({ lerp: 0.09, smoothWheel: true }); (function raf(t){ lenis.raf(t); requestAnimationFrame(raf); })(); } } catch(e){}
+  window.lenis = lenis;
+
+  // smooth anchor scroll
+  document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click', e => {
+    const t = document.querySelector(a.getAttribute('href'));
+    if (t) { e.preventDefault(); if (lenis) lenis.scrollTo(t,{offset:0}); else t.scrollIntoView({behavior:'smooth'}); }
+  }));
+
+  // reveal — puja des de sota fluidament a mida que fas scroll (mateix patró .r/.in que la landing)
+  (function(){
+    const els = [...document.querySelectorAll('.r')];
+    if (!('IntersectionObserver' in window)) { els.forEach(e=>e.classList.add('in')); return; }
+    const io = new IntersectionObserver(es => es.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+    }), { threshold: 0, rootMargin: '0px 0px -8% 0px' });
+    els.forEach(el => io.observe(el));
+  })();
 
   // frosted menu — bar dots → expanded overlay (igual que la landing)
   (function(){
