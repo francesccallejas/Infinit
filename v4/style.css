@@ -1082,10 +1082,11 @@ body.menu-open .fab.show { opacity: 0; transform: translateY(12px); pointer-even
    ========================================================================= */
 .statement { position: relative; overflow: hidden; background: var(--bg); color: var(--ink);
   min-height: 100svh; display: flex; flex-direction: column; justify-content: center;
-  padding-block: clamp(110px,20vh,260px); text-align: center;
+  padding-block: clamp(110px,20vh,260px); text-align: center; }
+/* el fons de la secció és SEMPRE opac (tapa el sticky hero); només el contingut fa fade-up */
+.statement .wrap { position: relative; z-index: 2;
   opacity: 0; transform: translateY(28px); transition: opacity 1s var(--ease), transform 1s var(--ease); }
-.statement.in { opacity: 1; transform: none; }
-.statement .wrap { position: relative; z-index: 2; }
+.statement.in .wrap { opacity: 1; transform: none; }
 .statement .eyebrow { color: rgba(11,12,17,.5); margin-bottom: clamp(26px,3.5vw,48px); }
 .stmt-line { font-weight: 500; font-size: clamp(30px,4.1vw,67px); letter-spacing: -.025em; line-height: 1.22;
   max-width: 26ch; margin: 0 auto; }
@@ -1314,7 +1315,7 @@ body.menu-open .mbar { opacity: 0 !important; pointer-events: none; }
 .work .tile:hover .logo-over .k-logo { transform: none; }
 /* caption — bottom-left, equal margins, name + serif sub on a row, tag below */
 .work .tile-cap { position: absolute; left: clamp(15px,1.3vw,22px); right: clamp(15px,1.3vw,22px); bottom: clamp(11px,.85vw,14px);
-  z-index: 2; color: #fff; display: flex; align-items: flex-end; justify-content: space-between; gap: 12px;
+  z-index: 2; color: #fff; display: flex; align-items: baseline; justify-content: space-between; gap: 12px;
   transition: opacity .5s var(--ease); }
 .work .tile:hover .tile-scrim, .work .tile:hover .tile-cap { opacity: 0; }
 .work .tile-cap .cn-row { display: flex; align-items: baseline; gap: 7px; flex-wrap: wrap; min-width: 0; }
