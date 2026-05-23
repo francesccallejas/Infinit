@@ -1297,18 +1297,24 @@ body.menu-open .mbar { opacity: 0 !important; pointer-events: none; }
   filter: brightness(0) invert(1);
   transform: translateY(12px) scale(.94); transition: transform .6s var(--ease-rev); }
 .work .tile:hover .logo-over img { transform: none; }
-.work .tile .logo-over .k-logo { width: auto; height: 23%; max-width: 30%; display: block;
+.work .tile .logo-over .k-logo { width: auto; height: 14%; max-width: 18%; display: block;
   transform: translateY(12px) scale(.94); transition: transform .6s var(--ease-rev); }
 .work .tile:hover .logo-over .k-logo { transform: none; }
 /* caption — bottom-left, equal margins, name + serif sub on a row, tag below */
-.work .tile-cap { position: absolute; left: clamp(15px,1.3vw,22px); right: clamp(15px,1.3vw,22px); bottom: clamp(15px,1.3vw,22px);
+.work .tile-cap { position: absolute; left: clamp(15px,1.3vw,22px); right: clamp(15px,1.3vw,22px); bottom: clamp(11px,.85vw,14px);
   z-index: 2; color: #fff; display: flex; align-items: flex-end; justify-content: space-between; gap: 12px;
   transition: opacity .5s var(--ease); }
 .work .tile:hover .tile-scrim, .work .tile:hover .tile-cap { opacity: 0; }
 .work .tile-cap .cn-row { display: flex; align-items: baseline; gap: 7px; flex-wrap: wrap; min-width: 0; }
 .work .tile-cap .cn { font-family: var(--menu-font); font-weight: 600; font-size: clamp(15px,1.15vw,18px); letter-spacing: -.02em; }
 .work .tile-cap .cn-sub { font-family: var(--menu-font); font-weight: 400; font-size: clamp(12px,.95vw,14px); opacity: .72; }
-.work .tile-cap .tag { font-family: var(--mono); font-size: 10px; letter-spacing: .08em; text-transform: uppercase; opacity: .8; text-align: right; white-space: nowrap; flex: none; }
+.work .tile-cap .tag { font-family: var(--mono); font-size: 10px; letter-spacing: .03em; text-transform: uppercase; opacity: .8; text-align: right; white-space: nowrap; flex: none; }
+.work .tile-cap .tag .s { font-style: normal; margin: 0 .24em; opacity: .5; }
+/* Work in progress — apareix a dalt en hover (Induktor) */
+.work .tile .wip { position: absolute; top: clamp(13px,1.1vw,18px); left: clamp(15px,1.3vw,22px); z-index: 3;
+  font-family: var(--mono); font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: #fff;
+  opacity: 0; transform: translateY(-6px); transition: opacity .5s var(--ease), transform .5s var(--ease); pointer-events: none; }
+.work .tile:hover .wip { opacity: 1; transform: none; }
 @media (max-width: 900px) {
   .work .work-grid { grid-template-columns: repeat(2, 1fr); }
 }
