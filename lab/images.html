@@ -26,10 +26,27 @@
     <h1>Selected <em>imagery.</em></h1>
     <p class="sub">Estudi de direcció d'art · graella editorial TQ · les teves imatges (afegirem aspiracionals d'Unsplash quan em passis links)</p>
   </div>
+  <p class="sub" style="max-width:none;margin:0 0 14px">Unsplash · aspiracional (verifica si carreguen — format de foto concreta)</p>
+  <div class="grid" id="usgrid" style="margin-bottom:clamp(30px,4vw,60px)"></div>
+
+  <p class="sub" style="max-width:none;margin:0 0 14px">Les teves imatges</p>
   <div class="grid" id="grid"></div>
 
 <script>
   const A = '../project/assets/';
+  // Unsplash photos (per id) — [shortId, colSpan, aspect, name]
+  const us = [
+    ['0uLgv3_yHps', 6, '16/10', 'gatling barrel'],
+    ['d7DF3_rWnsM', 6, '16/10', 'cameras'],
+    ['ueM-K_zuSlI', 4, '4/5', 'red disk drive'],
+    ['baII27W6z7k', 4, '4/5', 'building / sky'],
+    ['npjP0dCtoxo', 4, '4/5', 'round ornament'],
+  ];
+  document.getElementById('usgrid').innerHTML = us.map(([id,span,ar,nm])=>`
+    <a class="tile" style="grid-column:span ${span}; aspect-ratio:${ar}" href="https://unsplash.com/photos/${id}" target="_blank">
+      <img src="https://source.unsplash.com/${id}/1400x1000" alt="" loading="lazy">
+      <span class="cap">${nm}</span>
+    </a>`).join('');
   // [path, colSpan, aspect]
   const items = [
     [A+'images/astronaut-red-portrait.png', 7, '16/11'],
