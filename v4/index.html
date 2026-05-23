@@ -6,7 +6,7 @@
 <title>Infinit® — Brand &amp; Strategy · V2</title>
 <meta name="description" content="Strategic brand, identity and digital systems for companies navigating growth and transformation.">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
-<link rel="stylesheet" href="style.css?v=274">
+<link rel="stylesheet" href="style.css?v=275">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@600&family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -169,28 +169,30 @@
 
   <!-- SERVICES -->
   <section class="services" id="services">
-    <div class="wrap"><div class="section-head r"><span class="eyebrow">Capabilities</span></div></div>
-    <div class="svc-stack">
-      <div class="svc-card sc1">
-        <div class="svc-card-top"><span class="n">01 — Strategy</span><span class="n">Brand &amp; Strategy</span></div>
-        <h3>Strategy</h3>
-        <span class="svc-tag2">The discipline behind growth.</span>
-        <p class="svc-card-desc">Direction aligning business ambition, market opportunity and execution. Positioning, growth systems, strategic clarity and modern brand evolution.</p>
-        <div class="svc-subs2"><span>Brand Strategy</span><span>Positioning</span><span>Growth Strategy</span><span>Fractional CMO</span><span>Research</span><span>AI Opportunity Mapping</span></div>
-      </div>
-      <div class="svc-card sc2">
-        <div class="svc-card-top"><span class="n">02 — Identity</span><span class="n">Visual &amp; verbal systems</span></div>
-        <h3>Identity</h3>
-        <span class="svc-tag2">Structure made visible.</span>
-        <p class="svc-card-desc">Scalable visual and verbal systems designed for clarity, recognition and consistency across every touchpoint.</p>
-        <div class="svc-subs2"><span>Visual Identity</span><span>Naming</span><span>Design Systems</span><span>Art Direction</span><span>Motion</span><span>Creative Direction</span></div>
-      </div>
-      <div class="svc-card sc3">
-        <div class="svc-card-top"><span class="n">03 — Digital</span><span class="n">Visibility &amp; growth</span></div>
-        <h3>Digital</h3>
-        <span class="svc-tag2">Where identity scales.</span>
-        <p class="svc-card-desc">Digital experiences built for discoverability, engagement and measurable business impact.</p>
-        <div class="svc-subs2"><span>Websites &amp; Platforms</span><span>UX / UI Direction</span><span>SEO &amp; GEO</span><span>Performance Marketing</span><span>Analytics &amp; Conversion</span><span>AI Experiences</span></div>
+    <div class="wrap">
+      <div class="cap-head r"><span class="cap-eb">Capabilities</span><h2 class="cap-h">Three disciplines.<br>One studio.</h2></div>
+      <div class="cap-acc">
+        <div class="cap-item on r">
+          <button class="cap-row" aria-expanded="true"><span class="cap-ttl">Strategy</span><span class="cap-plus" aria-hidden="true"></span></button>
+          <div class="cap-body"><div class="cap-body-in">
+            <p>Direction aligning business ambition, market opportunity and execution. Positioning, growth systems, strategic clarity and modern brand evolution.</p>
+            <div class="cap-subs"><span>Brand Strategy</span><span>Positioning</span><span>Growth Strategy</span><span>Fractional CMO</span><span>Research</span><span>AI Opportunity Mapping</span></div>
+          </div></div>
+        </div>
+        <div class="cap-item r d1">
+          <button class="cap-row" aria-expanded="false"><span class="cap-ttl">Identity</span><span class="cap-plus" aria-hidden="true"></span></button>
+          <div class="cap-body"><div class="cap-body-in">
+            <p>Scalable visual and verbal systems designed for clarity, recognition and consistency across every touchpoint.</p>
+            <div class="cap-subs"><span>Visual Identity</span><span>Naming</span><span>Design Systems</span><span>Art Direction</span><span>Motion</span><span>Creative Direction</span></div>
+          </div></div>
+        </div>
+        <div class="cap-item r d2">
+          <button class="cap-row" aria-expanded="false"><span class="cap-ttl">Digital</span><span class="cap-plus" aria-hidden="true"></span></button>
+          <div class="cap-body"><div class="cap-body-in">
+            <p>Digital experiences built for discoverability, engagement and measurable business impact.</p>
+            <div class="cap-subs"><span>Websites &amp; Platforms</span><span>UX / UI Direction</span><span>SEO &amp; GEO</span><span>Performance Marketing</span><span>Analytics &amp; Conversion</span><span>AI Experiences</span></div>
+          </div></div>
+        </div>
       </div>
     </div>
   </section>
@@ -397,6 +399,16 @@
     io.observe(sec);
   });
 
+  /* ---- capabilities accordion (single open) ---- */
+  document.querySelectorAll('.cap-item').forEach(it => {
+    const row = it.querySelector('.cap-row');
+    row.addEventListener('click', () => {
+      const open = it.classList.contains('on');
+      document.querySelectorAll('.cap-item').forEach(x => { x.classList.remove('on'); x.querySelector('.cap-row').setAttribute('aria-expanded','false'); });
+      if (!open) { it.classList.add('on'); row.setAttribute('aria-expanded','true'); }
+    });
+  });
+
   /* ---- frosted menu: bar dots → expanded overlay ---- */
   let closeMenu = () => {};
   (function(){
@@ -426,7 +438,7 @@
     const bar = document.getElementById('mbar');
     const fab = document.getElementById('ovFab');
     const secs = [...document.querySelectorAll('main > section, main > footer')].filter(e => e.id !== 'hero');
-    const isDark = el => el.id === 'claim' || el.id === 'contact';
+    const isDark = el => el.id === 'claim' || el.id === 'contact' || el.id === 'services';
     const lightAt = y => {
       for (const el of secs){
         const r = el.getBoundingClientRect();
