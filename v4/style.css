@@ -1144,8 +1144,8 @@ body.menu-open { overflow: hidden; }
 /* fade the bar out while the overlay is open → clean handoff, no dots/contact jump */
 body.menu-open .mbar { opacity: 0 !important; pointer-events: none; }
 .mbar-logo { display: inline-flex; align-items: center; gap: 8px; color: inherit; }
-.mbar-logo svg { width: clamp(21px, 1.7vw, 25px); height: auto; }
-.mbar-logo .word { font-family: var(--menu-font); font-weight: 900; font-size: clamp(16px, 1.3vw, 19px); letter-spacing: -.02em; display: inline-flex; align-items: flex-start; line-height: 1; }
+.mbar-logo svg { display: none; }   /* brandmark off — wordmark only */
+.mbar-logo .word { font-family: var(--menu-font); font-weight: 900; font-size: clamp(18px, 1.5vw, 22px); letter-spacing: -.02em; display: inline-flex; align-items: flex-start; line-height: 1; }
 .mbar-logo .reg { font-size: 7px; margin-top: 2px; margin-left: 1px; }
 
 .mbar-right { display: flex; align-items: center; gap: clamp(14px, 1.4vw, 22px); }
