@@ -1202,9 +1202,10 @@ body.menu-open .mbar { opacity: 0 !important; pointer-events: none; }
   color: #fff; overflow: hidden;
   transform: translateX(-50%);
   clip-path: inset(0 0 100% 0 round 16px);
-  transition: clip-path .55s var(--ease);   /* frosted from the first revealed pixel */
+  transition: clip-path .26s var(--ease);   /* tancament ràpid: no s'allarga cap amunt */
 }
-.mmenu.open .mmenu-card { clip-path: inset(0 0 0 0 round 16px); }
+/* frosted from the first revealed pixel · obertura suau, tancament curt */
+.mmenu.open .mmenu-card { clip-path: inset(0 0 0 0 round 16px); transition: clip-path .55s var(--ease); }
 
 .mmenu-top { display: flex; align-items: center; justify-content: space-between; height: clamp(50px, 3.5vw, 60px); flex: none; }
 .mmenu-top .mbar-logo { color: #fff; }
