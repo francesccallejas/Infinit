@@ -677,8 +677,10 @@ main > section:not(.hero), main > footer { position: relative; z-index: 1; }
 /* =========================================================================
    CLIENTS — marquee
    ========================================================================= */
-.clients-band { padding-block: clamp(60px,10vh,128px); background: var(--bg); }
-.clients-band .eyebrow { display: block; line-height: 1; margin-bottom: clamp(30px,4.5vh,56px); }
+/* warm gray, enganxat al CTA (mateix fons) → es llegeixen com un bloc */
+.clients-band { padding: clamp(64px,10vh,120px) 0 0; background: #DCD5C8; }
+.clients-band .eyebrow { display: block; line-height: 1; margin-bottom: clamp(30px,4.5vh,56px); color: rgba(11,12,17,.5); }
+.clients-band + .cta-band { padding-top: clamp(60px,9vh,120px); }
 .marquee { width: 100%; overflow: hidden; -webkit-mask-image: linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);
   mask-image: linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent); }
 .mq-track { display: flex; align-items: center; gap: clamp(48px,7vw,110px);
