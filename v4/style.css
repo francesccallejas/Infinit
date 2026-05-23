@@ -1138,11 +1138,11 @@ body.menu-open { overflow: hidden; }
   backdrop-filter: blur(34px) saturate(140%); -webkit-backdrop-filter: blur(34px) saturate(140%);
   box-shadow: 0 14px 50px rgba(8,8,12,.30);
   color: #fff;
-  transform: translateX(-50%) translateY(-42px); opacity: 0;
-  animation: mbarIn .9s var(--ease) 3.25s forwards;
+  transform: translateX(-50%);            /* opaca/frosted des de l'inici */
+  animation: mbarIn .85s var(--ease) 3.25s both;
   transition: background .4s var(--ease), box-shadow .4s var(--ease), color .4s var(--ease), opacity .3s var(--ease);
 }
-@keyframes mbarIn { 0% { opacity: 0; transform: translateX(-50%) translateY(-42px); } 30% { opacity: 1; } 100% { opacity: 1; transform: translateX(-50%) translateY(0); } }
+@keyframes mbarIn { from { transform: translateX(-50%) translateY(-170%); } to { transform: translateX(-50%) translateY(0); } }
 /* fade the bar out while the overlay is open → clean handoff, no dots/contact jump */
 body.menu-open .mbar { opacity: 0 !important; pointer-events: none; }
 .mbar-logo { display: inline-flex; align-items: center; gap: 6px; color: inherit; }
@@ -1261,7 +1261,7 @@ body.menu-open .mbar { opacity: 0 !important; pointer-events: none; }
 .mmenu-social a:hover { color: #fff; }
 .mmenu-clock { color: rgba(255,255,255,.75); }
 
-@keyframes mbarInM { 0% { opacity: 0; transform: translateY(-42px); } 30% { opacity: 1; } 100% { opacity: 1; transform: translateY(0); } }
+@keyframes mbarInM { from { transform: translateY(-170%); } to { transform: translateY(0); } }
 @media (max-width: 760px) {
   /* full-width bar, no horizontal centring → entrance must NOT use translateX */
   .mbar { width: auto; left: clamp(12px,3vw,18px); right: clamp(12px,3vw,18px); min-width: 0;
