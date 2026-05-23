@@ -821,7 +821,7 @@ main > section:not(.hero), main > footer { position: relative; z-index: 1; }
 }
 
 /* ---- Services: editorial rows (option E) · slide-in from right + bounce ---- */
-.services { padding-top: clamp(80px, 12vh, 150px); padding-bottom: clamp(80px, 12vh, 150px);
+.services { padding-top: clamp(110px, 17vh, 220px); padding-bottom: clamp(110px, 17vh, 220px);
   background: var(--ink); color: #fff; border: 0; position: static; }
 /* CAPABILITIES — accordion editorial (estil net, serif + toggle) */
 .cap-head { text-align: center; margin-bottom: clamp(34px,5vw,64px); }
@@ -829,10 +829,10 @@ main > section:not(.hero), main > footer { position: relative; z-index: 1; }
 .cap-h { font-weight: 500; font-size: clamp(28px,3.4vw,52px); letter-spacing: -.03em; line-height: 1.08; margin-top: 18px; color: #fff; }
 .cap-acc { max-width: 1180px; margin: 0 auto; }
 .cap-item { border-top: 1px solid rgba(255,255,255,.16); }
-.cap-item:last-child { border-bottom: 1px solid rgba(255,255,255,.16); }
+.cap-item:first-child { border-top: 0; }   /* sense línia a dalt */
 .cap-row { width: 100%; background: none; border: 0; cursor: pointer; color: #fff;
   display: flex; align-items: center; justify-content: space-between; gap: 20px;
-  padding: clamp(20px,2.4vw,38px) 0; text-align: left; }
+  padding: clamp(28px,3.2vw,52px) 0; text-align: left; }
 .cap-ttl { font-family: var(--serif); font-weight: 400; font-size: clamp(38px,5.6vw,96px); letter-spacing: -.01em; line-height: 1;
   color: rgba(255,255,255,.9); transition: color .4s var(--ease); }
 .cap-item.on .cap-ttl, .cap-row:hover .cap-ttl { color: #fff; }
@@ -1172,7 +1172,7 @@ body.menu-open { overflow: hidden; }
   width: 45vw; min-width: 400px;
   height: clamp(50px, 3.5vw, 60px);
   display: flex; align-items: center; justify-content: space-between;
-  padding: 0 14px 0 22px;
+  padding: 0 14px 0 16px;
   border-radius: 13px;
   background: rgba(36,36,42,.42);
   backdrop-filter: blur(34px) saturate(140%); -webkit-backdrop-filter: blur(34px) saturate(140%);
@@ -1232,7 +1232,7 @@ body.menu-open .mbar { opacity: 0 !important; pointer-events: none; }
   left: 50%; width: 45vw; min-width: 400px;
   height: 50vh; min-height: 360px;
   display: flex; flex-direction: column;
-  padding: 0 14px clamp(16px, 1.6vw, 22px) 22px;  /* match bar: left 22, right 14 → dots/logo align */
+  padding: 0 14px clamp(16px, 1.6vw, 22px) 16px;  /* match bar: left 16, right 14 → dots/logo align */
   border-radius: 16px;
   background: rgba(36,36,42,.42);
   backdrop-filter: blur(38px) saturate(140%); -webkit-backdrop-filter: blur(38px) saturate(140%);
@@ -1391,3 +1391,22 @@ body.menu-open .mbar { opacity: 0 !important; pointer-events: none; }
 .mmenu.on-light .mmenu-social a:hover { color: var(--ink); }
 .mmenu.on-light .mmenu-clock { color: rgba(11,12,17,.7); }
 .mmenu.on-light .mmenu-close:hover { color: rgba(120,120,126,.95); }
+
+/* =========================================================================
+   PAGE TRANSITIONS (cross-document) — menú fix a dalt, contingut des de sota
+   ========================================================================= */
+@view-transition { navigation: auto; }
+/* el menú flotant és element compartit → persisteix entre pàgines (no fa fade) */
+.mbar { view-transition-name: inf-mbar; }
+::view-transition-group(inf-mbar) { z-index: 1000; }
+/* el contingut (root) surt amb fade i el nou entra pujant des de sota */
+::view-transition-old(root) { animation: vtOut .3s var(--ease) both; }
+::view-transition-new(root) { animation: vtIn .55s var(--ease) both; }
+@keyframes vtOut { to { opacity: 0; transform: translateY(-12px); } }
+@keyframes vtIn  { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(root), ::view-transition-new(root) { animation: none; }
+}
+/* navegació interna (ja s'ha vist l'intro) → res d'splash ni re-entrada del menú */
+html.quick-nav .intro { display: none !important; }
+html.quick-nav .mbar { animation: none !important; }
