@@ -222,7 +222,7 @@ main > section:not(.hero), main > footer { position: relative; z-index: 1; }
   border-radius: clamp(10px, .9vw, 15px);
 }
 .hero-media { position: absolute; inset: 0; }
-.hm-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 22%; opacity: 0; transition: opacity .9s var(--ease); }
+.hm-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 22%; opacity: 0; transition: opacity 1.2s var(--ease); }
 .hm-img.on { opacity: 1; }
 .hero-scrim {
   position: absolute; inset: 0;
