@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Purpose — value reveal (Instrument Serif · GSAP)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,600,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#F4F2F0; --ink:#0B0C11; --grey:#C3C0BB; --grey2:rgba(11,12,17,.55);
+    --mint:#D8F3D6; --mint-ink:#2F8F66;
+    --sans:"Satoshi",system-ui,sans-serif; --serif:"Instrument Serif",serif; --mono:"IBM Plex Mono",monospace;
+  }
+  *{box-sizing:border-box;margin:0}
+  body{ background:var(--bg); color:var(--ink); font-family:var(--sans); }
+  .lab{ position:fixed; top:0; left:0; right:0; z-index:50; display:flex; gap:8px; align-items:center;
+    padding:12px clamp(18px,3vw,40px); background:rgba(244,242,240,.8); backdrop-filter:blur(14px);
+    border-bottom:1px solid rgba(11,12,17,.1); font-family:var(--mono); font-size:11px; letter-spacing:.12em; text-transform:uppercase; }
+  .lab b{ color:var(--mint-ink); }
+  .lab .sp{ color:var(--grey2); margin-left:auto; }
+
+  .v{ min-height:100vh; padding:clamp(80px,10vh,140px) clamp(20px,5vw,80px) clamp(40px,8vh,100px); position:relative; }
+  .flag{ font-family:var(--mono); font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:var(--mint-ink); }
+  .eb{ font-family:var(--mono); font-size:12px; letter-spacing:.18em; text-transform:uppercase; color:var(--grey2); }
+
+  /* big serif words */
+  .big{ font-family:var(--serif); font-weight:400; color:var(--grey); line-height:.92; letter-spacing:-.01em;
+    font-size:clamp(58px,13vw,230px); }
+  .big .ln{ display:block; white-space:nowrap; }
+  .big .ch{ display:inline-block; will-change:transform,clip-path,opacity; }
+  .big .acc{ font-style:italic; color:var(--mint-ink); }
+  .big .sp{ display:inline-block; width:.26em; }
+
+  /* ============ 01 · SCROLL-SCRUB · letters open from inside ============ */
+  #v1 .head{ display:flex; justify-content:space-between; gap:30px; flex-wrap:wrap; max-width:1700px; margin:0 auto 6vh; }
+  #v1 .copy{ max-width:46ch; }
+  #v1 .copy p{ font-size:clamp(17px,1.4vw,22px); line-height:1.55; margin-top:18px; max-width:42ch; }
+  #v1 .copy b{ font-weight:600; }
+  #v1 .stage{ max-width:1700px; margin:0 auto; }
+
+  /* ============ 02 · ON-VIEW · vertical mask rise ============ */
+  #v2{ background:#fff; }
+  #v2 .wrap{ max-width:1700px; margin:0 auto; }
+  #v2 .copy{ max-width:44ch; margin:5vh 0 0; font-size:clamp(16px,1.3vw,20px); line-height:1.6; color:var(--grey2); }
+  #v2 .big .ln{ overflow:hidden; padding-bottom:.06em; }
+  #v2 .big .ch{ transform:translateY(108%); }
+
+  /* ============ 03 · CENTERED · scale + blur from inside ============ */
+  #v3{ display:grid; place-content:center; text-align:center; min-height:100vh; }
+  #v3 .eb{ text-align:center; margin-bottom:30px; }
+  #v3 .big{ font-size:clamp(54px,11vw,180px); }
+  #v3 .big .ch{ filter:blur(14px); opacity:0; transform:scale(.6); }
+  #v3 .copy{ max-width:50ch; margin:5vh auto 0; font-size:clamp(16px,1.3vw,20px); line-height:1.6; color:var(--grey2); }
+</style>
+</head>
+<body>
+<div class="lab">
+  <span>Purpose · value reveal — <b>Instrument Serif</b> + GSAP</span>
+  <span class="sp" id="eng">engine: …</span>
+</div>
+
+<!-- 01 · SCROLL-SCRUB -->
+<section class="v" id="v1">
+  <div class="head">
+    <span class="eb">Our purpose</span>
+    <div class="copy">
+      <span class="flag">01 — Scroll-scrub · les lletres s'obren des de dins</span>
+      <p><b>Branding should be a recognised craft</b> — built by people whose work is seen, valued and fairly paid. At Infinit® strategy is led by senior hands, not anonymous layers. People first, always.</p>
+    </div>
+  </div>
+  <div class="stage">
+    <h2 class="big" data-reveal="scrub">
+      <span class="ln">Built by</span>
+      <span class="ln">people,</span>
+      <span class="ln"><span class="acc">valued.</span></span>
+    </h2>
+  </div>
+</section>
+
+<!-- 02 · ON-VIEW MASK RISE -->
+<section class="v" id="v2">
+  <div class="wrap">
+    <span class="eb">What we stand for</span>
+    <h2 class="big" data-reveal="rise">
+      <span class="ln">A craft</span>
+      <span class="ln">worth</span>
+      <span class="ln"><span class="acc">valuing.</span></span>
+    </h2>
+    <p class="copy">No anonymous layers, no race to the bottom. We believe the people behind the work should be recognised — and paid as the discipline deserves.</p>
+  </div>
+</section>
+
+<!-- 03 · CENTERED SCALE/BLUR -->
+<section class="v" id="v3">
+  <span class="eb">People first</span>
+  <h2 class="big" data-reveal="pop">
+    <span class="ln">Raise</span>
+    <span class="ln"><span class="acc">the craft.</span></span>
+  </h2>
+  <p class="copy">A more recognised branding sector — one that counts on its people, values their craft, and rewards it fairly.</p>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+<script>
+  // split each .ln into per-char spans (keep .acc + .sp)
+  function splitChars(root){
+    root.querySelectorAll('.ln').forEach(ln=>{
+      const frag=document.createDocumentFragment();
+      ln.childNodes.forEach? null:null;
+      const walk=(node, accent)=>{
+        node.childNodes.forEach(n=>{
+          if(n.nodeType===3){
+            [...n.textContent].forEach(chr=>{
+              if(chr===' '){ const s=document.createElement('span'); s.className='sp'; frag.appendChild(s); }
+              else{ const s=document.createElement('span'); s.className='ch'+(accent?' acc':''); s.textContent=chr; frag.appendChild(s); }
+            });
+          } else if(n.nodeType===1){
+            walk(n, accent || n.classList.contains('acc'));
+          }
+        });
+      };
+      walk(ln,false);
+      ln.innerHTML=''; ln.appendChild(frag);
+    });
+    return root.querySelectorAll('.ch');
+  }
+
+  const hasGSAP = !!(window.gsap);
+  document.getElementById('eng').textContent = 'engine: ' + (hasGSAP ? 'GSAP ✓' : 'CSS fallback');
+
+  document.querySelectorAll('[data-reveal]').forEach(el=>{
+    const chars = splitChars(el);
+    const mode = el.dataset.reveal;
+    if(!hasGSAP){ return; } // fallback: chars visible as authored
+
+    if(mode==='scrub'){
+      gsap.set(chars,{ clipPath:'inset(46% 0% 46% 0%)', opacity:.15, yPercent:8 });
+      gsap.to(chars,{ clipPath:'inset(0% 0% 0% 0%)', opacity:1, yPercent:0, ease:'none',
+        stagger:{ each:.05, from:'start' },
+        scrollTrigger:{ trigger:el, start:'top 82%', end:'top 22%', scrub:.6 } });
+    } else if(mode==='rise'){
+      gsap.set(chars,{ yPercent:108 });
+      gsap.to(chars,{ yPercent:0, ease:'expo.out', duration:1.1, stagger:.03,
+        scrollTrigger:{ trigger:el, start:'top 78%', toggleActions:'play none none reverse' } });
+    } else if(mode==='pop'){
+      gsap.set(chars,{ filter:'blur(14px)', opacity:0, scale:.6, transformOrigin:'50% 50%' });
+      gsap.to(chars,{ filter:'blur(0px)', opacity:1, scale:1, ease:'power3.out', duration:1, stagger:.04,
+        scrollTrigger:{ trigger:el, start:'top 72%', toggleActions:'play none none reverse' } });
+    }
+  });
+</script>
+</body>
+</html>
