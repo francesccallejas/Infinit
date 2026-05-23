@@ -6,7 +6,7 @@
 <title>Infinit® — Brand &amp; Strategy · V2</title>
 <meta name="description" content="Strategic brand, identity and digital systems for companies navigating growth and transformation.">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
-<link rel="stylesheet" href="style.css?v=254">
+<link rel="stylesheet" href="style.css?v=255">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -203,30 +203,35 @@
       <h2>Selected <em>work.</em></h2>
     </div>
     <div class="work-grid" id="workList">
-      <a class="tile r" href="#">
+      <a class="tile v r" href="#">
         <img src="../project/assets/images/Bunnker Final.webp" alt="Bunnker — beyond renting" loading="lazy">
         <div class="tile-scrim"></div>
-        <div class="tile-cap"><div><span class="cn">Bunnker</span><span class="cn-sub">beyond renting</span></div><span class="tag">Strategy · Brand · Growth</span></div>
+        <div class="tile-cap"><div><span class="cn">Bunnker</span><span class="cn-sub">beyond renting</span></div><span class="tag">Strategy · Brand</span></div>
       </a>
-      <a class="tile r d1" href="#">
+      <a class="tile v r d1" href="#">
         <img src="../project/assets/images/Relats Brand.webp" alt="Relats — ahead of the curve" loading="lazy">
         <div class="tile-scrim"></div>
-        <div class="tile-cap"><div><span class="cn">Relats</span><span class="cn-sub">ahead of the curve</span></div><span class="tag">Strategy · Brand · Digital</span></div>
+        <div class="tile-cap"><div><span class="cn">Relats</span><span class="cn-sub">ahead of the curve</span></div><span class="tag">Strategy · Digital</span></div>
       </a>
-      <a class="tile r" href="#">
+      <a class="tile v r d2" href="#">
+        <img src="../project/assets/imagery/Julia Yosemite.webp" alt="Julià — premium adventure vans" loading="lazy">
+        <div class="tile-scrim"></div>
+        <div class="tile-cap"><div><span class="cn">Julià</span><span class="cn-sub">premium adventure vans</span></div><span class="tag">Brand · Digital</span></div>
+      </a>
+      <a class="tile v r d3" href="#">
+        <img src="https://images.unsplash.com/photo-1642006030551-4e92bd4779d1?q=80&w=1200&auto=format&fit=crop" alt="" loading="lazy">
+        <div class="tile-scrim"></div>
+        <div class="tile-cap"><div><span class="cn">Concept</span><span class="cn-sub">in the studio</span></div><span class="tag">Work in progress</span></div>
+      </a>
+      <a class="tile h r" href="#">
         <img src="../project/assets/images/ipad-sunset.webp" alt="Instellar — mission performance" loading="lazy">
         <div class="tile-scrim"></div>
         <div class="tile-cap"><div><span class="cn">Instellar</span><span class="cn-sub">mission performance</span></div><span class="tag">Strategy · Digital</span></div>
       </a>
-      <a class="tile r d1" href="#">
+      <a class="tile h r d1" href="#">
         <img src="../project/assets/imagery/Almirall.webp" alt="Almirall — beautifully clinical" loading="lazy">
         <div class="tile-scrim"></div>
         <div class="tile-cap"><div><span class="cn">Almirall</span><span class="cn-sub">beautifully clinical</span></div><span class="tag">Strategy · Digital</span></div>
-      </a>
-      <a class="tile r" href="#">
-        <img src="../project/assets/imagery/Julia Yosemite.webp" alt="Julià — premium adventure vans" loading="lazy">
-        <div class="tile-scrim"></div>
-        <div class="tile-cap"><div><span class="cn">Julià</span><span class="cn-sub">premium adventure vans</span></div><span class="tag">Strategy · Brand · Digital</span></div>
       </a>
     </div>
   </section>
@@ -476,12 +481,14 @@
     const media = document.getElementById('heroMedia'); if (!media) return;
     const layers = [...media.querySelectorAll('.hm-img')]; if (layers.length < 2) return;
     const base = '../project/assets/';
+    const us = id => `https://images.unsplash.com/photo-${id}?q=80&w=2000&auto=format&fit=crop`;
     const srcs = [
+      us('1778757949749-345b125f2ccb'),   // 3D black render
       base + 'images/astronaut-red-portrait.png',
+      us('1642006030551-4e92bd4779d1'),   // recorder device
       base + 'imagery/relats-industrial.webp',
-      base + 'images/astronaut-pink-full.avif',
-      base + 'imagery/raincoat.webp',
-      base + 'images/ipad-sunset.webp'
+      us('1698913463941-e1a9046710b8'),   // architecture
+      base + 'images/astronaut-pink-full.avif'
     ];
     srcs.forEach(s => { const im = new Image(); im.src = s; });
     let idx = 0, cur = 0;
