@@ -558,8 +558,11 @@ main > section:not(.hero), main > footer { position: relative; z-index: 1; }
 .foot-rec { display: inline-flex; align-items: center; justify-content: center; gap: clamp(26px,3vw,46px); flex-wrap: wrap; }
 .foot-rec-label { font-family: var(--mono); font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: rgba(244,242,240,.42); }
 .foot-rec-logos { display: flex; align-items: center; gap: clamp(24px,3vw,40px); }
-.foot-rec-logos a { display: inline-flex; }
-.foot-rec-logos img { height: 20px; width: auto; filter: brightness(0) invert(1); opacity: .65; transition: opacity .25s var(--ease); }
+.foot-rec-logos a { display: inline-flex; align-items: center; }
+.foot-rec-logos img { width: auto; display: block; filter: brightness(0) invert(1); opacity: .65; transition: opacity .25s var(--ease); }
+/* pesos òptics equilibrats + centrats a la mateixa línia */
+.foot-rec-logos a:nth-child(1) img { height: 16px; }   /* awwwards (wordmark) */
+.foot-rec-logos a:nth-child(2) img { height: 21px; }   /* COAC (marca compacta) */
 .foot-rec-logos a:hover img { opacity: 1; }
 .foot-base { display: flex; gap: 24px; flex-wrap: wrap; justify-content: center;
   font-family: var(--mono); font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: rgba(244,242,240,.4); }
