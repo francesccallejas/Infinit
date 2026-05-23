@@ -556,7 +556,7 @@ main > section:not(.hero), main > footer { position: relative; z-index: 1; }
 .foot-nav a { font-size: 15px; color: rgba(244,242,240,.6); transition: color .25s var(--ease); }
 .foot-nav a:hover { color: #fff; }
 .foot-rec { display: inline-flex; align-items: center; justify-content: center; gap: clamp(26px,3vw,46px); flex-wrap: wrap; }
-.foot-rec-label { font-family: var(--mono); font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: rgba(244,242,240,.42); }
+.foot-rec-label { font-family: var(--mono); font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: rgba(244,242,240,.42); transform: translateY(2px); }
 .foot-rec-logos { display: flex; align-items: center; gap: clamp(24px,3vw,40px); }
 .foot-rec-logos a { display: inline-flex; align-items: center; }
 .foot-rec-logos img { width: auto; display: block; filter: brightness(0) invert(1); opacity: .65; transition: opacity .25s var(--ease); }
