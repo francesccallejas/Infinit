@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Infinit® — Logo type</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@600;700;800&family=Archivo:wght@700;800;900&family=Archivo+Expanded:wght@700;800;900&family=Bricolage+Grotesque:opsz,wght@12..96,600..800&family=Anton&family=Gloock&family=Familjen+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+<link href="https://api.fontshare.com/v2/css?f[]=clash-display@600,700&f[]=cabinet-grotesk@800&f[]=tanker@400&f[]=zodiak@700&f[]=boska@900&f[]=melodrama@700&display=swap" rel="stylesheet">
+<style>
+  :root{ --mono:"IBM Plex Mono",monospace; }
+  *{box-sizing:border-box;margin:0}
+  body{ background:#0c0c10; color:#fff; font-family:system-ui,sans-serif; padding:clamp(24px,4vw,56px); }
+  h1{ font-weight:600; font-size:clamp(22px,2.4vw,32px); letter-spacing:-.02em; }
+  .hint{ font-family:var(--mono); font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:#8a8a90; margin:8px 0 26px; }
+  .grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(330px,1fr)); gap:16px; }
+  .card{ border:1px solid rgba(255,255,255,.1); border-radius:18px; padding:34px 30px; background:rgba(255,255,255,.02);
+    display:flex; flex-direction:column; gap:26px; min-height:200px; }
+  .num{ font-family:var(--mono); font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:#8a8a90; }
+  .logo{ display:flex; align-items:center; gap:12px; }
+  .logo svg{ width:34px; height:auto; flex:none; }
+  .logo .word{ font-family:var(--f); font-weight:var(--w,700); font-stretch:var(--st,100%); font-size:clamp(34px,4.4vw,52px); letter-spacing:-.02em; line-height:1; display:inline-flex; align-items:flex-start; }
+  .logo .reg{ font-size:.32em; margin-top:.2em; }
+  .alt{ font-family:var(--f); font-weight:var(--w,700); font-stretch:var(--st,100%); font-size:clamp(30px,3.6vw,44px); letter-spacing:-.01em; text-transform:uppercase; color:rgba(255,255,255,.5); }
+</style>
+</head>
+<body>
+  <h1>Logo type — força i caràcter</h1>
+  <p class="hint">El brandmark + “infinit®” en tipografies display. A sota, la versió en MAJÚSCULES.</p>
+  <div class="grid" id="grid"></div>
+
+<script>
+  const MARK = `<svg viewBox="0 0 374 206" fill="none" aria-hidden="true"><path d="M 108.196 34 L 182.196 34 Q 201.196 34 194.140 51.641 L 153.056 154.359 Q 146 172 127 172 L 53 172 Q 34 172 41.056 154.359 L 82.140 51.641 Q 89.196 34 108.196 34 Z" fill="currentColor"/><path d="M 108.196 34 L 182.196 34 Q 201.196 34 194.140 51.641 L 153.056 154.359 Q 146 172 127 172 L 53 172 Q 34 172 41.056 154.359 L 82.140 51.641 Q 89.196 34 108.196 34 Z" fill="currentColor" transform="translate(139 0)"/></svg>`;
+  // [name, font, weight, stretch]
+  const fonts = [
+    ['Clash Display', "'Clash Display'", 700, '100%'],
+    ['Cabinet Grotesk XB', "'Cabinet Grotesk'", 800, '100%'],
+    ['Unbounded', "'Unbounded'", 700, '100%'],
+    ['Archivo Expanded', "'Archivo Expanded'", 800, '100%'],
+    ['Bricolage Grotesque', "'Bricolage Grotesque'", 800, '100%'],
+    ['Anton', "'Anton'", 400, '100%'],
+    ['Familjen Grotesk', "'Familjen Grotesk'", 700, '100%'],
+    ['Zodiak (serif)', "'Zodiak'", 700, '100%'],
+    ['Boska (serif)', "'Boska'", 900, '100%'],
+    ['Melodrama (serif)', "'Melodrama'", 700, '100%'],
+    ['Gloock (serif)', "'Gloock'", 400, '100%'],
+  ];
+  document.getElementById('grid').innerHTML = fonts.map(([n,f,w,st],i)=>`
+    <div class="card" style="--f:${f},sans-serif;--w:${w};--st:${st}">
+      <span class="num">${(i+1).toString().padStart(2,'0')} · ${n}</span>
+      <div class="logo">${MARK}<span class="word">infinit<span class="reg">®</span></span></div>
+      <span class="alt">infinit®</span>
+    </div>`).join('');
+</script>
+</body>
+</html>
