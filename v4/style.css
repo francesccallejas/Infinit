@@ -1405,14 +1405,17 @@ body.menu-open .mbar { opacity: 0 !important; pointer-events: none; }
    PAGE TRANSITIONS (cross-document) — menú fix a dalt, contingut des de sota
    ========================================================================= */
 @view-transition { navigation: auto; }
-/* el menú flotant és element compartit → persisteix entre pàgines (no fa fade) */
+/* el menú flotant persisteix entre pàgines (no fa fade) */
 .mbar { view-transition-name: inf-mbar; }
 ::view-transition-group(inf-mbar) { z-index: 1000; }
-/* el contingut (root) surt amb fade i el nou entra pujant des de sota */
-::view-transition-old(root) { animation: vtOut .3s var(--ease) both; }
-::view-transition-new(root) { animation: vtIn .55s var(--ease) both; }
-@keyframes vtOut { to { opacity: 0; transform: translateY(-12px); } }
-@keyframes vtIn  { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: none; } }
+/* la imatge del hero es manté en lloc (fos suau, no puja) — només el text/root puja */
+.hero-media { view-transition-name: heromedia; }
+::view-transition-old(heromedia), ::view-transition-new(heromedia) { animation-duration: .45s; }
+/* el contingut (root, sobretot text) entra ràpid pujant una mica; surt amb fade curt */
+::view-transition-old(root) { animation: vtOut .18s linear both; }
+::view-transition-new(root) { animation: vtIn .42s var(--ease) both; }
+@keyframes vtOut { to { opacity: 0; } }
+@keyframes vtIn  { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
 @media (prefers-reduced-motion: reduce) {
   ::view-transition-old(root), ::view-transition-new(root) { animation: none; }
 }

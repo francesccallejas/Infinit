@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Subtle motion — Infinit®</title>
+<link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,600,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{ --ink:#0B0C11; --bg:#F4F2F0; --mint:#D8F3D6; --grey2:rgba(11,12,17,.55); --line:rgba(11,12,17,.13);
+    --sans:"Satoshi",system-ui,sans-serif; --serif:"Instrument Serif",serif; --mono:"IBM Plex Mono",monospace;
+    --ease:cubic-bezier(.22,1,.36,1); }
+  *{box-sizing:border-box;margin:0}
+  body{ background:var(--bg); color:var(--ink); font-family:var(--sans); }
+  .pick{ position:sticky; top:0; z-index:40; display:flex; gap:6px; align-items:center; flex-wrap:wrap;
+    padding:12px clamp(18px,3vw,40px); background:rgba(244,242,240,.82); backdrop-filter:blur(14px); border-bottom:1px solid var(--line); }
+  .pick .bk{ font-family:var(--mono); font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--grey2); margin-right:auto; }
+  .pick a{ font-family:var(--mono); font-size:11px; letter-spacing:.1em; text-transform:uppercase; text-decoration:none; color:var(--ink); border:1px solid rgba(11,12,17,.18); border-radius:999px; padding:6px 12px; }
+  .sec{ min-height:100vh; display:flex; flex-direction:column; justify-content:center; padding:clamp(40px,9vh,120px) clamp(20px,6vw,90px); border-top:1px solid var(--line); }
+  .flag{ font-family:var(--mono); font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:var(--grey2); margin-bottom:36px; }
+  .flag b{ color:var(--ink); font-weight:500; }
+  h2{ font-weight:500; font-size:clamp(32px,5vw,72px); letter-spacing:-.03em; line-height:1.04; max-width:18ch; }
+  h2 em{ font-family:var(--serif); font-style:italic; font-weight:400; }
+  p.lead{ margin-top:24px; font-size:clamp(16px,1.3vw,20px); line-height:1.6; color:var(--grey2); max-width:46ch; }
+
+  /* 01 · FADE + MICRO-RISE */
+  .rise{ opacity:0; transform:translateY(12px); transition:opacity .9s var(--ease), transform .9s var(--ease); }
+  .rise.in{ opacity:1; transform:none; }
+  .rise.d1{ transition-delay:.08s } .rise.d2{ transition-delay:.16s } .rise.d3{ transition-delay:.24s }
+  .chips{ display:flex; flex-wrap:wrap; gap:9px; margin-top:30px; }
+  .chips span{ font-family:var(--mono); font-size:12px; border:1px solid var(--line); border-radius:999px; padding:8px 14px; color:var(--grey2); }
+
+  /* 02 · UNDERLINE DRAW (hover) + logos grey→nitid */
+  .links{ display:flex; flex-direction:column; gap:18px; align-items:flex-start; margin-top:10px; }
+  .ul{ position:relative; text-decoration:none; color:var(--ink); font-size:clamp(24px,3vw,44px); font-weight:500; letter-spacing:-.02em; padding-bottom:4px; }
+  .ul::after{ content:""; position:absolute; left:0; right:0; bottom:0; height:2px; background:var(--ink); transform:scaleX(0); transform-origin:left; transition:transform .5s var(--ease); }
+  .ul:hover::after{ transform:scaleX(1); }
+  .lg{ display:flex; gap:clamp(34px,5vw,70px); align-items:center; flex-wrap:wrap; margin-top:50px; }
+  .lg img{ height:30px; width:auto; opacity:.45; filter:grayscale(1); transition:opacity .5s var(--ease), filter .5s var(--ease); }
+  .lg img:hover{ opacity:1; filter:grayscale(0); }
+
+  /* 03 · PARALLAX (molt subtil) */
+  .px-wrap{ position:relative; border-radius:16px; overflow:hidden; aspect-ratio:16/9; background:#e8e5e1; margin-top:10px; max-width:1100px; }
+  .px-wrap img{ position:absolute; inset:-6% 0; width:100%; height:112%; object-fit:cover; will-change:transform; }
+  .px-cap{ position:absolute; left:26px; bottom:22px; color:#fff; z-index:2; }
+  .px-cap .eb{ font-family:var(--mono); font-size:11px; letter-spacing:.14em; text-transform:uppercase; opacity:.8; }
+  .px-cap .t{ font-size:clamp(22px,2.4vw,34px); font-weight:500; letter-spacing:-.02em; }
+  .px-scrim{ position:absolute; inset:0; background:linear-gradient(180deg,transparent 50%,rgba(8,8,12,.5)); z-index:1; }
+</style>
+</head>
+<body>
+<div class="pick">
+  <span class="bk">Subtle motion — 3 opcions</span>
+  <a href="#s1">01 Fade-rise</a><a href="#s2">02 Underline</a><a href="#s3">03 Parallax</a>
+</div>
+
+<section class="sec" id="s1">
+  <div class="flag rise">01 — <b>Fade + micro-rise</b> · entra suau, puja 12px, stagger mínim</div>
+  <h2 class="rise d1">Brands built to <em>scale.</em></h2>
+  <p class="lead rise d2">Strategy connected to execution, identity that scales, digital designed to compound. Real growth, not noise.</p>
+  <div class="chips rise d3"><span>Strategy</span><span>Identity</span><span>Digital</span><span>Positioning</span><span>Naming</span></div>
+</section>
+
+<section class="sec" id="s2">
+  <div class="flag">02 — <b>Underline draw</b> · la línia es dibuixa en hover · logos gris → nítid</div>
+  <div class="links">
+    <a class="ul" href="#">Selected work</a>
+    <a class="ul" href="#">The studio</a>
+    <a class="ul" href="#">Start the conversation</a>
+  </div>
+  <div class="lg">
+    <img src="../project/assets/clients/sap.png" alt=""><img src="../project/assets/clients/glovo.png" alt=""><img src="../project/assets/clients/almirall.png" alt=""><img src="../project/assets/clients/instellar.png" alt=""><img src="../project/assets/clients/relats.png" alt="">
+  </div>
+</section>
+
+<section class="sec" id="s3">
+  <div class="flag">03 — <b>Parallax</b> · la imatge es mou ±8px amb l'scroll (gairebé imperceptible)</div>
+  <div class="px-wrap">
+    <img id="px" src="../project/assets/images/astronaut-red-portrait.png" alt="">
+    <div class="px-scrim"></div>
+    <div class="px-cap"><div class="eb">Conceptual</div><div class="t">Built to scale®</div></div>
+  </div>
+  <p class="lead">Moviment mínim de profunditat. Pots pujar-lo a ±14px si el vols més evident.</p>
+</section>
+
+<script>
+  // 01 fade-rise (reveal on view, re-trigger en sortir/entrar)
+  const io = new IntersectionObserver(es=>es.forEach(e=>e.target.classList.toggle('in', e.isIntersecting)), { threshold:.2 });
+  document.querySelectorAll('.rise').forEach(el=>io.observe(el));
+
+  // 03 parallax molt subtil
+  const px = document.getElementById('px');
+  const AMP = 8;
+  const onScroll = () => {
+    const r = px.parentElement.getBoundingClientRect();
+    const prog = (r.top + r.height/2 - innerHeight/2) / (innerHeight/2 + r.height/2); // -1..1
+    px.style.transform = `translateY(${(-prog*AMP).toFixed(2)}px)`;
+  };
+  addEventListener('scroll', onScroll, { passive:true }); onScroll();
+</script>
+</body>
+</html>
