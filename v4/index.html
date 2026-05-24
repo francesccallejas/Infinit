@@ -6,7 +6,7 @@
 <title>Infinit® — Brand &amp; Strategy · V2</title>
 <meta name="description" content="Strategic brand, identity and digital systems for companies navigating growth and transformation.">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
-<link rel="stylesheet" href="style.css?v=292">
+<link rel="stylesheet" href="style.css?v=293">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@600&family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -403,7 +403,6 @@
   /* ---- capabilities accordion: obre en hover (desktop), toggle en click (tàctil) ---- */
   (function(){
     const items = [...document.querySelectorAll('.cap-item')];
-    const canHover = matchMedia('(hover: hover)').matches;
     const openOnly = it => items.forEach(x => {
       const on = x === it; x.classList.toggle('on', on);
       x.querySelector('.cap-row').setAttribute('aria-expanded', on);
@@ -411,8 +410,6 @@
     const closeIt = it => { it.classList.remove('on'); it.querySelector('.cap-row').setAttribute('aria-expanded','false'); };
     items.forEach(it => {
       const row = it.querySelector('.cap-row');
-      const plus = it.querySelector('.cap-plus');
-      if (canHover) plus.addEventListener('mouseenter', () => openOnly(it));
       row.addEventListener('click', () => {
         if (it.classList.contains('on')) closeIt(it);   // clic a − → tanca
         else openOnly(it);
