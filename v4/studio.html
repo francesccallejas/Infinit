@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,600,700,900&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=291">
+<link rel="stylesheet" href="style.css?v=292">
 <script>try{if(sessionStorage.getItem('inf_seen'))document.documentElement.classList.add('quick-nav');sessionStorage.setItem('inf_seen','1');}catch(e){}</script>
 <style>
   :root{ --grey2:rgba(11,12,17,.55); --mint:#D8F3D6; --mint-ink:#2F8F66; --line:rgba(11,12,17,.13); }
@@ -60,15 +60,15 @@
 
   /* VALUE statement */
   .value{ padding:clamp(70px,11vw,160px) 0; text-align:center; }
-  .value h2{ font-family:var(--serif); font-weight:400; font-size:clamp(34px,5.4vw,80px); line-height:1.08; letter-spacing:-.01em; color:#9b9892; max-width:20ch; margin:18px auto 0; }
-  .value h2 .acc{ font-style:italic; color:var(--ink); }
+  .value h2{ font-family:var(--sans); font-weight:500; font-size:clamp(32px,5vw,72px); line-height:1.1; letter-spacing:-.03em; color:var(--ink); max-width:20ch; margin:18px auto 0; }
+  .value h2 .acc{ font-family:var(--serif); font-style:italic; font-weight:400; color:var(--ink); letter-spacing:-.01em; }
   .value p{ max-width:54ch; margin:clamp(26px,3vw,40px) auto 0; font-size:clamp(16px,1.2vw,19px); line-height:1.65; color:var(--grey2); }
 
   /* CLIENTS — big text list */
   .clients{ padding:clamp(56px,8vw,120px) 0; border-top:1px solid var(--line); }
   .clients .eb{ display:block; margin-bottom:clamp(22px,3vw,38px); }
   .clients .list{ font-weight:500; font-size:clamp(28px,4.4vw,64px); line-height:1.12; letter-spacing:-.03em; color:var(--ink); max-width:22ch; }
-  .clients .list .q{ color:rgba(11,12,17,.32); }
+  .clients .list .q{ color:var(--ink); }
 
   /* CTA band over warm interior */
   .cta{ position:relative; min-height:min(60vh,520px); display:grid; place-items:center; text-align:center; overflow:hidden; color:#fff; }
@@ -76,7 +76,7 @@
   .cta .scrim{ position:absolute; inset:0; background:rgba(8,8,12,.42); }
   .cta .in{ position:relative; z-index:2; padding:40px; }
   .cta h2{ font-weight:500; font-size:clamp(30px,4.6vw,68px); letter-spacing:-.035em; line-height:1.02; }
-  .cta h2 em{ color:var(--mint); }
+  .cta h2 em{ color:#fff; }
   /* CTA igual que la landing: negre sòlid + xip mint */
   .cta .go{ display:inline-flex; align-items:center; gap:0; margin-top:30px; text-decoration:none;
     font-weight:600; font-size:clamp(16px,1.4vw,20px); letter-spacing:-.01em;

@@ -16,9 +16,8 @@
   .eb{ font-family:var(--mono); font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:var(--grey2); margin-bottom:26px; display:block; }
   .block{ padding:clamp(40px,7vh,90px) 0; border-top:1px solid rgba(11,12,17,.12); }
 
-  /* magnetic wrapper: el moviment va al wrapper, el contingut pot tenir el seu propi micro-shift */
-  .mag{ display:inline-flex; will-change:transform; transition:transform .45s var(--ease); }
-  .mag > *{ transition:transform .45s var(--ease); }
+  /* magnetic wrapper: el moviment (lerp per frame al JS) va al wrapper */
+  .mag{ display:inline-flex; will-change:transform; }
 
   /* logos */
   .logos{ display:flex; align-items:center; gap:clamp(40px,6vw,90px); flex-wrap:wrap; }
@@ -48,47 +47,52 @@
   <section class="block">
     <span class="eb">Logos — Experience across</span>
     <div class="logos" id="logos">
-      <span class="mag" data-strength="0.35"><img src="../project/assets/clients/sap.png" alt=""></span>
-      <span class="mag" data-strength="0.35"><img src="../project/assets/clients/glovo.png" alt=""></span>
-      <span class="mag" data-strength="0.35"><img src="../project/assets/clients/almirall.png" alt=""></span>
-      <span class="mag" data-strength="0.35"><img src="../project/assets/clients/instellar.png" alt=""></span>
-      <span class="mag" data-strength="0.35"><img src="../project/assets/clients/relats.png" alt=""></span>
-      <span class="mag" data-strength="0.35"><img src="../project/assets/clients/bunnker.png" alt=""></span>
+      <span class="mag" data-strength="0.22"><img src="../project/assets/clients/sap.png" alt=""></span>
+      <span class="mag" data-strength="0.22"><img src="../project/assets/clients/glovo.png" alt=""></span>
+      <span class="mag" data-strength="0.22"><img src="../project/assets/clients/almirall.png" alt=""></span>
+      <span class="mag" data-strength="0.22"><img src="../project/assets/clients/instellar.png" alt=""></span>
+      <span class="mag" data-strength="0.22"><img src="../project/assets/clients/relats.png" alt=""></span>
+      <span class="mag" data-strength="0.22"><img src="../project/assets/clients/bunnker.png" alt=""></span>
     </div>
-    <p class="note">strength 0.35 · radi de detecció ampli</p>
+    <p class="note">strength 0.22 · seguiment amb lerp (suau)</p>
   </section>
 
   <section class="block">
     <span class="eb">Botó CTA</span>
-    <a class="mag cta" data-strength="0.45" href="#"><span class="tx">Start the conversation</span><span class="ar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span></a>
-    <p class="note">strength 0.45 · una mica més de pull</p>
+    <a class="mag cta" data-strength="0.3" href="#"><span class="tx">Start the conversation</span><span class="ar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span></a>
+    <p class="note">strength 0.30 · una mica més de pull</p>
   </section>
 
   <section class="block">
     <span class="eb">Menú — contacte + dots</span>
     <div class="row">
-      <a class="mag pill" data-strength="0.4" href="#">contact <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
-      <span class="mag dots" data-strength="0.5"><span></span><span></span><span></span><span></span></span>
+      <a class="mag pill" data-strength="0.25" href="#">contact <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
+      <span class="mag dots" data-strength="0.32"><span></span><span></span><span></span><span></span></span>
     </div>
   </section>
 
 <script>
-  const R = 90; // radi extra de detecció al voltant de l'element
   const can = matchMedia('(hover: hover)').matches;
+  const EASE = 0.12;   // com de suau segueix (més baix = més fluid/lent)
   if (can) document.querySelectorAll('.mag').forEach(el => {
-    const s = parseFloat(el.dataset.strength || '0.35');
+    const s = parseFloat(el.dataset.strength || '0.22');
     const inner = el.firstElementChild;
-    const onMove = e => {
-      const r = el.getBoundingClientRect();
-      const cx = r.left + r.width/2, cy = r.top + r.height/2;
-      const dx = e.clientX - cx, dy = e.clientY - cy;
-      el.style.transform = `translate(${dx*s}px, ${dy*s}px)`;
-      if (inner) inner.style.transform = `translate(${dx*s*0.35}px, ${dy*s*0.35}px)`;
+    let tx = 0, ty = 0, x = 0, y = 0, raf = null, hot = false;
+    const tick = () => {
+      x += (tx - x) * EASE; y += (ty - y) * EASE;
+      el.style.transform = `translate(${x.toFixed(2)}px, ${y.toFixed(2)}px)`;
+      if (inner) inner.style.transform = `translate(${(x*0.4).toFixed(2)}px, ${(y*0.4).toFixed(2)}px)`;
+      if (hot || Math.abs(tx - x) > 0.1 || Math.abs(ty - y) > 0.1) raf = requestAnimationFrame(tick);
+      else { raf = null; el.style.transform = ''; if (inner) inner.style.transform = ''; }
     };
-    const reset = () => { el.style.transform = ''; if (inner) inner.style.transform = ''; };
-    // detecció ampliada: escoltem a tota la finestra i activem si el cursor és prop
-    el.addEventListener('pointerenter', () => el.addEventListener('pointermove', onMove));
-    el.addEventListener('pointerleave', () => { el.removeEventListener('pointermove', onMove); reset(); });
+    const run = () => { if (!raf) raf = requestAnimationFrame(tick); };
+    el.addEventListener('pointermove', e => {
+      const r = el.getBoundingClientRect();
+      tx = (e.clientX - (r.left + r.width/2)) * s;
+      ty = (e.clientY - (r.top + r.height/2)) * s;
+      hot = true; run();
+    });
+    el.addEventListener('pointerleave', () => { tx = 0; ty = 0; hot = false; run(); });
   });
 </script>
 </body>
