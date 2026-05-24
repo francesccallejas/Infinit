@@ -610,7 +610,7 @@ main > section:not(.hero), main > footer { position: relative; z-index: 1; }
   .svc { grid-template-columns: 1fr; gap: 16px; }
   .work-tile .cap .work-tag { letter-spacing: .05em; word-spacing: -1px; }
   .services { padding-bottom: 0; }
-  .work { padding-top: clamp(36px,6vh,64px); padding-bottom: 0; }
+  .work { padding-top: clamp(36px,6vh,64px); padding-bottom: clamp(56px,9vh,90px); }
   .studio { padding-top: clamp(64px,10vh,112px); }
   .work-list { position: static; display: flex; flex-direction: column; gap: 28px; min-height: 0; }
   .work-list .work-tile,
@@ -688,9 +688,8 @@ main > section:not(.hero), main > footer { position: relative; z-index: 1; }
    CLIENTS — marquee
    ========================================================================= */
 /* warm gray, enganxat al CTA (mateix fons) → es llegeixen com un bloc */
-.clients-band { padding: clamp(64px,10vh,120px) 0 0; background: #DCD5C8; }
+.clients-band { padding: clamp(64px,11vh,130px) 0; background: var(--bg); }
 .clients-band .eyebrow { display: block; line-height: 1; margin-bottom: clamp(30px,4.5vh,56px); color: rgba(11,12,17,.5); }
-.clients-band + .cta-band { padding-top: clamp(60px,9vh,120px); }
 .marquee { width: 100%; overflow: hidden; -webkit-mask-image: linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);
   mask-image: linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent); }
 .mq-track { display: flex; align-items: center; gap: clamp(48px,7vw,110px);
@@ -699,14 +698,14 @@ main > section:not(.hero), main > footer { position: relative; z-index: 1; }
   filter: grayscale(1); transition: opacity .3s var(--ease); }
 .mq-track img:hover { opacity: 1; }
 /* V1 optical proportions, +15% */
-.mq-track .l-glovo    { height: 53px; }
-.mq-track .l-sap      { height: 39px; }
-.mq-track .l-bunnker  { height: 37px; }
-.mq-track .l-almirall { height: 36px; }
-.mq-track .l-relats   { height: 30px; }
-.mq-track .l-instellar{ height: 28px; }
-.mq-track .l-dronparc { height: 25px; }
-.mq-track .l-11onze   { height: 21px; }
+.mq-track .l-glovo    { height: 45px; }
+.mq-track .l-sap      { height: 33px; }
+.mq-track .l-bunnker  { height: 31px; }
+.mq-track .l-almirall { height: 31px; }
+.mq-track .l-relats   { height: 26px; }
+.mq-track .l-instellar{ height: 24px; }
+.mq-track .l-dronparc { height: 21px; }
+.mq-track .l-11onze   { height: 18px; }
 @keyframes mq { to { transform: translateX(-50%); } }
 
 /* =========================================================================
