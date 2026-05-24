@@ -824,7 +824,8 @@ main > section:not(.hero), main > footer { position: relative; z-index: 1; }
 .services { padding-top: clamp(110px, 17vh, 220px); padding-bottom: clamp(150px, 24vh, 320px);
   background: var(--ink); color: #fff; border: 0; position: static; }
 /* espai reservat sota l'accordion → en obrir un servei no creix el negre, ja respira */
-.cap-acc { padding-bottom: clamp(40px, 7vh, 110px); }
+/* alçada reservada via JS (--cap-min) → en obrir un servei el bloc no creix */
+.cap-acc { min-height: var(--cap-min, auto); }
 /* CAPABILITIES — accordion editorial (estil net, serif + toggle) */
 .cap-head { text-align: center; margin-bottom: clamp(34px,5vw,64px); }
 .cap-eb { font-family: var(--mono); font-size: 11px; letter-spacing: .18em; text-transform: uppercase; color: rgba(255,255,255,.5); }
@@ -845,8 +846,8 @@ main > section:not(.hero), main > footer { position: relative; z-index: 1; }
 .cap-plus::before { width: 14px; height: 1.5px; transform: translate(-50%,-50%); }
 .cap-plus::after { width: 1.5px; height: 14px; transform: translate(-50%,-50%); transition: opacity .35s var(--ease), transform .35s var(--ease); }
 .cap-item.on .cap-plus::after { opacity: 0; transform: translate(-50%,-50%) rotate(90deg); }
-.cap-body { max-height: 0; overflow: hidden; opacity: 0; transition: max-height .6s var(--ease), opacity .5s var(--ease); }
-.cap-item.on .cap-body { max-height: 320px; opacity: 1; }
+.cap-body { max-height: 0; overflow: hidden; opacity: 0; transition: max-height .8s cubic-bezier(.4,0,.2,1), opacity .6s ease; }
+.cap-item.on .cap-body { max-height: 420px; opacity: 1; }
 .cap-body-in { padding: 0 0 clamp(28px,3vw,44px); max-width: 64ch; }
 .cap-body-in p { color: rgba(255,255,255,.92); font-size: clamp(15px,1.2vw,19px); line-height: 1.6; }
 .cap-subs { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 22px; }
@@ -1311,7 +1312,7 @@ body.menu-open .mbar { opacity: 0 !important; pointer-events: none; }
 @media (max-width: 760px) {
   /* full-width bar, no horizontal centring → entrance must NOT use translateX */
   .mbar { width: auto; left: clamp(12px,3vw,18px); right: clamp(12px,3vw,18px); min-width: 0;
-    transform: translateY(-42px); animation-name: mbarInM; }
+    transform: translateY(0); animation-name: mbarInM; }
   .mbar-contact span { display: none; }
   .mmenu-card { width: auto; left: clamp(12px,3vw,18px); right: clamp(12px,3vw,18px); transform: none; min-width: 0;
     height: auto; bottom: clamp(12px,3vw,18px); }

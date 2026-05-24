@@ -6,7 +6,7 @@
 <title>Infinit® — Brand &amp; Strategy · V2</title>
 <meta name="description" content="Strategic brand, identity and digital systems for companies navigating growth and transformation.">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
-<link rel="stylesheet" href="style.css?v=285">
+<link rel="stylesheet" href="style.css?v=287">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@600&family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -173,8 +173,8 @@
     <div class="wrap">
       <div class="cap-head r"><span class="cap-eb">Capabilities</span><h2 class="cap-h">Three disciplines.<br>One studio.</h2></div>
       <div class="cap-acc">
-        <div class="cap-item on r">
-          <button class="cap-row" aria-expanded="true"><span class="cap-ttl">Strategy</span><span class="cap-plus" aria-hidden="true"></span></button>
+        <div class="cap-item r">
+          <button class="cap-row" aria-expanded="false"><span class="cap-ttl">Strategy</span><span class="cap-plus" aria-hidden="true"></span></button>
           <div class="cap-body"><div class="cap-body-in">
             <p>Direction aligning business ambition, market opportunity and execution. Positioning, growth systems, strategic clarity and modern brand evolution.</p>
             <div class="cap-subs"><span>Brand Strategy</span><span>Positioning</span><span>Growth Strategy</span><span>Fractional CMO</span><span>Research</span><span>AI Opportunity Mapping</span></div>
@@ -408,16 +408,29 @@
       const on = x === it; x.classList.toggle('on', on);
       x.querySelector('.cap-row').setAttribute('aria-expanded', on);
     });
+    const closeIt = it => { it.classList.remove('on'); it.querySelector('.cap-row').setAttribute('aria-expanded','false'); };
     items.forEach(it => {
       const row = it.querySelector('.cap-row');
       const plus = it.querySelector('.cap-plus');
       if (canHover) plus.addEventListener('mouseenter', () => openOnly(it));
       row.addEventListener('click', () => {
-        const isOpen = it.classList.contains('on');
-        if (isOpen && !canHover) { it.classList.remove('on'); row.setAttribute('aria-expanded','false'); }
+        if (it.classList.contains('on')) closeIt(it);   // clic a − → tanca
         else openOnly(it);
       });
     });
+    /* reserva alçada (tot tancat + el cos més alt) → en obrir un servei el bloc no creix */
+    const acc = document.querySelector('.cap-acc');
+    if (acc) {
+      const reserve = () => {
+        acc.style.removeProperty('--cap-min');
+        let maxBody = 0;
+        acc.querySelectorAll('.cap-body-in').forEach(el => { maxBody = Math.max(maxBody, el.offsetHeight); });
+        acc.style.setProperty('--cap-min', (acc.offsetHeight + maxBody) + 'px');
+      };
+      reserve();
+      let rt; addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(reserve, 200); });
+      if (document.fonts && document.fonts.ready) document.fonts.ready.then(reserve);
+    }
   })();
 
   /* ---- frosted menu: bar dots → expanded overlay ---- */
