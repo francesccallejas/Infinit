@@ -336,15 +336,13 @@ main > section:not(.hero), main > footer { position: relative; z-index: 1; }
 /* =========================================================================
    CLAIM  (window grows from centre → near full-bleed)
    ========================================================================= */
-.claim { --cp: 0; --ci: 0; position: relative; background: var(--bg); }
+.claim { --cp: 0; --ci: 0; position: relative; background: var(--bg); z-index: 2; }   /* per sobre de la secció següent → l'ombra del box no es talla */
 .claim-track { height: 240vh; }
 .claim-sticky {
   position: sticky; top: 0; height: 100svh;
   display: flex; align-items: center; justify-content: center;
-  /* top deixa lloc al menú flotant (gap simètric); costats/baix = 14px */
-  padding-top: calc(var(--frame)*4 + clamp(50px,3.5vw,60px) + (1 - var(--cp)) * 11vh);
-  padding-bottom: calc(14px + (1 - var(--cp)) * 13vh);
-  padding-inline: calc(14px + (1 - var(--cp)) * 16vw);
+  /* el box arriba una mica més a prop de les vores (marges petits i simètrics) */
+  padding: calc(10px + (1 - var(--cp)) * 13vh) calc(10px + (1 - var(--cp)) * 16vw);
 }
 .claim-window {
   position: relative; width: 100%; height: 100%; background: var(--ink);

@@ -6,7 +6,7 @@
 <title>Infinit® — Brand &amp; Strategy · V2</title>
 <meta name="description" content="Strategic brand, identity and digital systems for companies navigating growth and transformation.">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
-<link rel="stylesheet" href="style.css?v=289">
+<link rel="stylesheet" href="style.css?v=290">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@600&family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -418,19 +418,6 @@
         else openOnly(it);
       });
     });
-    /* reserva alçada (tot tancat + el cos més alt) → en obrir un servei el bloc no creix */
-    const acc = document.querySelector('.cap-acc');
-    if (acc) {
-      const reserve = () => {
-        acc.style.removeProperty('--cap-min');
-        let maxBody = 0;
-        acc.querySelectorAll('.cap-body-in').forEach(el => { maxBody = Math.max(maxBody, el.offsetHeight); });
-        acc.style.setProperty('--cap-min', (acc.offsetHeight + maxBody) + 'px');
-      };
-      reserve();
-      let rt; addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(reserve, 200); });
-      if (document.fonts && document.fonts.ready) document.fonts.ready.then(reserve);
-    }
   })();
 
   /* ---- frosted menu: bar dots → expanded overlay ---- */
