@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Magnetic hover — Infinit®</title>
+<link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,600,700,900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@1&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{ --ink:#0B0C11; --bg:#F4F2F0; --mint:#D8F3D6; --grey2:rgba(11,12,17,.55);
+    --sans:"Satoshi",system-ui,sans-serif; --mono:"IBM Plex Mono",monospace; --ease:cubic-bezier(.22,1,.36,1); }
+  *{box-sizing:border-box;margin:0}
+  body{ background:var(--bg); color:var(--ink); font-family:var(--sans); padding:clamp(28px,6vw,80px); }
+  h1{ font-weight:600; font-size:clamp(24px,3vw,40px); letter-spacing:-.03em; }
+  .sub{ font-family:var(--mono); font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--grey2); margin:10px 0 60px; }
+  .eb{ font-family:var(--mono); font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:var(--grey2); margin-bottom:26px; display:block; }
+  .block{ padding:clamp(40px,7vh,90px) 0; border-top:1px solid rgba(11,12,17,.12); }
+
+  /* magnetic wrapper: el moviment va al wrapper, el contingut pot tenir el seu propi micro-shift */
+  .mag{ display:inline-flex; will-change:transform; transition:transform .45s var(--ease); }
+  .mag > *{ transition:transform .45s var(--ease); }
+
+  /* logos */
+  .logos{ display:flex; align-items:center; gap:clamp(40px,6vw,90px); flex-wrap:wrap; }
+  .logos img{ height:34px; width:auto; opacity:.6; filter:grayscale(1); transition:opacity .3s var(--ease); }
+  .mag:hover img{ opacity:1; }
+
+  /* CTA negre + xip mint */
+  .cta{ display:inline-flex; align-items:center; gap:0; text-decoration:none; color:var(--bg);
+    background:var(--ink); height:62px; padding:0 8px 0 26px; border-radius:14px; font-weight:600; font-size:18px; letter-spacing:-.01em; }
+  .cta .tx{ padding-right:16px; }
+  .cta .ar{ width:46px; height:46px; border-radius:10px; display:grid; place-items:center; background:var(--mint); color:var(--ink); }
+  .cta .ar svg{ width:18px; height:18px; }
+
+  /* pill contacte + dots */
+  .pill{ display:inline-flex; align-items:center; gap:8px; font-weight:600; font-size:16px; color:var(--ink); text-decoration:none; }
+  .dots{ display:grid; grid-template-columns:repeat(2,auto); gap:5px; padding:8px; }
+  .dots span{ width:5px; height:5px; border-radius:1.5px; background:var(--ink); }
+
+  .row{ display:flex; align-items:center; gap:50px; flex-wrap:wrap; }
+  .note{ font-family:var(--mono); font-size:11px; color:var(--grey2); margin-top:18px; }
+</style>
+</head>
+<body>
+  <h1>Magnetic hover</h1>
+  <p class="sub">Passa el cursor a prop · els elements el segueixen subtilment i tornen suaus</p>
+
+  <section class="block">
+    <span class="eb">Logos — Experience across</span>
+    <div class="logos" id="logos">
+      <span class="mag" data-strength="0.35"><img src="../project/assets/clients/sap.png" alt=""></span>
+      <span class="mag" data-strength="0.35"><img src="../project/assets/clients/glovo.png" alt=""></span>
+      <span class="mag" data-strength="0.35"><img src="../project/assets/clients/almirall.png" alt=""></span>
+      <span class="mag" data-strength="0.35"><img src="../project/assets/clients/instellar.png" alt=""></span>
+      <span class="mag" data-strength="0.35"><img src="../project/assets/clients/relats.png" alt=""></span>
+      <span class="mag" data-strength="0.35"><img src="../project/assets/clients/bunnker.png" alt=""></span>
+    </div>
+    <p class="note">strength 0.35 · radi de detecció ampli</p>
+  </section>
+
+  <section class="block">
+    <span class="eb">Botó CTA</span>
+    <a class="mag cta" data-strength="0.45" href="#"><span class="tx">Start the conversation</span><span class="ar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span></a>
+    <p class="note">strength 0.45 · una mica més de pull</p>
+  </section>
+
+  <section class="block">
+    <span class="eb">Menú — contacte + dots</span>
+    <div class="row">
+      <a class="mag pill" data-strength="0.4" href="#">contact <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
+      <span class="mag dots" data-strength="0.5"><span></span><span></span><span></span><span></span></span>
+    </div>
+  </section>
+
+<script>
+  const R = 90; // radi extra de detecció al voltant de l'element
+  const can = matchMedia('(hover: hover)').matches;
+  if (can) document.querySelectorAll('.mag').forEach(el => {
+    const s = parseFloat(el.dataset.strength || '0.35');
+    const inner = el.firstElementChild;
+    const onMove = e => {
+      const r = el.getBoundingClientRect();
+      const cx = r.left + r.width/2, cy = r.top + r.height/2;
+      const dx = e.clientX - cx, dy = e.clientY - cy;
+      el.style.transform = `translate(${dx*s}px, ${dy*s}px)`;
+      if (inner) inner.style.transform = `translate(${dx*s*0.35}px, ${dy*s*0.35}px)`;
+    };
+    const reset = () => { el.style.transform = ''; if (inner) inner.style.transform = ''; };
+    // detecció ampliada: escoltem a tota la finestra i activem si el cursor és prop
+    el.addEventListener('pointerenter', () => el.addEventListener('pointermove', onMove));
+    el.addEventListener('pointerleave', () => { el.removeEventListener('pointermove', onMove); reset(); });
+  });
+</script>
+</body>
+</html>
