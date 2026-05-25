@@ -44,12 +44,11 @@
   .manifest .vsel .list{ display:flex; flex-direction:column; }
   .manifest .vsel .vrow{ all:unset; box-sizing:border-box; display:block; width:100%; cursor:pointer; border-top:1px solid var(--line); padding:clamp(16px,2vw,26px) 0; }
   .manifest .vsel .vrow:last-child{ border-bottom:1px solid var(--line); }
-  .manifest .vsel .pk{ font-family:var(--mono); font-size:11px; letter-spacing:.16em; color:var(--grey2); }
-  .manifest .vsel h3{ font-weight:500; font-size:clamp(28px,3.4vw,48px); letter-spacing:-.03em; line-height:1.04; margin-top:6px; color:var(--ink); opacity:.4; transition:opacity .4s var(--ease); }
+  .manifest .vsel h3{ font-weight:500; font-size:clamp(28px,3.4vw,48px); letter-spacing:-.03em; line-height:1.04; color:var(--ink); opacity:.38; transition:opacity .4s var(--ease); }
   .manifest .vsel .vrow.active h3{ opacity:1; }
   .manifest .vsel .desc{ max-height:0; overflow:hidden; opacity:0; transition:max-height .55s var(--ease), opacity .4s var(--ease); }
-  .manifest .vsel .vrow.active .desc{ max-height:200px; opacity:1; }
-  .manifest .vsel .desc p{ font-size:clamp(14px,1.05vw,16px); line-height:1.6; color:var(--grey2); max-width:46ch; padding-top:12px; }
+  .manifest .vsel .vrow.active .desc{ max-height:240px; opacity:1; }
+  .manifest .vsel .desc p{ font-size:clamp(14px,1.05vw,16px); line-height:1.6; color:var(--ink); max-width:48ch; padding-top:14px; }
   .manifest .vsel .media{ position:relative; border-radius:var(--r,14px); overflow:hidden; background:#e8e5e1; aspect-ratio:4/3; }
   .manifest .vsel .media img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:0; transition:opacity .6s var(--ease); }
   .manifest .vsel .media img.on{ opacity:1; }
@@ -75,15 +74,9 @@
   .profile .ln svg{ width:14px; height:14px; }
   @media(max-width:620px){ .profile .row{ grid-template-columns:1fr; } }
 
-  /* CONCEPTUAL full-bleed band — now THE EYE (clarity / vision) */
-  .concept{ position:relative; height:min(86vh,720px); overflow:hidden; display:grid; place-items:center end; text-align:right; color:#fff; }
-  .concept img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
-  .concept .scrim{ position:absolute; inset:0; background:linear-gradient(90deg,rgba(7,7,8,0) 30%,rgba(7,7,8,.55) 78%,rgba(7,7,8,.82) 100%); }
-  .concept .cap{ position:relative; z-index:2; padding:clamp(28px,6vw,96px); width:min(46vw,560px); }
-  .concept .eb{ color:rgba(255,255,255,.6); display:block; }
-  .concept h2{ font-weight:500; font-size:clamp(28px,3.6vw,56px); line-height:1.1; letter-spacing:-.03em; margin-top:14px; color:#fff; }
-  .concept h2 .acc{ font-family:var(--serif); font-style:italic; font-weight:400; color:#fff; }
-  @media(max-width:760px){ .concept{ place-items:end start; text-align:left; } .concept .cap{ width:auto; } }
+  /* ME band — cinematic full-bleed portrait (leads into the profile) */
+  .meband{ position:relative; height:min(88vh,800px); overflow:hidden; }
+  .meband img{ width:100%; height:100%; object-fit:cover; object-position:center 20%; }
 
   /* VALUE statement */
   .value{ padding:clamp(70px,11vw,160px) 0; text-align:center; }
@@ -209,19 +202,16 @@
       <div class="vsel r d1">
         <div class="list">
           <button class="vrow active" type="button" data-i="0">
-            <span class="pk">01 — Clarity</span>
             <h3>Clarity</h3>
-            <div class="desc"><p>Simple, fast, understood at first glance. We remove everything that isn't the idea — so brands move with speed and land instantly.</p></div>
+            <div class="desc"><p>Simple, fast, understood at first glance. We strip away everything that isn't the idea, so the brand reads instantly and moves with speed. Clarity is a competitive advantage — and a faster path to market.</p></div>
           </button>
           <button class="vrow" type="button" data-i="1">
-            <span class="pk">02 — Alive</span>
             <h3>Alive</h3>
-            <div class="desc"><p>Never a static logo. Identities that move, breathe and iterate — infinite by design, never finished.</p></div>
+            <div class="desc"><p>A brand is never a static logo. We build living identities — systems that move, breathe and iterate, designed to evolve with the company. Infinite by design, never finished.</p></div>
           </button>
           <button class="vrow" type="button" data-i="2">
-            <span class="pk">03 — People</span>
             <h3>People</h3>
-            <div class="desc"><p>Built by senior hands and valued as the craft it is. No layers, no noise. People first, always.</p></div>
+            <div class="desc"><p>Branding should be a recognised craft — built by senior hands and fairly valued. A sector that counts on its people, values their craft, and rewards it as the discipline it is. People first, always.</p></div>
           </button>
         </div>
         <div class="media">
@@ -233,21 +223,9 @@
     </div>
   </section>
 
-  <!-- VALUE -->
-  <section class="value">
-    <div class="wrap">
-      <span class="eb r">What we stand for</span>
-      <h2 class="r d1">Branding should be a recognised craft — built by people, <span class="acc">fairly valued.</span></h2>
-      <p class="r d2">A more recognised branding sector: one that counts on its people, values their craft, and rewards it as the discipline it is. People first, always.</p>
-      <p class="vsign r d3">Cesc Callejas</p>
-    </div>
-  </section>
-
-  <!-- THE EYE — clarity / vision -->
-  <section class="concept">
-    <img src="../project/assets/imagery/eye-dark.jpg" alt="">
-    <div class="scrim"></div>
-    <div class="cap r"><span class="eb">Clarity</span><h2>Clarity is a <span class="acc">competitive advantage.</span></h2></div>
+  <!-- ME band — cinematic portrait leading into the profile -->
+  <section class="meband">
+    <img src="../project/assets/imagery/francesc.jpg" alt="Cesc Callejas">
   </section>
 
   <!-- PROFILE — compact (the person behind it, demoted) -->
@@ -424,8 +402,8 @@
   // adaptive frost — light bar over light sections, dark over dark
   (function(){
     const bar = document.getElementById('mbar');
-    const secs = [...document.querySelectorAll('.hero, .manifest, .value, .concept, .profile, .clients, .cta')];
-    const isDark = el => el.classList.contains('hero') || el.classList.contains('concept') || el.classList.contains('cta') || el.classList.contains('foot');
+    const secs = [...document.querySelectorAll('.hero, .manifest, .meband, .profile, .clients, .cta')];
+    const isDark = el => el.classList.contains('hero') || el.classList.contains('cta') || el.classList.contains('foot');
     const lightAt = y => {
       for (const el of secs){ const r = el.getBoundingClientRect(); if (r.top <= y && r.bottom > y) return !isDark(el); }
       return false;
