@@ -469,6 +469,8 @@
     function set(o){
       if (o) p.classList.toggle('on-light', bar.classList.contains('on-light')); // match bar's frost mode
       p.classList.toggle('open', o); b.classList.toggle('open', o); b.setAttribute('aria-expanded', o); p.setAttribute('aria-hidden', !o); document.body.classList.toggle('menu-open', o);
+      document.body.style.overflow = o ? 'hidden' : '';   // lock page scroll while menu is open
+      if (window.lenis) { o ? window.lenis.stop() : window.lenis.start(); }
     }
     closeMenu = () => set(false);
     const card = p.querySelector('.mmenu-card');
