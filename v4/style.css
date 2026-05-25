@@ -1010,11 +1010,11 @@ main > section:not(.hero), main > footer { position: relative; z-index: 1; }
   border-radius: var(--r); cursor: pointer; border: 1px solid transparent; white-space: nowrap;
   transition: background .2s var(--ease), border-color .2s var(--ease), color .2s var(--ease), transform .25s var(--ease);
 }
-/* Decline = grey button · Accept = white button (prominent) */
-.ck-reject { background: rgba(255,255,255,.13); border-color: transparent; color: rgba(255,255,255,.85); }
-.ck-reject:hover { background: rgba(255,255,255,.2); color: #fff; }
-.ck-accept { background: #fff; color: var(--ink); padding: 0 24px; }
-.ck-accept:hover { transform: translateY(-2px); }
+/* Decline = quiet grey text · Accept = transparent outline button (white) */
+.ck-reject { background: transparent; border-color: transparent; color: rgba(255,255,255,.55); padding: 0 8px; font-weight: 500; }
+.ck-reject:hover { background: transparent; color: #fff; }
+.ck-accept { background: transparent; border-color: rgba(255,255,255,.7); color: #fff; padding: 0 24px; }
+.ck-accept:hover { background: rgba(255,255,255,.12); transform: translateY(-2px); }
 
 @media (max-width: 600px) {
   .cookies { left: 12px; right: 12px; bottom: 12px; padding: 14px; border-radius: var(--r); }
@@ -1223,14 +1223,14 @@ body.menu-open .mbar { opacity: 0 !important; pointer-events: none; }
   display: inline-flex; align-items: center; gap: 6px;
   font-family: var(--menu-font); font-weight: 600; font-size: 14px;
   letter-spacing: 0; text-transform: lowercase; color: inherit;
-  padding: 8px 16px; border-radius: var(--r-pill, 999px);
-  background: rgba(255,255,255,.13);
-  transition: gap .3s var(--ease), background .3s var(--ease);
+  padding: 8px 16px; border-radius: var(--r);
+  background: transparent; border: 1px solid rgba(255,255,255,.6);
+  transition: gap .3s var(--ease), background .3s var(--ease), border-color .3s var(--ease);
 }
 .mbar-contact svg { width: 14px; height: 14px; }
-.mbar-contact:hover { gap: 11px; background: rgba(255,255,255,.22); }
-.mbar.on-light .mbar-contact { background: rgba(11,12,17,.07); }
-.mbar.on-light .mbar-contact:hover { background: rgba(11,12,17,.13); }
+.mbar-contact:hover { gap: 11px; background: rgba(255,255,255,.12); }
+.mbar.on-light .mbar-contact { border-color: rgba(11,12,17,.28); background: transparent; }
+.mbar.on-light .mbar-contact:hover { background: rgba(11,12,17,.05); }
 
 /* dots: transparent · hover → rotate 45° on exact centre, tighten, go grey (no shrink) */
 .mbar-dots {
