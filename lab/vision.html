@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vision moment — studies — Infinit®</title>
+<link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,600,700,900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0B0C11; --bg:#F4F2F0; --mint:#D8F3D6;
+    --sans:"Satoshi",system-ui,sans-serif; --serif:"Instrument Serif",serif; --mono:"IBM Plex Mono",monospace;
+    --ease:cubic-bezier(.22,1,.36,1);
+    /* swap MOUNT to your Tekapo photo when ready */
+    --MOUNT:url('../project/assets/imagery/Julia%20Yosemite.webp');
+    --ME:url('../project/assets/imagery/francesc.jpg');
+  }
+  *{ box-sizing:border-box; margin:0 }
+  html,body{ background:var(--ink); }
+  body{ font-family:var(--sans); color:var(--ink); }
+
+  .switch{ position:fixed; top:14px; left:50%; transform:translateX(-50%); z-index:50;
+    display:flex; gap:6px; padding:6px; background:rgba(20,20,26,.7); backdrop-filter:blur(18px);
+    border:1px solid rgba(255,255,255,.1); border-radius:999px; }
+  .switch button{ font-family:var(--mono); font-size:11px; letter-spacing:.06em; text-transform:uppercase;
+    color:rgba(255,255,255,.6); background:none; border:0; padding:8px 13px; border-radius:999px; cursor:pointer; transition:.25s var(--ease); white-space:nowrap; }
+  .switch button:hover{ color:#fff; }
+  .switch button.on{ background:var(--mint); color:var(--ink); }
+  .note{ position:fixed; bottom:14px; left:50%; transform:translateX(-50%); z-index:50;
+    font-family:var(--mono); font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:rgba(255,255,255,.4); text-align:center; }
+
+  .v{ display:none; position:relative; min-height:100vh; overflow:hidden; }
+  .v.active{ display:grid; }
+  .eb{ font-family:var(--mono); font-size:11px; letter-spacing:.2em; text-transform:uppercase; }
+  .sign{ font-family:var(--serif); font-style:italic; }
+  .v em{ font-family:var(--serif); font-style:italic; font-weight:400; }
+
+  /* ===== 1 — LANDSCAPE ONLY (no face) ===== */
+  .v1{ place-items:end start; color:#fff; }
+  .v1 .bg{ position:absolute; inset:0; background:var(--MOUNT) center/cover; }
+  .v1 .scrim{ position:absolute; inset:0; background:linear-gradient(180deg,rgba(8,9,14,.15) 0%,rgba(8,9,14,0) 30%,rgba(8,9,14,.72) 100%); }
+  .v1 .cap{ position:relative; z-index:2; padding:clamp(36px,7vw,96px); max-width:1100px; }
+  .v1 .eb{ color:rgba(255,255,255,.72); }
+  .v1 h2{ font-weight:500; font-size:clamp(34px,5.4vw,82px); line-height:1.04; letter-spacing:-.03em; margin-top:16px; max-width:18ch; }
+  .v1 .sign{ display:block; margin-top:24px; font-size:clamp(20px,1.8vw,28px); color:rgba(255,255,255,.86); }
+
+  /* ===== 2 — SUMMIT (you + mountains) ===== */
+  .v2{ place-items:end start; color:#fff; }
+  .v2 .bg{ position:absolute; inset:0; background:var(--ME) center 22%/cover; }
+  .v2 .scrim{ position:absolute; inset:0; background:linear-gradient(180deg,rgba(8,9,14,.1) 0%,rgba(8,9,14,0) 34%,rgba(8,9,14,.7) 100%); }
+  .v2 .cap{ position:relative; z-index:2; padding:clamp(36px,7vw,96px); max-width:1100px; }
+  .v2 .eb{ color:rgba(255,255,255,.72); }
+  .v2 h2{ font-weight:500; font-size:clamp(32px,5vw,76px); line-height:1.05; letter-spacing:-.03em; margin-top:16px; max-width:20ch; }
+  .v2 .sign{ display:block; margin-top:22px; font-size:clamp(20px,1.8vw,28px); color:rgba(255,255,255,.86); }
+
+  /* ===== 3 — CONCEPTUAL FACE (astronaut) ===== */
+  .v3{ place-items:center; background:#0B0C11; color:#fff; text-align:center; }
+  .v3 .bg{ position:absolute; inset:0; background:url('../project/assets/imagery/astronaut-blue.avif') center/cover; opacity:.9; }
+  .v3 .scrim{ position:absolute; inset:0; background:radial-gradient(120% 90% at 50% 40%,rgba(8,9,14,0) 0%,rgba(8,9,14,.55) 100%); }
+  .v3 .cap{ position:relative; z-index:2; padding:clamp(32px,6vw,80px); max-width:24ch; }
+  .v3 .eb{ color:rgba(255,255,255,.6); }
+  .v3 h2{ font-weight:500; font-size:clamp(30px,4.6vw,66px); line-height:1.08; letter-spacing:-.03em; margin-top:18px; }
+
+  /* ===== 4 — EDITORIAL SPLIT (B&W portrait + manifest) ===== */
+  .v4{ grid-template-columns:0.92fr 1.08fr; background:var(--bg); color:var(--ink); align-items:stretch; }
+  .v4 .ph{ position:relative; overflow:hidden; background:#e8e5e1; }
+  .v4 .ph::after{ content:""; position:absolute; inset:0; background:var(--ME) center 18%/cover; filter:grayscale(1) contrast(1.04); }
+  .v4 .tx{ display:flex; flex-direction:column; justify-content:center; padding:clamp(36px,6vw,110px); }
+  .v4 .eb{ color:rgba(11,12,17,.5); }
+  .v4 h2{ font-weight:500; font-size:clamp(30px,3.6vw,60px); line-height:1.1; letter-spacing:-.03em; margin-top:18px; max-width:18ch; }
+  .v4 h2 em{ color:var(--ink); }
+  .v4 .sign{ margin-top:26px; font-size:clamp(20px,1.7vw,26px); color:var(--ink); }
+  @media(max-width:760px){ .v4{ grid-template-columns:1fr; } .v4 .ph{ min-height:46vh; } }
+
+  /* ===== 5 — QUIET / SOBER (almost no UI) ===== */
+  .v5{ place-items:center; color:#fff; text-align:center; }
+  .v5 .bg{ position:absolute; inset:0; background:var(--MOUNT) center/cover; }
+  .v5 .scrim{ position:absolute; inset:0; background:rgba(8,9,14,.34); }
+  .v5 .cap{ position:relative; z-index:2; padding:40px; }
+  .v5 h2{ font-family:var(--serif); font-style:italic; font-weight:400; font-size:clamp(30px,4.4vw,64px); line-height:1.18; letter-spacing:-.005em; max-width:20ch; color:rgba(255,255,255,.95); }
+  .v5 .sign{ display:block; margin-top:28px; font-family:var(--mono); font-style:normal; font-size:11px; letter-spacing:.2em; text-transform:uppercase; color:rgba(255,255,255,.7); }
+</style>
+</head>
+<body>
+
+  <div class="switch" id="switch">
+    <button data-opt="1" class="on">1 · Landscape</button>
+    <button data-opt="2">2 · Summit (you)</button>
+    <button data-opt="3">3 · Conceptual</button>
+    <button data-opt="4">4 · B&amp;W split</button>
+    <button data-opt="5">5 · Quiet</button>
+  </div>
+  <div class="note">Placeholder landscape = Julia Yosemite · swap to your Tekapo photo at imagery/mountains.jpg</div>
+
+  <!-- 1 -->
+  <section class="v v1 active">
+    <div class="bg"></div><div class="scrim"></div>
+    <div class="cap">
+      <span class="eb">The studio · vision</span>
+      <h2>Brands, like mountains, reward <em>patience.</em></h2>
+      <span class="sign">Built with calm. Built to last.</span>
+    </div>
+  </section>
+
+  <!-- 2 -->
+  <section class="v v2">
+    <div class="bg"></div><div class="scrim"></div>
+    <div class="cap">
+      <span class="eb">The founder · vision</span>
+      <h2>I work the way I climb — <em>patient, deliberate, made to last.</em></h2>
+      <span class="sign">Cesc Callejas</span>
+    </div>
+  </section>
+
+  <!-- 3 -->
+  <section class="v v3">
+    <div class="bg"></div><div class="scrim"></div>
+    <div class="cap">
+      <span class="eb">The studio · vision</span>
+      <h2>Clarity is a <em>competitive advantage.</em></h2>
+    </div>
+  </section>
+
+  <!-- 4 -->
+  <section class="v v4">
+    <div class="ph"></div>
+    <div class="tx">
+      <span class="eb">A point of view</span>
+      <h2>Calm is a strategy. <em>Craft is a discipline.</em> People come first.</h2>
+      <span class="sign">— Cesc Callejas, founder</span>
+    </div>
+  </section>
+
+  <!-- 5 -->
+  <section class="v v5">
+    <div class="bg"></div><div class="scrim"></div>
+    <div class="cap">
+      <h2>Good brands are built slowly, then all at once.</h2>
+      <span class="sign">Cesc Callejas — Infinit®</span>
+    </div>
+  </section>
+
+<script>
+  const sw = document.getElementById('switch');
+  const vs = [...document.querySelectorAll('.v')];
+  sw.addEventListener('click', e => {
+    const o = e.target.dataset.opt; if(!o) return;
+    vs.forEach(v=>v.classList.remove('active'));
+    document.querySelector('.v'+o).classList.add('active');
+    [...sw.children].forEach(b=>b.classList.toggle('on', b.dataset.opt===o));
+    scrollTo(0,0);
+  });
+</script>
+</body>
+</html>
