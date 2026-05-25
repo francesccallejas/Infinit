@@ -39,13 +39,21 @@
   .manifest .body p{ font-size:clamp(15px,1.15vw,18px); line-height:1.7; color:var(--grey2); }
   .manifest .body p b{ color:var(--ink); font-weight:600; }
   @media(max-width:760px){ .manifest .body{ grid-template-columns:1fr; } }
-  /* three pillars — Clarity · Alive · People */
-  .manifest .pillars{ display:grid; grid-template-columns:repeat(3,1fr); gap:clamp(26px,4vw,60px); margin-top:clamp(46px,6vw,86px); }
-  .manifest .pillar{ border-top:1px solid var(--line); padding-top:20px; }
-  .manifest .pillar .pk{ font-family:var(--mono); font-size:11px; letter-spacing:.16em; color:var(--grey2); }
-  .manifest .pillar h3{ font-weight:500; font-size:clamp(22px,2.2vw,32px); letter-spacing:-.02em; margin:12px 0 10px; color:var(--ink); }
-  .manifest .pillar p{ font-size:clamp(14px,1.05vw,16px); line-height:1.62; color:var(--grey2); }
-  @media(max-width:720px){ .manifest .pillars{ grid-template-columns:1fr; gap:0; } .manifest .pillar{ padding:20px 0; } }
+  /* interactive values — Clarity · Alive · People (TQ-style: lines + changing image) */
+  .manifest .vsel{ display:grid; grid-template-columns:1fr 1.05fr; gap:clamp(30px,5vw,72px); margin-top:clamp(46px,6vw,86px); align-items:center; }
+  .manifest .vsel .list{ display:flex; flex-direction:column; }
+  .manifest .vsel .vrow{ all:unset; box-sizing:border-box; display:block; width:100%; cursor:pointer; border-top:1px solid var(--line); padding:clamp(16px,2vw,26px) 0; }
+  .manifest .vsel .vrow:last-child{ border-bottom:1px solid var(--line); }
+  .manifest .vsel .pk{ font-family:var(--mono); font-size:11px; letter-spacing:.16em; color:var(--grey2); }
+  .manifest .vsel h3{ font-weight:500; font-size:clamp(28px,3.4vw,48px); letter-spacing:-.03em; line-height:1.04; margin-top:6px; color:var(--ink); opacity:.4; transition:opacity .4s var(--ease); }
+  .manifest .vsel .vrow.active h3{ opacity:1; }
+  .manifest .vsel .desc{ max-height:0; overflow:hidden; opacity:0; transition:max-height .55s var(--ease), opacity .4s var(--ease); }
+  .manifest .vsel .vrow.active .desc{ max-height:200px; opacity:1; }
+  .manifest .vsel .desc p{ font-size:clamp(14px,1.05vw,16px); line-height:1.6; color:var(--grey2); max-width:46ch; padding-top:12px; }
+  .manifest .vsel .media{ position:relative; border-radius:var(--r,14px); overflow:hidden; background:#e8e5e1; aspect-ratio:4/3; }
+  .manifest .vsel .media img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:0; transition:opacity .6s var(--ease); }
+  .manifest .vsel .media img.on{ opacity:1; }
+  @media(max-width:760px){ .manifest .vsel{ grid-template-columns:1fr; gap:24px; } .manifest .vsel .media{ order:-1; aspect-ratio:16/10; } }
 
   /* PROFILE — compact, small vertical B&W photo (demoted, not the cover) */
   .profile{ padding:clamp(56px,8vw,120px) 0; border-top:1px solid var(--line); }
@@ -198,10 +206,29 @@
     <div class="wrap">
       <span class="eb r">The studio</span>
       <p class="lead r d1">Infinit® is a brand &amp; strategy studio built on one belief: branding is a craft — and craft is made by <span class="acc">people.</span></p>
-      <div class="pillars">
-        <div class="pillar r d1"><span class="pk">01 — Clarity</span><h3>Simple, with purpose.</h3><p>Brands understood at first glance. We remove everything that isn't the idea.</p></div>
-        <div class="pillar r d2"><span class="pk">02 — Alive</span><h3>Never a static logo.</h3><p>Identities that move, breathe and iterate. Infinite by design — never finished.</p></div>
-        <div class="pillar r d3"><span class="pk">03 — People</span><h3>Built by senior hands.</h3><p>Made by people, valued as the craft it is. No layers, no noise. People first, always.</p></div>
+      <div class="vsel r d1">
+        <div class="list">
+          <button class="vrow active" type="button" data-i="0">
+            <span class="pk">01 — Clarity</span>
+            <h3>Clarity</h3>
+            <div class="desc"><p>Simple, fast, understood at first glance. We remove everything that isn't the idea — so brands move with speed and land instantly.</p></div>
+          </button>
+          <button class="vrow" type="button" data-i="1">
+            <span class="pk">02 — Alive</span>
+            <h3>Alive</h3>
+            <div class="desc"><p>Never a static logo. Identities that move, breathe and iterate — infinite by design, never finished.</p></div>
+          </button>
+          <button class="vrow" type="button" data-i="2">
+            <span class="pk">03 — People</span>
+            <h3>People</h3>
+            <div class="desc"><p>Built by senior hands and valued as the craft it is. No layers, no noise. People first, always.</p></div>
+          </button>
+        </div>
+        <div class="media">
+          <img class="on" src="../project/assets/imagery/eye-dark.jpg" alt="Clarity">
+          <img src="../project/assets/images/Bunnker Final.webp" alt="Alive">
+          <img src="../project/assets/imagery/Almirall.webp" alt="People">
+        </div>
       </div>
     </div>
   </section>
@@ -359,6 +386,16 @@
       if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
     }), { threshold: 0, rootMargin: '0px 0px -8% 0px' });
     els.forEach(el => io.observe(el));
+  })();
+
+  // interactive values — click / hover a value to swap its image
+  (function(){
+    const sel = document.querySelector('.vsel'); if (!sel) return;
+    const rows = [...sel.querySelectorAll('.vrow')];
+    const imgs = [...sel.querySelectorAll('.media img')];
+    const act = i => { rows.forEach((r,k)=>r.classList.toggle('active', k===i)); imgs.forEach((m,k)=>m.classList.toggle('on', k===i)); };
+    const canHover = matchMedia('(hover: hover)').matches;
+    rows.forEach((r,i)=>{ r.addEventListener('click', ()=>act(i)); if (canHover) r.addEventListener('mouseenter', ()=>act(i)); });
   })();
 
   // frosted menu — bar dots → expanded overlay (igual que la landing)
