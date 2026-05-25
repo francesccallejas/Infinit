@@ -1010,9 +1010,10 @@ main > section:not(.hero), main > footer { position: relative; z-index: 1; }
   border-radius: var(--r); cursor: pointer; border: 1px solid transparent; white-space: nowrap;
   transition: background .2s var(--ease), border-color .2s var(--ease), color .2s var(--ease), transform .25s var(--ease);
 }
-.ck-reject { background: transparent; border-color: rgba(255,255,255,.2); color: #fff; }
-.ck-reject:hover { background: rgba(255,255,255,.08); }
-.ck-accept { background: var(--mint); color: var(--ink); }
+/* Decline = quiet text link · Accept = the prominent mint CTA */
+.ck-reject { background: transparent; border-color: transparent; color: rgba(255,255,255,.55); padding: 0 8px; font-weight: 500; }
+.ck-reject:hover { background: transparent; color: #fff; }
+.ck-accept { background: var(--mint); color: var(--ink); padding: 0 24px; box-shadow: 0 6px 20px -8px rgba(216,243,214,.6); }
 .ck-accept:hover { transform: translateY(-2px); }
 
 @media (max-width: 600px) {
