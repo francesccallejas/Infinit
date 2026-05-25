@@ -24,7 +24,7 @@
 
   /* HERO — full-bleed conceptual */
   .hero{ position:relative; height:min(86vh,760px); overflow:hidden; }
-  .hero img{ width:100%; height:100%; object-fit:cover; object-position:center 30%; }
+  .hero img{ width:100%; height:100%; object-fit:cover; object-position:center 48%; }
   .hero .scrim{ position:absolute; inset:0; background:linear-gradient(180deg, rgba(8,8,12,.1) 0%, rgba(8,8,12,0) 35%, rgba(8,8,12,.55) 100%); }
   .hero .cap{ position:absolute; left:0; right:0; bottom:clamp(28px,4vw,56px); color:#fff; }
   .hero .eb{ color:rgba(255,255,255,.7); }
@@ -66,15 +66,6 @@
   .profile .ln:hover{ border-color:var(--ink); }
   .profile .ln svg{ width:14px; height:14px; }
   @media(max-width:620px){ .profile .row{ grid-template-columns:1fr; } }
-
-  /* VISION band — landscape (iteration / momentum) */
-  .vision{ position:relative; min-height:min(92vh,820px); overflow:hidden; display:grid; place-items:end start; color:#fff; }
-  .vision img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center 42%; }
-  .vision .scrim{ position:absolute; inset:0; background:linear-gradient(180deg,rgba(8,9,14,.22) 0%,rgba(8,9,14,0) 32%,rgba(8,9,14,.74) 100%); }
-  .vision .cap{ position:relative; z-index:2; padding:clamp(32px,6vw,90px); width:min(760px,90vw); }
-  .vision .eb{ color:rgba(255,255,255,.7); display:block; }
-  .vision h2{ font-weight:500; font-size:clamp(34px,5vw,80px); line-height:1.05; letter-spacing:-.03em; margin-top:14px; }
-  .vision h2 .acc{ font-family:var(--serif); font-style:italic; font-weight:400; color:#fff; }
 
   /* CONCEPTUAL full-bleed band — now THE EYE (clarity / vision) */
   .concept{ position:relative; height:min(86vh,720px); overflow:hidden; display:grid; place-items:center end; text-align:right; color:#fff; }
@@ -194,11 +185,11 @@
 <main>
   <!-- HERO -->
   <header class="hero">
-    <img src="../project/assets/images/astronaut-red-portrait.png" alt="">
+    <img src="../project/assets/imagery/mountains-tekapo.jpg" alt="">
     <div class="scrim"></div>
     <div class="cap wrap">
       <span class="eb r">The studio</span>
-      <h1 class="r d1">Built by senior hands.<br>No layers, <em>no noise.</em></h1>
+      <h1 class="r d1">Brands that move —<br>fast, and <em>with clarity.</em></h1>
     </div>
   </header>
 
@@ -213,13 +204,6 @@
         <div class="pillar r d3"><span class="pk">03 — People</span><h3>Built by senior hands.</h3><p>Made by people, valued as the craft it is. No layers, no noise. People first, always.</p></div>
       </div>
     </div>
-  </section>
-
-  <!-- VISION band — landscape (iteration / forward momentum) -->
-  <section class="vision">
-    <img src="../project/assets/imagery/mountains-tekapo.jpg" alt="">
-    <div class="scrim"></div>
-    <div class="cap r"><span class="eb">Always moving</span><h2>Brands that move — fast, and <span class="acc">with clarity.</span></h2></div>
   </section>
 
   <!-- VALUE -->
@@ -403,8 +387,8 @@
   // adaptive frost — light bar over light sections, dark over dark
   (function(){
     const bar = document.getElementById('mbar');
-    const secs = [...document.querySelectorAll('.hero, .manifest, .vision, .value, .concept, .profile, .clients, .cta')];
-    const isDark = el => el.classList.contains('hero') || el.classList.contains('vision') || el.classList.contains('concept') || el.classList.contains('cta') || el.classList.contains('foot');
+    const secs = [...document.querySelectorAll('.hero, .manifest, .value, .concept, .profile, .clients, .cta')];
+    const isDark = el => el.classList.contains('hero') || el.classList.contains('concept') || el.classList.contains('cta') || el.classList.contains('foot');
     const lightAt = y => {
       for (const el of secs){ const r = el.getBoundingClientRect(); if (r.top <= y && r.bottom > y) return !isDark(el); }
       return false;
