@@ -6,7 +6,7 @@
 <title>Infinit® — Brand &amp; Strategy · V2</title>
 <meta name="description" content="Strategic brand, identity and digital systems for companies navigating growth and transformation.">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
-<link rel="stylesheet" href="style.css?v=300">
+<link rel="stylesheet" href="style.css?v=301">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@600&family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -276,7 +276,7 @@
         </svg>
         <span class="word">infinit<span class="reg">®</span></span>
       </a>
-      <p class="foot-claim">Built to <em>scale.</em></p>
+      <p class="foot-claim">Built to scale.</p>
     </div>
     <div class="foot-right rv">
       <div class="foot-col">
@@ -521,24 +521,24 @@
     const layers = [...media.querySelectorAll('.hm-img')]; if (layers.length < 2) return;
     const base = '../project/assets/';
     const us = id => `https://images.unsplash.com/photo-${id}?q=80&w=2000&auto=format&fit=crop`;
-    const srcs = [
-      us('1778757949749-345b125f2ccb'),            // 1 Induktor render
-      base + 'imagery/raincoat.webp',              // 2 xubasquero
-      base + 'images/Relats Brand.webp',           // 3 relats
-      base + 'images/Bunnker Final.webp',          // 4 bunnker
-      base + 'imagery/relats-industrial.webp',     // 5 materials rosca alumini
-      base + 'imagery/Almirall.webp',              // 6 noia almirall
-      us('1698913463941-e1a9046710b8'),            // 7 arquitectura
-      base + 'images/astronaut-red-portrait.png',  // 8 astronauta
-      base + 'imagery/ipad-gradient.jpg'           // 9 mòbil lila
+    const shots = [
+      { s: us('1778757949749-345b125f2ccb'),           p: 'center 45%' },  // 1 Induktor
+      { s: base + 'imagery/raincoat.webp',             p: 'center 62%' },  // 2 raincoat (un pèl més avall)
+      { s: base + 'images/Relats Brand.webp',          p: 'center 50%' },  // 3 relats
+      { s: base + 'images/Bunnker Final.webp',         p: 'center 100%' }, // 4 bunnker (crop a baix de tot)
+      { s: base + 'imagery/relats-industrial.webp',    p: 'center 50%' },  // 5 rosca alumini
+      { s: base + 'imagery/Almirall.webp',             p: 'center 80%' },  // 6 noia almirall (bastant més avall)
+      { s: us('1698913463941-e1a9046710b8'),           p: 'center 55%' },  // 7 arquitectura
+      { s: base + 'images/astronaut-red-portrait.png', p: 'center 28%' },  // 8 astronauta
+      { s: base + 'imagery/julia-camper.webp',         p: 'center 100%' }  // 9 Julià Camper (crop a sota del tot)
     ];
-    srcs.forEach(s => { const im = new Image(); im.src = s; });
+    shots.forEach(o => { const im = new Image(); im.src = o.s; });
     let idx = 0, cur = 0;
-    layers[0].src = srcs[0]; layers[0].classList.add('on');
+    layers[0].src = shots[0].s; layers[0].style.objectPosition = shots[0].p; layers[0].classList.add('on');
     const advance = () => {
-      idx = (idx + 1) % srcs.length;
+      idx = (idx + 1) % shots.length;
       const next = layers[(cur + 1) % 2];
-      next.src = srcs[idx];
+      next.src = shots[idx].s; next.style.objectPosition = shots[idx].p;
       next.classList.add('on');
       layers[cur].classList.remove('on');
       cur = (cur + 1) % 2;
