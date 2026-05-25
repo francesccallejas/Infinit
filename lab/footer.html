@@ -129,6 +129,45 @@
   .foot-e .giant .word{ font-weight:900; font-size:clamp(72px,16.5vw,260px); letter-spacing:-.04em; }
   .foot-e .giant .word .reg{ font-size:.28em; vertical-align:super; font-weight:500; }
   .foot-e .bot{ display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap; border-top:1px solid var(--line); padding-top:22px; }
+
+  /* ======================= OPTION F — serif claim + nav columns (A×C) ======================= */
+  .foot-f{ justify-content:space-between; gap:clamp(28px,4vh,54px); }
+  .foot-f .top{ display:flex; justify-content:space-between; align-items:flex-start; gap:40px; flex-wrap:wrap; }
+  .foot-f .navwrap{ display:flex; gap:clamp(36px,5vw,80px); flex-wrap:wrap; }
+  .foot-f .navcol{ display:flex; flex-direction:column; gap:11px; }
+  .foot-f .navcol .eb{ margin-bottom:5px; }
+  .foot-f .navcol a{ font-size:15px; color:rgba(244,242,240,.7); }
+  .foot-f .claim{ font-family:var(--serif); font-size:clamp(54px,11vw,182px); line-height:.9; letter-spacing:-.02em; color:rgba(244,242,240,.92); margin:auto 0; }
+  .foot-f .claim em{ font-style:italic; color:rgba(244,242,240,.55); }
+  .foot-f .bot{ display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap; border-top:1px solid var(--line); padding-top:22px; }
+  .foot-f .bot .mail{ font-weight:600; font-size:clamp(18px,1.8vw,26px); letter-spacing:-.02em; }
+  .foot-f .bot .mail:hover{ color:#fff; }
+
+  /* ======================= OPTION G — big lead + three-column grid (A×C) ======================= */
+  .foot-g{ justify-content:space-between; gap:clamp(36px,6vh,72px); }
+  .foot-g .lead{ font-family:var(--serif); font-size:clamp(34px,5.5vw,86px); line-height:.98; letter-spacing:-.01em; color:rgba(244,242,240,.92); max-width:15ch; }
+  .foot-g .lead em{ font-style:italic; color:rgba(244,242,240,.55); }
+  .foot-g .cols{ display:grid; grid-template-columns:1.5fr .8fr .8fr; gap:clamp(30px,4vw,64px); align-items:start; }
+  .foot-g .cols .c1 .mark{ margin-bottom:16px; }
+  .foot-g .cols .c1 p{ font-size:14px; line-height:1.6; color:rgba(244,242,240,.55); max-width:30ch; }
+  .foot-g .navcol{ display:flex; flex-direction:column; gap:11px; }
+  .foot-g .navcol .eb{ margin-bottom:5px; }
+  .foot-g .navcol a{ font-size:15px; color:rgba(244,242,240,.7); }
+  .foot-g .bot{ display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap; border-top:1px solid var(--line); padding-top:22px; }
+  @media(max-width:760px){ .foot-g .cols{ grid-template-columns:1fr; } }
+
+  /* ======================= OPTION H — dense split: claim left / nav+contact right (A×C) ======================= */
+  .foot-h{ justify-content:space-between; gap:clamp(34px,5vh,64px); }
+  .foot-h .grid{ display:grid; grid-template-columns:1fr auto; gap:clamp(40px,6vw,90px); align-items:end; flex:1; }
+  .foot-h .left .mark{ margin-bottom:clamp(20px,3vh,34px); }
+  .foot-h .claim{ font-family:var(--serif); font-size:clamp(44px,8vw,142px); line-height:.92; letter-spacing:-.02em; color:rgba(244,242,240,.92); }
+  .foot-h .claim em{ font-style:italic; color:rgba(244,242,240,.55); }
+  .foot-h .right{ display:flex; gap:clamp(34px,4vw,64px); padding-bottom:6px; }
+  .foot-h .right .navcol{ display:flex; flex-direction:column; gap:11px; }
+  .foot-h .right .navcol .eb{ margin-bottom:5px; }
+  .foot-h .right .navcol a{ font-size:15px; color:rgba(244,242,240,.7); }
+  .foot-h .bot{ display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap; border-top:1px solid var(--line); padding-top:22px; }
+  @media(max-width:760px){ .foot-h .grid{ grid-template-columns:1fr; align-items:start; } .foot-h .right{ flex-wrap:wrap; } }
 </style>
 </head>
 <body class="opt-a">
@@ -139,6 +178,9 @@
     <button data-opt="c">C · Split</button>
     <button data-opt="d">D · Minimal</button>
     <button data-opt="e">E · Wordmark</button>
+    <button data-opt="f">F · Claim+cols</button>
+    <button data-opt="g">G · Lead+grid</button>
+    <button data-opt="h">H · Dense split</button>
   </div>
   <div class="hint">Scroll down → footer rises like a flat window · scroll up → the CTA colour eats it</div>
 
@@ -232,11 +274,64 @@
     </div>
   </footer>
 
+  <!-- ===== F — serif claim + nav columns ===== -->
+  <footer class="foot foot-f">
+    <div class="top rv">
+      <a class="mark" href="#"><svg viewBox="0 0 374 206" fill="none"><path d="M 108.196 34 L 182.196 34 Q 201.196 34 194.140 51.641 L 153.056 154.359 Q 146 172 127 172 L 53 172 Q 34 172 41.056 154.359 L 82.140 51.641 Q 89.196 34 108.196 34 Z" fill="currentColor"/><path d="M 108.196 34 L 182.196 34 Q 201.196 34 194.140 51.641 L 153.056 154.359 Q 146 172 127 172 L 53 172 Q 34 172 41.056 154.359 L 82.140 51.641 Q 89.196 34 108.196 34 Z" fill="currentColor" transform="translate(139 0)"/></svg><span class="word">infinit<span class="reg">®</span></span></a>
+      <div class="navwrap">
+        <div class="navcol"><span class="eb">Studio</span><a href="#">Work</a><a href="#">Services</a><a href="#">Studio</a></div>
+        <div class="navcol"><span class="eb">Connect</span><a href="#">LinkedIn ↗</a><a href="#">Instagram ↗</a><a href="#">Email</a></div>
+      </div>
+    </div>
+    <p class="claim rv">Built to <em>scale.</em></p>
+    <div class="bot rv">
+      <a class="mail" href="mailto:hello@weareinfinit.com">hello@weareinfinit.com</a>
+      <div class="rec"><span class="lbl">Recognised by</span><div class="logos"><a href="#"><img src="../project/assets/clients/Awwwards-Logo-Vector.svg-.png" alt="Awwwards"></a><a href="#"><img src="../project/assets/clients/Coac.png" alt="COAC"></a></div></div>
+      <div class="base"><span>© 2026 Infinit®</span></div>
+    </div>
+  </footer>
+
+  <!-- ===== G — big lead + three-column grid ===== -->
+  <footer class="foot foot-g">
+    <p class="lead rv">Let's build something <em>that scales.</em></p>
+    <div class="cols rv">
+      <div class="c1">
+        <a class="mark" href="#"><svg viewBox="0 0 374 206" fill="none"><path d="M 108.196 34 L 182.196 34 Q 201.196 34 194.140 51.641 L 153.056 154.359 Q 146 172 127 172 L 53 172 Q 34 172 41.056 154.359 L 82.140 51.641 Q 89.196 34 108.196 34 Z" fill="currentColor"/><path d="M 108.196 34 L 182.196 34 Q 201.196 34 194.140 51.641 L 153.056 154.359 Q 146 172 127 172 L 53 172 Q 34 172 41.056 154.359 L 82.140 51.641 Q 89.196 34 108.196 34 Z" fill="currentColor" transform="translate(139 0)"/></svg><span class="word">infinit<span class="reg">®</span></span></a>
+        <p>A brand &amp; strategy studio. Strategy connected to execution — built by senior hands.</p>
+      </div>
+      <div class="navcol"><span class="eb">Studio</span><a href="#">Work</a><a href="#">Services</a><a href="#">Studio</a></div>
+      <div class="navcol"><span class="eb">Connect</span><a href="mailto:hello@weareinfinit.com">hello@weareinfinit.com</a><a href="tel:+34689022383">+34 689 022 383</a><a href="#">LinkedIn ↗</a></div>
+    </div>
+    <div class="bot rv">
+      <div class="rec"><span class="lbl">Recognised by</span><div class="logos"><a href="#"><img src="../project/assets/clients/Awwwards-Logo-Vector.svg-.png" alt="Awwwards"></a><a href="#"><img src="../project/assets/clients/Coac.png" alt="COAC"></a></div></div>
+      <div class="base"><span>Barcelona — Worldwide</span><span>© 2026 Infinit®</span></div>
+    </div>
+  </footer>
+
+  <!-- ===== H — dense split: claim left / nav+contact right ===== -->
+  <footer class="foot foot-h">
+    <div class="grid">
+      <div class="left rv">
+        <a class="mark" href="#"><svg viewBox="0 0 374 206" fill="none"><path d="M 108.196 34 L 182.196 34 Q 201.196 34 194.140 51.641 L 153.056 154.359 Q 146 172 127 172 L 53 172 Q 34 172 41.056 154.359 L 82.140 51.641 Q 89.196 34 108.196 34 Z" fill="currentColor"/><path d="M 108.196 34 L 182.196 34 Q 201.196 34 194.140 51.641 L 153.056 154.359 Q 146 172 127 172 L 53 172 Q 34 172 41.056 154.359 L 82.140 51.641 Q 89.196 34 108.196 34 Z" fill="currentColor" transform="translate(139 0)"/></svg><span class="word">infinit<span class="reg">®</span></span></a>
+        <p class="claim">Built to <em>scale.</em></p>
+      </div>
+      <div class="right rv">
+        <div class="navcol"><span class="eb">Studio</span><a href="#">Work</a><a href="#">Services</a><a href="#">Studio</a></div>
+        <div class="navcol"><span class="eb">Connect</span><a href="mailto:hello@weareinfinit.com">Email</a><a href="tel:+34689022383">Phone</a><a href="#">LinkedIn ↗</a></div>
+      </div>
+    </div>
+    <div class="bot rv">
+      <div class="rec"><span class="lbl">Recognised by</span><div class="logos"><a href="#"><img src="../project/assets/clients/Awwwards-Logo-Vector.svg-.png" alt="Awwwards"></a><a href="#"><img src="../project/assets/clients/Coac.png" alt="COAC"></a></div></div>
+      <div class="base"><span>Barcelona — Worldwide</span><span>© 2026 Infinit®</span></div>
+    </div>
+  </footer>
+
 <script>
   // option switcher
   const sw = document.getElementById('switch');
   const foots = { a:document.querySelector('.foot-a'), b:document.querySelector('.foot-b'),
-                  c:document.querySelector('.foot-c'), d:document.querySelector('.foot-d'), e:document.querySelector('.foot-e') };
+                  c:document.querySelector('.foot-c'), d:document.querySelector('.foot-d'), e:document.querySelector('.foot-e'),
+                  f:document.querySelector('.foot-f'), g:document.querySelector('.foot-g'), h:document.querySelector('.foot-h') };
   function activate(opt){
     Object.values(foots).forEach(f=>f.classList.remove('active'));
     foots[opt].classList.add('active');
