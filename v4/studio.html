@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,600,700,900&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=299">
+<link rel="stylesheet" href="style.css?v=300">
 <script>try{if(sessionStorage.getItem('inf_seen'))document.documentElement.classList.add('quick-nav');sessionStorage.setItem('inf_seen','1');}catch(e){}</script>
 <style>
   :root{ --grey2:rgba(11,12,17,.55); --mint:#D8F3D6; --mint-ink:#2F8F66; --line:rgba(11,12,17,.13); }
@@ -169,6 +169,7 @@
   </div>
 </div>
 
+<main>
   <!-- HERO -->
   <header class="hero">
     <img src="../project/assets/images/astronaut-red-portrait.png" alt="">
@@ -244,37 +245,48 @@
     </div>
   </section>
 
-  <!-- SHARED FOOTER (igual que la landing) -->
+</main>
+
+  <!-- FOOTER (option H — claim left, nav/contact right; fixed reveal) -->
   <footer class="foot" id="contact">
-    <span class="foot-eyebrow">Brand &amp; Strategy</span>
-    <div class="foot-flag" aria-hidden="true">
-      <svg viewBox="0 0 374 206" fill="none">
-        <path d="M 108.196 34 L 182.196 34 Q 201.196 34 194.140 51.641 L 153.056 154.359 Q 146 172 127 172 L 53 172 Q 34 172 41.056 154.359 L 82.140 51.641 Q 89.196 34 108.196 34 Z" fill="currentColor"/>
-        <path d="M 108.196 34 L 182.196 34 Q 201.196 34 194.140 51.641 L 153.056 154.359 Q 146 172 127 172 L 53 172 Q 34 172 41.056 154.359 L 82.140 51.641 Q 89.196 34 108.196 34 Z" fill="currentColor" transform="translate(139 0)"/>
-      </svg>
-    </div>
-    <p class="foot-claim">Built to <em>scale.</em></p>
-    <div class="foot-contact">
-      <a href="mailto:hello@weareinfinit.com">hello@weareinfinit.com</a>
-      <span class="dot">·</span>
-      <a href="tel:+34689022383">+34 689 022 383</a>
-    </div>
-    <nav class="foot-nav">
-      <a href="index.html#services">Services</a>
-      <a href="index.html#work">Work</a>
-      <a href="studio.html">Studio</a>
-      <a href="https://www.linkedin.com/in/francesc-callejas-%E2%98%81%EF%B8%8F%E2%98%98%EF%B8%8F-99416a90/" target="_blank" rel="noopener">LinkedIn ↗</a>
-    </nav>
-    <div class="foot-rec">
-      <span class="foot-rec-label">Founder recognised by</span>
-      <div class="foot-rec-logos">
-        <a href="https://www.awwwards.com/" target="_blank" rel="noopener" aria-label="Awwwards"><img src="../project/assets/clients/Awwwards-Logo-Vector.svg-.png" alt="Awwwards"></a>
-        <a href="https://www.arquitectes.cat/" target="_blank" rel="noopener" aria-label="COAC"><img src="../project/assets/clients/Coac.png" alt="COAC"></a>
+    <div class="foot-grid">
+      <div class="foot-left rv">
+        <a class="foot-mark" href="index.html" aria-label="Infinit — home">
+          <svg viewBox="0 0 374 206" fill="none">
+            <path d="M 108.196 34 L 182.196 34 Q 201.196 34 194.140 51.641 L 153.056 154.359 Q 146 172 127 172 L 53 172 Q 34 172 41.056 154.359 L 82.140 51.641 Q 89.196 34 108.196 34 Z" fill="currentColor"/>
+            <path d="M 108.196 34 L 182.196 34 Q 201.196 34 194.140 51.641 L 153.056 154.359 Q 146 172 127 172 L 53 172 Q 34 172 41.056 154.359 L 82.140 51.641 Q 89.196 34 108.196 34 Z" fill="currentColor" transform="translate(139 0)"/>
+          </svg>
+          <span class="word">infinit<span class="reg">®</span></span>
+        </a>
+        <p class="foot-claim">Built to <em>scale.</em></p>
+      </div>
+      <div class="foot-right rv">
+        <div class="foot-col">
+          <span class="foot-eb">Studio</span>
+          <a href="index.html#work">Work</a>
+          <a href="index.html#services">Services</a>
+          <a href="studio.html">Studio</a>
+        </div>
+        <div class="foot-col">
+          <span class="foot-eb">Connect</span>
+          <a href="mailto:hello@weareinfinit.com">hello@weareinfinit.com</a>
+          <a href="tel:+34689022383">+34 689 022 383</a>
+          <a href="https://www.linkedin.com/in/francesc-callejas-%E2%98%81%EF%B8%8F%E2%98%98%EF%B8%8F-99416a90/" target="_blank" rel="noopener">LinkedIn ↗</a>
+        </div>
       </div>
     </div>
-    <div class="foot-base">
-      <span>Barcelona — Worldwide</span>
-      <span>© 2026 Infinit®</span>
+    <div class="foot-bot rv">
+      <div class="foot-rec">
+        <span class="foot-rec-label">Founder recognised by</span>
+        <div class="foot-rec-logos">
+          <a href="https://www.awwwards.com/" target="_blank" rel="noopener" aria-label="Awwwards"><img src="../project/assets/clients/Awwwards-Logo-Vector.svg-.png" alt="Awwwards"></a>
+          <a href="https://www.arquitectes.cat/" target="_blank" rel="noopener" aria-label="COAC"><img src="../project/assets/clients/Coac.png" alt="COAC"></a>
+        </div>
+      </div>
+      <div class="foot-base">
+        <span>Barcelona — Worldwide</span>
+        <span>© 2026 Infinit®</span>
+      </div>
     </div>
   </footer>
 
@@ -287,9 +299,39 @@
 
   // smooth anchor scroll
   document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click', e => {
-    const t = document.querySelector(a.getAttribute('href'));
+    const href = a.getAttribute('href');
+    if (href === '#contact') {  // footer is fixed behind the page → reveal by scrolling to the bottom
+      e.preventDefault();
+      const bottom = document.documentElement.scrollHeight;
+      if (lenis) lenis.scrollTo(bottom); else scrollTo({ top: bottom, behavior: 'smooth' });
+      return;
+    }
+    const t = document.querySelector(href);
     if (t) { e.preventDefault(); if (lenis) lenis.scrollTo(t,{offset:0}); else t.scrollIntoView({behavior:'smooth'}); }
   }));
+
+  // footer reveal — page scrolls over the fixed footer; floating menu hides while it shows
+  (function(){
+    const foot = document.querySelector('.foot');
+    const bar = document.getElementById('mbar');
+    if (!foot) return;
+    const rvs = [...foot.querySelectorAll('.rv')];
+    const ss = t => t <= 0 ? 0 : t >= 1 ? 1 : t * t * (3 - 2 * t);
+    function upd(){
+      const fh = foot.offsetHeight, vh = innerHeight;
+      const sh = document.documentElement.scrollHeight;
+      const revealed = scrollY + vh - sh + fh;
+      const t = ss(Math.min(Math.max(revealed / Math.min(fh, vh), 0), 1));
+      rvs.forEach((el, i, arr) => {
+        const seg = 1 / arr.length;
+        const local = Math.min(Math.max((t - i * seg * 0.5) / (1 - i * seg * 0.35), 0), 1);
+        el.style.setProperty('--rv', ss(local).toFixed(3));
+      });
+      if (bar) bar.classList.toggle('foot-hidden', t > 0.015);
+    }
+    if (lenis) lenis.on('scroll', upd); else addEventListener('scroll', upd, { passive: true });
+    addEventListener('resize', upd); upd();
+  })();
 
   // reveal — puja des de sota fluidament a mida que fas scroll (mateix patró .r/.in que la landing)
   (function(){
@@ -327,7 +369,7 @@
   // adaptive frost — light bar over light sections, dark over dark
   (function(){
     const bar = document.getElementById('mbar');
-    const secs = [...document.querySelectorAll('.hero, .manifest, .value, .concept, .profile, .clients, .cta, .foot')];
+    const secs = [...document.querySelectorAll('.hero, .manifest, .value, .concept, .profile, .clients, .cta')];
     const isDark = el => el.classList.contains('hero') || el.classList.contains('concept') || el.classList.contains('cta') || el.classList.contains('foot');
     const lightAt = y => {
       for (const el of secs){ const r = el.getBoundingClientRect(); if (r.top <= y && r.bottom > y) return !isDark(el); }
