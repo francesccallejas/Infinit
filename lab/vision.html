@@ -11,8 +11,10 @@
     --ink:#0B0C11; --bg:#F4F2F0; --mint:#D8F3D6;
     --sans:"Satoshi",system-ui,sans-serif; --serif:"Instrument Serif",serif; --mono:"IBM Plex Mono",monospace;
     --ease:cubic-bezier(.22,1,.36,1);
-    /* swap MOUNT to your Tekapo photo when ready */
-    --MOUNT:url('../project/assets/imagery/Julia%20Yosemite.webp');
+    /* real imagery */
+    --MOUNT:url('../project/assets/imagery/mountains-tekapo.jpg');
+    --NIGHT:url('../project/assets/imagery/mountains-night.jpg');
+    --EYE:url('../project/assets/imagery/eye-dark.jpg');
     --ME:url('../project/assets/imagery/francesc.jpg');
   }
   *{ box-sizing:border-box; margin:0 }
@@ -53,13 +55,14 @@
   .v2 h2{ font-weight:500; font-size:clamp(32px,5vw,76px); line-height:1.05; letter-spacing:-.03em; margin-top:16px; max-width:20ch; }
   .v2 .sign{ display:block; margin-top:22px; font-size:clamp(20px,1.8vw,28px); color:rgba(255,255,255,.86); }
 
-  /* ===== 3 — CONCEPTUAL FACE (astronaut) ===== */
-  .v3{ place-items:center; background:#0B0C11; color:#fff; text-align:center; }
-  .v3 .bg{ position:absolute; inset:0; background:url('../project/assets/imagery/astronaut-blue.avif') center/cover; opacity:.9; }
-  .v3 .scrim{ position:absolute; inset:0; background:radial-gradient(120% 90% at 50% 40%,rgba(8,9,14,0) 0%,rgba(8,9,14,.55) 100%); }
-  .v3 .cap{ position:relative; z-index:2; padding:clamp(32px,6vw,80px); max-width:24ch; }
+  /* ===== 3 — CONCEPTUAL: THE EYE (vision) ===== */
+  .v3{ place-items:center end; background:#070708; color:#fff; text-align:right; }
+  .v3 .bg{ position:absolute; inset:0; background:var(--EYE) center/cover; }
+  .v3 .scrim{ position:absolute; inset:0; background:linear-gradient(90deg,rgba(7,7,8,0) 30%,rgba(7,7,8,.55) 78%,rgba(7,7,8,.78) 100%); }
+  .v3 .cap{ position:relative; z-index:2; padding:clamp(28px,5vw,84px); width:min(46vw,540px); }
   .v3 .eb{ color:rgba(255,255,255,.6); }
-  .v3 h2{ font-weight:500; font-size:clamp(30px,4.6vw,66px); line-height:1.08; letter-spacing:-.03em; margin-top:18px; }
+  .v3 h2{ font-weight:500; font-size:clamp(26px,3.4vw,52px); line-height:1.1; letter-spacing:-.03em; margin-top:16px; }
+  @media(max-width:760px){ .v3{ place-items:end start; text-align:left; } .v3 .cap{ width:auto; } }
 
   /* ===== 4 — EDITORIAL SPLIT (B&W portrait + manifest) ===== */
   .v4{ grid-template-columns:0.92fr 1.08fr; background:var(--bg); color:var(--ink); align-items:stretch; }
@@ -74,8 +77,8 @@
 
   /* ===== 5 — QUIET / SOBER (almost no UI) ===== */
   .v5{ place-items:center; color:#fff; text-align:center; }
-  .v5 .bg{ position:absolute; inset:0; background:var(--MOUNT) center/cover; }
-  .v5 .scrim{ position:absolute; inset:0; background:rgba(8,9,14,.34); }
+  .v5 .bg{ position:absolute; inset:0; background:var(--NIGHT) center/cover; }
+  .v5 .scrim{ position:absolute; inset:0; background:rgba(8,9,14,.42); }
   .v5 .cap{ position:relative; z-index:2; padding:40px; }
   .v5 h2{ font-family:var(--serif); font-style:italic; font-weight:400; font-size:clamp(30px,4.4vw,64px); line-height:1.18; letter-spacing:-.005em; max-width:20ch; color:rgba(255,255,255,.95); }
   .v5 .sign{ display:block; margin-top:28px; font-family:var(--mono); font-style:normal; font-size:11px; letter-spacing:.2em; text-transform:uppercase; color:rgba(255,255,255,.7); }
@@ -86,11 +89,11 @@
   <div class="switch" id="switch">
     <button data-opt="1" class="on">1 · Landscape</button>
     <button data-opt="2">2 · Summit (you)</button>
-    <button data-opt="3">3 · Conceptual</button>
+    <button data-opt="3">3 · Eye / vision</button>
     <button data-opt="4">4 · B&amp;W split</button>
-    <button data-opt="5">5 · Quiet</button>
+    <button data-opt="5">5 · Quiet (night)</button>
   </div>
-  <div class="note">Placeholder landscape = Julia Yosemite · swap to your Tekapo photo at imagery/mountains.jpg</div>
+  <div class="note">Real imagery · Tekapo · summit · the eye · starry night</div>
 
   <!-- 1 -->
   <section class="v v1 active">
