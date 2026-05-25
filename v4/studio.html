@@ -39,6 +39,13 @@
   .manifest .body p{ font-size:clamp(15px,1.15vw,18px); line-height:1.7; color:var(--grey2); }
   .manifest .body p b{ color:var(--ink); font-weight:600; }
   @media(max-width:760px){ .manifest .body{ grid-template-columns:1fr; } }
+  /* three pillars — Clarity · Alive · People */
+  .manifest .pillars{ display:grid; grid-template-columns:repeat(3,1fr); gap:clamp(26px,4vw,60px); margin-top:clamp(46px,6vw,86px); }
+  .manifest .pillar{ border-top:1px solid var(--line); padding-top:20px; }
+  .manifest .pillar .pk{ font-family:var(--mono); font-size:11px; letter-spacing:.16em; color:var(--grey2); }
+  .manifest .pillar h3{ font-weight:500; font-size:clamp(22px,2.2vw,32px); letter-spacing:-.02em; margin:12px 0 10px; color:var(--ink); }
+  .manifest .pillar p{ font-size:clamp(14px,1.05vw,16px); line-height:1.62; color:var(--grey2); }
+  @media(max-width:720px){ .manifest .pillars{ grid-template-columns:1fr; gap:0; } .manifest .pillar{ padding:20px 0; } }
 
   /* PROFILE — compact, small vertical B&W photo (demoted, not the cover) */
   .profile{ padding:clamp(56px,8vw,120px) 0; border-top:1px solid var(--line); }
@@ -185,9 +192,10 @@
     <div class="wrap">
       <span class="eb r">The studio</span>
       <p class="lead r d1">Infinit® is a brand &amp; strategy studio built on one belief: branding is a craft — and craft is made by <span class="acc">people.</span></p>
-      <div class="body">
-        <p class="r d2"><b>We connect strategy to execution</b>, identity that scales and digital that compounds — for companies navigating growth, transformation and modernization.</p>
-        <p class="r d3"><b>Senior hands, no layers, no noise.</b> You work directly with the person doing the work: strategy that survives contact with reality, decisions made by someone who has lived the consequences.</p>
+      <div class="pillars">
+        <div class="pillar r d1"><span class="pk">01 — Clarity</span><h3>Simple, with purpose.</h3><p>Brands understood at first glance. We remove everything that isn't the idea.</p></div>
+        <div class="pillar r d2"><span class="pk">02 — Alive</span><h3>Never a static logo.</h3><p>Identities that move, breathe and iterate. Infinite by design — never finished.</p></div>
+        <div class="pillar r d3"><span class="pk">03 — People</span><h3>Built by senior hands.</h3><p>Made by people, valued as the craft it is. No layers, no noise. People first, always.</p></div>
       </div>
     </div>
   </section>
