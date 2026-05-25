@@ -367,8 +367,10 @@
     // the footer is fixed behind the page → reveal it by scrolling to the very bottom
     if (href === '#contact') {
       e.preventDefault();
+      document.body.style.overflow = '';
       const bottom = document.documentElement.scrollHeight;
-      if (lenis) lenis.scrollTo(bottom); else scrollTo({ top: bottom, behavior: 'smooth' });
+      if (lenis) { lenis.start(); lenis.scrollTo(bottom, { force: true, duration: 1.1 }); }
+      else scrollTo({ top: bottom, behavior: 'smooth' });
       return;
     }
     const t = document.querySelector(href);
@@ -524,14 +526,14 @@
     const base = '../project/assets/';
     const us = id => `https://images.unsplash.com/photo-${id}?q=80&w=2000&auto=format&fit=crop`;
     const shots = [
-      { s: us('1778757949749-345b125f2ccb'),           p: 'center 45%' },  // 1 Induktor
+      { s: us('1778757949749-345b125f2ccb'),           p: 'center 25%' },  // 1 Induktor/playstation (20% amunt)
       { s: base + 'imagery/raincoat.webp',             p: 'center 52%' },  // 2 raincoat
       { s: base + 'images/Relats Brand.webp',          p: 'center 25%' },  // 3 relats (10% més amunt)
       { s: base + 'images/Bunnker Final.webp',         p: 'center 90%' },  // 4 bunnker (5% més avall)
       { s: base + 'imagery/Almirall.webp',             p: 'center 50%' },  // 5 noia almirall
       { s: us('1698913463941-e1a9046710b8'),           p: 'center 55%' },  // 6 arquitectura
       { s: base + 'images/astronaut-red-portrait.png', p: 'center 28%' },  // 7 astronauta
-      { s: base + 'imagery/Julia Yosemite.webp',       p: 'center 50%' }   // 8 Julià (foto del Work)
+      { s: base + 'imagery/Julia Yosemite.webp',       p: 'center 90%' }   // 8 Julià Camper (40% avall)
     ];
     shots.forEach(o => { const im = new Image(); im.src = o.s; });
     let idx = 0, cur = 0;

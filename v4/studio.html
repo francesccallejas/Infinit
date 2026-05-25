@@ -13,7 +13,7 @@
 <style>
   :root{ --grey2:rgba(11,12,17,.55); --mint:#D8F3D6; --mint-ink:#2F8F66; --line:rgba(11,12,17,.13); }
   .st{ font-family:var(--sans,"Satoshi",system-ui,sans-serif); color:var(--ink,#0B0C11); background:var(--bg,#F4F2F0); }
-  .st em{ font-family:var(--serif,"Instrument Serif",serif); font-style:italic; font-weight:400; }
+  .st em{ font-family:var(--serif,"Instrument Serif",serif); font-style:normal; font-weight:400; }
   .st img{ display:block; max-width:100%; }
   .wrap{ width:100%; max-width:1320px; margin:0 auto; padding-inline:clamp(20px,5vw,64px); }
   .eb{ font-family:var(--mono,"IBM Plex Mono",monospace); font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:var(--grey2); }
@@ -34,7 +34,7 @@
   .manifest{ padding:clamp(64px,10vw,150px) 0; border-bottom:1px solid var(--line); }
   .manifest .eb{ display:block; margin-bottom:clamp(26px,3.5vw,46px); }
   .manifest .lead{ font-weight:500; font-size:clamp(28px,3.8vw,56px); line-height:1.14; letter-spacing:-.03em; color:var(--ink); max-width:20ch; }
-  .manifest .lead .acc{ font-family:var(--serif); font-style:italic; font-weight:400; color:var(--ink); letter-spacing:-.01em; }
+  .manifest .lead .acc{ font-family:var(--serif); font-style:normal; font-weight:400; color:var(--ink); letter-spacing:-.01em; }
   .manifest .body{ display:grid; grid-template-columns:1fr 1fr; gap:clamp(24px,4vw,60px); max-width:860px; margin:clamp(40px,5vw,72px) 0 0 auto; }
   .manifest .body p{ font-size:clamp(15px,1.15vw,18px); line-height:1.7; color:var(--grey2); }
   .manifest .body p b{ color:var(--ink); font-weight:600; }
@@ -81,9 +81,9 @@
   /* VALUE statement */
   .value{ padding:clamp(70px,11vw,160px) 0; text-align:center; }
   .value h2{ font-family:var(--sans); font-weight:500; font-size:clamp(32px,5vw,72px); line-height:1.1; letter-spacing:-.03em; color:var(--ink); max-width:20ch; margin:18px auto 0; }
-  .value h2 .acc{ font-family:var(--serif); font-style:italic; font-weight:400; color:var(--ink); letter-spacing:-.01em; }
+  .value h2 .acc{ font-family:var(--serif); font-style:normal; font-weight:400; color:var(--ink); letter-spacing:-.01em; }
   .value p{ max-width:54ch; margin:clamp(26px,3vw,40px) auto 0; font-size:clamp(16px,1.2vw,19px); line-height:1.65; color:var(--ink); }
-  .value .vsign{ margin-top:clamp(28px,4vw,46px); font-family:var(--serif,"Instrument Serif",serif); font-style:italic; font-size:clamp(20px,1.8vw,28px); color:var(--ink); }
+  .value .vsign{ margin-top:clamp(28px,4vw,46px); font-family:var(--serif,"Instrument Serif",serif); font-style:normal; font-size:clamp(20px,1.8vw,28px); color:var(--ink); }
   .value .vsign span{ font-family:var(--mono,"IBM Plex Mono",monospace); font-style:normal; font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--grey2); margin-left:14px; }
 
   /* CLIENTS — big text list */
@@ -325,8 +325,10 @@
     const href = a.getAttribute('href');
     if (href === '#contact') {  // footer is fixed behind the page → reveal by scrolling to the bottom
       e.preventDefault();
+      document.body.style.overflow = '';
       const bottom = document.documentElement.scrollHeight;
-      if (lenis) lenis.scrollTo(bottom); else scrollTo({ top: bottom, behavior: 'smooth' });
+      if (lenis) { lenis.start(); lenis.scrollTo(bottom, { force: true, duration: 1.1 }); }
+      else scrollTo({ top: bottom, behavior: 'smooth' });
       return;
     }
     const t = document.querySelector(href);
