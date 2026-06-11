@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,600,700,900&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=306">
+<link rel="stylesheet" href="style.css?v=307">
 <script>try{if(sessionStorage.getItem('inf_seen'))document.documentElement.classList.add('quick-nav');sessionStorage.setItem('inf_seen','1');}catch(e){}</script>
 <style>
   :root{ --grey2:rgba(11,12,17,.55); --mint:#D8F3D6; --mint-ink:#2F8F66; --line:rgba(11,12,17,.13); }
@@ -160,9 +160,9 @@
         </div>
         <div class="mmenu-quick">
           <span class="mmenu-eb">A quick look</span>
-          <a class="mmenu-ovcard" href="index.html#work">
+          <a class="mmenu-ovcard" href="index.html#overview">
             <span class="oc-thumb"><img src="../project/assets/images/Bunnker Final.webp" alt=""></span>
-            <span class="oc-tx"><b>Selected work</b><i>Brands we've scaled</i></span>
+            <span class="oc-tx"><b>Overview</b><i>The studio at a glance</i></span>
             <span class="oc-ar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
           </a>
         </div>
@@ -324,7 +324,12 @@
       return;
     }
     const t = document.querySelector(href);
-    if (t) { e.preventDefault(); if (lenis) lenis.scrollTo(t,{offset:0}); else t.scrollIntoView({behavior:'smooth'}); }
+    if (t) {
+      e.preventDefault();
+      document.body.style.overflow = '';                       // the menu may have locked the page
+      if (lenis) { lenis.start(); lenis.scrollTo(t, { offset: 0, force: true }); }
+      else t.scrollIntoView({ behavior: 'smooth' });
+    }
   }));
 
   // footer reveal — page scrolls over the fixed footer; floating menu hides while it shows
@@ -356,7 +361,7 @@
     if (!('IntersectionObserver' in window)) { els.forEach(e=>e.classList.add('in')); return; }
     const io = new IntersectionObserver(es => es.forEach(e => {
       if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
-    }), { threshold: 0, rootMargin: '0px 0px -8% 0px' });
+    }), { threshold: 0, rootMargin: matchMedia('(max-width:760px)').matches ? '0px 0px -2% 0px' : '0px 0px -8% 0px' });
     els.forEach(el => io.observe(el));
   })();
 

@@ -6,7 +6,7 @@
 <title>Infinit® — Brand &amp; Strategy · V2</title>
 <meta name="description" content="Strategic brand, identity and digital systems for companies navigating growth and transformation.">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
-<link rel="stylesheet" href="style.css?v=306">
+<link rel="stylesheet" href="style.css?v=307">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@600&family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -231,6 +231,7 @@
       </a>
       <a class="tile tall r d1" href="#">
         <img src="../project/assets/imagery/Julia Yosemite.webp" alt="Julià" loading="lazy">
+        <span class="wip">Work in progress</span>
         <div class="logo-over"><img src="../project/assets/clients/Julia%20Camper%20Logo.png" alt="Julià"></div>
         <div class="tile-scrim"></div>
         <div class="tile-cap"><div class="cn-row"><span class="cn">Julià</span><span class="cn-sub">premium adventure vans</span></div><span class="tag">Strategy<i class="s">·</i>Brand<i class="s">·</i>Digital</span></div>
@@ -374,7 +375,12 @@
       return;
     }
     const t = document.querySelector(href);
-    if (t) { e.preventDefault(); if (lenis) lenis.scrollTo(t, { offset: 0 }); else t.scrollIntoView({ behavior: 'smooth' }); }
+    if (t) {
+      e.preventDefault();
+      document.body.style.overflow = '';                       // the menu may have locked the page
+      if (lenis) { lenis.start(); lenis.scrollTo(t, { offset: 0, force: true }); }
+      else t.scrollIntoView({ behavior: 'smooth' });
+    }
   }));
 
   /* ---- footer reveal — page scrolls over the fixed footer; CTA colour "eats" it going up,
@@ -413,7 +419,7 @@
     if (!('IntersectionObserver' in window)) { els.forEach(e=>e.classList.add('in')); return; }
     const io = new IntersectionObserver(es => es.forEach(e => {
       if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
-    }), { threshold: 0, rootMargin: '0px 0px -8% 0px' });
+    }), { threshold: 0, rootMargin: matchMedia('(max-width:760px)').matches ? '0px 0px -2% 0px' : '0px 0px -8% 0px' });
     els.forEach(el => io.observe(el));
   })();
 
@@ -564,10 +570,14 @@
     document.getElementById('ovClose').addEventListener('click', close);
     ov.addEventListener('click', e => { if (e.target === ov) close(); });
     document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
+    /* deep link: studio's menu card arrives as index.html#overview */
+    if (location.hash === '#overview') { history.replaceState(null, '', location.pathname); setTimeout(open, 600); }
     /* card links: close overlay, then smooth-scroll to the target */
     ov.querySelectorAll('[data-ovlink]').forEach(a => a.addEventListener('click', e => {
+      const href = a.getAttribute('href');
+      if (!href.startsWith('#')) return;            // page links (studio.html) navigate normally
       e.preventDefault();
-      const target = document.querySelector(a.getAttribute('href'));
+      const target = document.querySelector(href);
       close();
       if (target) requestAnimationFrame(() => { if (window.lenis) lenis.scrollTo(target, { offset: 0 }); else target.scrollIntoView({ behavior: 'smooth' }); });
     }));

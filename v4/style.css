@@ -213,6 +213,11 @@ em { font-family: var(--serif); font-style: normal; font-weight: 400; }
 .r.d1 { transition-delay: .12s; }
 .r.d2 { transition-delay: .24s; }
 .r.d3 { transition-delay: .36s; }
+/* mobile: shorter rise + slightly quicker → fluid on fast flick scrolls */
+@media (max-width: 760px) {
+  .r { transform: translateY(20px); transition-duration: .9s, .9s; }
+  .r.d1 { transition-delay: .08s; } .r.d2 { transition-delay: .16s; } .r.d3 { transition-delay: .24s; }
+}
 @media (prefers-reduced-motion: reduce) {
   .r, .r.in { transition: opacity .4s linear; transform: none; }
   .intro { animation: introOut .4s linear 1.2s forwards; }
@@ -291,6 +296,7 @@ main > section:not(.hero), main > footer { position: relative; z-index: 1; }
 @media (max-width: 760px) {
   .hero { height: 100svh; }
   .hero-h { font-size: clamp(48px, 13vw, 84px); }
+  .hero-foot { flex-direction: column; align-items: flex-start; gap: 10px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .hero-h, .hero-foot { animation: none; opacity: 1; transform: none; }
@@ -1381,11 +1387,13 @@ body.menu-open .mbar { opacity: 0 !important; pointer-events: none; }
 .work .tile-cap .cn-sub { font-family: var(--menu-font); font-weight: 400; font-size: clamp(12px,.95vw,14px); opacity: .72; }
 .work .tile-cap .tag { font-family: var(--mono); font-size: 10px; letter-spacing: .03em; text-transform: uppercase; opacity: .8; text-align: right; white-space: nowrap; flex: none; }
 .work .tile-cap .tag .s { font-style: normal; margin: 0 .24em; opacity: .5; }
-/* Work in progress — apareix a dalt en hover (Induktor) */
-.work .tile .wip { position: absolute; top: clamp(13px,1.1vw,18px); left: clamp(15px,1.3vw,22px); z-index: 3;
+/* Work in progress — centrat a la part superior (Induktor + Julià) */
+.work .tile .wip { position: absolute; top: clamp(13px,1.1vw,18px); left: 50%; z-index: 3;
   font-family: var(--mono); font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: #fff;
-  opacity: 0; transform: translateY(-6px); transition: opacity .5s var(--ease), transform .5s var(--ease); pointer-events: none; }
-.work .tile:hover .wip { opacity: 1; transform: none; }
+  opacity: 0; transform: translateX(-50%) translateY(-6px);
+  transition: opacity .5s var(--ease), transform .5s var(--ease); pointer-events: none; }
+.work .tile:hover .wip { opacity: 1; transform: translateX(-50%); }
+@media (hover: none) { .work .tile .wip { opacity: 1; transform: translateX(-50%); } }
 @media (max-width: 900px) {
   .work .work-grid { grid-template-columns: repeat(2, 1fr); }
 }
