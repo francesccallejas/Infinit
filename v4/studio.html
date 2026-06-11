@@ -61,7 +61,7 @@
   /* PROFILE — inline portrait chip inside display text */
   .profile{ padding:clamp(64px,9vw,130px) 0; border-top:1px solid var(--line); }
   .profile .eb{ display:block; margin-bottom:clamp(24px,3vw,40px); }
-  .profile .big{ font-weight:500; font-size:clamp(26px,3.4vw,56px); line-height:1.24; letter-spacing:-.03em; color:var(--ink); max-width:27ch; }
+  .profile .big{ font-weight:500; font-size:clamp(20px,2.4vw,38px); line-height:1.3; letter-spacing:-.025em; color:var(--ink); max-width:34ch; margin-top:clamp(36px,5vw,64px); }
   .profile .chip{ display:inline-block; width:1.5em; height:1.05em; border-radius:10px; overflow:hidden; vertical-align:-0.16em; margin:0 .1em; }
   .profile .chip img{ width:100%; height:100%; object-fit:cover; object-position:center 12%; filter:grayscale(1) contrast(1.04); }
   .profile .snm{ font-family:var(--serif); font-weight:400; letter-spacing:-.01em; }
@@ -84,11 +84,9 @@
   .value .vsign{ margin-top:clamp(28px,4vw,46px); font-family:var(--serif,"Instrument Serif",serif); font-style:normal; font-size:clamp(20px,1.8vw,28px); color:var(--ink); }
   .value .vsign span{ font-family:var(--mono,"IBM Plex Mono",monospace); font-style:normal; font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--grey2); margin-left:14px; }
 
-  /* CLIENTS — big text list */
-  .clients{ padding:clamp(56px,8vw,120px) 0; border-top:1px solid var(--line); }
-  .clients .eb{ display:block; margin-bottom:clamp(22px,3vw,38px); }
-  .clients .list{ font-weight:500; font-size:clamp(28px,4.4vw,64px); line-height:1.12; letter-spacing:-.03em; color:var(--ink); max-width:22ch; }
-  .clients .list .q{ color:var(--ink); }
+  /* CLIENTS list — fused inside the profile section */
+  .profile .list{ font-weight:500; font-size:clamp(28px,4.4vw,64px); line-height:1.12; letter-spacing:-.03em; color:var(--ink); max-width:22ch; }
+  .profile .list .q{ color:var(--ink); }
 
   /* CTA band over warm interior */
   .cta{ position:relative; min-height:min(60vh,520px); display:grid; place-items:center; text-align:center; overflow:hidden; color:#fff; }
@@ -226,25 +224,18 @@
     <img src="../project/assets/imagery/night-lake.jpg" alt="">
   </section>
 
-  <!-- PROFILE — inline portrait in display text (Motto-style, copy from the quote take) -->
+  <!-- PROFILE — clients + founder fused (experience above, inline portrait text below) -->
   <section class="profile">
     <div class="wrap">
-      <span class="eb r">The founder</span>
-      <p class="big r d1">Infinit® is led hands-on by <span class="chip"><img src="../project/assets/imagery/francesc.jpg" alt="Cesc Callejas"></span> <span class="snm">Cesc Callejas</span> — two decades on both sides of the table: building brands for Almirall, Desigual, Mercadona, SAP and Glovo, and running the operations that depend on them. No layers. You work with him.</p>
-      <div class="meta r d2">
+      <span class="eb r">Experience across</span>
+      <p class="list r d1">Almirall, Desigual, Casa Tarradellas, Mercadona, Santander, MartiDerm, Girbau, Seidor, Repsol, SAP <span class="q">&amp;</span> Glovo.</p>
+      <p class="big r d2">All led hands-on by <span class="chip"><img src="../project/assets/imagery/francesc.jpg" alt="Cesc Callejas"></span> <span class="snm">Cesc Callejas</span> — two decades on both sides of the table: building brands, and running the operations that depend on them. No layers. You work with him.</p>
+      <div class="meta r d3">
         <div><div class="k">Built from scratch</div><div class="v">€0 → €1.7M</div></div>
         <div><div class="k">Growth · 2 yrs</div><div class="v">+50%</div></div>
         <div><div class="k">Visibility</div><div class="v">×10</div></div>
         <a class="ln" href="https://www.linkedin.com/in/francesc-callejas-%E2%98%81%EF%B8%8F%E2%98%98%EF%B8%8F-99416a90/" target="_blank" rel="noopener">LinkedIn<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
       </div>
-    </div>
-  </section>
-
-  <!-- CLIENTS -->
-  <section class="clients">
-    <div class="wrap">
-      <span class="eb r">Experience across</span>
-      <p class="list r d1">Almirall, Desigual, Casa Tarradellas, Mercadona, Santander, MartiDerm, Girbau, Seidor, Repsol, SAP <span class="q">&amp;</span> Glovo.</p>
     </div>
   </section>
 
@@ -420,7 +411,7 @@
   // adaptive frost — light bar over light sections, dark over dark
   (function(){
     const bar = document.getElementById('mbar');
-    const secs = [...document.querySelectorAll('.hero, .manifest, .meband, .profile, .clients, .cta')];
+    const secs = [...document.querySelectorAll('.hero, .manifest, .meband, .profile, .cta')];
     const isDark = el => el.classList.contains('hero') || el.classList.contains('cta') || el.classList.contains('foot');
     const lightAt = y => {
       for (const el of secs){ const r = el.getBoundingClientRect(); if (r.top <= y && r.bottom > y) return !isDark(el); }
