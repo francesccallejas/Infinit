@@ -58,25 +58,19 @@
   .manifest .vsel .media img.on{ opacity:1; }
   @media(max-width:760px){ .manifest .vsel{ grid-template-columns:1fr; gap:24px; } .manifest .vsel .media{ order:-1; aspect-ratio:16/10; } .manifest .vsel .vdesc{ min-height:9.5em; } }
 
-  /* PROFILE — compact, small vertical B&W photo (demoted, not the cover) */
-  .profile{ padding:clamp(56px,8vw,120px) 0; border-top:1px solid var(--line); }
-  .profile .row{ display:grid; grid-template-columns:auto 1fr; gap:clamp(28px,4vw,56px); align-items:start; }
-  .profile .photo{ width:clamp(148px,15vw,206px); aspect-ratio:3/4; border-radius:10px; overflow:hidden; background:#e8e5e1; }
-  .profile .photo img{ width:100%; height:100%; object-fit:cover; object-position:center 16%; filter:grayscale(1) contrast(1.03); }
-  .profile .who{ max-width:64ch; }
-  .profile .who .eb{ display:block; margin-bottom:14px; }
-  .profile .who .nm{ font-size:clamp(24px,2.6vw,38px); font-weight:500; letter-spacing:-.03em; line-height:1.05; }
-  .profile .who .rl{ font-family:var(--mono); font-size:12px; letter-spacing:.12em; text-transform:uppercase; color:var(--grey2); margin:10px 0 18px; }
-  .profile .who p{ font-size:clamp(15px,1.15vw,17px); line-height:1.65; color:var(--ink); max-width:54ch; }
-  .profile .who p + p{ margin-top:14px; }
-  .profile .who b{ color:var(--ink); font-weight:600; }
-  .profile .meta{ display:flex; gap:clamp(24px,3vw,44px); flex-wrap:wrap; margin-top:24px; }
+  /* PROFILE — inline portrait chip inside display text */
+  .profile{ padding:clamp(64px,9vw,130px) 0; border-top:1px solid var(--line); }
+  .profile .eb{ display:block; margin-bottom:clamp(24px,3vw,40px); }
+  .profile .big{ font-weight:500; font-size:clamp(26px,3.4vw,56px); line-height:1.24; letter-spacing:-.03em; color:var(--ink); max-width:27ch; }
+  .profile .chip{ display:inline-block; width:1.5em; height:1.05em; border-radius:10px; overflow:hidden; vertical-align:-0.16em; margin:0 .1em; }
+  .profile .chip img{ width:100%; height:100%; object-fit:cover; object-position:center 12%; filter:grayscale(1) contrast(1.04); }
+  .profile .snm{ font-family:var(--serif); font-weight:400; letter-spacing:-.01em; }
+  .profile .meta{ display:flex; align-items:flex-end; gap:clamp(28px,4vw,56px); flex-wrap:wrap; margin-top:clamp(36px,5vw,60px); }
   .profile .meta .k{ font-family:var(--mono); font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--grey2); }
-  .profile .meta .v{ font-weight:600; font-size:16px; margin-top:4px; }
-  .profile .ln{ display:inline-flex; align-items:center; gap:8px; margin-top:26px; font-family:var(--mono); font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:var(--ink); text-decoration:none; border-bottom:1px solid var(--line); padding-bottom:3px; transition:border-color .3s var(--ease,ease); }
+  .profile .meta .v{ font-weight:600; font-size:clamp(17px,1.6vw,24px); margin-top:5px; }
+  .profile .ln{ display:inline-flex; align-items:center; gap:8px; font-family:var(--mono); font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:var(--ink); text-decoration:none; border-bottom:1px solid var(--line); padding-bottom:3px; margin-bottom:3px; transition:border-color .3s var(--ease,ease); }
   .profile .ln:hover{ border-color:var(--ink); }
   .profile .ln svg{ width:14px; height:14px; }
-  @media(max-width:620px){ .profile .row{ grid-template-columns:1fr; } }
 
   /* CONCEPT band — night lake panorama (same landscape as the hero, another moment) */
   .meband{ position:relative; height:min(74vh,660px); overflow:hidden; }
@@ -232,24 +226,16 @@
     <img src="../project/assets/imagery/night-lake.jpg" alt="">
   </section>
 
-  <!-- PROFILE — compact (the person behind it, demoted) -->
+  <!-- PROFILE — inline portrait in display text (Motto-style, copy from the quote take) -->
   <section class="profile">
     <div class="wrap">
-      <div class="row">
-        <div class="photo r"><img src="../project/assets/imagery/francesc.jpg" alt="Cesc Callejas"></div>
-        <div class="who r d1">
-          <span class="eb">The founder</span>
-          <div class="nm">Cesc Callejas</div>
-          <div class="rl">Founder · Strategy &amp; Brand</div>
-          <p><b>Small by design. Senior by default.</b> Two decades across enterprise, industrial and international work — Almirall, Desigual, Casa Tarradellas, Mercadona, Santander, SAP and Glovo — alongside founder-led companies.</p>
-          <p>I've sat on both sides of the table: building brands and running the operations that depend on them. That's where the method comes from.</p>
-          <div class="meta">
-            <div><div class="k">Built from scratch</div><div class="v">€0 → €1.7M</div></div>
-            <div><div class="k">Growth · 2 yrs</div><div class="v">+50%</div></div>
-            <div><div class="k">Visibility</div><div class="v">×10</div></div>
-          </div>
-          <a class="ln" href="https://www.linkedin.com/in/francesc-callejas-%E2%98%81%EF%B8%8F%E2%98%98%EF%B8%8F-99416a90/" target="_blank" rel="noopener">LinkedIn<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
-        </div>
+      <span class="eb r">The founder</span>
+      <p class="big r d1">Infinit® is led hands-on by <span class="chip"><img src="../project/assets/imagery/francesc.jpg" alt="Cesc Callejas"></span> <span class="snm">Cesc Callejas</span> — two decades on both sides of the table: building brands for Almirall, Desigual, Mercadona, SAP and Glovo, and running the operations that depend on them. No layers. You work with him.</p>
+      <div class="meta r d2">
+        <div><div class="k">Built from scratch</div><div class="v">€0 → €1.7M</div></div>
+        <div><div class="k">Growth · 2 yrs</div><div class="v">+50%</div></div>
+        <div><div class="k">Visibility</div><div class="v">×10</div></div>
+        <a class="ln" href="https://www.linkedin.com/in/francesc-callejas-%E2%98%81%EF%B8%8F%E2%98%98%EF%B8%8F-99416a90/" target="_blank" rel="noopener">LinkedIn<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
       </div>
     </div>
   </section>
