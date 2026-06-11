@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,600,700,900&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=307">
+<link rel="stylesheet" href="style.css?v=308">
 <script>try{if(sessionStorage.getItem('inf_seen'))document.documentElement.classList.add('quick-nav');sessionStorage.setItem('inf_seen','1');}catch(e){}</script>
 <style>
   :root{ --grey2:rgba(11,12,17,.55); --mint:#D8F3D6; --mint-ink:#2F8F66; --line:rgba(11,12,17,.13); }
@@ -160,22 +160,37 @@
         </div>
         <div class="mmenu-quick">
           <span class="mmenu-eb">A quick look</span>
-          <a class="mmenu-ovcard" href="index.html#overview">
+          <button class="mmenu-ovcard" id="menuCard" type="button">
             <span class="oc-thumb"><img src="../project/assets/images/Bunnker Final.webp" alt=""></span>
             <span class="oc-tx"><b>Overview</b><i>The studio at a glance</i></span>
             <span class="oc-ar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
-          </a>
+          </button>
         </div>
       </aside>
     </div>
     <div class="mmenu-foot">
       <div class="mmenu-social">
         <a href="https://www.linkedin.com/in/francesc-callejas-%E2%98%81%EF%B8%8F%E2%98%98%EF%B8%8F-99416a90/" target="_blank" rel="noopener">LinkedIn</a>
-        <a href="#contact">Instagram</a>
+        <a href="https://www.instagram.com/weareinfinit/" target="_blank" rel="noopener">Instagram</a>
         <a href="mailto:hello@weareinfinit.com">Email</a>
       </div>
       <span class="mmenu-clock" id="clock">--:--:-- BCN</span>
     </div>
+  </div>
+</div>
+
+<!-- OVERVIEW overlay (same as the landing) -->
+<div class="ov" id="ov" aria-hidden="true">
+  <div class="ov-top">
+    <div><span class="eb">A quick look</span><h2>One studio, <em>everything connected.</em></h2></div>
+    <button class="ov-close" id="ovClose" aria-label="Close overview"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  </div>
+  <div class="ov-bento">
+    <a class="ov-card ov-work" href="index.html#work" data-ovlink><img src="../project/assets/images/Bunnker Final.webp" alt="" loading="lazy"><div class="ov-scrim"></div><div class="ov-label"><span>Selected work</span><span class="ov-ar">↗</span></div></a>
+    <a class="ov-card ov-services" href="index.html#services" data-ovlink><div class="ov-svc-list"><span>Strategy</span><span>Identity</span><span>Digital</span></div><div class="ov-label"><span>Three pillars</span><span class="ov-ar">↗</span></div></a>
+    <a class="ov-card ov-studio" href="studio.html" data-ovlink><img src="../project/assets/imagery/francesc.jpg" alt="" loading="lazy"><div class="ov-scrim"></div><div class="ov-label"><span>The studio</span><span class="ov-ar">↗</span></div></a>
+    <a class="ov-card ov-claim" href="index.html#approach" data-ovlink><h3>Brands built to <em>scale.</em></h3><div class="ov-label"><span>Our approach</span><span class="ov-ar">↗</span></div></a>
+    <a class="ov-card ov-contact" href="#contact" data-ovlink><h3>Let's <em>talk.</em></h3><div class="ov-label"><span>Get in touch</span><span class="ov-ar">↗</span></div></a>
   </div>
 </div>
 
@@ -424,6 +439,24 @@
     };
     const upd = () => bar.classList.toggle('on-light', lightAt(46));
     addEventListener('scroll', upd, { passive:true }); addEventListener('resize', upd); upd();
+  })();
+
+  // overview — menu card → frosted bento overlay (same behaviour as the landing)
+  (function(){
+    const ov = document.getElementById('ov'); if (!ov) return;
+    const open = () => { const c = document.getElementById('menuClose'); c && c.click();
+      ov.classList.add('open'); ov.setAttribute('aria-hidden','false');
+      document.body.style.overflow = 'hidden'; if (window.lenis) window.lenis.stop(); };
+    const close = () => { ov.classList.remove('open'); ov.setAttribute('aria-hidden','true');
+      document.body.style.overflow = ''; if (window.lenis) window.lenis.start(); };
+    const mc = document.getElementById('menuCard'); mc && mc.addEventListener('click', open);
+    document.getElementById('ovClose').addEventListener('click', close);
+    ov.addEventListener('click', e => { if (e.target === ov) close(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
+    // '#'-links: the page's anchor handler scrolls; here we just close the overlay.
+    ov.querySelectorAll('[data-ovlink]').forEach(a => a.addEventListener('click', e => {
+      if (a.getAttribute('href').startsWith('#')) close();   // page links navigate normally
+    }));
   })();
 
   // live clock (Barcelona)

@@ -6,7 +6,7 @@
 <title>Infinit® — Brand &amp; Strategy · V2</title>
 <meta name="description" content="Strategic brand, identity and digital systems for companies navigating growth and transformation.">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
-<link rel="stylesheet" href="style.css?v=307">
+<link rel="stylesheet" href="style.css?v=308">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@600&family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -82,7 +82,7 @@
     <div class="mmenu-foot">
       <div class="mmenu-social">
         <a href="https://www.linkedin.com/in/francesc-callejas-%E2%98%81%EF%B8%8F%E2%98%98%EF%B8%8F-99416a90/" target="_blank" rel="noopener">LinkedIn</a>
-        <a href="#contact">Instagram</a>
+        <a href="https://www.instagram.com/weareinfinit/" target="_blank" rel="noopener">Instagram</a>
         <a href="mailto:hello@weareinfinit.com">Email</a>
       </div>
       <span class="mmenu-clock" id="clock">--:--:-- BCN</span>
@@ -341,24 +341,44 @@
     (function raf(t){ lenis.raf(t); requestAnimationFrame(raf); })();
   }
 
-  /* ---- custom frosted scroll pill ---- */
+  /* ---- custom frosted scroll pill (draggable) ---- */
   (function(){
     const pill = document.createElement('div');
     pill.className = 'scroll-pill';
     document.body.appendChild(pill);
-    const M = 10; let hideT;
-    function update(){
+    const M = 10; let hideT, dragging = false, dragOff = 0;
+    function geom(){
       const docH = document.documentElement.scrollHeight;
       const vh = innerHeight, trackH = vh - M * 2;
-      if (docH <= vh + 4) { pill.style.opacity = 0; return; }
       const thumb = Math.max(44, (vh / docH) * trackH);
+      return { docH, vh, trackH, thumb };
+    }
+    function update(){
+      const { docH, vh, trackH, thumb } = geom();
+      if (docH <= vh + 4) { pill.style.opacity = 0; return; }
       const prog  = scrollY / (docH - vh);
       pill.style.height = thumb + 'px';
       pill.style.transform = 'translateY(' + (M + prog * (trackH - thumb)) + 'px)';
       pill.classList.add('show');
-      clearTimeout(hideT);
-      hideT = setTimeout(() => pill.classList.remove('show'), 750);
+      if (!dragging) { clearTimeout(hideT); hideT = setTimeout(() => pill.classList.remove('show'), 750); }
     }
+    /* drag to scroll */
+    pill.addEventListener('pointerdown', e => {
+      dragging = true; pill.setPointerCapture(e.pointerId);
+      const { docH, vh, trackH, thumb } = geom();
+      const prog = scrollY / (docH - vh);
+      dragOff = e.clientY - (M + prog * (trackH - thumb));
+      pill.classList.add('drag'); e.preventDefault();
+    });
+    pill.addEventListener('pointermove', e => {
+      if (!dragging) return;
+      const { docH, vh, trackH, thumb } = geom();
+      const p = Math.min(Math.max((e.clientY - dragOff - M) / (trackH - thumb), 0), 1);
+      const y = p * (docH - vh);
+      if (lenis) lenis.scrollTo(y, { immediate: true, force: true }); else scrollTo(0, y);
+    });
+    const endDrag = () => { if (!dragging) return; dragging = false; pill.classList.remove('drag'); update(); };
+    pill.addEventListener('pointerup', endDrag); pill.addEventListener('pointercancel', endDrag);
     if (lenis) lenis.on('scroll', update); else addEventListener('scroll', update, { passive: true });
     addEventListener('resize', update);
     update();
