@@ -47,10 +47,12 @@
   .manifest .vsel .vrow:last-of-type{ border-bottom:1px solid var(--line); }
   .manifest .vsel h3{ font-weight:500; font-size:clamp(28px,3.4vw,48px); letter-spacing:-.03em; line-height:1.04; color:var(--ink); opacity:.38; transition:opacity .5s var(--ease); }
   .manifest .vsel .vrow.active h3, .manifest .vsel .vrow:hover h3{ opacity:1; }
-  .manifest .vsel .vdesc{ position:relative; min-height:7.5em; margin-top:clamp(16px,2vw,24px); }
-  .manifest .vsel .vdesc p{ position:absolute; inset:0; font-size:clamp(14px,1.05vw,16px); line-height:1.6; color:var(--ink); max-width:48ch;
-    opacity:0; transition:opacity .5s var(--ease); }
-  .manifest .vsel .vdesc p.on{ opacity:1; }
+  /* description under its own title — grid-rows animation (smooth, no max-height jump) */
+  .manifest .vsel .desc{ display:grid; grid-template-rows:0fr; opacity:0;
+    transition:grid-template-rows .65s var(--ease), opacity .45s var(--ease); }
+  .manifest .vsel .vrow.active .desc{ grid-template-rows:1fr; opacity:1; }
+  .manifest .vsel .desc .din{ overflow:hidden; }
+  .manifest .vsel .desc p{ font-size:clamp(14px,1.05vw,16px); line-height:1.6; color:var(--ink); max-width:48ch; padding-top:13px; }
   .manifest .vsel .media{ position:relative; border-radius:var(--r,14px); overflow:hidden; background:#e8e5e1; aspect-ratio:4/3; }
   .manifest .vsel .media img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:0; transition:opacity .7s var(--ease); }
   .manifest .vsel .media img.on{ opacity:1; }
@@ -203,14 +205,18 @@
       <p class="lead r d1">Infinit® is a brand &amp; strategy studio built on one belief: branding is a craft — and craft is made by <span class="acc">people.</span></p>
       <div class="vsel r d1">
         <div class="list">
-          <button class="vrow active" type="button" data-i="0"><h3>Clarity</h3></button>
-          <button class="vrow" type="button" data-i="1"><h3>Alive</h3></button>
-          <button class="vrow" type="button" data-i="2"><h3>People</h3></button>
-          <div class="vdesc">
-            <p class="on">Simple, fast, understood at first glance. We strip away everything that isn't the idea, so the brand reads instantly and moves with speed. Clarity is a competitive advantage — and a faster path to market.</p>
-            <p>A brand is never a static logo. We build living identities — systems that move, breathe and iterate, designed to evolve with the company. Infinite by design, never finished.</p>
-            <p>Branding should be a recognised craft — built by senior hands and fairly valued. A sector that counts on its people, values their craft, and rewards it as the discipline it is. People first, always.</p>
-          </div>
+          <button class="vrow active" type="button" data-i="0">
+            <h3>Clarity</h3>
+            <div class="desc"><div class="din"><p>Simple, fast, understood at first glance. We strip away everything that isn't the idea, so the brand reads instantly and moves with speed. Clarity is a competitive advantage — and a faster path to market.</p></div></div>
+          </button>
+          <button class="vrow" type="button" data-i="1">
+            <h3>Alive</h3>
+            <div class="desc"><div class="din"><p>A brand is never a static logo. We build living identities — systems that move, breathe and iterate, designed to evolve with the company. Infinite by design, never finished.</p></div></div>
+          </button>
+          <button class="vrow" type="button" data-i="2">
+            <h3>People</h3>
+            <div class="desc"><div class="din"><p>Branding should be a recognised craft — built by senior hands and fairly valued. A sector that counts on its people, values their craft, and rewards it as the discipline it is. People first, always.</p></div></div>
+          </button>
         </div>
         <div class="media">
           <img class="on" src="../project/assets/imagery/eye-dark.jpg" alt="Clarity">
@@ -377,19 +383,27 @@
     els.forEach(el => io.observe(el));
   })();
 
-  // interactive values — click / hover a value: crossfade description + image (no layout shift)
+  // interactive values — description opens under its own title; section height stays constant
   (function(){
     const sel = document.querySelector('.vsel'); if (!sel) return;
+    const list = sel.querySelector('.list');
     const rows = [...sel.querySelectorAll('.vrow')];
-    const descs = [...sel.querySelectorAll('.vdesc p')];
     const imgs = [...sel.querySelectorAll('.media img')];
     const act = i => {
       rows.forEach((r,k)=>r.classList.toggle('active', k===i));
-      descs.forEach((d,k)=>d.classList.toggle('on', k===i));
       imgs.forEach((m,k)=>m.classList.toggle('on', k===i));
     };
     const canHover = matchMedia('(hover: hover)').matches;
     rows.forEach((r,i)=>{ r.addEventListener('click', ()=>act(i)); if (canHover) r.addEventListener('mouseenter', ()=>act(i)); });
+    // reserve the height of the tallest open state → switching never pushes the page below
+    function size(){
+      const open = sel.querySelector('.vrow.active .din');
+      const openH = open ? open.getBoundingClientRect().height : 0;
+      const base = list.getBoundingClientRect().height - openH;
+      const maxD = Math.max(...rows.map(r => r.querySelector('.desc p').getBoundingClientRect().height + 13));
+      list.style.minHeight = Math.ceil(base + maxD) + 'px';
+    }
+    addEventListener('load', size); addEventListener('resize', size); size();
   })();
 
   // frosted menu — bar dots → expanded overlay (igual que la landing)
