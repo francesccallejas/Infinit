@@ -74,9 +74,9 @@
   .profile .ln svg{ width:14px; height:14px; }
   @media(max-width:620px){ .profile .row{ grid-template-columns:1fr; } }
 
-  /* ME band — cinematic full-bleed portrait (leads into the profile) */
+  /* CONCEPT band — night mountains (same landscape as the hero, another moment) */
   .meband{ position:relative; height:min(88vh,800px); overflow:hidden; }
-  .meband img{ width:100%; height:100%; object-fit:cover; object-position:center 20%; }
+  .meband img{ width:100%; height:100%; object-fit:cover; object-position:center 55%; }
 
   /* VALUE statement */
   .value{ padding:clamp(70px,11vw,160px) 0; text-align:center; }
@@ -223,9 +223,9 @@
     </div>
   </section>
 
-  <!-- ME band — cinematic portrait leading into the profile -->
+  <!-- CONCEPT band — the same mountains, another moment (alive, always moving) -->
   <section class="meband">
-    <img src="../project/assets/imagery/francesc.jpg" alt="Cesc Callejas">
+    <img src="../project/assets/imagery/mountains-night.jpg" alt="">
   </section>
 
   <!-- PROFILE — compact (the person behind it, demoted) -->
@@ -312,6 +312,17 @@
       </div>
     </div>
   </footer>
+
+<aside class="cookies" id="cookies" hidden>
+  <div class="ck-inner">
+    <p class="ck-msg">We use cookies to enhance your experience and analyse traffic.</p>
+    <div class="ck-actions">
+      <a class="ck-link" href="#contact">Learn more</a>
+      <button class="ck-btn ck-reject" id="ckReject">Decline</button>
+      <button class="ck-btn ck-accept" id="ckAccept">Accept</button>
+    </div>
+  </div>
+</aside>
 
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
 <script>
@@ -421,6 +432,24 @@
     const el = document.getElementById('clock'); if (!el) return;
     const tick = () => { el.textContent = new Date().toLocaleTimeString('en-GB',{hour12:false,timeZone:'Europe/Madrid'}) + ' BCN'; };
     tick(); setInterval(tick, 1000);
+  })();
+
+  // cookies banner — shared consent with the landing (shows wherever people land first)
+  (function(){
+    const el = document.getElementById('cookies');
+    if (!el) return;
+    let stored = null;
+    try { stored = localStorage.getItem('ck-consent-v2'); } catch(_){}
+    if (stored) return;
+    el.hidden = false;
+    setTimeout(() => el.classList.add('show'), 900);
+    const dismiss = v => {
+      try { localStorage.setItem('ck-consent-v2', v); } catch(_){}
+      el.classList.remove('show');
+      setTimeout(() => { el.hidden = true; }, 500);
+    };
+    document.getElementById('ckAccept').addEventListener('click', () => dismiss('accept'));
+    document.getElementById('ckReject').addEventListener('click', () => dismiss('decline'));
   })();
 </script>
 </body>
