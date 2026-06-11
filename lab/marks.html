@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mark studies ×10 — Infinit®</title>
+<link href="https://api.fontshare.com/v2/css?f[]=satoshi@500,600,700,900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0B0C11; --bg:#F4F2F0; --line:rgba(11,12,17,.13);
+    --sans:"Satoshi",system-ui,sans-serif; --mono:"IBM Plex Mono",monospace;
+  }
+  *{ box-sizing:border-box; margin:0 }
+  body{ font-family:var(--sans); color:var(--ink); background:var(--bg); padding:clamp(60px,8vw,110px) clamp(20px,5vw,64px) 120px; }
+  h1{ font-weight:500; font-size:clamp(26px,3.4vw,42px); letter-spacing:-.03em; max-width:1280px; margin:0 auto; }
+  .sub{ font-family:var(--mono); font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:rgba(11,12,17,.5); max-width:1280px; margin:10px auto 0; }
+  .grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(340px,1fr)); gap:18px; max-width:1280px; margin:clamp(30px,4vw,52px) auto 0; }
+  .card{ border:1px solid var(--line); border-radius:16px; padding:clamp(22px,2.4vw,34px); background:#F7F5F3; }
+  .card.dark{ background:var(--ink); color:var(--bg); border-color:transparent; }
+  .card .num{ font-family:var(--mono); font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:rgba(11,12,17,.45); }
+  .card.dark .num{ color:rgba(244,242,240,.45); }
+  .card .nm{ font-weight:600; font-size:16px; margin-top:4px; }
+  .card .note{ font-size:13px; color:rgba(11,12,17,.55); margin-top:2px; }
+  .card.dark .note{ color:rgba(244,242,240,.55); }
+  .lockup{ display:flex; align-items:center; gap:14px; margin-top:clamp(26px,3vw,40px); }
+  .lockup svg{ height:34px; width:auto; color:var(--ink); flex:none; }
+  .card.dark .lockup svg{ color:var(--bg); }
+  .lockup .word{ font-weight:900; font-size:30px; letter-spacing:-.035em; line-height:1; }
+  .lockup .reg{ font-size:.45em; vertical-align:super; font-weight:500; }
+  .solo{ display:grid; place-items:center; height:120px; margin-top:8px; }
+  .solo svg{ height:74px; width:auto; color:var(--ink); }
+  .card.dark .solo svg{ color:var(--bg); }
+</style>
+</head>
+<body>
+  <h1>El símbol ∞ — 10 alternatives als dos rombes</h1>
+  <p class="sub">Cap a circumferències i geometria contínua · mateix to, menys rombo</p>
+
+  <div class="grid" id="grid"></div>
+
+<script>
+  // Each mark is an SVG snippet on a 240×132 canvas (same proportions as the current lockup)
+  const marks = [
+    { n:'01', nm:'Anelles enllaçades', note:'Dues circumferències entrellaçades — la infinitat com a vincle.',
+      svg:`<svg viewBox="0 0 240 132" fill="none" stroke="currentColor" stroke-width="15">
+        <circle cx="86" cy="66" r="44"/><circle cx="154" cy="66" r="44"/></svg>` },
+    { n:'02', nm:'Tangents', note:'Dos discos plens que es toquen — mínim absolut.',
+      svg:`<svg viewBox="0 0 240 132" fill="currentColor">
+        <circle cx="78" cy="66" r="46"/><circle cx="162" cy="66" r="46" fill-opacity=".45"/></svg>` },
+    { n:'03', nm:'Vesica', note:'Dues circumferències solapades; la intersecció és la marca.',
+      svg:`<svg viewBox="0 0 240 132" fill="none" stroke="currentColor" stroke-width="13">
+        <circle cx="96" cy="66" r="46"/><circle cx="144" cy="66" r="46"/></svg>` },
+    { n:'04', nm:'Llaç continu', note:'Una sola línia que no acaba mai — la lemniscata clàssica, neta.',
+      svg:`<svg viewBox="0 0 240 132" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round">
+        <path d="M120 66 C100 26, 40 26, 40 66 C40 106, 100 106, 120 66 C140 26, 200 26, 200 66 C200 106, 140 106, 120 66 Z"/></svg>` },
+    { n:'05', nm:'Cinta Möbius', note:'El llaç amb gruix variable — artesania, no geometria freda.',
+      svg:`<svg viewBox="0 0 240 132" fill="currentColor">
+        <path d="M120 66 C96 22, 34 26, 36 66 C38 104, 94 108, 120 66 C144 28, 198 24, 204 62 C208 102, 146 110, 120 66 C104 40, 64 38, 60 66 C58 92, 100 94, 120 66 C138 42, 180 44, 180 64 C180 86, 140 90, 120 66 Z" fill-rule="evenodd"/></svg>` },
+    { n:'06', nm:'Arcs oberts', note:'Dues circumferències incompletes mirant-se — sempre en construcció.',
+      svg:`<svg viewBox="0 0 240 132" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round">
+        <path d="M118 36 A44 44 0 1 0 118 96"/><path d="M122 96 A44 44 0 1 0 122 36"/></svg>` },
+    { n:'07', nm:'Esquircles', note:'Dos quadrats superel·líptics — l’evolució suau dels rombes.',
+      svg:`<svg viewBox="0 0 240 132" fill="currentColor">
+        <rect x="36" y="22" width="80" height="88" rx="34"/><rect x="124" y="22" width="80" height="88" rx="34" fill-opacity=".45"/></svg>` },
+    { n:'08', nm:'Pètals', note:'Els dos rombes actuals, arrodonits fins a ser fulles inclinades.',
+      svg:`<svg viewBox="0 0 240 132" fill="currentColor">
+        <path d="M96 22 Q124 22 114 50 L96 102 Q88 112 64 110 Q40 108 48 84 L68 38 Q76 22 96 22 Z"/>
+        <path d="M176 22 Q204 22 194 50 L176 102 Q168 112 144 110 Q120 108 128 84 L148 38 Q156 22 176 22 Z" fill-opacity=".5"/></svg>` },
+    { n:'09', nm:'Òrbita', note:'Una circumferència i la seva el·lipse creuada — moviment perpetu.',
+      svg:`<svg viewBox="0 0 240 132" fill="none" stroke="currentColor" stroke-width="13">
+        <circle cx="120" cy="66" r="42"/><ellipse cx="120" cy="66" rx="86" ry="26" transform="rotate(-18 120 66)"/></svg>` },
+    { n:'10', nm:'S contínua', note:'Dos arcs encadenats — l’infinit posat dret, una sola corba.',
+      svg:`<svg viewBox="0 0 240 132" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round">
+        <path d="M120 22 A23 23 0 0 1 120 68 A23 23 0 0 0 120 114"/></svg>` },
+  ];
+
+  const grid = document.getElementById('grid');
+  marks.forEach((m,i)=>{
+    const c = document.createElement('div');
+    c.className = 'card' + (i % 4 === 3 ? ' dark' : '');
+    c.innerHTML = `
+      <div class="num">${m.n}</div>
+      <div class="nm">${m.nm}</div>
+      <div class="note">${m.note}</div>
+      <div class="solo">${m.svg}</div>
+      <div class="lockup">${m.svg}<span class="word">infinit<span class="reg">®</span></span></div>`;
+    grid.appendChild(c);
+  });
+</script>
+</body>
+</html>

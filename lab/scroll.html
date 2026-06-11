@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Scroll indicators — Infinit®</title>
+<link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,600,700,900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0B0C11; --bg:#F4F2F0; --mint:#D8F3D6; --sand-4:#DCD5C8; --line:rgba(11,12,17,.14);
+    --sans:"Satoshi",system-ui,sans-serif; --mono:"IBM Plex Mono",monospace;
+    --ease:cubic-bezier(.22,1,.36,1);
+  }
+  *{ box-sizing:border-box; margin:0 }
+  html{ scrollbar-width:none; }
+  html::-webkit-scrollbar{ display:none; }
+  body{ font-family:var(--sans); color:var(--ink); background:var(--bg); }
+  .switch{ position:fixed; top:14px; left:50%; transform:translateX(-50%); z-index:90;
+    display:flex; gap:6px; padding:6px; background:rgba(20,20,26,.7); backdrop-filter:blur(18px); border-radius:999px; }
+  .switch button{ font-family:var(--mono); font-size:11px; letter-spacing:.06em; text-transform:uppercase;
+    color:rgba(255,255,255,.6); background:none; border:0; padding:8px 13px; border-radius:999px; cursor:pointer; transition:.25s var(--ease); }
+  .switch button.on{ background:var(--mint); color:var(--ink); }
+
+  .sec{ min-height:100vh; display:grid; place-items:center; border-bottom:1px solid var(--line); }
+  .sec h2{ font-weight:500; font-size:clamp(30px,5vw,72px); letter-spacing:-.03em; }
+  .sec:nth-child(odd of .sec){ background:var(--bg); }
+  .sec.dark{ background:var(--ink); color:var(--bg); }
+
+  /* ============ A — THE MARK DRAWS ITSELF (∞ progress) ============ */
+  .indA{ position:fixed; right:clamp(18px,2.6vw,34px); bottom:clamp(18px,2.6vw,34px); z-index:80; display:none; }
+  .indA.show{ display:block; }
+  .indA svg{ width:clamp(54px,5vw,72px); height:auto; display:block; }
+  .indA .ghost{ stroke:rgba(11,12,17,.16); }
+  .indA .draw{ stroke:var(--ink); }
+  .indA.on-dark .ghost{ stroke:rgba(244,242,240,.2); }
+  .indA.on-dark .draw{ stroke:var(--bg); }
+
+  /* ============ B — SECTION RAIL (ticks + label) ============ */
+  .indB{ position:fixed; right:clamp(16px,2.2vw,28px); top:50%; transform:translateY(-50%); z-index:80;
+    display:none; flex-direction:column; align-items:flex-end; gap:14px; }
+  .indB.show{ display:flex; }
+  .indB .tick{ display:flex; align-items:center; gap:10px; cursor:pointer; }
+  .indB .tick .lb{ font-family:var(--mono); font-size:10px; letter-spacing:.14em; text-transform:uppercase; color:rgba(11,12,17,.45);
+    opacity:0; transform:translateX(6px); transition:opacity .35s var(--ease), transform .35s var(--ease), color .35s var(--ease); }
+  .indB .tick .ln{ width:18px; height:2px; background:rgba(11,12,17,.22); border-radius:2px; transition:width .45s var(--ease), background .45s var(--ease); }
+  .indB .tick.act .ln{ width:34px; background:var(--ink); }
+  .indB .tick.act .lb{ opacity:1; transform:none; color:var(--ink); }
+  .indB .tick:hover .lb{ opacity:1; transform:none; }
+  .indB.on-dark .tick .ln{ background:rgba(244,242,240,.3); }
+  .indB.on-dark .tick.act .ln{ background:var(--bg); }
+  .indB.on-dark .tick .lb{ color:rgba(244,242,240,.5); }
+  .indB.on-dark .tick.act .lb{ color:var(--bg); }
+
+  /* ============ C — HAIRLINE + LIVE READOUT ============ */
+  .indC-line{ position:fixed; top:0; left:0; right:0; height:2px; z-index:80; background:transparent; display:none; }
+  .indC-line.show{ display:block; }
+  .indC-line i{ display:block; height:100%; width:0; background:var(--ink); transition:none; }
+  .indC-read{ position:fixed; right:clamp(18px,2.6vw,34px); bottom:clamp(18px,2.6vw,34px); z-index:80;
+    font-family:var(--mono); font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--ink);
+    background:rgba(251,250,249,.6); backdrop-filter:blur(14px); padding:8px 12px; border-radius:9px;
+    opacity:0; transform:translateY(8px); transition:opacity .4s var(--ease), transform .4s var(--ease); display:none; }
+  .indC-read.show{ display:block; }
+  .indC-read.vis{ opacity:1; transform:none; }
+</style>
+</head>
+<body>
+  <div class="switch" id="switch">
+    <button data-opt="A" class="on">A · El símbol es dibuixa</button>
+    <button data-opt="B">B · Rail de seccions</button>
+    <button data-opt="C">C · Línia + lectura</button>
+  </div>
+
+  <section class="sec" data-name="Hero"><h2>Hero</h2></section>
+  <section class="sec dark" data-name="Work"><h2>Selected work</h2></section>
+  <section class="sec" data-name="Approach"><h2>Approach</h2></section>
+  <section class="sec dark" data-name="Services"><h2>Capabilities</h2></section>
+  <section class="sec" data-name="Contact"><h2>Contact</h2></section>
+
+  <!-- A: the infinit mark draws with scroll progress -->
+  <div class="indA show" id="indA" aria-hidden="true">
+    <svg viewBox="0 0 374 206" fill="none" stroke-width="14" stroke-linejoin="round">
+      <path class="ghost" d="M 108.196 34 L 182.196 34 Q 201.196 34 194.140 51.641 L 153.056 154.359 Q 146 172 127 172 L 53 172 Q 34 172 41.056 154.359 L 82.140 51.641 Q 89.196 34 108.196 34 Z"/>
+      <path class="ghost" d="M 108.196 34 L 182.196 34 Q 201.196 34 194.140 51.641 L 153.056 154.359 Q 146 172 127 172 L 53 172 Q 34 172 41.056 154.359 L 82.140 51.641 Q 89.196 34 108.196 34 Z" transform="translate(139 0)"/>
+      <path class="draw" id="d1" d="M 108.196 34 L 182.196 34 Q 201.196 34 194.140 51.641 L 153.056 154.359 Q 146 172 127 172 L 53 172 Q 34 172 41.056 154.359 L 82.140 51.641 Q 89.196 34 108.196 34 Z"/>
+      <path class="draw" id="d2" d="M 108.196 34 L 182.196 34 Q 201.196 34 194.140 51.641 L 153.056 154.359 Q 146 172 127 172 L 53 172 Q 34 172 41.056 154.359 L 82.140 51.641 Q 89.196 34 108.196 34 Z" transform="translate(139 0)"/>
+    </svg>
+  </div>
+
+  <!-- B: section rail -->
+  <nav class="indB" id="indB" aria-label="Sections"></nav>
+
+  <!-- C: hairline + readout -->
+  <div class="indC-line" id="indCline"><i id="indCfill"></i></div>
+  <div class="indC-read" id="indCread">01 — HERO · 0%</div>
+
+<script>
+  const secs = [...document.querySelectorAll('.sec')];
+  const prog = () => scrollY / (document.documentElement.scrollHeight - innerHeight);
+  const curSec = () => { const y = scrollY + innerHeight*.4; let i=0; secs.forEach((s,k)=>{ if (s.offsetTop <= y) i=k; }); return i; };
+  const overDark = el => { const i = curSec(); return secs[i].classList.contains('dark'); };
+
+  /* A — draw the mark */
+  const d1 = document.getElementById('d1'), d2 = document.getElementById('d2');
+  const L1 = d1.getTotalLength(), L2 = d2.getTotalLength();
+  [ [d1,L1], [d2,L2] ].forEach(([el,L])=>{ el.style.strokeDasharray = L; el.style.strokeDashoffset = L; });
+  const indA = document.getElementById('indA');
+  function updA(){
+    const p = prog();
+    const p1 = Math.min(p*2, 1), p2 = Math.max(0, Math.min((p-.5)*2, 1));   // left loop first, then right
+    d1.style.strokeDashoffset = L1 * (1-p1);
+    d2.style.strokeDashoffset = L2 * (1-p2);
+    indA.classList.toggle('on-dark', overDark());
+  }
+
+  /* B — rail */
+  const indB = document.getElementById('indB');
+  secs.forEach((s,i)=>{
+    const t = document.createElement('div'); t.className='tick';
+    t.innerHTML = `<span class="lb">${s.dataset.name}</span><span class="ln"></span>`;
+    t.addEventListener('click', ()=>s.scrollIntoView({behavior:'smooth'}));
+    indB.appendChild(t);
+  });
+  const ticks = [...indB.children];
+  function updB(){
+    const i = curSec();
+    ticks.forEach((t,k)=>t.classList.toggle('act', k===i));
+    indB.classList.toggle('on-dark', overDark());
+  }
+
+  /* C — hairline + readout */
+  const fill = document.getElementById('indCfill'), read = document.getElementById('indCread');
+  let hideT = null;
+  function updC(){
+    const p = prog(), i = curSec();
+    fill.style.width = (p*100).toFixed(1) + '%';
+    read.textContent = String(i+1).padStart(2,'0') + ' — ' + secs[i].dataset.name.toUpperCase() + ' · ' + Math.round(p*100) + '%';
+    read.classList.add('vis');
+    clearTimeout(hideT); hideT = setTimeout(()=>read.classList.remove('vis'), 900);
+  }
+
+  /* switcher */
+  const sw = document.getElementById('switch');
+  let mode = 'A';
+  const els = { A:[indA], B:[indB], C:[document.getElementById('indCline'), read] };
+  function setMode(m){
+    mode = m;
+    Object.entries(els).forEach(([k,arr])=>arr.forEach(e=>e.classList.toggle('show', k===m)));
+    [...sw.children].forEach(b=>b.classList.toggle('on', b.dataset.opt===m));
+    onScroll();
+  }
+  sw.addEventListener('click', e=>{ if (e.target.dataset.opt) setMode(e.target.dataset.opt); });
+  function onScroll(){ if (mode==='A') updA(); else if (mode==='B') updB(); else updC(); }
+  addEventListener('scroll', onScroll, { passive:true }); addEventListener('resize', onScroll);
+  setMode('A');
+</script>
+</body>
+</html>
