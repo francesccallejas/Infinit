@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Founder studies — Infinit®</title>
+<link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,600,700,900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0B0C11; --bg:#F4F2F0; --mint:#D8F3D6; --line:rgba(11,12,17,.14); --grey2:rgba(11,12,17,.55);
+    --sans:"Satoshi",system-ui,sans-serif; --serif:"Instrument Serif",serif; --mono:"IBM Plex Mono",monospace;
+    --ease:cubic-bezier(.22,1,.36,1); --r:14px;
+  }
+  *{ box-sizing:border-box; margin:0 }
+  body{ font-family:var(--sans); color:var(--ink); background:var(--bg); }
+  .switch{ position:fixed; top:14px; left:50%; transform:translateX(-50%); z-index:50;
+    display:flex; gap:6px; padding:6px; background:rgba(20,20,26,.7); backdrop-filter:blur(18px);
+    border-radius:999px; }
+  .switch button{ font-family:var(--mono); font-size:11px; letter-spacing:.06em; text-transform:uppercase;
+    color:rgba(255,255,255,.6); background:none; border:0; padding:8px 13px; border-radius:999px; cursor:pointer; transition:.25s var(--ease); white-space:nowrap; }
+  .switch button:hover{ color:#fff; }
+  .switch button.on{ background:var(--mint); color:var(--ink); }
+
+  .v{ display:none; min-height:100vh; align-items:center; }
+  .v.active{ display:flex; }
+  .wrap{ width:100%; max-width:1320px; margin:0 auto; padding:clamp(80px,12vh,140px) clamp(20px,5vw,64px); }
+  .eb{ font-family:var(--mono); font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:var(--grey2); }
+  .serif{ font-family:var(--serif); font-weight:400; font-style:normal; }
+
+  /* ========== 1 — QUOTE-LED (Pentagram × TQ) ========== */
+  .v1 .eb{ display:block; margin-bottom:clamp(26px,4vw,46px); }
+  .v1 blockquote{ font-family:var(--serif); font-size:clamp(34px,4.6vw,76px); line-height:1.12; letter-spacing:-.01em; max-width:24ch; }
+  .v1 .sig{ display:flex; align-items:center; gap:16px; margin-top:clamp(30px,4vw,52px); }
+  .v1 .sig img{ width:52px; height:52px; border-radius:50%; object-fit:cover; object-position:center 16%; filter:grayscale(1) contrast(1.04); }
+  .v1 .sig .nm{ font-weight:600; font-size:16px; }
+  .v1 .sig .rl{ font-family:var(--mono); font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--grey2); margin-top:3px; }
+  .v1 .facts{ display:flex; gap:clamp(28px,4vw,56px); flex-wrap:wrap; margin-top:clamp(34px,5vw,60px); border-top:1px solid var(--line); padding-top:22px; }
+  .v1 .facts span{ font-family:var(--mono); font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:var(--grey2); }
+  .v1 .facts b{ color:var(--ink); font-weight:600; margin-right:8px; }
+
+  /* ========== 2 — LEDGER / TECHNICAL SHEET ========== */
+  .v2 .head{ display:flex; justify-content:space-between; align-items:flex-end; gap:24px; margin-bottom:clamp(28px,4vw,44px); }
+  .v2 h2{ font-weight:500; font-size:clamp(30px,3.6vw,54px); letter-spacing:-.03em; }
+  .v2 .photo{ width:clamp(80px,8vw,116px); aspect-ratio:3/4; border-radius:10px; overflow:hidden; }
+  .v2 .photo img{ width:100%; height:100%; object-fit:cover; object-position:center 14%; filter:grayscale(1) contrast(1.04); }
+  .v2 .ledger{ border-top:1px solid var(--line); }
+  .v2 .lrow{ display:grid; grid-template-columns:minmax(160px,.4fr) 1fr; gap:24px; padding:clamp(14px,1.8vw,20px) 0; border-bottom:1px solid var(--line); align-items:baseline; }
+  .v2 .lrow .k{ font-family:var(--mono); font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:var(--grey2); }
+  .v2 .lrow .val{ font-weight:500; font-size:clamp(16px,1.5vw,22px); letter-spacing:-.01em; }
+  .v2 .lrow .val a{ color:inherit; text-decoration:none; border-bottom:1px solid var(--line); padding-bottom:2px; transition:border-color .3s var(--ease); }
+  .v2 .lrow .val a:hover{ border-color:var(--ink); }
+  @media(max-width:620px){ .v2 .lrow{ grid-template-columns:1fr; gap:6px; } }
+
+  /* ========== 3 — INLINE PORTRAIT IN DISPLAY TEXT (Motto-style) ========== */
+  .v3 p.big{ font-weight:500; font-size:clamp(28px,3.8vw,62px); line-height:1.22; letter-spacing:-.03em; max-width:26ch; }
+  .v3 .chip{ display:inline-block; width:1.5em; height:1.05em; border-radius:10px; overflow:hidden; vertical-align:-0.16em; margin:0 .12em; }
+  .v3 .chip img{ width:100%; height:100%; object-fit:cover; object-position:center 12%; filter:grayscale(1) contrast(1.04); }
+  .v3 .serif{ letter-spacing:-.01em; }
+  .v3 .facts{ display:flex; gap:clamp(28px,4vw,56px); flex-wrap:wrap; margin-top:clamp(36px,5vw,64px); }
+  .v3 .facts div .k{ font-family:var(--mono); font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--grey2); }
+  .v3 .facts div .n{ font-weight:600; font-size:clamp(18px,1.8vw,26px); margin-top:6px; }
+
+  /* ========== 4 — HOVER NAME REVEAL (Daylight-style) ========== */
+  .v4{ cursor:default; }
+  .v4 .eb{ display:block; margin-bottom:clamp(22px,3vw,38px); }
+  .v4 .nm{ font-weight:500; font-size:clamp(56px,10vw,170px); letter-spacing:-.045em; line-height:.95; width:fit-content; position:relative; }
+  .v4 .nm span{ transition:opacity .35s var(--ease); }
+  .v4 .nm:hover span{ opacity:.25; }
+  .v4 .float{ position:fixed; width:clamp(180px,18vw,250px); aspect-ratio:3/4; border-radius:12px; overflow:hidden; pointer-events:none;
+    opacity:0; transform:scale(.96); transition:opacity .35s var(--ease), transform .35s var(--ease); z-index:5; }
+  .v4 .float img{ width:100%; height:100%; object-fit:cover; object-position:center 12%; filter:grayscale(1) contrast(1.04); }
+  .v4 .float.on{ opacity:1; transform:scale(1); }
+  .v4 .line{ margin-top:clamp(26px,4vw,44px); font-size:clamp(16px,1.4vw,21px); line-height:1.6; max-width:52ch; }
+  .v4 .facts{ display:flex; gap:clamp(28px,4vw,56px); flex-wrap:wrap; margin-top:clamp(28px,4vw,44px); border-top:1px solid var(--line); padding-top:20px; }
+  .v4 .facts span{ font-family:var(--mono); font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:var(--grey2); }
+  .v4 .facts b{ color:var(--ink); font-weight:600; margin-right:8px; }
+
+  /* ========== 5 — NUMBERS FIRST (Instrument-style) ========== */
+  .v5 .eb{ display:block; margin-bottom:clamp(30px,4vw,52px); }
+  .v5 .nums{ display:grid; grid-template-columns:repeat(3,1fr); gap:clamp(24px,4vw,64px); }
+  .v5 .num .n{ font-weight:500; font-size:clamp(44px,6.5vw,110px); letter-spacing:-.04em; line-height:1; }
+  .v5 .num .k{ font-family:var(--mono); font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--grey2); margin-top:12px; }
+  .v5 .who{ display:flex; align-items:center; gap:18px; margin-top:clamp(44px,6vw,80px); border-top:1px solid var(--line); padding-top:clamp(24px,3vw,36px); }
+  .v5 .who img{ width:60px; height:60px; border-radius:12px; object-fit:cover; object-position:center 14%; filter:grayscale(1) contrast(1.04); }
+  .v5 .who p{ font-size:clamp(15px,1.3vw,19px); line-height:1.55; max-width:56ch; }
+  .v5 .who b{ font-weight:600; }
+  @media(max-width:680px){ .v5 .nums{ grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+  <div class="switch" id="switch">
+    <button data-opt="1" class="on">1 · Quote</button>
+    <button data-opt="2">2 · Ledger</button>
+    <button data-opt="3">3 · Inline</button>
+    <button data-opt="4">4 · Hover name</button>
+    <button data-opt="5">5 · Numbers</button>
+  </div>
+
+  <!-- 1 — QUOTE-LED -->
+  <section class="v v1 active">
+    <div class="wrap">
+      <span class="eb">The founder</span>
+      <blockquote>“I've sat on both sides of the table — building brands, and running the operations that depend on them.”</blockquote>
+      <div class="sig">
+        <img src="../project/assets/imagery/francesc.jpg" alt="Cesc Callejas">
+        <div><div class="nm">Cesc Callejas</div><div class="rl">Founder · Strategy &amp; Brand</div></div>
+      </div>
+      <div class="facts">
+        <span><b>20 yrs</b> enterprise &amp; industrial</span>
+        <span><b>€0 → €1.7M</b> built from scratch</span>
+        <span><b>×10</b> visibility</span>
+        <span><a href="#" style="color:inherit">LinkedIn ↗</a></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2 — LEDGER -->
+  <section class="v v2">
+    <div class="wrap">
+      <div class="head">
+        <div><span class="eb">The founder</span><h2 style="margin-top:12px">Cesc Callejas</h2></div>
+        <div class="photo"><img src="../project/assets/imagery/francesc.jpg" alt="Cesc Callejas"></div>
+      </div>
+      <div class="ledger">
+        <div class="lrow"><span class="k">Practice</span><span class="val">Strategy &amp; Brand — hands-on, no layers</span></div>
+        <div class="lrow"><span class="k">Experience</span><span class="val">Two decades across enterprise, industrial &amp; international work</span></div>
+        <div class="lrow"><span class="k">Track record</span><span class="val">€0 → €1.7M built from scratch · +50% growth in 2 yrs · ×10 visibility</span></div>
+        <div class="lrow"><span class="k">Perspective</span><span class="val">Both sides of the table: brand and operations</span></div>
+        <div class="lrow"><span class="k">Connect</span><span class="val"><a href="#">LinkedIn ↗</a></span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 — INLINE PORTRAIT -->
+  <section class="v v3">
+    <div class="wrap">
+      <p class="big">Infinit® is led hands-on by <span class="chip"><img src="../project/assets/imagery/francesc.jpg" alt=""></span> <span class="serif">Cesc Callejas</span> — two decades building brands for Almirall, Desigual, Mercadona, SAP and Glovo, and running the operations that depend on them. No layers. You work with him.</p>
+      <div class="facts">
+        <div><div class="k">Built from scratch</div><div class="n">€0 → €1.7M</div></div>
+        <div><div class="k">Growth · 2 yrs</div><div class="n">+50%</div></div>
+        <div><div class="k">Visibility</div><div class="n">×10</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 — HOVER NAME -->
+  <section class="v v4">
+    <div class="wrap">
+      <span class="eb">The founder</span>
+      <h2 class="nm" id="hoverName"><span>Cesc Callejas</span></h2>
+      <div class="float" id="floatPh"><img src="../project/assets/imagery/francesc.jpg" alt="Cesc Callejas"></div>
+      <p class="line">Two decades across enterprise, industrial and international work — both sides of the table, brand and operations. Strategy that survives contact with reality.</p>
+      <div class="facts">
+        <span><b>€0 → €1.7M</b> built from scratch</span>
+        <span><b>+50%</b> growth · 2 yrs</span>
+        <span><b>×10</b> visibility</span>
+        <span><a href="#" style="color:inherit">LinkedIn ↗</a></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5 — NUMBERS FIRST -->
+  <section class="v v5">
+    <div class="wrap">
+      <span class="eb">The founder · in numbers</span>
+      <div class="nums">
+        <div class="num"><div class="n">€1.7M</div><div class="k">Built from €0</div></div>
+        <div class="num"><div class="n">+50%</div><div class="k">Growth · 2 yrs</div></div>
+        <div class="num"><div class="n">×10</div><div class="k">Visibility</div></div>
+      </div>
+      <div class="who">
+        <img src="../project/assets/imagery/francesc.jpg" alt="Cesc Callejas">
+        <p><b>Cesc Callejas, founder.</b> Two decades across enterprise, industrial and international work — both sides of the table, brand and operations. <a href="#" style="color:inherit">LinkedIn ↗</a></p>
+      </div>
+    </div>
+  </section>
+
+<script>
+  const sw = document.getElementById('switch');
+  const vs = [...document.querySelectorAll('.v')];
+  sw.addEventListener('click', e => {
+    const o = e.target.dataset.opt; if (!o) return;
+    vs.forEach(v=>v.classList.remove('active'));
+    document.querySelector('.v'+o).classList.add('active');
+    [...sw.children].forEach(b=>b.classList.toggle('on', b.dataset.opt===o));
+    scrollTo(0,0);
+  });
+
+  // option 4 — floating portrait follows the cursor over the name
+  (function(){
+    const nm = document.getElementById('hoverName');
+    const ph = document.getElementById('floatPh');
+    let tx=0, ty=0, x=0, y=0, raf=null;
+    const loop = () => { x += (tx-x)*.13; y += (ty-y)*.13;
+      ph.style.left = (x+26)+'px'; ph.style.top = (y-110)+'px';
+      raf = requestAnimationFrame(loop); };
+    nm.addEventListener('mouseenter', e => { tx=x=e.clientX; ty=y=e.clientY; ph.classList.add('on'); if(!raf) loop(); });
+    nm.addEventListener('mousemove', e => { tx=e.clientX; ty=e.clientY; });
+    nm.addEventListener('mouseleave', () => { ph.classList.remove('on'); cancelAnimationFrame(raf); raf=null; });
+  })();
+</script>
+</body>
+</html>
