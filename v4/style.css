@@ -183,19 +183,26 @@ em { font-family: var(--serif); font-style: normal; font-weight: 400; }
 .intro {
   position: fixed; inset: 0; z-index: 200; background: var(--ink);
   display: flex; align-items: center; justify-content: center;
-  animation: introOut .9s var(--ease) 2.5s forwards;
+  animation: introOut .9s var(--ease) 2.9s forwards;
 }
 .intro svg { height: 64px; color: var(--bg); }
-/* the two squircles fade in, then wink one after the other — a travelling wave */
+/* the two squircles glide in (fluid scale-up), then wink one after the other — a travelling wave */
 .intro .p1, .intro .p2 { opacity: 0; transform-box: fill-box; transform-origin: center; }
-.intro .p1 { animation: fadeIn .55s var(--ease) .2s both,  winkWave 1s var(--ease) .95s both; }
-.intro .p2 { animation: fadeIn .55s var(--ease) .42s both, winkWave 1s var(--ease) 1.17s both; }
+.intro .p1 { animation: introIn .8s cubic-bezier(.22,1,.36,1) .2s both,  winkWave 1.15s cubic-bezier(.65,0,.35,1) 1.25s both; }
+.intro .p2 { animation: introIn .8s cubic-bezier(.22,1,.36,1) .42s both, winkWave 1.15s cubic-bezier(.65,0,.35,1) 1.5s both; }
 @keyframes fadeIn { to { opacity: 1; } }
-/* wink = a quick vertical squash (eye closing) with a soft re-open overshoot */
+/* fluid entrance: fade + soft scale settle */
+@keyframes introIn {
+  0%   { opacity: 0; transform: scale(.5); }
+  60%  { opacity: 1; }
+  100% { opacity: 1; transform: scale(1); }
+}
+/* robot wink: soft close, a tiny mechanical hold while shut, a small nod, then re-open */
 @keyframes winkWave {
-  0%, 100% { transform: scaleY(1); }
-  38%      { transform: scaleY(.08); }
-  64%      { transform: scaleY(1.08); }
+  0%, 100% { transform: translateY(0) scaleY(1); }
+  32%      { transform: translateY(1.5px) scaleY(.2); }
+  48%      { transform: translateY(1.5px) scaleY(.2); }   /* hold shut → robotic beat */
+  74%      { transform: translateY(0) scaleY(1.05); }     /* gentle re-open overshoot */
 }
 @keyframes introOut {
   0%   { transform: translateY(0);     border-bottom-left-radius: 0;    border-bottom-right-radius: 0; }
