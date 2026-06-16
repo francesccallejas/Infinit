@@ -47,17 +47,20 @@
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
-html { -webkit-text-size-adjust: 100%; scrollbar-width: thin; scrollbar-color: rgba(120,122,130,.45) transparent; }
-/* minimal scrollbar — transparent track, slim draggable thumb */
-html::-webkit-scrollbar, body::-webkit-scrollbar { width: 10px; height: 10px; background: transparent; }
-html::-webkit-scrollbar-track, body::-webkit-scrollbar-track { background: transparent; }
-html::-webkit-scrollbar-thumb, body::-webkit-scrollbar-thumb {
-  background: rgba(120,122,130,.45); border-radius: 999px;
-  border: 3px solid transparent; background-clip: padding-box;
+html { -webkit-text-size-adjust: 100%; scrollbar-width: none; -ms-overflow-style: none; }
+html::-webkit-scrollbar, body::-webkit-scrollbar { width: 0; height: 0; display: none; }
+/* custom overlay scrollbar — only a pill, over the page, shows on scroll then fades */
+.uscroll {
+  position: fixed; top: 0; right: 5px; width: 6px; border-radius: 999px; z-index: 130;
+  background: rgba(120,122,130,.55);
+  opacity: 0; pointer-events: auto; cursor: grab; touch-action: none;
+  transition: opacity .4s var(--ease), background .2s var(--ease);
+  will-change: transform;
 }
-html::-webkit-scrollbar-thumb:hover, body::-webkit-scrollbar-thumb:hover {
-  background: rgba(90,92,100,.7); background-clip: padding-box;
-}
+.uscroll.show { opacity: 1; }
+.uscroll:hover, .uscroll.drag { background: rgba(86,88,96,.8); width: 8px; }
+.uscroll.drag { cursor: grabbing; }
+@media (prefers-reduced-motion: reduce) { .uscroll { transition: opacity .2s linear; } }
 body {
   font-family: var(--sans);
   font-weight: 500;
@@ -606,7 +609,7 @@ main > section:not(.hero), main > footer { position: relative; z-index: 1; }
 .foot-rec-logos a { display: inline-flex; align-items: center; }
 .foot-rec-logos img { width: auto; display: block; filter: brightness(0) invert(1); opacity: .6; transition: opacity .25s var(--ease); }
 .foot-rec-logos a:nth-child(1) img { height: 15px; }   /* awwwards */
-.foot-rec-logos a:nth-child(2) img { height: 20px; transform: translateY(4px); }   /* COAC — nudged down to optically center with awwwards */
+.foot-rec-logos a:nth-child(2) img { height: 20px; transform: translateY(2px); }   /* COAC — small nudge to optically center with awwwards */
 .foot-rec-logos a:hover img { opacity: 1; }
 .foot-base { display: flex; gap: 24px; flex-wrap: wrap; align-items: center;
   font-family: var(--mono); font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: rgba(244,242,240,.4); }

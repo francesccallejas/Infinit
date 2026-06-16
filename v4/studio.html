@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,600,700,900&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=319">
+<link rel="stylesheet" href="style.css?v=320">
 <script>try{if(sessionStorage.getItem('inf_seen'))document.documentElement.classList.add('quick-nav');sessionStorage.setItem('inf_seen','1');}catch(e){}</script>
 <style>
   :root{ --grey2:rgba(11,12,17,.55); --mint:#D8F3D6; --mint-ink:#2F8F66; --line:rgba(11,12,17,.13); }
@@ -342,6 +342,51 @@
     const t = document.querySelector(href);
     if (t) { e.preventDefault(); goTo(t.getBoundingClientRect().top + window.scrollY); }
   }));
+
+  /* custom overlay scrollbar — pill only, over the page, shows on scroll then fades, draggable */
+  (function(){
+    const bar = document.createElement('div');
+    bar.className = 'uscroll'; bar.setAttribute('aria-hidden', 'true');
+    document.body.appendChild(bar);
+    let docH = 0, vh = 0, thumbH = 0, hideT = null, dragging = false;
+    const MIN = 40;
+    function metrics(){
+      docH = document.documentElement.scrollHeight; vh = innerHeight;
+      thumbH = Math.max(MIN, Math.round(vh * (vh / docH)));
+      bar.style.height = thumbH + 'px';
+      bar.style.display = docH <= vh + 4 ? 'none' : 'block';
+    }
+    function place(){
+      const max = docH - vh;
+      const p = max > 0 ? Math.min(Math.max(scrollY / max, 0), 1) : 0;
+      bar.style.transform = 'translateY(' + (p * (vh - thumbH)).toFixed(1) + 'px)';
+    }
+    function flash(){
+      bar.classList.add('show');
+      if (hideT) clearTimeout(hideT);
+      if (!dragging) hideT = setTimeout(() => bar.classList.remove('show'), 1100);
+    }
+    function onScroll(){ place(); flash(); }
+    bar.addEventListener('pointerdown', e => {
+      e.preventDefault(); dragging = true; bar.classList.add('drag', 'show');
+      bar.setPointerCapture(e.pointerId);
+      const startY = e.clientY, startScroll = scrollY, max = docH - vh, range = vh - thumbH;
+      function move(ev){
+        const dy = ev.clientY - startY;
+        const y = Math.min(Math.max(startScroll + (range > 0 ? dy / range * max : 0), 0), max);
+        if (lenis) lenis.scrollTo(y, { immediate: true, force: true }); else scrollTo(0, y);
+      }
+      function up(){
+        dragging = false; bar.classList.remove('drag');
+        try { bar.releasePointerCapture(e.pointerId); } catch(_){}
+        removeEventListener('pointermove', move); removeEventListener('pointerup', up); flash();
+      }
+      addEventListener('pointermove', move); addEventListener('pointerup', up);
+    });
+    if (lenis) lenis.on('scroll', onScroll); else addEventListener('scroll', onScroll, { passive: true });
+    addEventListener('resize', () => { metrics(); place(); });
+    metrics(); place();
+  })();
 
   // footer reveal — page scrolls over the fixed footer; floating menu hides while it shows
   (function(){

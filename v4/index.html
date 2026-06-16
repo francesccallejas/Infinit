@@ -6,7 +6,7 @@
 <title>Infinit® — Brand &amp; Strategy · V2</title>
 <meta name="description" content="Strategic brand, identity and digital systems for companies navigating growth and transformation.">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
-<link rel="stylesheet" href="style.css?v=319">
+<link rel="stylesheet" href="style.css?v=320">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@600&family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -356,6 +356,55 @@
     const t = document.querySelector(href);
     if (t) { e.preventDefault(); goTo(t.getBoundingClientRect().top + window.scrollY); }
   }));
+
+  /* ---- custom overlay scrollbar — pill only, over the page, shows on scroll then fades, draggable ---- */
+  (function(){
+    const bar = document.createElement('div');
+    bar.className = 'uscroll'; bar.setAttribute('aria-hidden', 'true');
+    document.body.appendChild(bar);
+    let docH = 0, vh = 0, thumbH = 0, hideT = null, dragging = false;
+    const MIN = 40;
+    function metrics(){
+      docH = document.documentElement.scrollHeight; vh = innerHeight;
+      const ratio = vh / docH;
+      thumbH = Math.max(MIN, Math.round(vh * ratio));
+      bar.style.height = thumbH + 'px';
+      bar.style.display = docH <= vh + 4 ? 'none' : 'block';
+    }
+    function place(){
+      const max = docH - vh;
+      const p = max > 0 ? Math.min(Math.max(scrollY / max, 0), 1) : 0;
+      bar.style.transform = 'translateY(' + (p * (vh - thumbH)).toFixed(1) + 'px)';
+    }
+    function flash(){
+      bar.classList.add('show');
+      if (hideT) clearTimeout(hideT);
+      if (!dragging) hideT = setTimeout(() => bar.classList.remove('show'), 1100);
+    }
+    function onScroll(){ place(); flash(); }
+    // drag to scroll
+    bar.addEventListener('pointerdown', e => {
+      e.preventDefault(); dragging = true; bar.classList.add('drag', 'show');
+      bar.setPointerCapture(e.pointerId);
+      const startY = e.clientY, startScroll = scrollY, max = docH - vh, range = vh - thumbH;
+      function move(ev){
+        const dy = ev.clientY - startY;
+        const target = startScroll + (range > 0 ? dy / range * max : 0);
+        const y = Math.min(Math.max(target, 0), max);
+        if (lenis) lenis.scrollTo(y, { immediate: true, force: true }); else scrollTo(0, y);
+      }
+      function up(ev){
+        dragging = false; bar.classList.remove('drag');
+        try { bar.releasePointerCapture(e.pointerId); } catch(_){}
+        removeEventListener('pointermove', move); removeEventListener('pointerup', up);
+        flash();
+      }
+      addEventListener('pointermove', move); addEventListener('pointerup', up);
+    });
+    if (lenis) lenis.on('scroll', onScroll); else addEventListener('scroll', onScroll, { passive: true });
+    addEventListener('resize', () => { metrics(); place(); });
+    metrics(); place();
+  })();
 
   /* ---- footer reveal — page scrolls over the fixed footer; CTA colour "eats" it going up,
           footer rises like a flat window going down; floating UI hides while it shows ---- */
