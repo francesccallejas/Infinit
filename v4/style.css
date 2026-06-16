@@ -183,12 +183,20 @@ em { font-family: var(--serif); font-style: normal; font-weight: 400; }
 .intro {
   position: fixed; inset: 0; z-index: 200; background: var(--ink);
   display: flex; align-items: center; justify-content: center;
-  animation: introOut .9s var(--ease) 1.9s forwards;
+  animation: introOut .9s var(--ease) 2.5s forwards;
 }
 .intro svg { height: 64px; color: var(--bg); }
-.intro .p1 { opacity: 0; animation: fadeIn .7s var(--ease) .25s forwards; }
-.intro .p2 { opacity: 0; animation: fadeIn .7s var(--ease) .5s forwards; }
+/* the two squircles fade in, then wink one after the other — a travelling wave */
+.intro .p1, .intro .p2 { opacity: 0; transform-box: fill-box; transform-origin: center; }
+.intro .p1 { animation: fadeIn .55s var(--ease) .2s both,  winkWave 1s var(--ease) .95s both; }
+.intro .p2 { animation: fadeIn .55s var(--ease) .42s both, winkWave 1s var(--ease) 1.17s both; }
 @keyframes fadeIn { to { opacity: 1; } }
+/* wink = a quick vertical squash (eye closing) with a soft re-open overshoot */
+@keyframes winkWave {
+  0%, 100% { transform: scaleY(1); }
+  38%      { transform: scaleY(.08); }
+  64%      { transform: scaleY(1.08); }
+}
 @keyframes introOut {
   0%   { transform: translateY(0);     border-bottom-left-radius: 0;    border-bottom-right-radius: 0; }
   to   { transform: translateY(-100%); border-bottom-left-radius: var(--r-lg); border-bottom-right-radius: var(--r-lg); }
@@ -210,6 +218,8 @@ em { font-family: var(--serif); font-style: normal; font-weight: 400; }
 @media (prefers-reduced-motion: reduce) {
   .r, .r.in { transition: opacity .4s linear; transform: none; }
   .intro { animation: introOut .4s linear 1.2s forwards; }
+  .intro .p1 { animation: fadeIn .5s linear .2s both; }
+  .intro .p2 { animation: fadeIn .5s linear .4s both; }
 }
 
 /* =========================================================================
