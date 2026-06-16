@@ -3,684 +3,820 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Infinit® — Brand &amp; Strategy</title>
-<meta name="description" content="Strategic brand and digital systems for companies navigating growth and transformation. Built through real operational experience.">
-<link rel="stylesheet" href="style.css">
+<title>Infinit® — Brand &amp; Strategy · V2</title>
+<meta name="description" content="Strategic brand, identity and digital systems for companies navigating growth and transformation.">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="stylesheet" href="style.css?v=321">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300..900&family=Inter:wght@700&family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@600&family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,600,700,900&display=swap" rel="stylesheet">
+<script>try{if(sessionStorage.getItem('inf_seen'))document.documentElement.classList.add('quick-nav');sessionStorage.setItem('inf_seen','1');}catch(e){}</script>
 </head>
 <body>
 
-<!-- INTRO SPLASH -->
 <div class="intro" id="intro" aria-hidden="true">
-  <svg class="intro-mark" viewBox="0 0 374 206" fill="none" aria-hidden="true">
-    <path class="ip1" d="M 108.196 34.000 L 182.196 34.000 Q 201.196 34.000 194.140 51.641 L 153.056 154.359 Q 146.000 172.000 127.000 172.000 L 53.000 172.000 Q 34.000 172.000 41.056 154.359 L 82.140 51.641 Q 89.196 34.000 108.196 34.000 Z" fill="currentColor"/>
-    <path class="ip2" d="M 108.196 34.000 L 182.196 34.000 Q 201.196 34.000 194.140 51.641 L 153.056 154.359 Q 146.000 172.000 127.000 172.000 L 53.000 172.000 Q 34.000 172.000 41.056 154.359 L 82.140 51.641 Q 89.196 34.000 108.196 34.000 Z" fill="currentColor" transform="translate(139 0)"/>
+  <svg viewBox="0 0 240 132" fill="none">
+    <rect class="p1" x="36" y="22" width="80" height="88" rx="34" fill="currentColor"/>
+    <rect class="p2" x="124" y="22" width="80" height="88" rx="34" fill="currentColor"/>
   </svg>
 </div>
 
-<!-- LOGO (standalone, blends adaptively over content) -->
-<a class="logo-lockup" id="logo" href="#" aria-label="Infinit — home">
-  <svg width="44" height="24" viewBox="0 0 374 206" fill="none" aria-hidden="true">
-    <path d="M 108.196 34.000 L 182.196 34.000 Q 201.196 34.000 194.140 51.641 L 153.056 154.359 Q 146.000 172.000 127.000 172.000 L 53.000 172.000 Q 34.000 172.000 41.056 154.359 L 82.140 51.641 Q 89.196 34.000 108.196 34.000 Z" fill="currentColor"/>
-    <path d="M 108.196 34.000 L 182.196 34.000 Q 201.196 34.000 194.140 51.641 L 153.056 154.359 Q 146.000 172.000 127.000 172.000 L 53.000 172.000 Q 34.000 172.000 41.056 154.359 L 82.140 51.641 Q 89.196 34.000 108.196 34.000 Z" fill="currentColor" transform="translate(139 0)"/>
-  </svg>
-  <span class="word">infinit<span class="reg">®</span></span>
-</a>
-
-<!-- NAV CONTROLS -->
-<nav class="top" id="nav">
-  <div class="nav-combo">
-    <button class="combo-lines" id="navMenuBtn" aria-label="Open menu" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
-    <a class="combo-arrow-btn" href="#contact" aria-label="Contact">
-      <svg width="13" height="13" viewBox="0 0 24 24" fill="none">
-        <path d="M8 16 L16 8 M9 8 H16 V15" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
+<!-- ===== FROSTED FLOATING MENU (Monologue-style) ===== -->
+<header class="mbar" id="mbar">
+  <a class="mbar-logo" href="#top" aria-label="Infinit — home">
+    <svg viewBox="0 0 240 132" fill="none" aria-hidden="true">
+      <rect x="36" y="22" width="80" height="88" rx="34" fill="currentColor"/>
+      <rect x="124" y="22" width="80" height="88" rx="34" fill="currentColor"/>
+    </svg>
+    <span class="word">infinit<span class="reg">®</span></span>
+  </a>
+  <div class="mbar-right">
+    <a class="mbar-contact" href="#contact">
+      <span data-i18n="mbar.contact">Contact</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg>
     </a>
+    <button class="mbar-dots" id="menuBtn" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span><span></span>
+    </button>
   </div>
-</nav>
+</header>
 
-<!-- NAV PANEL -->
-<div class="nav-panel" id="navPanel" aria-hidden="true">
-  <div class="panel-inner">
-    <span class="mono-label panel-label">Menu</span>
-    <nav class="panel-links">
-      <a href="#work"     class="panel-link">Work</a>
-      <a href="#services" class="panel-link">Services</a>
-      <a href="#approach" class="panel-link">Approach</a>
-      <a href="#about"    class="panel-link">About</a>
-    </nav>
-    <div class="panel-bottom">
-      <div class="panel-contact">
+<!-- expanded frosted overlay menu -->
+<div class="mmenu" id="panel" aria-hidden="true">
+  <div class="mmenu-card">
+    <div class="mmenu-top">
+      <a class="mbar-logo" href="#top" aria-label="Infinit — home">
+        <svg viewBox="0 0 240 132" fill="none" aria-hidden="true">
+          <rect x="36" y="22" width="80" height="88" rx="34" fill="currentColor"/>
+          <rect x="124" y="22" width="80" height="88" rx="34" fill="currentColor"/>
+        </svg>
+        <span class="word">infinit<span class="reg">®</span></span>
+      </a>
+      <button class="mmenu-close mbar-dots" id="menuClose" aria-label="Close menu">
+        <span></span><span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="mmenu-body">
+      <nav class="mmenu-nav">
+        <a href="#work"><span class="reveal"><span class="t" data-t="Work" data-i18n="nav.work">Work</span></span></a>
+        <a href="#services"><span class="reveal"><span class="t" data-t="Services" data-i18n="nav.services">Services</span></span></a>
+        <a href="studio.html"><span class="reveal"><span class="t" data-t="Studio" data-i18n="nav.studio">Studio</span></span></a>
+        <a href="#contact"><span class="reveal"><span class="t" data-t="Contact" data-i18n="nav.contact">Contact</span></span></a>
+      </nav>
+      <aside class="mmenu-aside">
+        <div class="mmenu-meta">
+          <p><b>Infinit®</b><br><span data-i18n="meta.firm">Brand &amp; Strategy firm</span></p>
+          <p><span data-i18n="meta.loc">Barcelona — Worldwide</span><br><a href="mailto:hello@weareinfinit.com"><b>hello@weareinfinit.com</b></a></p>
+        </div>
+        <div class="mmenu-quick">
+          <span class="mmenu-eb" data-i18n="quick.label">A quick look</span>
+          <button class="mmenu-ovcard" id="menuCard" type="button">
+            <span class="oc-thumb"><img src="project/assets/images/Bunnker Final.webp" alt=""></span>
+            <span class="oc-tx"><b data-i18n="quick.overview">Overview</b><i data-i18n="quick.glance">The studio at a glance</i></span>
+            <span class="oc-ar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
+          </button>
+        </div>
+      </aside>
+    </div>
+    <div class="mmenu-foot">
+      <div class="mmenu-social">
+        <a href="https://www.linkedin.com/company/weareinfinit/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://www.instagram.com/weareinfinit.studio/" target="_blank" rel="noopener">Instagram</a>
+        <a href="mailto:hello@weareinfinit.com">Email</a>
+      </div>
+      <div class="lang-switch" role="group" aria-label="Language">
+        <button type="button" data-lang="ca">CA</button>
+        <button type="button" data-lang="es">ES</button>
+        <button type="button" data-lang="en">EN</button>
+      </div>
+      <span class="mmenu-clock" id="clock">--:--:-- BCN</span>
+    </div>
+  </div>
+</div>
+
+<!-- OVERVIEW overlay (above everything) -->
+<div class="ov" id="ov" aria-hidden="true">
+  <div class="ov-top">
+    <div><span class="eb" data-i18n="quick.label">A quick look</span><h2 data-i18n="ov.title">One studio, <em>everything connected.</em></h2></div>
+    <button class="ov-close" id="ovClose" aria-label="Close overview"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  </div>
+  <div class="ov-bento">
+    <a class="ov-card ov-work" href="#work" data-ovlink><img src="project/assets/images/Bunnker Final.webp" alt="" loading="lazy"><div class="ov-scrim"></div><div class="ov-label"><span data-i18n="ov.work">Selected work</span><span class="ov-ar">↗</span></div></a>
+    <a class="ov-card ov-services" href="#services" data-ovlink><div class="ov-svc-list"><span data-i18n="pillar.strategy">Strategy</span><span data-i18n="pillar.identity">Identity</span><span data-i18n="pillar.digital">Digital</span></div><div class="ov-label"><span data-i18n="ov.pillars">Three pillars</span><span class="ov-ar">↗</span></div></a>
+    <a class="ov-card ov-studio" href="studio.html" data-ovlink><img src="project/assets/imagery/francesc.jpg" alt="" loading="lazy"><div class="ov-scrim"></div><div class="ov-label"><span data-i18n="ov.studio">The studio</span><span class="ov-ar">↗</span></div></a>
+    <a class="ov-card ov-claim" href="#approach" data-ovlink><h3 data-i18n="ov.claim">Brands built to <em>scale.</em></h3><div class="ov-label"><span data-i18n="ov.approach">Our approach</span><span class="ov-ar">↗</span></div></a>
+    <a class="ov-card ov-contact" href="#contact" data-ovlink><h3 data-i18n="ov.talk">Let's <em>talk.</em></h3><div class="ov-label"><span data-i18n="ov.getintouch">Get in touch</span><span class="ov-ar">↗</span></div></a>
+  </div>
+</div>
+
+<!-- floating card — appears on scroll, opens overview -->
+<button class="fab" id="ovFab" type="button">
+  <span class="fab-thumb"><img src="project/assets/images/Bunnker Final.webp" alt=""></span>
+  <span class="fab-tx"><b data-i18n="fab.title">A quick look <span class="fab-new">NEW</span></b><i data-i18n="fab.sub">Overview of the studio</i></span>
+  <span class="fab-cta" data-i18n="fab.view">View</span>
+</button>
+
+<main id="top">
+
+  <!-- HERO (floating card · cycling conceptual imagery) -->
+  <section class="hero" id="hero">
+    <div class="hero-card">
+      <div class="hero-media" id="heroMedia">
+        <img class="hm-img" alt="">
+        <img class="hm-img" alt="">
+        <div class="hero-scrim"></div>
+      </div>
+      <div class="hero-inner">
+        <h1 class="hero-h">
+          <span class="ln" data-i18n="hero.l1">Brands built</span>
+          <span class="ln" data-i18n="hero.l2">to <em>scale</em><sup class="hero-reg">&reg;</sup></span>
+        </h1>
+        <div class="hero-foot">
+          <p class="hero-tag" data-i18n="hero.tag">Brand &amp; Strategy firm · Barcelona — Worldwide</p>
+          <span class="hero-cue" data-i18n="hero.cue">Scroll ↓</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATEMENT (warm-gray manifest, under hero) -->
+  <section class="statement" id="statement">
+    <div class="wrap">
+      <span class="eyebrow">Infinit®</span>
+      <p class="stmt-line" data-words data-i18n="stmt.main">A strategic brand and digital firm for companies navigating <em>growth</em>, transformation and <em>modernization</em>.</p>
+    </div>
+  </section>
+
+
+  <!-- CLAIM (growing black window) -->
+  <section class="claim" id="claim">
+    <div class="claim-track">
+      <div class="claim-sticky">
+        <div class="claim-window">
+          <div class="claim-inner">
+            <h2 data-i18n="claim.h">Strategic credibility, <em>aesthetic</em> sophistication.</h2>
+            <p data-i18n="claim.p">Built through real transformation experience</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- APPROACH (built for growth — image-filled word) -->
+  <section class="statement mid" id="approach">
+    <div class="wrap">
+      <span class="eyebrow" data-i18n="approach.eb">Our approach</span>
+      <p class="stmt-line" data-words data-i18n="approach.main">Building brands that <em>move</em> business <em>forward.</em></p>
+      <p class="stmt-sub" data-i18n="approach.sub">Strategy, identity and digital — <em>connected.</em></p>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="services" id="services">
+    <div class="wrap">
+      <div class="cap-head r"><span class="cap-eb" data-i18n="svc.eb">Capabilities</span><h2 class="cap-h" data-i18n="svc.h">Three disciplines.<br>One studio.</h2></div>
+      <div class="cap-acc">
+        <div class="cap-item r">
+          <button class="cap-row" aria-expanded="false"><span class="cap-ttl" data-i18n="svc.strategy.ttl">Strategy</span><span class="cap-plus" aria-hidden="true"></span></button>
+          <div class="cap-body"><div class="cap-body-in">
+            <p data-i18n="svc.strategy.p">Direction aligning business ambition, market opportunity and execution. Positioning, growth systems, strategic clarity and modern brand evolution.</p>
+            <div class="cap-subs" data-i18n="svc.strategy.subs"><span>Brand Strategy</span><span>Positioning</span><span>Growth Strategy</span><span>Fractional CMO</span><span>Research</span><span>AI Opportunity Mapping</span></div>
+          </div></div>
+        </div>
+        <div class="cap-item r d1">
+          <button class="cap-row" aria-expanded="false"><span class="cap-ttl" data-i18n="svc.identity.ttl">Identity</span><span class="cap-plus" aria-hidden="true"></span></button>
+          <div class="cap-body"><div class="cap-body-in">
+            <p data-i18n="svc.identity.p">Scalable visual and verbal systems designed for clarity, recognition and consistency across every touchpoint.</p>
+            <div class="cap-subs" data-i18n="svc.identity.subs"><span>Visual Identity</span><span>Naming</span><span>Design Systems</span><span>Art Direction</span><span>Motion</span><span>Creative Direction</span></div>
+          </div></div>
+        </div>
+        <div class="cap-item r d2">
+          <button class="cap-row" aria-expanded="false"><span class="cap-ttl" data-i18n="svc.digital.ttl">Digital</span><span class="cap-plus" aria-hidden="true"></span></button>
+          <div class="cap-body"><div class="cap-body-in">
+            <p data-i18n="svc.digital.p">Digital experiences built for discoverability, engagement and measurable business impact.</p>
+            <div class="cap-subs" data-i18n="svc.digital.subs"><span>Websites &amp; Platforms</span><span>UX / UI Direction</span><span>SEO &amp; GEO</span><span>Performance Marketing</span><span>Social &amp; Content</span><span>Analytics &amp; Conversion</span><span>AI Experiences</span></div>
+          </div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- WORK -->
+  <section class="work wrap" id="work">
+    <div class="section-head r">
+      <h2 data-i18n="work.h">Selected <em>work.</em></h2>
+    </div>
+    <div class="work-grid" id="workList">
+      <a class="tile tall r" href="#">
+        <img src="project/assets/images/Bunnker Final.webp" alt="Bunnker" loading="lazy">
+        <div class="logo-over"><img src="project/assets/clients/bunnker.png" alt="Bunnker"></div>
+        <div class="tile-scrim"></div>
+        <div class="tile-cap"><div class="cn-row"><span class="cn">Bunnker</span><span class="cn-sub" data-i18n="work.bunnker.sub">beyond renting</span></div><span class="tag" data-i18n="tag.sb">Strategy<i class="s">·</i>Brand</span></div>
+      </a>
+      <a class="tile short r d1" href="#">
+        <img src="https://images.unsplash.com/photo-1778757949749-345b125f2ccb?q=80&w=1600&auto=format&fit=crop" alt="Induktor" loading="lazy">
+        <span class="wip" data-i18n="work.wip">Work in progress</span>
+        <div class="logo-over"><svg class="k-logo" viewBox="0 0 791 750" fill="#fff" aria-label="Induktor"><path transform="translate(-73,750) scale(1,-1)" d="M73 0V750H261V152L210 190L654 750H854L243 0ZM432 363 568 480 864 0H650Z"/></svg></div>
+        <div class="tile-scrim"></div>
+        <div class="tile-cap"><div class="cn-row"><span class="cn">Induktor</span><span class="cn-sub" data-i18n="work.induktor.sub">sim racing hardware</span></div><span class="tag" data-i18n="tag.sbd">Strategy<i class="s">·</i>Brand<i class="s">·</i>Digital</span></div>
+      </a>
+      <a class="tile mid r d2" href="#">
+        <img src="project/assets/images/ipad-sunset.webp" alt="Instellar" loading="lazy">
+        <div class="logo-over"><img src="project/assets/clients/instellar.png" alt="Instellar"></div>
+        <div class="tile-scrim"></div>
+        <div class="tile-cap"><div class="cn-row"><span class="cn">Instellar</span><span class="cn-sub" data-i18n="work.instellar.sub">mission performance</span></div><span class="tag" data-i18n="tag.sd">Strategy<i class="s">·</i>Digital</span></div>
+      </a>
+      <a class="tile mid r" href="#">
+        <img src="project/assets/images/Relats Brand.webp" alt="Relats" loading="lazy">
+        <div class="logo-over"><img src="project/assets/clients/relats.png" alt="Relats"></div>
+        <div class="tile-scrim"></div>
+        <div class="tile-cap"><div class="cn-row"><span class="cn">Relats</span><span class="cn-sub" data-i18n="work.relats.sub">ahead of the curve</span></div><span class="tag" data-i18n="tag.sd">Strategy<i class="s">·</i>Digital</span></div>
+      </a>
+      <a class="tile tall r d1" href="#">
+        <img src="project/assets/imagery/Julia Yosemite.webp" alt="Julià" loading="lazy">
+        <span class="wip" data-i18n="work.wip">Work in progress</span>
+        <div class="logo-over"><img src="project/assets/clients/Julia%20Camper%20Logo.png" alt="Julià"></div>
+        <div class="tile-scrim"></div>
+        <div class="tile-cap"><div class="cn-row"><span class="cn">Julià</span><span class="cn-sub" data-i18n="work.julia.sub">premium adventure vans</span></div><span class="tag" data-i18n="tag.sbd">Strategy<i class="s">·</i>Brand<i class="s">·</i>Digital</span></div>
+      </a>
+      <a class="tile short r d2" href="#">
+        <img src="project/assets/imagery/Almirall.webp" alt="Almirall" loading="lazy">
+        <div class="logo-over"><img src="project/assets/clients/almirall.png" alt="Almirall"></div>
+        <div class="tile-scrim"></div>
+        <div class="tile-cap"><div class="cn-row"><span class="cn">Almirall</span><span class="cn-sub" data-i18n="work.almirall.sub">beautifully clinical</span></div><span class="tag" data-i18n="tag.sd">Strategy<i class="s">·</i>Digital</span></div>
+      </a>
+    </div>
+  </section>
+
+  <!-- CLIENTS (experience marquee) — warm gray, fusionat amb el CTA -->
+  <section class="clients-band">
+    <div class="wrap"><span class="eyebrow r" data-i18n="clients.eb">Experience across</span></div>
+    <div class="marquee" aria-hidden="true">
+      <div class="mq-track">
+        <img class="l-sap" src="project/assets/clients/sap.png" alt=""><img class="l-glovo" src="project/assets/clients/glovo.png" alt=""><img class="l-almirall" src="project/assets/clients/almirall.png" alt=""><img class="l-instellar" src="project/assets/clients/instellar.png" alt=""><img class="l-relats" src="project/assets/clients/relats.png" alt=""><img class="l-bunnker" src="project/assets/clients/bunnker.png" alt=""><img class="l-11onze" src="project/assets/clients/11onze.png" alt=""><img class="l-dronparc" src="project/assets/clients/dronparc.png" alt="">
+        <img class="l-sap" src="project/assets/clients/sap.png" alt=""><img class="l-glovo" src="project/assets/clients/glovo.png" alt=""><img class="l-almirall" src="project/assets/clients/almirall.png" alt=""><img class="l-instellar" src="project/assets/clients/instellar.png" alt=""><img class="l-relats" src="project/assets/clients/relats.png" alt=""><img class="l-bunnker" src="project/assets/clients/bunnker.png" alt=""><img class="l-11onze" src="project/assets/clients/11onze.png" alt=""><img class="l-dronparc" src="project/assets/clients/dronparc.png" alt="">
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-band" id="cta">
+    <div class="wrap">
+      <h2 class="r" data-i18n="cta.h">Brands built <em>to scale.</em></h2>
+      <a class="cta-mail r d1" href="mailto:hello@weareinfinit.com"><span class="cm-tx" data-i18n="cta.start">Start the conversation</span><span class="cm-ar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span></a>
+    </div>
+  </section>
+
+</main>
+
+<!-- FOOTER (option H — claim left, nav/contact right; fixed reveal) -->
+<footer class="foot" id="contact">
+  <div class="foot-grid">
+    <div class="foot-left rv">
+      <a class="foot-mark" href="#top" aria-label="Infinit — home">
+        <svg viewBox="0 0 240 132" fill="none">
+          <rect x="36" y="22" width="80" height="88" rx="34" fill="currentColor"/>
+          <rect x="124" y="22" width="80" height="88" rx="34" fill="currentColor"/>
+        </svg>
+        <span class="word">infinit<span class="reg">®</span></span>
+      </a>
+      <p class="foot-claim" data-i18n="foot.claim">Built to scale.</p>
+    </div>
+    <div class="foot-right rv">
+      <div class="foot-col">
+        <span class="foot-eb" data-i18n="foot.studio">Studio</span>
+        <a href="#work" data-i18n="nav.work">Work</a>
+        <a href="#services" data-i18n="nav.services">Services</a>
+        <a href="studio.html" data-i18n="nav.studio">Studio</a>
+      </div>
+      <div class="foot-col">
+        <span class="foot-eb" data-i18n="foot.connect">Connect</span>
         <a href="mailto:hello@weareinfinit.com">hello@weareinfinit.com</a>
         <a href="tel:+34689022383">+34 689 022 383</a>
-      </div>
-      <a href="#contact" class="panel-cta">Start the conversation →</a>
-    </div>
-  </div>
-</div>
-
-<!-- ========== HERO ========== -->
-<section class="hero" id="hero">
-  <div class="hero-bg" aria-hidden="true">
-    <div class="hero-slide active"><img src="project/assets/imagery/raincoat.webp" style="object-position:center center" alt=""/></div>
-    <div class="hero-slide"><img src="project/assets/images/astronaut-red-portrait.png" alt=""/></div>
-    <div class="hero-slide"><img src="project/assets/images/ipad-sunset.webp" alt=""/></div>
-    <div class="hero-slide"><img src="project/assets/images/knob-orange.webp" alt=""/></div>
-    <div class="hero-slide"><img src="project/assets/images/rainy-day.webp" style="object-position:center 78%" alt=""/></div>
-    <div class="hero-slide"><img src="project/assets/images/astronaut-pink-full.avif" style="object-position:75% center" alt=""/></div>
-    <div class="hero-slide"><img src="project/assets/imagery/Almirall.webp" style="object-position:center 55%" alt=""/></div>
-    <div class="hero-slide"><img src="project/assets/images/Bunnker Final.webp" alt=""/></div>
-  </div>
-  <div class="frame">
-    <div class="tagline-wrap">
-      <h1>
-        <span class="line"><span class="w">Brands built</span></span>
-        <span class="line"><span class="w">to <span class="scale-word">scale</span><sup class="reg">&reg;</sup><span class="scale-word">.</span></span></span>
-      </h1>
-    </div>
-
-    <div class="hero-bottom-row">
-      <p class="hero-sub">Strategic branding and digital experiences designed for growth. Built through real transformation experience and operational depth.</p>
-      <div class="hero-scroll-cue">
-        <span>Scroll</span>
-        <div class="scroll-bar"></div>
+        <a href="https://www.linkedin.com/company/weareinfinit/" target="_blank" rel="noopener">LinkedIn ↗</a>
       </div>
     </div>
   </div>
-</section>
-
-<!-- ========== NARRATIVE ========== -->
-<section class="approach" id="approach">
-  <div class="approach-track" id="approachTrack">
-    <div class="approach-sticky">
-      <span class="mono-label ap-eyebrow">01 · Approach</span>
-      <div class="approach-grid">
-        <div class="approach-text">
-          <div class="ap-stage">
-            <div class="ap-step is-active" data-i="0">
-              <h3 class="ap-line">Clarity in complexity.</h3>
-            </div>
-            <div class="ap-step" data-i="1">
-              <h3 class="ap-line">Identity with purpose.</h3>
-            </div>
-            <div class="ap-step" data-i="2">
-              <h3 class="ap-line">Strategy connected to execution.</h3>
-            </div>
-            <div class="ap-step" data-i="3">
-              <h3 class="ap-line">Digital designed for growth.</h3>
-            </div>
-            <div class="ap-step" data-i="4">
-              <h3 class="ap-line">Modernization without noise.</h3>
-            </div>
-          </div>
-          <div class="ap-progress" aria-hidden="true"><span class="ap-bar" id="apBar"></span></div>
-        </div>
-        <div class="approach-media">
-          <canvas class="ap-canvas" id="apCanvas" data-frames="159" data-seq="project/assets/imagery/approach-seq/"></canvas>
-          <div class="ap-poster" style="background-image:url('project/assets/imagery/approach-seq/frame_0001.jpg')"></div>
-        </div>
+  <div class="foot-bot rv">
+    <div class="foot-rec">
+      <span class="foot-rec-label" data-i18n="foot.rec">Founder recognised by</span>
+      <div class="foot-rec-logos">
+        <a href="https://www.awwwards.com/" target="_blank" rel="noopener" aria-label="Awwwards"><img src="project/assets/clients/Awwwards-Logo-Vector.svg-.png" alt="Awwwards"></a>
+        <a href="https://www.arquitectes.cat/" target="_blank" rel="noopener" aria-label="COAC"><img src="project/assets/clients/Coac.png" alt="COAC"></a>
       </div>
     </div>
-  </div>
-</section>
-
-<!-- ========== BIG CLAIM ========== -->
-<section class="claim" id="claim">
-  <div class="claim-track">
-    <div class="claim-sticky">
-      <div class="claim-window">
-        <div class="claim-inner">
-          <h2>Strategy. Identity. Digital. <em>Connected.</em></h2>
-          <p class="mono-label">Built through real transformation experience</p>
-        </div>
-      </div>
+    <div class="foot-base">
+      <span data-i18n="foot.loc">Barcelona — Worldwide</span>
+      <span>© 2026 Infinit®</span>
     </div>
-  </div>
-</section>
-
-<!-- ========== SERVICES ========== -->
-<section class="services" id="services">
-  <div class="services-head">
-    <span class="mono-label">02 · Services</span>
-    <h2>Three connected pillars. <em>One firm.</em></h2>
-  </div>
-  <div class="services-list">
-    <div class="service reveal" id="svc-01">
-      <span class="svc-num">01</span>
-      <div class="svc-title-block">
-        <h3 class="svc-title">Strategy</h3>
-        <span class="svc-sub">The discipline behind growth.</span>
-      </div>
-      <div class="svc-desc-stack">
-        <p class="svc-desc">Direction aligning business ambition, market opportunity and execution. Positioning, growth systems, strategic clarity and modern brand evolution.</p>
-        <div class="svc-tags" aria-hidden="true">
-          <span>Brand Strategy</span>
-          <span>Positioning</span>
-          <span>Growth Strategy</span>
-          <span>Founder Positioning</span>
-          <span>Fractional CMO</span>
-          <span>Go-to-market</span>
-          <span>AI Opportunity Mapping</span>
-        </div>
-      </div>
-      <div class="svc-right">
-        <div class="svc-img"><img src="project/assets/images/rainy-day.webp" alt=""/></div>
-        <div class="svc-plus" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><line x1="7" y1="0" x2="7" y2="14"/><line x1="0" y1="7" x2="14" y2="7"/></svg></div>
-      </div>
-    </div>
-
-    <div class="service reveal" id="svc-02">
-      <span class="svc-num">02</span>
-      <div class="svc-title-block">
-        <h3 class="svc-title">Identity</h3>
-        <span class="svc-sub">Structure made visible.</span>
-      </div>
-      <div class="svc-desc-stack">
-        <p class="svc-desc">Scalable visual and verbal systems designed for clarity, recognition and consistency across every touchpoint.</p>
-        <div class="svc-tags" aria-hidden="true">
-          <span>Visual Identity</span>
-          <span>Verbal Identity</span>
-          <span>Naming</span>
-          <span>Design Systems</span>
-          <span>Art Direction</span>
-          <span>Motion</span>
-          <span>Creative Direction</span>
-        </div>
-      </div>
-      <div class="svc-right">
-        <div class="svc-img"><img src="project/assets/images/knob-orange.webp" alt=""/></div>
-        <div class="svc-plus" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><line x1="7" y1="0" x2="7" y2="14"/><line x1="0" y1="7" x2="14" y2="7"/></svg></div>
-      </div>
-    </div>
-
-    <div class="service reveal" id="svc-03">
-      <span class="svc-num">03</span>
-      <div class="svc-title-block">
-        <h3 class="svc-title">Digital</h3>
-        <span class="svc-sub">Where identity scales.</span>
-      </div>
-      <div class="svc-desc-stack">
-        <p class="svc-desc">Digital experiences built for discoverability, engagement and measurable business impact.</p>
-        <div class="svc-tags" aria-hidden="true">
-          <span>Websites &amp; Platforms</span>
-          <span>UX / UI Direction</span>
-          <span>Product &amp; Experience Design</span>
-          <span>SEO &amp; GEO</span>
-          <span>Performance Marketing</span>
-          <span>Analytics &amp; Conversion</span>
-          <span>AI Experiences</span>
-        </div>
-      </div>
-      <div class="svc-right">
-        <div class="svc-img"><img src="project/assets/images/ipad-sunset.webp" alt=""/></div>
-        <div class="svc-plus" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><line x1="7" y1="0" x2="7" y2="14"/><line x1="0" y1="7" x2="14" y2="7"/></svg></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ========== WORK ========== -->
-<section class="work" id="work" aria-label="Recent work">
-  <div class="work-head">
-    <span class="mono-label">03 · Selected work</span>
-    <h2 class="reveal">Recent <em>work.</em></h2>
-  </div>
-
-  <div class="work-grid">
-    <div class="work-tile span2 reveal" id="work-01">
-      <img class="cover" decoding="async" src="project/assets/images/Bunnker Final.webp" alt="Bunnker project — beyond renting" loading="lazy"/>
-      <div class="tile-scrim"></div>
-      <div class="logo-over">
-        <img class="lg-bunnker" src="project/assets/clients/bunnker.png" alt="Bunnker"/>
-      </div>
-      <div class="awwwards-badge badge-coac">
-        <img src="project/assets/clients/Coac.png" alt="COAC"/>
-        <span>Architectural Awards</span>
-      </div>
-      <div class="tile-meta">
-        <div>
-          <div class="work-tag">Strategy · Brand · Growth</div>
-          <div class="client-name">Bunnker — beyond renting</div>
-        </div>
-        <span class="work-tag">2026</span>
-      </div>
-    </div>
-
-    <div class="work-tile reveal" id="work-02">
-      <img class="cover" decoding="async" src="project/assets/images/Relats Brand.webp" alt="Relats project — brand" loading="lazy"/>
-      <div class="tile-scrim"></div>
-      <div class="logo-over">
-        <img class="lg-relats" src="project/assets/clients/relats.png" alt="Relats"/>
-      </div>
-      <div class="awwwards-badge">
-        <img src="project/assets/clients/Awwwards-Logo-Vector.svg-.png" alt="Awwwards"/>
-      </div>
-      <div class="tile-meta">
-        <div>
-          <div class="work-tag">Strategy · Brand · Digital</div>
-          <div class="client-name">Relats — ahead of the curve</div>
-        </div>
-        <span class="work-tag">2025</span>
-      </div>
-    </div>
-
-    <div class="work-tile reveal" id="work-03">
-      <img class="cover" decoding="async" src="project/assets/images/ipad-sunset.webp" alt="Instellar project — platform UX" loading="lazy"/>
-      <div class="tile-scrim"></div>
-      <div class="logo-over">
-        <img class="lg-instellar" src="project/assets/clients/instellar.png" alt="Instellar"/>
-      </div>
-      <div class="tile-meta">
-        <div>
-          <div class="work-tag">Strategy · Brand · Digital</div>
-          <div class="client-name">Instellar — mission performance</div>
-        </div>
-        <span class="work-tag">2026</span>
-      </div>
-    </div>
-
-    <div class="work-tile reveal" id="work-04">
-      <img class="cover" decoding="async" src="project/assets/imagery/Almirall.webp" alt="Almirall project" loading="lazy"/>
-      <div class="tile-scrim"></div>
-      <div class="logo-over">
-        <img class="lg-almirall" src="project/assets/clients/almirall.png" alt="Almirall"/>
-      </div>
-      <div class="tile-meta">
-        <div>
-          <div class="work-tag">Strategy · Digital</div>
-          <div class="client-name">Almirall — beautifully clinical</div>
-        </div>
-        <span class="work-tag">2025</span>
-      </div>
-    </div>
-
-    <div class="work-tile reveal" id="work-05">
-      <img class="cover" decoding="async" src="project/assets/imagery/Julia Yosemite.webp" alt="Julià Camper — premium adventure vans" loading="lazy"/>
-      <div class="tile-scrim"></div>
-      <div class="logo-over">
-        <img class="lg-julia" src="project/assets/clients/Julia Camper Logo.png" alt="Julià Camper"/>
-        <span class="wip-tag">Work in progress</span>
-      </div>
-      <div class="tile-meta">
-        <div>
-          <div class="work-tag">Strategy · Brand · Digital</div>
-          <div class="client-name">Julià — premium adventure vans</div>
-        </div>
-        <span class="work-tag">2026</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ========== CLIENTS ========== -->
-<section class="clients">
-  <div class="clients-head">
-    <span class="mono-label">04 · Experience</span>
-    <h2>Experience across enterprise, industrial and <em>international.</em></h2>
-  </div>
-  <div class="logo-marquee" aria-hidden="true">
-    <div class="track">
-      <img class="l-sap"       src="project/assets/clients/sap.png"       alt="SAP"/>
-      <img class="l-glovo"     src="project/assets/clients/glovo.png"     alt="Glovo"/>
-      <img class="l-almirall"  src="project/assets/clients/almirall.png"  alt="Almirall"/>
-      <img class="l-instellar" src="project/assets/clients/instellar.png" alt="Instellar"/>
-      <img class="l-relats"    src="project/assets/clients/relats.png"    alt="Relats"/>
-      <img class="l-bunnker"   src="project/assets/clients/bunnker.png"   alt="Bunnker"/>
-      <img class="l-11onze"    src="project/assets/clients/11onze.png"    alt="11onze"/>
-      <img class="l-dronparc"  src="project/assets/clients/dronparc.png"  alt="DronParc"/>
-      <img class="l-sap"       src="project/assets/clients/sap.png"       alt=""/>
-      <img class="l-glovo"     src="project/assets/clients/glovo.png"     alt=""/>
-      <img class="l-almirall"  src="project/assets/clients/almirall.png"  alt=""/>
-      <img class="l-instellar" src="project/assets/clients/instellar.png" alt=""/>
-      <img class="l-relats"    src="project/assets/clients/relats.png"    alt=""/>
-      <img class="l-bunnker"   src="project/assets/clients/bunnker.png"   alt=""/>
-      <img class="l-11onze"    src="project/assets/clients/11onze.png"    alt=""/>
-      <img class="l-dronparc"  src="project/assets/clients/dronparc.png"  alt=""/>
-    </div>
-  </div>
-</section>
-
-<!-- ========== OUTCOMES ========== -->
-<section class="outcomes">
-  <div class="outcomes-head">
-    <span class="mono-label">05 · Outcomes</span>
-    <h2>Transformation outcomes, not <em>vanity</em> metrics.</h2>
-  </div>
-  <div class="outcomes-carousel" id="ocCarousel">
-    <div class="oc-card"><span class="oc-num">01</span><h5>Clearer <em>positioning.</em></h5></div>
-    <div class="oc-card"><span class="oc-num">02</span><h5>Faster <em>execution.</em></h5></div>
-    <div class="oc-card"><span class="oc-num">03</span><h5>Better digital <em>visibility.</em></h5></div>
-    <div class="oc-card"><span class="oc-num">04</span><h5>Stronger market <em>perception.</em></h5></div>
-    <div class="oc-card"><span class="oc-num">05</span><h5>Scalable brand <em>experiences.</em></h5></div>
-    <div class="oc-card"><span class="oc-num">06</span><h5>Modernized digital <em>presence.</em></h5></div>
-    <div class="oc-card" aria-hidden="true"><span class="oc-num">01</span><h5>Clearer <em>positioning.</em></h5></div>
-    <div class="oc-card" aria-hidden="true"><span class="oc-num">02</span><h5>Faster <em>execution.</em></h5></div>
-    <div class="oc-card" aria-hidden="true"><span class="oc-num">03</span><h5>Better digital <em>visibility.</em></h5></div>
-    <div class="oc-card" aria-hidden="true"><span class="oc-num">04</span><h5>Stronger market <em>perception.</em></h5></div>
-    <div class="oc-card" aria-hidden="true"><span class="oc-num">05</span><h5>Scalable brand <em>experiences.</em></h5></div>
-    <div class="oc-card" aria-hidden="true"><span class="oc-num">06</span><h5>Modernized digital <em>presence.</em></h5></div>
-  </div>
-</section>
-
-<!-- ========== FOUNDER ========== -->
-<section class="founder" id="about">
-  <div class="founder-head">
-    <span class="mono-label">06 · Founder</span>
-  </div>
-  <div class="founder-grid">
-    <div class="founder-text">
-      <h2>Francesc Callejas. Twenty years operating across <em>enterprise transformation</em>, digital ecosystems, branding and growth.</h2>
-      <p>Experience across SAP, Seidor, Girbau, Relats and international transformation environments. The combination of operational leadership, digital execution and strategic brand thinking informs every project at Infinit.</p>
-      <div class="founder-meta">
-        <div><span class="mono-label">Based in</span><strong>Barcelona</strong></div>
-        <div><span class="mono-label">Reach</span><strong>Worldwide</strong></div>
-        <div><span class="mono-label">Contact</span><a href="https://www.linkedin.com/in/francesc-callejas-%E2%98%81%EF%B8%8F%E2%98%98%EF%B8%8F-99416a90/" target="_blank" rel="noopener">LinkedIn →</a></div>
-      </div>
-    </div>
-    <div class="founder-img" style="background-image:url('project/assets/imagery/francesc.jpg')"></div>
-  </div>
-</section>
-
-<!-- ========== CTA ========== -->
-<section class="cta" id="contact">
-  <h2>Let's build what's next.</h2>
-  <a class="cta-email" href="mailto:hello@weareinfinit.com"><span>hello@weareinfinit.com</span><span class="arr" aria-hidden="true">→</span></a>
-</section>
-
-<!-- ========== FOOTER ========== -->
-<footer class="foot">
-  <div class="foot-grid">
-    <div class="foot-brand">
-      <a class="foot-lockup" href="#">
-        <svg viewBox="0 0 374 206" fill="none" aria-hidden="true">
-          <path d="M 108.196 34.000 L 182.196 34.000 Q 201.196 34.000 194.140 51.641 L 153.056 154.359 Q 146.000 172.000 127.000 172.000 L 53.000 172.000 Q 34.000 172.000 41.056 154.359 L 82.140 51.641 Q 89.196 34.000 108.196 34.000 Z" fill="currentColor"/>
-          <path d="M 108.196 34.000 L 182.196 34.000 Q 201.196 34.000 194.140 51.641 L 153.056 154.359 Q 146.000 172.000 127.000 172.000 L 53.000 172.000 Q 34.000 172.000 41.056 154.359 L 82.140 51.641 Q 89.196 34.000 108.196 34.000 Z" fill="currentColor" transform="translate(139 0)"/>
-        </svg>
-        <span class="foot-word">infinit<span class="foot-r">®</span></span>
-      </a>
-      <p>Strategic brand and digital firm built for companies navigating growth, transformation and modernization.</p>
-    </div>
-    <div class="foot-col">
-      <h5>Practice</h5>
-      <a href="#services">Strategy</a>
-      <a href="#services">Identity</a>
-      <a href="#services">Digital</a>
-    </div>
-    <div class="foot-col">
-      <h5>Contact</h5>
-      <a href="mailto:hello@weareinfinit.com">hello@weareinfinit.com</a>
-      <a href="tel:+34689022383">+34 689 022 383</a>
-      <a href="https://www.linkedin.com/in/francesc-callejas-%E2%98%81%EF%B8%8F%E2%98%98%EF%B8%8F-99416a90/" target="_blank" rel="noopener">LinkedIn →</a>
-      <span>Barcelona — c/ Pau Claris 95</span>
-    </div>
-    <div class="foot-col">
-      <h5>Legal</h5>
-      <a href="#">Privacy</a>
-      <a href="#">Cookies</a>
-      <span>© 2026 Infinit</span>
-    </div>
-  </div>
-  <div class="foot-base">
-    <span>Infinit · V01 · 2026</span>
-    <em class="foot-designed">designed to scale.</em>
-    <span>Barcelona — Worldwide</span>
   </div>
 </footer>
 
-<!-- COOKIE BANNER -->
-<div class="cookie-bar" id="cookieBar" role="dialog" aria-label="Cookie consent">
-  <p>We use cookies to improve your experience. <a href="#" class="cookie-link">Learn more</a></p>
-  <div class="cookie-actions">
-    <button class="cookie-decline" id="cookieDecline">Decline</button>
-    <button class="cookie-accept" id="cookieAccept">Accept</button>
+
+<aside class="cookies" id="cookies" hidden>
+  <div class="ck-inner">
+    <p class="ck-msg" data-i18n="ck.msg">We use cookies to enhance your experience and analyse traffic.</p>
+    <div class="ck-actions">
+      <a class="ck-link" href="#contact" data-i18n="ck.more">Learn more</a>
+      <button class="ck-btn ck-reject" id="ckReject" data-i18n="ck.decline">Decline</button>
+      <button class="ck-btn ck-accept" id="ckAccept" data-i18n="ck.accept">Accept</button>
+    </div>
   </div>
-</div>
+</aside>
 
+<script src="i18n.js?v=321"></script>
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
 <script>
-  /* ── Lenis ───────────────────────────────────────────────────── */
-  const lenis = new Lenis({
-    lerp: 0.085,
-    wheelMultiplier: 1,
-    smoothWheel: true,
-    syncTouch: false
-  });
+  /* ---- Lenis + GSAP ticker + ScrollTrigger (resilient if a CDN fails) ---- */
+  let lenis = null;
+  try { if (window.Lenis) { lenis = new Lenis({ lerp: 0.09, smoothWheel: true }); } } catch (e) {}
   window.lenis = lenis;
-  function lenisRaf(t) { lenis.raf(t); requestAnimationFrame(lenisRaf); }
-  requestAnimationFrame(lenisRaf);
+  const hasGSAP = !!(window.gsap && window.ScrollTrigger);
+  if (hasGSAP && lenis) {
+    gsap.registerPlugin(ScrollTrigger);
+    lenis.on('scroll', ScrollTrigger.update);
+    gsap.ticker.add((t) => lenis.raf(t * 1000));
+    gsap.ticker.lagSmoothing(0);
+  } else if (hasGSAP) {
+    gsap.registerPlugin(ScrollTrigger);
+  } else if (lenis) {
+    (function raf(t){ lenis.raf(t); requestAnimationFrame(raf); })();
+  }
+  /* robust smooth scroll: unlock page, try Lenis, fall back to native if nothing moved */
+  function goTo(y){
+    document.body.style.overflow = '';
+    const start = window.scrollY;
+    if (lenis) { try { lenis.start(); lenis.scrollTo(y, { force: true, duration: 1.1 }); } catch(_){} }
+    else window.scrollTo({ top: y, behavior: 'smooth' });
+    setTimeout(() => { if (Math.abs(window.scrollY - start) < 6 && Math.abs(y - start) > 30)
+      window.scrollTo({ top: y, behavior: 'smooth' }); }, 280);
+  }
+  document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click', e => {
+    const href = a.getAttribute('href');
+    // the footer is fixed behind the page → reveal it by scrolling to the very bottom
+    if (href === '#contact') { e.preventDefault(); goTo(document.documentElement.scrollHeight - innerHeight); return; }
+    const t = document.querySelector(href);
+    if (t) { e.preventDefault(); goTo(t.getBoundingClientRect().top + window.scrollY); }
+  }));
 
-  /* ── Intro splash ────────────────────────────────────────────── */
-  const intro = document.getElementById('intro');
-  document.body.classList.add('intro-running');
-  setTimeout(() => document.body.classList.remove('intro-running'), 2000);
-  setTimeout(() => intro && intro.remove(), 3200);
-
-  /* ── Hero background slideshow ────────────────────────────────── */
-  (function() {
-    const slides = document.querySelectorAll('.hero-slide');
-    if (slides.length < 2) return;
-    let i = 0;
-    setInterval(() => {
-      slides[i].classList.remove('active');
-      i = (i + 1) % slides.length;
-      slides[i].classList.add('active');
-    }, 4500);
+  /* ---- custom overlay scrollbar — pill only, over the page, shows on scroll then fades, draggable ---- */
+  (function(){
+    const bar = document.createElement('div');
+    bar.className = 'uscroll'; bar.setAttribute('aria-hidden', 'true');
+    document.body.appendChild(bar);
+    let docH = 0, vh = 0, thumbH = 0, hideT = null, dragging = false;
+    const MIN = 40;
+    function metrics(){
+      docH = document.documentElement.scrollHeight; vh = innerHeight;
+      const ratio = vh / docH;
+      thumbH = Math.max(MIN, Math.round(vh * ratio));
+      bar.style.height = thumbH + 'px';
+      bar.style.display = docH <= vh + 4 ? 'none' : 'block';
+    }
+    function place(){
+      const max = docH - vh;
+      const p = max > 0 ? Math.min(Math.max(scrollY / max, 0), 1) : 0;
+      bar.style.transform = 'translateY(' + (p * (vh - thumbH)).toFixed(1) + 'px)';
+    }
+    function flash(){
+      bar.classList.add('show');
+      if (hideT) clearTimeout(hideT);
+      if (!dragging) hideT = setTimeout(() => bar.classList.remove('show'), 1100);
+    }
+    function onScroll(){ place(); flash(); }
+    // drag to scroll
+    bar.addEventListener('pointerdown', e => {
+      e.preventDefault(); dragging = true; bar.classList.add('drag', 'show');
+      bar.setPointerCapture(e.pointerId);
+      const startY = e.clientY, startScroll = scrollY, max = docH - vh, range = vh - thumbH;
+      function move(ev){
+        const dy = ev.clientY - startY;
+        const target = startScroll + (range > 0 ? dy / range * max : 0);
+        const y = Math.min(Math.max(target, 0), max);
+        if (lenis) lenis.scrollTo(y, { immediate: true, force: true }); else scrollTo(0, y);
+      }
+      function up(ev){
+        dragging = false; bar.classList.remove('drag');
+        try { bar.releasePointerCapture(e.pointerId); } catch(_){}
+        removeEventListener('pointermove', move); removeEventListener('pointerup', up);
+        flash();
+      }
+      addEventListener('pointermove', move); addEventListener('pointerup', up);
+    });
+    if (lenis) lenis.on('scroll', onScroll); else addEventListener('scroll', onScroll, { passive: true });
+    addEventListener('resize', () => { metrics(); place(); });
+    metrics(); place();
   })();
 
-  /* ── Nav scroll ──────────────────────────────────────────────── */
-  const nav = document.getElementById('nav');
-  window.addEventListener('scroll', () => {
-    nav.classList.toggle('scrolled', window.scrollY > 80);
-  }, { passive: true });
-
-  /* ── Reveal on scroll ────────────────────────────────────────── */
-  const io = new IntersectionObserver(entries => {
-    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
-  }, { threshold: 0, rootMargin: '0px 0px -60px 0px' });
-  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
-
-  /* ── Approach: pinned scroll storytelling ────────────────────── */
-  (function() {
-    const track  = document.getElementById('approachTrack');
-    if (!track) return;
-    const steps  = Array.from(track.querySelectorAll('.ap-step'));
-    const bar    = document.getElementById('apBar');
-    const media  = track.querySelector('.approach-media');
-    const canvas = document.getElementById('apCanvas');
-    const isMobile = () => window.matchMedia('(max-width: 768px)').matches;
-
-    /* split each statement into per-character spans */
-    const charSets = steps.map(s => {
-      const line = s.querySelector('.ap-line');
-      const text = line.textContent;
-      line.textContent = '';
-      const chars = [];
-      [...text].forEach(chr => {
-        const sp = document.createElement('span');
-        if (chr === ' ') { sp.className = 'ap-char ap-space'; sp.textContent = ' '; }
-        else { sp.className = 'ap-char'; sp.textContent = chr; chars.push(sp); }
-        line.appendChild(sp);
+  /* ---- footer reveal — page scrolls over the fixed footer; CTA colour "eats" it going up,
+          footer rises like a flat window going down; floating UI hides while it shows ---- */
+  (function(){
+    const foot = document.querySelector('.foot');
+    const bar = document.getElementById('mbar');
+    const fab = document.getElementById('ovFab');
+    if (!foot) return;
+    const rvs = [...foot.querySelectorAll('.rv')];
+    const ss = t => t <= 0 ? 0 : t >= 1 ? 1 : t * t * (3 - 2 * t);
+    function upd(){
+      const fh = foot.offsetHeight, vh = innerHeight;
+      const sh = document.documentElement.scrollHeight;
+      const revealed = scrollY + vh - sh + fh;
+      const t = ss(Math.min(Math.max(revealed / Math.min(fh, vh), 0), 1));
+      rvs.forEach((el, i, arr) => {
+        const seg = 1 / arr.length;
+        const local = Math.min(Math.max((t - i * seg * 0.5) / (1 - i * seg * 0.35), 0), 1);
+        el.style.setProperty('--rv', ss(local).toFixed(3));
       });
-      return chars;
-    });
-
-    /* video frame sequence, scrubbed on canvas */
-    const FRAMES = parseInt(canvas.dataset.frames, 10) || 0;
-    const SEQ    = canvas.dataset.seq || '';
-    const ctx    = canvas.getContext('2d');
-    const imgs   = [];
-    let ready = false;
-    if (FRAMES > 0 && !isMobile()) {
-      for (let i = 1; i <= FRAMES; i++) {
-        const im = new Image();
-        im.src = SEQ + 'frame_' + String(i).padStart(4, '0') + '.jpg';
-        imgs.push(im);
-        if (i === 1) im.onload = () => { ready = true; canvas.classList.add('ready'); sizeCanvas(); render(); };
-      }
+      const hide = t > 0.015;
+      if (bar) bar.classList.toggle('foot-hidden', hide);
+      if (fab) fab.classList.toggle('foot-hidden', hide);
     }
-    function sizeCanvas() {
-      const r = media.getBoundingClientRect();
-      const dpr = Math.min(window.devicePixelRatio || 1, 2);
-      canvas.width  = Math.max(1, Math.round(r.width  * dpr));
-      canvas.height = Math.max(1, Math.round(r.height * dpr));
-    }
-    function pickFrame(p) {
-      let idx = Math.round(p * (FRAMES - 1));
-      idx = Math.max(0, Math.min(FRAMES - 1, idx));
-      if (imgs[idx] && imgs[idx].complete && imgs[idx].naturalWidth) return imgs[idx];
-      for (let d = 1; d < FRAMES; d++) {
-        const a = imgs[idx - d], b = imgs[idx + d];
-        if (a && a.complete && a.naturalWidth) return a;
-        if (b && b.complete && b.naturalWidth) return b;
-      }
-      return null;
-    }
-    function drawCover(img) {
-      const cw = canvas.width, ch = canvas.height;
-      const ir = img.naturalWidth / img.naturalHeight, cr = cw / ch;
-      let dw, dh, dx, dy;
-      if (ir > cr) { dh = ch; dw = ch * ir; dx = (cw - dw) / 2; dy = 0; }
-      else         { dw = cw; dh = cw / ir; dx = 0; dy = (ch - dh) / 2; }
-      ctx.drawImage(img, dx, dy, dw, dh);
-    }
-
-    /* statement reveal: grey → gold (moving edge) → ink (settled) */
-    let activeIdx = -1;
-    function setActive(idx) {
-      if (idx === activeIdx) return;
-      activeIdx = idx;
-      steps.forEach((s, k) => s.classList.toggle('is-active', k === idx));
-    }
-    const BAND = 3;
-    function paintFill(idx, fill) {
-      const chars = charSets[idx];
-      const lead = fill * chars.length;
-      for (let j = 0; j < chars.length; j++) {
-        const c = chars[j];
-        let st;
-        if (j >= lead) st = 'f';                 /* future → grey */
-        else if (j >= lead - BAND) st = 'o';     /* edge → gold  */
-        else st = 'r';                           /* settled → ink */
-        if (c._st !== st) {
-          c.classList.toggle('is-read', st === 'r');
-          c.classList.toggle('is-on',   st === 'o');
-          c._st = st;
-        }
-      }
-    }
-
-    let curP = 0, rafQ = false;
-    function render() {
-      rafQ = false;
-      const p = curP;
-      if (bar) bar.style.width = (p * 100).toFixed(2) + '%';
-      if (ready) { const fr = pickFrame(p); if (fr) drawCover(fr); }
-      const N = steps.length;
-      const f = Math.min(N - 0.0001, p * N);
-      const idx = Math.min(N - 1, Math.floor(f));
-      const sub = f - idx;
-      setActive(idx);
-      paintFill(idx, Math.max(0, Math.min(1, sub / 0.78)));
-    }
-    function onScroll() {
-      if (isMobile()) { steps.forEach(s => s.classList.add('is-active')); return; }
-      const total = track.offsetHeight - window.innerHeight;
-      const p = (-track.getBoundingClientRect().top) / total;
-      curP = Math.max(0, Math.min(0.9999, p));
-      if (!rafQ) { rafQ = true; requestAnimationFrame(render); }
-    }
-
-    setActive(0); paintFill(0, 0);
-    if (window.lenis) window.lenis.on('scroll', onScroll);
-    window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', () => { sizeCanvas(); onScroll(); });
-    onScroll();
+    if (lenis) lenis.on('scroll', upd); else addEventListener('scroll', upd, { passive: true });
+    addEventListener('resize', upd); upd();
   })();
 
-  /* ── Claim: window grows from centre to near-full-bleed ──────── */
-  (function() {
-    const sec   = document.getElementById('claim');
-    if (!sec) return;
+  /* ---- intro ---- */
+  setTimeout(() => { const i = document.getElementById('intro'); if (i) i.remove(); if (hasGSAP) ScrollTrigger.refresh(); }, 3100);
+
+  /* ---- reveal (IntersectionObserver — reliable for in-view elements) ---- */
+  (function(){
+    const els = [...document.querySelectorAll('.r')];
+    if (!('IntersectionObserver' in window)) { els.forEach(e=>e.classList.add('in')); return; }
+    const io = new IntersectionObserver(es => es.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+    }), { threshold: 0, rootMargin: matchMedia('(max-width:760px)').matches ? '0px 0px -2% 0px' : '0px 0px -8% 0px' });
+    els.forEach(el => io.observe(el));
+  })();
+
+  /* ---- claim reveal (mobile) ---- */
+  (function(){
+    const el = document.querySelector('.claim-window');
+    if (!el) return;
+    if (!('IntersectionObserver' in window)) { el.classList.add('cin'); return; }
+    const io = new IntersectionObserver(es => es.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('cin'); io.unobserve(e.target); }
+    }), { threshold: .2 });
+    io.observe(el);
+  })();
+
+  /* ---- statements: smooth fade-up + word-by-word reveal (totes les .statement) ---- */
+  document.querySelectorAll('.statement').forEach(sec => {
+    const el = sec.querySelector('[data-words]'); if (!el) return;
+    el.innerHTML = el.innerHTML.replace(/(<[^>]+>)|([^<\s]+)/g, (m, tag, word) => tag ? tag : `<span class="wd">${word}</span> `);
+    const words = [...el.querySelectorAll('.wd')];
+    if (!('IntersectionObserver' in window)) { sec.classList.add('in'); el.classList.add('lit'); return; }
+    const io = new IntersectionObserver(es => es.forEach(e => {
+      if (e.isIntersecting) {
+        sec.classList.add('in');
+        words.forEach((w,i)=> w.style.transitionDelay = (520 + i*62)+'ms');
+        el.classList.add('lit');
+        io.unobserve(sec);
+      }
+    }), { threshold: .45 });
+    io.observe(sec);
+  });
+
+  /* ---- capabilities accordion: obre en hover (desktop), toggle en click (tàctil) ---- */
+  (function(){
+    const items = [...document.querySelectorAll('.cap-item')];
+    const openOnly = it => items.forEach(x => {
+      const on = x === it; x.classList.toggle('on', on);
+      x.querySelector('.cap-row').setAttribute('aria-expanded', on);
+    });
+    const closeIt = it => { it.classList.remove('on'); it.querySelector('.cap-row').setAttribute('aria-expanded','false'); };
+    items.forEach(it => {
+      const row = it.querySelector('.cap-row');
+      row.addEventListener('click', () => {
+        if (it.classList.contains('on')) closeIt(it);   // clic a − → tanca
+        else openOnly(it);
+      });
+    });
+  })();
+
+  /* ---- frosted menu: bar dots → expanded overlay ---- */
+  let closeMenu = () => {};
+  (function(){
+    const b = document.getElementById('menuBtn'), p = document.getElementById('panel');
+    const c = document.getElementById('menuClose');
+    const bar = document.getElementById('mbar');
+    function set(o){
+      if (o) p.classList.toggle('on-light', bar.classList.contains('on-light')); // match bar's frost mode
+      p.classList.toggle('open', o); b.classList.toggle('open', o); b.setAttribute('aria-expanded', o); p.setAttribute('aria-hidden', !o); document.body.classList.toggle('menu-open', o);
+      document.body.style.overflow = o ? 'hidden' : '';   // lock page scroll while menu is open
+      if (window.lenis) { o ? window.lenis.stop() : window.lenis.start(); }
+    }
+    closeMenu = () => set(false);
+    const card = p.querySelector('.mmenu-card');
+    const canHover = matchMedia('(hover: hover)').matches;
+    if (canHover) {
+      b.addEventListener('mouseenter', () => set(true));
+      card && card.addEventListener('mouseleave', () => set(false));
+    }
+    b.addEventListener('click', () => set(!p.classList.contains('open')));
+    c && c.addEventListener('click', () => set(false));
+    p.querySelectorAll('a').forEach(a => a.addEventListener('click', () => set(false)));
+    p.addEventListener('click', e => { if (e.target === p) set(false); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') set(false); });
+  })();
+
+  /* ---- adaptive frost — light over light sections, dark over dark (bar + FAB) ---- */
+  (function(){
+    const bar = document.getElementById('mbar');
+    const fab = document.getElementById('ovFab');
+    const secs = [...document.querySelectorAll('main > section, main > footer')].filter(e => e.id !== 'hero');
+    const isDark = el => el.id === 'claim' || el.id === 'contact' || el.id === 'services';
+    const lightAt = y => {
+      for (const el of secs){
+        const r = el.getBoundingClientRect();
+        if (r.top <= y && r.bottom > y) return !isDark(el);
+      }
+      return false; // over the hero → dark
+    };
+    function upd(){
+      if (bar) bar.classList.toggle('on-light', lightAt(46));
+      if (fab) fab.classList.toggle('on-light', lightAt(window.innerHeight - 52));
+    }
+    window.addEventListener('scroll', upd, { passive: true });
+    window.addEventListener('resize', upd); upd();
+  })();
+
+  /* ---- live clock (Barcelona) ---- */
+  (function(){
+    const el = document.getElementById('clock'); if (!el) return;
+    const tick = () => {
+      const t = new Date().toLocaleTimeString('en-GB', { hour12: false, timeZone: 'Europe/Madrid' });
+      el.textContent = t + ' BCN';
+    };
+    tick(); setInterval(tick, 1000);
+  })();
+
+  /* ---- hero: crossfade through conceptual imagery every 1.5s ---- */
+  (function(){
+    const media = document.getElementById('heroMedia'); if (!media) return;
+    const layers = [...media.querySelectorAll('.hm-img')]; if (layers.length < 2) return;
+    const base = 'project/assets/';
+    const us = id => `https://images.unsplash.com/photo-${id}?q=80&w=2000&auto=format&fit=crop`;
+    const shots = [
+      { s: us('1778757949749-345b125f2ccb'),           p: 'center 0%' },   // 1 Induktor/playstation (a dalt de tot)
+      { s: base + 'imagery/raincoat.webp',             p: 'center 52%' },  // 2 raincoat
+      { s: base + 'images/Relats Brand.webp',          p: 'center 25%' },  // 3 relats (10% més amunt)
+      { s: base + 'images/Bunnker Final.webp',         p: 'center 90%' },  // 4 bunnker (5% més avall)
+      { s: base + 'imagery/Almirall.webp',             p: 'center 50%' },  // 5 noia almirall
+      { s: us('1698913463941-e1a9046710b8'),           p: 'center 55%' },  // 6 arquitectura
+      { s: base + 'images/astronaut-red-portrait.png', p: 'center 28%' },  // 7 astronauta
+      { s: base + 'imagery/Julia Yosemite.webp',       p: 'center 90%' },  // 8 Julià Camper (40% avall)
+      { s: us('1749953919783-100fbc23e39f'),           p: 'center 40%' }   // 9 mòbil lila
+    ];
+    shots.forEach(o => { const im = new Image(); im.src = o.s; });
+    let idx = 0, cur = 0;
+    layers[0].src = shots[0].s; layers[0].style.objectPosition = shots[0].p; layers[0].classList.add('on');
+    const advance = () => {
+      idx = (idx + 1) % shots.length;
+      const next = layers[(cur + 1) % 2];
+      next.src = shots[idx].s; next.style.objectPosition = shots[idx].p;
+      next.classList.add('on');
+      layers[cur].classList.remove('on');
+      cur = (cur + 1) % 2;
+    };
+    // el hero queda tapat per l'intro del logo (~3,1s) → sumem aquest temps perquè
+    // la 1a imatge (Induktor) es vegi els mateixos 3,5s que la resta
+    const INTRO_MS = 3100, HOLD_MS = 3500;
+    setTimeout(() => { advance(); setInterval(advance, HOLD_MS); }, INTRO_MS + HOLD_MS);
+  })();
+
+  /* ---- overview: floating card + menu card → frosted bento overlay ---- */
+  (function(){
+    const ov = document.getElementById('ov'); if (!ov) return;
+    const fab = document.getElementById('ovFab');
+    const open = () => { closeMenu(); ov.classList.add('open'); ov.setAttribute('aria-hidden','false'); document.body.style.overflow = 'hidden'; if (window.lenis) lenis.stop(); };
+    const close = () => { ov.classList.remove('open'); ov.setAttribute('aria-hidden','true'); document.body.style.overflow = ''; if (window.lenis) lenis.start(); };
+    fab && fab.addEventListener('click', open);
+    const mc = document.getElementById('menuCard'); mc && mc.addEventListener('click', open);
+    document.getElementById('ovClose').addEventListener('click', close);
+    ov.addEventListener('click', e => { if (e.target === ov) close(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
+    /* deep link: studio's menu card arrives as index.html#overview */
+    if (location.hash === '#overview') { history.replaceState(null, '', location.pathname); setTimeout(open, 600); }
+    /* card links: close overlay, then smooth-scroll to the target */
+    ov.querySelectorAll('[data-ovlink]').forEach(a => a.addEventListener('click', e => {
+      const href = a.getAttribute('href');
+      if (!href.startsWith('#')) return;            // page links (studio.html) navigate normally
+      e.preventDefault();
+      const target = document.querySelector(href);
+      close();
+      if (target) requestAnimationFrame(() => { if (window.lenis) lenis.scrollTo(target, { offset: 0 }); else target.scrollIntoView({ behavior: 'smooth' }); });
+    }));
+    /* show floating card once you enter the statement (past ~half the hero) · hide over the footer */
+    if (fab) {
+      let footerIn = false;
+      const foot = document.getElementById('contact');
+      if (foot && 'IntersectionObserver' in window) {
+        new IntersectionObserver(es => { footerIn = es[0].isIntersecting; update(); }, { threshold: 0 }).observe(foot);
+      }
+      function update(){ fab.classList.toggle('show', window.scrollY > window.innerHeight * 0.5 && !footerIn); }
+      window.addEventListener('scroll', update, { passive: true }); update();
+    }
+  })();
+
+  /* hero "scale" fill: static Relats image panning left↔right (CSS only) */
+
+  /* ---- approach statements: grey → accent → ink fill on enter ---- */
+  document.querySelectorAll('.ap-line[data-fill]').forEach(line => {
+    const txt = line.textContent; line.textContent = '';
+    const cs = [];
+    [...txt].forEach(ch => {
+      const s = document.createElement('span');
+      s.className = 'c'; s.textContent = ch;
+      if (ch !== ' ') cs.push(s);
+      line.appendChild(s);
+    });
+    const ob = new IntersectionObserver(es => es.forEach(e => {
+      if (!e.isIntersecting) return;
+      ob.unobserve(line);
+      cs.forEach((c, i) => setTimeout(() => {
+        c.classList.add('lead');
+        setTimeout(() => { c.classList.remove('lead'); c.classList.add('read'); }, 170);
+      }, i * 32));
+    }), { threshold: .55 });
+    ob.observe(line);
+  });
+
+  const isMobile = () => matchMedia('(max-width: 900px)').matches;
+
+
+  /* ---- claim: window grows from centre ---- */
+  (function(){
+    const sec = document.getElementById('claim'); if (!sec) return;
     const track = sec.querySelector('.claim-track');
-    const isMobile = () => window.matchMedia('(max-width: 768px)').matches;
-    let qd = false;
-    function apply() {
-      qd = false;
-      if (isMobile()) { sec.style.setProperty('--cp', 1); sec.style.setProperty('--ci', 1); return; }
-      const total = track.offsetHeight - window.innerHeight;
-      let p = (-track.getBoundingClientRect().top) / total;
-      p = Math.max(0, Math.min(1, p));
-      const cp = Math.max(0, Math.min(1, p / 0.62));        /* grow done at 62% */
-      const ci = Math.max(0, Math.min(1, (p - 0.34) / 0.4)); /* text fades in */
-      sec.style.setProperty('--cp', cp.toFixed(4));
-      sec.style.setProperty('--ci', ci.toFixed(4));
+    function apply(p){
+      sec.style.setProperty('--cp', Math.max(0,Math.min(1, p/0.6)).toFixed(4));
+      sec.style.setProperty('--ci', Math.max(0,Math.min(1,(p-0.32)/0.4)).toFixed(4));
     }
-    function onScroll() { if (!qd) { qd = true; requestAnimationFrame(apply); } }
-    if (window.lenis) window.lenis.on('scroll', onScroll);
-    window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', onScroll);
-    apply();
-  })();
-
-  /* ── Nav panel (hover desktop / click mobile) ────────────────── */
-  (function() {
-    const btn   = document.getElementById('navMenuBtn');
-    const panel = document.getElementById('navPanel');
-    if (!btn || !panel) return;
-    let closeTimer;
-
-    function openPanel() {
-      clearTimeout(closeTimer);
-      panel.classList.add('open');
-      panel.setAttribute('aria-hidden','false');
-      btn.setAttribute('aria-expanded','true');
-      btn.classList.add('open');
-    }
-    function closePanel() {
-      panel.classList.remove('open');
-      panel.setAttribute('aria-hidden','true');
-      btn.setAttribute('aria-expanded','false');
-      btn.classList.remove('open');
-    }
-    function scheduleClose() { closeTimer = setTimeout(closePanel, 120); }
-
-    const isTouch = () => window.matchMedia('(pointer: coarse)').matches;
-
-    /* Desktop: hover */
-    btn.addEventListener('mouseenter', () => { if (!isTouch()) openPanel(); });
-    btn.addEventListener('mouseleave', () => { if (!isTouch()) scheduleClose(); });
-    panel.addEventListener('mouseenter', () => { if (!isTouch()) clearTimeout(closeTimer); });
-    panel.addEventListener('mouseleave', () => { if (!isTouch()) scheduleClose(); });
-
-    /* Mobile/click: toggle */
-    btn.addEventListener('click', () => {
-      panel.classList.contains('open') ? closePanel() : openPanel();
-    });
-
-    /* Close on link click */
-    panel.querySelectorAll('a').forEach(a => a.addEventListener('click', closePanel));
-
-    /* Close on Escape or outside click */
-    document.addEventListener('keydown', e => { if (e.key === 'Escape') closePanel(); });
-    document.addEventListener('click', e => {
-      if (!btn.contains(e.target) && !panel.contains(e.target)) closePanel();
+    if (isMobile() || !hasGSAP) { sec.style.setProperty('--cp',1); sec.style.setProperty('--ci',1); return; }
+    ScrollTrigger.create({
+      trigger: track, start: 'top top', end: 'bottom bottom', scrub: true,
+      onUpdate: self => apply(self.progress)
     });
   })();
 
-  /* ── Cookie banner ───────────────────────────────────────────── */
-  (function() {
-    const bar = document.getElementById('cookieBar');
-    if (!bar) return;
-    if (localStorage.getItem('cookies')) { bar.remove(); return; }
-    setTimeout(() => bar.classList.add('visible'), 2500);
-    document.getElementById('cookieAccept').addEventListener('click', () => { localStorage.setItem('cookies','accepted'); bar.remove(); });
-    document.getElementById('cookieDecline').addEventListener('click', () => { localStorage.setItem('cookies','declined'); bar.remove(); });
+  /* ---- services: sticky stack with depth (scale + dim previous cards) ---- */
+  (function(){
+    const cards = [...document.querySelectorAll('#services .svc-card')];
+    if (!cards.length) return;
+    function upd(){
+      cards.forEach((c,i) => {
+        const next = cards[i+1];
+        if (!next) { c.style.transform = ''; c.style.filter = ''; return; }
+        const p = Math.min(1, Math.max(0, 1 - next.getBoundingClientRect().top / window.innerHeight));
+        c.style.transform = `scale(${(1 - p*0.07).toFixed(4)}) translateY(${(-p*26).toFixed(1)}px)`;
+        c.style.filter = `brightness(${(1 - p*0.05).toFixed(3)})`;
+      });
+    }
+    window.addEventListener('scroll', upd, { passive: true }); upd();
   })();
+
+  /* ---- work: editorial tiles enter from left / right ---- */
+  (function(){
+    const tiles = [...document.querySelectorAll('#workList .work-tile')];
+    if (!tiles.length) return;
+    const io = new IntersectionObserver((es,o)=>es.forEach(e=>{
+      if (e.isIntersecting) { e.target.classList.add('in'); o.unobserve(e.target); }
+    }), { threshold: .15, rootMargin: '0px 0px -8% 0px' });
+    tiles.forEach(t => io.observe(t));
+  })();
+
+  /* ---- reel: grow on scroll + fast montage → video → logo ---- */
+  (function(){
+    const sec = document.getElementById('reel'); if (!sec) return;
+    const track = document.getElementById('reelTrack');
+    const win = sec.querySelector('.reel-win');
+    const shots = [...win.querySelectorAll('.reel-shot')];
+    const vid = document.getElementById('reelVid');
+    const logo = document.getElementById('reelLogo');
+    const ctrls = sec.querySelector('.reel-ctrls');
+    /* grow with scroll (like the claim window); controls appear when fully grown */
+    if (!isMobile() && hasGSAP) {
+      ScrollTrigger.create({
+        trigger: track, start: 'top top', end: 'bottom bottom', scrub: true,
+        onUpdate: self => {
+          const rp = Math.max(0, Math.min(1, self.progress / 0.55));
+          sec.style.setProperty('--rp', rp.toFixed(4));
+          ctrls.classList.toggle('show', rp > 0.8);
+        }
+      });
+    } else { sec.style.setProperty('--rp', 1); ctrls.classList.add('show'); }
+
+    /* preload video frames */
+    const FR = parseInt(vid.dataset.frames,10)||0, SEQ = vid.dataset.seq;
+    const ctx = vid.getContext('2d'), imgs = [];
+    for (let i = 1; i <= FR; i += 3) { const im = new Image();
+      im.src = SEQ + 'frame_' + String(i).padStart(4,'0') + '.jpg'; imgs.push(im); }
+    function sizeVid(){ const r = vid.getBoundingClientRect(), d = Math.min(devicePixelRatio||1,2);
+      vid.width = Math.round(r.width*d); vid.height = Math.round(r.height*d); }
+    function drawVid(im){ if(!im||!im.naturalWidth) return;
+      const cw=vid.width,ch=vid.height,ir=im.naturalWidth/im.naturalHeight,cr=cw/ch;
+      let w,h,x,y; if(ir>cr){h=ch;w=ch*ir;x=(cw-w)/2;y=0;} else {w=cw;h=cw/ir;x=0;y=(ch-h)/2;}
+      ctx.drawImage(im,x,y,w,h); }
+
+    /* montage state machine + controls */
+    let visible = false, userPaused = false, raf = 0;
+    let t0 = 0, lastTs = 0, phase = 0, idx = -1, vfi = 0, rebase = 0;
+    const SHOT_MS = 620, VID_MS = 4000, LOGO_MS = 2600;
+    const running = () => visible && !userPaused;
+    function setShot(i){ shots.forEach((s,k)=>s.classList.toggle('on',k===i)); }
+    function resetStage(){ phase = 0; idx = -1; vfi = 0; t0 = 0;
+      shots.forEach(s=>s.classList.remove('on')); vid.classList.remove('on');
+      logo.classList.remove('on'); setShot(0); }
+    function loop(ts){
+      if (!running()) return;
+      lastTs = ts;
+      if (!t0) t0 = ts;
+      if (rebase) { t0 = ts - rebase; rebase = 0; }
+      const e = ts - t0;
+      if (phase === 0) {
+        const i = Math.floor(e / SHOT_MS);
+        if (i !== idx) { idx = i; if (idx < shots.length) setShot(idx); }
+        if (e >= shots.length * SHOT_MS) { phase = 1; t0 = ts;
+          shots.forEach(s=>s.classList.remove('on')); sizeVid(); vid.classList.add('on'); }
+      } else if (phase === 1) {
+        const f = Math.floor((ts - t0) / (VID_MS / imgs.length)) % imgs.length;
+        if (f !== vfi) { vfi = f; drawVid(imgs[f]); }
+        if (ts - t0 >= VID_MS) { phase = 2; t0 = ts;
+          vid.classList.remove('on'); logo.classList.add('on'); }
+      } else {
+        if (ts - t0 >= LOGO_MS) { phase = 0; t0 = ts; idx = -1;
+          logo.classList.remove('on'); setShot(0); }
+      }
+      raf = requestAnimationFrame(loop);
+    }
+    function kick(){ if (running()) { cancelAnimationFrame(raf); raf = requestAnimationFrame(loop); } }
+
+    new IntersectionObserver(es => es.forEach(e => {
+      visible = e.isIntersecting;
+      const a = document.getElementById('reelAudio');
+      if (visible) { kick(); if (typeof soundOn !== 'undefined' && soundOn) a.play().catch(()=>{}); }
+      else { cancelAnimationFrame(raf); a.pause(); }
+    }), { threshold: .15 }).observe(sec);
+    addEventListener('resize', sizeVid);
+
+    /* ---- controls ---- */
+    const bSound = document.getElementById('rcSound');
+    const bPlay  = document.getElementById('rcPlay');
+    const bReload= document.getElementById('rcReload');
+    const audio = document.getElementById('reelAudio');
+    let soundOn = false;
+    bSound.addEventListener('click', () => {
+      soundOn = !soundOn;
+      bSound.classList.toggle('on', soundOn);
+      if (soundOn) { audio.volume = 0; audio.play().then(() => {
+        let v = 0; const fade = setInterval(() => { v = Math.min(.55, v + .05);
+          audio.volume = v; if (v >= .55) clearInterval(fade); }, 60);
+      }).catch(()=>{}); }
+      else { audio.pause(); }
+    });
+    bPlay.addEventListener('click', () => {
+      userPaused = !userPaused;
+      bPlay.classList.toggle('paused', userPaused);
+      if (userPaused) {
+        cancelAnimationFrame(raf); rebase = lastTs ? (lastTs - t0) : 0;
+        if (soundOn) audio.pause();
+      } else {
+        t0 = 0; kick();
+        if (soundOn) audio.play().catch(()=>{});
+      }
+    });
+    bReload.addEventListener('click', () => {
+      bReload.classList.remove('spin'); void bReload.offsetWidth; bReload.classList.add('spin');
+      resetStage();
+      if (userPaused) { userPaused = false; bPlay.classList.remove('paused'); }
+      if (soundOn) { audio.currentTime = 0; audio.play().catch(()=>{}); }
+      kick();
+    });
+  })();
+
+  /* ---- cookies banner ---- */
+  (function(){
+    const el = document.getElementById('cookies');
+    if (!el) return;
+    let stored = null;
+    try { stored = localStorage.getItem('ck-consent-v2'); } catch(_){}
+    if (stored) return;
+    el.hidden = false;
+    setTimeout(() => el.classList.add('show'), 900);
+    const dismiss = v => {
+      try { localStorage.setItem('ck-consent-v2', v); } catch(_){}
+      el.classList.remove('show');
+      setTimeout(() => { el.hidden = true; }, 500);
+    };
+    document.getElementById('ckAccept').addEventListener('click', () => dismiss('accept'));
+    document.getElementById('ckReject').addEventListener('click', () => dismiss('decline'));
+  })();
+
+  if (hasGSAP) requestAnimationFrame(() => ScrollTrigger.refresh());
 </script>
-
 </body>
 </html>

@@ -68,7 +68,7 @@
       'st.people.ttl': 'People',
       'st.people.p': 'Branding should be a recognised craft — built by senior hands and fairly valued. A sector that counts on its people, values their craft, and rewards it as the discipline it is. People first, always.',
       'st.exp': 'Experience across',
-      'st.big': 'All led hands-on by <span class="chip"><img src="../project/assets/imagery/francesc.jpg" alt="Cesc Callejas"></span> <span class="snm">Cesc Callejas</span> — two decades on both sides of the table: building brands, and running the operations that depend on them. No layers. You work with him.',
+      'st.big': 'All led hands-on by <span class="chip"><img src="project/assets/imagery/francesc.jpg" alt="Cesc Callejas"></span> <span class="snm">Cesc Callejas</span> — two decades on both sides of the table: building brands, and running the operations that depend on them. No layers. You work with him.',
       'st.k.scratch': 'Built from scratch', 'st.k.growth': 'Growth · 2 yrs', 'st.k.vis': 'Visibility',
       'st.cta.h': 'Let’s build something <em>that scales.</em>'
     },
@@ -125,7 +125,7 @@
       'st.people.ttl': 'Personas',
       'st.people.p': 'El branding debería ser un oficio reconocido — hecho por manos sénior y valorado con justicia. Un sector que cuenta con su gente, valora su oficio y lo recompensa como la disciplina que es. Las personas primero, siempre.',
       'st.exp': 'Experiencia en',
-      'st.big': 'Todo liderado en persona por <span class="chip"><img src="../project/assets/imagery/francesc.jpg" alt="Cesc Callejas"></span> <span class="snm">Cesc Callejas</span> — dos décadas a ambos lados de la mesa: construyendo marcas y dirigiendo las operaciones que dependen de ellas. Sin capas. Trabajas con él.',
+      'st.big': 'Todo liderado en persona por <span class="chip"><img src="project/assets/imagery/francesc.jpg" alt="Cesc Callejas"></span> <span class="snm">Cesc Callejas</span> — dos décadas a ambos lados de la mesa: construyendo marcas y dirigiendo las operaciones que dependen de ellas. Sin capas. Trabajas con él.',
       'st.k.scratch': 'Construido de cero', 'st.k.growth': 'Crecimiento · 2 años', 'st.k.vis': 'Visibilidad',
       'st.cta.h': 'Construyamos algo <em>que escale.</em>'
     },
@@ -182,7 +182,7 @@
       'st.people.ttl': 'Persones',
       'st.people.p': 'El branding hauria de ser un ofici reconegut — fet per mans sènior i valorat amb justícia. Un sector que compta amb la seva gent, valora el seu ofici i el recompensa com la disciplina que és. Les persones primer, sempre.',
       'st.exp': 'Experiència a',
-      'st.big': 'Tot liderat en persona per <span class="chip"><img src="../project/assets/imagery/francesc.jpg" alt="Cesc Callejas"></span> <span class="snm">Cesc Callejas</span> — dues dècades a banda i banda de la taula: construint marques i dirigint les operacions que en depenen. Sense capes. Treballes amb ell.',
+      'st.big': 'Tot liderat en persona per <span class="chip"><img src="project/assets/imagery/francesc.jpg" alt="Cesc Callejas"></span> <span class="snm">Cesc Callejas</span> — dues dècades a banda i banda de la taula: construint marques i dirigint les operacions que en depenen. Sense capes. Treballes amb ell.',
       'st.k.scratch': 'Construït de zero', 'st.k.growth': 'Creixement · 2 anys', 'st.k.vis': 'Visibilitat',
       'st.cta.h': 'Construïm alguna cosa <em>que escali.</em>'
     }
