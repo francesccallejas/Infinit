@@ -203,6 +203,16 @@ em { font-family: var(--serif); font-style: normal; font-weight: 400; }
   38%      { transform: scaleY(.08); }
   64%      { transform: scaleY(1.08); }
 }
+/* living mark — the right squircle of the menu + footer logos winks now and then (lab version) */
+.mbar-logo svg rect:nth-of-type(2),
+.foot-mark svg rect:nth-of-type(2) {
+  transform-box: fill-box; transform-origin: center;
+  animation: markWink 5s var(--ease) 2s infinite;
+}
+@keyframes markWink { 0%, 80%, 100% { transform: scaleY(1); } 88% { transform: scaleY(.12); } 94% { transform: scaleY(1); } }
+@media (prefers-reduced-motion: reduce) {
+  .mbar-logo svg rect:nth-of-type(2), .foot-mark svg rect:nth-of-type(2) { animation: none; }
+}
 @keyframes introOut {
   0%   { transform: translateY(0);     border-bottom-left-radius: 0;    border-bottom-right-radius: 0; }
   to   { transform: translateY(-100%); border-bottom-left-radius: var(--r-lg); border-bottom-right-radius: var(--r-lg); }
