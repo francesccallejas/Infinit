@@ -6,7 +6,7 @@
 <title>Infinit® — Brand &amp; Strategy · V2</title>
 <meta name="description" content="Strategic brand, identity and digital systems for companies navigating growth and transformation.">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
-<link rel="stylesheet" href="style.css?v=311">
+<link rel="stylesheet" href="style.css?v=312">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@600&family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -340,35 +340,6 @@
   } else if (lenis) {
     (function raf(t){ lenis.raf(t); requestAnimationFrame(raf); })();
   }
-
-  /* ---- scroll progress: the mark fills up (liquid, bottom→top) · click to top ---- */
-  (function(){
-    const el = document.createElement('button');
-    el.className = 'mk-prog'; el.type = 'button'; el.setAttribute('aria-label', 'Scroll progress — back to top');
-    el.innerHTML = `<svg viewBox="0 0 240 132" fill="currentColor" aria-hidden="true">
-      <defs><clipPath id="mkpClip"><rect id="mkpRect" x="0" y="132" width="240" height="0"/></clipPath></defs>
-      <g class="ghost"><rect x="36" y="22" width="80" height="88" rx="34"/><rect x="124" y="22" width="80" height="88" rx="34"/></g>
-      <g clip-path="url(#mkpClip)"><rect x="36" y="22" width="80" height="88" rx="34"/><rect x="124" y="22" width="80" height="88" rx="34"/></g>
-    </svg>`;
-    document.body.appendChild(el);
-    const rect = el.querySelector('#mkpRect');
-    const isDark = id => id === 'claim' || id === 'contact' || id === 'services';
-    const secs = [...document.querySelectorAll('main > section, main > footer')].filter(e => e.id !== 'hero');
-    function darkAt(y){ for (const s of secs){ const r = s.getBoundingClientRect(); if (r.top <= y && r.bottom > y) return isDark(s); } return true; }
-    function update(){
-      const docH = document.documentElement.scrollHeight, vh = innerHeight;
-      if (docH <= vh + 4) { el.classList.remove('show'); return; }
-      const p = Math.min(Math.max(scrollY / (docH - vh), 0), 1);
-      rect.setAttribute('y', (132 * (1 - p)).toFixed(1));
-      rect.setAttribute('height', (132 * p).toFixed(1));
-      el.classList.toggle('show', scrollY > vh * 0.4);
-      el.classList.toggle('on-dark', darkAt(innerHeight - 48));
-    }
-    el.addEventListener('click', () => { if (lenis) lenis.scrollTo(0, { force: true, duration: 1 }); else scrollTo({ top: 0, behavior: 'smooth' }); });
-    if (lenis) lenis.on('scroll', update); else addEventListener('scroll', update, { passive: true });
-    addEventListener('resize', update);
-    update();
-  })();
   /* robust smooth scroll: unlock page, try Lenis, fall back to native if nothing moved */
   function goTo(y){
     document.body.style.overflow = '';
