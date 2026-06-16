@@ -354,7 +354,13 @@
     // the footer is fixed behind the page → reveal it by scrolling to the very bottom
     if (href === '#contact') { e.preventDefault(); goTo(document.documentElement.scrollHeight - innerHeight); return; }
     const t = document.querySelector(href);
-    if (t) { e.preventDefault(); goTo(t.getBoundingClientRect().top + window.scrollY); }
+    if (t) {
+      e.preventDefault();
+      // clear the fixed floating bar + a little breathing room so headings aren't covered
+      const bar = document.getElementById('mbar');
+      const off = (bar && getComputedStyle(bar).display !== 'none') ? bar.getBoundingClientRect().bottom + 24 : 24;
+      goTo(Math.max(0, t.getBoundingClientRect().top + window.scrollY - off));
+    }
   }));
 
   /* ---- footer reveal — page scrolls over the fixed footer; CTA colour "eats" it going up,
