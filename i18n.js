@@ -189,10 +189,8 @@
   };
 
   function detect() {
+    // default to English always; only honour a manual choice the user made before
     try { var s = localStorage.getItem('inf_lang'); if (s && DICT[s]) return s; } catch (e) {}
-    var n = (navigator.language || navigator.userLanguage || '').toLowerCase();
-    if (n.indexOf('ca') === 0) return 'ca';
-    if (n.indexOf('es') === 0) return 'es';
     return DEFAULT;
   }
 
