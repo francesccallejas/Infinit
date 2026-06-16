@@ -1364,16 +1364,35 @@ body.menu-open .mbar { opacity: 0 !important; pointer-events: none; }
 .mmenu-social a { transition: color .25s; }
 .mmenu-social a:hover { color: #fff; }
 .mmenu-clock { color: rgba(255,255,255,.75); }
-/* language switch (in the menu foot) */
-.lang-switch { display: inline-flex; gap: 2px; }
-.lang-switch button { font-family: var(--mono); font-size: 11px; letter-spacing: .08em; color: rgba(255,255,255,.5);
-  background: none; border: 0; padding: 5px 9px; border-radius: 8px; cursor: pointer;
-  transition: color .2s var(--ease), background .2s var(--ease); }
+/* language switch — segmented pill with a sliding indicator */
+.lang-switch { position: relative; display: inline-flex; padding: 3px; border-radius: 999px;
+  background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.14); }
+.lang-switch .lang-ind { position: absolute; top: 3px; left: 3px; width: 38px; height: calc(100% - 6px);
+  border-radius: 999px; background: #fff; z-index: 0;
+  transition: transform .42s cubic-bezier(.65,0,.35,1); }
+.lang-switch button { position: relative; z-index: 1; width: 38px; text-align: center;
+  font-family: var(--mono); font-size: 11px; letter-spacing: .04em; color: rgba(255,255,255,.55);
+  background: none; border: 0; padding: 6px 0; cursor: pointer; transition: color .3s var(--ease); }
 .lang-switch button:hover { color: #fff; }
-.lang-switch button.on { color: var(--ink); background: #fff; }
+.lang-switch button.on, .lang-switch button.on:hover { color: var(--ink); }
+.mmenu.on-light .lang-switch { background: rgba(11,12,17,.05); border-color: rgba(11,12,17,.14); }
+.mmenu.on-light .lang-switch .lang-ind { background: var(--ink); }
 .mmenu.on-light .lang-switch button { color: rgba(11,12,17,.5); }
 .mmenu.on-light .lang-switch button:hover { color: var(--ink); }
-.mmenu.on-light .lang-switch button.on { color: var(--bg); background: var(--ink); }
+.mmenu.on-light .lang-switch button.on, .mmenu.on-light .lang-switch button.on:hover { color: var(--bg); }
+
+/* subtle language switch in the footer (dark) — quieter than the menu one */
+.foot-lang { display: inline-flex; gap: 4px; align-items: center; }
+.foot-lang button { font-family: var(--mono); font-size: 11px; letter-spacing: .1em; text-transform: uppercase;
+  color: rgba(244,242,240,.4); background: none; border: 0; padding: 2px 4px; cursor: pointer;
+  transition: color .25s var(--ease); }
+.foot-lang button:hover { color: rgba(244,242,240,.8); }
+.foot-lang button.on { color: var(--bg); }
+.foot-lang .sep { color: rgba(244,242,240,.22); font-size: 10px; }
+
+/* smooth crossfade while swapping languages */
+[data-i18n] { transition: opacity .24s var(--ease), filter .24s var(--ease); }
+html.lang-swapping [data-i18n] { opacity: 0; filter: blur(3px); }
 
 @keyframes mbarInM { from { transform: translateY(-170%); } to { transform: translateY(0); } }
 @media (max-width: 760px) {

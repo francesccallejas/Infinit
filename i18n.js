@@ -226,16 +226,46 @@
       var on = b.getAttribute('data-lang') === lang;
       b.classList.toggle('on', on); b.setAttribute('aria-pressed', on ? 'true' : 'false');
     });
+    moveIndicator(lang);
     try { localStorage.setItem('inf_lang', lang); } catch (e) {}
     window.__lang = lang;
   }
 
+  /* slide the pill indicator under the active language (menu switch) */
+  function moveIndicator(lang) {
+    document.querySelectorAll('.lang-switch').forEach(function (sw) {
+      var ind = sw.querySelector('.lang-ind'); if (!ind) return;
+      var btns = sw.querySelectorAll('button');
+      var active = sw.querySelector('button[data-lang="' + lang + '"]');
+      if (!active) return;
+      ind.style.transform = 'translateX(' + (active.offsetLeft - btns[0].offsetLeft) + 'px)';
+    });
+  }
+
   var lang = detect();
   apply(lang, false);
-  document.addEventListener('click', function (e) {
-    var btn = e.target.closest && e.target.closest('[data-lang]');
-    if (btn) { e.preventDefault(); apply(btn.getAttribute('data-lang'), true); }
+  // position the indicator without animating on first paint
+  document.querySelectorAll('.lang-switch .lang-ind').forEach(function (i) {
+    var t = i.style.transition; i.style.transition = 'none';
+    requestAnimationFrame(function () { requestAnimationFrame(function () { i.style.transition = t; }); });
   });
 
-  window.I18N = { apply: apply, dict: DICT, detect: detect };
+  var swapping = false;
+  document.addEventListener('click', function (e) {
+    var btn = e.target.closest && e.target.closest('[data-lang]');
+    if (!btn) return;
+    e.preventDefault();
+    var next = btn.getAttribute('data-lang');
+    if (next === window.__lang || swapping) { moveIndicator(next); return; }
+    swapping = true;
+    moveIndicator(next);                       // slide pill immediately
+    document.documentElement.classList.add('lang-swapping');   // fade text out
+    setTimeout(function () {
+      apply(next, true);                       // swap copy while hidden
+      document.documentElement.classList.remove('lang-swapping'); // fade back in
+      swapping = false;
+    }, 240);
+  });
+
+  window.I18N = { apply: apply, dict: DICT, detect: detect, move: moveIndicator };
 })();
