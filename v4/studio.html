@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,600,700,900&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=320">
+<link rel="stylesheet" href="style.css?v=321">
 <script>try{if(sessionStorage.getItem('inf_seen'))document.documentElement.classList.add('quick-nav');sessionStorage.setItem('inf_seen','1');}catch(e){}</script>
 <style>
   :root{ --grey2:rgba(11,12,17,.55); --mint:#D8F3D6; --mint-ink:#2F8F66; --line:rgba(11,12,17,.13); }
@@ -123,7 +123,7 @@
   </a>
   <div class="mbar-right">
     <a class="mbar-contact" href="#contact">
-      <span>Contact</span>
+      <span data-i18n="mbar.contact">Contact</span>
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg>
     </a>
     <button class="mbar-dots" id="menuBtn" aria-label="Open menu" aria-expanded="false">
@@ -148,21 +148,21 @@
     </div>
     <div class="mmenu-body">
       <nav class="mmenu-nav">
-        <a href="index.html#work"><span class="reveal"><span class="t" data-t="Work">Work</span></span></a>
-        <a href="index.html#services"><span class="reveal"><span class="t" data-t="Services">Services</span></span></a>
-        <a href="studio.html"><span class="reveal"><span class="t" data-t="Studio">Studio</span></span></a>
-        <a href="#contact"><span class="reveal"><span class="t" data-t="Contact">Contact</span></span></a>
+        <a href="index.html#work"><span class="reveal"><span class="t" data-t="Work" data-i18n="nav.work">Work</span></span></a>
+        <a href="index.html#services"><span class="reveal"><span class="t" data-t="Services" data-i18n="nav.services">Services</span></span></a>
+        <a href="studio.html"><span class="reveal"><span class="t" data-t="Studio" data-i18n="nav.studio">Studio</span></span></a>
+        <a href="#contact"><span class="reveal"><span class="t" data-t="Contact" data-i18n="nav.contact">Contact</span></span></a>
       </nav>
       <aside class="mmenu-aside">
         <div class="mmenu-meta">
-          <p><b>Infinit®</b><br>Brand &amp; Strategy firm</p>
-          <p>Barcelona — Worldwide<br><a href="mailto:hello@weareinfinit.com"><b>hello@weareinfinit.com</b></a></p>
+          <p><b>Infinit®</b><br><span data-i18n="meta.firm">Brand &amp; Strategy firm</span></p>
+          <p><span data-i18n="meta.loc">Barcelona — Worldwide</span><br><a href="mailto:hello@weareinfinit.com"><b>hello@weareinfinit.com</b></a></p>
         </div>
         <div class="mmenu-quick">
-          <span class="mmenu-eb">A quick look</span>
+          <span class="mmenu-eb" data-i18n="quick.label">A quick look</span>
           <button class="mmenu-ovcard" id="menuCard" type="button">
             <span class="oc-thumb"><img src="../project/assets/images/Bunnker Final.webp" alt=""></span>
-            <span class="oc-tx"><b>Overview</b><i>The studio at a glance</i></span>
+            <span class="oc-tx"><b data-i18n="quick.overview">Overview</b><i data-i18n="quick.glance">The studio at a glance</i></span>
             <span class="oc-ar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
           </button>
         </div>
@@ -174,6 +174,11 @@
         <a href="https://www.instagram.com/weareinfinit.studio/" target="_blank" rel="noopener">Instagram</a>
         <a href="mailto:hello@weareinfinit.com">Email</a>
       </div>
+      <div class="lang-switch" role="group" aria-label="Language">
+        <button type="button" data-lang="ca">CA</button>
+        <button type="button" data-lang="es">ES</button>
+        <button type="button" data-lang="en">EN</button>
+      </div>
       <span class="mmenu-clock" id="clock">--:--:-- BCN</span>
     </div>
   </div>
@@ -182,15 +187,15 @@
 <!-- OVERVIEW overlay (same as the landing) -->
 <div class="ov" id="ov" aria-hidden="true">
   <div class="ov-top">
-    <div><span class="eb">A quick look</span><h2>One studio, <em>everything connected.</em></h2></div>
+    <div><span class="eb" data-i18n="quick.label">A quick look</span><h2 data-i18n="ov.title">One studio, <em>everything connected.</em></h2></div>
     <button class="ov-close" id="ovClose" aria-label="Close overview"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
   </div>
   <div class="ov-bento">
-    <a class="ov-card ov-work" href="index.html#work" data-ovlink><img src="../project/assets/images/Bunnker Final.webp" alt="" loading="lazy"><div class="ov-scrim"></div><div class="ov-label"><span>Selected work</span><span class="ov-ar">↗</span></div></a>
-    <a class="ov-card ov-services" href="index.html#services" data-ovlink><div class="ov-svc-list"><span>Strategy</span><span>Identity</span><span>Digital</span></div><div class="ov-label"><span>Three pillars</span><span class="ov-ar">↗</span></div></a>
-    <a class="ov-card ov-studio" href="studio.html" data-ovlink><img src="../project/assets/imagery/francesc.jpg" alt="" loading="lazy"><div class="ov-scrim"></div><div class="ov-label"><span>The studio</span><span class="ov-ar">↗</span></div></a>
-    <a class="ov-card ov-claim" href="index.html#approach" data-ovlink><h3>Brands built to <em>scale.</em></h3><div class="ov-label"><span>Our approach</span><span class="ov-ar">↗</span></div></a>
-    <a class="ov-card ov-contact" href="#contact" data-ovlink><h3>Let's <em>talk.</em></h3><div class="ov-label"><span>Get in touch</span><span class="ov-ar">↗</span></div></a>
+    <a class="ov-card ov-work" href="index.html#work" data-ovlink><img src="../project/assets/images/Bunnker Final.webp" alt="" loading="lazy"><div class="ov-scrim"></div><div class="ov-label"><span data-i18n="ov.work">Selected work</span><span class="ov-ar">↗</span></div></a>
+    <a class="ov-card ov-services" href="index.html#services" data-ovlink><div class="ov-svc-list"><span data-i18n="pillar.strategy">Strategy</span><span data-i18n="pillar.identity">Identity</span><span data-i18n="pillar.digital">Digital</span></div><div class="ov-label"><span data-i18n="ov.pillars">Three pillars</span><span class="ov-ar">↗</span></div></a>
+    <a class="ov-card ov-studio" href="studio.html" data-ovlink><img src="../project/assets/imagery/francesc.jpg" alt="" loading="lazy"><div class="ov-scrim"></div><div class="ov-label"><span data-i18n="ov.studio">The studio</span><span class="ov-ar">↗</span></div></a>
+    <a class="ov-card ov-claim" href="index.html#approach" data-ovlink><h3 data-i18n="ov.claim">Brands built to <em>scale.</em></h3><div class="ov-label"><span data-i18n="ov.approach">Our approach</span><span class="ov-ar">↗</span></div></a>
+    <a class="ov-card ov-contact" href="#contact" data-ovlink><h3 data-i18n="ov.talk">Let's <em>talk.</em></h3><div class="ov-label"><span data-i18n="ov.getintouch">Get in touch</span><span class="ov-ar">↗</span></div></a>
   </div>
 </div>
 
@@ -200,29 +205,29 @@
     <img src="../project/assets/imagery/mountains-tekapo.jpg" alt="">
     <div class="scrim"></div>
     <div class="cap wrap">
-      <span class="eb r">The studio</span>
-      <h1 class="r d1">Brands that move —<br>fast, and <em>with clarity.</em></h1>
+      <span class="eb r" data-i18n="st.eb">The studio</span>
+      <h1 class="r d1" data-i18n="st.hero.h">Brands that move —<br>fast, and <em>with clarity.</em></h1>
     </div>
   </header>
 
   <!-- MANIFEST — studio statement -->
   <section class="manifest">
     <div class="wrap">
-      <span class="eb r">The studio</span>
-      <p class="lead r d1">Infinit® is a brand &amp; strategy studio built on one belief: branding is a craft — and craft is made by <span class="acc">people.</span></p>
+      <span class="eb r" data-i18n="st.eb">The studio</span>
+      <p class="lead r d1" data-i18n="st.lead">Infinit® is a brand &amp; strategy studio built on one belief: branding is a craft — and craft is made by <span class="acc">people.</span></p>
       <div class="vsel r d1">
         <div class="list">
           <button class="vrow active" type="button" data-i="0">
-            <h3>Clarity</h3>
-            <div class="desc"><div class="din"><p>Simple, fast, understood at first glance. We strip away everything that isn't the idea, so the brand reads instantly and moves with speed. Clarity is a competitive advantage — and a faster path to market.</p></div></div>
+            <h3 data-i18n="st.clarity.ttl">Clarity</h3>
+            <div class="desc"><div class="din"><p data-i18n="st.clarity.p">Simple, fast, understood at first glance. We strip away everything that isn't the idea, so the brand reads instantly and moves with speed. Clarity is a competitive advantage — and a faster path to market.</p></div></div>
           </button>
           <button class="vrow" type="button" data-i="1">
-            <h3>Alive</h3>
-            <div class="desc"><div class="din"><p>A brand is never a static logo. We build living identities — systems that move, breathe and iterate, designed to evolve with the company. Infinite by design, never finished.</p></div></div>
+            <h3 data-i18n="st.alive.ttl">Alive</h3>
+            <div class="desc"><div class="din"><p data-i18n="st.alive.p">A brand is never a static logo. We build living identities — systems that move, breathe and iterate, designed to evolve with the company. Infinite by design, never finished.</p></div></div>
           </button>
           <button class="vrow" type="button" data-i="2">
-            <h3>People</h3>
-            <div class="desc"><div class="din"><p>Branding should be a recognised craft — built by senior hands and fairly valued. A sector that counts on its people, values their craft, and rewards it as the discipline it is. People first, always.</p></div></div>
+            <h3 data-i18n="st.people.ttl">People</h3>
+            <div class="desc"><div class="din"><p data-i18n="st.people.p">Branding should be a recognised craft — built by senior hands and fairly valued. A sector that counts on its people, values their craft, and rewards it as the discipline it is. People first, always.</p></div></div>
           </button>
         </div>
         <div class="media">
@@ -242,13 +247,13 @@
   <!-- PROFILE — clients + founder fused (experience above, inline portrait text below) -->
   <section class="profile">
     <div class="wrap">
-      <span class="eb r">Experience across</span>
+      <span class="eb r" data-i18n="st.exp">Experience across</span>
       <p class="list r d1">Almirall, Desigual, Casa Tarradellas, Mercadona, Santander, MartiDerm, Girbau, Seidor, Repsol, SAP <span class="q">&amp;</span> Glovo.</p>
-      <p class="big r d2">All led hands-on by <span class="chip"><img src="../project/assets/imagery/francesc.jpg" alt="Cesc Callejas"></span> <span class="snm">Cesc Callejas</span> — two decades on both sides of the table: building brands, and running the operations that depend on them. No layers. You work with him.</p>
+      <p class="big r d2" data-i18n="st.big">All led hands-on by <span class="chip"><img src="../project/assets/imagery/francesc.jpg" alt="Cesc Callejas"></span> <span class="snm">Cesc Callejas</span> — two decades on both sides of the table: building brands, and running the operations that depend on them. No layers. You work with him.</p>
       <div class="meta r d3">
-        <div><div class="k">Built from scratch</div><div class="v">€0 → €1.7M</div></div>
-        <div><div class="k">Growth · 2 yrs</div><div class="v">+50%</div></div>
-        <div><div class="k">Visibility</div><div class="v">×10</div></div>
+        <div><div class="k" data-i18n="st.k.scratch">Built from scratch</div><div class="v">€0 → €1.7M</div></div>
+        <div><div class="k" data-i18n="st.k.growth">Growth · 2 yrs</div><div class="v">+50%</div></div>
+        <div><div class="k" data-i18n="st.k.vis">Visibility</div><div class="v">×10</div></div>
         <a class="ln" href="https://www.linkedin.com/in/francesc-callejas-%E2%98%81%EF%B8%8F%E2%98%98%EF%B8%8F-99416a90/" target="_blank" rel="noopener">LinkedIn<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
       </div>
     </div>
@@ -259,8 +264,8 @@
     <img src="../project/assets/images/Bunnker Final.webp" alt="">
     <div class="scrim"></div>
     <div class="in">
-      <h2 class="r">Let's build something <em>that scales.</em></h2>
-      <a class="go r d1" href="mailto:hello@weareinfinit.com"><span class="cm-tx">Start the conversation</span><span class="cm-ar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span></a>
+      <h2 class="r" data-i18n="st.cta.h">Let's build something <em>that scales.</em></h2>
+      <a class="go r d1" href="mailto:hello@weareinfinit.com"><span class="cm-tx" data-i18n="cta.start">Start the conversation</span><span class="cm-ar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span></a>
     </div>
   </section>
 
@@ -277,17 +282,17 @@
           </svg>
           <span class="word">infinit<span class="reg">®</span></span>
         </a>
-        <p class="foot-claim">Built to scale.</p>
+        <p class="foot-claim" data-i18n="foot.claim">Built to scale.</p>
       </div>
       <div class="foot-right rv">
         <div class="foot-col">
-          <span class="foot-eb">Studio</span>
-          <a href="index.html#work">Work</a>
-          <a href="index.html#services">Services</a>
-          <a href="studio.html">Studio</a>
+          <span class="foot-eb" data-i18n="foot.studio">Studio</span>
+          <a href="index.html#work" data-i18n="nav.work">Work</a>
+          <a href="index.html#services" data-i18n="nav.services">Services</a>
+          <a href="studio.html" data-i18n="nav.studio">Studio</a>
         </div>
         <div class="foot-col">
-          <span class="foot-eb">Connect</span>
+          <span class="foot-eb" data-i18n="foot.connect">Connect</span>
           <a href="mailto:hello@weareinfinit.com">hello@weareinfinit.com</a>
           <a href="tel:+34689022383">+34 689 022 383</a>
           <a href="https://www.linkedin.com/in/francesc-callejas-%E2%98%81%EF%B8%8F%E2%98%98%EF%B8%8F-99416a90/" target="_blank" rel="noopener">LinkedIn ↗</a>
@@ -296,14 +301,14 @@
     </div>
     <div class="foot-bot rv">
       <div class="foot-rec">
-        <span class="foot-rec-label">Founder recognised by</span>
+        <span class="foot-rec-label" data-i18n="foot.rec">Founder recognised by</span>
         <div class="foot-rec-logos">
           <a href="https://www.awwwards.com/" target="_blank" rel="noopener" aria-label="Awwwards"><img src="../project/assets/clients/Awwwards-Logo-Vector.svg-.png" alt="Awwwards"></a>
           <a href="https://www.arquitectes.cat/" target="_blank" rel="noopener" aria-label="COAC"><img src="../project/assets/clients/Coac.png" alt="COAC"></a>
         </div>
       </div>
       <div class="foot-base">
-        <span>Barcelona — Worldwide</span>
+        <span data-i18n="foot.loc">Barcelona — Worldwide</span>
         <span>© 2026 Infinit®</span>
       </div>
     </div>
@@ -311,15 +316,16 @@
 
 <aside class="cookies" id="cookies" hidden>
   <div class="ck-inner">
-    <p class="ck-msg">We use cookies to enhance your experience and analyse traffic.</p>
+    <p class="ck-msg" data-i18n="ck.msg">We use cookies to enhance your experience and analyse traffic.</p>
     <div class="ck-actions">
-      <a class="ck-link" href="#contact">Learn more</a>
-      <button class="ck-btn ck-reject" id="ckReject">Decline</button>
-      <button class="ck-btn ck-accept" id="ckAccept">Accept</button>
+      <a class="ck-link" href="#contact" data-i18n="ck.more">Learn more</a>
+      <button class="ck-btn ck-reject" id="ckReject" data-i18n="ck.decline">Decline</button>
+      <button class="ck-btn ck-accept" id="ckAccept" data-i18n="ck.accept">Accept</button>
     </div>
   </div>
 </aside>
 
+<script src="i18n.js?v=321"></script>
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
 <script>
   // smooth scroll (Lenis) — mateixa fluïdesa que la landing; resilient si el CDN falla
