@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Living mark — Infinit®</title>
+<link href="https://api.fontshare.com/v2/css?f[]=satoshi@500,600,700,900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0B0C11; --bg:#F4F2F0; --line:rgba(11,12,17,.13);
+    --sans:"Satoshi",system-ui,sans-serif; --mono:"IBM Plex Mono",monospace;
+    --ease:cubic-bezier(.4,0,.2,1);
+  }
+  *{ box-sizing:border-box; margin:0 }
+  body{ font-family:var(--sans); color:var(--ink); background:var(--bg); padding:clamp(60px,8vw,110px) clamp(20px,5vw,64px) 120px; }
+  h1{ font-weight:500; font-size:clamp(26px,3.4vw,42px); letter-spacing:-.03em; max-width:1280px; margin:0 auto; }
+  .sub{ font-family:var(--mono); font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:rgba(11,12,17,.5); max-width:1280px; margin:10px auto 0; }
+
+  .bar{ max-width:1280px; margin:22px auto 0; display:flex; align-items:center; gap:18px; flex-wrap:wrap; }
+  .bar label{ font-family:var(--mono); font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:rgba(11,12,17,.55); display:inline-flex; align-items:center; gap:10px; }
+  .bar input[type=range]{ width:160px; accent-color:var(--ink); }
+  .bar button{ font-family:var(--mono); font-size:11px; letter-spacing:.12em; text-transform:uppercase; border:1px solid var(--line); background:#F7F5F3; color:var(--ink); padding:8px 14px; border-radius:9px; cursor:pointer; }
+  .bar button.on{ background:var(--ink); color:var(--bg); border-color:var(--ink); }
+
+  .grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:18px; max-width:1280px; margin:clamp(26px,3.4vw,44px) auto 0; }
+  .card{ border:1px solid var(--line); border-radius:16px; padding:clamp(22px,2.2vw,30px); background:#F7F5F3; }
+  .card.dark{ background:var(--ink); color:var(--bg); border-color:transparent; }
+  .card .num{ font-family:var(--mono); font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:rgba(11,12,17,.45); }
+  .card.dark .num{ color:rgba(244,242,240,.45); }
+  .card .nm{ font-weight:600; font-size:16px; margin-top:4px; }
+  .card .note{ font-size:13px; line-height:1.5; color:rgba(11,12,17,.55); margin-top:3px; }
+  .card.dark .note{ color:rgba(244,242,240,.55); }
+  .stage{ display:grid; place-items:center; height:140px; margin-top:14px; }
+  .stage svg{ height:78px; width:auto; color:var(--ink); overflow:visible; }
+  .card.dark .stage svg{ color:var(--bg); }
+  /* both squircles solid = official 7B mark */
+  .stage rect{ fill:currentColor; transform-box:fill-box; transform-origin:center; }
+
+  /* tiny lockup to judge it at logo scale */
+  .lock{ display:flex; align-items:center; gap:11px; margin-top:14px; padding-top:14px; border-top:1px solid var(--line); }
+  .card.dark .lock{ border-color:rgba(244,242,240,.14); }
+  .lock svg{ height:24px; width:auto; color:currentColor; overflow:visible; }
+  .lock rect{ fill:currentColor; transform-box:fill-box; transform-origin:center; }
+  .lock .word{ font-weight:900; font-size:21px; letter-spacing:-.04em; }
+  .lock .reg{ font-size:.45em; vertical-align:super; font-weight:500; }
+
+  /* ===== the animations (group = whole mark, .a/.b = left/right squircle) ===== */
+  /* speed is governed by --t (seconds), set globally and scaled by the slider */
+  svg{ --t:4s; }
+
+  /* 01 Breathe — both squircles inhale/exhale together */
+  .breathe .a,.breathe .b{ animation:breathe var(--t) var(--ease) infinite; }
+  @keyframes breathe{ 0%,100%{ transform:scale(1) } 50%{ transform:scale(1.12) } }
+
+  /* 02 Heartbeat — alternating soft pulse, left then right */
+  .beat .a{ animation:beat var(--t) var(--ease) infinite; }
+  .beat .b{ animation:beat var(--t) var(--ease) infinite; animation-delay:calc(var(--t) * .5); }
+  @keyframes beat{ 0%,70%,100%{ transform:scale(1) } 18%{ transform:scale(1.16) } 30%{ transform:scale(1) } }
+
+  /* 03 Merge — they slide toward the centre (almost ∞) and back */
+  .merge .a{ animation:mergeA var(--t) var(--ease) infinite; }
+  .merge .b{ animation:mergeB var(--t) var(--ease) infinite; }
+  @keyframes mergeA{ 0%,100%{ transform:translateX(0) } 50%{ transform:translateX(26px) } }
+  @keyframes mergeB{ 0%,100%{ transform:translateX(0) } 50%{ transform:translateX(-26px) } }
+
+  /* 04 Rotate — the whole mark turns slowly like an ∞ token */
+  .rotate g{ animation:spin calc(var(--t) * 2.4) linear infinite; transform-box:fill-box; transform-origin:center; }
+  @keyframes spin{ to{ transform:rotate(360deg) } }
+
+  /* 05 Liquid — corners morph round↔square (squircle breathing) */
+  .liquid .a{ animation:liqA var(--t) var(--ease) infinite; }
+  .liquid .b{ animation:liqB var(--t) var(--ease) infinite; }
+  @keyframes liqA{ 0%,100%{ rx:34px; ry:34px } 50%{ rx:14px; ry:40px } }
+  @keyframes liqB{ 0%,100%{ rx:34px; ry:34px } 50%{ rx:40px; ry:14px } }
+
+  /* 06 Seesaw — gentle vertical counter-bob, like floating */
+  .seesaw .a{ animation:bobA var(--t) var(--ease) infinite; }
+  .seesaw .b{ animation:bobB var(--t) var(--ease) infinite; }
+  @keyframes bobA{ 0%,100%{ transform:translateY(0) } 50%{ transform:translateY(-9px) } }
+  @keyframes bobB{ 0%,100%{ transform:translateY(0) } 50%{ transform:translateY(9px) } }
+
+  /* 07 Stretch — width/height breathe in opposition (∞ pulse) */
+  .stretch .a{ animation:stA var(--t) var(--ease) infinite; }
+  .stretch .b{ animation:stB var(--t) var(--ease) infinite; }
+  @keyframes stA{ 0%,100%{ transform:scale(1,1) } 50%{ transform:scale(1.14,.9) } }
+  @keyframes stB{ 0%,100%{ transform:scale(1,1) } 50%{ transform:scale(.9,1.14) } }
+
+  /* 08 Wink — one squircle briefly thins, like a blink/iteration */
+  .wink .b{ animation:wink var(--t) var(--ease) infinite; }
+  @keyframes wink{ 0%,80%,100%{ transform:scaleY(1) } 88%{ transform:scaleY(.12) } 94%{ transform:scaleY(1) } }
+
+  @media (prefers-reduced-motion: reduce){ .stage svg *{ animation:none !important } }
+</style>
+</head>
+<body>
+  <h1>Living mark — el símbol que respira</h1>
+  <p class="sub">Mateixa marca oficial (dos esquircles plens) · 8 maneres subtils de fer-la “viva”</p>
+
+  <div class="bar">
+    <label>Velocitat <input id="speed" type="range" min="0.4" max="2.2" step="0.05" value="1"></label>
+    <button id="toggle" class="on">Animació: ON</button>
+    <span class="sub" style="margin:0">Passa el ratolí per sobre una targeta per veure-la sola, en gran.</span>
+  </div>
+
+  <div class="grid" id="grid"></div>
+
+<script>
+  // mark = two solid squircles on a 240×132 canvas (the official 7B lockup proportions)
+  const MARK = `<g>
+      <rect class="a" x="36" y="22" width="80" height="88" rx="34"/>
+      <rect class="b" x="124" y="22" width="80" height="88" rx="34"/>
+    </g>`;
+
+  const items = [
+    { cls:'breathe', n:'01', nm:'Breathe', note:'Tots dos s’eixamplen i s’encongeixen lentament, com una respiració. El més calmat.', dark:false },
+    { cls:'beat',    n:'02', nm:'Heartbeat', note:'Un batec suau: primer l’esquerra, després la dreta. Té pols, sense ser inquiet.', dark:true },
+    { cls:'merge',   n:'03', nm:'Merge ∞', note:'Llisquen cap al centre fins quasi tocar-se i tornen — el gest de l’infinit.', dark:false },
+    { cls:'rotate',  n:'04', nm:'Rotate', note:'Tota la marca gira molt a poc a poc, com un token que mai s’atura.', dark:false },
+    { cls:'liquid',  n:'05', nm:'Liquid', note:'Les cantonades es transformen de rodones a esveltes — esquircle líquid.', dark:true },
+    { cls:'seesaw',  n:'06', nm:'Float', note:'Pugen i baixen en oposició, com surant. Molt fi, gairebé subliminal.', dark:false },
+    { cls:'stretch', n:'07', nm:'Stretch', note:'Un s’aixafa mentre l’altre s’estira — pulsació equilibrada.', dark:false },
+    { cls:'wink',    n:'08', nm:'Wink', note:'De tant en tant un dels dos “parpelleja”. Un detall amb caràcter.', dark:true },
+  ];
+
+  const grid = document.getElementById('grid');
+  grid.innerHTML = items.map(it => `
+    <div class="card ${it.dark?'dark':''}">
+      <div class="num">${it.n}</div>
+      <div class="nm">${it.nm}</div>
+      <div class="note">${it.note}</div>
+      <div class="stage"><svg class="${it.cls}" viewBox="0 0 240 132">${MARK}</svg></div>
+      <div class="lock">
+        <svg class="${it.cls}" viewBox="0 0 240 132">${MARK}</svg>
+        <span class="word">infinit<span class="reg">®</span></span>
+      </div>
+    </div>`).join('');
+
+  // global speed: scale every svg's --t (base 4s) by the inverse of the slider
+  const speed = document.getElementById('speed');
+  function applySpeed(){
+    const v = parseFloat(speed.value);
+    document.querySelectorAll('.grid svg').forEach(s => s.style.setProperty('--t', (4 / v).toFixed(2) + 's'));
+  }
+  speed.addEventListener('input', applySpeed);
+  applySpeed();
+
+  // on/off
+  const toggle = document.getElementById('toggle');
+  toggle.addEventListener('click', () => {
+    const off = toggle.classList.toggle('off');
+    toggle.classList.toggle('on', !off);
+    toggle.textContent = 'Animació: ' + (off ? 'OFF' : 'ON');
+    document.querySelectorAll('.grid svg *').forEach(el => el.style.animationPlayState = off ? 'paused' : 'running');
+  });
+</script>
+</body>
+</html>
