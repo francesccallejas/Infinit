@@ -1053,8 +1053,11 @@ main > section:not(.hero), main > footer { position: relative; z-index: 1; }
   .cookies { left: 12px; right: 12px; bottom: 12px; padding: 14px; border-radius: var(--r); }
   .ck-inner { flex-direction: column; align-items: stretch; gap: 12px; }
   .ck-msg { min-width: 0; }
-  .ck-actions { justify-content: flex-end; flex-wrap: wrap; }
+  .ck-actions { justify-content: flex-end; flex-wrap: nowrap; gap: 6px; width: 100%; }
   .ck-link { margin-right: auto; }
+  .ck-btn { height: 38px; }
+  .ck-accept { padding: 0 18px; }
+  .ck-reject { padding: 0 10px; }
 }
 
 /* =========================================================================
@@ -1364,31 +1367,29 @@ body.menu-open .mbar { opacity: 0 !important; pointer-events: none; }
 .mmenu-social a { transition: color .25s; }
 .mmenu-social a:hover { color: #fff; }
 .mmenu-clock { color: rgba(255,255,255,.75); }
-/* language switch — segmented pill with a sliding indicator */
-.lang-switch { position: relative; display: inline-flex; padding: 3px; border-radius: 999px;
+/* language switch — collapsible pill: shows the active language, expands on tap to reveal the others */
+.lang { position: relative; display: inline-flex; padding: 3px; border-radius: 999px;
   background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.14); }
-.lang-switch .lang-ind { position: absolute; top: 3px; left: 3px; width: 38px; height: calc(100% - 6px);
-  border-radius: 999px; background: #fff; z-index: 0;
-  transition: transform .42s cubic-bezier(.65,0,.35,1); }
-.lang-switch button { position: relative; z-index: 1; width: 38px; text-align: center;
-  font-family: var(--mono); font-size: 11px; letter-spacing: .04em; color: rgba(255,255,255,.55);
-  background: none; border: 0; padding: 6px 0; cursor: pointer; transition: color .3s var(--ease); }
-.lang-switch button:hover { color: #fff; }
-.lang-switch button.on, .lang-switch button.on:hover { color: var(--ink); }
-.mmenu.on-light .lang-switch { background: rgba(11,12,17,.05); border-color: rgba(11,12,17,.14); }
-.mmenu.on-light .lang-switch .lang-ind { background: var(--ink); }
-.mmenu.on-light .lang-switch button { color: rgba(11,12,17,.5); }
-.mmenu.on-light .lang-switch button:hover { color: var(--ink); }
-.mmenu.on-light .lang-switch button.on, .mmenu.on-light .lang-switch button.on:hover { color: var(--bg); }
-
-/* subtle language switch in the footer (dark) — quieter than the menu one */
-.foot-lang { display: inline-flex; gap: 4px; align-items: center; }
-.foot-lang button { font-family: var(--mono); font-size: 11px; letter-spacing: .1em; text-transform: uppercase;
-  color: rgba(244,242,240,.4); background: none; border: 0; padding: 2px 4px; cursor: pointer;
-  transition: color .25s var(--ease); }
-.foot-lang button:hover { color: rgba(244,242,240,.8); }
-.foot-lang button.on { color: var(--bg); }
-.foot-lang .sep { color: rgba(244,242,240,.22); font-size: 10px; }
+.lang > button { width: 36px; text-align: center; font-family: var(--mono); font-size: 11px; letter-spacing: .04em;
+  color: rgba(255,255,255,.55); background: none; border: 0; padding: 6px 0; border-radius: 999px; cursor: pointer;
+  max-width: 36px; opacity: 1; overflow: hidden; white-space: nowrap;
+  transition: max-width .4s var(--ease), opacity .28s var(--ease), padding .4s var(--ease), color .25s var(--ease), background .25s var(--ease); }
+.lang > button:hover { color: #fff; }
+.lang > button.on, .lang > button.on:hover { color: var(--ink); background: #fff; }
+/* collapsed (default): only the active language shows */
+.lang:not(.open) > button:not(.on) { max-width: 0; opacity: 0; padding: 0; }
+/* light menu variant */
+.mmenu.on-light .lang { background: rgba(11,12,17,.05); border-color: rgba(11,12,17,.14); }
+.mmenu.on-light .lang > button { color: rgba(11,12,17,.5); }
+.mmenu.on-light .lang > button:hover { color: var(--ink); }
+.mmenu.on-light .lang > button.on, .mmenu.on-light .lang > button.on:hover { color: var(--bg); background: var(--ink); }
+/* mobile: socials on their own row, then clock (left) + language pill (right) */
+@media (max-width: 600px) {
+  .mmenu-foot { row-gap: 16px; }
+  .mmenu-social { flex-basis: 100%; order: 1; justify-content: flex-start; }
+  .mmenu-clock { order: 2; }
+  .mmenu-foot .lang { order: 3; }
+}
 
 /* smooth crossfade while swapping languages */
 [data-i18n] { transition: opacity .24s var(--ease), filter .24s var(--ease); }

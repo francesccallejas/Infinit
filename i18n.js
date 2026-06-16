@@ -224,46 +224,35 @@
       var on = b.getAttribute('data-lang') === lang;
       b.classList.toggle('on', on); b.setAttribute('aria-pressed', on ? 'true' : 'false');
     });
-    moveIndicator(lang);
     try { localStorage.setItem('inf_lang', lang); } catch (e) {}
     window.__lang = lang;
   }
 
-  /* slide the pill indicator under the active language (menu switch) */
-  function moveIndicator(lang) {
-    document.querySelectorAll('.lang-switch').forEach(function (sw) {
-      var ind = sw.querySelector('.lang-ind'); if (!ind) return;
-      var btns = sw.querySelectorAll('button');
-      var active = sw.querySelector('button[data-lang="' + lang + '"]');
-      if (!active) return;
-      ind.style.transform = 'translateX(' + (active.offsetLeft - btns[0].offsetLeft) + 'px)';
-    });
+  function closeAll() {
+    document.querySelectorAll('.lang.open').forEach(function (l) { l.classList.remove('open'); });
   }
 
-  var lang = detect();
-  apply(lang, false);
-  // position the indicator without animating on first paint
-  document.querySelectorAll('.lang-switch .lang-ind').forEach(function (i) {
-    var t = i.style.transition; i.style.transition = 'none';
-    requestAnimationFrame(function () { requestAnimationFrame(function () { i.style.transition = t; }); });
-  });
+  apply(detect(), false);
 
   var swapping = false;
   document.addEventListener('click', function (e) {
-    var btn = e.target.closest && e.target.closest('[data-lang]');
-    if (!btn) return;
+    var btn = e.target.closest && e.target.closest('.lang [data-lang]');
+    if (!btn) { closeAll(); return; }          // click elsewhere → collapse the pill
     e.preventDefault();
+    var box = btn.closest('.lang');
     var next = btn.getAttribute('data-lang');
-    if (next === window.__lang || swapping) { moveIndicator(next); return; }
+    // tapping the active language toggles the pill open/closed
+    if (next === window.__lang) { if (box) box.classList.toggle('open'); return; }
+    if (swapping) return;
     swapping = true;
-    moveIndicator(next);                       // slide pill immediately
     document.documentElement.classList.add('lang-swapping');   // fade text out
     setTimeout(function () {
       apply(next, true);                       // swap copy while hidden
       document.documentElement.classList.remove('lang-swapping'); // fade back in
+      closeAll();                              // collapse after choosing
       swapping = false;
     }, 240);
   });
 
-  window.I18N = { apply: apply, dict: DICT, detect: detect, move: moveIndicator };
+  window.I18N = { apply: apply, dict: DICT, detect: detect };
 })();
