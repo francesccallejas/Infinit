@@ -646,7 +646,7 @@ main > section:not(.hero), main > footer { position: relative; z-index: 1; }
   .svc { grid-template-columns: 1fr; gap: 16px; }
   .work-tile .cap .work-tag { letter-spacing: .05em; word-spacing: -1px; }
   .services { padding-bottom: 0; }
-  .work { padding-top: clamp(36px,6vh,64px); padding-bottom: clamp(56px,9vh,90px); }
+  .work { padding-top: clamp(80px,14vh,118px); padding-bottom: clamp(56px,9vh,90px); }
   .studio { padding-top: clamp(64px,10vh,112px); }
   .work-list { position: static; display: flex; flex-direction: column; gap: 28px; min-height: 0; }
   .work-list .work-tile,
