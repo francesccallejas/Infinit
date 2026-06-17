@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,600,700,900&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=327">
+<link rel="stylesheet" href="style.css?v=328">
 <script>try{if(sessionStorage.getItem('inf_seen'))document.documentElement.classList.add('quick-nav');sessionStorage.setItem('inf_seen','1');}catch(e){}</script>
 <style>
   :root{ --grey2:rgba(11,12,17,.55); --mint:#D8F3D6; --mint-ink:#2F8F66; --line:rgba(11,12,17,.13); }
@@ -23,7 +23,7 @@
   body.studio-page .mbar{ animation-delay: .15s; animation-duration: .8s; }
 
   /* HERO — full-bleed conceptual */
-  .hero{ position:relative; height:min(86vh,760px); overflow:hidden; }
+  .hero{ position:relative; width:100vw; left:50%; transform:translateX(-50%); height:min(86vh,760px); overflow:hidden; }
   .hero img{ width:100%; height:100%; object-fit:cover; object-position:center 48%; }
   .hero .scrim{ position:absolute; inset:0; background:linear-gradient(180deg, rgba(8,8,12,.1) 0%, rgba(8,8,12,0) 35%, rgba(8,8,12,.55) 100%); }
   .hero .cap{ position:absolute; left:0; right:0; bottom:clamp(28px,4vw,56px); color:#fff; }
@@ -73,7 +73,7 @@
   .profile .ln svg{ width:14px; height:14px; }
 
   /* CONCEPT band — night lake panorama (same landscape as the hero, another moment) */
-  .meband{ position:relative; height:min(74vh,660px); overflow:hidden; }
+  .meband{ position:relative; width:100vw; left:50%; transform:translateX(-50%); height:min(74vh,660px); overflow:hidden; }
   .meband img{ width:100%; height:100%; object-fit:cover; object-position:center 45%; }
 
   /* VALUE statement */
@@ -89,7 +89,7 @@
   .profile .list .q{ color:var(--ink); }
 
   /* CTA band over warm interior */
-  .cta{ position:relative; min-height:min(60vh,520px); display:grid; place-items:center; text-align:center; overflow:hidden; color:#fff; }
+  .cta{ position:relative; width:100vw; left:50%; transform:translateX(-50%); min-height:min(60vh,520px); display:grid; place-items:center; text-align:center; overflow:hidden; color:#fff; }
   .cta img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center 40%; }
   .cta .scrim{ position:absolute; inset:0; background:rgba(8,8,12,.42); }
   .cta .in{ position:relative; z-index:2; padding:40px; }
@@ -330,7 +330,7 @@
   </div>
 </aside>
 
-<script src="i18n.js?v=327"></script>
+<script src="i18n.js?v=328"></script>
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
 <script>
   // smooth scroll (Lenis) — mateixa fluïdesa que la landing; resilient si el CDN falla
