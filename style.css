@@ -1380,8 +1380,9 @@ body.menu-open .mbar { opacity: 0 !important; pointer-events: none; }
 .lang > button.on, .lang > button.on:hover { color: var(--ink); background: #fff; }
 /* collapsed (default): only the active language shows */
 .lang:not(.open) > button:not(.on) { max-width: 0; opacity: 0; padding: 0; }
-/* in the menu: sits under the Overview card */
+/* in the menu: sits under the Overview card, dropped so its base lines up with the footer row */
 .mmenu-quick .lang { margin-top: 16px; }
+@media (min-width: 761px) { .mmenu-quick .lang { transform: translateY(37px); } }
 /* light menu variant */
 .mmenu.on-light .lang { background: rgba(11,12,17,.05); border-color: rgba(11,12,17,.14); }
 .mmenu.on-light .lang > button { color: rgba(11,12,17,.5); }
