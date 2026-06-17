@@ -809,7 +809,9 @@ main > section:not(.hero), main > footer { position: relative; z-index: 1; }
   .sv-all-grid { grid-template-columns: 1fr; gap: 18px; }
   .kpi-grid { grid-template-columns: 1fr; }
   .foot-top { grid-template-columns: 1fr; gap: 48px; }
-  .foot-base { flex-direction: column; gap: 14px; text-align: center; }
+  .foot-base { flex-direction: row; flex-wrap: wrap; justify-content: center; align-items: center; gap: 12px 18px; text-align: center; }
+  .foot-base > span:first-child { flex-basis: 100%; }   /* location on its own line */
+  .foot-base .lang { order: 2; }                         /* then: © · language pill */
   .foot-tag { order: -1; }
 }
 
@@ -1378,6 +1380,8 @@ body.menu-open .mbar { opacity: 0 !important; pointer-events: none; }
 .lang > button.on, .lang > button.on:hover { color: var(--ink); background: #fff; }
 /* collapsed (default): only the active language shows */
 .lang:not(.open) > button:not(.on) { max-width: 0; opacity: 0; padding: 0; }
+/* in the menu: sits under the Overview card */
+.mmenu-quick .lang { margin-top: 16px; }
 /* light menu variant */
 .mmenu.on-light .lang { background: rgba(11,12,17,.05); border-color: rgba(11,12,17,.14); }
 .mmenu.on-light .lang > button { color: rgba(11,12,17,.5); }
