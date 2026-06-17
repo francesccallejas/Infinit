@@ -196,7 +196,7 @@
 
   function wrapWords(html) {
     return html.replace(/(<[^>]+>)|([^<\s]+)/g, function (m, tag, word) {
-      return tag ? tag : '<span class="wd">' + word + '</span> ';
+      return tag ? tag : '<span class="wd">' + word + '</span>';
     });
   }
 
