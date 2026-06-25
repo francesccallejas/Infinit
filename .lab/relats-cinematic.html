@@ -46,6 +46,18 @@
   .chapter h3{ font-weight:500; font-size:clamp(24px,3vw,42px); letter-spacing:-.02em; margin-bottom:18px; }
   .chapter p{ color:var(--mut); font-size:clamp(16px,1.3vw,19px); line-height:1.7; max-width:58ch; }
   .chapter .tag2{ display:inline-block; margin-top:18px; font-family:var(--mono); font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--orange); border:1px solid var(--orange); border-radius:999px; padding:6px 12px; }
+  /* chapters as image + text rows (alternating) */
+  .chapters{ padding:clamp(20px,3vw,30px) 0; }
+  .chap{ display:grid; grid-template-columns:1.05fr 1fr; gap:clamp(28px,5vw,72px); align-items:center; padding:clamp(46px,6vw,84px) 0; border-top:1px solid var(--line); }
+  .chap:nth-child(even) .media{ order:2; }
+  @media(max-width:760px){ .chap{ grid-template-columns:1fr; gap:24px; } .chap:nth-child(even) .media{ order:0; } }
+  .chap .media{ border-radius:18px; overflow:hidden; aspect-ratio:4/3; background:#000; }
+  .chap .media img{ width:100%; height:100%; object-fit:cover; transition:transform 1s var(--ease); }
+  .chap:hover .media img{ transform:scale(1.04); }
+  .chap .idx2{ font-family:var(--mono); font-size:12px; letter-spacing:.16em; text-transform:uppercase; color:var(--orange); }
+  .chap h3{ font-weight:500; font-size:clamp(26px,3.2vw,44px); letter-spacing:-.025em; line-height:1.05; margin:12px 0 16px; }
+  .chap p{ color:var(--mut); font-size:clamp(16px,1.25vw,19px); line-height:1.7; max-width:46ch; }
+  .chap .tag2{ display:inline-block; margin-top:18px; font-family:var(--mono); font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--orange); border:1px solid var(--orange); border-radius:999px; padding:6px 12px; }
   /* "behind web" — staying ahead as backdrop with a browser mock */
   .webshot{ position:relative; min-height:92vh; display:grid; place-items:center; overflow:hidden; padding:60px 0; }
   .webshot .bgi{ position:absolute; inset:0; }
@@ -121,11 +133,16 @@
     <p class="r d1">“We are your global trusted partner in <em>innovative and safety covering solutions.</em>”</p>
   </div></section>
 
-  <div class="wrap">
-    <section class="chapter"><div class="idx">01</div><div><h3 class="r">The challenge</h3><p class="r d1">Relats isn’t just a manufacturer — it’s a partner protecting what moves the world, from e-mobility to wind energy. But its brand read like a component supplier, not the innovation-led leader it has become.</p><span class="tag2 r d1">Positioning</span></div></section>
-    <section class="chapter"><div class="idx">02</div><div><h3 class="r">The idea</h3><p class="r d1">One line to lead everything: <em>anticipating what’s around the bend.</em> A confident story built on partnerships with industry leaders and innovators who share a commitment to excellence and cutting-edge technology.</p><span class="tag2 r d1">Strategy</span></div></section>
-    <section class="chapter"><div class="idx">03</div><div><h3 class="r">The build</h3><p class="r d1">A vivid system — orange, electric blue and green over warm greys — a colour-overlap mark and a fast, scalable website. Technical where it matters, human where it counts. Built for products rated Shock&nbsp;Shield, −40&nbsp;°C to +155&nbsp;°C.</p><span class="tag2 r d1">Identity · Digital</span></div></section>
-  </div>
+  <section class="chapters"><div class="wrap">
+    <div class="chap r"><div class="media"><img src="relats-assets/sleeve-macro.webp" alt="Relats braided sleeve"></div>
+      <div class="txt"><div class="idx2">01 · The challenge</div><h3>Engineering ahead of its image.</h3><p>Relats isn’t just a manufacturer — it’s a partner protecting what moves the world, from e-mobility to wind energy. But its brand read like a component supplier, not the innovation-led leader it has become.</p><span class="tag2">Positioning</span></div></div>
+
+    <div class="chap r"><div class="media"><img src="relats-assets/aerial-road.webp" alt="A winding road"></div>
+      <div class="txt"><div class="idx2">02 · The idea</div><h3>Anticipating what’s <em>around the bend.</em></h3><p>One line to lead everything — a confident story built on partnerships with industry leaders and innovators who share a commitment to excellence and cutting-edge technology.</p><span class="tag2">Strategy</span></div></div>
+
+    <div class="chap r"><div class="media"><img src="relats-assets/mockup-phone.webp" alt="Relats on mobile"></div>
+      <div class="txt"><div class="idx2">03 · The build</div><h3>A vivid system — on every screen.</h3><p>Orange, electric blue and green over warm greys, a colour-overlap mark and a fast, scalable website. Technical where it matters, human where it counts. Built for products rated Shock Shield, −40&nbsp;°C to +155&nbsp;°C.</p><span class="tag2">Identity · Digital</span></div></div>
+  </div></section>
 
   <!-- Staying ahead as backdrop, brand applied to web -->
   <section class="webshot">
