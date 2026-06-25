@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Relats — 5 case studies (lab)</title>
+<link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,600,700,900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{ --ink:#12110F; --bg:#F5F3F0; --red:#E1251B; --mut:rgba(18,17,15,.55); --line:rgba(18,17,15,.12);
+    --sans:"Satoshi",system-ui,sans-serif; --serif:"Instrument Serif",serif; --mono:"IBM Plex Mono",monospace; }
+  *{box-sizing:border-box;margin:0}
+  body{ font-family:var(--sans); background:var(--bg); color:var(--ink); padding:clamp(40px,7vw,100px) clamp(20px,5vw,80px) 120px; }
+  .eb{ font-family:var(--mono); font-size:11px; letter-spacing:.2em; text-transform:uppercase; color:var(--mut); }
+  h1{ font-weight:500; font-size:clamp(34px,6vw,76px); letter-spacing:-.035em; line-height:1; margin:14px 0 8px; }
+  h1 em{ font-family:var(--serif); font-style:normal; color:var(--red); }
+  .sub{ color:var(--mut); font-size:clamp(15px,1.3vw,19px); max-width:54ch; line-height:1.6; margin-top:18px; }
+  .grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:18px; margin-top:clamp(40px,5vw,70px); }
+  a.card{ display:block; text-decoration:none; color:inherit; border:1px solid var(--line); border-radius:18px; overflow:hidden; background:#fff;
+    transition:transform .4s cubic-bezier(.2,.8,.2,1), box-shadow .4s; }
+  a.card:hover{ transform:translateY(-6px); box-shadow:0 30px 60px -30px rgba(18,17,15,.3); }
+  .card .top{ height:150px; display:grid; place-items:center; position:relative; overflow:hidden; }
+  .card .num{ font-family:var(--mono); font-size:12px; letter-spacing:.16em; color:#fff; opacity:.8; position:absolute; top:14px; left:16px; z-index:2; }
+  .card .nm{ font-weight:600; font-size:19px; padding:18px 20px 4px; }
+  .card .ds{ color:var(--mut); font-size:13.5px; line-height:1.5; padding:0 20px 20px; }
+  .t1{ background:linear-gradient(120deg,#f7f5f2,#eceae6); color:var(--ink); }
+  .t2{ background:radial-gradient(120% 120% at 30% 20%, #2a0a08, #120b0a); }
+  .t3{ background:linear-gradient(90deg,#fff 50%,var(--red) 50%); }
+  .t4{ background:var(--ink); }
+  .t5{ background:linear-gradient(120deg,var(--red),#7d120c); }
+  .t2 .pv,.t4 .pv,.t5 .pv{ color:#fff }
+  .pv{ font-family:var(--serif); font-size:34px; }
+  .note{ font-family:var(--mono); font-size:11px; color:var(--mut); margin-top:30px; line-height:1.7; max-width:70ch; }
+</style>
+</head>
+<body>
+  <span class="eb">Lab · Case study explorations</span>
+  <h1>Relats — <em>5 directions</em></h1>
+  <p class="sub">Cinc maneres molt diferents de presentar un cas de client. Mateixa marca i contingut, llenguatges d'UX/UI i d'animació diferents. Tria la que t'agradi (o barreja).</p>
+
+  <div class="grid">
+    <a class="card" href="relats-editorial.html"><div class="top t1"><span class="num">01</span><span class="pv">Aa</span></div><div class="nm">01 · Editorial</div><div class="ds">Net i premium. Tipografia gran, reveals al scroll, ritme de revista. Elegant i llegible.</div></a>
+    <a class="card" href="relats-cinematic.html"><div class="top t2"><span class="num">02</span><span class="pv" style="color:var(--red)">●</span></div><div class="nm">02 · Cinematic</div><div class="ds">Immersiu i fosc. Imatge a pantalla completa, parallax, capítols i números grans.</div></a>
+    <a class="card" href="relats-split.html"><div class="top t3"><span class="num" style="color:var(--ink)">03</span><span class="pv">▟</span></div><div class="nm">03 · Split sticky</div><div class="ds">Columna fixa amb la info + contingut que llisca al costat. Molt clar i ordenat.</div></a>
+    <a class="card" href="relats-bento.html"><div class="top t4"><span class="num">04</span><span class="pv">▦</span></div><div class="nm">04 · Bento</div><div class="ds">Graella modular: logo, colors, tipo, dades i vídeo en blocs animats amb hover.</div></a>
+    <a class="card" href="relats-kinetic.html"><div class="top t5"><span class="num">05</span><span class="pv">→</span></div><div class="nm">05 · Kinetic</div><div class="ds">Scroll horitzontal i tipografia en moviment. Atrevit i memorable.</div></a>
+  </div>
+
+  <p class="note">Nota: contingut i mètriques de mostra (placeholder) basats en Relats — fabricant de protecció tèrmica/elèctrica i fundes tècniques. El logo s'anima amb el PNG actual; per a la versió final aniria millor un SVG vectorial del logo. El vídeo/reel és un marcador (poster + play) fins que tinguem el material.</p>
+</body>
+</html>

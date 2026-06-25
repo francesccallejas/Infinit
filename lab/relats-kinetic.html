@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Relats — Case (Kinetic)</title>
+<link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,600,700,900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{ --ink:#0C0A09; --bg:#0C0A09; --paper:#F4F1EC; --red:#E1251B; --mut:rgba(244,241,236,.55); --line:rgba(244,241,236,.14);
+    --sans:"Satoshi",system-ui,sans-serif; --serif:"Instrument Serif",serif; --mono:"IBM Plex Mono",monospace; --ease:cubic-bezier(.2,.8,.2,1); }
+  *{box-sizing:border-box;margin:0}
+  body{ font-family:var(--sans); background:var(--bg); color:var(--paper); overflow-x:hidden; }
+  em{ font-family:var(--serif); font-style:normal; color:var(--red); }
+  .eb{ font-family:var(--mono); font-size:11px; letter-spacing:.2em; text-transform:uppercase; color:var(--mut); }
+  .bar{ position:fixed; top:0;left:0;right:0; z-index:60; display:flex; justify-content:space-between; align-items:center; padding:16px clamp(20px,5vw,60px); mix-blend-mode:difference; color:#fff; }
+  .bar a{ color:#fff; text-decoration:none; font-family:var(--mono); font-size:12px; } .bar .mid{ font-weight:600; }
+  /* progress */
+  .prog{ position:fixed; left:0; bottom:0; height:3px; background:var(--red); width:0; z-index:60; }
+  /* horizontal track */
+  .track{ height:420vh; position:relative; }
+  .sticky{ position:sticky; top:0; height:100vh; overflow:hidden; }
+  .panels{ display:flex; height:100vh; width:400vw; will-change:transform; }
+  .panel{ width:100vw; height:100vh; flex:none; padding:clamp(70px,10vh,120px) clamp(24px,6vw,100px); display:flex; flex-direction:column; justify-content:center; position:relative; }
+  .panel .pnum{ position:absolute; top:clamp(60px,10vh,100px); right:clamp(24px,6vw,100px); font-family:var(--mono); font-size:11px; letter-spacing:.16em; color:var(--mut); }
+  /* p1 hero */
+  .p-hero .logo{ height:40px; overflow:hidden; margin-bottom:24px; }
+  .p-hero .logo img{ height:100%; filter:brightness(0) invert(1); }
+  .p-hero h1{ font-weight:500; font-size:clamp(80px,18vw,300px); line-height:.82; letter-spacing:-.05em; }
+  .p-hero .tag{ font-family:var(--serif); color:var(--red); font-size:clamp(30px,6vw,80px); }
+  .p-hero .hint{ margin-top:30px; }
+  /* p2 statement kinetic */
+  .p-say h2{ font-weight:500; font-size:clamp(36px,7vw,110px); line-height:1.04; letter-spacing:-.035em; max-width:16ch; }
+  .p-say h2 em{ color:var(--red); }
+  .marq{ position:absolute; bottom:8vh; left:0; white-space:nowrap; font-weight:900; font-size:clamp(60px,12vw,180px); letter-spacing:-.03em; color:transparent; -webkit-text-stroke:1.4px rgba(244,241,236,.22); opacity:.9; }
+  .marq span{ display:inline-block; padding-right:.4em; }
+  /* p3 brand */
+  .p-brand{ display:grid; grid-template-columns:1fr 1fr; gap:clamp(30px,5vw,80px); align-items:center; }
+  @media(max-width:760px){ .p-brand{ grid-template-columns:1fr; } }
+  .p-brand .big{ font-size:clamp(120px,20vw,320px); font-weight:900; line-height:.8; letter-spacing:-.05em; }
+  .p-brand .sw{ display:flex; gap:10px; margin-top:24px; }
+  .p-brand .sw span{ width:64px; height:64px; border-radius:12px; }
+  .p-brand .specimen .row{ border-top:1px solid var(--line); padding:14px 0; display:flex; justify-content:space-between; align-items:baseline; }
+  .p-brand .specimen .row b{ font-weight:500; font-size:clamp(20px,2.4vw,32px); } .p-brand .specimen .row i{ font-family:var(--mono); font-style:normal; font-size:11px; color:var(--mut); }
+  /* p4 stats/strategy */
+  .p-stat h3{ font-family:var(--mono); font-size:12px; letter-spacing:.16em; text-transform:uppercase; color:var(--red); }
+  .p-stat .grid{ display:flex; gap:clamp(30px,6vw,90px); flex-wrap:wrap; margin-top:30px; }
+  .p-stat .n{ font-weight:500; font-size:clamp(56px,9vw,150px); letter-spacing:-.04em; line-height:.9; }
+  .p-stat .n em{ color:var(--red); } .p-stat .l{ font-family:var(--mono); font-size:11px; color:var(--mut); margin-top:10px; letter-spacing:.1em; text-transform:uppercase; }
+  /* vertical video section after track */
+  .reel{ padding:clamp(60px,10vw,140px) clamp(24px,6vw,100px) clamp(80px,12vw,160px); }
+  .reel .eb{ margin-bottom:18px; display:block; }
+  .reel h2{ font-weight:500; font-size:clamp(30px,5vw,68px); letter-spacing:-.03em; margin-bottom:30px; }
+  .reel .frame{ position:relative; border-radius:20px; overflow:hidden; aspect-ratio:16/9; cursor:pointer; }
+  .reel .frame img{ width:100%; height:100%; object-fit:cover; transition:transform .8s var(--ease); }
+  .reel .frame:hover img{ transform:scale(1.05); }
+  .reel .frame::after{ content:""; position:absolute; inset:0; background:rgba(10,8,7,.4); }
+  .reel .pl{ position:absolute; inset:0; z-index:2; display:grid; place-items:center; }
+  .reel .pl span{ width:92px;height:92px;border-radius:50%;border:1.5px solid rgba(255,255,255,.7);display:grid;place-items:center;transition:.4s; }
+  .reel .frame:hover .pl span{ background:var(--red); border-color:var(--red); }
+  .reel .pl svg{ width:28px;height:28px;margin-left:5px;fill:#fff }
+  .reel .duo{ display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:16px; }
+  @media(max-width:640px){ .reel .duo{ grid-template-columns:1fr; } }
+  .reel .duo .frame{ aspect-ratio:4/3; }
+  .cap{ position:absolute; left:20px; bottom:18px; z-index:2; color:#fff; font-family:var(--mono); font-size:11px; letter-spacing:.1em; text-transform:uppercase; }
+  .foot{ border-top:1px solid var(--line); padding:clamp(40px,6vw,70px) clamp(24px,6vw,100px); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:14px; }
+  .foot a{ color:var(--paper); text-decoration:none; font-weight:600; font-size:clamp(20px,3vw,40px); letter-spacing:-.02em; } .foot .b{ font-family:var(--mono); font-size:11px; color:var(--mut); }
+  /* mobile: disable pinning, stack panels */
+  @media(max-width:860px){
+    .track{ height:auto; } .sticky{ position:static; height:auto; }
+    .panels{ flex-direction:column; width:100%; height:auto; transform:none !important; }
+    .panel{ width:100%; height:auto; min-height:88vh; }
+    .marq{ position:static; margin-top:30px; font-size:clamp(48px,16vw,90px); }
+  }
+</style>
+</head>
+<body>
+  <div class="bar"><a href="relats.html">← Cases</a><span class="mid">Infinit®</span><a href="#reel">Contact ↗</a></div>
+  <div class="prog" id="prog"></div>
+
+  <div class="track" id="track">
+    <div class="sticky">
+      <div class="panels" id="panels">
+        <section class="panel p-hero">
+          <span class="pnum">01 / 04</span>
+          <div class="logo"><img src="../project/assets/clients/relats.png" alt="Relats"></div>
+          <h1>Relats</h1>
+          <div class="tag">Ahead of the curve.</div>
+          <div class="hint eb">Scroll → · Industrial insulation · since 1956</div>
+        </section>
+
+        <section class="panel p-say">
+          <span class="pnum">02 / 04</span>
+          <h2>Materials that survive <em>engines, factories</em> and orbit.</h2>
+          <div class="marq"><span>RELATS — AHEAD OF THE CURVE — RELATS — AHEAD OF THE CURVE —</span></div>
+        </section>
+
+        <section class="panel p-brand">
+          <span class="pnum">03 / 04</span>
+          <div><div class="eb">Colour &amp; type</div><div class="big">Aa</div>
+            <div class="sw"><span style="background:var(--red)"></span><span style="background:#7A7C80"></span><span style="background:#EAE7E2"></span><span style="background:#F4F1EC"></span></div>
+          </div>
+          <div class="specimen">
+            <div class="row"><b>Satoshi</b><i>Display / UI</i></div>
+            <div class="row"><b style="font-family:var(--serif)">Instrument Serif</b><i>Accent</i></div>
+            <div class="row"><b style="font-family:var(--mono);font-size:20px">IBM Plex Mono</b><i>Technical</i></div>
+          </div>
+        </section>
+
+        <section class="panel p-stat">
+          <span class="pnum">04 / 04</span>
+          <h3>Strategy · Identity · Digital</h3>
+          <div class="grid">
+            <div><div class="n"><em>65</em>+</div><div class="l">Years engineering</div></div>
+            <div><div class="n">5</div><div class="l">Continents</div></div>
+            <div><div class="n">×<em>3</em></div><div class="l">Qualified leads</div></div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <section class="reel" id="reel">
+    <span class="eb">The films</span>
+    <h2>See Relats <em>in motion.</em></h2>
+    <div class="frame"><img src="../project/assets/images/Relats Brand.webp" alt=""><div class="pl"><span><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></div><div class="cap">Brand film · 1:24</div></div>
+    <div class="duo">
+      <div class="frame"><img src="../project/assets/imagery/relats-industrial.webp" alt=""><div class="pl"><span><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></div><div class="cap">Process · 0:38</div></div>
+      <div class="frame"><img src="../project/assets/imagery/device-knob.webp" alt=""><div class="pl"><span><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></div><div class="cap">Product · 0:22</div></div>
+    </div>
+  </section>
+
+  <footer class="foot"><a href="relats.html">Built to <em>scale.</em></a><span class="b">Infinit® · Relats case · lab</span></footer>
+
+<script>
+  const track=document.getElementById('track'), panels=document.getElementById('panels'), prog=document.getElementById('prog');
+  const mq=matchMedia('(max-width:860px)');
+  function onScroll(){
+    const docProg = scrollY/(document.documentElement.scrollHeight-innerHeight);
+    prog.style.width=(docProg*100)+'%';
+    if(mq.matches) return;
+    const start=track.offsetTop, span=track.offsetHeight-innerHeight;
+    const p=Math.min(Math.max((scrollY-start)/span,0),1);
+    const max=panels.scrollWidth-innerWidth;
+    panels.style.transform='translateX('+(-p*max)+'px)';
+  }
+  addEventListener('scroll',onScroll,{passive:true}); addEventListener('resize',onScroll); onScroll();
+</script>
+</body>
+</html>
