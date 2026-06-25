@@ -7,104 +7,163 @@
 <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,600,700,900&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-  :root{ --ink:#0C0A09; --bg:#0C0A09; --paper:#F4F1EC; --red:#FF5710; --mut:rgba(244,241,236,.6); --line:rgba(244,241,236,.14);
+  :root{
+    --ink:#1C1C1C; --bg:#1C1C1C; --paper:#F5F1ED; --grey:#E0DBD7;
+    --orange:#FF5710; --orange2:#FF9E2C; --blue:#3131FF; --green:#42CC8B;
+    --mut:rgba(245,241,237,.6); --line:rgba(245,241,237,.14);
     --sans:"Satoshi",system-ui,sans-serif; --serif:"Instrument Serif",serif; --mono:"IBM Plex Mono",monospace; --ease:cubic-bezier(.2,.8,.2,1); }
   *{box-sizing:border-box;margin:0}
-  html{scroll-behavior:smooth}
   body{ font-family:var(--sans); background:var(--bg); color:var(--paper); overflow-x:hidden; }
   .wrap{ width:100%; max-width:1280px; margin:0 auto; padding-inline:clamp(20px,5vw,72px); }
   .eb{ font-family:var(--mono); font-size:11px; letter-spacing:.22em; text-transform:uppercase; color:var(--mut); }
-  em{ font-family:var(--serif); font-style:normal; color:var(--red); }
+  em{ font-family:var(--serif); font-style:normal; color:var(--orange); }
   .bar{ position:fixed; top:0;left:0;right:0; z-index:60; display:flex; justify-content:space-between; align-items:center; padding:16px clamp(20px,5vw,72px); }
-  .bar a{ color:#fff; text-decoration:none; font-family:var(--mono); font-size:12px; }
-  .bar .mid{ font-weight:600; }
+  .bar a{ color:#fff; text-decoration:none; font-family:var(--mono); font-size:12px; } .bar .mid{ font-weight:600; }
   .r{ opacity:0; transform:translateY(30px); transition:opacity 1.1s var(--ease), transform 1.1s var(--ease); }
   .r.in{ opacity:1; transform:none; } .r.d1{transition-delay:.12s}.r.d2{transition-delay:.24s}.r.d3{transition-delay:.36s}
-  /* HERO fullscreen */
-  .hero{ position:relative; height:100vh; min-height:600px; overflow:hidden; display:grid; align-items:end; }
-  .hero .bgwrap{ position:absolute; inset:-8% 0; z-index:0; }
-  .hero img{ width:100%; height:100%; object-fit:cover; will-change:transform; }
-  .hero .grad{ position:absolute; inset:0; z-index:1; background:linear-gradient(180deg, rgba(12,10,9,.5) 0%, rgba(12,10,9,0) 30%, rgba(12,10,9,.35) 60%, rgba(12,10,9,.95) 100%); }
-  .hero .tint{ position:absolute; inset:0; z-index:1; background:radial-gradient(120% 90% at 70% 30%, rgba(255,87,16,.28), transparent 60%); mix-blend-mode:screen; }
-  .hero .inner{ position:relative; z-index:2; padding-bottom:clamp(40px,7vw,90px); }
-  .hero .logo{ height:40px; overflow:hidden; margin-bottom:26px; }
-  .hero .logo img{ height:100%; width:auto; filter:brightness(0) invert(1); opacity:0; animation:fade 1s var(--ease) .4s forwards; }
-  @keyframes fade{to{opacity:1}}
-  .hero h1{ font-weight:500; font-size:clamp(64px,14vw,210px); line-height:.86; letter-spacing:-.045em; }
-  .hero .tag{ font-family:var(--serif); color:var(--red); font-size:clamp(26px,5vw,60px); margin-top:4px; }
-  .hero .scroll{ position:absolute; right:clamp(20px,5vw,72px); bottom:36px; z-index:2; font-family:var(--mono); font-size:11px; letter-spacing:.2em; color:var(--mut); writing-mode:vertical-rl; }
+  /* HERO — Staying ahead of the curve, full bleed */
+  .hero{ position:relative; min-height:100vh; overflow:hidden; display:grid; align-items:end; background:var(--paper); }
+  .hero .bgwrap{ position:absolute; inset:-6% 0; z-index:0; }
+  .hero img{ width:100%; height:100%; object-fit:cover; object-position:center; will-change:transform; }
+  .hero .grad{ position:absolute; inset:0; z-index:1; background:linear-gradient(180deg, rgba(245,241,237,.2) 0%, rgba(245,241,237,0) 45%, rgba(28,28,28,.05) 70%, rgba(28,28,28,.92) 100%); }
+  .hero .inner{ position:relative; z-index:2; padding-bottom:clamp(40px,7vw,90px); color:#fff; }
+  .hero .logo{ height:54px; margin-bottom:26px; }
+  .hero .logo img{ height:100%; width:auto; }
+  .hero h1{ font-weight:500; font-size:clamp(54px,11vw,168px); line-height:.86; letter-spacing:-.045em; }
+  .hero h1 .c{ color:var(--orange); font-family:var(--serif); }
+  .hero .scroll{ position:absolute; right:clamp(20px,5vw,72px); bottom:36px; z-index:2; font-family:var(--mono); font-size:11px; letter-spacing:.2em; color:rgba(255,255,255,.7); writing-mode:vertical-rl; }
   /* meta strip */
-  .strip{ display:flex; flex-wrap:wrap; gap:clamp(24px,5vw,80px); padding:clamp(40px,5vw,70px) 0; border-bottom:1px solid var(--line); }
+  .strip{ display:flex; flex-wrap:wrap; gap:clamp(24px,5vw,70px); padding:clamp(40px,5vw,70px) 0; border-bottom:1px solid var(--line); }
   .strip .k{ font-family:var(--mono); font-size:10.5px; letter-spacing:.16em; text-transform:uppercase; color:var(--mut); }
   .strip .v{ font-weight:600; font-size:clamp(15px,1.2vw,18px); margin-top:6px; }
-  /* statement */
-  .say{ padding:clamp(80px,12vw,180px) 0; }
-  .say p{ font-weight:500; font-size:clamp(28px,4.4vw,64px); line-height:1.18; letter-spacing:-.03em; max-width:18ch; }
-  /* chapters with big index */
-  .chapter{ display:grid; grid-template-columns:.5fr 1fr; gap:clamp(20px,4vw,60px); padding:clamp(50px,7vw,100px) 0; border-top:1px solid var(--line); align-items:start; }
+  /* definition statement */
+  .say{ padding:clamp(80px,12vw,170px) 0; }
+  .say .eb{ display:block; margin-bottom:24px; color:var(--orange); }
+  .say p{ font-weight:500; font-size:clamp(26px,4vw,58px); line-height:1.16; letter-spacing:-.03em; max-width:22ch; }
+  /* chapters */
+  .chapter{ display:grid; grid-template-columns:.5fr 1fr; gap:clamp(20px,4vw,60px); padding:clamp(50px,7vw,90px) 0; border-top:1px solid var(--line); align-items:start; }
   @media(max-width:760px){ .chapter{ grid-template-columns:1fr; } }
-  .chapter .idx{ font-weight:500; font-size:clamp(70px,12vw,180px); line-height:.8; letter-spacing:-.05em; color:transparent; -webkit-text-stroke:1.4px rgba(244,241,236,.4); position:sticky; top:90px; }
+  .chapter .idx{ font-weight:500; font-size:clamp(60px,10vw,150px); line-height:.8; letter-spacing:-.05em; color:transparent; -webkit-text-stroke:1.4px rgba(245,241,237,.4); position:sticky; top:90px; }
   .chapter h3{ font-weight:500; font-size:clamp(24px,3vw,42px); letter-spacing:-.02em; margin-bottom:18px; }
   .chapter p{ color:var(--mut); font-size:clamp(16px,1.3vw,19px); line-height:1.7; max-width:58ch; }
-  .chapter .tag2{ display:inline-block; margin-top:18px; font-family:var(--mono); font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--red); border:1px solid var(--red); border-radius:999px; padding:6px 12px; }
-  /* full-bleed video */
-  .vid{ position:relative; height:90vh; min-height:520px; overflow:hidden; display:grid; place-items:center; }
+  .chapter .tag2{ display:inline-block; margin-top:18px; font-family:var(--mono); font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--orange); border:1px solid var(--orange); border-radius:999px; padding:6px 12px; }
+  /* "behind web" — staying ahead as backdrop with a browser mock */
+  .webshot{ position:relative; min-height:92vh; display:grid; place-items:center; overflow:hidden; padding:60px 0; }
+  .webshot .bgi{ position:absolute; inset:0; }
+  .webshot .bgi img{ width:100%; height:100%; object-fit:cover; }
+  .webshot::after{ content:""; position:absolute; inset:0; background:rgba(28,28,28,.4); }
+  .webshot .browser{ position:relative; z-index:2; width:min(900px,86vw); border-radius:14px; overflow:hidden; box-shadow:0 50px 100px -40px rgba(0,0,0,.6); background:var(--paper); color:var(--ink); }
+  .webshot .bzbar{ display:flex; align-items:center; gap:7px; padding:11px 14px; background:#fff; border-bottom:1px solid rgba(28,28,28,.08); }
+  .webshot .bzbar i{ width:10px;height:10px;border-radius:50%; background:var(--grey); display:block; }
+  .webshot .bzbar .url{ margin-left:10px; font-family:var(--mono); font-size:11px; color:rgba(28,28,28,.5); }
+  .webshot .page img{ width:100%; display:block; }
+  .webshot .cap{ position:absolute; left:0; right:0; top:clamp(30px,5vw,60px); z-index:2; text-align:center; color:#fff; }
+  .webshot .cap .eb{ color:rgba(255,255,255,.75); }
+  /* colour SYSTEM — full palette */
+  .palette{ padding:clamp(70px,9vw,130px) 0; }
+  .palette .eb{ display:block; margin-bottom:14px; color:var(--orange); }
+  .palette h2{ font-weight:500; font-size:clamp(26px,3.6vw,50px); letter-spacing:-.03em; margin-bottom:clamp(34px,4vw,54px); }
+  .palette .grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:12px; }
+  @media(max-width:760px){ .palette .grid{ grid-template-columns:repeat(2,1fr); } }
+  .sw{ border-radius:14px; aspect-ratio:4/5; padding:16px; display:flex; flex-direction:column; justify-content:flex-end; }
+  .sw .nm{ font-weight:600; font-size:14px; } .sw .hx{ font-family:var(--mono); font-size:11px; opacity:.8; margin-top:3px; }
+  .type{ display:grid; grid-template-columns:1fr 1fr; gap:clamp(30px,5vw,70px); margin-top:clamp(46px,6vw,80px); align-items:center; }
+  @media(max-width:760px){ .type{ grid-template-columns:1fr; } }
+  .type .big{ font-size:clamp(110px,18vw,260px); line-height:.8; letter-spacing:-.045em; font-weight:900; }
+  .type .row{ border-top:1px solid var(--line); padding:14px 0; display:flex; justify-content:space-between; align-items:baseline; }
+  .type .row b{ font-weight:500; font-size:clamp(20px,2.4vw,32px); } .type .row i{ font-family:var(--mono); font-style:normal; font-size:11px; color:var(--mut); }
+  /* full-bleed product film */
+  .vid{ position:relative; height:86vh; min-height:480px; overflow:hidden; display:grid; place-items:center; }
   .vid img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
-  .vid::after{ content:""; position:absolute; inset:0; background:rgba(10,8,7,.45); }
+  .vid::after{ content:""; position:absolute; inset:0; background:rgba(28,28,28,.42); }
   .vid .ui{ position:relative; z-index:2; text-align:center; }
-  .vid .dot{ width:96px; height:96px; border-radius:50%; border:1.5px solid rgba(255,255,255,.7); display:grid; place-items:center; margin:0 auto 22px; transition:transform .4s var(--ease), background .4s, border-color .4s; cursor:pointer; }
-  .vid .dot:hover{ transform:scale(1.1); background:var(--red); border-color:var(--red); }
+  .vid .dot{ width:96px; height:96px; border-radius:50%; border:1.5px solid rgba(255,255,255,.7); display:grid; place-items:center; margin:0 auto 22px; transition:.4s; cursor:pointer; }
+  .vid .dot:hover{ transform:scale(1.1); background:var(--orange); border-color:var(--orange); }
   .vid .dot svg{ width:30px; height:30px; margin-left:5px; }
   .vid h4{ font-weight:500; font-size:clamp(22px,3vw,40px); letter-spacing:-.02em; }
   .vid .sub{ font-family:var(--mono); font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:var(--mut); margin-top:10px; }
-  /* secondary reel duo */
-  .duo{ display:grid; grid-template-columns:1fr 1fr; gap:16px; padding:clamp(30px,4vw,50px) 0 clamp(80px,12vw,160px); }
-  @media(max-width:640px){ .duo{ grid-template-columns:1fr; } }
-  .duo .clip{ position:relative; aspect-ratio:4/3; border-radius:16px; overflow:hidden; cursor:pointer; }
-  .duo .clip img{ width:100%; height:100%; object-fit:cover; transition:transform .7s var(--ease); }
-  .duo .clip:hover img{ transform:scale(1.06); }
-  .duo .clip::after{ content:""; position:absolute; inset:0; background:rgba(10,8,7,.3); }
-  .duo .clip .pl{ position:absolute; inset:0; z-index:2; display:grid; place-items:center; }
-  .duo .clip .pl span{ width:60px;height:60px;border-radius:50%; border:1.5px solid rgba(255,255,255,.7); display:grid;place-items:center; transition:.4s; }
-  .duo .clip:hover .pl span{ background:var(--red); border-color:var(--red); }
-  .duo .clip .pl svg{ width:18px;height:18px;margin-left:3px;fill:#fff }
-  .duo .clip .t{ position:absolute; left:16px; bottom:14px; z-index:2; font-family:var(--mono); font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:#fff; }
+  /* reel of real images */
+  .reel{ padding:clamp(40px,5vw,70px) 0 clamp(80px,12vw,150px); }
+  .reel .eb{ display:block; margin-bottom:22px; }
+  .reel .row{ display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+  @media(max-width:760px){ .reel .row{ grid-template-columns:1fr 1fr; } }
+  .reel .clip{ position:relative; border-radius:14px; overflow:hidden; aspect-ratio:3/4; cursor:pointer; }
+  .reel .clip.wide{ grid-column:span 2; aspect-ratio:auto; }
+  .reel .clip img{ width:100%; height:100%; object-fit:cover; transition:transform .8s var(--ease); }
+  .reel .clip:hover img{ transform:scale(1.06); }
+  .reel .clip .t{ position:absolute; left:14px; bottom:12px; z-index:2; color:#fff; font-family:var(--mono); font-size:10.5px; letter-spacing:.08em; text-transform:uppercase; }
+  .reel .clip::after{ content:""; position:absolute; inset:0; background:linear-gradient(180deg,transparent 55%,rgba(0,0,0,.45)); }
   .foot{ border-top:1px solid var(--line); padding:clamp(40px,6vw,70px) 0; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:14px; }
-  .foot a{ color:var(--paper); text-decoration:none; font-weight:600; font-size:clamp(20px,3vw,40px); letter-spacing:-.02em; }
-  .foot .b{ font-family:var(--mono); font-size:11px; color:var(--mut); }
+  .foot a{ color:var(--paper); text-decoration:none; font-weight:600; font-size:clamp(20px,3vw,40px); letter-spacing:-.02em; } .foot .b{ font-family:var(--mono); font-size:11px; color:var(--mut); }
 </style>
 </head>
 <body>
   <div class="bar"><a href="relats.html">← Cases</a><span class="mid">Infinit®</span><a href="#reel">Contact ↗</a></div>
 
   <header class="hero">
-    <div class="bgwrap" id="bg"><img src="../project/assets/imagery/relats-industrial.webp" alt="Relats"></div>
-    <div class="grad"></div><div class="tint"></div>
+    <div class="bgwrap" id="bg"><img src="relats-assets/sleeve-macro.webp" alt="Relats braided sleeve"></div>
+    <div class="grad"></div>
     <div class="inner wrap">
-      <div class="logo"><img src="../project/assets/clients/relats.png" alt="Relats"></div>
-      <h1>Relats</h1>
-      <div class="tag">Ahead of the curve.</div>
+      <div class="logo"><img src="relats-assets/logo-r-color.png" alt="Relats"></div>
+      <h1>Staying ahead<br>of <span class="c">the curve.</span></h1>
     </div>
     <span class="scroll">SCROLL ↓</span>
   </header>
 
   <div class="wrap"><div class="strip">
-    <div class="r"><div class="k">Client</div><div class="v">Relats · since 1956</div></div>
-    <div class="r d1"><div class="k">Sector</div><div class="v">Insulation · Automotive · Aerospace</div></div>
-    <div class="r d2"><div class="k">Services</div><div class="v">Strategy · Identity · Digital</div></div>
-    <div class="r d3"><div class="k">Year</div><div class="v">2024</div></div>
+    <div class="r"><div class="k">Client</div><div class="v">Relats</div></div>
+    <div class="r d1"><div class="k">Sector</div><div class="v">Sustainable mobility · Automotive · Energy</div></div>
+    <div class="r d2"><div class="k">Services</div><div class="v">Strategy · Brand &amp; Identity · Digital</div></div>
+    <div class="r d3"><div class="k">Scope</div><div class="v">Positioning · Visual system · Web</div></div>
   </div></div>
 
-  <section class="say"><div class="wrap"><p class="r">Materials that survive <em>engines, factories</em> and orbit — finally with a brand to match.</p></div></section>
+  <section class="say"><div class="wrap">
+    <span class="eb r">The definition</span>
+    <p class="r d1">“We are your global trusted partner in <em>innovative and safety covering solutions.</em>”</p>
+  </div></section>
 
   <div class="wrap">
-    <section class="chapter"><div class="idx">01</div><div><h3 class="r">The challenge</h3><p class="r d1">Six decades of materials science, hidden behind a brand that looked like a commodity supplier. Relats was outgrowing its own image in front of the most innovation-driven clients in the world.</p><span class="tag2 r d1">Positioning</span></div></section>
-    <section class="chapter"><div class="idx">02</div><div><h3 class="r">The idea</h3><p class="r d1">One thought to lead everything: <em>ahead of the curve</em>. We connected automotive, industrial and aerospace under a single, confident narrative rooted in engineering credibility.</p><span class="tag2 r d1">Strategy</span></div></section>
-    <section class="chapter"><div class="idx">03</div><div><h3 class="r">The build</h3><p class="r d1">An industrial-red identity, a precise type system and a fast, full-bleed digital experience — cinematic where it counts, technical where it matters.</p><span class="tag2 r d1">Identity · Digital</span></div></section>
+    <section class="chapter"><div class="idx">01</div><div><h3 class="r">The challenge</h3><p class="r d1">Relats isn’t just a manufacturer — it’s a partner protecting what moves the world, from e-mobility to wind energy. But its brand read like a component supplier, not the innovation-led leader it has become.</p><span class="tag2 r d1">Positioning</span></div></section>
+    <section class="chapter"><div class="idx">02</div><div><h3 class="r">The idea</h3><p class="r d1">One line to lead everything: <em>anticipating what’s around the bend.</em> A confident story built on partnerships with industry leaders and innovators who share a commitment to excellence and cutting-edge technology.</p><span class="tag2 r d1">Strategy</span></div></section>
+    <section class="chapter"><div class="idx">03</div><div><h3 class="r">The build</h3><p class="r d1">A vivid system — orange, electric blue and green over warm greys — a colour-overlap mark and a fast, scalable website. Technical where it matters, human where it counts. Built for products rated Shock&nbsp;Shield, −40&nbsp;°C to +155&nbsp;°C.</p><span class="tag2 r d1">Identity · Digital</span></div></section>
   </div>
 
+  <!-- Staying ahead as backdrop, brand applied to web -->
+  <section class="webshot">
+    <div class="bgi"><img src="relats-assets/sleeve-macro.webp" alt=""></div>
+    <div class="cap"><span class="eb">The brand, online</span></div>
+    <div class="browser r">
+      <div class="bzbar"><i></i><i></i><i></i><span class="url">relats.com</span></div>
+      <div class="page"><img src="relats-assets/staying-ahead.webp" alt="Relats website"></div>
+    </div>
+  </section>
+
+  <!-- full colour system -->
+  <section class="palette"><div class="wrap">
+    <span class="eb r">The system · Colour</span>
+    <h2 class="r d1">Primary, accent and neutral — straight from the playbook.</h2>
+    <div class="grid">
+      <div class="sw r" style="background:var(--orange);color:#fff"><span class="nm">Orange</span><span class="hx">#FF5710</span></div>
+      <div class="sw r" style="background:var(--ink);color:#fff;border:1px solid var(--line)"><span class="nm">Black</span><span class="hx">#1C1C1C</span></div>
+      <div class="sw r d1" style="background:var(--blue);color:#fff"><span class="nm">Blue</span><span class="hx">#3131FF</span></div>
+      <div class="sw r d1" style="background:var(--green);color:#10241a"><span class="nm">Green</span><span class="hx">#42CC8B</span></div>
+      <div class="sw r" style="background:var(--orange2);color:#3a2400"><span class="nm">Orange 02</span><span class="hx">#FF9E2C</span></div>
+      <div class="sw r d1" style="background:var(--grey);color:#1C1C1C"><span class="nm">Ultimate Grey</span><span class="hx">#E0DBD7</span></div>
+      <div class="sw r d1" style="background:var(--paper);color:#1C1C1C"><span class="nm">Warm Grey</span><span class="hx">#F5F1ED</span></div>
+      <div class="sw r d2" style="background:#fff;color:#1C1C1C;border:1px solid var(--line)"><span class="nm">White</span><span class="hx">#FFFFFF</span></div>
+    </div>
+    <div class="type">
+      <div class="big r">Aa</div>
+      <div>
+        <div class="row r"><b>Satoshi</b><i>Display / UI</i></div>
+        <div class="row r d1"><b style="font-family:var(--serif)">Instrument Serif</b><i>Accent / voice</i></div>
+        <div class="row r d2"><b style="font-family:var(--mono);font-size:20px">IBM Plex Mono</b><i>Technical data</i></div>
+      </div>
+    </div>
+  </div></section>
+
   <section class="vid" id="reel">
-    <img src="../project/assets/images/Relats Brand.webp" alt="Relats film">
+    <img src="relats-assets/road.webp" alt="Relats film">
     <div class="ui">
       <div class="dot"><svg viewBox="0 0 24 24" fill="#fff"><path d="M8 5v14l11-7z"/></svg></div>
       <h4 class="r in">The brand film</h4>
@@ -112,10 +171,16 @@
     </div>
   </section>
 
-  <div class="wrap"><section class="duo">
-    <div class="clip r"><img src="../project/assets/imagery/relats-industrial.webp" alt=""><div class="pl"><span><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></div><div class="t">Process · 0:38</div></div>
-    <div class="clip r d1"><img src="../project/assets/imagery/device-knob.webp" alt=""><div class="pl"><span><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></div><div class="t">Product · 0:22</div></div>
-  </section></div>
+  <section class="reel"><div class="wrap">
+    <span class="eb r">Selected frames</span>
+    <div class="row">
+      <div class="clip wide r"><img src="relats-assets/aerial-road.webp" alt=""><span class="t">Around the bend</span></div>
+      <div class="clip r"><img src="relats-assets/sleeve-coiled.webp" alt=""><span class="t">The product</span></div>
+      <div class="clip r"><img src="relats-assets/turbine.webp" alt=""><span class="t">Energy</span></div>
+      <div class="clip r d1"><img src="relats-assets/mockup-phone.webp" alt=""><span class="t">Digital</span></div>
+      <div class="clip wide r d1"><img src="relats-assets/mockup-person.webp" alt=""><span class="t">People</span></div>
+    </div>
+  </div></section>
 
   <footer class="foot"><div class="wrap" style="display:flex;justify-content:space-between;width:100%;align-items:center;flex-wrap:wrap;gap:14px">
     <a href="relats.html">Built to <em>scale.</em></a><span class="b">Infinit® · Relats case · lab</span>
@@ -124,9 +189,8 @@
 <script>
   const io=new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} }),{threshold:.18});
   document.querySelectorAll('.r:not(.in)').forEach(el=>io.observe(el));
-  // hero parallax
   const bg=document.getElementById('bg');
-  addEventListener('scroll',()=>{ const y=scrollY; if(y<window.innerHeight) bg.style.transform='translateY('+(y*0.18)+'px)'; },{passive:true});
+  addEventListener('scroll',()=>{ const y=scrollY; if(y<innerHeight) bg.style.transform='translateY('+(y*0.16)+'px)'; },{passive:true});
 </script>
 </body>
 </html>
