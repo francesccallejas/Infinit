@@ -192,6 +192,11 @@
   .tile .t{ position:absolute; left:15px; bottom:13px; z-index:2; color:#fff; font-family:var(--mono); font-size:11px; letter-spacing:.08em; text-transform:uppercase; }
   .tile::after{ content:""; position:absolute; inset:0; background:linear-gradient(180deg,transparent 58%,rgba(0,0,0,.5)); pointer-events:none; }
 
+  /* BRAND FILM — full-bleed living film */
+  .film{ position:relative; width:100%; background:#000; overflow:hidden; line-height:0; }
+  .film video{ width:100%; height:auto; display:block; }
+  .film .flbl{ position:absolute; left:var(--pad); bottom:clamp(20px,3.4vh,44px); z-index:2; color:#fff; opacity:.78; line-height:1; }
+
   /* FOOTER */
   .foot{ display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; }
   .foot a{ color:inherit; text-decoration:none; font-weight:600; font-size:clamp(24px,3.4vw,52px); letter-spacing:-.025em; }
@@ -240,6 +245,12 @@
       <div class="cap r d1"><p>An overlapping “R” that draws itself — built to live in motion, across every screen and surface.</p></div>
     </div>
   </div></section>
+
+  <!-- BRAND FILM (full-bleed) -->
+  <section class="film">
+    <video src="relats-assets/brand-film.mp4" poster="relats-assets/film-poster.jpg" muted loop playsinline autoplay preload="metadata"></video>
+    <span class="flbl eb">Brand film</span>
+  </section>
 
   <!-- CHAPTERS (light) -->
   <section class="light sec"><div class="wrap">
