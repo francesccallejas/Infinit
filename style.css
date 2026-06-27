@@ -1364,7 +1364,7 @@ body.menu-open .mbar { opacity: 0 !important; pointer-events: none; }
 .mmenu-foot { display: flex; flex-direction: column; align-items: center; gap: clamp(16px,2.2vh,26px); flex: none;
   font-family: var(--mono); font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.55);
   opacity: 0; transition: opacity .5s var(--ease) .46s; }
-.mmenu-texts { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.mmenu-texts { width: 100%; display: flex; align-items: center; justify-content: center; gap: clamp(20px,3vw,44px); }
 .mmenu.open .mmenu-foot { opacity: 1; }
 .mmenu-social { display: flex; gap: clamp(16px, 2vw, 30px); }
 .mmenu-social a { transition: color .25s; }
