@@ -149,6 +149,48 @@
     display:inline-flex; align-items:center; padding:12px 18px; border-radius:999px;
     background:rgba(20,20,20,.55); -webkit-backdrop-filter:blur(12px); backdrop-filter:blur(12px); border:1px solid rgba(255,255,255,.2); }
   .awwwards img{ height:15px; width:auto; filter:brightness(0) invert(1); display:block; }
+  /* top-tier click-to-play */
+  .vframe video{ background:#111; }
+  .vframe .playbtn{ position:absolute; inset:0; z-index:3; display:grid; place-items:center; background:rgba(20,20,20,.14); border:0; cursor:pointer; transition:opacity .5s var(--ease); }
+  .vframe .playbtn .ring{ width:clamp(72px,7vw,98px); aspect-ratio:1; border-radius:50%; border:1.5px solid rgba(255,255,255,.85); display:grid; place-items:center; background:rgba(20,20,20,.32); -webkit-backdrop-filter:blur(6px); backdrop-filter:blur(6px); transition:.4s var(--ease); }
+  .vframe .playbtn:hover .ring{ transform:scale(1.08); background:#fff; }
+  .vframe .playbtn:hover svg{ fill:var(--ink); }
+  .vframe .playbtn svg{ width:30px; height:30px; margin-left:4px; fill:#fff; transition:fill .4s; }
+  .vframe.playing .playbtn{ opacity:0; pointer-events:none; }
+
+  /* chapter media can hold an ambient video */
+  .chap .media video{ width:100%; height:100%; object-fit:cover; display:block; }
+
+  /* logo-motion signature card (light card on dark) */
+  .signature{ margin-top:clamp(64px,10vw,150px); }
+  .lmcard{ background:#fff; border-radius:22px; overflow:hidden; aspect-ratio:16/6.5; display:grid; place-items:center; max-width:720px; }
+  .lmcard video{ width:64%; height:auto; }
+  .signature .cap{ margin-top:16px; max-width:34ch; }
+  .signature .cap p{ font-size:clamp(15px,1.1vw,18px); line-height:1.55; opacity:.6; margin-top:8px; }
+
+  /* EMI full-bleed feature (dark) */
+  .emi-sec{ overflow:hidden; }
+  .emi{ display:grid; grid-template-columns:1.1fr 1fr; align-items:center; gap:clamp(34px,5vw,90px); }
+  @media(max-width:820px){ .emi{ grid-template-columns:1fr; gap:30px; } }
+  .emi .pic{ border-radius:22px; overflow:hidden; aspect-ratio:4/5; }
+  .emi .pic img{ width:100%; height:100%; object-fit:cover; will-change:transform; }
+  .emi h2{ font-weight:500; font-size:clamp(30px,4.4vw,68px); letter-spacing:-.032em; line-height:1.0; }
+  .emi h2 em{ font-family:var(--serif); }
+  .emi p{ font-size:clamp(16px,1.25vw,21px); line-height:1.62; opacity:.72; max-width:42ch; margin-top:22px; }
+
+  /* web section: real device mockup instead of fake browser chrome */
+  .deviceshot{ position:relative; z-index:2; width:min(1040px,90vw); }
+  .deviceshot img{ width:100%; border-radius:12px; box-shadow:0 60px 120px -50px rgba(0,0,0,.7); }
+
+  /* masonry field grid — natural aspect ratio, no crop */
+  .masonry{ columns:3; column-gap:14px; }
+  @media(max-width:1024px){ .masonry{ columns:2; } }
+  @media(max-width:600px){ .masonry{ columns:1; } }
+  .tile{ position:relative; break-inside:avoid; margin-bottom:14px; border-radius:16px; overflow:hidden; }
+  .tile img{ width:100%; height:auto; display:block; transition:transform 1s var(--ease); }
+  .tile:hover img{ transform:scale(1.04); }
+  .tile .t{ position:absolute; left:15px; bottom:13px; z-index:2; color:#fff; font-family:var(--mono); font-size:11px; letter-spacing:.08em; text-transform:uppercase; }
+  .tile::after{ content:""; position:absolute; inset:0; background:linear-gradient(180deg,transparent 58%,rgba(0,0,0,.5)); pointer-events:none; }
 
   /* FOOTER */
   .foot{ display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; }
@@ -189,23 +231,43 @@
       <span class="eb r">The definition</span>
       <p data-words>“We are your global trusted partner in <em>innovative and safety covering solutions.</em>”</p>
     </div>
+
+    <div class="signature">
+      <span class="eb r">The mark, in motion</span>
+      <div class="lmcard r d1" style="margin-top:18px">
+        <video src="relats-assets/logo-motion.mp4" poster="relats-assets/logo-poster.jpg" muted loop playsinline autoplay preload="metadata"></video>
+      </div>
+      <div class="cap r d1"><p>An overlapping “R” that draws itself — built to live in motion, across every screen and surface.</p></div>
+    </div>
   </div></section>
 
   <!-- CHAPTERS (light) -->
   <section class="light sec"><div class="wrap">
-    <div class="chap"><div class="media par r"><img src="relats-assets/sleeve-macro.webp" alt="Braided sleeve" data-parallax></div>
+    <div class="chap"><div class="media r"><video src="relats-assets/tie-cord.mp4" poster="relats-assets/tie-cord-poster.jpg" muted loop playsinline autoplay preload="metadata"></video></div>
       <div class="ctext"><div class="idx2 r">01 · The challenge</div><h3 class="mask"><span>Engineering ahead of its image.</span></h3><p class="r d1">Relats isn’t just a manufacturer — it’s a partner protecting what moves the world, from e-mobility to wind energy. But its brand read like a component supplier, not the innovation-led leader it has become.</p><span class="tag r d2">Positioning</span></div></div>
 
-    <div class="chap"><div class="media par r"><img src="relats-assets/aerial-road.webp" alt="A winding road" data-parallax></div>
+    <div class="chap"><div class="media par r" style="aspect-ratio:16/9"><img src="relats-assets/join-the-ride.webp" alt="Join the ride campaign" data-parallax></div>
       <div class="ctext"><div class="idx2 r">02 · The idea</div><h3 class="mask"><span>Anticipating what’s <em>around the bend.</em></span></h3><p class="r d1">One line to lead everything — a confident story built on partnerships with industry leaders and innovators who share a commitment to excellence and cutting-edge technology.</p><span class="tag r d2">Strategy</span></div></div>
 
-    <div class="chap"><div class="media par r"><img src="relats-assets/mockup-phone.webp" alt="Relats on mobile" data-parallax></div>
+    <div class="chap"><div class="media par r"><img src="relats-assets/brand-context-2.webp" alt="Relats brand on screen" data-parallax></div>
       <div class="ctext"><div class="idx2 r">03 · The build</div><h3 class="mask"><span>A vivid system — on every screen.</span></h3><p class="r d1">Orange, electric blue and green over warm greys, a colour-overlap mark and a fast, scalable website. Technical where it matters, human where it counts.</p><span class="tag r d2">Identity · Digital</span></div></div>
   </div></section>
 
-  <!-- WEB (image) -->
+  <!-- EMI feature (dark) -->
+  <section class="dark sec emi-sec"><div class="wrap">
+    <div class="emi">
+      <div class="pic par r"><img src="relats-assets/emi-hero.webp" alt="EMI shielding sleeve" data-parallax></div>
+      <div>
+        <span class="eb r">Made visible</span>
+        <h2 class="r d1" style="margin-top:14px">Protection you<br>can <em>see.</em></h2>
+        <p class="r d2">From electromagnetic shielding to extreme heat and abrasion, Relats’ covering solutions perform where it’s invisible — so we made the engineering the hero of the story.</p>
+      </div>
+    </div>
+  </div></section>
+
+  <!-- WEB (browser card over nature) -->
   <section class="webshot">
-    <div class="bgi"><img src="relats-assets/sleeve-coiled.webp" alt=""></div>
+    <div class="bgi"><img src="relats-assets/sustainability-web.webp" alt=""></div>
     <div class="head"><span class="eb">The brand, online</span><h2>Staying ahead — now on the web.</h2></div>
     <div class="browser r">
       <div class="bz"><i></i><i></i><i></i><span class="url">relats.com</span></div>
@@ -237,37 +299,32 @@
     </div>
   </div></section>
 
-  <!-- VIDEO -->
-  <section class="vid" id="reel">
-    <img src="relats-assets/sleeve-macro.webp" alt="Relats film">
-    <div class="ui">
-      <div class="dot"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-      <h4>The brand film</h4>
-      <div class="sub">Showreel · 1:24</div>
-    </div>
-  </section>
-
-  <!-- REEL GRID (light) -->
-  <section class="light sec reel"><div class="wrap">
+  <!-- IN THE FIELD (light) -->
+  <section class="light sec reel" id="reel"><div class="wrap">
     <span class="eb r">Selected work</span>
     <h2 class="r d1">In the field.</h2>
 
     <div class="toptier r d1">
       <div class="tt-head"><h3>Top Tier Products — Landing Page</h3><span class="tt-tag">Recognised by Awwwards</span></div>
-      <div class="vframe">
-        <video muted loop playsinline autoplay preload="metadata">
+      <div class="vframe" data-player>
+        <video loop playsinline preload="none" poster="relats-assets/top-tier-poster.jpg">
           <source src="relats-assets/top-tier.mp4" type="video/mp4">
         </video>
+        <button class="playbtn" aria-label="Play video"><span class="ring"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></button>
         <a class="awwwards" href="https://www.awwwards.com/" target="_blank" rel="noopener"><img src="../project/assets/clients/Awwwards-Logo-Vector.svg-.png" alt="Awwwards"></a>
       </div>
     </div>
 
-    <div class="grid3">
-      <div class="clip wide r"><img src="relats-assets/aerial-road.webp" alt=""><span class="t">Around the bend</span></div>
-      <div class="clip r"><img src="relats-assets/sleeve-coiled.webp" alt=""><span class="t">The product</span></div>
-      <div class="clip r"><img src="relats-assets/turbine.webp" alt=""><span class="t">Energy</span></div>
-      <div class="clip r d1"><img src="relats-assets/mockup-phone.webp" alt=""><span class="t">Digital</span></div>
-      <div class="clip wide r d1"><img src="relats-assets/mockup-person.webp" alt=""><span class="t">People</span></div>
+    <div class="masonry">
+      <div class="tile r"><img src="relats-assets/analytics.webp" alt=""><span class="t">Data center</span></div>
+      <div class="tile r"><img src="relats-assets/social-1.webp" alt=""><span class="t">Social</span></div>
+      <div class="tile r"><img src="relats-assets/mobile-app.webp" alt=""><span class="t">App</span></div>
+      <div class="tile r"><img src="relats-assets/offices.webp" alt=""><span class="t">Workplace</span></div>
+      <div class="tile r"><img src="relats-assets/social-2.webp" alt=""><span class="t">Performance</span></div>
+      <div class="tile r"><img src="relats-assets/brand-context-1.webp" alt=""><span class="t">Merchandise</span></div>
+      <div class="tile r"><img src="relats-assets/web-section.webp" alt=""><span class="t">Product site</span></div>
+      <div class="tile r"><img src="relats-assets/web-mockup.webp" alt=""><span class="t">Landing</span></div>
+      <div class="tile r"><img src="relats-assets/mobile.webp" alt=""><span class="t">Mobile</span></div>
     </div>
   </div></section>
 
@@ -298,6 +355,16 @@
     io.unobserve(el);
   }),{threshold:.2});
   document.querySelectorAll('.r,[data-words],.mask').forEach(el=>io.observe(el));
+
+  // top-tier: click to play / pause
+  document.querySelectorAll('[data-player]').forEach(fr=>{
+    const v=fr.querySelector('video'), btn=fr.querySelector('.playbtn');
+    btn.addEventListener('click',()=>{
+      if(v.paused){ v.play(); fr.classList.add('playing'); }
+      else{ v.pause(); fr.classList.remove('playing'); }
+    });
+    v.addEventListener('click',()=>{ if(!v.paused){ v.pause(); fr.classList.remove('playing'); } });
+  });
 
   // live parallax — hero background + chapter media
   const bg=document.getElementById('bg');
