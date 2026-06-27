@@ -279,9 +279,30 @@
   .emi h2{ font-weight:500; font-size:clamp(30px,4.4vw,68px); letter-spacing:-.032em; line-height:1.0; }
   .emi h2 em{ font-family:var(--serif); }
   .emi p{ font-size:clamp(16px,1.25vw,21px); line-height:1.62; opacity:.72; max-width:42ch; margin-top:22px; }
-  .coac-badge{ display:inline-flex; align-items:center; gap:14px; margin-top:clamp(26px,3vw,38px); }
-  .coac-badge img{ height:30px; width:auto; filter:brightness(0) invert(1); opacity:.85; }
-  .coac-badge .lbl{ font-family:var(--mono); font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:var(--em-d); }
+  /* COAC interactive gallery */
+  .coac-lead{ font-size:clamp(16px,1.2vw,20px); line-height:1.6; opacity:.7; max-width:52ch; margin:14px 0 clamp(34px,4vw,54px); }
+  .gallery{ display:flex; flex-direction:column; gap:14px; }
+  .gal-main{ position:relative; border-radius:20px; overflow:hidden; aspect-ratio:16/9; background:#0d0d10; }
+  .gal-main > img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:0; transform:scale(1.05); transition:opacity .6s var(--ease), transform 1.1s var(--ease); }
+  .gal-main > img.on{ opacity:1; transform:none; }
+  .gal-thumbs{ display:grid; grid-template-columns:repeat(5,1fr); gap:12px; }
+  @media(max-width:600px){ .gal-thumbs{ grid-template-columns:repeat(5,1fr); gap:7px; } }
+  .gal-thumbs .th{ border:0; padding:0; background:none; cursor:pointer; border-radius:12px; overflow:hidden; aspect-ratio:16/11; opacity:.42; transition:opacity .3s var(--ease), box-shadow .3s var(--ease); }
+  .gal-thumbs .th img{ width:100%; height:100%; object-fit:cover; display:block; }
+  .gal-thumbs .th:hover{ opacity:.72; }
+  .gal-thumbs .th.on{ opacity:1; box-shadow:0 0 0 2px var(--coral); }
+  .coac-badge{ position:absolute; left:clamp(16px,1.6vw,24px); bottom:clamp(16px,1.6vw,22px); z-index:2; display:inline-flex; align-items:center; gap:12px; padding:11px 18px; border-radius:999px; background:rgba(13,13,16,.5); -webkit-backdrop-filter:blur(12px); backdrop-filter:blur(12px); border:1px solid rgba(255,255,255,.2); }
+  .coac-badge img{ height:24px; width:auto; filter:brightness(0) invert(1); }
+  .coac-badge .lbl{ font-family:var(--mono); font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:rgba(255,255,255,.9); }
+
+  /* STRATEGY — three pillars */
+  .strat .pillars{ display:grid; grid-template-columns:repeat(3,1fr); gap:clamp(28px,4vw,70px); margin-top:clamp(44px,5vw,80px); text-align:center; }
+  @media(max-width:760px){ .strat .pillars{ grid-template-columns:1fr; gap:clamp(44px,9vw,60px); } }
+  .pillar .pic-ic svg{ width:clamp(56px,5vw,72px); height:auto; color:var(--earth); }
+  .pillar h3{ font-weight:600; font-size:clamp(20px,2.1vw,30px); letter-spacing:-.015em; color:var(--earth); margin:clamp(18px,2.2vw,28px) 0 5px; }
+  .pillar .pillar-for{ font-family:var(--mono); font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:var(--coral); margin-bottom:clamp(20px,2.4vw,28px); }
+  .pillar ul{ list-style:none; display:flex; flex-direction:column; gap:11px; }
+  .pillar li{ font-size:clamp(15px,1.15vw,18px); color:rgba(11,12,17,.72); line-height:1.4; }
 
   /* web section: real device mockup instead of fake browser chrome */
   .deviceshot{ position:relative; z-index:2; width:min(1040px,90vw); }
@@ -406,7 +427,7 @@
     <div class="grad"></div>
     <div class="inner">
       <div class="logo"><img src="bunnker-assets/bunnker-logo-white.png" alt="Bunnker"></div>
-      <h1>Architecture<br>made to <em>live in.</em></h1>
+      <h1>Homes made<br>for <em>living.</em></h1>
     </div>
     <span class="cue">Scroll ↓</span>
   </header>
@@ -416,7 +437,7 @@
     <div class="meta">
       <div class="r"><div class="k">Client</div><div class="v">Bunnker</div></div>
       <div class="r d1"><div class="k">My role</div><div class="v">CDMO — Brand Director &amp; Project Lead</div></div>
-      <div class="r d2"><div class="k">Sector</div><div class="v">Architecture · Interior design</div></div>
+      <div class="r d2"><div class="k">Sector</div><div class="v">Proptech · Long-stay rentals</div></div>
       <div class="r d3"><div class="k">Scope</div><div class="v">Strategy · Identity · Digital</div></div>
       <div class="r d4"><div class="k">Recognition</div><div class="v">COAC Award</div></div>
     </div>
@@ -424,7 +445,7 @@
     <div class="about">
       <div class="about-txt">
         <span class="eb r">Who is Bunnker</span>
-        <p class="lead" data-words>Bunnker is an architecture and interior-design studio crafting warm, timeless spaces — from homes to award-winning rooftop lofts — where people actually want to live.</p>
+        <p class="lead" data-words>Bunnker manages long-stay rentals end to end — designing and equipping homes that add value for owners, give tenants a place they love, and help agencies fill properties faster.</p>
       </div>
       <div class="markslot r d1">
         <span class="eb mk">The mark, in motion</span>
@@ -433,8 +454,51 @@
     </div>
 
     <div class="say">
-      <span class="eb r">The definition</span>
-      <p data-words>“We design spaces that feel like home — <em>warm, timeless, made to last.</em>”</p>
+      <span class="eb r">The vision</span>
+      <p data-words>“We make renting a true way of life — <em>homes designed and equipped, by and for living.</em>”</p>
+    </div>
+  </div></section>
+
+  <!-- STRATEGY — three pillars (light) -->
+  <section class="light sec strat"><div class="wrap">
+    <span class="eb r">The strategy</span>
+    <h2 class="r d1">One platform, three ways in.</h2>
+    <div class="pillars">
+      <div class="pillar r d1">
+        <span class="pic-ic"><svg viewBox="0 0 72 72" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M18 34L33 20l8 7"/><path d="M38 22h6v6"/><path d="M24 28v18h5"/><path d="M44 31l2.6 5.3 5.8.8-4.2 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8-4.2-4.1 5.8-.8z"/></svg></span>
+        <h3>Bunnkea tu piso</h3>
+        <p class="pillar-for">For owners</p>
+        <ul>
+          <li>Cobro garantizado</li>
+          <li>Servicio técnico gratuito 24h</li>
+          <li>Equipamos tu vivienda</li>
+          <li>Seguro del hogar</li>
+          <li>Despreocúpate</li>
+        </ul>
+      </div>
+      <div class="pillar r d2">
+        <span class="pic-ic"><svg viewBox="0 0 72 72" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M18 34L33 20l8 7"/><path d="M38 22h6v6"/><path d="M24 28v18h5"/><circle cx="45" cy="40" r="9.5"/><path d="M45 45.5v-11M40.8 39.2l4.2-4.2 4.2 4.2"/></svg></span>
+        <h3>Bunnky</h3>
+        <p class="pillar-for">For tenants</p>
+        <ul>
+          <li>Viviendas equipadas</li>
+          <li>Suministros incluidos</li>
+          <li>Personaliza tu Bunnker</li>
+          <li>Flexibilidad y movilidad</li>
+          <li>Tecnología y eficiencia</li>
+        </ul>
+      </div>
+      <div class="pillar r d3">
+        <span class="pic-ic"><svg viewBox="0 0 72 72" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M18 34L33 20l8 7"/><path d="M38 22h6v6"/><path d="M24 28v18h5"/><path d="M40 40v9h-4.5a1.2 1.2 0 01-1.2-1.2v-6.6a1.2 1.2 0 011.2-1.2z"/><path d="M40 40l4.3-7.6a2.2 2.2 0 013.3 2.2l-1 4.9h6.2a2.2 2.2 0 012.1 2.7l-1.3 6.2a2.2 2.2 0 01-2.1 1.6H40"/></svg></span>
+        <h3>Partner</h3>
+        <p class="pillar-for">For agencies</p>
+        <ul>
+          <li>Ofrece seguridad a tus clientes</li>
+          <li>Diferénciate en el mercado</li>
+          <li>Crecimiento a largo plazo</li>
+          <li>Ofrece innovación</li>
+        </ul>
+      </div>
     </div>
   </div></section>
 
@@ -444,36 +508,72 @@
     <span class="flbl eb">The website, in motion</span>
   </section>
 
-  <!-- CHAPTERS (light) -->
-  <section class="light sec"><div class="wrap">
-    <div class="chap"><div class="media par r"><img src="bunnker-assets/int-01.webp" alt="Interior by Bunnker" data-parallax></div>
-      <div class="ctext"><div class="idx2 r">01 · The space</div><h3 class="mask"><span>Rooms that <em>breathe.</em></span></h3><p class="r d1">Every project starts from how it will be lived — light, flow and warmth come before anything else. Natural materials, honest textures, and a calm that lasts.</p><span class="tag r d2">Interior design</span></div></div>
-
-    <div class="chap"><div class="media par r"><img src="bunnker-assets/int-07.webp" alt="Interior detail by Bunnker" data-parallax></div>
-      <div class="ctext"><div class="idx2 r">02 · The craft</div><h3 class="mask"><span>Detail you can <em>feel.</em></span></h3><p class="r d1">Wood, stone and light worked by hand. The studio designs down to the joint and the grain — where the difference between good and unforgettable always lives.</p><span class="tag r d2">Architecture</span></div></div>
-
-    <div class="chap"><div class="media par r"><img src="bunnker-assets/int-12.webp" alt="Bunnker home" data-parallax></div>
-      <div class="ctext"><div class="idx2 r">03 · The home</div><h3 class="mask"><span>Built to <em>last.</em></span></h3><p class="r d1">Spaces that age well — timeless over trendy, warm over cold. Homes designed not to impress for a season, but to be loved for a lifetime.</p><span class="tag r d2">Timeless</span></div></div>
-  </div></section>
-
-  <!-- EMI feature (dark) -->
-  <section class="dark sec emi-sec"><div class="wrap">
-    <div class="emi">
-      <div class="pic par r"><img src="bunnker-assets/coac-3.webp" alt="COAC award-winning project" data-parallax></div>
-      <div>
-        <span class="eb r">Recognition</span>
-        <h2 class="r d1" style="margin-top:14px">Recognised by<br>the <em>COAC.</em></h2>
-        <p class="r d2">An award-winning rooftop home — wood, brick and light opening onto the Barcelona skyline — honoured by the Col·legi d'Arquitectes de Catalunya for architecture that puts living first.</p>
-        <span class="coac-badge r d2"><img src="../../project/assets/clients/Coac.png" alt="COAC"><span class="lbl">COAC Award</span></span>
+  <!-- COAC AWARD — interactive gallery (dark) -->
+  <section class="dark sec coac-sec"><div class="wrap">
+    <span class="eb r">Recognition · COAC Award</span>
+    <h2 class="r d1">An award-winning home.</h2>
+    <p class="coac-lead r d1">A rooftop home in Barcelona — wood, brick and light — honoured by the Col·legi d'Arquitectes de Catalunya. Tap through the project.</p>
+    <div class="gallery r d1">
+      <div class="gal-main">
+        <img src="bunnker-assets/coac-1.webp" class="on" alt="COAC project 1">
+        <img src="bunnker-assets/coac-2.webp" alt="COAC project 2">
+        <img src="bunnker-assets/coac-3.webp" alt="COAC project 3">
+        <img src="bunnker-assets/coac-4.webp" alt="COAC project 4">
+        <img src="bunnker-assets/coac-5.webp" alt="COAC project 5">
+        <span class="coac-badge"><img src="../../project/assets/clients/Coac.png" alt="COAC"><span class="lbl">COAC Award</span></span>
+      </div>
+      <div class="gal-thumbs">
+        <button class="th on" type="button" aria-label="Photo 1"><img src="bunnker-assets/coac-1.webp" alt=""></button>
+        <button class="th" type="button" aria-label="Photo 2"><img src="bunnker-assets/coac-2.webp" alt=""></button>
+        <button class="th" type="button" aria-label="Photo 3"><img src="bunnker-assets/coac-3.webp" alt=""></button>
+        <button class="th" type="button" aria-label="Photo 4"><img src="bunnker-assets/coac-4.webp" alt=""></button>
+        <button class="th" type="button" aria-label="Photo 5"><img src="bunnker-assets/coac-5.webp" alt=""></button>
       </div>
     </div>
   </div></section>
 
-  <!-- ART DIRECTION (full-bleed) -->
-  <section class="webshot">
-    <div class="bgi"><img src="bunnker-assets/art-03.webp" alt=""></div>
-    <div class="head"><span class="eb">Art direction</span><h2>The feeling,<br>before the space.</h2></div>
-  </section>
+  <!-- ART DIRECTION — brand photography (light) -->
+  <section class="light sec"><div class="wrap">
+    <span class="eb r">Art direction</span>
+    <h2 class="r d1">The feeling, before the space.</h2>
+    <div class="masonry r d1">
+      <div class="tile"><img src="bunnker-assets/art-01.webp" alt=""></div>
+      <div class="tile"><img src="bunnker-assets/art-02.webp" alt=""></div>
+      <div class="tile"><img src="bunnker-assets/art-03.webp" alt=""></div>
+      <div class="tile"><img src="bunnker-assets/art-04.webp" alt=""></div>
+      <div class="tile"><img src="bunnker-assets/art-05.webp" alt=""></div>
+      <div class="tile"><img src="bunnker-assets/art-06.webp" alt=""></div>
+      <div class="tile"><img src="bunnker-assets/art-07.webp" alt=""></div>
+      <div class="tile"><img src="bunnker-assets/art-08.webp" alt=""></div>
+      <div class="tile"><img src="bunnker-assets/art-09.webp" alt=""></div>
+      <div class="tile"><img src="bunnker-assets/art-10.webp" alt=""></div>
+      <div class="tile"><img src="bunnker-assets/art-11.webp" alt=""></div>
+    </div>
+  </div></section>
+
+  <!-- INTERIORISME (dark) -->
+  <section class="dark sec" id="reel"><div class="wrap">
+    <span class="eb r">Interior design</span>
+    <h2 class="r d1">Spaces, in detail.</h2>
+    <div class="masonry r d1">
+      <div class="tile"><img src="bunnker-assets/int-01.webp" alt=""></div>
+      <div class="tile"><img src="bunnker-assets/int-02.webp" alt=""></div>
+      <div class="tile"><img src="bunnker-assets/int-03.webp" alt=""></div>
+      <div class="tile"><img src="bunnker-assets/int-04.webp" alt=""></div>
+      <div class="tile"><img src="bunnker-assets/int-05.webp" alt=""></div>
+      <div class="tile"><img src="bunnker-assets/int-06.webp" alt=""></div>
+      <div class="tile"><img src="bunnker-assets/int-07.webp" alt=""></div>
+      <div class="tile"><img src="bunnker-assets/int-08.webp" alt=""></div>
+      <div class="tile"><img src="bunnker-assets/int-09.webp" alt=""></div>
+      <div class="tile"><img src="bunnker-assets/int-10.webp" alt=""></div>
+      <div class="tile"><img src="bunnker-assets/int-11.webp" alt=""></div>
+      <div class="tile"><img src="bunnker-assets/int-12.webp" alt=""></div>
+      <div class="tile"><img src="bunnker-assets/int-13.webp" alt=""></div>
+      <div class="tile"><img src="bunnker-assets/int-14.webp" alt=""></div>
+      <div class="tile"><img src="bunnker-assets/int-15.webp" alt=""></div>
+      <div class="tile"><img src="bunnker-assets/int-16.webp" alt=""></div>
+    </div>
+  </div></section>
 
   <!-- COLOUR SYSTEM (dark) -->
   <section class="dark sec palette"><div class="wrap">
@@ -492,27 +592,6 @@
         <div class="row r"><b style="font-family:var(--relats)">Suisse Int’l</b><i>Regular</i></div>
         <div class="row r d1"><b style="font-family:var(--relats);font-weight:600">Suisse Int’l</b><i>SemiBold</i></div>
       </div>
-    </div>
-  </div></section>
-
-  <!-- IN THE FIELD (light) -->
-  <section class="light sec reel" id="reel"><div class="wrap">
-    <span class="eb r">Selected work</span>
-    <h2 class="r d1">In the field.</h2>
-
-    <div class="masonry">
-      <div class="tile r"><img src="bunnker-assets/int-03.webp" alt=""></div>
-      <div class="tile r"><img src="bunnker-assets/art-01.webp" alt=""></div>
-      <div class="tile r"><img src="bunnker-assets/int-05.webp" alt=""></div>
-      <div class="tile r"><img src="bunnker-assets/coac-2.webp" alt=""></div>
-      <div class="tile r"><img src="bunnker-assets/int-09.webp" alt=""></div>
-      <div class="tile r"><img src="bunnker-assets/art-05.webp" alt=""></div>
-      <div class="tile r"><img src="bunnker-assets/int-14.webp" alt=""></div>
-      <div class="tile r"><img src="bunnker-assets/coac-4.webp" alt=""></div>
-      <div class="tile r"><img src="bunnker-assets/art-08.webp" alt=""></div>
-      <div class="tile r"><img src="bunnker-assets/int-16.webp" alt=""></div>
-      <div class="tile r"><img src="bunnker-assets/coac-5.webp" alt=""></div>
-      <div class="tile r"><img src="bunnker-assets/art-10.webp" alt=""></div>
     </div>
   </div></section>
 
@@ -568,6 +647,15 @@
 
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
 <script>
+  // COAC interactive gallery — click a thumb to enlarge it
+  document.querySelectorAll('.gallery').forEach(g=>{
+    const mains=[...g.querySelectorAll('.gal-main > img')], ths=[...g.querySelectorAll('.gal-thumbs .th')];
+    ths.forEach((th,i)=> th.addEventListener('click',()=>{
+      mains.forEach((m,j)=>m.classList.toggle('on', j===i));
+      ths.forEach((t,j)=>t.classList.toggle('on', j===i));
+    }));
+  });
+
   // footer language pill — collapsible (expand on click, select, collapse)
   document.querySelectorAll('.lang').forEach(pill=>{
     pill.addEventListener('click',e=>{
