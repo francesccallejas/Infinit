@@ -16,7 +16,13 @@
     --sans:"Satoshi",system-ui,sans-serif; --serif:"Instrument Serif",serif; --mono:"IBM Plex Mono",monospace;
     --relats:"Roobert","Hanken Grotesk",Inter,sans-serif; --relats-mono:"DM Mono",ui-monospace,monospace; }
   *{box-sizing:border-box;margin:0}
-  html{ -webkit-text-size-adjust:100%; }
+  html{ -webkit-text-size-adjust:100%; scrollbar-width:none; -ms-overflow-style:none; }
+  html::-webkit-scrollbar, body::-webkit-scrollbar{ width:0; height:0; display:none; }
+  /* custom overlay scrollbar — pill only, over the page, shows on scroll then fades (same as home) */
+  .uscroll{ position:fixed; top:0; right:5px; width:6px; border-radius:999px; z-index:130; background:rgba(120,122,130,.55); opacity:0; pointer-events:auto; cursor:grab; touch-action:none; transition:opacity .4s var(--ease), background .2s var(--ease); will-change:transform; }
+  .uscroll.show{ opacity:1; }
+  .uscroll:hover, .uscroll.drag{ background:rgba(86,88,96,.8); width:8px; }
+  .uscroll.drag{ cursor:grabbing; }
   body{ font-family:var(--sans); font-weight:500; background:var(--ink); color:var(--paper); -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; text-rendering:optimizeLegibility; overflow-x:hidden; }
   .wrap{ width:100%; max-width:var(--maxw); margin-inline:auto; padding-inline:var(--pad); }
   .eb{ font-family:var(--mono); font-weight:400; font-size:12px; letter-spacing:.2em; text-transform:uppercase; color:var(--eb,rgba(244,242,240,.5)); }
@@ -594,17 +600,26 @@
   });
   document.addEventListener('click',e=>{ if(!e.target.closest('.lang')) document.querySelectorAll('.lang.open').forEach(p=>p.classList.remove('open')); });
 
-  // overlay menu open/close
+  // overlay menu — hover to open + click toggle (same as home)
   (function(){
-    const panel=document.getElementById('panel'), mb=document.getElementById('menuBtn'), mc=document.getElementById('menuClose');
-    if(!panel) return;
-    const open=()=>{ panel.classList.add('open'); panel.setAttribute('aria-hidden','false'); document.body.classList.add('menu-open'); mb&&mb.setAttribute('aria-expanded','true'); };
-    const close=()=>{ panel.classList.remove('open'); panel.setAttribute('aria-hidden','true'); document.body.classList.remove('menu-open'); mb&&mb.setAttribute('aria-expanded','false'); };
-    mb&&mb.addEventListener('click',open);
-    mc&&mc.addEventListener('click',close);
-    panel.addEventListener('click',e=>{ if(e.target===panel) close(); });
-    panel.querySelectorAll('.mmenu-nav a, .mmenu-meta a').forEach(a=>a.addEventListener('click',close));
-    document.addEventListener('keydown',e=>{ if(e.key==='Escape') close(); });
+    const b=document.getElementById('menuBtn'), p=document.getElementById('panel'), c=document.getElementById('menuClose'), bar=document.getElementById('mbar');
+    if(!p||!b) return;
+    function set(o){
+      if(o && bar) p.classList.toggle('on-light', bar.classList.contains('on-light'));
+      p.classList.toggle('open',o); b.classList.toggle('open',o); b.setAttribute('aria-expanded',o); p.setAttribute('aria-hidden',!o); document.body.classList.toggle('menu-open',o);
+      document.body.style.overflow = o ? 'hidden' : '';
+      if(lenis){ o ? lenis.stop() : lenis.start(); }
+    }
+    const card=p.querySelector('.mmenu-card');
+    if(matchMedia('(hover: hover)').matches){
+      b.addEventListener('mouseenter',()=>set(true));
+      card && card.addEventListener('mouseleave',()=>set(false));
+    }
+    b.addEventListener('click',()=>set(!p.classList.contains('open')));
+    c && c.addEventListener('click',()=>set(false));
+    p.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>set(false)));
+    p.addEventListener('click',e=>{ if(e.target===p) set(false); });
+    document.addEventListener('keydown',e=>{ if(e.key==='Escape') set(false); });
   })();
   // Barcelona clock
   (function(){
@@ -683,6 +698,24 @@
     }
     if(lenis) lenis.on('scroll',upd); else addEventListener('scroll',upd,{passive:true});
     addEventListener('resize',upd); upd();
+  })();
+
+  // custom overlay scrollbar — pill, draggable (same as home)
+  (function(){
+    const sb=document.createElement('div'); sb.className='uscroll'; sb.setAttribute('aria-hidden','true'); document.body.appendChild(sb);
+    let docH=0, vh=0, thumbH=0, hideT=null, dragging=false; const MIN=40;
+    function metrics(){ docH=document.documentElement.scrollHeight; vh=innerHeight; const ratio=vh/docH; thumbH=Math.max(MIN,Math.round(vh*ratio)); sb.style.height=thumbH+'px'; sb.style.display=docH<=vh+4?'none':'block'; }
+    function place(){ const max=docH-vh; const pr=max>0?Math.min(Math.max(scrollY/max,0),1):0; sb.style.transform='translateY('+(pr*(vh-thumbH)).toFixed(1)+'px)'; }
+    function flash(){ sb.classList.add('show'); if(hideT) clearTimeout(hideT); if(!dragging) hideT=setTimeout(()=>sb.classList.remove('show'),1100); }
+    function onScroll(){ place(); flash(); }
+    sb.addEventListener('pointerdown',e=>{ e.preventDefault(); dragging=true; sb.classList.add('drag','show'); sb.setPointerCapture(e.pointerId);
+      const startY=e.clientY, startScroll=scrollY, max=docH-vh, range=vh-thumbH;
+      function move(ev){ const dy=ev.clientY-startY; const target=startScroll+(range>0?dy/range*max:0); const y=Math.min(Math.max(target,0),max); if(lenis) lenis.scrollTo(y,{immediate:true,force:true}); else scrollTo(0,y); }
+      function up(){ dragging=false; sb.classList.remove('drag'); try{sb.releasePointerCapture(e.pointerId);}catch(_){} removeEventListener('pointermove',move); removeEventListener('pointerup',up); flash(); }
+      addEventListener('pointermove',move); addEventListener('pointerup',up);
+    });
+    if(lenis) lenis.on('scroll',onScroll); else addEventListener('scroll',onScroll,{passive:true});
+    addEventListener('resize',()=>{ metrics(); place(); }); metrics(); place();
   })();
 </script>
 </body>
