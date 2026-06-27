@@ -138,6 +138,18 @@
   .clip:hover img{ transform:scale(1.05); }
   .clip .t{ position:absolute; left:16px; bottom:14px; z-index:2; color:#fff; font-family:var(--mono); font-size:11px; letter-spacing:.08em; text-transform:uppercase; }
   .clip::after{ content:""; position:absolute; inset:0; background:linear-gradient(180deg,transparent 55%,rgba(0,0,0,.5)); }
+  /* featured: Top Tier Products landing video + Awwwards badge */
+  .toptier{ margin-bottom:clamp(34px,4vw,60px); }
+  .tt-head{ display:flex; align-items:baseline; gap:16px 22px; flex-wrap:wrap; margin-bottom:18px; }
+  .tt-head h3{ font-weight:500; font-size:clamp(22px,2.6vw,40px); letter-spacing:-.025em; }
+  .tt-head .tt-tag{ font-family:var(--mono); font-size:11px; letter-spacing:.12em; text-transform:uppercase; opacity:.5; }
+  .vframe{ position:relative; border-radius:18px; overflow:hidden; aspect-ratio:16/9; background:#111; }
+  .vframe video{ width:100%; height:100%; object-fit:cover; display:block; }
+  .awwwards{ position:absolute; left:clamp(16px,1.6vw,24px); bottom:clamp(16px,1.6vw,22px); z-index:2;
+    display:inline-flex; align-items:center; gap:10px; padding:11px 18px; border-radius:999px;
+    background:rgba(20,20,20,.55); -webkit-backdrop-filter:blur(12px); backdrop-filter:blur(12px); border:1px solid rgba(255,255,255,.2); }
+  .awwwards img{ height:15px; width:auto; filter:brightness(0) invert(1); }
+  .awwwards .lbl{ font-family:var(--mono); font-size:10.5px; letter-spacing:.1em; text-transform:uppercase; color:rgba(255,255,255,.85); }
 
   /* FOOTER */
   .foot{ display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; }
@@ -238,8 +250,17 @@
 
   <!-- REEL GRID (light) -->
   <section class="light sec reel"><div class="wrap">
-    <span class="eb r">Selected frames</span>
+    <span class="eb r">Selected work</span>
     <h2 class="r d1">In the field.</h2>
+
+    <div class="toptier r d1">
+      <div class="tt-head"><h3>Top Tier Products — Landing Page</h3><span class="tt-tag">Recognised by Awwwards</span></div>
+      <div class="vframe">
+        <video src="relats-assets/top-tier.mp4" poster="relats-assets/top-tier-poster.jpg" muted loop playsinline autoplay preload="metadata"></video>
+        <a class="awwwards" href="https://www.awwwards.com/" target="_blank" rel="noopener"><img src="../project/assets/clients/Awwwards-Logo-Vector.svg-.png" alt="Awwwards"><span class="lbl">Recognised</span></a>
+      </div>
+    </div>
+
     <div class="grid3">
       <div class="clip wide r"><img src="relats-assets/aerial-road.webp" alt=""><span class="t">Around the bend</span></div>
       <div class="clip r"><img src="relats-assets/sleeve-coiled.webp" alt=""><span class="t">The product</span></div>
