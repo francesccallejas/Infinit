@@ -93,12 +93,12 @@
   .chap .tag{ display:inline-block; margin-top:20px; font-family:var(--mono); font-size:11px; letter-spacing:.1em; text-transform:uppercase; opacity:.55; border:1px solid currentColor; border-radius:999px; padding:7px 14px; }
 
   /* WEB — staying ahead backdrop + browser */
-  .webshot{ position:relative; min-height:96vh; display:grid; place-items:center; overflow:hidden; padding:80px var(--pad); }
+  .webshot{ position:relative; min-height:92vh; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:clamp(30px,5vh,60px); overflow:hidden; padding:clamp(90px,13vh,150px) var(--pad); }
   .webshot .bgi{ position:absolute; inset:0; }
   .webshot .bgi img{ width:100%; height:100%; object-fit:cover; }
-  .webshot::after{ content:""; position:absolute; inset:0; background:rgba(28,28,28,.5); }
-  .webshot .head{ position:absolute; top:clamp(40px,8vh,90px); left:var(--pad); right:var(--pad); z-index:2; color:#fff; }
-  .webshot .head h2{ font-weight:500; font-size:clamp(26px,3.4vw,48px); letter-spacing:-.025em; margin-top:10px; }
+  .webshot::after{ content:""; position:absolute; inset:0; background:linear-gradient(180deg,rgba(16,16,16,.6) 0%,rgba(16,16,16,.32) 45%,rgba(16,16,16,.5) 100%); }
+  .webshot .head{ position:relative; z-index:2; text-align:center; color:#fff; text-shadow:0 2px 30px rgba(0,0,0,.5); }
+  .webshot .head h2{ font-weight:500; font-size:clamp(28px,3.6vw,52px); letter-spacing:-.025em; margin-top:10px; }
   .browser{ position:relative; z-index:2; width:min(1080px,90vw); border-radius:16px; overflow:hidden; box-shadow:0 60px 120px -50px rgba(0,0,0,.7); background:var(--paper); }
   .browser .bz{ display:flex; align-items:center; gap:7px; padding:13px 16px; background:#fff; }
   .browser .bz i{ width:11px;height:11px;border-radius:50%; background:var(--grey); display:block; }
@@ -196,8 +196,8 @@
   .ana .browser{ margin:clamp(40px,5.5vw,80px) auto 0; }
 
   /* BRAND FILM — full-bleed living film */
-  .film{ position:relative; width:100%; background:#000; overflow:hidden; line-height:0; }
-  .film video{ width:100%; height:auto; display:block; }
+  .film{ position:relative; width:100%; background:var(--ink); overflow:hidden; line-height:0; font-size:0; }
+  .film video{ width:100%; height:auto; display:block; vertical-align:bottom; margin-bottom:-1px; }
   .film .flbl{ position:absolute; left:var(--pad); bottom:clamp(20px,3.4vh,44px); z-index:2; color:#fff; opacity:.78; line-height:1; }
 
   /* FOOTER */
@@ -283,7 +283,7 @@
   <!-- WEB (browser card over nature) -->
   <section class="webshot">
     <div class="bgi"><img src="relats-assets/sustainability-web.webp" alt=""></div>
-    <div class="head"><span class="eb">The brand, online</span><h2>Staying ahead — now on the web.</h2></div>
+    <div class="head"><span class="eb">The brand, online</span><h2>Now live<br>on the web.</h2></div>
     <div class="browser r">
       <div class="bz"><i></i><i></i><i></i><span class="url">relats.com</span></div>
       <div class="page"><img src="relats-assets/staying-ahead.webp" alt="Relats website"></div>
