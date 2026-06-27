@@ -1361,7 +1361,7 @@ body.menu-open .mbar { opacity: 0 !important; pointer-events: none; }
 .oc-ar { width: 30px; height: 30px; border-radius: 50%; background: rgba(255,255,255,.12); display: grid; place-items: center; flex: none; color: #fff; }
 .oc-ar svg { width: 15px; height: 15px; }
 
-.mmenu-foot { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; flex: none;
+.mmenu-foot { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; flex-wrap: wrap; flex: none;
   font-family: var(--mono); font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.55);
   opacity: 0; transition: opacity .5s var(--ease) .46s; }
 .mmenu.open .mmenu-foot { opacity: 1; }
