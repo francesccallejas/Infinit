@@ -56,6 +56,12 @@
   .mbar-dots{ width:32px; height:32px; display:grid; grid-template-columns:repeat(2,auto); grid-template-rows:repeat(2,auto); place-content:center; gap:5px; background:none; border:none; outline:none; padding:0; -webkit-appearance:none; appearance:none; color:inherit; cursor:pointer; transition:transform .55s var(--ease), gap .5s var(--ease), color .45s var(--ease); }
   .mbar-dots span{ width:4.5px; height:4.5px; border-radius:1.5px; background:currentColor; }
   .mbar-dots:hover{ transform:rotate(45deg); gap:2px; color:rgba(160,160,166,.95); }
+  /* adaptive frost — light bar over light sections (same as home) */
+  .mbar.on-light{ background:rgba(255,255,255,.34); color:var(--ink); box-shadow:0 14px 50px rgba(8,8,12,.10); }
+  /* living mark — the right squircle winks now and then (same as home) */
+  .mbar-logo svg rect:nth-of-type(2), .foot-mark svg rect:nth-of-type(2){ transform-box:fill-box; transform-origin:center; animation:markWink 5s var(--ease) 2s infinite; }
+  @keyframes markWink{ 0%,80%,100%{transform:scaleY(1)} 88%{transform:scaleY(.12)} 94%{transform:scaleY(1)} }
+  @media(prefers-reduced-motion:reduce){ .mbar-logo svg rect:nth-of-type(2), .foot-mark svg rect:nth-of-type(2){ animation:none; } }
 
   body.menu-open{ overflow:hidden; }
   .mmenu{ position:fixed; inset:0; z-index:210; pointer-events:none; }
@@ -603,6 +609,14 @@
     const c=document.getElementById('clock'); if(!c) return;
     const tick=()=>{ try{ c.textContent=new Date().toLocaleTimeString('en-GB',{timeZone:'Europe/Madrid',hour12:false})+' BCN'; }catch(e){} };
     tick(); setInterval(tick,1000);
+  })();
+  // adaptive frost — light bar over light sections (same as home)
+  (function(){
+    const bar=document.getElementById('mbar'); if(!bar) return;
+    const secs=[...document.querySelectorAll('main > section')];
+    const lightAt=y=>{ for(const el of secs){ const r=el.getBoundingClientRect(); if(r.top<=y && r.bottom>y) return el.classList.contains('light'); } return false; };
+    const upd=()=>bar.classList.toggle('on-light', lightAt(46));
+    addEventListener('scroll',upd,{passive:true}); addEventListener('resize',upd); upd();
   })();
 
   // smooth scroll like the home
