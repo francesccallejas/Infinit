@@ -101,6 +101,10 @@
   .webshot::after{ content:""; position:absolute; inset:0; background:linear-gradient(180deg,rgba(16,16,16,.6) 0%,rgba(16,16,16,.32) 45%,rgba(16,16,16,.5) 100%); }
   .webshot .head{ position:relative; z-index:2; text-align:center; color:#fff; text-shadow:0 2px 30px rgba(0,0,0,.5); }
   .webshot .head h2{ font-weight:500; font-size:clamp(28px,3.6vw,52px); letter-spacing:-.025em; margin-top:10px; }
+  .seebtn{ display:inline-flex; align-items:center; gap:10px; margin-top:clamp(22px,2.6vw,32px); padding:14px 26px; border-radius:999px; background:#fff; color:var(--ink); font-weight:600; font-size:15px; letter-spacing:-.01em; text-decoration:none; transition:transform .3s var(--ease), gap .3s var(--ease), box-shadow .3s var(--ease); box-shadow:0 14px 40px -16px rgba(0,0,0,.6); }
+  .seebtn:hover{ transform:translateY(-2px); gap:14px; box-shadow:0 20px 46px -16px rgba(0,0,0,.7); }
+  .seebtn .ar{ transition:transform .3s var(--ease); }
+  .seebtn:hover .ar{ transform:translateX(3px); }
   .browser{ position:relative; z-index:2; width:min(1080px,90vw); border-radius:16px; overflow:hidden; box-shadow:0 60px 120px -50px rgba(0,0,0,.7); background:var(--paper); }
   .browser .bz{ display:flex; align-items:center; gap:7px; padding:13px 16px; background:#fff; }
   .browser .bz i{ width:11px;height:11px;border-radius:50%; background:var(--grey); display:block; }
@@ -189,8 +193,7 @@
   .tile{ position:relative; break-inside:avoid; margin-bottom:14px; border-radius:16px; overflow:hidden; }
   .tile img{ width:100%; height:auto; display:block; transition:transform 1s var(--ease); }
   .tile:hover img{ transform:scale(1.04); }
-  .tile .t{ position:absolute; left:15px; bottom:13px; z-index:2; color:#fff; font-family:var(--mono); font-size:11px; letter-spacing:.08em; text-transform:uppercase; }
-  .tile::after{ content:""; position:absolute; inset:0; background:linear-gradient(180deg,transparent 58%,rgba(0,0,0,.5)); pointer-events:none; }
+  .tile .t{ display:none; }
 
   /* ANALYTICS GUIDELINES (dark) */
   .ana-grid{ display:grid; grid-template-columns:1fr 1fr; gap:clamp(40px,5vw,88px); align-items:center; }
@@ -288,7 +291,7 @@
   <!-- WEB (browser card over nature) -->
   <section class="webshot">
     <div class="bgi"><img src="relats-assets/sustainability-web.webp" alt=""></div>
-    <div class="head"><span class="eb">The brand, online</span><h2>Now live<br>on the web.</h2></div>
+    <div class="head"><span class="eb">The brand, online</span><h2>Now live<br>on the web.</h2><a class="seebtn" href="https://www.relats.com" target="_blank" rel="noopener">See it in action <span class="ar">→</span></a></div>
     <div class="browser r">
       <div class="bz"><i></i><i></i><i></i><span class="url">relats.com</span></div>
       <div class="page"><img src="relats-assets/staying-ahead.webp" alt="Relats website"></div>
