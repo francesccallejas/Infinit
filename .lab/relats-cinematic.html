@@ -26,6 +26,18 @@
   .r.in{ opacity:1; transform:none; }
   .r.d1{transition-delay:.12s}.r.d2{transition-delay:.24s}.r.d3{transition-delay:.36s}.r.d4{transition-delay:.48s}
   @media(max-width:760px){ .r{ transform:translateY(18px); transition-duration:.85s,.85s; } }
+  /* word-by-word reveal (statements) — rise + de-blur, staggered */
+  [data-words] .wd{ display:inline-block; opacity:0; transform:translateY(22px); filter:blur(8px);
+    transition:opacity .7s var(--ease-rev), transform .8s var(--ease-rev), filter .7s var(--ease-rev); }
+  [data-words].lit .wd{ opacity:1; transform:none; filter:none; }
+  /* line mask reveal (headings) — slide up from behind a mask */
+  .mask{ display:block; overflow:hidden; padding-bottom:.08em; }
+  .mask > span{ display:block; transform:translateY(112%); transition:transform 1s var(--ease); }
+  .mask.in > span{ transform:none; }
+  /* parallax media */
+  .par{ overflow:hidden; }
+  .par img{ will-change:transform; }
+  @media(prefers-reduced-motion:reduce){ [data-words] .wd,.mask>span{ transition:none; opacity:1; transform:none; filter:none; } }
 
   /* top bar — minimal, blends */
   .bar{ position:fixed; top:0;left:0;right:0; z-index:60; display:flex; justify-content:space-between; align-items:center;
@@ -58,9 +70,9 @@
   .meta{ display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:clamp(34px,4vw,56px) clamp(40px,5vw,90px); max-width:1500px; }
   .meta .k{ font-family:var(--mono); font-size:12px; letter-spacing:.16em; text-transform:uppercase; opacity:.5; }
   .meta .v{ font-weight:600; font-size:clamp(18px,1.5vw,24px); margin-top:12px; line-height:1.3; letter-spacing:-.01em; }
-  /* ABOUT Relats */
-  .about{ margin-top:clamp(70px,11vw,170px); max-width:30ch; }
-  .about .lead{ font-weight:500; font-size:clamp(24px,3vw,44px); line-height:1.26; letter-spacing:-.025em; margin-top:22px; }
+  /* ABOUT Relats — readable lead */
+  .about{ margin-top:clamp(70px,11vw,160px); max-width:46ch; }
+  .about .lead{ font-weight:500; font-size:clamp(19px,1.8vw,28px); line-height:1.5; letter-spacing:-.005em; margin-top:22px; opacity:.92; }
   /* DEFINITION statement */
   .say{ margin-top:clamp(70px,11vw,170px); }
   .say p{ font-weight:500; font-size:clamp(34px,5vw,82px); line-height:1.1; letter-spacing:-.032em; max-width:23ch; margin-top:24px; }
@@ -151,7 +163,7 @@
   <section class="dark sec"><div class="wrap">
     <div class="meta">
       <div class="r"><div class="k">Client</div><div class="v">Relats</div></div>
-      <div class="r d1"><div class="k">My role</div><div class="v">CDMO of Relats — project lead</div></div>
+      <div class="r d1"><div class="k">My role</div><div class="v">CDMO — Brand Director &amp; Project Lead</div></div>
       <div class="r d2"><div class="k">Partner</div><div class="v">In collaboration with Firma</div></div>
       <div class="r d3"><div class="k">Sector</div><div class="v">Sustainable mobility · Automotive · Energy</div></div>
       <div class="r d4"><div class="k">Scope</div><div class="v">Strategy · Identity · Digital</div></div>
@@ -159,25 +171,25 @@
 
     <div class="about">
       <span class="eb r">Who is Relats</span>
-      <p class="lead r d1">Relats protects what <em>moves the world</em> — from e-mobility and automotive to wind energy — engineering innovative, safety-driven covering solutions trusted by industries across the globe.</p>
+      <p class="lead" data-words>Relats protects what moves the world. From e-mobility and automotive to wind energy, it engineers innovative, safety-driven covering solutions trusted by industries across the globe.</p>
     </div>
 
     <div class="say">
       <span class="eb r">The definition</span>
-      <p class="r d1">“We are your global trusted partner in <em>innovative and safety covering solutions.</em>”</p>
+      <p data-words>“We are your global trusted partner in <em>innovative and safety covering solutions.</em>”</p>
     </div>
   </div></section>
 
   <!-- CHAPTERS (light) -->
   <section class="light sec"><div class="wrap">
-    <div class="chap"><div class="media r"><img src="relats-assets/sleeve-macro.webp" alt="Braided sleeve"></div>
-      <div class="r d1"><div class="idx2">01 · The challenge</div><h3>Engineering ahead of its image.</h3><p>Relats isn’t just a manufacturer — it’s a partner protecting what moves the world, from e-mobility to wind energy. But its brand read like a component supplier, not the innovation-led leader it has become.</p><span class="tag">Positioning</span></div></div>
+    <div class="chap"><div class="media par r"><img src="relats-assets/sleeve-macro.webp" alt="Braided sleeve" data-parallax></div>
+      <div class="ctext"><div class="idx2 r">01 · The challenge</div><h3 class="mask"><span>Engineering ahead of its image.</span></h3><p class="r d1">Relats isn’t just a manufacturer — it’s a partner protecting what moves the world, from e-mobility to wind energy. But its brand read like a component supplier, not the innovation-led leader it has become.</p><span class="tag r d2">Positioning</span></div></div>
 
-    <div class="chap"><div class="media r"><img src="relats-assets/aerial-road.webp" alt="A winding road"></div>
-      <div class="r d1"><div class="idx2">02 · The idea</div><h3>Anticipating what’s <em>around the bend.</em></h3><p>One line to lead everything — a confident story built on partnerships with industry leaders and innovators who share a commitment to excellence and cutting-edge technology.</p><span class="tag">Strategy</span></div></div>
+    <div class="chap"><div class="media par r"><img src="relats-assets/aerial-road.webp" alt="A winding road" data-parallax></div>
+      <div class="ctext"><div class="idx2 r">02 · The idea</div><h3 class="mask"><span>Anticipating what’s <em>around the bend.</em></span></h3><p class="r d1">One line to lead everything — a confident story built on partnerships with industry leaders and innovators who share a commitment to excellence and cutting-edge technology.</p><span class="tag r d2">Strategy</span></div></div>
 
-    <div class="chap"><div class="media r"><img src="relats-assets/mockup-phone.webp" alt="Relats on mobile"></div>
-      <div class="r d1"><div class="idx2">03 · The build</div><h3>A vivid system — on every screen.</h3><p>Orange, electric blue and green over warm greys, a colour-overlap mark and a fast, scalable website. Technical where it matters, human where it counts.</p><span class="tag">Identity · Digital</span></div></div>
+    <div class="chap"><div class="media par r"><img src="relats-assets/mockup-phone.webp" alt="Relats on mobile" data-parallax></div>
+      <div class="ctext"><div class="idx2 r">03 · The build</div><h3 class="mask"><span>A vivid system — on every screen.</span></h3><p class="r d1">Orange, electric blue and green over warm greys, a colour-overlap mark and a fast, scalable website. Technical where it matters, human where it counts.</p><span class="tag r d2">Identity · Digital</span></div></div>
   </div></section>
 
   <!-- WEB (image) -->
@@ -247,13 +259,39 @@
   // smooth scroll like the home
   let lenis=null;
   try{ if(window.Lenis){ lenis=new Lenis({lerp:0.09, smoothWheel:true}); (function raf(t){ lenis.raf(t); requestAnimationFrame(raf); })(); } }catch(e){}
-  // reveals
-  const io=new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} }),{threshold:.16});
-  document.querySelectorAll('.r').forEach(el=>io.observe(el));
-  // hero parallax
+
+  // split statements into words
+  document.querySelectorAll('[data-words]').forEach(el=>{
+    el.innerHTML = el.innerHTML.replace(/(<[^>]+>)|([^<\s]+)/g,(m,tag,w)=> tag ? tag : '<span class="wd">'+w+'</span>');
+  });
+
+  // unified reveal observer: words (stagger), masks, simple .r
+  const io=new IntersectionObserver(es=>es.forEach(e=>{
+    if(!e.isIntersecting) return;
+    const el=e.target;
+    if(el.hasAttribute('data-words')){
+      el.querySelectorAll('.wd').forEach((w,i)=> w.style.transitionDelay=(i*36)+'ms');
+      el.classList.add('lit');
+    } else { el.classList.add('in'); }
+    io.unobserve(el);
+  }),{threshold:.2});
+  document.querySelectorAll('.r,[data-words],.mask').forEach(el=>io.observe(el));
+
+  // live parallax — hero background + chapter media
   const bg=document.getElementById('bg');
-  function px(){ const y=window.scrollY; if(y<innerHeight&&bg) bg.style.transform='translateY('+(y*0.16)+'px)'; }
-  if(lenis) lenis.on('scroll',px); else addEventListener('scroll',px,{passive:true});
+  const pars=[...document.querySelectorAll('[data-parallax]')];
+  function frame(){
+    const y=window.scrollY, vh=innerHeight;
+    if(bg && y<vh) bg.style.transform='translateY('+(y*0.16)+'px)';
+    for(const img of pars){
+      const r=img.parentElement.getBoundingClientRect();
+      if(r.bottom<-40 || r.top>vh+40) continue;
+      const off=((r.top + r.height/2) - vh/2) / vh;       // ~ -0.6 … 0.6
+      img.style.transform='scale(1.12) translateY('+(off*-32).toFixed(1)+'px)';
+    }
+  }
+  if(lenis) lenis.on('scroll',frame); else addEventListener('scroll',frame,{passive:true});
+  addEventListener('resize',frame); frame();
 </script>
 </body>
 </html>
