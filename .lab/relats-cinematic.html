@@ -11,7 +11,7 @@
     --ink:#0B0C11; --deep:#08080C; --paper:#F4F2F0; --grey:#E0DBD7;
     --em-d:rgba(244,242,240,.6); --em-l:rgba(11,12,17,.5); --muted-d:rgba(244,242,240,.56);
     --orange:#FF5710; --orange2:#FF9E2C; --blue:#3131FF; --green:#42CC8B; --accent:#D8F3D6;
-    --maxw:1840px; --pad:clamp(26px,4.5vw,80px);
+    --maxw:1840px; --pad:clamp(26px,4.5vw,80px); --frame:clamp(8px,.7vw,11px); --r:14px; --menu-font:var(--sans);
     --ease:cubic-bezier(.22,1,.36,1); --ease-rev:cubic-bezier(.16,1,.3,1);
     --sans:"Satoshi",system-ui,sans-serif; --serif:"Instrument Serif",serif; --mono:"IBM Plex Mono",monospace;
     --relats:"Roobert","Hanken Grotesk",Inter,sans-serif; --relats-mono:"DM Mono",ui-monospace,monospace; }
@@ -40,11 +40,87 @@
   .par img{ will-change:transform; }
   @media(prefers-reduced-motion:reduce){ [data-words] .wd,.mask>span{ transition:none; opacity:1; transform:none; filter:none; } }
 
-  /* top bar — minimal, blends */
-  .bar{ position:fixed; top:0;left:0;right:0; z-index:60; display:flex; justify-content:space-between; align-items:center;
-    padding:18px var(--pad); mix-blend-mode:difference; color:#fff; }
-  .bar a{ color:#fff; text-decoration:none; font-family:var(--mono); font-size:12px; letter-spacing:.04em; }
-  .bar .mid{ font-weight:600; }
+  /* top bar + overlay menu — ported from the home */
+  .mbar{ position:fixed; z-index:200; top:calc(var(--frame)*2); left:50%; width:45vw; min-width:400px; height:clamp(50px,3.5vw,60px); display:flex; align-items:center; justify-content:space-between; padding:0 14px 0 16px; border-radius:var(--r); background:rgba(30,30,36,.62); backdrop-filter:blur(22px) saturate(120%); -webkit-backdrop-filter:blur(22px) saturate(120%); box-shadow:0 14px 50px rgba(8,8,12,.30); color:#fff; transform:translateX(-50%); animation:mbarIn .85s var(--ease) .35s both; transition:opacity .3s var(--ease); }
+  @keyframes mbarIn{ from{transform:translateX(-50%) translateY(-170%)} to{transform:translateX(-50%) translateY(0)} }
+  @keyframes mbarInM{ from{transform:translateY(-170%)} to{transform:translateY(0)} }
+  body.menu-open .mbar{ opacity:0 !important; pointer-events:none; }
+  .mbar-logo{ display:inline-flex; align-items:center; gap:6px; color:inherit; text-decoration:none; }
+  .mbar-logo svg{ display:block; width:auto; height:clamp(13px,1.05vw,16px); flex:none; transform:translateY(2%); }
+  .mbar-logo .word{ font-family:var(--menu-font); font-weight:900; font-size:clamp(16px,1.3vw,19px); letter-spacing:-.035em; display:inline-flex; align-items:flex-start; line-height:1; }
+  .mbar-logo .reg{ font-family:var(--menu-font); font-size:8.5px; margin-top:2px; margin-left:2px; }
+  .mbar-right{ display:flex; align-items:center; gap:clamp(14px,1.4vw,22px); }
+  .mbar-contact{ display:inline-flex; align-items:center; gap:6px; font-family:var(--menu-font); font-weight:600; font-size:14px; text-transform:lowercase; color:inherit; text-decoration:none; padding:8px 2px; transition:gap .3s var(--ease); }
+  .mbar-contact svg{ width:14px; height:14px; }
+  .mbar-contact:hover{ gap:12px; }
+  .mbar-dots{ width:32px; height:32px; display:grid; grid-template-columns:repeat(2,auto); grid-template-rows:repeat(2,auto); place-content:center; gap:5px; background:none; border:none; outline:none; padding:0; -webkit-appearance:none; appearance:none; color:inherit; cursor:pointer; transition:transform .55s var(--ease), gap .5s var(--ease), color .45s var(--ease); }
+  .mbar-dots span{ width:4.5px; height:4.5px; border-radius:1.5px; background:currentColor; }
+  .mbar-dots:hover{ transform:rotate(45deg); gap:2px; color:rgba(160,160,166,.95); }
+
+  body.menu-open{ overflow:hidden; }
+  .mmenu{ position:fixed; inset:0; z-index:210; pointer-events:none; }
+  .mmenu::before{ content:""; position:absolute; inset:0; background:rgba(8,8,12,.22); opacity:0; transition:opacity .6s var(--ease); }
+  .mmenu.open{ pointer-events:auto; }
+  .mmenu.open::before{ opacity:1; }
+  .mmenu-card{ position:absolute; top:calc(var(--frame)*2); left:50%; width:45vw; min-width:400px; height:50vh; min-height:360px; display:flex; flex-direction:column; padding:0 14px clamp(10px,1vw,13px) 16px; border-radius:var(--r); background:rgba(36,36,42,.42); backdrop-filter:blur(38px) saturate(140%); -webkit-backdrop-filter:blur(38px) saturate(140%); box-shadow:0 40px 100px rgba(8,8,12,.45); color:#fff; overflow:hidden; transform:translateX(-50%); opacity:0; clip-path:inset(0 0 100% 0 round 16px); transition:clip-path .3s var(--ease), opacity .3s var(--ease); }
+  .mmenu.open .mmenu-card{ opacity:1; clip-path:inset(0 0 0 0 round 16px); transition:clip-path .55s var(--ease), opacity 0s; }
+  .mmenu-top{ display:flex; align-items:center; justify-content:space-between; height:clamp(50px,3.5vw,60px); flex:none; }
+  .mmenu-top .mbar-logo{ color:#fff; }
+  .mmenu-close{ color:rgba(255,255,255,.85); }
+  .mmenu-close:hover{ transform:rotate(45deg); gap:2px; color:rgba(160,160,166,.95); }
+  .mmenu-body{ flex:1; display:flex; gap:clamp(14px,1.8vw,34px); align-items:stretch; padding:clamp(10px,1.4vw,22px) 0; min-height:0; }
+  .mmenu-nav{ flex:1; display:flex; flex-direction:column; justify-content:center; gap:clamp(3px,.5vw,9px); }
+  .mmenu-nav a{ font-family:var(--menu-font); font-weight:600; font-size:clamp(22px,2.5vw,40px); letter-spacing:-.01em; color:#fff; text-decoration:none; width:fit-content; height:1.16em; overflow:hidden; line-height:1.16; }
+  .mmenu-nav a .reveal{ display:block; transform:translateY(115%); transition:transform .7s var(--ease); }
+  .mmenu.open .mmenu-nav a .reveal{ transform:translateY(0); }
+  .mmenu.open .mmenu-nav a:nth-child(1) .reveal{ transition-delay:.10s; }
+  .mmenu.open .mmenu-nav a:nth-child(2) .reveal{ transition-delay:.17s; }
+  .mmenu.open .mmenu-nav a:nth-child(3) .reveal{ transition-delay:.24s; }
+  .mmenu.open .mmenu-nav a:nth-child(4) .reveal{ transition-delay:.31s; }
+  .mmenu-nav a .t{ display:block; transition:transform .5s var(--ease); }
+  .mmenu-nav a .t::after{ content:attr(data-t); display:block; color:rgba(255,255,255,.5); }
+  .mmenu-nav a:hover .t{ transform:translateY(-1.16em); }
+  .mmenu-aside{ width:clamp(250px,40%,380px); display:flex; flex-direction:column; justify-content:space-between; gap:clamp(18px,2vw,30px); }
+  .mmenu-aside > *{ opacity:0; transform:translateY(14px); transition:opacity .5s var(--ease), transform .5s var(--ease); }
+  .mmenu.open .mmenu-meta{ opacity:1; transform:none; transition-delay:.30s; }
+  .mmenu.open .mmenu-quick{ opacity:1; transform:none; transition-delay:.38s; }
+  .mmenu-meta{ display:flex; flex-direction:column; gap:16px; }
+  .mmenu-meta p{ font-family:var(--menu-font); font-size:14px; line-height:1.5; color:rgba(255,255,255,.55); }
+  .mmenu-meta b{ color:#fff; font-weight:600; }
+  .mmenu-meta a{ color:inherit; text-decoration:none; }
+  .mmenu-meta a:hover b{ text-decoration:underline; text-underline-offset:3px; }
+  .mmenu-eb{ display:block; font-family:var(--mono); font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:rgba(255,255,255,.5); margin-bottom:11px; }
+  .mmenu-ovcard{ display:flex; align-items:center; gap:14px; width:100%; text-align:left; text-decoration:none; background:rgba(255,255,255,.10); border:none; border-radius:14px; padding:14px; cursor:pointer; transition:background .25s var(--ease); }
+  .mmenu-ovcard:hover{ background:rgba(255,255,255,.18); }
+  .oc-thumb{ width:54px; height:54px; border-radius:9px; overflow:hidden; flex:none; }
+  .oc-thumb img{ width:100%; height:100%; object-fit:cover; }
+  .oc-tx{ display:flex; flex-direction:column; line-height:1.25; flex:1; min-width:0; }
+  .oc-tx b{ font-family:var(--menu-font); font-size:14px; font-weight:600; color:#fff; }
+  .oc-tx i{ font-style:normal; font-size:12px; color:rgba(255,255,255,.55); }
+  .oc-ar{ width:30px; height:30px; border-radius:50%; background:rgba(255,255,255,.12); display:grid; place-items:center; flex:none; color:#fff; }
+  .oc-ar svg{ width:15px; height:15px; }
+  .mmenu-foot{ display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap; flex:none; font-family:var(--mono); font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:rgba(255,255,255,.55); opacity:0; transition:opacity .5s var(--ease) .46s; }
+  .mmenu.open .mmenu-foot{ opacity:1; }
+  .mmenu-social{ display:flex; gap:clamp(16px,2vw,30px); }
+  .mmenu-social a{ color:inherit; text-decoration:none; transition:color .25s; }
+  .mmenu-social a:hover{ color:#fff; }
+  .mmenu-clock{ color:rgba(255,255,255,.75); }
+  .mmenu-foot .lang{ margin:0 auto; }
+  @media(max-width:760px){
+    .mbar{ width:auto; left:clamp(12px,3vw,18px); right:clamp(12px,3vw,18px); min-width:0; transform:translateY(0); animation-name:mbarInM; }
+    .mbar-contact span{ display:none; }
+    .mmenu-card{ width:auto; left:clamp(12px,3vw,18px); right:clamp(12px,3vw,18px); transform:none; min-width:0; height:auto; bottom:clamp(12px,3vw,18px); }
+    .mmenu-body{ flex-direction:column; gap:clamp(20px,4vw,30px); }
+    .mmenu-nav{ justify-content:flex-start; }
+    .mmenu-nav a{ font-size:clamp(30px,8vw,44px); }
+    .mmenu-aside{ width:100%; }
+  }
+  /* collapsible language pill (menu + footer) */
+  .lang{ position:relative; display:inline-flex; padding:3px; border-radius:999px; background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.14); }
+  .lang > button{ width:36px; text-align:center; font-family:var(--mono); font-size:11px; letter-spacing:.04em; color:rgba(255,255,255,.55); background:none; border:0; padding:6px 0; border-radius:999px; cursor:pointer; max-width:36px; opacity:1; overflow:hidden; white-space:nowrap; transition:max-width .4s var(--ease), opacity .28s var(--ease), padding .4s var(--ease), color .25s var(--ease), background .25s var(--ease); }
+  .lang > button:hover{ color:#fff; }
+  .lang > button.on, .lang > button.on:hover{ color:var(--ink); background:#fff; }
+  .lang:not(.open) > button:not(.on){ max-width:0; opacity:0; padding:0; }
 
   /* sections flow by colour — no divider lines */
   .sec{ padding:clamp(64px,11vh,160px) 0; }
@@ -236,17 +312,67 @@
   .foot-rec-logos a:nth-child(2) img{ height:20px; transform:translateY(2px); }
   .foot-rec-logos a:hover img{ opacity:1; }
   .foot-base{ display:flex; gap:24px; flex-wrap:wrap; align-items:center; font-family:var(--mono); font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:rgba(244,242,240,.4); }
-  .foot .lang{ position:relative; display:inline-flex; padding:3px; border-radius:999px; background:rgba(244,242,240,.08); border:1px solid rgba(244,242,240,.14); }
-  .foot .lang > button{ width:36px; text-align:center; font-family:var(--mono); font-size:11px; letter-spacing:.04em; color:rgba(244,242,240,.6); background:transparent; border:0; padding:6px 0; cursor:pointer; border-radius:999px; white-space:nowrap; overflow:hidden; transition:color .25s,max-width .35s var(--ease),opacity .25s,padding .35s; }
-  .foot .lang > button:hover{ color:#fff; }
-  .foot .lang > button.on{ color:var(--ink); background:#fff; }
-  .foot .lang:not(.open) > button:not(.on){ max-width:0; opacity:0; padding:0; }
-  .foot .lang.open > button{ max-width:36px; opacity:1; padding:6px 0; }
   @media(max-width:760px){ .foot-grid{ grid-template-columns:1fr; align-items:start; } .foot-right{ flex-wrap:wrap; } }
 </style>
 </head>
 <body>
-  <div class="bar"><a href="relats.html">← Cases</a><span class="mid">Infinit®</span><a href="#reel">Contact ↗</a></div>
+  <header class="mbar" id="mbar">
+    <a class="mbar-logo" href="../index.html" aria-label="Infinit — home">
+      <svg viewBox="0 0 240 132" fill="none" aria-hidden="true"><rect x="36" y="22" width="80" height="88" rx="34" fill="currentColor"/><rect x="124" y="22" width="80" height="88" rx="34" fill="currentColor"/></svg>
+      <span class="word">infinit<span class="reg">®</span></span>
+    </a>
+    <div class="mbar-right">
+      <a class="mbar-contact" href="#contact"><span>Contact</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
+      <button class="mbar-dots" id="menuBtn" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <div class="mmenu" id="panel" aria-hidden="true">
+    <div class="mmenu-card">
+      <div class="mmenu-top">
+        <a class="mbar-logo" href="../index.html" aria-label="Infinit — home">
+          <svg viewBox="0 0 240 132" fill="none" aria-hidden="true"><rect x="36" y="22" width="80" height="88" rx="34" fill="currentColor"/><rect x="124" y="22" width="80" height="88" rx="34" fill="currentColor"/></svg>
+          <span class="word">infinit<span class="reg">®</span></span>
+        </a>
+        <button class="mmenu-close mbar-dots" id="menuClose" aria-label="Close menu"><span></span><span></span><span></span><span></span></button>
+      </div>
+      <div class="mmenu-body">
+        <nav class="mmenu-nav">
+          <a href="../index.html#work"><span class="reveal"><span class="t" data-t="Work">Work</span></span></a>
+          <a href="../index.html#services"><span class="reveal"><span class="t" data-t="Services">Services</span></span></a>
+          <a href="../studio.html"><span class="reveal"><span class="t" data-t="Studio">Studio</span></span></a>
+          <a href="#contact"><span class="reveal"><span class="t" data-t="Contact">Contact</span></span></a>
+        </nav>
+        <aside class="mmenu-aside">
+          <div class="mmenu-meta">
+            <p><b>Infinit®</b><br><span>Brand &amp; Strategy firm</span></p>
+            <p><span>Barcelona — Worldwide</span><br><a href="mailto:hello@weareinfinit.com"><b>hello@weareinfinit.com</b></a></p>
+          </div>
+          <div class="mmenu-quick">
+            <span class="mmenu-eb">This case</span>
+            <a class="mmenu-ovcard" href="https://www.relats.com" target="_blank" rel="noopener">
+              <span class="oc-thumb"><img src="relats-assets/emi-hero.webp" alt=""></span>
+              <span class="oc-tx"><b>Relats</b><i>See it live ↗</i></span>
+              <span class="oc-ar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
+            </a>
+          </div>
+        </aside>
+      </div>
+      <div class="mmenu-foot">
+        <div class="mmenu-social">
+          <a href="https://www.linkedin.com/company/weareinfinit/" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="https://www.instagram.com/weareinfinit.studio/" target="_blank" rel="noopener">Instagram</a>
+          <a href="mailto:hello@weareinfinit.com">Email</a>
+        </div>
+        <div class="lang" role="group" aria-label="Language">
+          <button type="button" data-lang="ca">CA</button>
+          <button type="button" data-lang="es">ES</button>
+          <button type="button" data-lang="en" class="on">EN</button>
+        </div>
+        <span class="mmenu-clock" id="clock">--:--:-- BCN</span>
+      </div>
+    </div>
+  </div>
 
   <main>
   <!-- HERO -->
@@ -459,6 +585,25 @@
     });
   });
   document.addEventListener('click',e=>{ if(!e.target.closest('.lang')) document.querySelectorAll('.lang.open').forEach(p=>p.classList.remove('open')); });
+
+  // overlay menu open/close
+  (function(){
+    const panel=document.getElementById('panel'), mb=document.getElementById('menuBtn'), mc=document.getElementById('menuClose');
+    if(!panel) return;
+    const open=()=>{ panel.classList.add('open'); panel.setAttribute('aria-hidden','false'); document.body.classList.add('menu-open'); mb&&mb.setAttribute('aria-expanded','true'); };
+    const close=()=>{ panel.classList.remove('open'); panel.setAttribute('aria-hidden','true'); document.body.classList.remove('menu-open'); mb&&mb.setAttribute('aria-expanded','false'); };
+    mb&&mb.addEventListener('click',open);
+    mc&&mc.addEventListener('click',close);
+    panel.addEventListener('click',e=>{ if(e.target===panel) close(); });
+    panel.querySelectorAll('.mmenu-nav a, .mmenu-meta a').forEach(a=>a.addEventListener('click',close));
+    document.addEventListener('keydown',e=>{ if(e.key==='Escape') close(); });
+  })();
+  // Barcelona clock
+  (function(){
+    const c=document.getElementById('clock'); if(!c) return;
+    const tick=()=>{ try{ c.textContent=new Date().toLocaleTimeString('en-GB',{timeZone:'Europe/Madrid',hour12:false})+' BCN'; }catch(e){} };
+    tick(); setInterval(tick,1000);
+  })();
 
   // smooth scroll like the home
   let lenis=null;
