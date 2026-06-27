@@ -173,8 +173,9 @@
   .about .lead{ font-weight:500; font-size:clamp(19px,1.8vw,28px); line-height:1.5; letter-spacing:-.005em; margin-top:22px; opacity:.92; max-width:46ch; }
   .markslot{ display:flex; flex-direction:column; align-items:flex-end; }
   @media(max-width:820px){ .markslot{ align-items:flex-start; } }
-  .markslot .mk{ display:block; width:440px; max-width:100%; margin-bottom:18px; }
-  .markslot video{ width:440px; max-width:100%; height:auto; display:block; }
+  .markslot{ min-width:0; }
+  .markslot .mk{ display:block; width:100%; max-width:440px; margin-bottom:18px; }
+  .markslot video{ width:100%; max-width:440px; height:auto; display:block; }
   /* DEFINITION statement */
   .say{ margin-top:clamp(70px,11vw,170px); }
   .say p{ font-weight:500; font-size:clamp(34px,5vw,82px); line-height:1.1; letter-spacing:-.032em; max-width:23ch; margin-top:24px; }
