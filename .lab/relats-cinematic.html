@@ -162,10 +162,10 @@
   .chap .media video{ width:100%; height:100%; object-fit:cover; display:block; }
 
   /* logo-motion signature card (light card on dark) */
-  .signature{ margin-top:clamp(64px,10vw,150px); }
-  .lmcard{ background:#fff; border-radius:22px; overflow:hidden; aspect-ratio:16/6.5; display:grid; place-items:center; max-width:720px; }
-  .lmcard video{ width:64%; height:auto; }
-  .signature .cap{ margin-top:16px; max-width:34ch; }
+  .signature{ margin-top:clamp(54px,8vw,120px); }
+  .lmcard{ max-width:460px; }
+  .lmcard video{ width:100%; height:auto; display:block; filter:brightness(1.3) invert(1); mix-blend-mode:screen; }
+  .signature .cap{ margin-top:14px; max-width:34ch; }
   .signature .cap p{ font-size:clamp(15px,1.1vw,18px); line-height:1.55; opacity:.6; margin-top:8px; }
 
   /* EMI full-bleed feature (dark) */
@@ -191,6 +191,11 @@
   .tile:hover img{ transform:scale(1.04); }
   .tile .t{ position:absolute; left:15px; bottom:13px; z-index:2; color:#fff; font-family:var(--mono); font-size:11px; letter-spacing:.08em; text-transform:uppercase; }
   .tile::after{ content:""; position:absolute; inset:0; background:linear-gradient(180deg,transparent 58%,rgba(0,0,0,.5)); pointer-events:none; }
+
+  /* ANALYTICS GUIDELINES (dark) */
+  .ana h2{ font-weight:500; font-size:clamp(28px,3.6vw,54px); letter-spacing:-.03em; margin:14px 0 20px; max-width:20ch; }
+  .ana p{ font-size:clamp(16px,1.2vw,21px); line-height:1.62; opacity:.72; max-width:54ch; }
+  .ana .browser{ margin:clamp(40px,5.5vw,80px) auto 0; }
 
   /* BRAND FILM — full-bleed living film */
   .film{ position:relative; width:100%; background:#000; overflow:hidden; line-height:0; }
@@ -327,7 +332,6 @@
     </div>
 
     <div class="masonry">
-      <div class="tile r"><img src="relats-assets/analytics.webp" alt=""><span class="t">Data center</span></div>
       <div class="tile r"><img src="relats-assets/social-1.webp" alt=""><span class="t">Social</span></div>
       <div class="tile r"><img src="relats-assets/mobile-app.webp" alt=""><span class="t">App</span></div>
       <div class="tile r"><img src="relats-assets/offices.webp" alt=""><span class="t">Workplace</span></div>
@@ -336,6 +340,17 @@
       <div class="tile r"><img src="relats-assets/web-section.webp" alt=""><span class="t">Product site</span></div>
       <div class="tile r"><img src="relats-assets/web-mockup.webp" alt=""><span class="t">Landing</span></div>
       <div class="tile r"><img src="relats-assets/mobile.webp" alt=""><span class="t">Mobile</span></div>
+    </div>
+  </div></section>
+
+  <!-- ANALYTICS GUIDELINES (dark) -->
+  <section class="dark sec ana"><div class="wrap">
+    <span class="eb r">Last but not least</span>
+    <h2 class="r d1">One analytics language for every internal app.</h2>
+    <p class="r d2">We defined a set of <em>Analytics Guidelines</em> — shared dashboards, metrics and data-visualisation rules — so every internal application speaks the same language. Consistent, legible, and built to scale across the organisation.</p>
+    <div class="browser r d2">
+      <div class="bz"><i></i><i></i><i></i><span class="url">data.relats.com</span></div>
+      <div class="page"><img src="relats-assets/analytics.webp" alt="Relats Data Center dashboard"></div>
     </div>
   </div></section>
 
