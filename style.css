@@ -1382,9 +1382,9 @@ body.menu-open .mbar { opacity: 0 !important; pointer-events: none; }
 .lang:not(.open) > button:not(.on) { max-width: 0; opacity: 0; padding: 0; }
 /* in the menu: sits under the Overview card, dropped so its base lines up with the footer row */
 /* language pill now lives in the menu foot row (robust, never clipped by the card) */
-.mmenu-social { margin-right: auto; }
-.mmenu-clock { order: 2; }
-.mmenu-foot .lang { order: 3; margin: 0; }
+.mmenu-foot .lang { margin: 0; }
+.mmenu-rt { width: clamp(250px, 40%, 380px); display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; }
+@media (max-width: 760px) { .mmenu-rt { width: 100%; } }
 /* light menu variant */
 .mmenu.on-light .lang { background: rgba(11,12,17,.05); border-color: rgba(11,12,17,.14); }
 .mmenu.on-light .lang > button { color: rgba(11,12,17,.5); }
