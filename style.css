@@ -1382,7 +1382,7 @@ body.menu-open .mbar { opacity: 0 !important; pointer-events: none; }
 .lang:not(.open) > button:not(.on) { max-width: 0; opacity: 0; padding: 0; }
 /* in the menu: sits under the Overview card, dropped so its base lines up with the footer row */
 /* language pill now lives in the menu foot row (robust, never clipped by the card) */
-.mmenu-foot .lang { margin-left: auto; }
+.mmenu-foot .lang { margin: 0; }
 /* light menu variant */
 .mmenu.on-light .lang { background: rgba(11,12,17,.05); border-color: rgba(11,12,17,.14); }
 .mmenu.on-light .lang > button { color: rgba(11,12,17,.5); }
