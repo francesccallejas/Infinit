@@ -1361,9 +1361,10 @@ body.menu-open .mbar { opacity: 0 !important; pointer-events: none; }
 .oc-ar { width: 30px; height: 30px; border-radius: 50%; background: rgba(255,255,255,.12); display: grid; place-items: center; flex: none; color: #fff; }
 .oc-ar svg { width: 15px; height: 15px; }
 
-.mmenu-foot { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; flex-wrap: wrap; flex: none;
+.mmenu-foot { display: flex; flex-direction: column; align-items: center; gap: clamp(16px,2.2vh,26px); flex: none;
   font-family: var(--mono); font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.55);
   opacity: 0; transition: opacity .5s var(--ease) .46s; }
+.mmenu-texts { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
 .mmenu.open .mmenu-foot { opacity: 1; }
 .mmenu-social { display: flex; gap: clamp(16px, 2vw, 30px); }
 .mmenu-social a { transition: color .25s; }
@@ -1392,10 +1393,8 @@ body.menu-open .mbar { opacity: 0 !important; pointer-events: none; }
 .mmenu.on-light .lang > button.on, .mmenu.on-light .lang > button.on:hover { color: var(--bg); background: var(--ink); }
 /* mobile: socials on their own row, then clock (left) + language pill (right) */
 @media (max-width: 600px) {
-  .mmenu-foot { row-gap: 16px; }
-  .mmenu-social { flex-basis: 100%; order: 1; justify-content: flex-start; }
-  .mmenu-clock { order: 2; }
-  .mmenu-foot .lang { order: 3; }
+  .mmenu-texts { flex-direction: column; align-items: center; gap: 10px; text-align: center; }
+  .mmenu-social { justify-content: center; }
 }
 
 /* smooth crossfade while swapping languages */
