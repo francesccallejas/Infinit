@@ -23,7 +23,7 @@
   .uscroll.show{ opacity:1; }
   .uscroll:hover, .uscroll.drag{ background:rgba(86,88,96,.8); width:8px; }
   .uscroll.drag{ cursor:grabbing; }
-  body{ font-family:var(--sans); font-weight:500; background:var(--ink); color:var(--paper); -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; text-rendering:optimizeLegibility; overflow-x:hidden; }
+  body{ font-family:var(--sans); font-weight:500; background:var(--ink); color:var(--paper); font-size:18px; line-height:1.6; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; text-rendering:optimizeLegibility; overflow-x:hidden; }
   .wrap{ width:100%; max-width:var(--maxw); margin-inline:auto; padding-inline:var(--pad); }
   .eb{ font-family:var(--mono); font-weight:400; font-size:12px; letter-spacing:.2em; text-transform:uppercase; color:var(--eb,rgba(244,242,240,.5)); }
   em{ font-family:var(--serif); font-style:normal; font-weight:400; color:var(--em,inherit); }
@@ -302,7 +302,7 @@
 
   /* FOOTER — home footer (fixed reveal) */
   main{ position:relative; z-index:1; background:var(--ink); margin-bottom:100vh; }
-  .foot{ position:fixed; bottom:0; left:0; right:0; z-index:0; background:var(--ink); color:var(--paper); min-height:100vh; overflow:hidden; display:flex; flex-direction:column; justify-content:space-between; gap:clamp(34px,5vh,64px); padding:clamp(44px,7vh,96px) var(--pad) clamp(30px,5vh,56px); }
+  .foot{ position:fixed; bottom:0; left:0; right:0; z-index:0; background:var(--ink); color:var(--paper); min-height:100vh; overflow:hidden; display:flex; flex-direction:column; justify-content:space-between; gap:clamp(34px,5vh,64px); padding:clamp(44px,7vh,96px) var(--edge) clamp(30px,5vh,56px); }
   .foot a{ color:inherit; text-decoration:none; }
   .foot-grid{ display:grid; grid-template-columns:1fr auto; gap:clamp(40px,6vw,90px); align-items:end; flex:1; }
   .foot-mark{ display:inline-flex; align-items:center; gap:11px; color:var(--paper); margin-bottom:clamp(22px,3.5vh,38px); }
@@ -715,7 +715,12 @@
       addEventListener('pointermove',move); addEventListener('pointerup',up);
     });
     if(lenis) lenis.on('scroll',onScroll); else addEventListener('scroll',onScroll,{passive:true});
-    addEventListener('resize',()=>{ metrics(); place(); }); metrics(); place();
+    addEventListener('resize',()=>{ metrics(); place(); });
+    // recalc when the page height changes (images/videos/fonts settle) — home does this via GSAP refresh
+    try{ new ResizeObserver(()=>{ metrics(); place(); }).observe(document.body); }catch(e){}
+    addEventListener('load',()=>{ metrics(); place(); });
+    [400,1200,2500].forEach(t=>setTimeout(()=>{ metrics(); place(); },t));
+    metrics(); place();
   })();
 </script>
 </body>
