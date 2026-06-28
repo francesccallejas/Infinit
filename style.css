@@ -1361,15 +1361,15 @@ body.menu-open .mbar { opacity: 0 !important; pointer-events: none; }
 .oc-ar { width: 30px; height: 30px; border-radius: 50%; background: rgba(255,255,255,.12); display: grid; place-items: center; flex: none; color: #fff; }
 .oc-ar svg { width: 15px; height: 15px; }
 
-.mmenu-foot { display: flex; flex-direction: column; align-items: center; gap: clamp(16px,2.2vh,26px); flex: none;
+.mmenu-foot { display: flex; flex-direction: row; align-items: flex-end; justify-content: flex-start; gap: 16px; flex-wrap: wrap; flex: none;
   font-family: var(--mono); font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.55);
   opacity: 0; transition: opacity .5s var(--ease) .46s; }
-.mmenu-texts { width: 100%; display: flex; align-items: center; justify-content: center; gap: clamp(20px,3vw,44px); }
+.mmenu-texts { display: contents; }
 .mmenu.open .mmenu-foot { opacity: 1; }
-.mmenu-social { display: flex; gap: clamp(16px, 2vw, 30px); }
+.mmenu-social { order: 1; margin-right: auto; display: flex; gap: clamp(16px, 2vw, 30px); }
 .mmenu-social a { transition: color .25s; }
 .mmenu-social a:hover { color: #fff; }
-.mmenu-clock { color: rgba(255,255,255,.75); }
+.mmenu-clock { order: 3; margin-left: clamp(28px,5vw,80px); color: rgba(255,255,255,.75); }
 /* language switch — collapsible pill: shows the active language, expands on tap to reveal the others */
 .lang { position: relative; display: inline-flex; padding: 3px; border-radius: 999px;
   background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.14); }
@@ -1383,7 +1383,7 @@ body.menu-open .mbar { opacity: 0 !important; pointer-events: none; }
 .lang:not(.open) > button:not(.on) { max-width: 0; opacity: 0; padding: 0; }
 /* in the menu: sits under the Overview card, dropped so its base lines up with the footer row */
 /* language pill now lives in the menu foot row (robust, never clipped by the card) */
-.mmenu-foot .lang { margin: 0; }
+.mmenu-foot .lang { order: 2; margin: 0; }
 .mmenu-rt { width: clamp(250px, 40%, 380px); display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; }
 @media (max-width: 760px) { .mmenu-rt { width: 100%; } }
 /* light menu variant */
@@ -1393,11 +1393,13 @@ body.menu-open .mbar { opacity: 0 !important; pointer-events: none; }
 .mmenu.on-light .lang > button.on, .mmenu.on-light .lang > button.on:hover { color: var(--bg); background: var(--ink); }
 /* mobile: socials on their own row, then clock (left) + language pill (right) */
 @media (max-width: 600px) {
-  .mmenu-texts { flex-direction: column; align-items: center; gap: 10px; text-align: center; }
-  .mmenu-social { justify-content: center; }
+  .mmenu-foot { flex-direction: column; align-items: center; gap: clamp(16px,2.2vh,26px); flex-wrap: nowrap; padding-top: clamp(16px,2.2vh,26px); }
+  .mmenu-texts { display: flex; flex-direction: column; align-items: center; gap: 10px; text-align: center; order: 2; }
+  .mmenu-social { order: 0; margin-right: 0; justify-content: center; }
+  .mmenu-clock { order: 0; margin-left: 0; }
+  .mmenu-foot .lang { order: 1; }
   /* EN pill equidistant between the overview card and the bottom texts */
   .mmenu-body { padding-bottom: 0; }
-  .mmenu-foot { padding-top: clamp(16px,2.2vh,26px); }
 }
 
 /* smooth crossfade while swapping languages */
