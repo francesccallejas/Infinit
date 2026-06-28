@@ -1393,9 +1393,9 @@ body.menu-open .mbar { opacity: 0 !important; pointer-events: none; }
 .mmenu.on-light .lang > button.on, .mmenu.on-light .lang > button.on:hover { color: var(--bg); background: var(--ink); }
 /* mobile: socials on their own row, then clock (left) + language pill (right) */
 @media (max-width: 600px) {
-  .mmenu-foot { flex-direction: column; align-items: center; gap: clamp(16px,2.2vh,26px); flex-wrap: nowrap; padding-top: clamp(16px,2.2vh,26px); }
-  .mmenu-texts { display: flex; flex-direction: column; align-items: center; gap: 10px; text-align: center; order: 2; }
-  .mmenu-social { order: 0; margin-right: 0; justify-content: center; }
+  .mmenu-foot { flex-direction: column; align-items: flex-start; gap: clamp(16px,2.2vh,26px); flex-wrap: nowrap; padding-top: clamp(16px,2.2vh,26px); }
+  .mmenu-texts { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; text-align: left; order: 2; }
+  .mmenu-social { order: 0; margin-right: 0; justify-content: flex-start; }
   .mmenu-clock { order: 0; margin-left: 0; }
   .mmenu-foot .lang { order: 1; }
   /* EN pill equidistant between the overview card and the bottom texts */
