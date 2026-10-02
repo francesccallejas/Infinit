@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Infinit® — Capabilities (accordion)</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<link rel="stylesheet" href="../components.css">
+<style>
+  body { padding: 40px;  }
+  .card-h { display:flex; justify-content:space-between; align-items:baseline; gap:20px; margin-bottom:32px;
+    padding-bottom:16px; border-bottom:1px solid var(--line); }
+  .card-h h1 { font-weight:600; font-size:22px; letter-spacing:-.02em; }
+  .note { font-size:13px; color:var(--muted); max-width:70ch; line-height:1.55; font-weight:500; }
+  .row { display:flex; flex-wrap:wrap; gap:18px; align-items:center; }
+  .stack > * + * { margin-top: 28px; }
+  .lbl { font-family:var(--mono); font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); display:block; margin-bottom:12px; }
+  
+</style>
+</head>
+<body>
+<div class="card-h"><h1>Capabilities (accordion)</h1><span class="eyebrow">Infinit® · V02</span></div>
+
+<div class="dark" style="padding:clamp(40px,6vw,90px) 20px;border-radius:var(--r)">
+ <div style="text-align:center;margin-bottom:48px"><span class="eyebrow">Capabilities</span><h2 class="t-h2" style="margin-top:18px;color:#fff">Three disciplines.<br>One studio.</h2></div>
+ <div class="cap-acc">
+  <div class="cap-item on"><button class="cap-row"><span class="cap-ttl">Strategy</span><span class="btn-plus on"></span></button>
+   <div class="cap-body"><div class="cap-body-in"><p>Direction aligning business ambition, market opportunity and execution. Positioning, growth systems, strategic clarity and modern brand evolution.</p>
+   <div class="chips"><span class="chip">Brand Strategy</span><span class="chip">Positioning</span><span class="chip">Growth Strategy</span><span class="chip">Fractional CMO</span><span class="chip">Research</span></div></div></div></div>
+  <div class="cap-item"><button class="cap-row"><span class="cap-ttl">Identity</span><span class="btn-plus"></span></button>
+   <div class="cap-body"><div class="cap-body-in"><p>Scalable visual and verbal systems designed for clarity, recognition and consistency across every touchpoint.</p>
+   <div class="chips"><span class="chip">Visual Identity</span><span class="chip">Naming</span><span class="chip">Design Systems</span><span class="chip">Motion</span></div></div></div></div>
+  <div class="cap-item"><button class="cap-row"><span class="cap-ttl">Digital</span><span class="btn-plus"></span></button>
+   <div class="cap-body"><div class="cap-body-in"><p>Digital experiences built for discoverability, engagement and measurable business impact.</p>
+   <div class="chips"><span class="chip">Websites &amp; Platforms</span><span class="chip">UX / UI Direction</span><span class="chip">SEO &amp; GEO</span><span class="chip">AI Experiences</span></div></div></div></div>
+ </div>
+</div>
+<div style="margin-top:40px"><span class="lbl">Variant clara — fila editorial .svc-row (hover → ink + chips)</span>
+ <div class="svc-row"><span class="svc-n">01</span><div class="svc-head"><h3>Strategy</h3><span class="svc-tag">direction</span></div>
+  <div class="svc-body"><p class="svc-desc">Direction aligning business ambition, market opportunity and execution.</p><div class="chips"><span class="chip">Brand Strategy</span><span class="chip">Positioning</span><span class="chip">Research</span></div></div><span class="plus"></span></div>
+ <div class="svc-row"><span class="svc-n">02</span><div class="svc-head"><h3>Identity</h3><span class="svc-tag">recognition</span></div>
+  <div class="svc-body"><p class="svc-desc">Scalable visual and verbal systems designed for clarity and consistency.</p><div class="chips"><span class="chip">Visual Identity</span><span class="chip">Naming</span><span class="chip">Motion</span></div></div><span class="plus"></span></div>
+</div>
+<script>document.querySelectorAll('.cap-row').forEach(r=>r.addEventListener('click',()=>{const it=r.parentElement,on=it.classList.contains('on');document.querySelectorAll('.cap-item').forEach(i=>{i.classList.remove('on');i.querySelector('.btn-plus').classList.remove('on')});if(!on){it.classList.add('on');it.querySelector('.btn-plus').classList.add('on')}}));</script>
+</body>
+</html>

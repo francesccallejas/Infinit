@@ -13,6 +13,10 @@ Why: it guarantees every shared element is byte-identical from the start — the
 - **Dot-prefixed folders are NOT deployed** (`.lab`, `.archive`, `.chats`). Prototypes / WIP cases live in `.lab/`.
 - After editing `style.css`, **bump the cache version** `style.css?v=NNN` in every HTML that links it (`index.html`, `studio.html`, …). Same for `i18n.js?v=NNN`.
 
+## Design system export
+- `design-system/` = current V02 design system (tokens, components, previews, UI kit copy of the home) for Claude Design. Keep it in sync when brand tokens or shared components change.
+- The old V01 (Inter + blue) lives in `.archive/design-system-v01/` — obsolete, don't use.
+
 ## Brand tokens (source of truth: `style.css` `:root`)
 - `--ink:#0B0C11` · `--deep:#08080C` · `--bg:#F4F2F0` · `--paper:#FBFAF9`
 - `--accent:#D8F3D6` (pale mint, with ink text) · `--accent-ink:#2F8F66`

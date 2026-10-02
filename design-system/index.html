@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Infinit® Design System</title>
+<link rel="icon" type="image/svg+xml" href="assets/logo/favicon.svg">
+<link rel="stylesheet" href="colors_and_type.css">
+<link rel="stylesheet" href="components.css">
+<style>
+ .ds-top { background: var(--ink); color: var(--bg); padding: clamp(40px,6vw,96px) var(--pad) clamp(36px,5vw,72px); }
+ .ds-top .logo-lockup { margin-bottom: clamp(40px,7vw,110px); }
+ .ds-top p { max-width: 60ch; color: var(--on-dark-muted); margin-top: 22px; font-size: clamp(15px,1.2vw,18px); }
+ .ds-nav { position: sticky; top: 0; z-index: 5; display: flex; gap: 6px 18px; flex-wrap: wrap; padding: 14px var(--pad);
+   background: rgba(244,242,240,.8); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); border-bottom: 1px solid var(--line);
+   font-family: var(--mono); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+ .ds-nav a:hover { color: var(--ink); }
+ main { padding: clamp(30px,4vw,64px) var(--pad); max-width: 1500px; margin: 0 auto; }
+ .ds-item + .ds-item { margin-top: clamp(50px,7vw,100px); }
+ .ds-h { display: flex; align-items: baseline; gap: 18px; margin-bottom: 16px; }
+ .ds-h h2 { font-size: clamp(24px,2.4vw,36px); font-weight: 600; letter-spacing: -.03em; margin-right: auto; }
+ iframe { width: 100%; border: 1px solid var(--line); border-radius: var(--r); background: var(--bg); display: block; }
+ .ds-links { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 34px; }
+</style>
+</head>
+<body>
+<header class="ds-top">
+ <span class="logo-lockup lg wink"><svg viewBox="0 0 240 132" fill="none" aria-hidden="true"><rect x="36" y="22" width="80" height="88" rx="34" fill="currentColor"/><rect x="124" y="22" width="80" height="88" rx="34" fill="currentColor"/></svg><span class="word">infinit<span class="reg">®</span></span></span>
+ <span class="eyebrow" style="display:block;color:var(--on-dark-faint)">Design System · V02 · 2026</span>
+ <h1 class="t-display" style="margin-top:18px">Brands built <em>to scale.</em></h1>
+ <p>Sistema visual viu de weareinfinit.com: Satoshi + Instrument Serif + IBM Plex Mono, paleta ink / sorra amb un sol accent menta, logo de dos squircles. Tokens a <b>colors_and_type.css</b>, components a <b>components.css</b>, pàgina de referència completa a <b>ui_kits/website/</b>.</p>
+ <div class="ds-links"><a class="cta-mail sm" href="ui_kits/website/index.html"><span class="cm-tx">UI kit · Home</span><span class="cm-ar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span></a></div>
+</header>
+<nav class="ds-nav"><a href="#01-colors">Color</a><a href="#02-type-families">Tipografies</a><a href="#03-type-scale">Escala tipogràfica</a><a href="#04-logo">Logo</a><a href="#05-buttons">Botons</a><a href="#06-chips-lang">Chips, tags i idioma</a><a href="#07-menu">Menú flotant</a><a href="#08-hero-statement">Hero i statement</a><a href="#09-capabilities">Capabilities (accordion)</a><a href="#10-work-tiles">Work tiles</a><a href="#11-bento-kpi-cta">Bento, KPIs, CTA i fab</a><a href="#12-footer-cookies">Footer i cookies</a><a href="#13-layout-radius-motion">Layout, radis i moviment</a></nav>
+<main>
+  <section class="ds-item" id="01-colors"><div class="ds-h"><span class="eyebrow">01</span><h2>Color</h2><a class="link-arrow" href="preview/01-colors.html" target="_blank">obre <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></a></div>
+   <iframe src="preview/01-colors.html" loading="lazy" style="height:980px" title="Color"></iframe></section>
+  <section class="ds-item" id="02-type-families"><div class="ds-h"><span class="eyebrow">02</span><h2>Tipografies</h2><a class="link-arrow" href="preview/02-type-families.html" target="_blank">obre <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></a></div>
+   <iframe src="preview/02-type-families.html" loading="lazy" style="height:720px" title="Tipografies"></iframe></section>
+  <section class="ds-item" id="03-type-scale"><div class="ds-h"><span class="eyebrow">03</span><h2>Escala tipogràfica</h2><a class="link-arrow" href="preview/03-type-scale.html" target="_blank">obre <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></a></div>
+   <iframe src="preview/03-type-scale.html" loading="lazy" style="height:1900px" title="Escala tipogràfica"></iframe></section>
+  <section class="ds-item" id="04-logo"><div class="ds-h"><span class="eyebrow">04</span><h2>Logo</h2><a class="link-arrow" href="preview/04-logo.html" target="_blank">obre <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></a></div>
+   <iframe src="preview/04-logo.html" loading="lazy" style="height:760px" title="Logo"></iframe></section>
+  <section class="ds-item" id="05-buttons"><div class="ds-h"><span class="eyebrow">05</span><h2>Botons</h2><a class="link-arrow" href="preview/05-buttons.html" target="_blank">obre <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></a></div>
+   <iframe src="preview/05-buttons.html" loading="lazy" style="height:820px" title="Botons"></iframe></section>
+  <section class="ds-item" id="06-chips-lang"><div class="ds-h"><span class="eyebrow">06</span><h2>Chips, tags i idioma</h2><a class="link-arrow" href="preview/06-chips-lang.html" target="_blank">obre <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></a></div>
+   <iframe src="preview/06-chips-lang.html" loading="lazy" style="height:640px" title="Chips, tags i idioma"></iframe></section>
+  <section class="ds-item" id="07-menu"><div class="ds-h"><span class="eyebrow">07</span><h2>Menú flotant</h2><a class="link-arrow" href="preview/07-menu.html" target="_blank">obre <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></a></div>
+   <iframe src="preview/07-menu.html" loading="lazy" style="height:1180px" title="Menú flotant"></iframe></section>
+  <section class="ds-item" id="08-hero-statement"><div class="ds-h"><span class="eyebrow">08</span><h2>Hero i statement</h2><a class="link-arrow" href="preview/08-hero-statement.html" target="_blank">obre <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></a></div>
+   <iframe src="preview/08-hero-statement.html" loading="lazy" style="height:1300px" title="Hero i statement"></iframe></section>
+  <section class="ds-item" id="09-capabilities"><div class="ds-h"><span class="eyebrow">09</span><h2>Capabilities (accordion)</h2><a class="link-arrow" href="preview/09-capabilities.html" target="_blank">obre <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></a></div>
+   <iframe src="preview/09-capabilities.html" loading="lazy" style="height:1400px" title="Capabilities (accordion)"></iframe></section>
+  <section class="ds-item" id="10-work-tiles"><div class="ds-h"><span class="eyebrow">10</span><h2>Work tiles</h2><a class="link-arrow" href="preview/10-work-tiles.html" target="_blank">obre <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></a></div>
+   <iframe src="preview/10-work-tiles.html" loading="lazy" style="height:1500px" title="Work tiles"></iframe></section>
+  <section class="ds-item" id="11-bento-kpi-cta"><div class="ds-h"><span class="eyebrow">11</span><h2>Bento, KPIs, CTA i fab</h2><a class="link-arrow" href="preview/11-bento-kpi-cta.html" target="_blank">obre <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></a></div>
+   <iframe src="preview/11-bento-kpi-cta.html" loading="lazy" style="height:1700px" title="Bento, KPIs, CTA i fab"></iframe></section>
+  <section class="ds-item" id="12-footer-cookies"><div class="ds-h"><span class="eyebrow">12</span><h2>Footer i cookies</h2><a class="link-arrow" href="preview/12-footer-cookies.html" target="_blank">obre <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></a></div>
+   <iframe src="preview/12-footer-cookies.html" loading="lazy" style="height:1100px" title="Footer i cookies"></iframe></section>
+  <section class="ds-item" id="13-layout-radius-motion"><div class="ds-h"><span class="eyebrow">13</span><h2>Layout, radis i moviment</h2><a class="link-arrow" href="preview/13-layout-radius-motion.html" target="_blank">obre <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></a></div>
+   <iframe src="preview/13-layout-radius-motion.html" loading="lazy" style="height:1150px" title="Layout, radis i moviment"></iframe></section>
+</main>
+</body>
+</html>

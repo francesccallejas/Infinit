@@ -1,0 +1,132 @@
+/* =========================================================================
+   INFINIT® — Colors & Type tokens  ·  V02 (2026)
+   Font de veritat: style.css :root de weareinfinit.com (v=338)
+   ========================================================================= */
+
+/* ---- Fonts ----
+   Satoshi (Fontshare) · Instrument Serif + IBM Plex Mono (Google Fonts) */
+@import url("https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,600,700,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@500&display=swap");
+
+:root {
+  /* ---------- Color · base ---------- */
+  --bg:        #F4F2F0;   /* canvas clar (sorra 1) — MAI blanc pur */
+  --paper:     #FBFAF9;   /* superfície/card sobre bg */
+  --ink:       #0B0C11;   /* text principal + canvas fosc (footer, serveis) */
+  --deep:      #08080C;   /* negre més profund (scrims, intro, ombres) */
+
+  /* ---------- Color · accent (menta) ---------- */
+  --accent:     #D8F3D6;  /* menta pàl·lida — fons/badge/selecció/hover, SEMPRE amb text ink */
+  --accent-ink: #2F8F66;  /* menta profunda — text accent sobre fons clar */
+
+  /* ---------- Color · rampa sorra (clar → càlid) ---------- */
+  --sand-1: #F4F2F0;      /* = bg */
+  --sand-2: #EBE9E4;      /* placeholder de tiles, fons suau */
+  --sand-3: #E7E2D9;      /* card overview, 2a capa */
+  --sand-4: #DCD5C8;      /* banda CTA, card serveis al bento */
+  --sand-5: #A89887;      /* clay — només detalls */
+  --clay:   #A89887;
+  --blue-gray: #7F838B;   /* gris neutre secundari (llegat, ús puntual) */
+
+  /* ---------- Color · text sobre clar ---------- */
+  --muted:  rgba(11,12,17,.56);  /* text secundari, eyebrows, serif em */
+  --faint:  rgba(11,12,17,.20);
+  --line:   rgba(11,12,17,.11);  /* hairline — únic separador */
+
+  /* ---------- Color · text sobre fosc ---------- */
+  --on-dark:        #F4F2F0;
+  --on-dark-muted:  rgba(244,242,240,.55);
+  --on-dark-faint:  rgba(244,242,240,.42);  /* eyebrows al footer */
+  --on-dark-line:   rgba(244,242,240,.14);
+
+  /* ---------- Frost (vidre) ---------- */
+  --frost-dark:   rgba(30,30,36,.62);   /* barra menú / cookies sobre fosc */
+  --frost-dark-2: rgba(36,36,42,.42);   /* overlay menú obert */
+  --frost-light:  rgba(255,255,255,.34);/* barra menú sobre seccions clares */
+  --frost-blur:   blur(22px) saturate(120%);
+  --frost-shadow: 0 14px 50px rgba(8,8,12,.30);
+
+  /* ---------- Radis (per mida) ---------- */
+  --r-pill: 999px;                   /* píndoles: chips, lang, dots */
+  --r-lg:   clamp(16px,1.6vw,22px);  /* superfícies grans: panell statement */
+  --r:      14px;                    /* estàndard: menú, cards, tiles, imatges, botons */
+  --r-sm:   9px;                     /* petit: thumbs, xips interns */
+  /* botó-fletxa intern = 10px */
+
+  /* ---------- Tipografia ---------- */
+  --sans:      "Satoshi", system-ui, sans-serif;          /* tot: UI, titulars, cos */
+  --menu-font: "Satoshi", system-ui, sans-serif;
+  --serif:     "Instrument Serif", Georgia, serif;        /* NOMÉS accents <em> i grans titulars editorials */
+  --mono:      "IBM Plex Mono", ui-monospace, monospace;  /* eyebrows, tags, chips, meta */
+
+  /* ---------- Layout ---------- */
+  --frame:   clamp(8px, .7vw, 11px);
+  --maxw:    1840px;
+  --pad:     clamp(26px, 4.5vw, 80px);
+  --side:    max(0px, calc((100vw - var(--maxw)) / 2));
+  --edge:    calc(var(--side) + var(--pad));   /* logo/nav/full-bleed alineats amb .wrap */
+  --section: clamp(96px, 15vh, 200px);
+
+  /* ---------- Moviment ---------- */
+  --ease:     cubic-bezier(.22, 1, .36, 1);    /* per defecte, tot */
+  --ease-rev: cubic-bezier(.16, 1, .3, 1);     /* reveals */
+  --ease-bounce: cubic-bezier(.22, 1.4, .36, 1);
+}
+
+/* =========================================================================
+   Base
+   ========================================================================= */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: var(--sans);
+  font-weight: 500;              /* el cos és 500, no 400 */
+  font-size: 18px; line-height: 1.6;
+  background: var(--bg); color: var(--ink);
+  -webkit-font-smoothing: antialiased;    /* OBLIGATORI — sense això tot es veu massa gruixut */
+  text-rendering: optimizeLegibility;
+}
+::selection { background: var(--accent); color: var(--ink); }
+a { color: inherit; text-decoration: none; }
+img { display: block; max-width: 100%; }
+
+/* serif accent: qualsevol <em> dins un titular → Instrument Serif, recte (no cursiva) */
+em { font-family: var(--serif); font-style: normal; font-weight: 400; }
+
+.wrap { width: 100%; max-width: var(--maxw); margin-inline: auto; padding-inline: var(--pad); }
+.dark { background: var(--ink); color: var(--on-dark); }
+
+/* =========================================================================
+   Escala tipogràfica (fluida)
+   ========================================================================= */
+.t-hero    { font-weight: 500; font-size: clamp(52px,10.5vw,168px); line-height: .92; letter-spacing: -.04em; }
+.t-hero em { letter-spacing: -.02em; }
+.t-display { font-weight: 500; font-size: clamp(44px,7vw,128px);   line-height: 1;    letter-spacing: -.045em; }
+.t-svc     { font-weight: 500; font-size: clamp(54px,9vw,150px);   line-height: .92;  letter-spacing: -.05em; }
+.t-serif-xl{ font-family: var(--serif); font-weight: 400; font-size: clamp(44px,8vw,142px); line-height: .92; letter-spacing: -.02em; }
+.t-serif-l { font-family: var(--serif); font-weight: 400; font-size: clamp(38px,5.6vw,96px); line-height: 1;   letter-spacing: -.01em; }
+.t-h1      { font-weight: 500; font-size: clamp(30px,4.1vw,67px);  line-height: 1.22; letter-spacing: -.025em; }  /* statement */
+.t-h2      { font-weight: 500; font-size: clamp(28px,3.4vw,52px);  line-height: 1.08; letter-spacing: -.03em; }   /* capçalera secció */
+.t-h3      { font-weight: 600; font-size: clamp(24px,2.4vw,40px);  line-height: 1.1;  letter-spacing: -.03em; }   /* KPI, cards */
+.t-h4      { font-weight: 600; font-size: clamp(17px,1.5vw,22px);  line-height: 1.25; letter-spacing: -.01em; }
+.t-lead    { font-weight: 500; font-size: clamp(16px,1.3vw,21px);  line-height: 1.62; }
+.t-body    { font-weight: 500; font-size: 18px; line-height: 1.6; }
+.t-small   { font-weight: 500; font-size: 14px; line-height: 1.5; }
+.t-caption { font-weight: 400; font-size: 13px; line-height: 1.45; color: var(--muted); }
+
+/* sub-línia serif en gris (ex.: "connected.") */
+.t-serif-sub { font-family: var(--serif); font-weight: 400; font-size: clamp(22px,2.4vw,38px); line-height: 1.05; color: var(--muted); }
+
+/* em dins text petit/sub → gris apagat */
+.em-muted em, em.muted { color: var(--muted); }
+
+/* ---- Eyebrow / labels mono ---- */
+.eyebrow {
+  display: inline-block;
+  font-family: var(--mono); font-weight: 400; font-size: 12px;
+  letter-spacing: .2em; text-transform: uppercase;
+  color: var(--muted);          /* color fix, NO opacity (el reveal .r anima opacity) */
+}
+.dark .eyebrow { color: rgba(255,255,255,.5); }
+.t-mono    { font-family: var(--mono); font-size: 12px; letter-spacing: .1em; text-transform: uppercase; }
+.t-tag     { font-family: var(--mono); font-size: 10px; letter-spacing: .03em; text-transform: uppercase; }
+.t-num     { font-family: var(--mono); font-size: 13px; letter-spacing: .14em; color: var(--muted); }
