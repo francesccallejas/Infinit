@@ -160,3 +160,15 @@ body.lock{overflow:hidden}
  .ft-hl i{transform:none}
  .cur{display:none}
 }
+/* Cookie consent — frosted card above the dock (same glass as the toast) */
+.ck{position:fixed;left:50%;bottom:86px;z-index:58;width:min(560px,calc(100vw - 24px));display:flex;align-items:center;gap:16px;padding:10px 10px 10px 20px;border-radius:16px;font:500 14px/1.4 Satoshi,sans-serif;color:var(--t4);background:oklch(1 0 0 / .6);-webkit-backdrop-filter:blur(18px) saturate(1.6);backdrop-filter:blur(18px) saturate(1.6);box-shadow:0 16px 40px -14px oklch(.14 .012 245 / .3);opacity:0;transform:translate(-50%,20px);transition:opacity .4s,transform .6s cubic-bezier(.2,.7,.2,1)}
+.ck.on{opacity:1;transform:translate(-50%,0)}
+.ck[hidden]{display:none}
+.ck p{flex:1;margin:0;color:var(--t3)}
+.ck-a{display:flex;gap:4px;flex:none}
+.ck button{border:0;font:inherit;cursor:pointer;padding:10px 16px;border-radius:99px;white-space:nowrap;transition:background .5s,color .5s,box-shadow .5s}
+.ck-no{background:none;color:var(--t3)}.ck-no:hover{color:var(--t4);background:oklch(.16 .004 85 / .06)}
+.ck-ok{background:var(--t4);color:var(--bg)}
+.ck-ok:hover{background:oklch(.9 .06 var(--h));color:var(--t4);box-shadow:0 10px 30px -12px oklch(.6 .09 var(--h) / .6)}
+.menu-open .ck,.qk-open .ck{opacity:0;pointer-events:none}
+@media(max-width:760px){.ck{bottom:76px;flex-direction:column;align-items:stretch;gap:10px;padding:14px}.ck-a{justify-content:flex-end}}

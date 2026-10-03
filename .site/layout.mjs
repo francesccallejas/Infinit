@@ -97,6 +97,12 @@ export function footer(ctx) {
 <div class="ft-b lbl"><span>${esc(t.loc)}</span><nav class="fl" aria-label="${esc(t.language)}">${ordered(ctx).join('')}</nav><span data-clock></span><span>© 2026 INFINIT©</span></div></footer>`;
 }
 
+// Cookie consent (same storage key as the previous site, so earlier choices are kept). Shown by site.js.
+export function cookies(ctx) {
+  const t = T[ctx.lang];
+  return `<aside class="ck" id="ck" aria-label="${esc(t.ckLabel)}" hidden><p>${esc(t.ckMsg)}</p><div class="ck-a"><button type="button" class="ck-no" data-ck="declined">${esc(t.ckDecline)}</button><button type="button" class="ck-ok" data-ck="accepted"><span class="roll">${esc(t.ckAccept)}</span></button></div></aside>`;
+}
+
 // Rainbow line on the light → dark transition before the final dark block (drawn in on scroll).
 export const ftLine = '<div class="ft-hl" aria-hidden="true"><i></i></div>';
 export const heroLine = '<div class="hl" aria-hidden="true"><i></i></div>';
@@ -106,6 +112,7 @@ export function end(ctx, extra = '') {
 ${dock(ctx)}
 ${menu(ctx, ctx.menuExtra || '')}
 ${extra}<div class="toast" id="toast" role="status" aria-live="polite"></div>
+${cookies(ctx)}
 </body>
 </html>
 `;

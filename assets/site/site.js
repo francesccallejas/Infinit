@@ -410,6 +410,23 @@ function cyc(root = d) {
   });
 }
 
+/* ---------- cookie consent ---------- */
+// Stored as 'accepted' | 'declined'. Anything that sets cookies (e.g. analytics) must wait for
+// window.INF_CONSENT === 'accepted' or listen to the 'inf:consent' event.
+function cookies(delay) {
+  const el = $('#ck'); if (!el) return;
+  const KEY = 'ck-consent-v2';
+  const saved = store.get(localStorage, KEY);
+  if (saved) { window.INF_CONSENT = saved; return; }
+  setTimeout(() => { el.hidden = false; requestAnimationFrame(() => requestAnimationFrame(() => el.classList.add('on'))); }, delay);
+  el.addEventListener('click', e => {
+    const b = e.target.closest('[data-ck]'); if (!b) return;
+    const v = b.dataset.ck; store.set(localStorage, KEY, v); window.INF_CONSENT = v;
+    dispatchEvent(new CustomEvent('inf:consent', { detail: v }));
+    el.classList.remove('on'); setTimeout(() => { el.hidden = true; }, RM ? 0 : 600);
+  });
+}
+
 /* ================= Home ================= */
 function homePage() {
   // Hero: background images cross-fade (1.6s) with a slow zoom; images load one step ahead.
@@ -534,5 +551,5 @@ addEventListener('resize', () => {
   mount();
   if (innerWidth !== lastW) { lastW = innerWidth; clearTimeout(lines._t); lines._t = setTimeout(lines, 250); }
 });
-(page === 'home' ? pre('home') : Promise.resolve()).then(() => fontsReady).then(() => { lines(); clip(); reveal(); });
+(page === 'home' ? pre('home') : Promise.resolve()).then(() => fontsReady).then(() => { lines(); clip(); reveal(); roll($('#ck') || d); cookies(1200); });
 })();

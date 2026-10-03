@@ -2,6 +2,7 @@
 // from the previous site (i18n.js) where the copy matches. Case-study copy lives in pages/*.mjs.
 export const T = {
   en: {
+    ckLabel: 'Cookies', ckMsg: 'We use cookies to enhance your experience and analyse traffic.', ckDecline: 'Decline', ckAccept: 'Accept',
     skip: 'Skip to content', navLabel: 'Main navigation', language: 'Language',
     work: 'Work', services: 'Services', studio: 'Studio', contact: 'Contact',
     menu: 'Menu', close: 'Close', openMenu: 'Open menu', closeMenu: 'Close menu',
@@ -45,6 +46,7 @@ export const T = {
     stCta: 'Let’s build something <b>that scales.</b>',
   },
   ca: {
+    ckLabel: 'Galetes', ckMsg: 'Fem servir cookies per millorar la teva experiència i analitzar el trànsit.', ckDecline: 'Rebutjar', ckAccept: 'Acceptar',
     skip: 'Salta al contingut', navLabel: 'Navegació principal', language: 'Idioma',
     work: 'Projectes', services: 'Serveis', studio: 'Estudi', contact: 'Contacte',
     menu: 'Menú', close: 'Tanca', openMenu: 'Obre el menú', closeMenu: 'Tanca el menú',
@@ -86,6 +88,7 @@ export const T = {
     stCta: 'Construïm alguna cosa <b>que escali.</b>',
   },
   es: {
+    ckLabel: 'Cookies', ckMsg: 'Usamos cookies para mejorar tu experiencia y analizar el tráfico.', ckDecline: 'Rechazar', ckAccept: 'Aceptar',
     skip: 'Saltar al contenido', navLabel: 'Navegación principal', language: 'Idioma',
     work: 'Proyectos', services: 'Servicios', studio: 'Estudio', contact: 'Contacto',
     menu: 'Menú', close: 'Cerrar', openMenu: 'Abrir menú', closeMenu: 'Cerrar menú',
