@@ -407,7 +407,17 @@ function cookies(delay) {
   const KEY = 'ck-consent-v2';
   const saved = store.get(localStorage, KEY);
   if (saved) { window.INF_CONSENT = saved; return; }
-  setTimeout(() => { el.hidden = false; requestAnimationFrame(() => requestAnimationFrame(() => el.classList.add('on'))); }, delay);
+  // Auto-contrast like the dock: dark glass over .dark sections.
+  const chk = () => {
+    if (el.hidden) return;
+    const r = el.getBoundingClientRect();
+    el.style.visibility = 'hidden';
+    const under = d.elementFromPoint(innerWidth / 2, r.top + r.height / 2);
+    el.style.visibility = '';
+    el.classList.toggle('dk', !!(under && under.closest('.dark')));
+  };
+  onScroll.push(chk);
+  setTimeout(() => { el.hidden = false; chk(); requestAnimationFrame(() => requestAnimationFrame(() => el.classList.add('on'))); }, delay);
   el.addEventListener('click', e => {
     const b = e.target.closest('[data-ck]'); if (!b) return;
     const v = b.dataset.ck; store.set(localStorage, KEY, v); window.INF_CONSENT = v;

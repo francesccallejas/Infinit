@@ -162,7 +162,8 @@ body.lock{overflow:hidden}
  .cur{display:none}
 }
 /* Cookie consent — frosted card above the dock (same glass as the toast) */
-.ck{position:fixed;left:50%;bottom:86px;z-index:58;width:min(560px,calc(100vw - 24px));display:flex;align-items:center;gap:16px;padding:10px 10px 10px 20px;border-radius:16px;font:500 14px/1.4 Satoshi,sans-serif;color:var(--t4);background:oklch(1 0 0 / .6);-webkit-backdrop-filter:blur(18px) saturate(1.6);backdrop-filter:blur(18px) saturate(1.6);box-shadow:0 16px 40px -14px oklch(.14 .012 245 / .3);opacity:0;transform:translate(-50%,20px);transition:opacity .4s,transform .6s cubic-bezier(.2,.7,.2,1)}
+/* Same glass as the dock (light / .dk dark auto-contrast, toggled by site.js) */
+.ck{position:fixed;left:50%;bottom:86px;z-index:58;width:min(560px,calc(100vw - 24px));display:flex;align-items:center;gap:16px;padding:10px 10px 10px 20px;border-radius:16px;font:500 14px/1.4 Satoshi,sans-serif;color:var(--t4);background:oklch(.975 .002 85 / .5);-webkit-backdrop-filter:blur(20px) saturate(1.6);backdrop-filter:blur(20px) saturate(1.6);box-shadow:0 12px 40px oklch(.14 .012 245 / .14);opacity:0;transform:translate(-50%,20px);transition:opacity .4s,transform .6s cubic-bezier(.2,.7,.2,1),background .4s,color .4s,box-shadow .4s}
 .ck.on{opacity:1;transform:translate(-50%,0)}
 .ck[hidden]{display:none}
 .ck p{flex:1;margin:0;color:var(--t3)}
@@ -172,4 +173,6 @@ body.lock{overflow:hidden}
 .ck-ok{background:var(--t4);color:var(--bg)}
 .ck-ok:hover{background:oklch(.9 .06 var(--h));color:var(--t4);box-shadow:0 10px 30px -12px oklch(.6 .09 var(--h) / .6)}
 .menu-open .ck,.qk-open .ck{opacity:0;pointer-events:none}
+.ck.dk{background:oklch(.14 .012 245 / .45);color:var(--d4);box-shadow:0 12px 40px #0006}.ck.dk p{color:var(--d3)}
+.ck.dk .ck-no{color:var(--d3)}.ck.dk .ck-no:hover{color:var(--d4);background:oklch(1 0 0 / .1)}.ck.dk .ck-ok{background:var(--d4);color:var(--d0)}
 @media(max-width:760px){.ck{bottom:76px;flex-direction:column;align-items:stretch;gap:10px;padding:14px}.ck-a{justify-content:flex-end}}
