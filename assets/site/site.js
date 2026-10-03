@@ -28,15 +28,19 @@ addEventListener('resize', () => { flush(); });
 /* ---------- wordmark: INFINIT© letter by letter, canvas-measured (Geist 900) ---------- */
 const HUES = [165, 255, 285, 30, 88], GAP = .035;
 let cvx;
+// Letters are measured once at a large reference size and scaled: canvas metrics are rounded to whole
+// pixels, which at small sizes (15px dock, 22px menu) opened visible gaps between letters.
+const REF = 400;
 function wm(el, size) {
   cvx = cvx || d.createElement('canvas').getContext('2d');
-  cvx.font = `900 ${size}px Geist`;
+  cvx.font = `900 ${REF}px Geist`;
+  const k = size / REF;
   el.textContent = ''; el.style.fontSize = size + 'px';
   [...'INFINIT'].forEach((ch, i) => {
     const m = cvx.measureText(ch), s = d.createElement('span');
     s.textContent = ch; s.style.display = 'inline-block';
-    s.style.width = (m.actualBoundingBoxLeft + m.actualBoundingBoxRight) + 'px';
-    s.style.textIndent = m.actualBoundingBoxLeft + 'px';
+    s.style.width = (m.actualBoundingBoxLeft + m.actualBoundingBoxRight) * k + 'px';
+    s.style.textIndent = m.actualBoundingBoxLeft * k + 'px';
     s.style.marginLeft = i ? GAP * size + 'px' : '0';
     el.appendChild(s);
   });
@@ -50,9 +54,7 @@ function mount() {
       wm(el, 100);
       const p = el.parentElement, cs = getComputedStyle(p);
       const W = p.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
-      // Canvas metrics are pixel-rounded at small sizes, so the first estimate runs ~3% wide:
-      // a second pass at the real size corrects it.
-      if (el.offsetWidth) { const s = 100 * W / el.offsetWidth; wm(el, s); if (el.offsetWidth) wm(el, s * W / el.offsetWidth * .998); }
+      if (el.offsetWidth) wm(el, 100 * W / el.offsetWidth * .998);
     } else wm(el, +v);
   });
 }

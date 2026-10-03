@@ -45,7 +45,7 @@ export const P = [
     img: IM + 'Bunnker Final.webp', g: [B + 'int-03.webp', B + 'int-12.webp', B + 'art-07.webp', B + 'int-15.webp', B + 'coac-1.webp'] },
   { n: 'Relats', page: 'relats', t: ['strategy', 'brand', 'digital'],
     d: { en: 'ahead of the curve', ca: 'al capdavant', es: 'por delante de la curva' },
-    img: IM + 'Relats Brand.webp', g: [R + 'sleeve-macro.webp', R + 'join-the-ride.webp', R + 'cover-glow.webp', R + 'lake-curve.webp', R + 'staying-ahead.webp', R + 'offices.webp'] },
+    img: R + 'sleeve-coiled-card.webp', g: [R + 'web-mockup.webp'] },
   { n: 'Instellar', page: null, s: 'wip', t: ['strategy', 'brand', 'digital'],
     d: { en: 'mission performance', ca: 'rendiment de missió', es: 'rendimiento de misión' },
     img: IM + 'instellar-aircraft.webp', g: [] },
