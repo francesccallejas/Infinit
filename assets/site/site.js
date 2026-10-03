@@ -42,7 +42,6 @@ function wm(el, size) {
   });
   const r = d.createElement('span'); r.className = 'r'; r.textContent = '©'; r.style.fontSize = (size > 80 ? .2 : .42) + 'em';
   el.appendChild(r);
-  if (el.hasAttribute('data-color')) [...el.children].filter(s => !s.classList.contains('r')).forEach((s, i) => s.style.color = `oklch(.72 .075 ${HUES[i % 5]})`);
 }
 function mount() {
   $$('[data-wm]').forEach(el => {
@@ -321,7 +320,7 @@ function pre(key) {
     if (RM || store.get(sessionStorage, 'inf-pre-' + key)) return res();
     store.set(sessionStorage, 'inf-pre-' + key, 1);
     const p = d.createElement('div'); p.className = 'pre2'; p.setAttribute('aria-hidden', 'true');
-    p.innerHTML = `<div class="pre2-m"><span class="wm" data-wm="fit" data-color></span></div><div class="pre2-b"><span class="lbl">${escH(T.firm)} — ${escH(T.loc)}</span><span class="pre2-n">000</span></div><div class="pre2-l"><i></i></div>`;
+    p.innerHTML = `<div class="pre2-m"><span class="wm" data-wm="fit"></span></div><div class="pre2-b"><span class="lbl">${escH(T.firm)} — ${escH(T.loc)}</span><span class="pre2-n">000</span></div><div class="pre2-l"><i></i></div>`;
     body.appendChild(p); body.classList.add('lock'); mount();
     const n = $('.pre2-n', p), l = $('.pre2-l i', p), t0 = performance.now(), D = 1700;
     const done = () => { if (p.classList.contains('out')) return; p.classList.add('out'); body.classList.remove('lock'); setTimeout(res, 350); setTimeout(() => p.remove(), 1300); };
