@@ -36,7 +36,6 @@ ${LANGS.filter(l => l !== lang).map(l => `<meta property="og:locale:alternate" c
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="apple-touch-icon" href="/assets/site/apple-touch-icon.png">
 <link rel="preload" href="/assets/site/fonts/Satoshi-Variable.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="/assets/site/fonts/Geist-900.woff2" as="font" type="font/woff2" crossorigin>
 ${styles}
 ${ctx.jsonld ? `<script type="application/ld+json">${JSON.stringify(ctx.jsonld)}</script>` : ''}
 <script>window.T=${JSON.stringify(jsT(T[lang]))}</script>

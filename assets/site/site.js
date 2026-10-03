@@ -25,39 +25,7 @@ addEventListener('scroll', () => { if (!sRaf) sRaf = requestAnimationFrame(flush
 let lastW = innerWidth;
 addEventListener('resize', () => { flush(); });
 
-/* ---------- wordmark: INFINIT© letter by letter, canvas-measured (Geist 900) ---------- */
-const HUES = [165, 255, 285, 30, 88], GAP = .035;
-let cvx;
-// Letters are measured once at a large reference size and scaled: canvas metrics are rounded to whole
-// pixels, which at small sizes (15px dock, 22px menu) opened visible gaps between letters.
-const REF = 400;
-function wm(el, size) {
-  cvx = cvx || d.createElement('canvas').getContext('2d');
-  cvx.font = `900 ${REF}px Geist`;
-  const k = size / REF;
-  el.textContent = ''; el.style.fontSize = size + 'px';
-  [...'INFINIT'].forEach((ch, i) => {
-    const m = cvx.measureText(ch), s = d.createElement('span');
-    s.textContent = ch; s.style.display = 'inline-block';
-    s.style.width = (m.actualBoundingBoxLeft + m.actualBoundingBoxRight) * k + 'px';
-    s.style.textIndent = m.actualBoundingBoxLeft * k + 'px';
-    s.style.marginLeft = i ? GAP * size + 'px' : '0';
-    el.appendChild(s);
-  });
-  const r = d.createElement('span'); r.className = 'r'; r.textContent = '©'; r.style.fontSize = (size > 80 ? .2 : .42) + 'em';
-  el.appendChild(r);
-}
-function mount() {
-  $$('[data-wm]').forEach(el => {
-    const v = el.dataset.wm;
-    if (v === 'fit') {
-      wm(el, 100);
-      const p = el.parentElement, cs = getComputedStyle(p);
-      const W = p.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
-      if (el.offsetWidth) wm(el, 100 * W / el.offsetWidth * .998);
-    } else wm(el, +v);
-  });
-}
+const HUES = [165, 255, 285, 30, 88];
 
 /* ---------- Barcelona clock ---------- */
 function clock() {
@@ -282,7 +250,7 @@ function menu() {
     setInert([$('#main'), $('#ft')], o);
     $$('.dock > :not(#mb)').forEach(el => o ? el.setAttribute('tabindex', '-1') : el.removeAttribute('tabindex'));
     dockChk();
-    if (o) { back = d.activeElement; requestAnimationFrame(() => { const s = m.querySelector('[data-langseg]'); s && s._place && s._place(); mount(); const f = $('.menu-l a', m); f && f.focus({ preventScroll: true }); }); }
+    if (o) { back = d.activeElement; requestAnimationFrame(() => { const s = m.querySelector('[data-langseg]'); s && s._place && s._place(); const f = $('.menu-l a', m); f && f.focus({ preventScroll: true }); }); }
     else if (back && m.contains(d.activeElement)) b.focus({ preventScroll: true });
   };
   b.addEventListener('click', () => setMenu(!body.classList.contains('menu-open')));
@@ -322,8 +290,9 @@ function pre(key) {
     if (RM || store.get(sessionStorage, 'inf-pre-' + key)) return res();
     store.set(sessionStorage, 'inf-pre-' + key, 1);
     const p = d.createElement('div'); p.className = 'pre2'; p.setAttribute('aria-hidden', 'true');
-    p.innerHTML = `<div class="pre2-m"><span class="wm" data-wm="fit"></span></div><div class="pre2-b"><span class="lbl">${escH(T.firm)} — ${escH(T.loc)}</span><span class="pre2-n">000</span></div><div class="pre2-l"><i></i></div>`;
-    body.appendChild(p); body.classList.add('lock'); mount();
+    p.innerHTML = `<div class="pre2-m"></div><div class="pre2-b"><span class="lbl">${escH(T.firm)} — ${escH(T.loc)}</span><span class="pre2-n">000</span></div><div class="pre2-l"><i></i></div>`;
+    const w = $('.mid .wm'); if (w) $('.pre2-m', p).appendChild(w.cloneNode(true));
+    body.appendChild(p); body.classList.add('lock');
     const n = $('.pre2-n', p), l = $('.pre2-l i', p), t0 = performance.now(), D = 1700;
     const done = () => { if (p.classList.contains('out')) return; p.classList.add('out'); body.classList.remove('lock'); setTimeout(res, 350); setTimeout(() => p.remove(), 1300); };
     p.onclick = done;
@@ -563,12 +532,8 @@ de.style.setProperty('--ln', 'linear-gradient(90deg,' + HUES.map(h => `oklch(.72
 roll(); mag(); cursor(); ambient(); smooth(); anchors(); copy(); dock(); menu(); langs(); marquees(); videos();
 if (page === 'home') homePage(); else if (page === 'studio') studioPage(); else if (page === 'work') casePage();
 clock(); setInterval(clock, 1000);
-mount();
 const fontsReady = d.fonts ? d.fonts.ready : Promise.resolve();
-if (d.fonts) d.fonts.load('900 100px Geist').then(mount, () => {});
-fontsReady.then(mount);
 addEventListener('resize', () => {
-  mount();
   if (innerWidth !== lastW) { lastW = innerWidth; clearTimeout(lines._t); lines._t = setTimeout(lines, 250); }
 });
 (page === 'home' ? pre('home') : Promise.resolve()).then(() => fontsReady).then(() => { lines(); clip(); reveal(); roll($('#ck') || d); cookies(1200); });
