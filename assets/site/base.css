@@ -80,7 +80,7 @@ body{background:oklch(.975 var(--ac) var(--h));transition:background 1.4s ease}
 /* Text selection: always the Strategy green (hue 165) */
 ::selection{background:oklch(.86 .07 165);color:var(--t4)}
 .cur.big{background:oklch(.88 .06 var(--h));mix-blend-mode:normal;color:var(--t4);box-shadow:0 10px 30px oklch(.5 .05 var(--h) / .25)}
-.dock .amb{width:8px;height:8px;border-radius:50%;background:oklch(.72 calc(var(--ac)*7) var(--h));margin:0 6px 0 2px;transition:background 1.4s}
+.dock .amb{width:8px;height:8px;border-radius:50%;background:oklch(.72 .08 165);margin:0 6px 0 2px;transition:background 1.4s} /* always the Strategy green */
 
 /* ---------- kit 2 · frosted buttons, menu, preloader, lines, clip, toast ---------- */
 html.sm{scroll-behavior:auto}
