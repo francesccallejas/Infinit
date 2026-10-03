@@ -31,7 +31,7 @@ const PAGES = [
 
 const ORG = lang => ({
   '@context': 'https://schema.org', '@type': 'Organization', name: 'INFINIT©', url: SITE + '/',
-  logo: SITE + '/assets/site/apple-touch-icon.png', email: 'hello@weareinfinit.com', telephone: '+34689022383',
+  logo: SITE + '/assets/site/icon-512.png', email: 'hello@weareinfinit.com', telephone: '+34689022383',
   description: T[lang].homeDesc,
   address: { '@type': 'PostalAddress', addressLocality: 'Barcelona', addressCountry: 'ES' },
   founder: { '@type': 'Person', name: 'Cesc Callejas' },
@@ -59,7 +59,9 @@ const gateway = `<!doctype html>
 ${LANGS.map(l => `<link rel="alternate" hreflang="${l}" href="${abs(l, 'home')}">`).join('\n')}
 <link rel="alternate" hreflang="x-default" href="${SITE}/">
 <meta name="theme-color" content="#060a0e">
-<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/site/apple-touch-icon.png">
 <script>(function(){var L=['ca','es','en'],s=null;try{s=localStorage.getItem('inf-lang')}catch(e){}
 if(L.indexOf(s)<0){s='en';var n=navigator.languages||[navigator.language||''];for(var i=0;i<n.length;i++){var c=String(n[i]).slice(0,2).toLowerCase();if(L.indexOf(c)>-1){s=c;break}}}
 location.replace('/'+s+'/'+location.search+location.hash)})()</script>
@@ -80,7 +82,9 @@ out('404.html', `<!doctype html>
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Page not found — INFINIT©</title>
 <meta name="robots" content="noindex">
-<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/site/apple-touch-icon.png">
 <link rel="stylesheet" href="/assets/site/base.css?v=${V['base.css']}">
 <style>main{min-height:100svh;display:flex;flex-direction:column;justify-content:space-between;padding:22px var(--pad) 40px}h1{font-size:clamp(56px,10vw,184px);line-height:.92;letter-spacing:-.06em;font-weight:700}nav{display:flex;gap:10px;flex-wrap:wrap}</style>
 </head>
@@ -105,6 +109,16 @@ ${LANGS.map(l => `  <xhtml:link rel="alternate" hreflang="${l}" href="${abs(l, p
 
 
 // Old URLs (previous site) → new English pages.
+// Web app manifest (handoff: uses icon-512.png).
+out('site.webmanifest', JSON.stringify({
+  name: 'INFINIT©', short_name: 'INFINIT©', start_url: '/', display: 'browser',
+  background_color: '#03050F', theme_color: '#03050F',
+  icons: [
+    { src: '/assets/site/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
+    { src: '/assets/site/icon-512.png', sizes: '512x512', type: 'image/png', purpose: 'any maskable' },
+  ],
+}, null, 2) + '\n');
+
 out('robots.txt', `User-agent: *\nAllow: /\nDisallow: /project/uploads/\n\nSitemap: ${SITE}/sitemap.xml\n`);
 
 out('_redirects', `# Previous site URLs → new language-prefixed pages

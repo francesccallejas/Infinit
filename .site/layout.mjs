@@ -33,8 +33,10 @@ ${alt}
 ${LANGS.filter(l => l !== lang).map(l => `<meta property="og:locale:alternate" content="${LOCALE[l]}">`).join('\n')}
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#060a0e">
-<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/assets/site/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
 <link rel="preload" href="/assets/site/fonts/Satoshi-Variable.woff2" as="font" type="font/woff2" crossorigin>
 ${styles}
 ${ctx.jsonld ? `<script type="application/ld+json">${JSON.stringify(ctx.jsonld)}</script>` : ''}

@@ -242,7 +242,7 @@ No horizontal overflow is allowed (`html, body { overflow-x: clip }`).
    - The showreel imagery is provisional (a real reel will replace it).
    - Induktor uses an Unsplash image.
    - The 4 WIP cases have no pages. Show them as non-clickable "Work in progress" (as now) until they exist.
-9. **SEO/meta**: titles, descriptions, Open Graph images, favicon, and sitemap per page and language.
+9. **SEO/meta**: titles, descriptions, Open Graph images and sitemap per page and language. The favicon set is in `assets/favicon/` and already linked in the prototype pages; add a `site.webmanifest` that uses `icon-512.png`.
 10. Remove prototype-only bits: `#ctl` toggle styles, and Babel/devtools if any.
 
 ## State (minimal)
@@ -259,6 +259,7 @@ No horizontal overflow is allowed (`html, body { overflow-x: clip }`).
 - `prototype/work/bunnker/bunnker-assets/`, `prototype/work/relats/relats-assets/`: case images and video posters.
 - `prototype/assets/clients/`: client and award logos.
 - `prototype/fonts/`: Satoshi variable.
+- `prototype/assets/favicon/`: `favicon.svg` (main), `favicon.ico` (16/32/48), `favicon-32.png`, `apple-touch-icon.png` (180, full-bleed), `icon-512.png` (full-bleed, for the web manifest). `instagram-avatar.png` (1080) is for the Instagram profile and is not used on the site.
 
 All of these already exist in the repo (`project/`, `work/`), which is where they were taken from.
 
