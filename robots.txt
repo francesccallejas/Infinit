@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /project/uploads/
+
+Sitemap: https://weareinfinit.com/sitemap.xml
