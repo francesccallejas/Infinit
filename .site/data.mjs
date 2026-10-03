@@ -42,20 +42,20 @@ const B = 'work/bunnker/bunnker-assets/', R = 'work/relats/relats-assets/', I = 
 export const P = [
   { n: 'Bunnker', page: 'bunnker', t: ['strategy', 'brand'],
     d: { en: 'beyond renting', ca: 'més que llogar', es: 'más que alquilar' },
-    img: IM + 'Bunnker Final.webp', g: [B + 'hero.webp', B + 'int-03.webp', B + 'int-12.webp', B + 'art-07.webp', B + 'int-15.webp'] },
+    img: IM + 'Bunnker Final.webp', g: [B + 'int-03.webp', B + 'int-12.webp', B + 'art-07.webp', B + 'int-15.webp', B + 'coac-1.webp'] },
   { n: 'Relats', page: 'relats', t: ['strategy', 'brand', 'digital'],
     d: { en: 'ahead of the curve', ca: 'al capdavant', es: 'por delante de la curva' },
-    img: IM + 'Relats Brand.webp', g: [R + 'emi-hero.webp', R + 'sleeve-macro.webp', R + 'cover-glow.webp', R + 'lake-curve.webp', R + 'offices.webp', I + 'relats-industrial.webp'] },
+    img: IM + 'Relats Brand.webp', g: [R + 'sleeve-macro.webp', R + 'join-the-ride.webp', R + 'cover-glow.webp', R + 'lake-curve.webp', R + 'staying-ahead.webp', R + 'offices.webp'] },
   { n: 'Instellar', page: null, s: 'wip', t: ['strategy', 'brand', 'digital'],
     d: { en: 'mission performance', ca: 'rendiment de missió', es: 'rendimiento de misión' },
-    img: IM + 'instellar-aircraft.webp', g: [I + 'astronaut-blue.avif'] },
+    img: IM + 'instellar-aircraft.webp', g: [] },
   { n: 'Induktor', page: null, s: 'wip', t: ['strategy', 'brand', 'digital'],
     d: { en: 'sim racing hardware', ca: 'hardware de sim racing', es: 'hardware de sim racing' },
-    // Placeholder from Unsplash (QA #8) — replace with own imagery when available.
-    img: I + 'device-knob.webp', g: ['https://images.unsplash.com/photo-1778757949749-345b125f2ccb?q=80&w=1600&auto=format&fit=crop'] },
+    // Same image the previous site used for Induktor (remote Unsplash, QA #8) — replace with own imagery when available.
+    img: 'https://images.unsplash.com/photo-1778757949749-345b125f2ccb?q=80&w=1600&auto=format&fit=crop', g: [] },
   { n: 'Julià', page: null, s: 'wip', t: ['strategy', 'brand', 'digital'],
     d: { en: 'premium adventure vans', ca: 'campers premium', es: 'campers premium' },
-    img: I + 'Julia Yosemite.webp', g: [I + 'julia-camper.webp', I + 'mountains-tekapo.webp', I + 'night-lake.webp', I + 'lake-moon.jpg'] },
+    img: I + 'Julia Yosemite.webp', g: [I + 'julia-camper.webp'] },
   { n: 'Almirall', page: null, s: 'nda', t: ['strategy', 'digital'],
     d: { en: 'beautifully clinical', ca: 'clínicament bell', es: 'clínicamente bello' },
     img: I + 'Almirall.webp', g: [] },
@@ -68,5 +68,5 @@ export const src = p => /^https?:/.test(p) ? p : A(p);
 export const CH = { sap: 28, glovo: 37, almirall: 22, instellar: 21, relats: 22, bunnker: 26, '11onze': 17, dronparc: 21 };
 export const CLIENT_NAMES = 'SAP, Glovo, Almirall, Instellar, Relats, Bunnker, 11onze, DronParc';
 
-// Home hero rotation [project index, image] — first 5 also feed the approach section.
-export const HS = [[1, P[1].img], [0, P[0].g[0]], [4, P[4].img], [0, P[0].g[2]], [4, P[4].g[2]], [2, P[2].img], [3, P[3].img], [0, P[0].img], [4, P[4].g[1]], [5, P[5].img]];
+// Home hero rotation (conceptual imagery, as in the prototype) — the first 5 also feed the approach section.
+export const HS = [IM + 'Relats Brand.webp', B + 'hero.webp', I + 'Julia Yosemite.webp', B + 'int-12.webp', I + 'night-lake.webp', IM + 'instellar-aircraft.webp', I + 'device-knob.webp', IM + 'Bunnker Final.webp', I + 'mountains-tekapo.webp', I + 'Almirall.webp'];

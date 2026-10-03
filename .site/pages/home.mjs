@@ -27,7 +27,7 @@ export function home(ctx) {
       : `<div class="pj soon" data-cur="${esc(t.cSoon)}" data-soon="${esc(p.n + ' — ' + status(p))}"${common}>${inner}</div>`;
   };
 
-  const hero = `<section class="hx dark" id="top" data-h="n"><div class="hx-bg" id="hbg" aria-hidden="true">${HS.map(([, s], i) => `<div class="img${i ? '' : ' on'}"><img ${i ? 'data-src' : 'src'}="${src(s)}" alt=""${i ? '' : ' fetchpriority="high"'}></div>`).join('')}</div>
+  const hero = `<section class="hx dark" id="top" data-h="n"><div class="hx-bg" id="hbg" aria-hidden="true">${HS.map((s, i) => `<div class="img${i ? '' : ' on'}"><img ${i ? 'data-src' : 'src'}="${src(s)}" alt=""${i ? '' : ' fetchpriority="high"'}></div>`).join('')}</div>
 <h1 class="sr">${esc(t.h1)}</h1>
 <div class="top"></div>
 <div class="mid" aria-hidden="true"><span class="t em">${esc(t.hero1)}</span>${wm('fit')}<span class="t t2 em"><b>${esc(t.hero2)}</b></span></div>
@@ -41,7 +41,7 @@ ${heroLine}<div class="hb"><a class="ql" href="${url(lang, 'studio')}" data-cur=
 <div class="wv-gr" hidden><div class="gr">${P.map((p, i) => card(p, { grid: i })).join('')}</div></div></div></section>`;
 
   const SH = HS.slice(0, 5);
-  const approach = `<section class="show dark" id="approach" aria-label="${esc(t.approach)}"><div class="show-s"><div id="si" aria-hidden="true">${SH.map(([, s], i) => `<div class="si" style="z-index:${i}"><div class="img"><img src="${src(s)}" alt="" loading="lazy"></div></div>`).join('')}</div>
+  const approach = `<section class="show dark" id="approach" aria-label="${esc(t.approach)}"><div class="show-s"><div id="si" aria-hidden="true">${SH.map((s, i) => `<div class="si" style="z-index:${i}"><div class="img"><img src="${src(s)}" alt="" loading="lazy"></div></div>`).join('')}</div>
 <div class="show-o"><span class="lbl">${esc(t.approach)}</span><div class="st">${t.st.map((s, i) => `<p${i ? '' : ' class="on"'}>${esc(s)}</p>`).join('')}</div><div class="show-b"><span class="pg" id="pg" aria-hidden="true">${SH.map(() => '<i><b></b></i>').join('')}</span></div></div></div></section>`;
 
   const services = `<section class="acc" id="services" data-h="n"><div class="sh"><h2 class="h2" data-lines>${t.svcH}</h2><span class="lbl">${esc(t.capabilities)}</span></div>
