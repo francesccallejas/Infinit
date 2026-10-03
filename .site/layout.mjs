@@ -3,7 +3,7 @@ import { SITE, LANGS, LOCALE, EMAIL, PHONE, LINKEDIN, INSTAGRAM, url, abs, esc, 
 import { T } from './i18n.mjs';
 
 // Strings the client script needs.
-const jsT = t => ({ menu: t.menu, close: t.close, openMenu: t.openMenu, closeMenu: t.closeMenu, copyToast: t.copyToast, copied: t.copied, firm: t.firm, loc: t.loc });
+const jsT = t => ({ menu: t.menu, close: t.close, openMenu: t.openMenu, closeMenu: t.closeMenu, copyToast: t.copyToast, copied: t.copied, firm: t.firm, loc: t.loc, soundOn: t.soundOn, soundOff: t.soundOff, vPause: t.vPause, vPlay: t.vPlay, cPause: t.cPause, cPlay: t.cPlay });
 
 export function head(ctx, { title, desc, og, css }) {
   const { lang, page, V } = ctx;

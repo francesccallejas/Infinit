@@ -95,3 +95,14 @@
 .nx>.ft-hl{position:absolute;z-index:3}
 /* Two-column g12 blocks stack on small screens (Relats analytics was squeezed in the prototype) */
 @media(max-width:900px){.g12>div{grid-column:1/13!important}.g12{row-gap:28px}}
+/* Video with sound: toggle button (bottom right) + pause/play on click */
+.vd[data-sound] video{cursor:pointer}
+.vd[data-sound] .chip{max-width:calc(100% - 96px)}
+.vd-snd{position:absolute;right:16px;bottom:16px;z-index:2;width:44px;height:44px;border:0;border-radius:50%;display:grid;place-items:center;color:#fff;cursor:pointer;background:oklch(1 0 0 / .18);-webkit-backdrop-filter:blur(14px) saturate(1.5);backdrop-filter:blur(14px) saturate(1.5);transition:background .4s,box-shadow .5s}
+.vd-snd:hover{background:oklch(1 0 0 / .3)}
+.vd-snd[aria-pressed="true"]{background:oklch(.9 .06 var(--h));color:var(--t4);box-shadow:0 10px 30px -12px oklch(.6 .09 var(--h) / .6)}
+.vd-snd svg{width:18px;height:18px}
+.vd-snd .on,.vd-snd[aria-pressed="true"] .off{display:none}.vd-snd[aria-pressed="true"] .on{display:inline}
+.vd-play{position:absolute;left:50%;top:50%;z-index:2;width:72px;height:72px;margin:-36px 0 0 -36px;border-radius:50%;display:grid;place-items:center;color:#fff;pointer-events:none;background:oklch(1 0 0 / .18);-webkit-backdrop-filter:blur(14px) saturate(1.5);backdrop-filter:blur(14px) saturate(1.5);opacity:0;transform:scale(.8);transition:opacity .4s,transform .6s cubic-bezier(.2,.7,.2,1)}
+.vd-play svg{width:24px;height:24px;margin-left:3px}
+.vd.paused .vd-play{opacity:1;transform:none}

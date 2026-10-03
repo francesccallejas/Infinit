@@ -345,7 +345,24 @@ function marquees() {
 /* ---------- videos: load near the viewport, play on screen, pause off it, poster fallback ---------- */
 function videos() {
   $$('.vd video').forEach(v => {
-    const fallback = () => { if (v._sw) return; v._sw = 1; const i = d.createElement('img'); i.src = v.poster; i.alt = v.getAttribute('aria-label') || ''; v.replaceWith(i); };
+    const vd = v.closest('.vd');
+    const fallback = () => { if (v._sw) return; v._sw = 1; const i = d.createElement('img'); i.src = v.poster; i.alt = v.getAttribute('aria-label') || ''; v.replaceWith(i); vd && $$('.vd-snd, .vd-play', vd).forEach(x => x.remove()); };
+    // Videos with sound: toggle button for audio; clicking the video pauses / resumes it (v._up = paused by the user).
+    if (vd && vd.hasAttribute('data-sound')) {
+      const snd = $('.vd-snd', vd);
+      const upd = () => { vd.classList.toggle('paused', v.paused); v.setAttribute('aria-label', v.paused ? T.vPlay : T.vPause); v.dataset.cur = v.paused ? T.cPlay : T.cPause; const c = $('.cur'); if (c && v.matches(':hover')) c.firstChild.textContent = v.dataset.cur; };
+      const go = () => { if (!v.src) v.src = v.dataset.src; const p = v.play(); p && p.catch(() => {}); };
+      const toggle = () => { if (v.paused) { v._up = false; go(); } else { v._up = true; v.pause(); } };
+      v.addEventListener('play', upd); v.addEventListener('pause', upd);
+      v.addEventListener('click', toggle);
+      v.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); } });
+      snd.addEventListener('click', e => {
+        e.stopPropagation();
+        v.muted = !v.muted;
+        snd.setAttribute('aria-pressed', !v.muted); snd.setAttribute('aria-label', v.muted ? T.soundOn : T.soundOff);
+        if (!v.muted && v.paused) { v._up = false; go(); }
+      });
+    }
     v.addEventListener('error', fallback);
     whenVisible(v, vis => {
       if (v._sw) return;
@@ -354,8 +371,9 @@ function videos() {
         v.addEventListener('error', fallback, { once: true });
         setTimeout(() => { if (!v._sw && v.readyState < 2) fallback(); }, 6000);
       }
-      if (RM) return;
-      if (vis) { const p = v.play(); p && p.catch(() => {}); } else v.pause();
+      if (!vis) { v.pause(); return; }
+      if (RM || v._up) { vd && vd.classList.toggle('paused', v.paused); return; }
+      const p = v.play(); p && p.catch(() => {});
     }, '200px');
   });
 }

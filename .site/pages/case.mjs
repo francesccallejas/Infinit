@@ -24,7 +24,10 @@ export const about = ({ whoL, who, defL, quote }) => `<section class="blk g12 ab
 
 // Autoplaying muted video, lazy: site.js sets src when it nears the viewport, pauses it off-screen,
 // and falls back to the poster image if the video fails.
-export const video = ({ file, poster, label = '', cls = '', delay = '', alt = '' }) => `<div class="vd rv${cls ? ' ' + cls : ''}"${delay ? ` style="transition-delay:${delay}"` : ''}><video data-src="${A(file)}" poster="${A(poster)}" muted loop playsinline preload="none" aria-label="${esc(alt || label)}"></video>${label ? `<span class="chip">${esc(label)}</span>` : ''}</div>`;
+// `sound`: the file has an audio track → sound toggle button + click on the video pauses / resumes it.
+const SPK = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4z"/>';
+const sndBtn = lang => `<button type="button" class="vd-snd" aria-pressed="false" aria-label="${esc(T[lang].soundOn)}">${SPK}<path class="off" d="m16 9 5 6m0-6-5 6"/><path class="on" d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13"/></svg></button><span class="vd-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></svg></span>`;
+export const video = ({ file, poster, label = '', cls = '', delay = '', alt = '', sound = false, lang = 'en' }) => `<div class="vd rv${cls ? ' ' + cls : ''}"${sound ? ' data-sound' : ''}${delay ? ` style="transition-delay:${delay}"` : ''}><video data-src="${A(file)}" poster="${A(poster)}" muted loop playsinline preload="none" aria-label="${esc(alt || label)}"${sound ? ` tabindex="0" data-cur="${esc(T[lang].cPause)}"` : ''}></video>${label ? `<span class="chip">${esc(label)}</span>` : ''}${sound ? sndBtn(lang) : ''}</div>`;
 
 export function nextCase(ctx, key) {
   const t = T[ctx.lang], p = P.find(x => x.page === key);
