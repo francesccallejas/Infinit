@@ -116,10 +116,20 @@ function smooth() {
   let cur = scrollY, tgt = scrollY, raf = 0;
   const max = () => de.scrollHeight - innerHeight;
   const step = () => { cur = lerp(cur, tgt, .085); if (Math.abs(tgt - cur) < .4) cur = tgt; scrollTo(0, cur); raf = cur !== tgt ? requestAnimationFrame(step) : 0; };
+  // Soft stops ([data-stop]): scrolling down halts at the section top; the next gesture carries on.
+  const stops = $$('[data-stop]');
+  let gate = 0, lastW = 0;
   addEventListener('wheel', e => {
     if (e.ctrlKey || body.classList.contains('lock') || Math.abs(e.deltaX) > Math.abs(e.deltaY)) return;
     e.preventDefault();
-    tgt = clamp(tgt + e.deltaY * (e.deltaMode === 1 ? 40 : 1), 0, max());
+    const now = performance.now(), gap = now - lastW; lastW = now;
+    if (gate) { if (e.deltaY < 0 || gap > 220) gate = 0; else return; } // swallow the rest of the gesture (trackpad inertia)
+    let nt = clamp(tgt + e.deltaY * (e.deltaMode === 1 ? 40 : 1), 0, max());
+    for (const st of stops) {
+      const y = Math.round(st.getBoundingClientRect().top + scrollY);
+      if (tgt < y - 1 && nt >= y) { nt = y; gate = 1; break; }
+    }
+    tgt = nt;
     if (!raf) raf = requestAnimationFrame(step);
   }, { passive: false });
   addEventListener('scroll', () => { if (Math.abs(scrollY - cur) > 3) cur = tgt = scrollY; }, { passive: true });

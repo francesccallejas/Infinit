@@ -41,7 +41,7 @@ ${heroLine}<div class="hb"><a class="ql" href="${url(lang, 'studio')}" data-cur=
   }).map(({ w, k }, i) => (i && !/^[.,;:!?]/.test(w) ? ' ' : '') + `<span${k ? ' class="k"' : ''}>${w}</span>`).join('');
   const intro = `<section class="intro" id="intro" data-h="n"><div class="intro-s"><div class="intro-c"><span class="lbl">INFINIT©</span><p id="inp">${fill(t.intro)}</p></div></div></section>`;
 
-  const work = `<section id="work" data-h="n"><div class="sh"><h2 class="h2 em" data-lines>${t.workH}</h2><div class="seg" id="seg" role="group" aria-label="${esc(t.viewsLabel)}"><i></i><button type="button" class="on" aria-pressed="true">${esc(t.segDrag)}</button><button type="button" aria-pressed="false">${esc(t.segGrid)}</button></div></div>
+  const work = `<section id="work" data-h="n" data-stop><div class="sh"><h2 class="h2 em" data-lines>${t.workH}</h2><div class="seg" id="seg" role="group" aria-label="${esc(t.viewsLabel)}"><i></i><button type="button" class="on" aria-pressed="true">${esc(t.segDrag)}</button><button type="button" aria-pressed="false">${esc(t.segGrid)}</button></div></div>
 <div id="wv"><div class="wv-car"><div class="car" id="car" data-cur="${esc(t.cDrag)}"><div class="car-t" id="ct">${P.map(p => card(p, { clone: true })).join('')}${P.map(p => card(p)).join('')}${P.map(p => card(p, { clone: true })).join('')}</div></div><div class="hint lbl"><span>${esc(t.hintL)}</span><span>${esc(t.hintR)}</span></div></div>
 <div class="wv-gr" hidden><div class="gr">${P.map((p, i) => card(p, { grid: i })).join('')}</div></div></div></section>`;
 
