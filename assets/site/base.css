@@ -150,6 +150,10 @@ body.lock{overflow:hidden}
 @media (hover:hover){.dock .go:hover,.dock.dk .go:hover{background:oklch(.9 .06 var(--h));color:var(--t4);box-shadow:0 10px 30px -12px oklch(.6 .09 var(--h) / .6)}}
 .dock .dl{position:relative}.dock .dl::after{content:"";position:absolute;left:50%;bottom:4px;width:4px;height:4px;margin-left:-2px;border-radius:50%;background:currentColor;transform:scale(0);transition:transform .5s cubic-bezier(.2,.7,.2,1)}.dock .dl.on::after{transform:scale(1)}
 .menu-l a.on i{transform:scale(1)}.menu-l a.on{color:var(--d4)}
+/* Menu + dock dots: the current section keeps its dot; on desktop hovering a link brings its dot in and nudges the label. */
+.menu-l.rdy .mt{transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+@media (hover:hover){.menu-l.rdy a:hover .mt{transform:translateX(18px)}.menu-l a:hover i{transform:scale(1.25)}.menu-l a.on:hover i{transform:scale(1.25)}
+.dock .dl:hover::after{transform:scale(1)}}
 
 /* ---------- production additions ---------- */
 /* Skip link */
@@ -158,6 +162,8 @@ body.lock{overflow:hidden}
 /* Visible focus on every interactive element (keyboard only) */
 :is(a,button,[tabindex]):focus-visible{outline:2px solid currentColor;outline-offset:3px;border-radius:99px}
 .dark :is(a,button,[tabindex]):focus-visible,.dock.dk :focus-visible{outline-color:var(--d4)}
+/* Sections focused by in-page links / the menu panel (tabindex=-1) are not controls: no ring. */
+[tabindex="-1"]:focus,.menu:focus{outline:none}
 .img:focus-visible,.fc:focus-visible,.tap:focus-visible{border-radius:14px}
 .sr{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap}
 /* Reduced motion: no preloader, no smooth scroll, instant reveals/flips, no marquees */

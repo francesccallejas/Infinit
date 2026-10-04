@@ -243,8 +243,13 @@ let setMenu = () => {};
 function menu() {
   const b = $('#mb'), m = $('#menu'); if (!b || !m) return;
   let back = null;
-  setMenu = o => {
+  const ml = $('.menu-l', m); let rdy = 0;
+  m.tabIndex = -1;
+  // kb: opened from the keyboard → focus the first link; by touch/mouse → focus the panel (no ring on "Work").
+  setMenu = (o, kb) => {
     if (o === body.classList.contains('menu-open')) return;
+    clearTimeout(rdy); ml && ml.classList.remove('rdy');
+    if (o && ml) rdy = setTimeout(() => ml.classList.add('rdy'), 1400); // after the reveal: hover moves are quick
     body.classList.toggle('menu-open', o);
     body.classList.toggle('lock', o || body.classList.contains('qk-open'));
     b.setAttribute('aria-expanded', o); b.setAttribute('aria-label', o ? T.closeMenu : T.openMenu);
@@ -252,10 +257,10 @@ function menu() {
     setInert([$('#main'), $('#ft')], o);
     $$('.dock > :not(#mb)').forEach(el => o ? el.setAttribute('tabindex', '-1') : el.removeAttribute('tabindex'));
     dockChk();
-    if (o) { back = d.activeElement; requestAnimationFrame(() => { const s = m.querySelector('[data-langseg]'); s && s._place && s._place(); const f = $('.menu-l a', m); f && f.focus({ preventScroll: true }); }); }
+    if (o) { back = d.activeElement; requestAnimationFrame(() => { const s = m.querySelector('[data-langseg]'); s && s._place && s._place(); const f = kb ? $('.menu-l a', m) : m; f && f.focus({ preventScroll: true }); }); }
     else if (back && m.contains(d.activeElement)) b.focus({ preventScroll: true });
   };
-  b.addEventListener('click', () => setMenu(!body.classList.contains('menu-open')));
+  b.addEventListener('click', e => setMenu(!body.classList.contains('menu-open'), e.detail === 0));
   addEventListener('keydown', e => {
     if (!body.classList.contains('menu-open')) return;
     if (e.key === 'Escape') { setMenu(false); b.focus(); }
@@ -442,6 +447,15 @@ function cookies(delay) {
 
 /* ================= Home ================= */
 function homePage() {
+  // Intro: pinned while its words light up with scroll (same as the Studio manifesto).
+  const ins = $('#intro'), iw = $$('#inp span');
+  const itick = () => {
+    const r = ins.getBoundingClientRect(), q = clamp(-r.top / (r.height - innerHeight), 0, 1);
+    const n = RM ? iw.length : Math.round(q * 1.15 * iw.length);
+    iw.forEach((w, i) => w.classList.toggle('on', i < n));
+  };
+  onScroll.push(itick); itick();
+
   // Hero: background images cross-fade (1.6s) with a slow zoom; images load one step ahead.
   const hbs = $$('#hbg .img');
   const load = i => { const im = $('img', hbs[i]); if (im && im.dataset.src) { im.src = im.dataset.src; im.removeAttribute('data-src'); } };
