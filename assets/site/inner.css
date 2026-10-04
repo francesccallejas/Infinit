@@ -16,9 +16,9 @@
 .chips{display:flex;gap:6px;flex-wrap:wrap}
 .hl{position:absolute;left:0;right:0;bottom:0;height:3px;overflow:hidden;z-index:2}.hl i{position:absolute;inset:0;background:linear-gradient(90deg,oklch(.8 .13 165),oklch(.72 .14 255),oklch(.7 .14 285),oklch(.72 .15 30),oklch(.84 .14 88),oklch(.8 .13 165));background-size:200% 100%;animation:rb 18s linear infinite}
 @keyframes rb{to{background-position:-200% 0}}
-.scd{display:flex;align-items:center;gap:12px;height:52px;font-size:13px;font-weight:500;color:oklch(1 0 0 / .75)}.scd:hover{color:#fff}
+.scd{display:flex;align-items:center;gap:12px;height:52px;font-size:13px;font-weight:500;color:oklch(1 0 0 / .75)}@media (hover:hover){.scd:hover{color:#fff}}
 .scd i{width:1px;height:52px;background:oklch(1 0 0 / .2);position:relative;overflow:hidden}.scd i::after{content:"";position:absolute;left:0;right:0;top:-40%;height:40%;background:#fff;animation:scd 2s cubic-bezier(.7,0,.2,1) infinite}@keyframes scd{to{top:100%}}
-.gbtn .ar.bk{order:-1}.gbtn:hover .ar.bk{transform:translateX(-3px)}
+.gbtn .ar.bk{order:-1}@media (hover:hover){.gbtn:hover .ar.bk{transform:translateX(-3px)}}
 .meta{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:24px;padding:26px var(--pad);border-bottom:1px solid var(--l1)}
 .meta div{display:flex;flex-direction:column;gap:6px}.meta b{font-size:16px;font-weight:500;line-height:1.35}
 .blk{padding:clamp(90px,11vw,170px) var(--pad) 0}
@@ -33,7 +33,7 @@
 .pil{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
 .pc{position:relative;border-radius:14px;padding:24px;min-height:340px;display:flex;flex-direction:column;justify-content:space-between;background:oklch(.16 .004 85 / .045);overflow:hidden;isolation:isolate}
 .pc::before{content:"";position:absolute;inset:0;background:var(--c);transform:translateY(101%);transition:transform .8s cubic-bezier(.7,0,.2,1);z-index:-1}
-.pc:hover::before{transform:none}
+@media (hover:hover){.pc:hover::before{transform:none}}
 .pc .n{display:flex;justify-content:space-between;align-items:center}.pc .n i{width:10px;height:10px;border-radius:50%}
 .pc h3{font-size:clamp(28px,2.6vw,42px);letter-spacing:-.045em;font-weight:700;line-height:.95}
 .pc p{font-size:16px;line-height:1.5;color:var(--t3);margin-top:12px}
@@ -47,7 +47,7 @@
 .car .img{width:clamp(240px,26vw,400px);aspect-ratio:4/5;border-radius:10px;flex:none}.car img{pointer-events:none}
 .mas{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
 .mas .img{border-radius:12px;aspect-ratio:4/5}.mas .img:nth-child(5n+1){grid-column:span 2;aspect-ratio:auto}
-.mas .img img{transition:transform 1.4s cubic-bezier(.2,.7,.2,1)}.mas .img:hover img{transform:scale(1.03)}
+.mas .img img{transition:transform 1.4s cubic-bezier(.2,.7,.2,1)}@media (hover:hover){.mas .img:hover img{transform:scale(1.03)}}
 @media(max-width:700px){.mas{grid-template-columns:1fr 1fr}}
 .aw2{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:clamp(24px,4vw,64px);align-items:center;padding:clamp(70px,8vw,120px) var(--pad)}
 .tap{position:relative;aspect-ratio:4/3;border-radius:14px;overflow:hidden;cursor:pointer;background:var(--d1)}
@@ -79,14 +79,14 @@
 .fld a,.fld div{position:relative;border-radius:12px;overflow:hidden;aspect-ratio:4/5}.fld .img{position:absolute;inset:0}
 .fld .chip{position:absolute;left:12px;bottom:12px}
 .nx{display:block;padding:clamp(90px,11vw,170px) var(--pad) clamp(70px,8vw,120px);position:relative;overflow:hidden}
-.nx .img{position:absolute;inset:0;opacity:0;transition:opacity .8s}.nx:hover .img{opacity:.5}
+.nx .img{position:absolute;inset:0;opacity:0;transition:opacity .8s}@media (hover:hover){.nx:hover .img{opacity:.5}}
 .nx>*:not(.img){position:relative;z-index:1}
 .nx b{display:block;font-size:clamp(72px,15vw,260px);letter-spacing:-.065em;line-height:.85;font-weight:700;margin-top:16px;transition:letter-spacing .8s cubic-bezier(.2,.7,.2,1)}
-.nx:hover b{letter-spacing:-.04em}
+@media (hover:hover){.nx:hover b{letter-spacing:-.04em}}
 .ft-g{grid-template-columns:1fr 1.4fr 1.2fr}
 .mail{border:0;background:none;padding:0;cursor:none;font:700 clamp(30px,6.4vw,112px)/1 Satoshi,sans-serif;letter-spacing:-.05em;color:var(--d4)}
 .mail .mt{background:linear-gradient(90deg,var(--d4) 0 50%,oklch(.82 .1 165) 58%,oklch(.78 .1 255) 66%,oklch(.76 .1 285) 74%,oklch(.78 .1 30) 82%,oklch(.86 .1 88) 90%,var(--d4) 100%);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;transition:background-position 1.4s cubic-bezier(.7,0,.2,1)}
-.mail:hover .mt{background-position:-100% 0}
+@media (hover:hover){.mail:hover .mt{background-position:-100% 0}}
 @media(max-width:900px){.meta{grid-template-columns:1fr 1fr}.ab .who,.ab .q{grid-column:1/13}.pil,.vids{grid-template-columns:1fr}.aw2,.step{grid-template-columns:1fr}.step:nth-child(even) .img{order:0}.fld{grid-template-columns:1fr 1fr}.sw{grid-template-columns:repeat(2,minmax(0,1fr))}.tpf{grid-template-columns:1fr}.ch-b .chips{display:none}}
 @media(hover:none){.mail{cursor:pointer}}
 .tap{outline-offset:4px}
@@ -99,10 +99,14 @@
 .vd[data-sound] video{cursor:pointer}
 .vd[data-sound] .chip{max-width:calc(100% - 96px)}
 .vd-snd{position:absolute;right:16px;bottom:16px;z-index:2;width:44px;height:44px;border:0;border-radius:50%;display:grid;place-items:center;color:#fff;cursor:pointer;background:oklch(1 0 0 / .18);-webkit-backdrop-filter:blur(14px) saturate(1.5);backdrop-filter:blur(14px) saturate(1.5);transition:background .4s,box-shadow .5s}
-.vd-snd:hover{background:oklch(1 0 0 / .3)}
+@media (hover:hover){.vd-snd:hover{background:oklch(1 0 0 / .3)}}
 .vd-snd[aria-pressed="true"]{background:oklch(.9 .06 var(--h));color:var(--t4);box-shadow:0 10px 30px -12px oklch(.6 .09 var(--h) / .6)}
 .vd-snd svg{width:18px;height:18px}
 .vd-snd .on,.vd-snd[aria-pressed="true"] .off{display:none}.vd-snd[aria-pressed="true"] .on{display:inline}
 .vd-play{position:absolute;left:50%;top:50%;z-index:2;width:72px;height:72px;margin:-36px 0 0 -36px;border-radius:50%;display:grid;place-items:center;color:#fff;pointer-events:none;background:oklch(1 0 0 / .18);-webkit-backdrop-filter:blur(14px) saturate(1.5);backdrop-filter:blur(14px) saturate(1.5);opacity:0;transform:scale(.8);transition:opacity .4s,transform .6s cubic-bezier(.2,.7,.2,1)}
 .vd-play svg{width:24px;height:24px;margin-left:3px}
 .vd.paused .vd-play{opacity:1;transform:none}
+/* Mobile: COAC tap gallery is square (landscape photos no longer float in a tall dark box) */
+@media(max-width:900px){.tap{height:auto;aspect-ratio:1/1}.tap .tp img{padding-bottom:64px}}
+/* Mobile: full-bleed image with baked-in copy (Relats) shows whole, text goes below on dark */
+@media(max-width:760px){.full{display:block;min-height:0;padding:0;background:var(--d0)}.full::after{display:none}.full .img{position:relative;inset:auto;aspect-ratio:16/9}.full>div:not(.img){padding:28px var(--pad) 44px}}
