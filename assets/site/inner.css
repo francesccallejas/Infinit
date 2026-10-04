@@ -3,15 +3,18 @@
 .ch-bg{position:absolute;inset:0}.ch-bg .img{position:absolute;inset:0;background:var(--d1)}
 .ch-bg img{transform:scale(1.12);animation:kb 9s cubic-bezier(.2,.7,.2,1) forwards}@keyframes kb{to{transform:scale(1)}}
 .ch-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,oklch(.14 .012 245 / .45),oklch(.14 .012 245 / .1) 40%,oklch(.14 .012 245 / .55))}
-.ch>*:not(.ch-bg):not(.hl){position:relative;z-index:1}
+.ch>*:not(.ch-bg):not(.hl):not(.ch-m){position:relative;z-index:1}
 .ch-t{display:flex;justify-content:space-between;align-items:flex-start}
-.ch-m{align-self:center;display:flex;flex-direction:column;gap:clamp(20px,3vh,36px);padding-bottom:clamp(40px,8vh,96px)}
+/* Logo + headline centred on the visible screen (the bottom padding that used to lift it is gone).
+   iOS 26 Safari (html.bar): the hero runs under the toolbar, so the centre is the middle of 100svh. */
+.ch-m{position:absolute;z-index:1;left:var(--pad);right:var(--pad);top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:clamp(20px,3vh,36px)}
+.bar .ch-m{top:50svh}
 .ch-logo{height:clamp(26px,2.6vw,40px);width:auto;object-fit:contain;align-self:flex-start}
 .ch h1{font-size:clamp(50px,8.2vw,150px);line-height:.96;letter-spacing:-.05em;font-weight:600;color:#fff;max-width:14em;text-wrap:balance}
 .ch h1 .lm{padding-bottom:.14em;margin-bottom:-.14em}
 .ch h1 b{color:#fff;font-weight:inherit}
 .ch .lbl{color:#fff}
-.ch-b{display:flex;justify-content:space-between;align-items:center;gap:20px;min-height:52px}
+.ch-b{grid-row:3;display:flex;justify-content:space-between;align-items:center;gap:20px;min-height:52px}
 @media(max-width:1180px){.ch{padding-bottom:clamp(96px,11vh,120px)}}
 .chips{display:flex;gap:6px;flex-wrap:wrap}
 .hl{position:absolute;left:0;right:0;bottom:0;height:3px;overflow:hidden;z-index:2}.hl i{position:absolute;inset:0;background:oklch(.72 .05 165);animation:ln1 20s linear infinite;animation-delay:var(--lnd,0s)}
