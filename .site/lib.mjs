@@ -15,6 +15,7 @@ export const ROUTES = {
   bunnker: 'work/bunnker/',
   relats: 'work/relats/',
   industrial: 'industrial-branding/',
+  automotive: 'automotive-branding/',
 };
 export const url = (lang, page) => `/${lang}/${ROUTES[page]}`;
 export const abs = (lang, page) => SITE + url(lang, page);

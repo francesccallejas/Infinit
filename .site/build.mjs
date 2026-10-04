@@ -15,6 +15,7 @@ import { studio } from './pages/studio.mjs';
 import { bunnker } from './pages/bunnker.mjs';
 import { relats } from './pages/relats.mjs';
 import { industrial } from './pages/industrial.mjs';
+import { automotive } from './pages/automotive.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const out = (p, s) => { const f = join(ROOT, p); mkdirSync(dirname(f), { recursive: true }); writeFileSync(f, s); };
@@ -31,6 +32,7 @@ const PAGES = [
   { page: 'bunnker', kind: 'work', render: bunnker },
   { page: 'relats', kind: 'work', render: relats },
   { page: 'industrial', kind: 'sector', render: industrial },
+  { page: 'automotive', kind: 'sector', render: automotive },
 ];
 
 
@@ -168,6 +170,7 @@ ${projLines}
 - [Bunnker case study](${abs('en', 'bunnker')}): strategy, identity and digital for long-stay rentals — COAC Award
 - [Relats case study](${abs('en', 'relats')}): repositioning a global leader in technical covering solutions (automotive, e-mobility, energy)
 - [Industrial & B2B branding](${abs('en', 'industrial')}): how INFINIT© works with industrial and B2B companies — signs the brand is holding you back, process, FAQ (also in [Català](${abs('ca', 'industrial')}) and [Español](${abs('es', 'industrial')}))
+- [Automotive & mobility branding](${abs('en', 'automotive')}): for component makers, aftermarket, vehicle and camper builders, dealer groups and e-mobility — process, prices, FAQ (also in [Català](${abs('ca', 'automotive')}) and [Español](${abs('es', 'automotive')}))
 - Català: ${abs('ca', 'home')} · Español: ${abs('es', 'home')}
 `);
 
