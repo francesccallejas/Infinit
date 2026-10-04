@@ -243,7 +243,9 @@ let setMenu = () => {};
 function menu() {
   const b = $('#mb'), m = $('#menu'); if (!b || !m) return;
   let back = null;
-  setMenu = o => {
+  m.tabIndex = -1;
+  // kb: opened from the keyboard → focus the first link; by touch/mouse → focus the panel (no focus ring on "Work").
+  setMenu = (o, kb) => {
     if (o === body.classList.contains('menu-open')) return;
     body.classList.toggle('menu-open', o);
     body.classList.toggle('lock', o || body.classList.contains('qk-open'));
@@ -252,10 +254,10 @@ function menu() {
     setInert([$('#main'), $('#ft')], o);
     $$('.dock > :not(#mb)').forEach(el => o ? el.setAttribute('tabindex', '-1') : el.removeAttribute('tabindex'));
     dockChk();
-    if (o) { back = d.activeElement; requestAnimationFrame(() => { const s = m.querySelector('[data-langseg]'); s && s._place && s._place(); const f = $('.menu-l a', m); f && f.focus({ preventScroll: true }); }); }
+    if (o) { back = d.activeElement; requestAnimationFrame(() => { const s = m.querySelector('[data-langseg]'); s && s._place && s._place(); const f = kb ? $('.menu-l a', m) : m; f && f.focus({ preventScroll: true }); }); }
     else if (back && m.contains(d.activeElement)) b.focus({ preventScroll: true });
   };
-  b.addEventListener('click', () => setMenu(!body.classList.contains('menu-open')));
+  b.addEventListener('click', e => setMenu(!body.classList.contains('menu-open'), e.detail === 0));
   addEventListener('keydown', e => {
     if (!body.classList.contains('menu-open')) return;
     if (e.key === 'Escape') { setMenu(false); b.focus(); }

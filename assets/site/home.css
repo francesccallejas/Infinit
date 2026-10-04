@@ -123,7 +123,9 @@
 .hx{padding-top:max(22px,calc(var(--sat) + 10px))}
 /* Mobile hero: extends under the browser's floating toolbar (no light band below it) and the
    INFINIT block sits in the middle of the visible screen; bottom row stays above the toolbar. */
-@media(max-width:760px){.hx{height:100lvh;grid-template-rows:1fr auto 1fr;padding-top:calc(clamp(96px,11vh,120px) + var(--sat));padding-bottom:calc(clamp(96px,11vh,120px) + (100lvh - 100svh) + var(--sab))}.hb{align-self:end}}
+@media(max-width:760px){.hx{height:100lvh;grid-template-rows:1fr auto 1fr;padding-top:calc(clamp(96px,11vh,120px) + var(--sat));padding-bottom:calc(clamp(96px,11vh,120px) + (100lvh - 100svh) + var(--sab))}.hb{align-self:end}
+  /* The image and the colour line end where the visible screen ends (above Safari's toolbar); the strip below stays dark. */
+  .hx-bg,.hx .hl{bottom:calc(100lvh - 100svh)}}
 @media(max-width:760px){.qk{padding-top:max(20px,calc(var(--sat) + 10px));padding-bottom:max(20px,calc(var(--sab) + 10px))}}
 /* Intro label: the absolute top-left position only fits beside the centred text on wide screens;
    below that it overlapped the first line, so it sits above the statement instead. */
