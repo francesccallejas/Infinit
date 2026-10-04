@@ -7,7 +7,7 @@ const R = 'work/relats/relats-assets/';
 export const C = {
   en: {
     title: 'Industrial & B2B branding — Barcelona | INFINIT©',
-    desc: 'Branding and positioning for industrial and B2B companies (€1M–€200M): strategy, identity, website, SEO & GEO. Senior-led studio in Barcelona. See the Relats case.',
+    desc: 'Branding for industrial and B2B companies (€1M–€200M): strategy, identity, website, SEO & GEO. Senior-led studio in Barcelona. See the Relats case.',
     lbl: 'Industrial & B2B branding',
     h1: 'Industrial companies that have outgrown <b>their brand.</b>',
     meta: [
@@ -75,7 +75,7 @@ export const C = {
   },
   es: {
     title: 'Branding industrial y B2B — Barcelona | INFINIT©',
-    desc: 'Branding y posicionamiento para empresas industriales y B2B (de 1 a 200 M€): estrategia, identidad, web, SEO y GEO. Estudio sénior en Barcelona. Mira el caso Relats.',
+    desc: 'Branding para empresas industriales y B2B (de 1 a 200 M€): estrategia, identidad, web, SEO y GEO. Estudio sénior en Barcelona. Mira el caso Relats.',
     lbl: 'Branding industrial y B2B',
     h1: 'Empresas industriales que han crecido más que <b>su marca.</b>',
     meta: [

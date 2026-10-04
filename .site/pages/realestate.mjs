@@ -37,7 +37,7 @@ export const C = {
   },
   ca: {
     title: 'Branding immobiliari i proptech — Barcelona | INFINIT©',
-    desc: 'Branding per a empreses immobiliàries, proptech i de construcció (d’1 a 200 M€): estratègia, identitat, web, SEO i GEO. Mira el cas Bunnker — Premi COAC. Barcelona.',
+    desc: 'Branding per a immobiliàries, proptech i construcció (d’1 a 200 M€): estratègia, identitat, web, SEO i GEO. Mira el cas Bunnker — Premi COAC.',
     lbl: 'Branding immobiliari i proptech',
     h1: 'Habitatges i espais que valen més <b>amb la marca adequada.</b>',
     meta: [['Per a', 'Immobiliari, proptech i construcció'], ['Mida', 'D’1 a 200 M€ de facturació'], ['Sectors', 'Promotores · Lloguer · Proptech · Construcció · Arquitectura · Serveis immobiliaris'], ['Mercats', 'Catalunya · Espanya · Europa'], ['Liderat per', 'Cesc Callejas, fundador']],
@@ -67,7 +67,7 @@ export const C = {
   },
   es: {
     title: 'Branding inmobiliario y proptech — Barcelona | INFINIT©',
-    desc: 'Branding para empresas inmobiliarias, proptech y de construcción (de 1 a 200 M€): estrategia, identidad, web, SEO y GEO. Mira el caso Bunnker — Premio COAC. Barcelona.',
+    desc: 'Branding para inmobiliarias, proptech y construcción (de 1 a 200 M€): estrategia, identidad, web, SEO y GEO. Mira el caso Bunnker — Premio COAC.',
     lbl: 'Branding inmobiliario y proptech',
     h1: 'Viviendas y espacios que valen más <b>con la marca adecuada.</b>',
     meta: [['Para', 'Inmobiliario, proptech y construcción'], ['Tamaño', 'De 1 a 200 M€ de facturación'], ['Sectores', 'Promotoras · Alquiler · Proptech · Construcción · Arquitectura · Servicios inmobiliarios'], ['Mercados', 'Cataluña · España · Europa'], ['Liderado por', 'Cesc Callejas, fundador']],

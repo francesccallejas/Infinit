@@ -33,7 +33,7 @@ export const C = {
   },
   ca: {
     title: 'Branding d’alimentació i gran consum | INFINIT©',
-    desc: 'Branding per a empreses d’alimentació, begudes i gran consum (d’1 a 200 M€): estratègia, identitat, sistema de packaging, web, SEO i GEO. Estudi sènior a Barcelona.',
+    desc: 'Branding per a alimentació, begudes i gran consum (d’1 a 200 M€): estratègia, identitat, packaging, web, SEO i GEO. Estudi sènior a Barcelona.',
     lbl: 'Branding per a alimentació i gran consum',
     h1: 'Grans productes que es mereixen <b>una marca més forta.</b>',
     meta: [['Per a', 'Alimentació, begudes i gran consum'], ['Mida', 'D’1 a 200 M€ de facturació'], ['Sectors', 'Alimentació · Begudes · Snacks · Gourmet · Marca blanca · Gran consum'], ['Mercats', 'Catalunya · Espanya · Europa'], ['Liderat per', 'Cesc Callejas, fundador']],
@@ -60,7 +60,7 @@ export const C = {
   },
   es: {
     title: 'Branding de alimentación y gran consumo | INFINIT©',
-    desc: 'Branding para empresas de alimentación, bebidas y gran consumo (de 1 a 200 M€): estrategia, identidad, sistema de packaging, web, SEO y GEO. Estudio sénior en Barcelona.',
+    desc: 'Branding para alimentación, bebidas y gran consumo (de 1 a 200 M€): estrategia, identidad, packaging, web, SEO y GEO. Estudio sénior en Barcelona.',
     lbl: 'Branding para alimentación y gran consumo',
     h1: 'Grandes productos que merecen <b>una marca más fuerte.</b>',
     meta: [['Para', 'Alimentación, bebidas y gran consumo'], ['Tamaño', 'De 1 a 200 M€ de facturación'], ['Sectores', 'Alimentación · Bebidas · Snacks · Gourmet · Marca blanca · Gran consumo'], ['Mercados', 'Cataluña · España · Europa'], ['Liderado por', 'Cesc Callejas, fundador']],

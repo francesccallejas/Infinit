@@ -23,5 +23,7 @@ User-agent: MistralAI-User
 User-agent: CCBot
 Allow: /
 Disallow: /project/uploads/
+Disallow: /project/preview/
+Disallow: /project/preview/
 
 Sitemap: https://www.weareinfinit.com/sitemap.xml

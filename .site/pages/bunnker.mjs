@@ -11,7 +11,7 @@ const FIT = [3, 5]; // coac-1 is zoomed 5% (its source has a thin white line alo
 const C = {
   en: {
     title: 'Bunnker — Brand strategy & identity case study | INFINIT©',
-    desc: 'How INFINIT© positioned and built Bunnker: strategy, identity and digital product for long-stay rentals. COAC Award.',
+    desc: 'How INFINIT© positioned and built Bunnker: strategy, identity and digital product for long-stay rentals in Barcelona — and a home recognised by COAC.',
     h1: 'Homes made for <b>living.</b>', award: 'COAC Award',
     meta: [['Client', 'Bunnker'], ['My role', 'Founder · Brand & Strategy Director'], ['Sector', 'Proptech · Long-stay rentals'], ['Scope', 'Strategy · Identity · Digital'], ['Recognition', 'COAC Award']],
     whoL: 'Who is Bunnker', who: 'Bunnker manages long-stay rentals end to end — designing and equipping homes that add value for owners, give tenants a place they love, and help agencies fill properties faster.',

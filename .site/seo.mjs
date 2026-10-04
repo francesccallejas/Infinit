@@ -9,7 +9,7 @@ import { S } from './data.mjs';
 export const FOUNDER_LINKEDIN = 'https://www.linkedin.com/in/francesc-callejas-%E2%98%81%EF%B8%8F%E2%98%98%EF%B8%8F-99416a90/';
 const ORG = SITE + '/#org', WEB = SITE + '/#website', FOUNDER = SITE + '/#founder';
 const INLANG = { en: 'en-GB', ca: 'ca-ES', es: 'es-ES' };
-const NAMES = { home: { en: 'Home', ca: 'Inici', es: 'Inicio' }, work: { en: 'Work', ca: 'Projectes', es: 'Proyectos' }, studio: { en: 'Studio', ca: 'Estudi', es: 'Estudio' } };
+const NAMES = { sectors: { en: 'Sectors', ca: 'Sectors', es: 'Sectores' }, home: { en: 'Home', ca: 'Inici', es: 'Inicio' }, work: { en: 'Work', ca: 'Projectes', es: 'Proyectos' }, studio: { en: 'Studio', ca: 'Estudi', es: 'Estudio' } };
 
 // Case-study facts (mirror the case pages' meta rows).
 export const CASES = {
@@ -26,7 +26,7 @@ export const CASES = {
 };
 
 const org = lang => ({
-  '@type': ['Organization', 'ProfessionalService'],
+  '@type': 'Organization',
   '@id': ORG,
   name: 'INFINIT©',
   alternateName: ['INFINIT', 'We Are Infinit', 'weareinfinit'],
@@ -44,7 +44,6 @@ const org = lang => ({
   sameAs: [LINKEDIN, INSTAGRAM],
   knowsAbout: S.flatMap(s => [s.n.en, ...s.t.en]).filter((v, i, a) => a.indexOf(v) === i)
     .concat(['B2B branding', 'Industrial branding', 'Automotive branding', 'Food & beverage branding', 'Rebranding', 'Brand positioning for mid-sized companies']),
-  audience: { '@type': 'BusinessAudience', name: 'Mid-sized, often family-owned companies (€1M–€200M revenue) in Catalonia, Spain and Europe — industrial and B2B manufacturers, automotive, food & beverage and consumer brands with international reach' },
   hasOfferCatalog: {
     '@type': 'OfferCatalog',
     name: T[lang].capabilities || 'Capabilities',
@@ -79,8 +78,10 @@ const website = () => ({
 const crumbs = (lang, page, crumbName) => {
   const items = [[NAMES.home[lang], abs(lang, 'home')]];
   if (page === 'studio') items.push([NAMES.studio[lang], abs(lang, 'studio')]);
+  // Sector / moment pages sit under the Sectors hub: Home › Sectors › page.
+  if (crumbName && page !== 'sectors') items.push([NAMES.sectors[lang], abs(lang, 'sectors')]);
   if (crumbName) items.push([crumbName, abs(lang, page)]);
-  if (CASES[page]) items.push([NAMES.work[lang], abs(lang, 'home') + '#work'], [CASES[page].client, abs(lang, page)]);
+  if (CASES[page]) items.push([CASES[page].client, abs(lang, page)]);
   return { '@type': 'BreadcrumbList', '@id': abs(lang, page) + '#breadcrumb', itemListElement: items.map(([name, item], i) => ({ '@type': 'ListItem', position: i + 1, name, item })) };
 };
 
@@ -93,18 +94,20 @@ export function graph(lang, page, meta) {
     isPartOf: { '@id': WEB }, about: { '@id': ORG }, primaryImageOfPage: SITE + meta.og,
     breadcrumb: { '@id': u + '#breadcrumb' },
   };
-  const g = [org(lang), founder(lang), website(), webpage];
+  // #org / #founder are shared nodes (same @id on every page): keep their content language-neutral (English).
+  const g = [org('en'), founder('en'), website(), webpage];
   if (page !== 'home') g.push(crumbs(lang, page, meta.ld && meta.ld.name)); else delete webpage.breadcrumb;
   // Sector pages: the service they describe + the visible FAQ.
-  if (meta.ld) {
+  if (meta.ld && meta.ld.hub) webpage['@type'] = 'CollectionPage';
+  if (meta.ld && !meta.ld.hub) {
     webpage.mainEntity = { '@id': u + '#service' };
     g.push({
       '@type': 'Service', '@id': u + '#service', name: meta.ld.name, serviceType: meta.ld.serviceType, description: meta.desc, url: u,
       provider: { '@id': ORG }, areaServed: [{ '@type': 'Place', name: 'Catalonia' }, { '@type': 'Country', name: 'Spain' }, { '@type': 'Place', name: 'Europe' }],
-      audience: { '@type': 'BusinessAudience', name: meta.ld.audience }, availableLanguage: ['en', 'ca', 'es'],
+      audience: { '@type': 'BusinessAudience', name: meta.ld.audience },
       ...(meta.ld.caseUrl ? { subjectOf: { '@type': 'CreativeWork', name: meta.ld.caseName, url: meta.ld.caseUrl } } : {}),
     });
-    if (meta.ld.faq) g.push({ '@type': 'FAQPage', '@id': u + '#faq', inLanguage: INLANG[lang], isPartOf: { '@id': u + '#webpage' },
+    if (meta.ld.faq && meta.ld.faq.length) g.push({ '@type': 'FAQPage', '@id': u + '#faq', inLanguage: INLANG[lang], isPartOf: { '@id': u + '#webpage' },
       mainEntity: meta.ld.faq.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })) });
   }
   const c = CASES[page];
@@ -121,3 +124,6 @@ export function graph(lang, page, meta) {
   }
   return { '@context': 'https://schema.org', '@graph': g };
 }
+
+// Domain root (language gateway): the site-wide nodes only — WebSite + Organization + founder.
+export const siteGraph = () => ({ '@context': 'https://schema.org', '@graph': [org('en'), founder('en'), website()] });

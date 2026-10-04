@@ -22,7 +22,7 @@ ${heroLine}</section>`;
 
   const mf = `<section class="mf" id="mf" data-h="n"><div class="mf-s"><span class="lbl">INFINIT©</span><p id="mfp">${words(t.mf[0])} ${words(t.mf[1], true)}</p></div></section>`;
 
-  const vh = `<section class="vh" id="vh" aria-label="${esc(t.believe)}"><div class="vh-s"><div class="vh-p"><span class="lbl">${esc(t.believe)}</span><span class="bars" id="bars" aria-hidden="true"><i><b></b></i><i><b></b></i><i><b></b></i></span></div><div class="vh-t" id="vht">${t.values.map((v, i) => `<div class="vp" data-hh="${VH[i]}"><div class="img"><img src="${A(VIMG[i])}" alt="" loading="lazy"></div><div class="tx"><span class="lbl">0${i + 1} / 03</span><h3>${esc(v[0])}<i style="background:oklch(.72 .07 ${VH[i]})" aria-hidden="true"></i></h3><p>${esc(v[1])}</p></div></div>`).join('')}</div></div></section>`;
+  const vh = `<section class="vh" id="vh" aria-label="${esc(t.believe)}"><div class="vh-s"><div class="vh-p"><h2 class="lbl">${esc(t.believe)}</h2><span class="bars" id="bars" aria-hidden="true"><i><b></b></i><i><b></b></i><i><b></b></i></span></div><div class="vh-t" id="vht">${t.values.map((v, i) => `<div class="vp" data-hh="${VH[i]}"><div class="img"><img src="${A(VIMG[i])}" alt="" loading="lazy"></div><div class="tx"><span class="lbl">0${i + 1} / 03</span><h3>${esc(v[0])}<i style="background:oklch(.72 .07 ${VH[i]})" aria-hidden="true"></i></h3><p>${esc(v[1])}</p></div></div>`).join('')}</div></div></section>`;
 
   const fmts = ['eur', 'pct', 'x'], cnt = ['1.7', '50', '10'];
   const founder = `<section class="blk" id="founder" data-h="165"><div class="fd2">
@@ -37,7 +37,7 @@ ${heroLine}</section>`;
     const inner = `<h3>${esc(n)}</h3><p>${esc(d)}</p><span class="ar" aria-hidden="true">${k ? '↗' : ''}</span>`;
     return `<li class="rv" style="transition-delay:${(i * .04).toFixed(2)}s">${k ? `<a href="${url(lang, k)}">${inner}</a>` : `<div>${inner}</div>`}</li>`;
   }).join('')}</ul>
-<div class="sx-exp"><span class="lbl">${esc(t.momL)}</span><p>${esc(t.mom)}</p><a class="gbtn" href="${url(lang, 'family')}" style="--bh:88;align-self:flex-start"><span class="roll">${esc(t.famLink)}</span><span class="ar" aria-hidden="true">↗</span></a><a class="gbtn" href="${url(lang, 'international')}" style="--bh:255;align-self:flex-start"><span class="roll">${esc(t.intLink)}</span><span class="ar" aria-hidden="true">↗</span></a></div></section>`;
+<div class="sx-exp"><span class="lbl">${esc(t.momL)}</span><p>${esc(t.mom)}</p><a class="gbtn" href="${url(lang, 'family')}" style="--bh:88;align-self:flex-start"><span class="roll">${esc(t.famLink)}</span><span class="ar" aria-hidden="true">↗</span></a><a class="gbtn" href="${url(lang, 'international')}" style="--bh:255;align-self:flex-start"><span class="roll">${esc(t.intLink)}</span><span class="ar" aria-hidden="true">↗</span></a><a class="gbtn" href="${url(lang, 'sectors')}" style="--bh:165;align-self:flex-start"><span class="roll">${esc(t.ftAll)}</span></a></div></section>`;
 
   const xp = `<section class="dark xp" id="contact" data-h="n" style="margin-top:clamp(90px,11vw,170px)">${ftLine}<div style="padding:0 var(--pad) 30px"><span class="lbl">${esc(t.exp)}</span><span class="sr">${esc(XP.flat().join(', '))}</span></div><div id="xp" aria-hidden="true">${XP.map((r, k) => `<div class="xp-r"><div class="xp-t">${[...r, ...r, ...r, ...r].map((n, i) => `<span style="--c:oklch(.75 .08 ${HUES[(i + k) % 5]})">${esc(n)}<i></i></span>`).join('')}</div></div>`).join('')}</div>
 <div class="cta2"><h2 class="em" data-lines>${t.stCta}</h2>

@@ -7,7 +7,7 @@ const R = 'work/relats/relats-assets/';
 export const C = {
   en: {
     title: 'Branding for going international — Barcelona | INFINIT©',
-    desc: 'Branding for companies going international (€1M–€200M): positioning, identity and a multilingual website ready for new markets, Google and AI assistants. Barcelona.',
+    desc: 'Branding for companies going international (€1M–€200M): positioning, identity and a multilingual website ready for new markets, Google and AI.',
     lbl: 'Branding for going international',
     h1: 'Ready for new markets. <b>Is your brand?</b>',
     meta: [['For', 'Companies selling abroad'], ['Size', '€1M–€200M revenue'], ['Moments', 'First export markets · New countries · Distributors abroad · International trade fairs'], ['Markets', 'Europe · Worldwide'], ['Led by', 'Cesc Callejas, founder']],
@@ -37,7 +37,7 @@ export const C = {
   },
   ca: {
     title: 'Branding per internacionalitzar-se — Barcelona | INFINIT©',
-    desc: 'Branding per a empreses que surten a vendre fora (d’1 a 200 M€): posicionament, identitat i una web multilingüe preparada per a nous mercats, Google i la IA. Barcelona.',
+    desc: 'Branding per a empreses que surten a vendre fora (d’1 a 200 M€): posicionament, identitat i web multilingüe per a nous mercats, Google i la IA.',
     lbl: 'Branding per a la internacionalització',
     h1: 'A punt per a nous mercats. <b>I la marca?</b>',
     meta: [['Per a', 'Empreses que venen fora'], ['Mida', 'D’1 a 200 M€ de facturació'], ['Moments', 'Primers mercats d’exportació · Nous països · Distribuïdors fora · Fires internacionals'], ['Mercats', 'Europa · Arreu del món'], ['Liderat per', 'Cesc Callejas, fundador']],
@@ -67,7 +67,7 @@ export const C = {
   },
   es: {
     title: 'Branding para internacionalizarse — Barcelona | INFINIT©',
-    desc: 'Branding para empresas que salen a vender fuera (de 1 a 200 M€): posicionamiento, identidad y una web multilingüe preparada para nuevos mercados, Google y la IA. Barcelona.',
+    desc: 'Branding para empresas que salen a vender fuera (de 1 a 200 M€): posicionamiento, identidad y web multilingüe para nuevos mercados, Google y la IA.',
     lbl: 'Branding para la internacionalización',
     h1: 'Listos para nuevos mercados. <b>¿Y la marca?</b>',
     meta: [['Para', 'Empresas que venden fuera'], ['Tamaño', 'De 1 a 200 M€ de facturación'], ['Momentos', 'Primeros mercados de exportación · Nuevos países · Distribuidores fuera · Ferias internacionales'], ['Mercados', 'Europa · Todo el mundo'], ['Liderado por', 'Cesc Callejas, fundador']],

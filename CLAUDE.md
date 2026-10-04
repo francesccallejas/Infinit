@@ -35,7 +35,7 @@ The build writes `/en/`, `/ca/`, `/es/` pages, the language gateway `/index.html
 
 ## Design tokens (source of truth: `assets/site/base.css` `:root`, from the handoff)
 - Two families only: **Satoshi** (all text) and **Geist 900** (the `INFINIT©` wordmark only, © in Geist 500). Instrument Serif / IBM Plex Mono are superseded.
-- Light ground `--bg` oklch(.975 .002 85) · ink `--t4` · secondary `--t3` · grey emphasis `--t2 #9A999A` (`.em`: grey sentence, key words in `<b>` full ink — display sizes only; small text uses `--t3` for contrast).
+- Light ground `--bg` oklch(.975 .002 85) · ink `--t4` · secondary `--t3` · grey emphasis `--t2 #8C8B8C` (was #9A999A; darkened for WCAG 3:1 on the light ground) (`.em`: grey sentence, key words in `<b>` full ink — display sizes only; small text uses `--t3` for contrast).
 - Dark ground `.dark`: `--d0` … `--d4`.
 - Service hues (used subtly — dots, tints, card backs, the colour line): Strategy 165 · Brand 255 · Digital 285 · Product 30 · Content 88.
 - Colour line ("One colour"): 3px, one service colour at a time (mint → blue → lilac → coral → ochre), 20s loop (`@keyframes ln1`), synced across pages via `--lnd` set in <head>. Used on hero bottoms, the light→dark transition and the preloader bar. The SVG favicon swaps to the current colour on load (`/favicon-<colour>.svg`). The big email hover sweep stays multicolour.

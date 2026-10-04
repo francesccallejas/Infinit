@@ -8,7 +8,7 @@ const R = 'work/relats/relats-assets/';
 export const C = {
   en: {
     title: 'Automotive & mobility branding — Barcelona | INFINIT©',
-    desc: 'Branding for automotive and mobility companies (€1M–€200M): components, aftermarket, vehicles, campers and dealerships. Strategy, identity, website, SEO & GEO. Barcelona.',
+    desc: 'Branding for automotive and mobility companies (€1M–€200M): components, aftermarket, campers and dealerships. Strategy, identity, web, SEO & GEO.',
     lbl: 'Automotive & mobility branding',
     h1: 'Automotive companies moving faster than <b>their brand.</b>',
     meta: [['For', 'Automotive & mobility companies'], ['Size', '€1M–€200M revenue'], ['Sectors', 'Components · Aftermarket · Vehicles & campers · Dealerships · E-mobility'], ['Markets', 'Catalonia · Spain · Europe'], ['Led by', 'Cesc Callejas, founder']],
@@ -38,7 +38,7 @@ export const C = {
   },
   ca: {
     title: 'Branding d’automoció i mobilitat — Barcelona | INFINIT©',
-    desc: 'Branding per a empreses d’automoció i mobilitat (d’1 a 200 M€): components, recanvis, vehicles, campers i concessionaris. Estratègia, identitat, web, SEO i GEO. Barcelona.',
+    desc: 'Branding per a empreses d’automoció i mobilitat (d’1 a 200 M€): components, recanvis, campers i concessionaris. Estratègia, identitat, web, SEO i GEO.',
     lbl: 'Branding per a automoció i mobilitat',
     h1: 'Empreses d’automoció que van més ràpid que <b>la seva marca.</b>',
     meta: [['Per a', 'Empreses d’automoció i mobilitat'], ['Mida', 'D’1 a 200 M€ de facturació'], ['Sectors', 'Components · Recanvis · Vehicles i campers · Concessionaris · Mobilitat elèctrica'], ['Mercats', 'Catalunya · Espanya · Europa'], ['Liderat per', 'Cesc Callejas, fundador']],
@@ -68,7 +68,7 @@ export const C = {
   },
   es: {
     title: 'Branding de automoción y movilidad — Barcelona | INFINIT©',
-    desc: 'Branding para empresas de automoción y movilidad (de 1 a 200 M€): componentes, recambios, vehículos, campers y concesionarios. Estrategia, identidad, web, SEO y GEO. Barcelona.',
+    desc: 'Branding para empresas de automoción y movilidad (de 1 a 200 M€): componentes, recambios, campers y concesionarios. Estrategia, identidad, web y GEO.',
     lbl: 'Branding para automoción y movilidad',
     h1: 'Empresas de automoción que van más rápido que <b>su marca.</b>',
     meta: [['Para', 'Empresas de automoción y movilidad'], ['Tamaño', 'De 1 a 200 M€ de facturación'], ['Sectores', 'Componentes · Recambios · Vehículos y campers · Concesionarios · Movilidad eléctrica'], ['Mercados', 'Cataluña · España · Europa'], ['Liderado por', 'Cesc Callejas, fundador']],
