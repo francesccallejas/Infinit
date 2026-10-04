@@ -10,3 +10,7 @@ make_logolab.py
 refine_mark.py
 wordmark_gap*.svg
 *.DS_Store
+
+# Local tooling for .site/og.mjs (sharp)
+.site/node_modules/
+node_modules/

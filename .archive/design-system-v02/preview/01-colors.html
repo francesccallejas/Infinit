@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Infinit® — Color</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<link rel="stylesheet" href="../components.css">
+<style>
+  body { padding: 40px;  }
+  .card-h { display:flex; justify-content:space-between; align-items:baseline; gap:20px; margin-bottom:32px;
+    padding-bottom:16px; border-bottom:1px solid var(--line); }
+  .card-h h1 { font-weight:600; font-size:22px; letter-spacing:-.02em; }
+  .note { font-size:13px; color:var(--muted); max-width:70ch; line-height:1.55; font-weight:500; }
+  .row { display:flex; flex-wrap:wrap; gap:18px; align-items:center; }
+  .stack > * + * { margin-top: 28px; }
+  .lbl { font-family:var(--mono); font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); display:block; margin-bottom:12px; }
+  
+ .grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(170px,1fr)); gap:14px; }
+ .chip-c { height:96px; border-radius:var(--r); padding:14px; font-weight:600; font-size:15px; display:flex; align-items:flex-end; }
+ .meta { display:flex; flex-direction:column; gap:2px; margin-top:9px; font-size:12px; }
+ .meta b { font-family:var(--mono); font-weight:500; } .meta span { font-family:var(--mono); color:var(--muted); }
+ .meta i { font-style:normal; color:var(--muted); font-size:12px; line-height:1.35; }
+</style>
+</head>
+<body>
+<div class="card-h"><h1>Color</h1><span class="eyebrow">Infinit® · V02</span></div>
+
+<div class="stack">
+ <div><span class="lbl">Base</span><div class="grid">
+  <div class="sw"><div class="chip-c" style="background:var(--ink);color:var(--bg);">Ink</div>
+<div class="meta"><b>--ink</b><span>#0B0C11</span><i>Text principal · canvas fosc</i></div></div>
+  <div class="sw"><div class="chip-c" style="background:var(--deep);color:var(--bg);">Deep</div>
+<div class="meta"><b>--deep</b><span>#08080C</span><i>Scrims · intro · ombres</i></div></div>
+  <div class="sw"><div class="chip-c" style="background:var(--bg);color:var(--ink);box-shadow: inset 0 0 0 1px var(--line);">Bg</div>
+<div class="meta"><b>--bg</b><span>#F4F2F0</span><i>Canvas clar — mai #FFF</i></div></div>
+  <div class="sw"><div class="chip-c" style="background:var(--paper);color:var(--ink);box-shadow: inset 0 0 0 1px var(--line);">Paper</div>
+<div class="meta"><b>--paper</b><span>#FBFAF9</span><i>Superfície / card</i></div></div>
+ </div></div>
+ <div><span class="lbl">Accent</span><div class="grid">
+  <div class="sw"><div class="chip-c" style="background:var(--accent);color:var(--ink);">Mint</div>
+<div class="meta"><b>--accent</b><span>#D8F3D6</span><i>Fons/badge/hover — sempre amb text ink</i></div></div>
+  <div class="sw"><div class="chip-c" style="background:var(--accent-ink);color:#fff;">Mint ink</div>
+<div class="meta"><b>--accent-ink</b><span>#2F8F66</span><i>Text accent sobre clar</i></div></div>
+ </div></div>
+ <div><span class="lbl">Rampa sorra</span><div class="grid">
+  <div class="sw"><div class="chip-c" style="background:var(--sand-1);color:var(--ink);box-shadow: inset 0 0 0 1px var(--line);">Sand 1</div>
+<div class="meta"><b>--sand-1</b><span>#F4F2F0</span><i>= bg</i></div></div>
+  <div class="sw"><div class="chip-c" style="background:var(--sand-2);color:var(--ink);">Sand 2</div>
+<div class="meta"><b>--sand-2</b><span>#EBE9E4</span><i>Placeholder tiles</i></div></div>
+  <div class="sw"><div class="chip-c" style="background:var(--sand-3);color:var(--ink);">Sand 3</div>
+<div class="meta"><b>--sand-3</b><span>#E7E2D9</span><i>Card overview</i></div></div>
+  <div class="sw"><div class="chip-c" style="background:var(--sand-4);color:var(--ink);">Sand 4</div>
+<div class="meta"><b>--sand-4</b><span>#DCD5C8</span><i>Banda CTA</i></div></div>
+  <div class="sw"><div class="chip-c" style="background:var(--sand-5);color:#fff;">Clay</div>
+<div class="meta"><b>--sand-5</b><span>#A89887</span><i>Només detalls</i></div></div>
+ </div></div>
+ <div><span class="lbl">Text i línies</span><div class="grid">
+  <div class="sw"><div class="chip-c" style="background:var(--muted);color:#fff;">Muted</div>
+<div class="meta"><b>--muted</b><span>rgba(11,12,17,.56)</span><i>Text secundari, eyebrows, em</i></div></div>
+  <div class="sw"><div class="chip-c" style="background:var(--faint);color:var(--ink);">Faint</div>
+<div class="meta"><b>--faint</b><span>rgba(11,12,17,.20)</span><i>Desactivat</i></div></div>
+  <div class="sw"><div class="chip-c" style="background:var(--line);color:var(--ink);">Line</div>
+<div class="meta"><b>--line</b><span>rgba(11,12,17,.11)</span><i>Hairline — únic separador</i></div></div>
+ </div></div>
+ <p class="note">Regla: tipus, espai i un sol accent. Canvas clar = <b>bg</b>, canvas fosc = <b>ink</b>. La menta és l'únic color “de marca” i s'usa poc: xip de fletxa del CTA, badge NEW, selecció de text, hover de botons, card de contacte. Sense degradats decoratius (només scrims sobre imatge).</p>
+</div>
+
+</body>
+</html>

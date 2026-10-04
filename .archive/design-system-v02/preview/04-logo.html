@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Infinit® — Logo</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<link rel="stylesheet" href="../components.css">
+<style>
+  body { padding: 40px;  }
+  .card-h { display:flex; justify-content:space-between; align-items:baseline; gap:20px; margin-bottom:32px;
+    padding-bottom:16px; border-bottom:1px solid var(--line); }
+  .card-h h1 { font-weight:600; font-size:22px; letter-spacing:-.02em; }
+  .note { font-size:13px; color:var(--muted); max-width:70ch; line-height:1.55; font-weight:500; }
+  .row { display:flex; flex-wrap:wrap; gap:18px; align-items:center; }
+  .stack > * + * { margin-top: 28px; }
+  .lbl { font-family:var(--mono); font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); display:block; margin-bottom:12px; }
+  
+ .lg-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+ .lg-cell{position:relative;overflow:hidden;height:200px;border-radius:var(--r);display:grid;place-items:center}
+ .lg-cell.img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+ .wink svg{width:100%;height:auto}
+ @media(max-width:800px){.lg-grid{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+<div class="card-h"><h1>Logo</h1><span class="eyebrow">Infinit® · V02</span></div>
+
+<div class="stack">
+ <div class="lg-grid">
+  <div class="lg-cell" style="background:var(--bg);color:var(--ink)"><span class="logo-lockup lg wink"><svg viewBox="0 0 240 132" fill="none" aria-hidden="true"><rect x="36" y="22" width="80" height="88" rx="34" fill="currentColor"/><rect x="124" y="22" width="80" height="88" rx="34" fill="currentColor"/></svg><span class="word">infinit<span class="reg">®</span></span></span></div>
+  <div class="lg-cell" style="background:var(--ink);color:var(--bg)"><span class="logo-lockup lg wink"><svg viewBox="0 0 240 132" fill="none" aria-hidden="true"><rect x="36" y="22" width="80" height="88" rx="34" fill="currentColor"/><rect x="124" y="22" width="80" height="88" rx="34" fill="currentColor"/></svg><span class="word">infinit<span class="reg">®</span></span></span></div>
+  <div class="lg-cell" style="background:var(--accent);color:var(--ink)"><span class="logo-lockup lg wink"><svg viewBox="0 0 240 132" fill="none" aria-hidden="true"><rect x="36" y="22" width="80" height="88" rx="34" fill="currentColor"/><rect x="124" y="22" width="80" height="88" rx="34" fill="currentColor"/></svg><span class="word">infinit<span class="reg">®</span></span></span></div>
+  <div class="lg-cell img" style="color:#fff"><img src="../assets/imagery/julia-yosemite.webp" alt=""><span style="position:relative;mix-blend-mode:difference"><span class="logo-lockup lg wink"><svg viewBox="0 0 240 132" fill="none" aria-hidden="true"><rect x="36" y="22" width="80" height="88" rx="34" fill="currentColor"/><rect x="124" y="22" width="80" height="88" rx="34" fill="currentColor"/></svg><span class="word">infinit<span class="reg">®</span></span></span></span></div>
+ </div>
+ <div class="row" style="gap:28px">
+  <img src="../assets/logo/favicon.svg" width="72" alt=""><img src="../assets/logo/favicon-light.svg" width="72" alt=""><img src="../assets/logo/favicon-mint.svg" width="72" alt="">
+  <div style="width:160px;color:var(--ink)" class="wink"><svg viewBox="0 0 240 132" fill="none" aria-hidden="true"><rect x="36" y="22" width="80" height="88" rx="34" fill="currentColor"/><rect x="124" y="22" width="80" height="88" rx="34" fill="currentColor"/></svg></div>
+ </div>
+ <p class="note"><b>Marca</b>: dos squircles (80×88, rx 34, separació 8) — viewBox 0 0 240 132. <b>Wordmark</b>: “infinit” en minúscula, Satoshi 900, -.035em, amb ® petit en superíndex. Mai majúscula inicial al logo; al text corrent s'escriu “Infinit®”. <b>Living mark</b>: el 2n squircle fa l'ullet (scaleY .12) cada ~5 s. A la intro, els dos squircles entren escalant i fan un “wink” en ona. Sobre imatge: mix-blend-mode: difference en blanc.</p>
+</div>
+
+</body>
+</html>

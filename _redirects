@@ -1,0 +1,10 @@
+# Previous site URLs → new language-prefixed pages
+/index.html            /                    301
+/studio.html           /en/studio/          301
+/studio                /en/studio/          301
+/work/bunnker/         /en/work/bunnker/    301
+/work/bunnker          /en/work/bunnker/    301
+/work/bunnker/index.html /en/work/bunnker/  301
+/work/relats/          /en/work/relats/     301
+/work/relats           /en/work/relats/     301
+/work/relats/index.html  /en/work/relats/   301

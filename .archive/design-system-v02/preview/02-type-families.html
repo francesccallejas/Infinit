@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Infinit® — Tipografies</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<link rel="stylesheet" href="../components.css">
+<style>
+  body { padding: 40px;  }
+  .card-h { display:flex; justify-content:space-between; align-items:baseline; gap:20px; margin-bottom:32px;
+    padding-bottom:16px; border-bottom:1px solid var(--line); }
+  .card-h h1 { font-weight:600; font-size:22px; letter-spacing:-.02em; }
+  .note { font-size:13px; color:var(--muted); max-width:70ch; line-height:1.55; font-weight:500; }
+  .row { display:flex; flex-wrap:wrap; gap:18px; align-items:center; }
+  .stack > * + * { margin-top: 28px; }
+  .lbl { font-family:var(--mono); font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); display:block; margin-bottom:12px; }
+  .fam{padding-bottom:26px;border-bottom:1px solid var(--line)}
+</style>
+</head>
+<body>
+<div class="card-h"><h1>Tipografies</h1><span class="eyebrow">Infinit® · V02</span></div>
+
+<div class="stack">
+ <div class="fam"><span class="lbl">Sans · Satoshi (Fontshare) · 300–900 · cos per defecte 500</span>
+  <p style="font-size:64px;font-weight:500;letter-spacing:-.04em;line-height:1">Brands built to scale</p>
+  <p class="row" style="margin-top:14px;font-size:22px;gap:26px"><span style="font-weight:400">Regular 400</span><span style="font-weight:500">Medium 500</span><span style="font-weight:600">Semibold 600</span><span style="font-weight:900;letter-spacing:-.035em">Black 900 · wordmark</span></p>
+ </div>
+ <div class="fam"><span class="lbl">Serif · Instrument Serif · 400 recte — només accents &lt;em&gt; i titulars editorials</span>
+  <p style="font-family:var(--serif);font-size:72px;line-height:1;letter-spacing:-.02em">scale. <span style="color:var(--muted)">connected.</span></p>
+ </div>
+ <div class="fam"><span class="lbl">Mono · IBM Plex Mono · 400/500 — eyebrows, tags, chips, meta</span>
+  <p style="font-family:var(--mono);font-size:14px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)">Brand &amp; Strategy firm · Barcelona — Worldwide</p>
+ </div>
+ <p class="note">El titular sempre és Satoshi; la paraula clau passa a Instrument Serif amb &lt;em&gt; (sense cursiva). Ex.: “Brands built to <em>scale</em>”, “Selected <em>work.</em>”. Sobre fosc l'em pot anar en blanc; en text petit o subtítols, en gris apagat. <b>-webkit-font-smoothing: antialiased</b> és obligatori al body.</p>
+</div>
+
+</body>
+</html>

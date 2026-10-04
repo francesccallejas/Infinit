@@ -1,0 +1,21 @@
+{
+  "name": "INFINIT©",
+  "short_name": "INFINIT©",
+  "start_url": "/",
+  "display": "browser",
+  "background_color": "#03050F",
+  "theme_color": "#03050F",
+  "icons": [
+    {
+      "src": "/assets/site/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/site/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
