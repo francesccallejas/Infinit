@@ -112,4 +112,5 @@
 @media(max-width:760px){.full{display:block;min-height:0;padding:0;background:var(--d0)}.full::after{display:none}.full .img{position:relative;inset:auto;aspect-ratio:16/9}.full>div:not(.img){padding:28px var(--pad) 44px}}
 
 /* Mobile inner heroes: same — extend under the floating toolbar, content stays above it */
-@media(max-width:760px){.ch{height:100lvh;padding-bottom:calc(clamp(96px,11vh,120px) + (100lvh - 100svh))}}
+@media(max-width:760px){.ch{height:100lvh;padding-bottom:calc(clamp(96px,11vh,120px) + (100lvh - 100svh) + var(--sab))}}
+.ch{padding-top:max(22px,calc(var(--sat) + 10px))}

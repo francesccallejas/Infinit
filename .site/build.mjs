@@ -52,7 +52,7 @@ const gateway = `<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>${esc(T.en.homeTitle)}</title>
 <meta name="description" content="${esc(T.en.homeDesc)}">
 <link rel="canonical" href="${SITE}/">
@@ -79,7 +79,7 @@ out('404.html', `<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Page not found — INFINIT©</title>
 <meta name="robots" content="noindex">
 <link rel="icon" href="/favicon.ico" sizes="32x32">

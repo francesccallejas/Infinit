@@ -15,7 +15,7 @@ export function head(ctx, { title, desc, og, css }) {
 <html lang="${lang}" data-page="${ctx.kind}">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <script>document.documentElement.classList.add('js')</script>
 <title>${esc(title)}</title>
 <meta name="description" content="${esc(desc)}">

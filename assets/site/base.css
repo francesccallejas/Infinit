@@ -78,7 +78,10 @@ html{background:var(--d0)}.aw{flex-wrap:wrap}
 @media(max-width:760px){.dock a.roll:not(.go){display:none}}
 /* Ambient colour: one service hue tints the page almost imperceptibly */
 :root{--h:85;--ac:.002}
-body{background:oklch(.975 var(--ac) var(--h));transition:background 1.4s ease}
+/* The light ambient ground lives on <main>; <body> is dark so iOS Safari tints its status bar and
+   the edges around its floating toolbar dark (it samples the body background). */
+body{background:var(--d0)}
+main{background:oklch(.975 var(--ac) var(--h));transition:background 1.4s ease}
 /* Text selection: always the Strategy green (hue 165) */
 ::selection{background:oklch(.86 .07 165);color:var(--t4)}
 .cur.big{background:oklch(.88 .06 var(--h));mix-blend-mode:normal;color:var(--t4);box-shadow:0 10px 30px oklch(.5 .05 var(--h) / .25)}
@@ -181,3 +184,14 @@ body.lock{overflow:hidden}
 
 /* Touch: no 300ms/double-tap heuristics or grey flash on controls */
 a,button,[role=button],.fc,.tap{touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+
+/* Edge-to-edge on notched phones (viewport-fit=cover): keep UI clear of the status bar / home indicator */
+:root{--sat:env(safe-area-inset-top,0px);--sab:env(safe-area-inset-bottom,0px)}
+.dock{bottom:calc(18px + var(--sab))}
+@media(max-width:760px){.dock{bottom:calc(14px + var(--sab))}}
+.toast{bottom:calc(86px + var(--sab))}
+.ck{bottom:calc(86px + var(--sab))}
+@media(max-width:760px){.ck{bottom:calc(76px + var(--sab))}}
+.menu-i{padding-top:max(22px,calc(var(--sat) + 10px))}
+.pre2{padding-top:max(22px,calc(var(--sat) + 10px));padding-bottom:max(22px,calc(var(--sab) + 10px))}
+.ft{padding-bottom:calc(28px + var(--sab))}
