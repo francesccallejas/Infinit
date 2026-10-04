@@ -1,5 +1,6 @@
 // Shared page chrome: <head>, dock, fullscreen menu, footer, toast.
 import { SITE, LANGS, LOCALE, EMAIL, PHONE, LINKEDIN, INSTAGRAM, url, abs, esc, A, wm } from './lib.mjs';
+import { graph } from './seo.mjs';
 import { T } from './i18n.mjs';
 
 // Strings the client script needs.
@@ -36,6 +37,12 @@ ${alt}
 <meta property="og:locale" content="${LOCALE[lang]}">
 ${LANGS.filter(l => l !== lang).map(l => `<meta property="og:locale:alternate" content="${LOCALE[l]}">`).join('\n')}
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="${esc(title)}">
+<meta name="twitter:description" content="${esc(desc)}">
+<meta name="twitter:image" content="${ogImg}">
+<meta name="author" content="INFINIT© · Cesc Callejas">
+<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
+<link rel="alternate" type="text/plain" href="/llms.txt" title="INFINIT© for AI assistants">
 <meta name="theme-color" content="#060a0e">
 <link rel="icon" href="/favicon.ico" sizes="32x32">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -44,7 +51,7 @@ ${LANGS.filter(l => l !== lang).map(l => `<meta property="og:locale:alternate" c
 <script>(function(){var f=document.querySelector('link[rel=icon][type="image/svg+xml"]');if(!f)return;var N=['mint','blue','lilac','coral','ochre'],set=function(){f.href='/favicon-'+N[Math.floor(Date.now()%20000/4000)]+'.svg'};set();if(!matchMedia('(prefers-reduced-motion: reduce)').matches)setTimeout(function(){set();setInterval(set,4000)},4000-Date.now()%4000)})()</script>
 <link rel="preload" href="/assets/site/fonts/Satoshi-Variable.woff2" as="font" type="font/woff2" crossorigin>
 ${styles}
-${ctx.jsonld ? `<script type="application/ld+json">${JSON.stringify(ctx.jsonld)}</script>` : ''}
+<script type="application/ld+json">${JSON.stringify(graph(lang, page, { title, desc, og })).replace(/</g, '\\u003c')}</script>
 <script>window.T=${JSON.stringify(jsT(T[lang]))}</script>
 <script src="/assets/site/site.js?v=${V['site.js']}" defer></script>
 </head>

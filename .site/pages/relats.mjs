@@ -9,7 +9,7 @@ const LIVE = 'https://www.relats.com';
 
 const C = {
   en: {
-    title: 'Relats case study — INFINIT©',
+    title: 'Relats — Rebranding & digital case study | INFINIT©',
     desc: 'How INFINIT© repositioned Relats — strategy, identity and digital for a global leader in technical covering solutions.',
     h1: 'Staying ahead of <b>the curve.</b>', live: 'See it live ↗',
     meta: [['Client', 'Relats'], ['My role', 'CDMO — Brand Director & Project Lead'], ['Partner', 'In collaboration with Firma'], ['Sector', 'Sustainable mobility · Automotive · Energy'], ['Scope', 'Strategy · Identity · Digital']],
@@ -32,7 +32,7 @@ const C = {
     anAlt: 'Relats Data Center dashboard',
   },
   ca: {
-    title: 'Relats, cas d’estudi — INFINIT©',
+    title: 'Relats — Cas d’estudi de rebranding i digital | INFINIT©',
     desc: 'Com INFINIT© va reposicionar Relats — estratègia, identitat i digital per a un líder global en solucions de protecció tècnica.',
     h1: 'Un pas <b>per davant.</b>', live: 'Visita la web ↗',
     meta: [['Client', 'Relats'], ['El meu rol', 'CDMO — Director de marca i cap de projecte'], ['Partner', 'En col·laboració amb Firma'], ['Sector', 'Mobilitat sostenible · Automoció · Energia'], ['Abast', 'Estratègia · Identitat · Digital']],
@@ -55,7 +55,7 @@ const C = {
     anAlt: 'Dashboard del Data Center de Relats',
   },
   es: {
-    title: 'Relats, caso de estudio — INFINIT©',
+    title: 'Relats — Caso de estudio de rebranding y digital | INFINIT©',
     desc: 'Cómo INFINIT© reposicionó Relats — estrategia, identidad y digital para un líder global en soluciones de protección técnica.',
     h1: 'Un paso <b>por delante.</b>', live: 'Visita la web ↗',
     meta: [['Cliente', 'Relats'], ['Mi rol', 'CDMO — Director de marca y jefe de proyecto'], ['Partner', 'En colaboración con Firma'], ['Sector', 'Movilidad sostenible · Automoción · Energía'], ['Alcance', 'Estrategia · Identidad · Digital']],
