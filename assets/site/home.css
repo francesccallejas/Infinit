@@ -125,3 +125,6 @@
 /* Intro label: the absolute top-left position only fits beside the centred text on wide screens;
    below that it overlapped the first line, so it sits above the statement instead. */
 @media(max-width:1340px){.intro .lbl{position:static;align-self:flex-start}}
+/* Mobile: the hero runs under the floating toolbar, so its colour line sits at the bottom of the
+   visible area (just above the toolbar) instead of behind it. */
+@media(max-width:760px){.hx .hl{bottom:calc(100lvh - 100svh)}}
