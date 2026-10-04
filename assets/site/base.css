@@ -165,10 +165,12 @@ html:has(>body.lock){overflow:hidden;scrollbar-gutter:stable}
 .skip{position:fixed;left:12px;top:12px;z-index:600;padding:12px 18px;border-radius:99px;background:var(--t4);color:var(--bg);font-weight:500;transform:translateY(-200%);transition:transform .3s}
 .skip:focus{transform:none;color:var(--bg)}
 /* Visible focus on every interactive element (keyboard only) */
-:is(a,button,[tabindex]):focus-visible{outline:2px solid currentColor;outline-offset:3px;border-radius:99px}
+/* The pill radius is for controls only: it used to land on sections / the menu panel focused by script
+   (tabindex=-1) too, and Safari then drew them with rounded 99px corners (the "curves" after the menu). */
+:is(a,button,[tabindex]:not([tabindex="-1"])):focus-visible{outline:2px solid currentColor;outline-offset:3px;border-radius:99px}
 .dark :is(a,button,[tabindex]):focus-visible,.dock.dk :focus-visible{outline-color:var(--d4)}
-/* Sections focused by in-page links / the menu panel (tabindex=-1) are not controls: no ring. */
-[tabindex="-1"]:focus,.menu:focus{outline:none}
+/* Sections focused by in-page links / the menu panel (tabindex=-1) are not controls: no ring, no radius. */
+[tabindex="-1"]:not(a):not(button):focus{outline:none}
 .img:focus-visible,.fc:focus-visible,.tap:focus-visible{border-radius:14px}
 .sr{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap}
 /* Reduced motion: no preloader, no smooth scroll, instant reveals/flips, no marquees */
