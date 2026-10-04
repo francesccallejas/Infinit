@@ -98,6 +98,6 @@ export const C = {
 };
 
 export const international = ctx => sectorPage(ctx, {
-  C, hero: 'project/assets/imagery/mountains-night.jpg', og: '/assets/site/og/relats.jpg',
+  C, hero: 'project/assets/imagery/mountains-night.webp', og: '/assets/site/og/relats.jpg',
   proof: { img: R + 'offices.webp', case: 'relats', name: 'Relats' },
 });

@@ -56,16 +56,20 @@ function cursor() {
   if (!fine || RM) return;
   const c = d.createElement('div'); c.className = 'cur'; c.setAttribute('aria-hidden', 'true'); c.innerHTML = '<span></span>'; body.appendChild(c);
   let x = innerWidth / 2, y = innerHeight / 2, tx = x, ty = y;
+  let raf = 0;
+  const f = () => { x = lerp(x, tx, .2); y = lerp(y, ty, .2); if (Math.abs(tx - x) < .1 && Math.abs(ty - y) < .1) { x = tx; y = ty; } c.style.transform = `translate3d(${x}px,${y}px,0)`; raf = x !== tx || y !== ty ? requestAnimationFrame(f) : 0; };
   addEventListener('pointermove', e => {
     tx = e.clientX; ty = e.clientY;
     const t = e.target.closest && e.target.closest('[data-cur]');
-    c.classList.toggle('big', !!t); if (t) c.firstChild.textContent = t.dataset.cur;
+    c.classList.toggle('big', !!t); if (t && c.firstChild.textContent !== t.dataset.cur) c.firstChild.textContent = t.dataset.cur;
+    if (!raf) raf = requestAnimationFrame(f);
   });
-  (function f() { x = lerp(x, tx, .2); y = lerp(y, ty, .2); c.style.transform = `translate3d(${x}px,${y}px,0)`; requestAnimationFrame(f); })();
+  f();
 }
 
 /* ---------- ambient colour: [data-h] at screen centre (or [data-hh] under the pointer) tints the page ---------- */
-function setH(h) { const r = de.style; if (h === 'n' || h == null) r.setProperty('--ac', '.002'); else { r.setProperty('--h', h); r.setProperty('--ac', '.011'); } }
+let curH;
+function setH(h) { if (h === curH) return; curH = h; const r = de.style; if (h === 'n' || h == null) r.setProperty('--ac', '.002'); else { r.setProperty('--h', h); r.setProperty('--ac', '.011'); } }
 function ambient() {
   const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) setH(e.target.dataset.h); }), { rootMargin: '-48% 0px -48% 0px' });
   $$('[data-h]').forEach(el => io.observe(el));
@@ -109,6 +113,7 @@ function lines() {
 }
 
 /* ---------- smooth wheel scroll (desktop; native scroll kept so sticky works) ---------- */
+let navT = 0; // last in-page jump started by the site (the touch brake leaves those alone)
 let scrollToY = y => scrollTo({ top: y, behavior: RM ? 'auto' : 'smooth' });
 function smooth() {
   if (coarse || RM) return;
@@ -133,7 +138,7 @@ function smooth() {
     tgt = nt;
     if (!raf) raf = requestAnimationFrame(step);
   }, { passive: false });
-  addEventListener('scroll', () => { if (Math.abs(scrollY - cur) > 3) cur = tgt = scrollY; }, { passive: true });
+  addEventListener('scroll', () => { if (Math.abs(scrollY - cur) > 3) { cur = tgt = scrollY; cancelAnimationFrame(raf); raf = 0; } }, { passive: true });
   scrollToY = y => { tgt = clamp(y, 0, max()); if (!raf) raf = requestAnimationFrame(step); };
 }
 
@@ -143,13 +148,13 @@ function smooth() {
    never is, and the next swipe carries on. Momentum is cut by hiding <html> overflow for two frames. */
 function brake() {
   const stops = $$('[data-stop]'); if (!coarse || RM || !stops.length) return;
-  let down = 0, held = 0, ly = scrollY, lt = performance.now();
-  addEventListener('touchstart', () => { down = 1; }, { passive: true });
+  let down = 0, held = 0, armed = 0, ly = scrollY, lt = performance.now();
+  addEventListener('touchstart', () => { down = 1; armed = 1; }, { passive: true });
   addEventListener('touchend', () => { down = 0; }, { passive: true });
   addEventListener('touchcancel', () => { down = 0; }, { passive: true });
   addEventListener('scroll', () => {
     const y = scrollY, t = performance.now(), v = (y - ly) / Math.max(8, t - lt); // px/ms
-    if (!down && !held && v > .05 && !body.classList.contains('lock')) {
+    if (armed && !down && !held && v > .05 && performance.now() - navT > 1500 && !body.classList.contains('lock')) {
       for (const st of stops) {
         const top = Math.round(st.getBoundingClientRect().top + y);
         if (ly < top - 1 && y + v * 20 >= top) { // crossing now or within the next frame
@@ -169,7 +174,7 @@ function anchors() {
     const a = e.target.closest && e.target.closest('a[href^="#"]'); if (!a) return;
     const id = a.getAttribute('href'), t = id === '#top' ? null : d.querySelector(id);
     if (id !== '#top' && !t) return;
-    e.preventDefault();
+    e.preventDefault(); navT = performance.now();
     const fromMenu = body.classList.contains('menu-open');
     setMenu(false);
     const y = t ? t.getBoundingClientRect().top + scrollY : 0;
@@ -179,6 +184,9 @@ function anchors() {
     if (f) { if (!f.hasAttribute('tabindex')) f.setAttribute('tabindex', '-1'); f.focus({ preventScroll: true }); }
   });
 }
+
+// Overlay images wait (data-src) until the overlay first opens.
+const loadIn = root => root && $$('img[data-src]', root).forEach(i => { i.src = i.dataset.src; i.removeAttribute('data-src'); });
 
 /* ---------- toast + copy email ---------- */
 function toast(msg) {
@@ -231,7 +239,8 @@ function langs() {
 }
 
 /* ---------- overlays: inert background + focus trap ---------- */
-const focusables = root => $$('a[href],button:not([disabled]),[tabindex]:not([tabindex="-1"])', root).filter(el => el.offsetParent !== null || el === d.activeElement);
+const FOC = 'a[href],button:not([disabled]),[tabindex]:not([tabindex="-1"])';
+const focusables = root => [root, ...$$(FOC, root)].filter(el => el.matches(FOC) && (el.offsetParent !== null || el === d.activeElement));
 function trap(e, roots) {
   if (e.key !== 'Tab') return;
   const f = roots.flatMap(focusables); if (!f.length) return;
@@ -302,13 +311,13 @@ function menu() {
     if (o === body.classList.contains('menu-open')) return;
     clearTimeout(rdy); clearTimeout(full); ml && ml.classList.remove('rdy');
     origin(); m.classList.remove('is-open'); void m.offsetWidth; // start (or play back) from the burger
-    if (o) { full = setTimeout(() => m.classList.add('is-open'), 1000); if (ml) rdy = setTimeout(() => ml.classList.add('rdy'), 1400); }
+    if (o) { loadIn(m); full = setTimeout(() => m.classList.add('is-open'), 1000); if (ml) rdy = setTimeout(() => ml.classList.add('rdy'), 1400); }
     body.classList.toggle('menu-open', o);
     body.classList.toggle('lock', o || body.classList.contains('qk-open'));
     lockTouch();
     b.setAttribute('aria-expanded', o); b.setAttribute('aria-label', o ? T.closeMenu : T.openMenu);
     $$('.rw>span', b).forEach(s => s.textContent = o ? T.close : T.menu);
-    setInert([$('#main'), $('#ft')], o);
+    setInert([$('#main'), $('#ft'), $('#ck')], o);
     $$('.dock > :not(#mb)').forEach(el => o ? el.setAttribute('tabindex', '-1') : el.removeAttribute('tabindex'));
     dockChk();
     if (o) { back = d.activeElement; requestAnimationFrame(() => { const s = m.querySelector('[data-langseg]'); s && s._place && s._place(); const f = kb ? $('.menu-l a', m) : m; f && f.focus({ preventScroll: true }); }); }
@@ -335,7 +344,7 @@ function quick() {
     q.inert = !o;
     [qlb, qlm].forEach(x => x && x.setAttribute('aria-expanded', o));
     setInert([$('#main'), $('#ft'), $('.dock'), $('#menu')], o);
-    if (o) { back = d.activeElement; setTimeout(() => $('.qk-x', q).focus({ preventScroll: true }), 60); }
+    if (o) { loadIn(q); back = d.activeElement; setTimeout(() => $('.qk-x', q).focus({ preventScroll: true }), 60); }
     else if (back && back.isConnected && back.offsetParent) back.focus({ preventScroll: true });
   };
   qlb && qlb.addEventListener('click', e => { e.preventDefault(); set(true); });
@@ -379,7 +388,7 @@ function marquees() {
 function videos() {
   $$('.vd video').forEach(v => {
     const vd = v.closest('.vd');
-    const fallback = () => { if (v._sw) return; v._sw = 1; const i = d.createElement('img'); i.src = v.poster; i.alt = v.dataset.label || ''; v.replaceWith(i); vd && $$('.vd-snd, .vd-play', vd).forEach(x => x.remove()); };
+    const fallback = () => { if (v._sw) return; v._sw = 1; const i = d.createElement('img'); i.src = v.poster || v.dataset.poster; i.alt = v.dataset.label || ''; v.replaceWith(i); vd && $$('.vd-snd, .vd-play', vd).forEach(x => x.remove()); };
     // Videos with sound: toggle button for audio; clicking the video pauses / resumes it (v._up = paused by the user).
     if (vd && vd.hasAttribute('data-sound')) {
       const snd = $('.vd-snd', vd);
@@ -397,12 +406,13 @@ function videos() {
       });
     }
     v.addEventListener('error', fallback);
+    if (v.dataset.poster) { const pio = whenVisible(v, vis => { if (vis) { v.poster = v.dataset.poster; pio.disconnect(); } }, '900px'); }
     whenVisible(v, vis => {
       if (v._sw) return;
       if (vis && !v.src) {
         v.src = v.dataset.src;
         v.addEventListener('error', fallback, { once: true });
-        setTimeout(() => { if (!v._sw && v.readyState < 2) fallback(); }, 6000);
+        setTimeout(() => { if (!v._sw && v.readyState < 1 && (v.networkState === 3 || !(RM || v._up))) fallback(); }, 6000);
       }
       if (!vis) { v.pause(); return; }
       if (RM || v._up) { vd && vd.classList.toggle('paused', v.paused); return; }
@@ -426,12 +436,12 @@ function carousel(el, { drift = -.6, skew = 8, scale = 0 } = {}) {
   });
   const up = () => { drag = false; };
   el.addEventListener('pointerup', up); el.addEventListener('pointercancel', up);
-  el.addEventListener('click', e => { if (moved > 6) { e.preventDefault(); e.stopPropagation(); } }, true);
+  el.addEventListener('click', e => { if (moved > 6 && e.detail) { e.preventDefault(); e.stopPropagation(); } }, true);
   // Keyboard: bring the focused card into view and hold the drift.
   el.addEventListener('focusin', e => {
     focused = true; el.scrollLeft = 0;
     const c = e.target.closest('.pj, .img'); if (!c) return;
-    x -= c.getBoundingClientRect().left - el.getBoundingClientRect().left - 20; v = 0; frame();
+    x -= c.getBoundingClientRect().left - el.getBoundingClientRect().left - 20; v = 0; if (!run) frame();
   });
   el.addEventListener('focusout', () => { focused = false; });
   const ims = $$('.img', t);
@@ -452,7 +462,7 @@ function carousel(el, { drift = -.6, skew = 8, scale = 0 } = {}) {
 /* ---------- hover gallery: slow crossfade (1.8s per image, 1.1s fade) on two stacked layers.
    Images preload on first hover and are decoded before they show, so the page never stalls. ---------- */
 function cyc(root = d) {
-  if (!fine) return;
+  if (!fine || RM) return;
   $$('[data-cyc]', root).forEach(a => {
     let list; try { list = JSON.parse(a.dataset.cyc); } catch (_) { return; }
     const base = $('.img img', a); if (!base || list.length < 2) return;
@@ -563,6 +573,7 @@ function homePage() {
   $$('#svc .fc').forEach(c => {
     c.addEventListener('click', () => { if (coarse) c.classList.toggle('on'); });
     c.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); c.classList.toggle('on'); } });
+    c.addEventListener('focusout', e => { if (!coarse && !c.contains(e.relatedTarget)) c.classList.remove('on'); });
   });
 
   quick();
@@ -624,7 +635,10 @@ function casePage() {
 roll(); mag(); cursor(); ambient(); smooth(); brake(); anchors(); copy(); dock(); menu(); langs(); marquees(); videos();
 if (page === 'home') homePage(); else if (page === 'studio') studioPage(); else if (page === 'work') casePage();
 clock(); setInterval(clock, 1000);
-const fontsReady = d.fonts ? d.fonts.ready : Promise.resolve();
+// Line splitting needs the real font; if it is slow, split now and again once it arrives.
+let fontLate = 0;
+const fontsReady = d.fonts ? Promise.race([d.fonts.ready, new Promise(r => setTimeout(() => { fontLate = 1; r(); }, 1200))]) : Promise.resolve();
+d.fonts && d.fonts.ready.then(() => { if (fontLate) lines(); });
 addEventListener('resize', () => {
   if (innerWidth !== lastW) { lastW = innerWidth; clearTimeout(lines._t); lines._t = setTimeout(lines, 250); }
 });

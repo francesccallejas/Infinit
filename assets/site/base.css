@@ -103,7 +103,7 @@ html:has(>body.lock){overflow:hidden;scrollbar-gutter:stable}
 @media (hover:hover){.gbtn:hover .ar{transform:translate(3px,-3px)}}
 @media (hover:hover){:is(a,button):hover>.roll .rw>span:first-child{transform:translateY(-105%)}}
 @media (hover:hover){:is(a,button):hover>.roll .rw>span+span{transform:none}}
-.dock{height:52px;box-sizing:border-box;transition:transform .7s cubic-bezier(.7,0,.2,1),opacity .5s,background .4s,color .4s}.dock.hid{transform:translate(-50%,calc(100% + 40px));opacity:0;pointer-events:none}
+.dock{height:52px;box-sizing:border-box;transition:transform .7s cubic-bezier(.7,0,.2,1),opacity .5s,background .4s,color .4s}.dock.hid{transform:translate(-50%,calc(100% + 40px));opacity:0;pointer-events:none}.dock.hid:focus-within{transform:translateX(-50%);opacity:1;pointer-events:auto}
 .dock button{border:0;background:none;font:inherit;color:inherit;cursor:pointer;padding:10px 15px;border-radius:99px}
 @media (hover:hover){.dock a:not(.go):not(.wmk):hover,.dock button:hover{background:oklch(.92 .04 var(--h) / .7);color:var(--t4)}}
 @media (hover:hover){.dock.dk a:not(.go):not(.wmk):hover,.dock.dk button:hover{background:oklch(1 0 0 / .1);color:var(--d4)}}
