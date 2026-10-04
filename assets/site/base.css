@@ -194,7 +194,9 @@ body.lock{overflow:hidden}
 a,button,[role=button],.fc,.tap{touch-action:manipulation;-webkit-tap-highlight-color:transparent}
 
 /* Edge-to-edge on notched phones (viewport-fit=cover): keep UI clear of the status bar / home indicator */
-:root{--sat:env(safe-area-inset-top,0px);--sab:env(safe-area-inset-bottom,0px)}
+:root{--sat:env(safe-area-inset-top,0px);--sab:env(safe-area-inset-bottom,0px);--bar:0px}
+/* iOS 26+ Safari: height of the zone under the floating bottom toolbar, below 100lvh (no CSS/JS API exposes it; measured on device) */
+.bar{--bar:58px}
 .dock{bottom:calc(18px + var(--sab))}
 @media(max-width:760px){.dock{bottom:calc(14px + var(--sab))}}
 .toast{bottom:calc(86px + var(--sab))}

@@ -16,7 +16,11 @@ export function head(ctx, { title, desc, og, css }) {
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<script>document.documentElement.classList.add('js');document.documentElement.style.setProperty('--lnd',-(Date.now()%20000)+'ms')</script>
+<script>document.documentElement.classList.add('js');document.documentElement.style.setProperty('--lnd',-(Date.now()%20000)+'ms');
+/* iOS 26+ Safari, bottom toolbar: the page draws ~58px below 100lvh → html.bar lets the hero reach the physical bottom.
+   Checked: iPhone Safari (not in-app/other browsers), Face ID size, not a home-screen app, and screen − 100lvh in the
+   bottom-toolbar range (status bar + toolbar zone ≈ 114–120px; the Top tab layout is smaller). */
+(function(){var d=document.documentElement,u=navigator.userAgent,v=/Version\\/(\\d+)/.exec(u);if(!/iPhone/.test(u)||/CriOS|FxiOS|EdgiOS|OPiOS|GSA\\/|FBAN|FBAV|Instagram/.test(u)||!v||+v[1]<26||navigator.standalone||screen.height<780)return;var p=document.createElement('i');p.style.cssText='position:absolute;top:0;width:0;height:100lvh;visibility:hidden';d.appendChild(p);var g=screen.height-p.getBoundingClientRect().height;d.removeChild(p);if(g>=100&&g<=140)d.classList.add('bar')})()</script>
 <title>${esc(title)}</title>
 <meta name="description" content="${esc(desc)}">
 <link rel="canonical" href="${abs(lang, page)}">

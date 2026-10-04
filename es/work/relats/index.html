@@ -3,7 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<script>document.documentElement.classList.add('js');document.documentElement.style.setProperty('--lnd',-(Date.now()%20000)+'ms')</script>
+<script>document.documentElement.classList.add('js');document.documentElement.style.setProperty('--lnd',-(Date.now()%20000)+'ms');
+/* iOS 26+ Safari, bottom toolbar: the page draws ~58px below 100lvh → html.bar lets the hero reach the physical bottom.
+   Checked: iPhone Safari (not in-app/other browsers), Face ID size, not a home-screen app, and screen − 100lvh in the
+   bottom-toolbar range (status bar + toolbar zone ≈ 114–120px; the Top tab layout is smaller). */
+(function(){var d=document.documentElement,u=navigator.userAgent,v=/Version\/(\d+)/.exec(u);if(!/iPhone/.test(u)||/CriOS|FxiOS|EdgiOS|OPiOS|GSA\/|FBAN|FBAV|Instagram/.test(u)||!v||+v[1]<26||navigator.standalone||screen.height<780)return;var p=document.createElement('i');p.style.cssText='position:absolute;top:0;width:0;height:100lvh;visibility:hidden';d.appendChild(p);var g=screen.height-p.getBoundingClientRect().height;d.removeChild(p);if(g>=100&&g<=140)d.classList.add('bar')})()</script>
 <title>Relats, caso de estudio — INFINIT©</title>
 <meta name="description" content="Cómo INFINIT© reposicionó Relats — estrategia, identidad y digital para un líder global en soluciones de protección técnica.">
 <link rel="canonical" href="https://weareinfinit.com/es/work/relats/">
@@ -30,8 +34,8 @@
 <link rel="manifest" href="/site.webmanifest">
 <script>(function(){var f=document.querySelector('link[rel=icon][type="image/svg+xml"]');if(!f)return;var N=['mint','blue','lilac','coral','ochre'],set=function(){f.href='/favicon-'+N[Math.floor(Date.now()%20000/4000)]+'.svg'};set();if(!matchMedia('(prefers-reduced-motion: reduce)').matches)setTimeout(function(){set();setInterval(set,4000)},4000-Date.now()%4000)})()</script>
 <link rel="preload" href="/assets/site/fonts/Satoshi-Variable.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/assets/site/base.css?v=4be3d946">
-<link rel="stylesheet" href="/assets/site/inner.css?v=c03d923b">
+<link rel="stylesheet" href="/assets/site/base.css?v=9ec3b5a4">
+<link rel="stylesheet" href="/assets/site/inner.css?v=a7189cde">
 
 <script>window.T={"menu":"Menú","close":"Cerrar","openMenu":"Abrir menú","closeMenu":"Cerrar menú","copyToast":"Email copiado — hablamos pronto.","copied":"Copiado ✓","firm":"Estudio de marca y estrategia","loc":"Barcelona — Internacional","soundOn":"Activar el sonido","soundOff":"Silenciar","vPause":"Pausar el vídeo","vPlay":"Reproducir el vídeo","cPause":"Pausa","cPlay":"Play"}</script>
 <script src="/assets/site/site.js?v=78837e65" defer></script>
