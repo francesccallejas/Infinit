@@ -8,6 +8,8 @@ import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { SITE, LANGS, ROUTES, url, abs, esc } from './lib.mjs';
 import { T } from './i18n.mjs';
+import { S, P, CLIENT_NAMES } from './data.mjs';
+import { FOUNDER_LINKEDIN } from './seo.mjs';
 import { home } from './pages/home.mjs';
 import { studio } from './pages/studio.mjs';
 import { bunnker } from './pages/bunnker.mjs';
@@ -29,19 +31,11 @@ const PAGES = [
   { page: 'relats', kind: 'work', render: relats },
 ];
 
-const ORG = lang => ({
-  '@context': 'https://schema.org', '@type': 'Organization', name: 'INFINIT©', url: SITE + '/',
-  logo: SITE + '/assets/site/icon-512.png', email: 'hello@weareinfinit.com', telephone: '+34689022383',
-  description: T[lang].homeDesc,
-  address: { '@type': 'PostalAddress', addressLocality: 'Barcelona', addressCountry: 'ES' },
-  founder: { '@type': 'Person', name: 'Cesc Callejas' },
-  sameAs: ['https://www.linkedin.com/company/weareinfinit/', 'https://www.instagram.com/weareinfinit.studio/'],
-});
 
 let n = 0;
 for (const lang of LANGS) {
   for (const p of PAGES) {
-    const ctx = { lang, page: p.page, kind: p.kind, V, jsonld: p.page === 'home' ? ORG(lang) : null };
+    const ctx = { lang, page: p.page, kind: p.kind, V };
     out(`${lang}/${ROUTES[p.page]}index.html`, p.render(ctx).replace(/<img (?![^>]*decoding=)/g, '<img decoding="async" '));
     n++;
   }
@@ -99,10 +93,11 @@ out('404.html', `<!doctype html>
 // Sitemap with hreflang alternates.
 const today = new Date().toISOString().slice(0, 10);
 out('sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
 ${PAGES.flatMap(p => LANGS.map(lang => `<url><loc>${abs(lang, p.page)}</loc><lastmod>${today}</lastmod>
 ${LANGS.map(l => `  <xhtml:link rel="alternate" hreflang="${l}" href="${abs(l, p.page)}"/>`).join('\n')}
   <xhtml:link rel="alternate" hreflang="x-default" href="${p.page === 'home' ? SITE + '/' : abs('en', p.page)}"/>
+  <image:image><image:loc>${SITE}/assets/site/og/${p.page}.jpg</image:loc></image:image>
 </url>`)).join('\n')}
 </urlset>
 `);
@@ -119,7 +114,59 @@ out('site.webmanifest', JSON.stringify({
   ],
 }, null, 2) + '\n');
 
-out('robots.txt', `User-agent: *\nAllow: /\nDisallow: /project/uploads/\n\nSitemap: ${SITE}/sitemap.xml\n`);
+// robots.txt — search engines and AI assistants (training, search and user-triggered fetchers) are all welcome:
+// being read and cited by ChatGPT, Claude, Perplexity, Gemini, Copilot… is the point.
+const AI_BOTS = ['Googlebot', 'Google-Extended', 'Bingbot', 'GPTBot', 'OAI-SearchBot', 'ChatGPT-User', 'ClaudeBot', 'Claude-SearchBot', 'Claude-User',
+  'anthropic-ai', 'PerplexityBot', 'Perplexity-User', 'Applebot', 'Applebot-Extended', 'DuckAssistBot', 'meta-externalagent', 'MistralAI-User', 'CCBot'];
+out('robots.txt', `# INFINIT© — search engines and AI assistants are welcome. Summary for AI: ${SITE}/llms.txt
+User-agent: *
+Allow: /
+Disallow: /project/uploads/
+
+${AI_BOTS.map(b => `User-agent: ${b}`).join('\n')}
+Allow: /
+Disallow: /project/uploads/
+
+Sitemap: ${SITE}/sitemap.xml
+`);
+
+// llms.txt (llmstxt.org): a plain summary for AI assistants, built from the same data as the pages.
+const svcLines = S.map(s => `- **${s.n.en}** — ${s.t.en.join(', ')}`).join('\n');
+const projLines = P.map(p => `- **${p.n}** — ${p.d.en}${p.page ? ` · case study: ${abs('en', p.page)}` : p.s === 'nda' ? ' (under NDA)' : ' (in progress)'}`).join('\n');
+out('llms.txt', `# INFINIT©
+
+> INFINIT© is a branding and strategy studio based in Barcelona, led hands-on by its founder Cesc Callejas. It helps growing mid-sized companies — roughly €1–2M to €50–70M in revenue, in Catalonia, Spain and the rest of Europe — build brands that scale: strategy, identity, websites, SEO & GEO, product and content. Senior people on every project, no layers. Works in English, Catalan and Spanish.
+
+## Who INFINIT© works with
+- Mid-sized and growing companies (about €1M–€70M revenue) going through growth, transformation or modernisation
+- Often family-owned or founder-led Catalan and Spanish manufacturers and consumer-goods makers with international reach, whose brand has fallen behind the company they have become
+- Sectors: industrial and B2B manufacturers, automotive and mobility (components, suspensions, wheels, vehicles, dealerships), food & beverage, technology, real estate / proptech and consumer brands
+- Based in Barcelona; clients in Catalonia, Spain, Europe and worldwide
+
+## Services
+${svcLines}
+
+## Selected work
+${projLines}
+- Experience across: ${CLIENT_NAMES}, plus Desigual, Casa Tarradellas, Mercadona, Santander, MartiDerm, Girbau, Seidor and Repsol
+
+## Founder
+- Cesc Callejas — founder, brand & strategy director. Two decades on both sides of the table: building brands and running the operations that depend on them.
+- Track record shown on the studio page: a business built from scratch (€0 → €1.7M), +50% growth in two years, ×10 visibility.
+- LinkedIn: ${FOUNDER_LINKEDIN}
+
+## Contact
+- Email: hello@weareinfinit.com
+- Phone: +34 689 022 383
+- Barcelona, Spain · LinkedIn: https://www.linkedin.com/company/weareinfinit/ · Instagram: https://www.instagram.com/weareinfinit.studio/
+
+## Pages
+- [Home (English)](${abs('en', 'home')}): studio overview, work, approach, services, contact
+- [Studio (English)](${abs('en', 'studio')}): beliefs, founder, experience
+- [Bunnker case study](${abs('en', 'bunnker')}): strategy, identity and digital for long-stay rentals — COAC Award
+- [Relats case study](${abs('en', 'relats')}): repositioning a global leader in technical covering solutions (automotive, e-mobility, energy)
+- Català: ${abs('ca', 'home')} · Español: ${abs('es', 'home')}
+`);
 
 out('_redirects', `# Previous site URLs → new language-prefixed pages
 /index.html            /                    301
@@ -147,6 +194,9 @@ out('_headers', `/*
   Cache-Control: public, max-age=31536000, immutable
 /assets/site/*.js
   Cache-Control: public, max-age=31536000, immutable
+
+/llms.txt
+  Content-Type: text/plain; charset=utf-8
 
 /project/assets/*
   Cache-Control: public, max-age=604800

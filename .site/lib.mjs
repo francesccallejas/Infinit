@@ -1,5 +1,6 @@
 // Shared helpers for the static build.
-export const SITE = 'https://weareinfinit.com';
+// The site is served at www (GoDaddy DNS: www → Cloudflare Pages; the bare domain forwards to www).
+export const SITE = 'https://www.weareinfinit.com';
 export const LANGS = ['en', 'ca', 'es'];
 export const LOCALE = { en: 'en_GB', ca: 'ca_ES', es: 'es_ES' };
 export const EMAIL = 'hello@weareinfinit.com';

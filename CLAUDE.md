@@ -25,7 +25,8 @@ The build writes `/en/`, `/ca/`, `/es/` pages, the language gateway `/index.html
 - New copy: add it in **all three languages**. CA/ES headlines run longer — check they don't break the layout.
 
 ## Deployment
-- GitHub `main` → Cloudflare Pages → **weareinfinit.com** (auto-deploys on push to `main`, no build step: the repo root is served as-is).
+- GitHub `main` → Cloudflare Pages → **www.weareinfinit.com** (auto-deploys on push to `main`, no build step: the repo root is served as-is).
+- Domain at **GoDaddy** (DNS there): `www` is a CNAME to `infinit-ede.pages.dev`; the bare domain forwards to www. Canonicals, sitemap and `llms.txt` use `SITE` = https://www.weareinfinit.com (`.site/lib.mjs`).
 - **Dot-prefixed folders are NOT deployed** (`.site`, `.handoff`, `.lab`, `.archive`, `.chats`).
 - Old URLs (`/studio.html`, `/work/bunnker/`, `/work/relats/`) 301 to `/en/…` via `_redirects`.
 - The previous site lives in `.archive/site-v1/` and the old design systems in `.archive/design-system-v01|v02/` — obsolete, don't use.

@@ -1,75 +1,87 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
-<url><loc>https://weareinfinit.com/en/</loc><lastmod>2026-10-04</lastmod>
-  <xhtml:link rel="alternate" hreflang="en" href="https://weareinfinit.com/en/"/>
-  <xhtml:link rel="alternate" hreflang="ca" href="https://weareinfinit.com/ca/"/>
-  <xhtml:link rel="alternate" hreflang="es" href="https://weareinfinit.com/es/"/>
-  <xhtml:link rel="alternate" hreflang="x-default" href="https://weareinfinit.com/"/>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+<url><loc>https://www.weareinfinit.com/en/</loc><lastmod>2026-10-04</lastmod>
+  <xhtml:link rel="alternate" hreflang="en" href="https://www.weareinfinit.com/en/"/>
+  <xhtml:link rel="alternate" hreflang="ca" href="https://www.weareinfinit.com/ca/"/>
+  <xhtml:link rel="alternate" hreflang="es" href="https://www.weareinfinit.com/es/"/>
+  <xhtml:link rel="alternate" hreflang="x-default" href="https://www.weareinfinit.com/"/>
+  <image:image><image:loc>https://www.weareinfinit.com/assets/site/og/home.jpg</image:loc></image:image>
 </url>
-<url><loc>https://weareinfinit.com/ca/</loc><lastmod>2026-10-04</lastmod>
-  <xhtml:link rel="alternate" hreflang="en" href="https://weareinfinit.com/en/"/>
-  <xhtml:link rel="alternate" hreflang="ca" href="https://weareinfinit.com/ca/"/>
-  <xhtml:link rel="alternate" hreflang="es" href="https://weareinfinit.com/es/"/>
-  <xhtml:link rel="alternate" hreflang="x-default" href="https://weareinfinit.com/"/>
+<url><loc>https://www.weareinfinit.com/ca/</loc><lastmod>2026-10-04</lastmod>
+  <xhtml:link rel="alternate" hreflang="en" href="https://www.weareinfinit.com/en/"/>
+  <xhtml:link rel="alternate" hreflang="ca" href="https://www.weareinfinit.com/ca/"/>
+  <xhtml:link rel="alternate" hreflang="es" href="https://www.weareinfinit.com/es/"/>
+  <xhtml:link rel="alternate" hreflang="x-default" href="https://www.weareinfinit.com/"/>
+  <image:image><image:loc>https://www.weareinfinit.com/assets/site/og/home.jpg</image:loc></image:image>
 </url>
-<url><loc>https://weareinfinit.com/es/</loc><lastmod>2026-10-04</lastmod>
-  <xhtml:link rel="alternate" hreflang="en" href="https://weareinfinit.com/en/"/>
-  <xhtml:link rel="alternate" hreflang="ca" href="https://weareinfinit.com/ca/"/>
-  <xhtml:link rel="alternate" hreflang="es" href="https://weareinfinit.com/es/"/>
-  <xhtml:link rel="alternate" hreflang="x-default" href="https://weareinfinit.com/"/>
+<url><loc>https://www.weareinfinit.com/es/</loc><lastmod>2026-10-04</lastmod>
+  <xhtml:link rel="alternate" hreflang="en" href="https://www.weareinfinit.com/en/"/>
+  <xhtml:link rel="alternate" hreflang="ca" href="https://www.weareinfinit.com/ca/"/>
+  <xhtml:link rel="alternate" hreflang="es" href="https://www.weareinfinit.com/es/"/>
+  <xhtml:link rel="alternate" hreflang="x-default" href="https://www.weareinfinit.com/"/>
+  <image:image><image:loc>https://www.weareinfinit.com/assets/site/og/home.jpg</image:loc></image:image>
 </url>
-<url><loc>https://weareinfinit.com/en/studio/</loc><lastmod>2026-10-04</lastmod>
-  <xhtml:link rel="alternate" hreflang="en" href="https://weareinfinit.com/en/studio/"/>
-  <xhtml:link rel="alternate" hreflang="ca" href="https://weareinfinit.com/ca/studio/"/>
-  <xhtml:link rel="alternate" hreflang="es" href="https://weareinfinit.com/es/studio/"/>
-  <xhtml:link rel="alternate" hreflang="x-default" href="https://weareinfinit.com/en/studio/"/>
+<url><loc>https://www.weareinfinit.com/en/studio/</loc><lastmod>2026-10-04</lastmod>
+  <xhtml:link rel="alternate" hreflang="en" href="https://www.weareinfinit.com/en/studio/"/>
+  <xhtml:link rel="alternate" hreflang="ca" href="https://www.weareinfinit.com/ca/studio/"/>
+  <xhtml:link rel="alternate" hreflang="es" href="https://www.weareinfinit.com/es/studio/"/>
+  <xhtml:link rel="alternate" hreflang="x-default" href="https://www.weareinfinit.com/en/studio/"/>
+  <image:image><image:loc>https://www.weareinfinit.com/assets/site/og/studio.jpg</image:loc></image:image>
 </url>
-<url><loc>https://weareinfinit.com/ca/studio/</loc><lastmod>2026-10-04</lastmod>
-  <xhtml:link rel="alternate" hreflang="en" href="https://weareinfinit.com/en/studio/"/>
-  <xhtml:link rel="alternate" hreflang="ca" href="https://weareinfinit.com/ca/studio/"/>
-  <xhtml:link rel="alternate" hreflang="es" href="https://weareinfinit.com/es/studio/"/>
-  <xhtml:link rel="alternate" hreflang="x-default" href="https://weareinfinit.com/en/studio/"/>
+<url><loc>https://www.weareinfinit.com/ca/studio/</loc><lastmod>2026-10-04</lastmod>
+  <xhtml:link rel="alternate" hreflang="en" href="https://www.weareinfinit.com/en/studio/"/>
+  <xhtml:link rel="alternate" hreflang="ca" href="https://www.weareinfinit.com/ca/studio/"/>
+  <xhtml:link rel="alternate" hreflang="es" href="https://www.weareinfinit.com/es/studio/"/>
+  <xhtml:link rel="alternate" hreflang="x-default" href="https://www.weareinfinit.com/en/studio/"/>
+  <image:image><image:loc>https://www.weareinfinit.com/assets/site/og/studio.jpg</image:loc></image:image>
 </url>
-<url><loc>https://weareinfinit.com/es/studio/</loc><lastmod>2026-10-04</lastmod>
-  <xhtml:link rel="alternate" hreflang="en" href="https://weareinfinit.com/en/studio/"/>
-  <xhtml:link rel="alternate" hreflang="ca" href="https://weareinfinit.com/ca/studio/"/>
-  <xhtml:link rel="alternate" hreflang="es" href="https://weareinfinit.com/es/studio/"/>
-  <xhtml:link rel="alternate" hreflang="x-default" href="https://weareinfinit.com/en/studio/"/>
+<url><loc>https://www.weareinfinit.com/es/studio/</loc><lastmod>2026-10-04</lastmod>
+  <xhtml:link rel="alternate" hreflang="en" href="https://www.weareinfinit.com/en/studio/"/>
+  <xhtml:link rel="alternate" hreflang="ca" href="https://www.weareinfinit.com/ca/studio/"/>
+  <xhtml:link rel="alternate" hreflang="es" href="https://www.weareinfinit.com/es/studio/"/>
+  <xhtml:link rel="alternate" hreflang="x-default" href="https://www.weareinfinit.com/en/studio/"/>
+  <image:image><image:loc>https://www.weareinfinit.com/assets/site/og/studio.jpg</image:loc></image:image>
 </url>
-<url><loc>https://weareinfinit.com/en/work/bunnker/</loc><lastmod>2026-10-04</lastmod>
-  <xhtml:link rel="alternate" hreflang="en" href="https://weareinfinit.com/en/work/bunnker/"/>
-  <xhtml:link rel="alternate" hreflang="ca" href="https://weareinfinit.com/ca/work/bunnker/"/>
-  <xhtml:link rel="alternate" hreflang="es" href="https://weareinfinit.com/es/work/bunnker/"/>
-  <xhtml:link rel="alternate" hreflang="x-default" href="https://weareinfinit.com/en/work/bunnker/"/>
+<url><loc>https://www.weareinfinit.com/en/work/bunnker/</loc><lastmod>2026-10-04</lastmod>
+  <xhtml:link rel="alternate" hreflang="en" href="https://www.weareinfinit.com/en/work/bunnker/"/>
+  <xhtml:link rel="alternate" hreflang="ca" href="https://www.weareinfinit.com/ca/work/bunnker/"/>
+  <xhtml:link rel="alternate" hreflang="es" href="https://www.weareinfinit.com/es/work/bunnker/"/>
+  <xhtml:link rel="alternate" hreflang="x-default" href="https://www.weareinfinit.com/en/work/bunnker/"/>
+  <image:image><image:loc>https://www.weareinfinit.com/assets/site/og/bunnker.jpg</image:loc></image:image>
 </url>
-<url><loc>https://weareinfinit.com/ca/work/bunnker/</loc><lastmod>2026-10-04</lastmod>
-  <xhtml:link rel="alternate" hreflang="en" href="https://weareinfinit.com/en/work/bunnker/"/>
-  <xhtml:link rel="alternate" hreflang="ca" href="https://weareinfinit.com/ca/work/bunnker/"/>
-  <xhtml:link rel="alternate" hreflang="es" href="https://weareinfinit.com/es/work/bunnker/"/>
-  <xhtml:link rel="alternate" hreflang="x-default" href="https://weareinfinit.com/en/work/bunnker/"/>
+<url><loc>https://www.weareinfinit.com/ca/work/bunnker/</loc><lastmod>2026-10-04</lastmod>
+  <xhtml:link rel="alternate" hreflang="en" href="https://www.weareinfinit.com/en/work/bunnker/"/>
+  <xhtml:link rel="alternate" hreflang="ca" href="https://www.weareinfinit.com/ca/work/bunnker/"/>
+  <xhtml:link rel="alternate" hreflang="es" href="https://www.weareinfinit.com/es/work/bunnker/"/>
+  <xhtml:link rel="alternate" hreflang="x-default" href="https://www.weareinfinit.com/en/work/bunnker/"/>
+  <image:image><image:loc>https://www.weareinfinit.com/assets/site/og/bunnker.jpg</image:loc></image:image>
 </url>
-<url><loc>https://weareinfinit.com/es/work/bunnker/</loc><lastmod>2026-10-04</lastmod>
-  <xhtml:link rel="alternate" hreflang="en" href="https://weareinfinit.com/en/work/bunnker/"/>
-  <xhtml:link rel="alternate" hreflang="ca" href="https://weareinfinit.com/ca/work/bunnker/"/>
-  <xhtml:link rel="alternate" hreflang="es" href="https://weareinfinit.com/es/work/bunnker/"/>
-  <xhtml:link rel="alternate" hreflang="x-default" href="https://weareinfinit.com/en/work/bunnker/"/>
+<url><loc>https://www.weareinfinit.com/es/work/bunnker/</loc><lastmod>2026-10-04</lastmod>
+  <xhtml:link rel="alternate" hreflang="en" href="https://www.weareinfinit.com/en/work/bunnker/"/>
+  <xhtml:link rel="alternate" hreflang="ca" href="https://www.weareinfinit.com/ca/work/bunnker/"/>
+  <xhtml:link rel="alternate" hreflang="es" href="https://www.weareinfinit.com/es/work/bunnker/"/>
+  <xhtml:link rel="alternate" hreflang="x-default" href="https://www.weareinfinit.com/en/work/bunnker/"/>
+  <image:image><image:loc>https://www.weareinfinit.com/assets/site/og/bunnker.jpg</image:loc></image:image>
 </url>
-<url><loc>https://weareinfinit.com/en/work/relats/</loc><lastmod>2026-10-04</lastmod>
-  <xhtml:link rel="alternate" hreflang="en" href="https://weareinfinit.com/en/work/relats/"/>
-  <xhtml:link rel="alternate" hreflang="ca" href="https://weareinfinit.com/ca/work/relats/"/>
-  <xhtml:link rel="alternate" hreflang="es" href="https://weareinfinit.com/es/work/relats/"/>
-  <xhtml:link rel="alternate" hreflang="x-default" href="https://weareinfinit.com/en/work/relats/"/>
+<url><loc>https://www.weareinfinit.com/en/work/relats/</loc><lastmod>2026-10-04</lastmod>
+  <xhtml:link rel="alternate" hreflang="en" href="https://www.weareinfinit.com/en/work/relats/"/>
+  <xhtml:link rel="alternate" hreflang="ca" href="https://www.weareinfinit.com/ca/work/relats/"/>
+  <xhtml:link rel="alternate" hreflang="es" href="https://www.weareinfinit.com/es/work/relats/"/>
+  <xhtml:link rel="alternate" hreflang="x-default" href="https://www.weareinfinit.com/en/work/relats/"/>
+  <image:image><image:loc>https://www.weareinfinit.com/assets/site/og/relats.jpg</image:loc></image:image>
 </url>
-<url><loc>https://weareinfinit.com/ca/work/relats/</loc><lastmod>2026-10-04</lastmod>
-  <xhtml:link rel="alternate" hreflang="en" href="https://weareinfinit.com/en/work/relats/"/>
-  <xhtml:link rel="alternate" hreflang="ca" href="https://weareinfinit.com/ca/work/relats/"/>
-  <xhtml:link rel="alternate" hreflang="es" href="https://weareinfinit.com/es/work/relats/"/>
-  <xhtml:link rel="alternate" hreflang="x-default" href="https://weareinfinit.com/en/work/relats/"/>
+<url><loc>https://www.weareinfinit.com/ca/work/relats/</loc><lastmod>2026-10-04</lastmod>
+  <xhtml:link rel="alternate" hreflang="en" href="https://www.weareinfinit.com/en/work/relats/"/>
+  <xhtml:link rel="alternate" hreflang="ca" href="https://www.weareinfinit.com/ca/work/relats/"/>
+  <xhtml:link rel="alternate" hreflang="es" href="https://www.weareinfinit.com/es/work/relats/"/>
+  <xhtml:link rel="alternate" hreflang="x-default" href="https://www.weareinfinit.com/en/work/relats/"/>
+  <image:image><image:loc>https://www.weareinfinit.com/assets/site/og/relats.jpg</image:loc></image:image>
 </url>
-<url><loc>https://weareinfinit.com/es/work/relats/</loc><lastmod>2026-10-04</lastmod>
-  <xhtml:link rel="alternate" hreflang="en" href="https://weareinfinit.com/en/work/relats/"/>
-  <xhtml:link rel="alternate" hreflang="ca" href="https://weareinfinit.com/ca/work/relats/"/>
-  <xhtml:link rel="alternate" hreflang="es" href="https://weareinfinit.com/es/work/relats/"/>
-  <xhtml:link rel="alternate" hreflang="x-default" href="https://weareinfinit.com/en/work/relats/"/>
+<url><loc>https://www.weareinfinit.com/es/work/relats/</loc><lastmod>2026-10-04</lastmod>
+  <xhtml:link rel="alternate" hreflang="en" href="https://www.weareinfinit.com/en/work/relats/"/>
+  <xhtml:link rel="alternate" hreflang="ca" href="https://www.weareinfinit.com/ca/work/relats/"/>
+  <xhtml:link rel="alternate" hreflang="es" href="https://www.weareinfinit.com/es/work/relats/"/>
+  <xhtml:link rel="alternate" hreflang="x-default" href="https://www.weareinfinit.com/en/work/relats/"/>
+  <image:image><image:loc>https://www.weareinfinit.com/assets/site/og/relats.jpg</image:loc></image:image>
 </url>
 </urlset>

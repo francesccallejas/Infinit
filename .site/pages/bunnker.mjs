@@ -10,7 +10,7 @@ const FIT = [3, 5]; // coac-1 is zoomed 5% (its source has a thin white line alo
 
 const C = {
   en: {
-    title: 'Bunnker case study — INFINIT©',
+    title: 'Bunnker — Brand strategy & identity case study | INFINIT©',
     desc: 'How INFINIT© positioned and built Bunnker: strategy, identity and digital product for long-stay rentals. COAC Award.',
     h1: 'Homes made for <b>living.</b>', award: 'COAC Award',
     meta: [['Client', 'Bunnker'], ['My role', 'Founder · Brand & Strategy Director'], ['Sector', 'Proptech · Long-stay rentals'], ['Scope', 'Strategy · Identity · Digital'], ['Recognition', 'COAC Award']],
@@ -30,7 +30,7 @@ const C = {
     sw: ['Coral', 'Earth', 'Cream', 'White'], typeL: 'Bunnker’s typeface',
   },
   ca: {
-    title: 'Bunnker, cas d’estudi — INFINIT©',
+    title: 'Bunnker — Estratègia i identitat de marca | INFINIT©',
     desc: 'Com INFINIT© va posicionar i construir Bunnker: estratègia, identitat i producte digital per al lloguer de llarga estada. Premi COAC.',
     h1: 'Llars fetes per <b>viure.</b>', award: 'Premi COAC',
     meta: [['Client', 'Bunnker'], ['El meu rol', 'Fundador · Director de marca i estratègia'], ['Sector', 'Proptech · Lloguer de llarga estada'], ['Abast', 'Estratègia · Identitat · Digital'], ['Reconeixement', 'Premi COAC']],
@@ -50,7 +50,7 @@ const C = {
     sw: ['Corall', 'Terra', 'Crema', 'Blanc'], typeL: 'La tipografia de Bunnker',
   },
   es: {
-    title: 'Bunnker, caso de estudio — INFINIT©',
+    title: 'Bunnker — Estrategia e identidad de marca | INFINIT©',
     desc: 'Cómo INFINIT© posicionó y construyó Bunnker: estrategia, identidad y producto digital para el alquiler de larga estancia. Premio COAC.',
     h1: 'Hogares hechos para <b>vivir.</b>', award: 'Premio COAC',
     meta: [['Cliente', 'Bunnker'], ['Mi rol', 'Fundador · Director de marca y estrategia'], ['Sector', 'Proptech · Alquiler de larga estancia'], ['Alcance', 'Estrategia · Identidad · Digital'], ['Reconocimiento', 'Premio COAC']],

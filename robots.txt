@@ -1,5 +1,27 @@
+# INFINIT© — search engines and AI assistants are welcome. Summary for AI: https://www.weareinfinit.com/llms.txt
 User-agent: *
 Allow: /
 Disallow: /project/uploads/
 
-Sitemap: https://weareinfinit.com/sitemap.xml
+User-agent: Googlebot
+User-agent: Google-Extended
+User-agent: Bingbot
+User-agent: GPTBot
+User-agent: OAI-SearchBot
+User-agent: ChatGPT-User
+User-agent: ClaudeBot
+User-agent: Claude-SearchBot
+User-agent: Claude-User
+User-agent: anthropic-ai
+User-agent: PerplexityBot
+User-agent: Perplexity-User
+User-agent: Applebot
+User-agent: Applebot-Extended
+User-agent: DuckAssistBot
+User-agent: meta-externalagent
+User-agent: MistralAI-User
+User-agent: CCBot
+Allow: /
+Disallow: /project/uploads/
+
+Sitemap: https://www.weareinfinit.com/sitemap.xml
