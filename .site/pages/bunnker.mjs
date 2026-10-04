@@ -5,6 +5,8 @@ import { head, end } from '../layout.mjs';
 import { chip, caseHero, meta, about, video, nextCase, swatches } from './case.mjs';
 
 const B = 'work/bunnker/bunnker-assets/';
+// COAC photos that are far from the 16:10 frame (portrait / squarish) are shown whole over a blurred copy; the rest fill it.
+const FIT = [3, 5];
 
 const C = {
   en: {
@@ -92,7 +94,9 @@ ${video({ file: B + 'web.mp4', poster: B + 'web-poster.jpg', label: c.vWeb, dela
 <div class="car" id="art" data-cur="${esc(t.cDrag)}"><div class="car-t">${[0, 1, 2].map(k => ART.map(s => img(s, k === 1 ? c.artAlt : '', '', k === 1 ? '' : ' aria-hidden="true"')).join('')).join('')}</div></div></section>`,
     `<section class="blk" data-h="88"><div class="sh"><div><span class="lbl">${esc(c.intL)}</span><h2 class="h2" data-lines>${esc(c.intH)}</h2></div></div><div class="mas">${INT.map(s => img(s, c.intAlt, 'rv')).join('')}</div></section>`,
     `<section class="dark" style="margin-top:clamp(90px,11vw,170px)"><div class="aw2">
-<div class="tap" id="tap" data-cur="${esc(t.cNext)}">${[1, 2, 3, 4, 5].map(i => `<div class="tp img"><img src="${A(B + 'coac-' + i + '.webp')}" alt="${esc(c.coacAlt(i))}" loading="lazy"></div>`).join('')}<div class="ctl"><span class="chip" data-n aria-live="polite">01 / 05</span><div><button type="button" data-prev aria-label="${esc(t.prevImg)}">←</button><button type="button" data-next aria-label="${esc(t.nextImg)}">→</button></div></div></div>
+<div class="tap" id="tap" data-cur="${esc(t.cNext)}">${[1, 2, 3, 4, 5].map(i => FIT.includes(i)
+  ? `<div class="tp img fit" style="--bgi:url('${A(B + 'coac-' + i + '.webp')}')"><img src="${A(B + 'coac-' + i + '.webp')}" alt="${esc(c.coacAlt(i))}" loading="lazy"></div>`
+  : `<div class="tp img"><img src="${A(B + 'coac-' + i + '.webp')}" alt="${esc(c.coacAlt(i))}" loading="lazy"></div>`).join('')}<div class="ctl"><span class="chip" data-n aria-live="polite">01 / 05</span><div><button type="button" data-prev aria-label="${esc(t.prevImg)}">←</button><button type="button" data-next aria-label="${esc(t.nextImg)}">→</button></div></div></div>
 <div class="tx"><span class="lbl">${esc(c.awL)}</span><h2 class="h2" data-lines>${esc(c.awH)}</h2><p>${esc(c.awP)}</p><img src="${A('project/assets/clients/coac-trim.png')}" alt="COAC" loading="lazy"></div></div></section>`,
     `<section class="blk"><div class="sh"><div><span class="lbl">${esc(c.sysL)}</span><h2 class="h2" data-lines>${esc(c.sysH)}</h2></div></div>
 ${swatches([[c.sw[0], '#FE585A', '#fff'], [c.sw[1], '#524741', '#fff'], [c.sw[2], '#E8E5E0'], [c.sw[3], '#FFFFFF', '', true]])}

@@ -52,8 +52,13 @@
 .aw2{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:clamp(24px,4vw,64px);align-items:center;padding:clamp(70px,8vw,120px) var(--pad)}
 .tap{position:relative;aspect-ratio:4/3;border-radius:14px;overflow:hidden;cursor:pointer;background:var(--d1)}
 .tap .tp{position:absolute;inset:0;opacity:0;transition:opacity .7s}.tap .tp.on{opacity:1}
-.tap .tp img{object-fit:contain;padding:0 0 72px}
-.tap{aspect-ratio:auto;height:min(78vh,760px)}
+.tap .tp img{object-fit:cover}
+/* COAC gallery: a 16:10 frame like the landscape photos, so they fill it edge to edge (no dark bands);
+   portrait / squarish ones (.fit) are shown whole over a blurred, dimmed copy of themselves. */
+.tap{aspect-ratio:16/10;max-height:78vh}
+.tap .tp.fit{overflow:hidden}.tap .tp.fit::before{content:"";position:absolute;inset:-40px;background:var(--bgi) center/cover;filter:blur(28px) brightness(.55)}
+.tap .tp.fit img{position:relative;object-fit:contain}
+.tap::after{content:"";position:absolute;left:0;right:0;bottom:0;height:96px;z-index:1;pointer-events:none;background:linear-gradient(0deg,oklch(.14 .012 245 / .45),transparent)}
 .tap .ctl{position:absolute;left:14px;right:14px;bottom:14px;display:flex;justify-content:space-between;align-items:center;z-index:2}
 .tap .ctl div{display:flex;gap:6px}.tap .ctl button{border:0;width:44px;height:44px;border-radius:50%;color:#fff;font-size:18px;cursor:pointer;background:oklch(1 0 0 / .18);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
 .aw2 .tx{display:flex;flex-direction:column;gap:20px}.aw2 .tx p{font-size:18px;line-height:1.5;color:var(--d3);max-width:440px}
@@ -107,7 +112,7 @@
 .vd-play svg{width:24px;height:24px;margin-left:3px}
 .vd.paused .vd-play{opacity:1;transform:none}
 /* Mobile: COAC tap gallery is square (landscape photos no longer float in a tall dark box) */
-@media(max-width:900px){.tap{height:auto;aspect-ratio:1/1}.tap .tp img{padding-bottom:64px}}
+@media(max-width:900px){.tap{max-height:none}}
 /* Mobile: full-bleed image with baked-in copy (Relats) shows whole, text goes below on dark */
 @media(max-width:760px){.full{display:block;min-height:0;padding:0;background:var(--d0)}.full::after{display:none}.full .img{position:relative;inset:auto;aspect-ratio:16/9}.full>div:not(.img){padding:28px var(--pad) 44px}}
 
