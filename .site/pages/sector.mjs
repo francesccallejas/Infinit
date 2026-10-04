@@ -97,11 +97,15 @@ export const SHARED = {
   },
 };
 
-// def: { C: sector copy per language, hero: image path, og, proof?: { img, case: page key, name } }
+// def: { C: sector copy per language, hero: image path, og, proof?: { img, case: page key, name }, prices?: false, sharedFaq?: [indices] }
 export function sectorPage(ctx, def) {
   const { lang } = ctx, t = T[lang], own = def.C[lang];
   // Sector copy overrides the shared copy; sector-specific questions go before the shared FAQ.
-  const c = { ...SHARED[lang], ...own, faq: [...(own.faq || []), ...SHARED[lang].faq] };
+  // def.prices === false hides the price table (and the shared cost/duration answers) on pages whose
+  // prices aren't published (e.g. GEO, fractional CMO). def.sharedFaq picks shared questions by index.
+  const keep = def.sharedFaq || (def.prices === false ? [3, 4, 5] : null);
+  const shared = keep ? keep.map(i => SHARED[lang].faq[i]) : SHARED[lang].faq;
+  const c = { ...SHARED[lang], ...own, faq: [...(own.faq || []), ...shared] };
 
   const hero = `<section class="ch dark" id="top" data-h="n"><div class="ch-bg"><div class="img"><img src="${A(def.hero)}" alt="" fetchpriority="high"></div></div>
 <div class="ch-t"><a class="gbtn" href="${url(lang, 'home')}"><span class="ar bk" aria-hidden="true">←</span><span class="roll">${esc(t.home)}</span></a></div>
@@ -137,8 +141,8 @@ ${heroLine}</section>`;
 <div class="cta2"><h2 class="em" data-lines>${c.ctaH}</h2><p class="sx-cp">${esc(c.ctaP)}</p>
 <button class="mail" type="button" data-copy="${EMAIL}" data-cur="${esc(t.cCopy)}" aria-label="${esc(t.copyEmail)}: ${EMAIL}"><span class="mt">${EMAIL}</span></button></div></section>`;
 
-  const ld = { name: c.lbl, serviceType: 'Branding', audience: c.meta[0][1] + ' · ' + c.meta[1][1] + ' · ' + c.meta[3][1], faq: c.faq,
+  const ld = { name: c.lbl, serviceType: 'Branding', audience: c.meta[0][1] + ' · ' + c.meta[1][1] + ' · ' + c.meta[3][1], faq: own.faq || [],
     ...(def.proof ? { caseName: def.proof.name, caseUrl: abs(lang, def.proof.case) } : {}) };
   return head(ctx, { title: c.title, desc: c.desc, og: def.og, css: ['inner', 'studio'], ld }) +
-    `\n<main id="main">\n${[hero, meta, problem, signs, how, prices, proof, faq, cta].join('\n')}\n</main>\n` + end(ctx);
+    `\n<main id="main">\n${[hero, meta, problem, signs, how, def.prices === false ? '' : prices, proof, faq, cta].filter(Boolean).join('\n')}\n</main>\n` + end(ctx);
 }

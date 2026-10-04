@@ -9,8 +9,9 @@ const jsT = t => ({ menu: t.menu, close: t.close, openMenu: t.openMenu, closeMen
 export function head(ctx, { title, desc, og, css, ld }) {
   const { lang, page, V } = ctx;
   const alt = LANGS.map(l => `<link rel="alternate" hreflang="${l}" href="${abs(l, page)}">`).join('\n') +
-    `\n<link rel="alternate" hreflang="x-default" href="${SITE}/">`;
+    `\n<link rel="alternate" hreflang="x-default" href="${page === 'home' ? SITE + '/' : abs('en', page)}">`;
   const ogImg = SITE + og;
+  ctx.og = og; // read by the build for the sitemap's image entries
   const styles = ['base', ...css].map(n => `<link rel="stylesheet" href="/assets/site/${n}.css?v=${V[n + '.css']}">`).join('\n');
   return `<!doctype html>
 <html lang="${lang}" data-page="${ctx.kind}">
@@ -105,7 +106,7 @@ export function footer(ctx) {
   const t = T[ctx.lang], L = links(ctx);
   return `<footer class="ft dark" id="ft"><div class="ft-g">
 <div><p class="lbl">${esc(t.ftStudio)}</p><a href="${L.work}">${esc(t.work)}</a><a href="${L.services}">${esc(t.services)}</a><a href="${L.studio}">${esc(t.studio)}</a></div>
-<div><p class="lbl">${esc(t.ftSecL)}</p>${t.ftSecs.map(([k, n]) => `<a href="${url(ctx.lang, k)}">${esc(n)}</a>`).join('')}</div>
+<div><p class="lbl">${esc(t.ftSecL)}</p>${t.ftSecs.map(([k, n]) => `<a href="${url(ctx.lang, k)}">${esc(n)}</a>`).join('')}<a href="${url(ctx.lang, 'sectors')}">${esc(t.ftAll)}</a></div>
 <div><p class="lbl">${esc(t.ftConnect)}</p><a href="mailto:${EMAIL}">${EMAIL}</a><a href="tel:${PHONE.replace(/\s/g, '')}">${PHONE.replace(/ /g, '\u00a0')}</a><a href="${LINKEDIN}" target="_blank" rel="noopener">LinkedIn ↗</a><a href="${INSTAGRAM}" target="_blank" rel="noopener">Instagram ↗</a></div>
 <div><p class="lbl">${esc(t.ftRec)}</p><div class="aw"><img src="${A('project/assets/clients/Awwwards-Logo-Vector.svg-.png')}" alt="Awwwards" loading="lazy"><img src="${A('project/assets/clients/coac-trim.png')}" alt="COAC" loading="lazy"></div></div></div>
 <div class="ft-b lbl"><span>${esc(t.loc)}</span><nav class="fl" aria-label="${esc(t.language)}">${ordered(ctx).join('')}</nav><span data-clock></span><span>© 2026 INFINIT©</span></div></footer>`;

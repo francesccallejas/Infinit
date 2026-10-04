@@ -9,7 +9,8 @@ import { fileURLToPath } from 'node:url';
 import { SITE, LANGS, ROUTES, url, abs, esc } from './lib.mjs';
 import { T } from './i18n.mjs';
 import { S, P, CLIENT_NAMES } from './data.mjs';
-import { FOUNDER_LINKEDIN } from './seo.mjs';
+import { FOUNDER_LINKEDIN, siteGraph } from './seo.mjs';
+import { execSync } from 'node:child_process';
 import { home } from './pages/home.mjs';
 import { studio } from './pages/studio.mjs';
 import { bunnker } from './pages/bunnker.mjs';
@@ -22,6 +23,16 @@ import { realestate } from './pages/realestate.mjs';
 import { tech } from './pages/tech.mjs';
 import { family } from './pages/family.mjs';
 import { international } from './pages/international.mjs';
+import { fashion } from './pages/fashion.mjs';
+import { energy } from './pages/energy.mjs';
+import { leisure } from './pages/leisure.mjs';
+import { mergers } from './pages/mergers.mjs';
+import { launch } from './pages/launch.mjs';
+import { employer } from './pages/employer.mjs';
+import { website } from './pages/website.mjs';
+import { geo } from './pages/geo.mjs';
+import { cmo } from './pages/cmo.mjs';
+import { sectors, INDUSTRIES, MOMENTS } from './pages/sectors.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const out = (p, s) => { const f = join(ROOT, p); mkdirSync(dirname(f), { recursive: true }); writeFileSync(f, s); };
@@ -45,14 +56,26 @@ const PAGES = [
   { page: 'tech', kind: 'sector', render: tech },
   { page: 'family', kind: 'sector', render: family },
   { page: 'international', kind: 'sector', render: international },
+  { page: 'fashion', kind: 'sector', render: fashion },
+  { page: 'energy', kind: 'sector', render: energy },
+  { page: 'leisure', kind: 'sector', render: leisure },
+  { page: 'mergers', kind: 'sector', render: mergers },
+  { page: 'launch', kind: 'sector', render: launch },
+  { page: 'employer', kind: 'sector', render: employer },
+  { page: 'website', kind: 'sector', render: website },
+  { page: 'geo', kind: 'sector', render: geo },
+  { page: 'cmo', kind: 'sector', render: cmo },
+  { page: 'sectors', kind: 'sector', render: sectors },
 ];
 
 
 let n = 0;
+const OG = {};
 for (const lang of LANGS) {
   for (const p of PAGES) {
     const ctx = { lang, page: p.page, kind: p.kind, V };
     out(`${lang}/${ROUTES[p.page]}index.html`, p.render(ctx).replace(/<img (?![^>]*decoding=)/g, '<img decoding="async" '));
+    OG[p.page] = ctx.og;
     n++;
   }
 }
@@ -65,6 +88,16 @@ const gateway = `<!doctype html>
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>${esc(T.en.homeTitle)}</title>
 <meta name="description" content="${esc(T.en.homeDesc)}">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="INFINIT©">
+<meta property="og:title" content="${esc(T.en.homeTitle)}">
+<meta property="og:description" content="${esc(T.en.homeDesc)}">
+<meta property="og:url" content="${SITE}/">
+<meta property="og:image" content="${SITE}/assets/site/og/home.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">${JSON.stringify(siteGraph()).replace(/</g, '\\u003c')}</script>
 <link rel="canonical" href="${SITE}/">
 ${LANGS.map(l => `<link rel="alternate" hreflang="${l}" href="${abs(l, 'home')}">`).join('\n')}
 <link rel="alternate" hreflang="x-default" href="${SITE}/">
@@ -108,12 +141,20 @@ out('404.html', `<!doctype html>
 
 // Sitemap with hreflang alternates.
 const today = new Date().toISOString().slice(0, 10);
+// lastmod = last commit of the page's own source module (today if it has uncommitted changes or no history).
+const lastmod = page => {
+  const f = `.site/pages/${page}.mjs`;
+  try {
+    if (execSync(`git status --porcelain -- ${f}`, { cwd: ROOT }).toString().trim()) return today;
+    return execSync(`git log -1 --format=%cs -- ${f}`, { cwd: ROOT }).toString().trim() || today;
+  } catch { return today; }
+};
 out('sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
-${PAGES.flatMap(p => LANGS.map(lang => `<url><loc>${abs(lang, p.page)}</loc><lastmod>${today}</lastmod>
+${PAGES.flatMap(p => LANGS.map(lang => `<url><loc>${abs(lang, p.page)}</loc><lastmod>${lastmod(p.page)}</lastmod>
 ${LANGS.map(l => `  <xhtml:link rel="alternate" hreflang="${l}" href="${abs(l, p.page)}"/>`).join('\n')}
   <xhtml:link rel="alternate" hreflang="x-default" href="${p.page === 'home' ? SITE + '/' : abs('en', p.page)}"/>
-  <image:image><image:loc>${SITE}/assets/site/og/${p.page}.jpg</image:loc></image:image>
+  <image:image><image:loc>${SITE}${OG[p.page]}</image:loc></image:image>
 </url>`)).join('\n')}
 </urlset>
 `);
@@ -142,6 +183,8 @@ Disallow: /project/uploads/
 ${AI_BOTS.map(b => `User-agent: ${b}`).join('\n')}
 Allow: /
 Disallow: /project/uploads/
+Disallow: /project/preview/
+Disallow: /project/preview/
 
 Sitemap: ${SITE}/sitemap.xml
 `);
@@ -181,14 +224,8 @@ ${projLines}
 - [Studio (English)](${abs('en', 'studio')}): beliefs, founder, experience
 - [Bunnker case study](${abs('en', 'bunnker')}): strategy, identity and digital for long-stay rentals — COAC Award
 - [Relats case study](${abs('en', 'relats')}): repositioning a global leader in technical covering solutions (automotive, e-mobility, energy)
-- [Industrial & B2B branding](${abs('en', 'industrial')}): how INFINIT© works with industrial and B2B companies — signs the brand is holding you back, process, FAQ (also in [Català](${abs('ca', 'industrial')}) and [Español](${abs('es', 'industrial')}))
-- [Automotive & mobility branding](${abs('en', 'automotive')}): for component makers, aftermarket, vehicle and camper builders, dealer groups and e-mobility — process, prices, FAQ (also in [Català](${abs('ca', 'automotive')}) and [Español](${abs('es', 'automotive')}))
-- [Food & beverage branding](${abs('en', 'food')}): food, beverage and consumer-goods brands — packaging system, retail, process, prices, FAQ (also in [Català](${abs('ca', 'food')}) and [Español](${abs('es', 'food')}))
-- [Pharma, health & dermocosmetics branding](${abs('en', 'pharma')}): rigorous and human brands for pharma, OTC, dermocosmetics and health — process, prices, FAQ (also in [Català](${abs('ca', 'pharma')}) and [Español](${abs('es', 'pharma')}))
-- [Real estate & proptech branding](${abs('en', 'realestate')}): developers, rentals, proptech and construction — Bunnker case (COAC Award), process, prices, FAQ (also in [Català](${abs('ca', 'realestate')}) and [Español](${abs('es', 'realestate')}))
-- [Tech, startups & scaleups branding](${abs('en', 'tech')}): brand, website, SEO & GEO and fractional CMO for fast-growing tech companies — process, prices, FAQ (also in [Català](${abs('ca', 'tech')}) and [Español](${abs('es', 'tech')}))
-- [Branding for going international](${abs('en', 'international')}): positioning, identity and multilingual website for companies selling abroad — process, prices, FAQ (also in [Català](${abs('ca', 'international')}) and [Español](${abs('es', 'international')}))
-- [Family business branding](${abs('en', 'family')}): rebranding for family businesses in generational change, growth or internationalisation — process, prices, FAQ (also in [Català](${abs('ca', 'family')}) and [Español](${abs('es', 'family')}))
+${[...Object.entries(INDUSTRIES), ...Object.entries(MOMENTS)].map(([k, C]) => `- [${C.en.lbl}](${abs('en', k)}): ${C.en.desc} (also in [Català](${abs('ca', k)}) and [Español](${abs('es', k)}))`).join('\n')}
+- [All sectors & services](${abs('en', 'sectors')})
 - Català: ${abs('ca', 'home')} · Español: ${abs('es', 'home')}
 `);
 
@@ -221,6 +258,14 @@ out('_headers', `/*
 
 /llms.txt
   Content-Type: text/plain; charset=utf-8
+
+# Repo files that are served but aren't pages
+/CLAUDE.md
+  X-Robots-Tag: noindex
+/README.md
+  X-Robots-Tag: noindex
+/project/preview/*
+  X-Robots-Tag: noindex
 
 /project/assets/*
   Cache-Control: public, max-age=604800

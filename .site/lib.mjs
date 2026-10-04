@@ -22,6 +22,16 @@ export const ROUTES = {
   tech: 'tech-branding/',
   family: 'family-business-branding/',
   international: 'international-branding/',
+  sectors: 'sectors/',
+  fashion: 'fashion-branding/',
+  energy: 'energy-branding/',
+  leisure: 'outdoor-leisure-branding/',
+  mergers: 'merger-acquisition-branding/',
+  launch: 'brand-launch/',
+  employer: 'employer-branding/',
+  website: 'b2b-website-design/',
+  geo: 'geo-ai-search/',
+  cmo: 'fractional-cmo/',
 };
 export const url = (lang, page) => `/${lang}/${ROUTES[page]}`;
 export const abs = (lang, page) => SITE + url(lang, page);

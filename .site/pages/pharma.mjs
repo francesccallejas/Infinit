@@ -6,7 +6,7 @@ import { sectorPage } from './sector.mjs';
 export const C = {
   en: {
     title: 'Pharma & health branding — Barcelona | INFINIT©',
-    desc: 'Branding for pharma, health and dermocosmetics companies (€1M–€200M): strategy, identity, website, SEO & GEO. Rigorous and human. Senior-led studio in Barcelona.',
+    desc: 'Branding for pharma, health and dermocosmetics companies (€1M–€200M): strategy, identity, website, SEO & GEO. Rigorous and human. Barcelona.',
     lbl: 'Pharma, health & dermocosmetics branding',
     h1: 'Brands that must be rigorous <b>and still feel human.</b>',
     meta: [['For', 'Pharma, health & dermocosmetics'], ['Size', '€1M–€200M revenue'], ['Sectors', 'Pharma · OTC · Dermocosmetics · Medical devices · Labs · Health services'], ['Markets', 'Catalonia · Spain · Europe'], ['Led by', 'Cesc Callejas, founder']],
@@ -33,7 +33,7 @@ export const C = {
   },
   ca: {
     title: 'Branding farmacèutic i de salut — Barcelona | INFINIT©',
-    desc: 'Branding per a empreses farmacèutiques, de salut i dermocosmètica (d’1 a 200 M€): estratègia, identitat, web, SEO i GEO. Rigor i proximitat. Estudi sènior a Barcelona.',
+    desc: 'Branding per a farma, salut i dermocosmètica (d’1 a 200 M€): estratègia, identitat, web, SEO i GEO. Rigor i proximitat. Estudi sènior a Barcelona.',
     lbl: 'Branding per a farma, salut i dermocosmètica',
     h1: 'Marques que han de ser rigoroses <b>i alhora humanes.</b>',
     meta: [['Per a', 'Farma, salut i dermocosmètica'], ['Mida', 'D’1 a 200 M€ de facturació'], ['Sectors', 'Farma · OTC · Dermocosmètica · Dispositius mèdics · Laboratoris · Serveis de salut'], ['Mercats', 'Catalunya · Espanya · Europa'], ['Liderat per', 'Cesc Callejas, fundador']],
@@ -60,7 +60,7 @@ export const C = {
   },
   es: {
     title: 'Branding farmacéutico y de salud — Barcelona | INFINIT©',
-    desc: 'Branding para empresas farmacéuticas, de salud y dermocosmética (de 1 a 200 M€): estrategia, identidad, web, SEO y GEO. Rigor y cercanía. Estudio sénior en Barcelona.',
+    desc: 'Branding para farma, salud y dermocosmética (de 1 a 200 M€): estrategia, identidad, web, SEO y GEO. Rigor y cercanía. Estudio sénior en Barcelona.',
     lbl: 'Branding para farma, salud y dermocosmética',
     h1: 'Marcas que deben ser rigurosas <b>y a la vez humanas.</b>',
     meta: [['Para', 'Farma, salud y dermocosmética'], ['Tamaño', 'De 1 a 200 M€ de facturación'], ['Sectores', 'Farma · OTC · Dermocosmética · Dispositivos médicos · Laboratorios · Servicios de salud'], ['Mercados', 'Cataluña · España · Europa'], ['Liderado por', 'Cesc Callejas, fundador']],

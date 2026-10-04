@@ -138,7 +138,7 @@
 .proc h3{font-size:clamp(24px,2.4vw,40px);letter-spacing:-.045em;font-weight:600;line-height:1}
 .proc p{font-size:17px;line-height:1.5;color:var(--t3);max-width:560px}
 .sx-exp{display:flex;flex-direction:column;gap:14px;padding-top:clamp(60px,7vw,100px)}
-.sx-exp p{font-size:clamp(22px,2.4vw,38px);letter-spacing:-.035em;line-height:1.15;font-weight:500;color:var(--t2);text-wrap:balance}
+.sx-exp p{font-size:clamp(22px,2.4vw,38px);letter-spacing:-.035em;line-height:1.15;font-weight:500;color:var(--t3);text-wrap:balance}
 .sx-fh{grid-column:1/5;display:flex;flex-direction:column;gap:12px;align-self:start;position:sticky;top:90px}
 .faq{grid-column:6/13;border-top:1px solid var(--l1)}
 .faq details{border-bottom:1px solid var(--l1)}

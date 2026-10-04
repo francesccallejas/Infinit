@@ -10,7 +10,7 @@ const LIVE = 'https://www.relats.com';
 const C = {
   en: {
     title: 'Relats — Rebranding & digital case study | INFINIT©',
-    desc: 'How INFINIT© repositioned Relats — strategy, identity and digital for a global leader in technical covering solutions.',
+    desc: 'How INFINIT© repositioned Relats — strategy, identity and a new digital platform for a global leader in technical covering solutions for e-mobility.',
     h1: 'Staying ahead of <b>the curve.</b>', live: 'See it live ↗',
     meta: [['Client', 'Relats'], ['My role', 'CDMO — Brand Director & Project Lead'], ['Partner', 'In collaboration with Firma'], ['Sector', 'Sustainable mobility · Automotive · Energy'], ['Scope', 'Strategy · Identity · Digital']],
     whoL: 'Who is Relats', who: 'Relats protects what moves the world. From e-mobility and automotive to wind energy, it engineers innovative, safety-driven covering solutions trusted by industries across the globe.',
@@ -27,6 +27,7 @@ const C = {
     typeL: 'Relats’ typefaces', tDisplay: 'Display / UI', tData: 'Technical data',
     fldL: 'Selected work', fldH: 'In the field.', topTier: 'Top Tier Products — Landing Page · Recognised by Awwwards',
     fld: ['Social', 'App', 'Workplace', 'Performance', 'Merchandise', 'Product site', 'Landing', 'Mobile'],
+    fldAlt: ['Relats social media posts', 'Relats mobile app screens', 'Relats brand posters in an office', 'Relats performance campaign', 'Relats symbol on glass and a branded backpack', 'Relats product website section', 'Relats website landing page', 'Relats website on a phone'],
     anL: 'Last but not least', anH: 'One analytics language for every internal app.',
     anP: 'We defined a set of <b style="color:var(--t4);font-weight:500">Analytics Guidelines</b> — shared dashboards, metrics and data-visualisation rules — so every internal application speaks the same language. Consistent, legible, and built to scale across the organisation.',
     anAlt: 'Relats Data Center dashboard',
@@ -50,6 +51,7 @@ const C = {
     typeL: 'Les tipografies de Relats', tDisplay: 'Display / UI', tData: 'Dades tècniques',
     fldL: 'Feina seleccionada', fldH: 'Sobre el terreny.', topTier: 'Top Tier Products — Landing page · Reconeguda per Awwwards',
     fld: ['Social', 'App', 'Espai de treball', 'Performance', 'Marxandatge', 'Web de producte', 'Landing', 'Mòbil'],
+    fldAlt: ['Publicacions de Relats a xarxes socials', 'Pantalles de l’app mòbil de Relats', 'Pòsters de marca de Relats en una oficina', 'Campanya de performance de Relats', 'Símbol de Relats en un vidre i una motxilla de marca', 'Secció de la web de producte de Relats', 'Pàgina d’aterratge de la web de Relats', 'La web de Relats en un mòbil'],
     anL: 'Per acabar', anH: 'Un sol llenguatge analític per a totes les apps internes.',
     anP: 'Vam definir unes <b style="color:var(--t4);font-weight:500">Analytics Guidelines</b> — dashboards, mètriques i normes de visualització de dades compartides — perquè totes les aplicacions internes parlin el mateix llenguatge. Coherent, llegible i fet per escalar a tota l’organització.',
     anAlt: 'Dashboard del Data Center de Relats',
@@ -73,6 +75,7 @@ const C = {
     typeL: 'Las tipografías de Relats', tDisplay: 'Display / UI', tData: 'Datos técnicos',
     fldL: 'Trabajo seleccionado', fldH: 'Sobre el terreno.', topTier: 'Top Tier Products — Landing page · Reconocida por Awwwards',
     fld: ['Social', 'App', 'Espacio de trabajo', 'Performance', 'Merchandising', 'Web de producto', 'Landing', 'Móvil'],
+    fldAlt: ['Publicaciones de Relats en redes sociales', 'Pantallas de la app móvil de Relats', 'Pósteres de marca de Relats en una oficina', 'Campaña de performance de Relats', 'Símbolo de Relats en un cristal y una mochila de marca', 'Sección de la web de producto de Relats', 'Página de aterrizaje de la web de Relats', 'La web de Relats en un móvil'],
     anL: 'Por último', anH: 'Un único lenguaje analítico para todas las apps internas.',
     anP: 'Definimos unas <b style="color:var(--t4);font-weight:500">Analytics Guidelines</b> — dashboards, métricas y normas de visualización de datos compartidas — para que todas las aplicaciones internas hablen el mismo lenguaje. Coherente, legible y hecho para escalar en toda la organización.',
     anAlt: 'Dashboard del Data Center de Relats',
@@ -97,7 +100,7 @@ ${video({ file: R + 'brand-film.mp4', poster: R + 'film-poster.jpg', label: c.vF
 ${video({ file: R + 'logo-motion-dark.mp4', poster: R + 'logo-dark-poster.jpg', label: c.vMark, cls: 'mark' })}
 ${video({ file: R + 'tie-cord.mp4', poster: R + 'tie-cord-poster.jpg', alt: c.vCord, delay: '.06s' })}
 </div></section>`,
-    `<section class="blk"><div>${c.steps.map((s, i) => `<div class="step" data-h="${STEP_H[i]}"><div class="tx rv"><span class="lbl">${esc(s[0])}</span><h3${i === 1 ? ' class="em"' : ''}>${s[1]}</h3><p>${esc(s[2])}</p><span class="chip" ${darkChip}>${esc(s[3])}</span></div><div class="img clip"><img src="${A(R + STEP_IMG[i] + '.webp')}" alt="${esc(s[4])}" loading="lazy"></div></div>`).join('')}</div></section>`,
+    `<section class="blk"><h2 class="sr">${esc({ en: 'How we did it', ca: 'Com ho vam fer', es: 'Cómo lo hicimos' }[lang])}</h2><div>${c.steps.map((s, i) => `<div class="step" data-h="${STEP_H[i]}"><div class="tx rv"><span class="lbl">${esc(s[0])}</span><h3${i === 1 ? ' class="em"' : ''}>${s[1]}</h3><p>${esc(s[2])}</p><span class="chip" ${darkChip}>${esc(s[3])}</span></div><div class="img clip"><img src="${A(R + STEP_IMG[i] + '.webp')}" alt="${esc(s[4])}" loading="lazy"></div></div>`).join('')}</div></section>`,
     `<section class="full" style="margin-top:clamp(70px,8vw,120px)"><div class="img"><img src="${A(R + 'turbine-2400.webp')}" alt="" loading="lazy"></div><div><span class="lbl">${esc(c.fullL)}</span><h2 class="h2" data-lines>${esc(c.fullH)}</h2><p>${esc(c.fullP)}</p></div></section>`,
     `<section class="blk"><div class="sh"><div><span class="lbl">${esc(c.webL)}</span><h2 class="h2" data-lines>${esc(c.webH)}</h2></div><a class="gbtn" href="${LIVE}" target="_blank" rel="noopener" style="--bh:30"><span class="roll">${esc(c.webBtn)}</span><span class="ar" aria-hidden="true">↗</span></a></div>
 <div class="img clip" style="border-radius:14px;aspect-ratio:16/9"><img src="${A(R + 'staying-ahead.webp')}" alt="${esc(c.webAlt)}" loading="lazy"></div></section>`,
@@ -106,7 +109,7 @@ ${swatches(SW.map(([hex, fg, b], i) => [c.sw[i], hex, fg, b]), 8)}
 <div class="tpf rv"><div><span class="lbl">${esc(c.typeL)}</span><span class="aa" aria-hidden="true">Aa</span></div><div><ul><li>Roobert <span>${esc(c.tDisplay)}</span></li><li style="font-family:ui-monospace,monospace;font-size:clamp(18px,1.8vw,28px)">DM Mono <span>${esc(c.tData)}</span></li></ul></div></div></section>`,
     `<section class="blk" data-h="30"><div class="sh"><div><span class="lbl">${esc(c.fldL)}</span><h2 class="h2" data-lines>${esc(c.fldH)}</h2></div></div>
 ${video({ file: R + 'top-tier.mp4', poster: R + 'top-tier-poster.jpg', label: c.topTier, cls: 'wide', sound: true, lang }).replace('class="vd rv wide"', 'class="vd rv wide" style="margin-bottom:12px"')}
-<div class="fld">${FLD.map((s, i) => `<div class="rv" style="transition-delay:${(i % 4) * .05}s"><div class="img"><img src="${A(R + s + '.webp')}" alt="${esc(c.fld[i])}" loading="lazy"></div><span class="chip">${esc(c.fld[i])}</span></div>`).join('')}</div></section>`,
+<div class="fld">${FLD.map((s, i) => `<div class="rv" style="transition-delay:${(i % 4) * .05}s"><div class="img"><img src="${A(R + s + '.webp')}" alt="${esc(c.fldAlt[i])}" loading="lazy"></div><span class="chip">${esc(c.fld[i])}</span></div>`).join('')}</div></section>`,
     `<section class="blk g12" data-h="255"><div style="grid-column:1/6;display:flex;flex-direction:column;gap:18px" class="rv"><span class="lbl">${esc(c.anL)}</span><h2 class="h2">${esc(c.anH)}</h2><p style="font-size:17px;line-height:1.5;color:var(--t3)">${c.anP}</p></div>
 <div style="grid-column:7/13;position:relative"><div class="img clip" style="border-radius:14px;aspect-ratio:4/3"><img src="${A(R + 'analytics.webp')}" alt="${esc(c.anAlt)}" loading="lazy"></div><span class="chip" style="position:absolute;left:14px;bottom:14px">data.relats.com</span></div></section>`,
     nextCase(ctx, 'bunnker'),

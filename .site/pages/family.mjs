@@ -7,7 +7,7 @@ const R = 'work/relats/relats-assets/';
 export const C = {
   en: {
     title: 'Family business branding & generational change | INFINIT©',
-    desc: 'Rebranding for family businesses (€1M–€200M) going through generational change, growth or internationalisation: strategy, identity, website, SEO & GEO. Barcelona.',
+    desc: 'Rebranding for family businesses (€1M–€200M) in generational change, growth or going international: strategy, identity, website, SEO & GEO.',
     lbl: 'Family business branding',
     h1: 'A new generation. <b>A brand ready for it.</b>',
     meta: [['For', 'Family-owned & founder-led companies'], ['Size', '€1M–€200M revenue'], ['Moments', 'Generational change · Growth · Going international · New investor'], ['Markets', 'Catalonia · Spain · Europe'], ['Led by', 'Cesc Callejas, founder']],
@@ -67,7 +67,7 @@ export const C = {
   },
   es: {
     title: 'Branding de empresa familiar y relevo generacional | INFINIT©',
-    desc: 'Rebranding para empresas familiares (de 1 a 200 M€) en relevo generacional, crecimiento o internacionalización: estrategia, identidad, web, SEO y GEO. Barcelona.',
+    desc: 'Rebranding para empresas familiares (de 1 a 200 M€) en relevo generacional, crecimiento o internacionalización: estrategia, identidad, web y GEO.',
     lbl: 'Branding para empresas familiares',
     h1: 'Una nueva generación. <b>Una marca lista para ella.</b>',
     meta: [['Para', 'Empresas familiares y lideradas por sus fundadores'], ['Tamaño', 'De 1 a 200 M€ de facturación'], ['Momentos', 'Relevo generacional · Crecimiento · Internacionalización · Nuevo inversor'], ['Mercados', 'Cataluña · España · Europa'], ['Liderado por', 'Cesc Callejas, fundador']],

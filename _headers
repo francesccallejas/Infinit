@@ -16,6 +16,14 @@
 /llms.txt
   Content-Type: text/plain; charset=utf-8
 
+# Repo files that are served but aren't pages
+/CLAUDE.md
+  X-Robots-Tag: noindex
+/README.md
+  X-Robots-Tag: noindex
+/project/preview/*
+  X-Robots-Tag: noindex
+
 /project/assets/*
   Cache-Control: public, max-age=604800
 /work/*
