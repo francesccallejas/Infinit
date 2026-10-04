@@ -91,7 +91,9 @@ main{background:var(--bg)}
 
 /* ---------- kit 2 · frosted buttons, menu, preloader, lines, clip, toast ---------- */
 html.sm{scroll-behavior:auto}
-body.lock{overflow:hidden}
+/* Scroll lock (menu, Quick look, preloader). It has to sit on <html>: html,body{overflow-x:clip}
+   stops body's overflow from reaching the page scroller, so body.lock alone locked nothing. */
+html:has(>body.lock){overflow:hidden;scrollbar-gutter:stable}
 .gbtn{display:inline-flex;align-items:center;gap:10px;padding:13px 20px;border-radius:99px;font:500 15px Satoshi,sans-serif;color:var(--t4);background:oklch(1 0 0 / .42);-webkit-backdrop-filter:blur(16px) saturate(1.6);backdrop-filter:blur(16px) saturate(1.6);border:0;cursor:pointer;white-space:nowrap;transition:background .5s,border-color .5s,box-shadow .5s}
 @media (hover:hover){.gbtn:hover{color:var(--t4);background:oklch(.92 .045 var(--bh,var(--h)) / .75);box-shadow:0 14px 40px -16px oklch(.6 .09 var(--bh,var(--h)) / .5)}}
 .dark .gbtn{color:var(--d4);background:oklch(1 0 0 / .1)}
@@ -126,9 +128,12 @@ body.lock{overflow:hidden}
 .pre2-b{display:flex;justify-content:space-between;align-items:flex-end}
 .pre2-n{font:900 clamp(40px,6vw,96px)/.8 Geist,sans-serif;letter-spacing:-.04em;font-variant-numeric:tabular-nums}
 .pre2-l{height:2px;background:var(--d1);margin-top:18px;position:relative}.pre2-l i{position:absolute;inset:0;transform-origin:0 0;transform:scaleX(0);background:oklch(.72 .05 165);animation:ln1 20s linear infinite;animation-delay:var(--lnd,0s)}
-.menu{position:fixed;inset:0;z-index:55;clip-path:circle(0% at 50% calc(100% - 40px));transition:clip-path 1s cubic-bezier(.7,0,.2,1);visibility:hidden}
-.menu-open .menu{clip-path:circle(150% at 50% calc(100% - 40px));visibility:visible}
-.menu-i{height:100%;display:flex;flex-direction:column;padding:22px var(--pad) 110px;overflow-y:auto}
+/* Menu: circular reveal from the burger (origin + radius in px, set by site.js). Once open the clip is
+   dropped (.is-open) so nothing can stay cut off if Safari resizes the viewport; closing plays it back. */
+.menu{position:fixed;inset:0;z-index:55;clip-path:circle(0px at var(--mx,50%) var(--my,calc(100% - 40px)));transition:clip-path .9s cubic-bezier(.7,0,.2,1),visibility 0s .9s;visibility:hidden}
+.menu-open .menu{clip-path:circle(var(--mr,150vmax) at var(--mx,50%) var(--my,calc(100% - 40px)));visibility:visible;transition:clip-path 1s cubic-bezier(.7,0,.2,1)}
+.menu.is-open{clip-path:none}
+.menu-i{height:100%;display:flex;flex-direction:column;padding:22px var(--pad) 110px;overflow-y:auto;overscroll-behavior:contain}
 .menu-t{display:flex;justify-content:space-between;align-items:center}
 .menu-l{margin:auto 0;display:flex;flex-direction:column}
 .menu-l a{display:grid;grid-template-columns:44px 1fr auto;align-items:center;overflow:hidden;border-top:1px solid var(--d1)}

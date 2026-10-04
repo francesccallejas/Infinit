@@ -133,9 +133,11 @@ function anchors() {
     const id = a.getAttribute('href'), t = id === '#top' ? null : d.querySelector(id);
     if (id !== '#top' && !t) return;
     e.preventDefault();
+    const fromMenu = body.classList.contains('menu-open');
     setMenu(false);
     const y = t ? t.getBoundingClientRect().top + scrollY : 0;
-    scrollToY(y);
+    // From the open menu: jump behind it while it closes (no long glide through the page); otherwise glide.
+    if (fromMenu) scrollTo(0, y); else scrollToY(y);
     const f = t || $('#top');
     if (f) { if (!f.hasAttribute('tabindex')) f.setAttribute('tabindex', '-1'); f.focus({ preventScroll: true }); }
   });
@@ -238,20 +240,35 @@ function dock() {
   onScroll.push(spy); setTimeout(spy, 300);
 }
 
+/* iOS: overflow:hidden on <html> doesn't stop every touch scroll. While an overlay is open, block page
+   scrolling unless the finger is on a part of the overlay that can scroll itself. Attached only while
+   locked, so normal scrolling never waits for this listener. */
+const touchGuard = e => { const s = e.target.closest && e.target.closest('.menu-i, .qk'); if (s && s.scrollHeight > s.clientHeight + 1) return; e.preventDefault(); };
+const lockTouch = () => body.classList.contains('menu-open') || body.classList.contains('qk-open')
+  ? d.addEventListener('touchmove', touchGuard, { passive: false }) : d.removeEventListener('touchmove', touchGuard);
+
 /* ---------- fullscreen menu (mobile burger) ---------- */
 let setMenu = () => {};
 function menu() {
   const b = $('#mb'), m = $('#menu'); if (!b || !m) return;
   let back = null;
-  const ml = $('.menu-l', m); let rdy = 0;
+  const ml = $('.menu-l', m); let rdy = 0, full = 0;
   m.tabIndex = -1;
+  // Circle origin = the burger; radius covers the whole screen with room to spare (Safari may resize the viewport).
+  const origin = () => {
+    const r = b.getBoundingClientRect(), x = r.left + r.width / 2, y = r.top + r.height / 2;
+    m.style.setProperty('--mx', x + 'px'); m.style.setProperty('--my', y + 'px');
+    m.style.setProperty('--mr', Math.ceil(Math.hypot(Math.max(x, innerWidth - x), Math.max(y, innerHeight - y)) + 160) + 'px');
+  };
   // kb: opened from the keyboard → focus the first link; by touch/mouse → focus the panel (no ring on "Work").
   setMenu = (o, kb) => {
     if (o === body.classList.contains('menu-open')) return;
-    clearTimeout(rdy); ml && ml.classList.remove('rdy');
-    if (o && ml) rdy = setTimeout(() => ml.classList.add('rdy'), 1400); // after the reveal: hover moves are quick
+    clearTimeout(rdy); clearTimeout(full); ml && ml.classList.remove('rdy');
+    origin(); m.classList.remove('is-open'); void m.offsetWidth; // start (or play back) from the burger
+    if (o) { full = setTimeout(() => m.classList.add('is-open'), 1000); if (ml) rdy = setTimeout(() => ml.classList.add('rdy'), 1400); }
     body.classList.toggle('menu-open', o);
     body.classList.toggle('lock', o || body.classList.contains('qk-open'));
+    lockTouch();
     b.setAttribute('aria-expanded', o); b.setAttribute('aria-label', o ? T.closeMenu : T.openMenu);
     $$('.rw>span', b).forEach(s => s.textContent = o ? T.close : T.menu);
     setInert([$('#main'), $('#ft')], o);
@@ -277,6 +294,7 @@ function quick() {
   const set = o => {
     if (o === open()) return;
     body.classList.toggle('qk-open', o); body.classList.toggle('lock', o);
+    lockTouch();
     q.inert = !o;
     [qlb, qlm].forEach(x => x && x.setAttribute('aria-expanded', o));
     setInert([$('#main'), $('#ft'), $('.dock'), $('#menu')], o);
