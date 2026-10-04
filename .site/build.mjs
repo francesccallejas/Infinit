@@ -42,7 +42,7 @@ let n = 0;
 for (const lang of LANGS) {
   for (const p of PAGES) {
     const ctx = { lang, page: p.page, kind: p.kind, V, jsonld: p.page === 'home' ? ORG(lang) : null };
-    out(`${lang}/${ROUTES[p.page]}index.html`, p.render(ctx));
+    out(`${lang}/${ROUTES[p.page]}index.html`, p.render(ctx).replace(/<img (?![^>]*decoding=)/g, '<img decoding="async" '));
     n++;
   }
 }

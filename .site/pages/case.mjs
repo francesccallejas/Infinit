@@ -1,12 +1,12 @@
 // Case-study building blocks (template from prototype/pages/case-*.html + case.css).
-import { url, esc, A, strong } from '../lib.mjs';
+import { url, esc, A, dot } from '../lib.mjs';
 import { T } from '../i18n.mjs';
 import { svc, P, src } from '../data.mjs';
 import { heroLine, ftLine } from '../layout.mjs';
 
 // Case chips call the brand service "Identity" (as in the prototype).
 const ID = { en: 'Identity', ca: 'Identitat', es: 'Identidad' };
-export const chip = (k, lang) => `<span class="chip"><i style="background:${strong(svc(k).h)}" aria-hidden="true"></i>${esc(k === 'brand' ? ID[lang] : svc(k).n[lang])}</span>`;
+export const chip = (k, lang) => `<span class="chip"><i style="background:${dot(svc(k).h)}" aria-hidden="true"></i>${esc(k === 'brand' ? ID[lang] : svc(k).n[lang])}</span>`;
 
 export function caseHero(ctx, { img, logo, logoStyle = '', name, h1, chips }) {
   const t = T[ctx.lang];

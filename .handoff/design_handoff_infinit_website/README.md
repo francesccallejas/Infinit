@@ -5,6 +5,8 @@ New marketing website for **INFINIT©**, a strategic brand and digital studio ba
 
 The task: **implement the site in the repo `francesccallejas/Infinit`, deploy it, wire it up properly, keep the motion quality, and fix bugs** (see "Known issues & QA checklist").
 
+See `CHANGELOG.md` for everything that changed since the first handoff.
+
 ## About the design files
 The files in `prototype/` are **design references built in HTML/CSS/vanilla JS**. They are working prototypes that show the intended look, motion and behaviour. They are not production code to ship as-is.
 
@@ -28,6 +30,7 @@ Type scale in use (all Satoshi, all with negative tracking):
 | Role | Size | Weight | Tracking | Line height |
 |---|---|---|---|---|
 | Hero side text ("Brands built" / "to scale") | clamp(30px, 3.8vw, 64px) | 500 | -0.045em | 1 |
+| Inner-page hero H1 (Studio, cases) | clamp(50px, 8.2vw, 150px) | 600 | -0.05em | 0.96 |
 | Intro statement | clamp(30px, 3.8vw, 62px) | 500 | -0.04em | 1.05 |
 | Section H2 (`.h2`) | clamp(32px, 3.8vw, 60px) | 700 | -0.04em | 1 |
 | Approach statements | clamp(36px, 5.6vw, 96px) | 700 | -0.05em | 0.98 |
@@ -55,24 +58,26 @@ Dark ground (`.dark`)
 - `--d3` oklch(.7 .009 245) ≈ `#9a9fa4`, secondary text on dark
 - `--d4` oklch(.95 .004 245) ≈ `#eceff1`, primary text on dark
 
-**Service colour system.** Five services, each with a hue. These colours are used **subtly**: dots, ambient tint, card backs, the colour line. Never as large saturated fills.
-| Service | Hue | Dot oklch(.72 .05 h) | Tint oklch(.92 .025 h) | Strong oklch(.78 .08 h) |
-|---|---|---|---|---|
-| Strategy (mint) | 165 | `#88af9d` | `#d6eae0` | `#86c8ab` |
-| Brand / Identity (blue) | 255 | `#90a7c4` | `#dae6f5` | `#95baea` |
-| Digital (lilac) | 285 | `#a1a1c3` | `#e2e3f5` | `#b1b1e9` |
-| Product (coral) | 30 | `#c29992` | `#f5dfdb` | `#e6a599` |
-| Content (ochre) | 88 | `#b2a381` | `#ebe4d2` | `#cdb57b` |
+**Service colour system.** Five services, each with a hue. Deliberately **muted**: one main colour per service, used everywhere a service is marked (dots, service tags, case chips, menu dots, the colour line, the favicon and the email hover sweep). Card backs use a pale tint of the same hue. Never use them as large saturated fills.
+| Service | Hue | Main oklch(.72 .05 h) | Pale tint (card backs) oklch(.92 .025 h) |
+|---|---|---|---|
+| Strategy (mint) | 165 | `#88af9d` | `#d6eae0` |
+| Brand / Identity (blue) | 255 | `#90a7c4` | `#dae6f5` |
+| Digital (lilac) | 285 | `#a1a1c3` | `#e2e3f5` |
+| Product (coral) | 30 | `#c29992` | `#f5dfdb` |
+| Content (ochre) | 88 | `#b2a381` | `#ebe4d2` |
+
+In code, `INF.dot(h)` returns the main colour and `INF.tint(h)` the pale tint (`shared.js`).
 
 **Colour line ("One colour").** A 3px line that shows **one service colour at a time**: mint → blue → lilac → coral → ochre, then back to mint. It loops over **20s**. Each colour holds for about 3.2s, then crossfades to the next in 0.8s. The short fades are deliberate, so blended in-between tones (for example pink between lilac and coral) barely show. Use the keyframes `ln1` in `shared.css`.
-- Colours: oklch(.8 .13 165) #5ed8a9 · oklch(.72 .14 255) #65a7fa · oklch(.7 .14 285) #9690f1 · oklch(.72 .15 30) #f47c6b · oklch(.84 .14 88) #f0c551.
+- Colours: the **muted service colours**, oklch(.72 .05 h): oklch(.72 .05 165) #88af9d · oklch(.72 .05 255) #90a7c4 · oklch(.72 .05 285) #a1a1c3 · oklch(.72 .05 30) #c29992 · oklch(.72 .05 88) #b2a381.
 - **Synced to the clock**: `animation-delay: -(Date.now() % 20000)ms` (CSS var `--lnd`), so the colour carries over when you change page instead of restarting.
 - It appears in three places:
   1. The bottom edge of every hero.
   2. The **light → dark transition** before the final contact block. It draws in left→right (`scaleX 0→1`, 1.6s, cubic-bezier(.7,0,.2,1)) when it enters the viewport.
   3. The preloader progress bar.
 - The old multi-colour gradient ("rainbow") was replaced on purpose. Its CSS is still in the files under `.ln-sp` / `?line=spectrum` for comparison only; delete it in production.
-- Still rainbow: the hover sweep on the big contact email (`.mail .mt`). Pending decision; leave as is.
+- The hover sweep on the big contact email (`.mail .mt`) uses the same five muted colours.
 
 **Accent "close" coral:** oklch(.7 .14 28) ≈ `#e8796c`. Used for the mobile menu X and the Quick look close hover.
 
@@ -113,9 +118,9 @@ Dark ground (`.dark`)
 
 Esc closes the menu. The body is scroll-locked while it is open.
 
-**Custom cursor** (`KIT.cursor`, desktop only, hidden on `hover:none`). A 12px dot follows the pointer with a lerp. Over `[data-cur]` it grows into a label showing the attribute text ("View", "Drag", "Open", "Copy", "Next", "Soon"…).
+**Custom cursor** (`KIT.cursor`, desktop only, hidden on `hover:none`). A 12px dot follows the pointer with a lerp. Over `[data-cur]` it grows into a label showing the attribute text ("View", "Drag", "Open", "Copy", "Next", "Soon"…). The label uses **the same colours as the cards**: background = the pale card-back tint of the current hue, oklch(.92 .025 h), with ink text. The small ambient dot in the dock (`.dock .amb`) uses the service dot colour, oklch(.72 .05 h), fading to grey in neutral sections.
 
-**Ambient colour** (`KIT.ambient`). The element with `[data-h]` / `[data-hh]` at the screen centre, or under the cursor, sets `--h` and gives the page background a very faint hue tint (`--ac` .002 → .011 chroma). `data-h="n"` means neutral.
+**Ambient colour** (`KIT.ambient`). **The page background never changes colour.** The element with `[data-h]` / `[data-hh]` under the cursor, or at the screen centre, sets the hue `--h`. It only tints the cursor label and the dock dot. In neutral sections (`data-h="n"`) both turn neutral grey. In **Work**, every project card uses **ochre (88)**.
 
 **Text reveals.**
 - `[data-lines]`: text is split into lines, and each line slides up from a mask in sequence when it enters the viewport.
@@ -154,8 +159,8 @@ Esc closes the menu. The body is scroll-locked while it is open.
    - A segmented control switches between two views:
      - **Infinite drag carousel.** Cards are clamp(280px, 34vw, 520px) wide (78vw on mobile) with 4/5 images. The DOM content is tripled for the loop. Click opens the project.
      - **12-column editorial grid** with fixed spans and aspect ratios: [1/8 16:10], [9/13 4:5], [1/6 4:5], [7/13 16:10], [2/8 16:10], [9/13 1:1].
-   - Each card shows: image (on hover it cycles through the project gallery, and a frosted "View case ↗" / "Work in progress" chip appears), then **name + short description**, then **service tags**. Tags are pills with a 7px dot in the service colour plus the service name. They replaced unexplained colour dots.
-   - Projects (name · description · services): Bunnker · beyond renting · Strategy, Brand → case page. Relats · ahead of the curve · Strategy, Brand, Digital → case page. Instellar · mission performance · WIP. Induktor · sim racing hardware · WIP. Julià · premium adventure vans · WIP. Almirall · beautifully clinical · Customer NDA.
+   - Each card shows: image (on hover it slowly crossfades through the project gallery: 1.8s per image, 1.1s fade, each image decoded before it is shown so the page never stalls, and a frosted "View case ↗" / "Work in progress" chip appears), then **name + short description**, then **service tags**. Tags are pills with a 7px dot in the service colour plus the service name. They replaced unexplained colour dots.
+   - Projects (name · description · services): Bunnker · beyond renting · Strategy, Brand → case page. Relats · ahead of the curve · Strategy, Brand, Digital → case page (gallery: EMI render, yellow tie cord, sofa/office posters). Instellar · mission performance · WIP. Induktor · sim racing hardware · WIP. Julià · premium adventure vans · WIP. Almirall · beautifully clinical · Customer NDA.
 4. **Our approach** (#approach, dark, 420vh tall with a sticky 100vh stage). A **scroll-scrubbed image sequence** of 40 frames (`project/assets/imagery/approach-seq/`) is painted on a canvas, with clip-path image transitions. Three statements swap in turn (fade + 40px rise): "Strategic credibility, aesthetic sophistication." / "Building brands that move business forward." / "Strategy, identity and digital — connected." Progress pills sit at the bottom right.
 5. **Services** (#services). Heading "Five disciplines. One studio."
    - **Five flip cards** (5 columns, 3 below 1100px, 2 below 760px). Front: number, coloured dot, service name. Back: the service tint, and the list of capabilities.
@@ -246,7 +251,7 @@ No horizontal overflow is allowed (`html, body { overflow-x: clip }`).
 7. **Remote assets**: case videos (`*.mp4`) and the client logos load from `https://www.weareinfinit.com/...`. Self-host them in the repo.
 8. **Placeholders**:
    - The showreel imagery is provisional (a real reel will replace it).
-   - Induktor uses an Unsplash image.
+   - Induktor uses a single black motor image (`project/assets/imagery/induktor-motor.jpg`, originally from Unsplash; replace with the client's own render).
    - The 4 WIP cases have no pages. Show them as non-clickable "Work in progress" (as now) until they exist.
 9. **SEO/meta**: titles, descriptions, Open Graph images and sitemap per page and language. The favicon set is in `assets/favicon/` and already linked in the prototype pages; add a `site.webmanifest` that uses `icon-512.png`.
 10. Remove prototype-only bits: `#ctl` toggle styles, the `?line=spectrum` comparison (`.ln-sp` rules and the old gradient on `.hl i` / `.ft-hl i` / `.pre2-l i`), and Babel/devtools if any.
@@ -265,7 +270,7 @@ No horizontal overflow is allowed (`html, body { overflow-x: clip }`).
 - `prototype/work/bunnker/bunnker-assets/`, `prototype/work/relats/relats-assets/`: case images and video posters.
 - `prototype/assets/clients/`: client and award logos.
 - `prototype/fonts/`: Satoshi variable.
-- `prototype/assets/favicon/`: `favicon.svg` (main, mint line), `favicon-mint|blue|lilac|coral|ochre.svg` (on load, `shared.js` swaps the SVG favicon to the colour the line is showing at that moment), `favicon.ico` (16/32/48), `favicon-32.png`, `apple-touch-icon.png` (180, full-bleed), `icon-512.png` (full-bleed, for the web manifest). `instagram-avatar.png` (1080) is for the Instagram profile and is not used on the site.
+- `prototype/assets/favicon/`: `favicon.svg` (main, Strategy-colour line), `favicon-mint|blue|lilac|coral|ochre.svg` (the SVG favicon **follows the colour line live**: `shared.js` swaps it every 4s, synced to the same 20s clock, so the tab icon changes colour with the line; with `prefers-reduced-motion` it is set once on load), `favicon.ico` (16/32/48), `favicon-32.png`, `apple-touch-icon.png` (180, full-bleed), `icon-512.png` (full-bleed, for the web manifest). `instagram-avatar.png` (1080) is for the Instagram profile and is not used on the site.
 
 All of these already exist in the repo (`project/`, `work/`), which is where they were taken from.
 

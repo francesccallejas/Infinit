@@ -5,9 +5,9 @@
 .ch-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,oklch(.14 .012 245 / .45),oklch(.14 .012 245 / .1) 40%,oklch(.14 .012 245 / .55))}
 .ch>*:not(.ch-bg):not(.hl){position:relative;z-index:1}
 .ch-t{display:flex;justify-content:space-between;align-items:flex-start}
-.ch-m{align-self:end;display:flex;flex-direction:column;gap:clamp(20px,3vh,36px);padding-bottom:clamp(28px,4vh,48px)}
+.ch-m{align-self:center;display:flex;flex-direction:column;gap:clamp(20px,3vh,36px);padding-bottom:clamp(40px,8vh,96px)}
 .ch-logo{height:clamp(26px,2.6vw,40px);width:auto;object-fit:contain;align-self:flex-start}
-.ch h1{font-size:clamp(56px,10vw,184px);line-height:.92;letter-spacing:-.06em;font-weight:700;color:#fff}
+.ch h1{font-size:clamp(50px,8.2vw,150px);line-height:.96;letter-spacing:-.05em;font-weight:600;color:#fff;max-width:14em;text-wrap:balance}
 .ch h1 .lm{padding-bottom:.14em;margin-bottom:-.14em}
 .ch h1 b{color:#fff;font-weight:inherit}
 .ch .lbl{color:#fff}
@@ -85,6 +85,6 @@
 .nx:hover b{letter-spacing:-.04em}
 .ft-g{grid-template-columns:1fr 1.4fr 1.2fr}
 .mail{border:0;background:none;padding:0;cursor:none;font:700 clamp(30px,6.4vw,112px)/1 Satoshi,sans-serif;letter-spacing:-.05em;color:var(--d4)}
-.mail .mt{background:linear-gradient(90deg,var(--d4) 0 50%,oklch(.82 .1 165) 58%,oklch(.78 .1 255) 66%,oklch(.76 .1 285) 74%,oklch(.78 .1 30) 82%,oklch(.86 .1 88) 90%,var(--d4) 100%);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;transition:background-position 1.4s cubic-bezier(.7,0,.2,1)}
+.mail .mt{background:linear-gradient(90deg,var(--d4) 0 50%,oklch(.72 .05 165) 58%,oklch(.72 .05 255) 66%,oklch(.72 .05 285) 74%,oklch(.72 .05 30) 82%,oklch(.72 .05 88) 90%,var(--d4) 100%);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;transition:background-position 1.4s cubic-bezier(.7,0,.2,1)}
 .mail:hover .mt{background-position:-100% 0}
 @media(max-width:900px){.meta{grid-template-columns:1fr 1fr}.ab .who,.ab .q{grid-column:1/13}.pil,.vids{grid-template-columns:1fr}.aw2,.step{grid-template-columns:1fr}.step:nth-child(even) .img{order:0}.fld{grid-template-columns:1fr 1fr}.sw{grid-template-columns:repeat(2,minmax(0,1fr))}.tpf{grid-template-columns:1fr}.ch-b .chips{display:none}}

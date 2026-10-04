@@ -389,15 +389,30 @@ function carousel(el, { drift = -.6, skew = 8, scale = 0 } = {}) {
   return { kick: () => { if (!run) { x = -W(); frame(); } } };
 }
 
-/* ---------- hover gallery cycling ---------- */
+/* ---------- hover gallery: slow crossfade (1.8s per image, 1.1s fade) on two stacked layers.
+   Images preload on first hover and are decoded before they show, so the page never stalls. ---------- */
 function cyc(root = d) {
   if (!fine) return;
   $$('[data-cyc]', root).forEach(a => {
     let list; try { list = JSON.parse(a.dataset.cyc); } catch (_) { return; }
-    const im = $('.img img', a); if (!im || list.length < 2) return;
-    let t, j = 0;
-    a.addEventListener('pointerenter', () => { clearInterval(t); t = setInterval(() => { im.src = list[++j % list.length]; }, 700); });
-    a.addEventListener('pointerleave', () => { clearInterval(t); j = 0; im.src = list[0]; });
+    const base = $('.img img', a); if (!base || list.length < 2) return;
+    const box = base.parentElement;
+    const L = [0, 1].map(() => { const i = d.createElement('img'); i.alt = ''; i.className = 'cy-ov'; i.decoding = 'async'; box.appendChild(i); return i; });
+    let t = 0, j = 0, cur = -1, z = 1, on = false, pre = null;
+    const preload = () => pre || (pre = list.slice(1).map(src => { const i = new Image(); i.decoding = 'async'; i.src = src; return i.decode().catch(() => {}); }));
+    const tick = async () => {
+      j = (j + 1) % list.length;
+      if (j === 0) { L.forEach(l => l.classList.remove('in')); cur = -1; return; }
+      const n = cur === 0 ? 1 : 0, el = L[n];
+      el.src = list[j];
+      try { await el.decode(); } catch (_) {}
+      if (!on) return;
+      el.style.zIndex = ++z; el.classList.add('in');
+      const o = L[1 - n]; setTimeout(() => { if (cur === n) o.classList.remove('in'); }, 1200);
+      cur = n;
+    };
+    a.addEventListener('pointerenter', () => { on = true; preload(); clearInterval(t); t = setInterval(tick, 1800); });
+    a.addEventListener('pointerleave', () => { on = false; clearInterval(t); j = 0; cur = -1; L.forEach(l => l.classList.remove('in')); });
   });
 }
 

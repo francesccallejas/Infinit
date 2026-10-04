@@ -49,8 +49,13 @@ function seq(sec,frames){
  const tick=()=>{const r=sec.getBoundingClientRect(),q=Math.min(1,Math.max(0,-r.top/(r.height-innerHeight)));const k=Math.round(q*(frames.length-1));if(k!==last)draw(k);ps.forEach((s,j)=>s.style.opacity=q*ps.length*1.3>j?1:.18);};
  imgs[0].onload=()=>draw(0);addEventListener('scroll',tick,{passive:true});addEventListener('resize',()=>{last=-1;tick();});tick();
 }
-// En passar per sobre d'un projecte, la imatge recorre la seva galeria.
-function cyc(root=document){root.querySelectorAll('[data-cyc]:not([data-cy])').forEach(a=>{a.dataset.cy=1;const p=INF.P[a.dataset.cyc];if(!p||p.all.length<2)return;let t,j=0;const im=a.querySelector('.img img');if(!im)return;
- a.addEventListener('pointerenter',()=>{clearInterval(t);t=setInterval(()=>{im.src=p.all[++j%p.all.length];},700);});a.addEventListener('pointerleave',()=>{clearInterval(t);j=0;im.src=p.all[0];});});}
+// En passar per sobre d'un projecte, la galeria es fon lentament (1.8 s per imatge). Cada imatge es descodifica abans de mostrar-la, perquè la pàgina no s'aturi.
+function cyc(root=document){root.querySelectorAll('[data-cyc]:not([data-cy])').forEach(a=>{a.dataset.cy=1;const p=INF.P[a.dataset.cyc];if(!p||p.all.length<2)return;const base=a.querySelector('.img img');if(!base)return;const box=base.parentElement;
+ const L=[0,1].map(()=>{const i=document.createElement('img');i.alt='';i.className='cy-ov';i.decoding='async';box.appendChild(i);return i;});
+ let t=0,j=0,cur=-1,z=1,on=false,pre=null;
+ const preload=()=>pre||(pre=p.all.slice(1).map(s=>{const i=new Image();i.decoding='async';i.src=s;return i.decode().catch(()=>{});}));
+ const tick=async()=>{j=(j+1)%p.all.length;if(j===0){L.forEach(l=>l.classList.remove('in'));cur=-1;return;}const n=cur===0?1:0,el=L[n];el.src=p.all[j];try{await el.decode();}catch(e){}if(!on)return;el.style.zIndex=++z;el.classList.add('in');const o=L[1-n];setTimeout(()=>{if(cur===n)o.classList.remove('in');},1200);cur=n;};
+ a.addEventListener('pointerenter',()=>{on=true;preload();clearInterval(t);t=setInterval(tick,1800);});
+ a.addEventListener('pointerleave',()=>{on=false;clearInterval(t);j=0;cur=-1;L.forEach(l=>l.classList.remove('in'));});});}
 window.KIT={cursor,roll,mag,dock,seg,pre,reveal,lerp,ambient,seq,setH,cyc,init(key){pre(key);cursor();dock();roll();mag();reveal();ambient();INF.mount();}};
 })();

@@ -45,7 +45,7 @@ body.lock{overflow:hidden}
 .menu-l a:last-child{border-bottom:1px solid var(--d1)}
 .menu-l .mt{display:block;font-size:clamp(52px,14vw,150px);letter-spacing:-.06em;font-weight:700;line-height:1;padding:8px 0 12px;transform:translateY(110%);transition:transform 1s cubic-bezier(.2,.7,.2,1) calc(var(--i)*.07s + .3s)}
 .menu-open .menu-l .mt{transform:none}
-.menu-l i{width:14px;height:14px;border-radius:50%;background:oklch(.78 .08 var(--bh));transform:scale(0);transition:transform .5s cubic-bezier(.2,.7,.2,1)}
+.menu-l i{width:14px;height:14px;border-radius:50%;background:oklch(.72 .05 var(--bh));transform:scale(0);transition:transform .5s cubic-bezier(.2,.7,.2,1)}
 .menu-l a:hover i{transform:scale(1)}.menu-l a:hover{color:var(--d4)}
 .menu-b{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;opacity:0;transition:opacity .6s .6s}
 .menu-open .menu-b{opacity:1}

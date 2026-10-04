@@ -21,7 +21,7 @@ export function home(ctx) {
     const imgStyle = grid >= 0 ? ` style="aspect-ratio:${L[grid][1]}"` : '';
     const inner = `<div class="cw"><div class="${imgCls}"${imgStyle}><img src="${src(p.img)}" alt="${clone ? '' : esc(alt)}" loading="lazy" draggable="false"></div><span class="chip vc">${live ? esc(t.viewCase) + ' ↗' : esc(status(p))}</span></div><div class="cap"><b>${esc(p.n)}</b><span class="ds">${esc(p.d[lang])}</span></div>${tags(p)}`;
     const col = grid >= 0 ? ` style="grid-column:${L[grid][0]}"` : '';
-    const common = `${cyc(p)} data-hh="${p.h}"${col}${clone ? ' aria-hidden="true"' : ''}`;
+    const common = `${cyc(p)} data-hh="88"${col}${clone ? ' aria-hidden="true"' : ''}`;
     return live
       ? `<a class="pj" href="${url(lang, p.page)}" draggable="false" data-cur="${esc(t.cView)}"${common}${clone ? ' tabindex="-1"' : ''}>${inner}</a>`
       : `<div class="pj soon" data-cur="${esc(t.cSoon)}" data-soon="${esc(p.n + ' — ' + status(p))}"${common}>${inner}</div>`;

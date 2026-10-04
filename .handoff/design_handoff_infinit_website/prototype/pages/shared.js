@@ -1,8 +1,8 @@
 (()=>{
 // Línia d'un color: sincronitzada amb el rellotge perquè el color continuï igual en canviar de pàgina.
 document.documentElement.style.setProperty('--lnd',-(Date.now()%20000)+'ms');if(new URLSearchParams(location.search).get('line')==='spectrum')document.documentElement.classList.add('ln-sp');
-// Favicon: en carregar, pren el color que mostra la línia en aquest moment (per defecte, menta).
-{const fi=document.querySelector('link[rel=icon][type="image/svg+xml"]'),n=['mint','blue','lilac','coral','ochre'][Math.min(4,Math.floor((Date.now()%20000)/4000))];if(fi)fi.href=fi.href.replace(/favicon(-\w+)?\.svg/,'favicon-'+n+'.svg');}
+// Favicon en directe: canvia de color amb la línia (cada 4 s, sincronitzat amb el rellotge). Amb moviment reduït, només en carregar.
+{const fi=document.querySelector('link[rel=icon][type="image/svg+xml"]');if(fi){const N=['mint','blue','lilac','coral','ochre'],set=()=>{fi.href=fi.href.replace(/favicon(-\w+)?\.svg/,'favicon-'+N[Math.floor((Date.now()%20000)/4000)]+'.svg');};set();if(!matchMedia('(prefers-reduced-motion: reduce)').matches)setTimeout(()=>{set();setInterval(set,4000);},4000-Date.now()%4000);}}
 const A='https://www.weareinfinit.com/project/assets/';
 const R='../',enc=s=>s.split(' ').join('%20');
 const im=p=>R+enc(p);
@@ -14,9 +14,9 @@ const S=[
 {n:'Content',h:88,d:'Motion, photo, film and social that keep the brand alive after launch.',t:['Motion','Social & Content','Photo & Film','Campaigns']}];
 const P=[
 {n:'Bunnker',d:'beyond renting',t:['Strategy','Brand'],img:im('project/assets/images/Bunnker Final.webp'),g:['work/bunnker/bunnker-assets/hero.webp','work/bunnker/bunnker-assets/int-03.webp','work/bunnker/bunnker-assets/int-12.webp','work/bunnker/bunnker-assets/art-07.webp','work/bunnker/bunnker-assets/int-15.webp'].map(im),href:'case-bunnker.html'},
-{n:'Relats',d:'ahead of the curve',t:['Strategy','Brand','Digital'],img:im('project/assets/images/Relats Brand.webp'),g:['work/relats/relats-assets/emi-hero.webp','work/relats/relats-assets/sleeve-macro.webp','work/relats/relats-assets/cover-glow.webp','work/relats/relats-assets/lake-curve.webp','work/relats/relats-assets/offices.webp','project/assets/imagery/relats-industrial.webp'].map(im),href:'case-relats.html'},
+{n:'Relats',d:'ahead of the curve',t:['Strategy','Brand','Digital'],img:im('project/assets/images/Relats Brand.webp'),g:['work/relats/relats-assets/tie-cord-poster.jpg','work/relats/relats-assets/offices.webp'].map(im),href:'case-relats.html'},
 {n:'Instellar',d:'mission performance',t:['Strategy','Brand','Digital'],img:im('project/assets/images/instellar-aircraft.webp'),g:[im('project/assets/imagery/astronaut-blue.avif')],s:'Work in progress'},
-{n:'Induktor',d:'sim racing hardware',t:['Strategy','Brand','Digital'],img:im('project/assets/imagery/device-knob.webp'),g:['https://images.unsplash.com/photo-1778757949749-345b125f2ccb?q=80&w=1600&auto=format&fit=crop'],s:'Work in progress'},
+{n:'Induktor',d:'sim racing hardware',t:['Strategy','Brand','Digital'],img:im('project/assets/imagery/induktor-motor.jpg'),g:[],s:'Work in progress'},
 {n:'Julià',d:'premium adventure vans',t:['Strategy','Brand','Digital'],img:im('project/assets/imagery/Julia Yosemite.webp'),g:['project/assets/imagery/julia-camper.webp','project/assets/imagery/mountains-tekapo.webp','project/assets/imagery/night-lake.webp','project/assets/imagery/lake-moon.jpg'].map(im),s:'Work in progress'},
 {n:'Almirall',d:'beautifully clinical',t:['Strategy','Digital'],img:im('project/assets/imagery/Almirall.webp'),g:[],s:'Customer NDA'}];
 P.forEach(p=>{p.all=[p.img,...p.g];p.h=hueOf(p.t[p.t.length-1]);});
@@ -26,7 +26,7 @@ const C=Object.keys(CH).map(n=>A+'clients/'+n+'.png');
 function hueOf(t){const s=S.find(x=>x.n===t||(t==='Identity'&&x.n==='Brand'));return s?s.h:255;}
 const dot=h=>`oklch(.72 .05 ${h})`,tint=h=>`oklch(.92 .025 ${h})`,line=`linear-gradient(90deg,${S.map(s=>dot(s.h)).join(',')})`;
 const dots=p=>`<span class="dots">${p.t.map(t=>`<i style="background:${dot(hueOf(t))}"></i>`).join('')}</span>`;
-const img=(p,cls='',src)=>`<div class="img ${cls}">${(src||p.img)?`<img src="${src||p.img}" alt="${p.n}" loading="lazy">`:`<span class="ph">${p.n} — project image</span>`}</div>`;
+const img=(p,cls='',src)=>`<div class="img ${cls}">${(src||p.img)?`<img src="${src||p.img}" alt="${p.n}" loading="lazy" decoding="async">`:`<span class="ph">${p.n} — project image</span>`}</div>`;
 const clients=(d)=>`<div class="mq${d?' on-d':''}"><div class="mq-t">${[...C,...C].map(s=>`<img src="${s}" alt="" style="height:${CH[s.split('/').pop().replace('.png','')]}px">`).join('')}</div></div>`;
 const footer=(b='')=>`<footer class="ft dark" id="contact"><div class="ft-hl"><i></i></div><div class="ft-g">
 <div><span class="wm" data-wm="28"></span><p class="lbl" style="margin-top:18px">Built to scale.</p></div>

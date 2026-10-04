@@ -45,14 +45,14 @@ export const P = [
     img: IM + 'Bunnker Final.webp', g: [B + 'int-03.webp', B + 'int-12.webp', B + 'art-07.webp', B + 'int-15.webp', B + 'coac-1.webp'] },
   { n: 'Relats', page: 'relats', t: ['strategy', 'brand', 'digital'],
     d: { en: 'ahead of the curve', ca: 'al capdavant', es: 'por delante de la curva' },
-    img: R + 'sleeve-coiled-card.webp', g: [R + 'web-mockup.webp'] },
+    img: IM + 'Relats Brand.webp', g: [R + 'tie-cord-poster.jpg', R + 'offices.webp'] },
   { n: 'Instellar', page: null, s: 'wip', t: ['strategy', 'brand', 'digital'],
     d: { en: 'mission performance', ca: 'rendiment de missió', es: 'rendimiento de misión' },
     img: IM + 'instellar-aircraft.webp', g: [] },
   { n: 'Induktor', page: null, s: 'wip', t: ['strategy', 'brand', 'digital'],
     d: { en: 'sim racing hardware', ca: 'hardware de sim racing', es: 'hardware de sim racing' },
-    // Same image the previous site used for Induktor (remote Unsplash, QA #8) — replace with own imagery when available.
-    img: 'https://images.unsplash.com/photo-1778757949749-345b125f2ccb?q=80&w=1600&auto=format&fit=crop', g: [] },
+    // Self-hosted motor image (originally Unsplash) — replace with the client's own render when available.
+    img: I + 'induktor-motor.jpg', g: [] },
   { n: 'Julià', page: null, s: 'wip', t: ['strategy', 'brand', 'digital'],
     d: { en: 'premium adventure vans', ca: 'campers premium', es: 'campers premium' },
     img: I + 'Julia Yosemite.webp', g: [I + 'julia-camper.webp'] },
@@ -69,4 +69,4 @@ export const CH = { sap: 28, glovo: 37, almirall: 22, instellar: 21, relats: 22,
 export const CLIENT_NAMES = 'SAP, Glovo, Almirall, Instellar, Relats, Bunnker, 11onze, DronParc';
 
 // Home hero rotation (conceptual imagery, as in the prototype) — the first 5 also feed the approach section.
-export const HS = [IM + 'Relats Brand.webp', B + 'hero.webp', I + 'Julia Yosemite.webp', B + 'int-12.webp', I + 'night-lake.webp', IM + 'instellar-aircraft.webp', I + 'device-knob.webp', IM + 'Bunnker Final.webp', I + 'mountains-tekapo.webp', I + 'Almirall.webp'];
+export const HS = [IM + 'Relats Brand.webp', B + 'hero.webp', I + 'Julia Yosemite.webp', B + 'int-12.webp', I + 'night-lake.webp', IM + 'instellar-aircraft.webp', I + 'induktor-motor.jpg', IM + 'Bunnker Final.webp', I + 'mountains-tekapo.webp', I + 'Almirall.webp'];

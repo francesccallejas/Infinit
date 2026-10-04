@@ -46,10 +46,10 @@ html{background:var(--d0)}.aw{flex-wrap:wrap}
 @media(max-width:820px){.ft-g{grid-template-columns:1fr 1fr!important}}@media(max-width:520px){.ft-g{grid-template-columns:1fr!important}}
 @media(max-width:760px){.ft-b{display:grid;grid-template-columns:1fr 1fr;gap:14px 16px;align-items:center}.ft-b>*{justify-self:start}.ft-b>*:nth-child(even){justify-self:end;text-align:right}.fl{margin:0 -8px}}
 .ft{position:relative}
-.ft-hl{position:absolute;left:0;right:0;top:0;height:3px;overflow:hidden;z-index:3}.ft-hl i{position:absolute;inset:0;background:oklch(.8 .13 165);animation:ln1 20s linear infinite;animation-delay:var(--lnd,0s);transform:scaleX(0);transform-origin:0 50%;transition:transform 1.6s cubic-bezier(.7,0,.2,1)}.ft-hl.in i{transform:none}
+.ft-hl{position:absolute;left:0;right:0;top:0;height:3px;overflow:hidden;z-index:3}.ft-hl i{position:absolute;inset:0;background:oklch(.72 .05 165);animation:ln1 20s linear infinite;animation-delay:var(--lnd,0s);transform:scaleX(0);transform-origin:0 50%;transition:transform 1.6s cubic-bezier(.7,0,.2,1)}.ft-hl.in i{transform:none}
 /* Colour line ("One colour"): one service colour at a time, short crossfades, 20s loop.
    --lnd = -(Date.now() % 20000)ms (set in <head>) keeps the colour in sync across pages. */
-@keyframes ln1{0%,16%{background-color:oklch(.8 .13 165)}20%,36%{background-color:oklch(.72 .14 255)}40%,56%{background-color:oklch(.7 .14 285)}60%,76%{background-color:oklch(.72 .15 30)}80%,96%{background-color:oklch(.84 .14 88)}100%{background-color:oklch(.8 .13 165)}}
+@keyframes ln1{0%,16%{background-color:oklch(.72 .05 165)}20%,36%{background-color:oklch(.72 .05 255)}40%,56%{background-color:oklch(.72 .05 285)}60%,76%{background-color:oklch(.72 .05 30)}80%,96%{background-color:oklch(.72 .05 88)}100%{background-color:oklch(.72 .05 165)}}
 
 /* ---------- kit ---------- */
 .cur{position:fixed;left:0;top:0;width:12px;height:12px;margin:-6px 0 0 -6px;border-radius:50%;background:#fff;mix-blend-mode:difference;pointer-events:none;z-index:300;display:grid;place-items:center;transition:width .4s cubic-bezier(.2,.7,.2,1),height .4s cubic-bezier(.2,.7,.2,1),margin .4s cubic-bezier(.2,.7,.2,1);font:600 12px Satoshi,sans-serif;color:#000;letter-spacing:-.01em}
@@ -83,10 +83,10 @@ html{background:var(--d0)}.aw{flex-wrap:wrap}
 /* The light ambient ground lives on <main>; <body> is dark so iOS Safari tints its status bar and
    the edges around its floating toolbar dark (it samples the body background). */
 body{background:var(--d0)}
-main{background:oklch(.975 var(--ac) var(--h));transition:background 1.4s ease}
+main{background:var(--bg)}
 /* Text selection: always the Strategy green (hue 165) */
 ::selection{background:oklch(.86 .07 165);color:var(--t4)}
-.cur.big{background:oklch(.88 .06 var(--h));mix-blend-mode:normal;color:var(--t4);box-shadow:0 10px 30px oklch(.5 .05 var(--h) / .25)}
+.cur.big{background:oklch(.92 min(.025,calc(var(--ac)*2.3)) var(--h));mix-blend-mode:normal;color:var(--t4);box-shadow:0 10px 30px oklch(.5 .05 var(--h) / .22)}
 .dock .amb{width:8px;height:8px;border-radius:50%;background:oklch(.72 .08 165);margin:0 6px 0 2px;transition:background 1.4s} /* always the Strategy green */
 
 /* ---------- kit 2 · frosted buttons, menu, preloader, lines, clip, toast ---------- */
@@ -125,7 +125,7 @@ body.lock{overflow:hidden}
 @keyframes rise{to{transform:none}}
 .pre2-b{display:flex;justify-content:space-between;align-items:flex-end}
 .pre2-n{font:900 clamp(40px,6vw,96px)/.8 Geist,sans-serif;letter-spacing:-.04em;font-variant-numeric:tabular-nums}
-.pre2-l{height:2px;background:var(--d1);margin-top:18px;position:relative}.pre2-l i{position:absolute;inset:0;transform-origin:0 0;transform:scaleX(0);background:oklch(.8 .13 165);animation:ln1 20s linear infinite;animation-delay:var(--lnd,0s)}
+.pre2-l{height:2px;background:var(--d1);margin-top:18px;position:relative}.pre2-l i{position:absolute;inset:0;transform-origin:0 0;transform:scaleX(0);background:oklch(.72 .05 165);animation:ln1 20s linear infinite;animation-delay:var(--lnd,0s)}
 .menu{position:fixed;inset:0;z-index:55;clip-path:circle(0% at 50% calc(100% - 40px));transition:clip-path 1s cubic-bezier(.7,0,.2,1);visibility:hidden}
 .menu-open .menu{clip-path:circle(150% at 50% calc(100% - 40px));visibility:visible}
 .menu-i{height:100%;display:flex;flex-direction:column;padding:22px var(--pad) 110px;overflow-y:auto}
@@ -135,7 +135,7 @@ body.lock{overflow:hidden}
 .menu-l a:last-child{border-bottom:1px solid var(--d1)}
 .menu-l .mt{display:block;font-size:clamp(52px,14vw,150px);letter-spacing:-.06em;font-weight:700;line-height:1;padding:8px 0 12px;transform:translateY(110%);transition:transform 1s cubic-bezier(.2,.7,.2,1) calc(var(--i)*.07s + .3s)}
 .menu-open .menu-l .mt{transform:none}
-.menu-l i{width:14px;height:14px;border-radius:50%;background:oklch(.78 .08 var(--bh));transform:scale(0);transition:transform .5s cubic-bezier(.2,.7,.2,1)}
+.menu-l i{width:14px;height:14px;border-radius:50%;background:oklch(.72 .05 var(--bh));transform:scale(0);transition:transform .5s cubic-bezier(.2,.7,.2,1)}
 @media (hover:hover){.menu-l a:hover i{transform:scale(1)}}@media (hover:hover){.menu-l a:hover{color:var(--d4)}}
 .menu-b{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;opacity:0;transition:opacity .6s .6s}
 .menu-open .menu-b{opacity:1}

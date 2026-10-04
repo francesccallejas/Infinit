@@ -98,7 +98,7 @@ body.himg .hx .em{color:oklch(1 0 0 / .72)}
 .end{padding:clamp(40px,5vw,72px) var(--pad) 0;display:flex;flex-direction:column;align-items:center;gap:clamp(28px,4vw,52px);text-align:center}
 .end h2{font-size:clamp(52px,9vw,160px);letter-spacing:-.06em;line-height:.88;font-weight:700}
 .mail{border:0;background:none;padding:0;cursor:none;font:700 clamp(30px,6.4vw,112px)/1 Satoshi,sans-serif;letter-spacing:-.05em;color:var(--d4);position:relative}
-.mail .mt{background:linear-gradient(90deg,var(--d4) 0 50%,oklch(.82 .1 165) 58%,oklch(.78 .1 255) 66%,oklch(.76 .1 285) 74%,oklch(.78 .1 30) 82%,oklch(.86 .1 88) 90%,var(--d4) 100%);background-size:200% 100%;background-position:0 0;-webkit-background-clip:text;background-clip:text;color:transparent;transition:background-position 1.4s cubic-bezier(.7,0,.2,1)}
+.mail .mt{background:linear-gradient(90deg,var(--d4) 0 50%,oklch(.72 .05 165) 58%,oklch(.72 .05 255) 66%,oklch(.72 .05 285) 74%,oklch(.72 .05 30) 82%,oklch(.72 .05 88) 90%,var(--d4) 100%);background-size:200% 100%;background-position:0 0;-webkit-background-clip:text;background-clip:text;color:transparent;transition:background-position 1.4s cubic-bezier(.7,0,.2,1)}
 .mail:hover .mt{background-position:-100% 0}
 .qk{position:fixed;inset:0;z-index:70;overflow-y:auto;overscroll-behavior:contain;display:flex;flex-direction:column;padding:clamp(64px,9vh,104px) var(--pad) clamp(28px,5vh,56px);background:oklch(.1 .01 245 / .6);-webkit-backdrop-filter:blur(30px) saturate(1.5);backdrop-filter:blur(30px) saturate(1.5);color:var(--d4);opacity:0;visibility:hidden;transition:opacity .55s,visibility .55s}
 .qk-open .qk{opacity:1;visibility:visible}
@@ -168,9 +168,9 @@ setHero(0);
 // Treball: carrusel infinit arrossegable o graella (com Kinetic).
 const L=[['1/8','16/10'],['9/13','4/5'],['1/6','4/5'],['7/13','16/10'],['2/8','16/10'],['9/13','1/1']];
 const tags=p=>`<div class="tgs">${p.t.map(t=>`<span><i style="background:${dot(hue(t))}"></i>${t}</span>`).join('')}</div>`;
-const card=p=>`<a href="${p.href||'#work'}" draggable="false" data-cur="${p.href?'View':'Soon'}" data-cyc="${P.indexOf(p)}" data-hh="${p.h}"><div class="cw">${img(p)}<span class="chip vc">${p.s||'View case'} ↗</span></div><div class="cap"><b>${p.n}</b><span class="em" style="font-size:16px">${p.d}</span></div>${tags(p)}</a>`;
+const card=p=>`<a href="${p.href||'#work'}" draggable="false" data-cur="${p.href?'View':'Soon'}" data-cyc="${P.indexOf(p)}" data-hh="88"><div class="cw">${img(p)}<span class="chip vc">${p.s||'View case'} ↗</span></div><div class="cap"><b>${p.n}</b><span class="em" style="font-size:16px">${p.d}</span></div>${tags(p)}</a>`;
 const V=[()=>`<div class="car" id="car" data-cur="Drag"><div class="car-t" id="ct">${[...P,...P,...P].map(card).join('')}</div></div><div class="hint lbl"><span>Drag to explore · click a project to open it</span><span>${P.length} projects · infinite loop</span></div>`,
- ()=>`<div class="gr">${P.map((p,i)=>`<a href="${p.href||'#work'}" data-cur="View" data-cyc="${i}" data-hh="${p.h}" style="grid-column:${L[i][0]}"><div class="cw">${img(p,'clip').replace('class="img clip"',`class="img clip" style="aspect-ratio:${L[i][1]}"`)}<span class="chip vc">${p.s||'View case'} ↗</span></div><div class="cap"><b>${p.n}</b><span class="em" style="font-size:16px">${p.d}</span></div>${tags(p)}</a>`).join('')}</div>`];
+ ()=>`<div class="gr">${P.map((p,i)=>`<a href="${p.href||'#work'}" data-cur="View" data-cyc="${i}" data-hh="88" style="grid-column:${L[i][0]}"><div class="cw">${img(p,'clip').replace('class="img clip"',`class="img clip" style="aspect-ratio:${L[i][1]}"`)}<span class="chip vc">${p.s||'View case'} ↗</span></div><div class="cap"><b>${p.n}</b><span class="em" style="font-size:16px">${p.d}</span></div>${tags(p)}</a>`).join('')}</div>`];
 let car=null;
 function carousel(){const el=document.getElementById('car'),t=document.getElementById('ct');if(!el)return null;
  let x=0,v=-.7,drag=false,lx=0,moved=0;const W=()=>t.scrollWidth/3;

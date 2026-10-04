@@ -37,7 +37,7 @@ ${LANGS.filter(l => l !== lang).map(l => `<meta property="og:locale:alternate" c
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/assets/site/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
-<script>(function(){var f=document.querySelector('link[rel=icon][type="image/svg+xml"]');if(f)f.href='/favicon-'+['mint','blue','lilac','coral','ochre'][Math.min(4,Math.floor(Date.now()%20000/4000))]+'.svg'})()</script>
+<script>(function(){var f=document.querySelector('link[rel=icon][type="image/svg+xml"]');if(!f)return;var N=['mint','blue','lilac','coral','ochre'],set=function(){f.href='/favicon-'+N[Math.floor(Date.now()%20000/4000)]+'.svg'};set();if(!matchMedia('(prefers-reduced-motion: reduce)').matches)setTimeout(function(){set();setInterval(set,4000)},4000-Date.now()%4000)})()</script>
 <link rel="preload" href="/assets/site/fonts/Satoshi-Variable.woff2" as="font" type="font/woff2" crossorigin>
 ${styles}
 ${ctx.jsonld ? `<script type="application/ld+json">${JSON.stringify(ctx.jsonld)}</script>` : ''}
