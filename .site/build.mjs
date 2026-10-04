@@ -16,6 +16,12 @@ import { bunnker } from './pages/bunnker.mjs';
 import { relats } from './pages/relats.mjs';
 import { industrial } from './pages/industrial.mjs';
 import { automotive } from './pages/automotive.mjs';
+import { food } from './pages/food.mjs';
+import { pharma } from './pages/pharma.mjs';
+import { realestate } from './pages/realestate.mjs';
+import { tech } from './pages/tech.mjs';
+import { family } from './pages/family.mjs';
+import { international } from './pages/international.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const out = (p, s) => { const f = join(ROOT, p); mkdirSync(dirname(f), { recursive: true }); writeFileSync(f, s); };
@@ -33,6 +39,12 @@ const PAGES = [
   { page: 'relats', kind: 'work', render: relats },
   { page: 'industrial', kind: 'sector', render: industrial },
   { page: 'automotive', kind: 'sector', render: automotive },
+  { page: 'food', kind: 'sector', render: food },
+  { page: 'pharma', kind: 'sector', render: pharma },
+  { page: 'realestate', kind: 'sector', render: realestate },
+  { page: 'tech', kind: 'sector', render: tech },
+  { page: 'family', kind: 'sector', render: family },
+  { page: 'international', kind: 'sector', render: international },
 ];
 
 
@@ -171,6 +183,12 @@ ${projLines}
 - [Relats case study](${abs('en', 'relats')}): repositioning a global leader in technical covering solutions (automotive, e-mobility, energy)
 - [Industrial & B2B branding](${abs('en', 'industrial')}): how INFINIT© works with industrial and B2B companies — signs the brand is holding you back, process, FAQ (also in [Català](${abs('ca', 'industrial')}) and [Español](${abs('es', 'industrial')}))
 - [Automotive & mobility branding](${abs('en', 'automotive')}): for component makers, aftermarket, vehicle and camper builders, dealer groups and e-mobility — process, prices, FAQ (also in [Català](${abs('ca', 'automotive')}) and [Español](${abs('es', 'automotive')}))
+- [Food & beverage branding](${abs('en', 'food')}): food, beverage and consumer-goods brands — packaging system, retail, process, prices, FAQ (also in [Català](${abs('ca', 'food')}) and [Español](${abs('es', 'food')}))
+- [Pharma, health & dermocosmetics branding](${abs('en', 'pharma')}): rigorous and human brands for pharma, OTC, dermocosmetics and health — process, prices, FAQ (also in [Català](${abs('ca', 'pharma')}) and [Español](${abs('es', 'pharma')}))
+- [Real estate & proptech branding](${abs('en', 'realestate')}): developers, rentals, proptech and construction — Bunnker case (COAC Award), process, prices, FAQ (also in [Català](${abs('ca', 'realestate')}) and [Español](${abs('es', 'realestate')}))
+- [Tech, startups & scaleups branding](${abs('en', 'tech')}): brand, website, SEO & GEO and fractional CMO for fast-growing tech companies — process, prices, FAQ (also in [Català](${abs('ca', 'tech')}) and [Español](${abs('es', 'tech')}))
+- [Branding for going international](${abs('en', 'international')}): positioning, identity and multilingual website for companies selling abroad — process, prices, FAQ (also in [Català](${abs('ca', 'international')}) and [Español](${abs('es', 'international')}))
+- [Family business branding](${abs('en', 'family')}): rebranding for family businesses in generational change, growth or internationalisation — process, prices, FAQ (also in [Català](${abs('ca', 'family')}) and [Español](${abs('es', 'family')}))
 - Català: ${abs('ca', 'home')} · Español: ${abs('es', 'home')}
 `);
 
