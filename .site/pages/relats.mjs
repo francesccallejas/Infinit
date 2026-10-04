@@ -94,7 +94,7 @@ export function relats(ctx) {
     about(c),
     `<section class="blk"><div class="vids">
 ${video({ file: R + 'brand-film.mp4', poster: R + 'film-poster.jpg', label: c.vFilm, cls: 'wide' })}
-${video({ file: R + 'logo-motion-dark.mp4', poster: R + 'logo-dark-poster.jpg', label: c.vMark })}
+${video({ file: R + 'logo-motion-dark.mp4', poster: R + 'logo-dark-poster.jpg', label: c.vMark, cls: 'mark' })}
 ${video({ file: R + 'tie-cord.mp4', poster: R + 'tie-cord-poster.jpg', alt: c.vCord, delay: '.06s' })}
 </div></section>`,
     `<section class="blk"><div>${c.steps.map((s, i) => `<div class="step" data-h="${STEP_H[i]}"><div class="tx rv"><span class="lbl">${esc(s[0])}</span><h3${i === 1 ? ' class="em"' : ''}>${s[1]}</h3><p>${esc(s[2])}</p><span class="chip" ${darkChip}>${esc(s[3])}</span></div><div class="img clip"><img src="${A(R + STEP_IMG[i] + '.webp')}" alt="${esc(s[4])}" loading="lazy"></div></div>`).join('')}</div></section>`,
