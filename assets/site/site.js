@@ -442,12 +442,11 @@ function cookies(delay) {
 
 /* ================= Home ================= */
 function homePage() {
-  // Intro: words light up as the paragraph scrolls through the screen (like the Studio manifesto).
-  const ip = $('#inp'), iw = $$('#inp span');
+  // Intro: pinned while its words light up with scroll (same as the Studio manifesto).
+  const ins = $('#intro'), iw = $$('#inp span');
   const itick = () => {
-    const r = ip.getBoundingClientRect(), vH = innerHeight;
-    const q = clamp((vH * .9 - r.top) / (vH * .5 + r.height * .5), 0, 1);
-    const n = RM ? iw.length : Math.round(q * 1.1 * iw.length);
+    const r = ins.getBoundingClientRect(), q = clamp(-r.top / (r.height - innerHeight), 0, 1);
+    const n = RM ? iw.length : Math.round(q * 1.15 * iw.length);
     iw.forEach((w, i) => w.classList.toggle('on', i < n));
   };
   onScroll.push(itick); itick();

@@ -25,10 +25,12 @@
 .ql em{font-style:normal;font-size:11px;padding:3px 7px;border-radius:99px;background:var(--t4);color:var(--bg);margin-left:6px;vertical-align:2px}
 .hx .ql em{background:#fff;color:var(--d0)}
 .ql small{display:block;font-size:13px;color:oklch(1 0 0 / .65)}
-.intro{position:relative;padding:clamp(100px,12vw,190px) var(--pad);display:flex;flex-direction:column;align-items:center;gap:28px;text-align:center}
+.intro{position:relative;height:170vh}
+.intro-s{position:sticky;top:0;height:100vh;height:100svh;display:flex;align-items:center;padding:0 var(--pad)}
+.intro-c{position:relative;width:100%;display:flex;flex-direction:column;align-items:center;gap:28px;text-align:center}
 .intro p{max-width:1100px;margin:0 auto;font-size:clamp(30px,3.8vw,62px);line-height:1.05;letter-spacing:-.04em;font-weight:500;text-wrap:balance}
 .intro p span{color:var(--t2);transition:color .4s}.intro p span.k{color:var(--t4)}.js .intro p span:not(.on){color:var(--l1)}
-.intro .lbl{position:absolute;left:var(--pad);top:clamp(100px,12vw,190px)}
+.intro .lbl{position:absolute;left:0;top:0}
 .sh{display:flex;justify-content:space-between;align-items:center;gap:20px;padding:0 var(--pad) 30px;flex-wrap:wrap}
 .h2{font-size:clamp(32px,3.8vw,60px);letter-spacing:-.04em;line-height:1;font-weight:700}
 #wv{padding:0 var(--pad);transition:opacity .35s}#wv.sw{opacity:0}
