@@ -115,3 +115,6 @@
 @media(max-width:760px){.ch{height:100svh;padding-bottom:calc(clamp(96px,11vh,120px) + var(--sab))}
   .bar .ch{height:calc(100lvh + var(--bar));padding-bottom:calc(clamp(96px,11vh,120px) + (100lvh - 100svh) + var(--bar) + var(--sab))}}
 .ch{padding-top:max(22px,calc(var(--sat) + 10px))}
+/* Mobile: the animated scroll line sits low on the right, level with the dock (the bottom row ends
+   clamp(96px,11vh,120px) above the visible bottom, so this offset is the same with or without html.bar). */
+@media(max-width:760px){.ch .scd{position:absolute;right:calc(12px - var(--pad));bottom:calc(18px - clamp(96px,11vh,120px));font-size:0;gap:0;height:44px}.ch .scd i{height:44px}}
