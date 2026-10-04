@@ -88,7 +88,7 @@ export function relats(ctx) {
   const { lang } = ctx, c = C[lang];
 
   const body = [
-    caseHero(ctx, { img: R + 'emi-hero-lg-2400.webp', logo: 'project/assets/clients/relats.png', logoStyle: ' style="filter:brightness(0) invert(1)"', name: 'Relats', h1: c.h1,
+    caseHero(ctx, { img: R + 'emi-hero-lg-2400.webp', logo: 'project/assets/clients/relats.png', logoStyle: ' style="filter:brightness(0) invert(1);height:clamp(20px,1.9vw,30px)"', name: 'Relats', h1: c.h1,
       chips: chip('strategy', lang) + chip('brand', lang) + chip('digital', lang) + `<a class="chip" href="${LIVE}" target="_blank" rel="noopener">${esc(c.live)}</a>` }),
     meta(c.meta),
     about(c),
