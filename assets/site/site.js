@@ -116,14 +116,51 @@ function smooth() {
   let cur = scrollY, tgt = scrollY, raf = 0;
   const max = () => de.scrollHeight - innerHeight;
   const step = () => { cur = lerp(cur, tgt, .085); if (Math.abs(tgt - cur) < .4) cur = tgt; scrollTo(0, cur); raf = cur !== tgt ? requestAnimationFrame(step) : 0; };
+  // Soft stop ([data-stop]): a downward gesture halts at the section top; trackpad inertia is
+  // swallowed until a new gesture (a pause > 220ms) or an upward scroll.
+  const stops = $$('[data-stop]');
+  let gate = 0, lastW = 0;
   addEventListener('wheel', e => {
     if (e.ctrlKey || body.classList.contains('lock') || Math.abs(e.deltaX) > Math.abs(e.deltaY)) return;
     e.preventDefault();
-    tgt = clamp(tgt + e.deltaY * (e.deltaMode === 1 ? 40 : 1), 0, max());
+    const now = performance.now(), gap = now - lastW; lastW = now;
+    if (gate) { if (e.deltaY < 0 || gap > 220) gate = 0; else return; }
+    let nt = clamp(tgt + e.deltaY * (e.deltaMode === 1 ? 40 : 1), 0, max());
+    for (const st of stops) {
+      const y = Math.round(st.getBoundingClientRect().top + scrollY);
+      if (tgt < y - 1 && nt >= y) { nt = y; gate = 1; break; }
+    }
+    tgt = nt;
     if (!raf) raf = requestAnimationFrame(step);
   }, { passive: false });
   addEventListener('scroll', () => { if (Math.abs(scrollY - cur) > 3) cur = tgt = scrollY; }, { passive: true });
   scrollToY = y => { tgt = clamp(y, 0, max()); if (!raf) raf = requestAnimationFrame(step); };
+}
+
+/* ---------- touch: soft stop at [data-stop] ----------
+   No scroll-snap (on the root it made all of iOS scrolling feel sticky). Only a flick that is coasting
+   after the finger has lifted is stopped, right where the section starts; dragging with the finger
+   never is, and the next swipe carries on. Momentum is cut by hiding <html> overflow for two frames. */
+function brake() {
+  const stops = $$('[data-stop]'); if (!coarse || RM || !stops.length) return;
+  let down = 0, held = 0, ly = scrollY, lt = performance.now();
+  addEventListener('touchstart', () => { down = 1; }, { passive: true });
+  addEventListener('touchend', () => { down = 0; }, { passive: true });
+  addEventListener('touchcancel', () => { down = 0; }, { passive: true });
+  addEventListener('scroll', () => {
+    const y = scrollY, t = performance.now(), v = (y - ly) / Math.max(8, t - lt); // px/ms
+    if (!down && !held && v > .05 && !body.classList.contains('lock')) {
+      for (const st of stops) {
+        const top = Math.round(st.getBoundingClientRect().top + y);
+        if (ly < top - 1 && y + v * 20 >= top) { // crossing now or within the next frame
+          held = 1; de.style.overflow = 'hidden'; scrollTo(0, top);
+          requestAnimationFrame(() => requestAnimationFrame(() => { de.style.overflow = ''; held = 0; }));
+          break;
+        }
+      }
+    }
+    ly = y; lt = t;
+  }, { passive: true });
 }
 
 /* ---------- in-page anchors: smooth scroll, close overlays, move focus ---------- */
@@ -584,7 +621,7 @@ function casePage() {
 }
 
 /* ================= init ================= */
-roll(); mag(); cursor(); ambient(); smooth(); anchors(); copy(); dock(); menu(); langs(); marquees(); videos();
+roll(); mag(); cursor(); ambient(); smooth(); brake(); anchors(); copy(); dock(); menu(); langs(); marquees(); videos();
 if (page === 'home') homePage(); else if (page === 'studio') studioPage(); else if (page === 'work') casePage();
 clock(); setInterval(clock, 1000);
 const fontsReady = d.fonts ? d.fonts.ready : Promise.resolve();
