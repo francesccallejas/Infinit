@@ -46,8 +46,10 @@ html{background:var(--d0)}.aw{flex-wrap:wrap}
 @media(max-width:820px){.ft-g{grid-template-columns:1fr 1fr!important}}@media(max-width:520px){.ft-g{grid-template-columns:1fr!important}}
 @media(max-width:760px){.ft-b{display:grid;grid-template-columns:1fr 1fr;gap:14px 16px;align-items:center}.ft-b>*{justify-self:start}.ft-b>*:nth-child(even){justify-self:end;text-align:right}.fl{margin:0 -8px}}
 .ft{position:relative}
-.ft-hl{position:absolute;left:0;right:0;top:0;height:3px;overflow:hidden;z-index:3}.ft-hl i{position:absolute;inset:0;background:linear-gradient(90deg,oklch(.8 .13 165),oklch(.72 .14 255),oklch(.7 .14 285),oklch(.72 .15 30),oklch(.84 .14 88),oklch(.8 .13 165));background-size:200% 100%;animation:ftrb 18s linear infinite;transform:scaleX(0);transform-origin:0 50%;transition:transform 1.6s cubic-bezier(.7,0,.2,1)}.ft-hl.in i{transform:none}
-@keyframes ftrb{to{background-position:-200% 0}}
+.ft-hl{position:absolute;left:0;right:0;top:0;height:3px;overflow:hidden;z-index:3}.ft-hl i{position:absolute;inset:0;background:oklch(.8 .13 165);animation:ln1 20s linear infinite;animation-delay:var(--lnd,0s);transform:scaleX(0);transform-origin:0 50%;transition:transform 1.6s cubic-bezier(.7,0,.2,1)}.ft-hl.in i{transform:none}
+/* Colour line ("One colour"): one service colour at a time, short crossfades, 20s loop.
+   --lnd = -(Date.now() % 20000)ms (set in <head>) keeps the colour in sync across pages. */
+@keyframes ln1{0%,16%{background-color:oklch(.8 .13 165)}20%,36%{background-color:oklch(.72 .14 255)}40%,56%{background-color:oklch(.7 .14 285)}60%,76%{background-color:oklch(.72 .15 30)}80%,96%{background-color:oklch(.84 .14 88)}100%{background-color:oklch(.8 .13 165)}}
 
 /* ---------- kit ---------- */
 .cur{position:fixed;left:0;top:0;width:12px;height:12px;margin:-6px 0 0 -6px;border-radius:50%;background:#fff;mix-blend-mode:difference;pointer-events:none;z-index:300;display:grid;place-items:center;transition:width .4s cubic-bezier(.2,.7,.2,1),height .4s cubic-bezier(.2,.7,.2,1),margin .4s cubic-bezier(.2,.7,.2,1);font:600 12px Satoshi,sans-serif;color:#000;letter-spacing:-.01em}
@@ -123,7 +125,7 @@ body.lock{overflow:hidden}
 @keyframes rise{to{transform:none}}
 .pre2-b{display:flex;justify-content:space-between;align-items:flex-end}
 .pre2-n{font:900 clamp(40px,6vw,96px)/.8 Geist,sans-serif;letter-spacing:-.04em;font-variant-numeric:tabular-nums}
-.pre2-l{height:2px;background:var(--d1);margin-top:18px;position:relative}.pre2-l i{position:absolute;inset:0;transform-origin:0 0;transform:scaleX(0);background:var(--ln)}
+.pre2-l{height:2px;background:var(--d1);margin-top:18px;position:relative}.pre2-l i{position:absolute;inset:0;transform-origin:0 0;transform:scaleX(0);background:oklch(.8 .13 165);animation:ln1 20s linear infinite;animation-delay:var(--lnd,0s)}
 .menu{position:fixed;inset:0;z-index:55;clip-path:circle(0% at 50% calc(100% - 40px));transition:clip-path 1s cubic-bezier(.7,0,.2,1);visibility:hidden}
 .menu-open .menu{clip-path:circle(150% at 50% calc(100% - 40px));visibility:visible}
 .menu-i{height:100%;display:flex;flex-direction:column;padding:22px var(--pad) 110px;overflow-y:auto}
@@ -195,3 +197,7 @@ a,button,[role=button],.fc,.tap{touch-action:manipulation;-webkit-tap-highlight-
 .menu-i{padding-top:max(22px,calc(var(--sat) + 10px))}
 .pre2{padding-top:max(22px,calc(var(--sat) + 10px));padding-bottom:max(22px,calc(var(--sab) + 10px))}
 .ft{padding-bottom:calc(28px + var(--sab))}
+/* Dock labels: Satoshi sits ~1.5px high when centred by its line box — nudge 1px down (optical centring) */
+.dock a,.dock span.k{padding-top:11px;padding-bottom:9px}
+.dock .go{padding:11px 18px 9px}
+.dock .wmk{padding:10px 14px 10px 16px}

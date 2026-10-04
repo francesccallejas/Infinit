@@ -1,8 +1,8 @@
 /* INFINIT© — Home (port of prototype/pages/home.html inline styles) */
 .hx{height:100vh;height:100svh;min-height:440px;position:relative;overflow:hidden;display:grid;grid-template-rows:auto 1fr auto;padding:22px var(--pad) 18px;transition:background .6s,color .6s}
 @media(max-width:1180px){.hx{padding-bottom:clamp(96px,11vh,120px)}}
-.hl{position:absolute;left:0;right:0;bottom:0;height:3px;overflow:hidden;z-index:2}.hl i{position:absolute;inset:0;background:linear-gradient(90deg,oklch(.8 .13 165),oklch(.72 .14 255),oklch(.7 .14 285),oklch(.72 .15 30),oklch(.84 .14 88),oklch(.8 .13 165));background-size:200% 100%;animation:rb 18s linear infinite}
-@keyframes rb{to{background-position:-200% 0}}
+.hl{position:absolute;left:0;right:0;bottom:0;height:3px;overflow:hidden;z-index:2}.hl i{position:absolute;inset:0;background:oklch(.8 .13 165);animation:ln1 20s linear infinite;animation-delay:var(--lnd,0s)}
+
 .hx-bg{position:absolute;inset:0;z-index:0;opacity:0;transition:opacity .8s}
 .hx-bg .img{position:absolute;inset:0;opacity:0;transition:opacity 1.6s;background:none}.hx-bg .img.on{opacity:1}
 .hx-bg .img img{transform:scale(1.08);transition:transform 7s linear}.hx-bg .img.on img{transform:scale(1)}

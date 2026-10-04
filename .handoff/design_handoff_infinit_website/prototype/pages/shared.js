@@ -1,4 +1,8 @@
 (()=>{
+// Línia d'un color: sincronitzada amb el rellotge perquè el color continuï igual en canviar de pàgina.
+document.documentElement.style.setProperty('--lnd',-(Date.now()%20000)+'ms');if(new URLSearchParams(location.search).get('line')==='spectrum')document.documentElement.classList.add('ln-sp');
+// Favicon: en carregar, pren el color que mostra la línia en aquest moment (per defecte, menta).
+{const fi=document.querySelector('link[rel=icon][type="image/svg+xml"]'),n=['mint','blue','lilac','coral','ochre'][Math.min(4,Math.floor((Date.now()%20000)/4000))];if(fi)fi.href=fi.href.replace(/favicon(-\w+)?\.svg/,'favicon-'+n+'.svg');}
 const A='https://www.weareinfinit.com/project/assets/';
 const R='../',enc=s=>s.split(' ').join('%20');
 const im=p=>R+enc(p);

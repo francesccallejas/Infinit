@@ -55,7 +55,7 @@ Dark ground (`.dark`)
 - `--d3` oklch(.7 .009 245) ≈ `#9a9fa4`, secondary text on dark
 - `--d4` oklch(.95 .004 245) ≈ `#eceff1`, primary text on dark
 
-**Service colour system.** Five services, each with a hue. These colours are used **subtly**: dots, ambient tint, card backs, the rainbow line. Never as large saturated fills.
+**Service colour system.** Five services, each with a hue. These colours are used **subtly**: dots, ambient tint, card backs, the colour line. Never as large saturated fills.
 | Service | Hue | Dot oklch(.72 .05 h) | Tint oklch(.92 .025 h) | Strong oklch(.78 .08 h) |
 |---|---|---|---|---|
 | Strategy (mint) | 165 | `#88af9d` | `#d6eae0` | `#86c8ab` |
@@ -64,9 +64,15 @@ Dark ground (`.dark`)
 | Product (coral) | 30 | `#c29992` | `#f5dfdb` | `#e6a599` |
 | Content (ochre) | 88 | `#b2a381` | `#ebe4d2` | `#cdb57b` |
 
-**Rainbow line.** A 3px gradient that loops slowly: `linear-gradient(90deg, oklch(.8 .13 165) #5ed8a9, oklch(.72 .14 255) #65a7fa, oklch(.7 .14 285) #9690f1, oklch(.72 .15 30) #f47c6b, oklch(.84 .14 88) #f0c551, back to the first)`, with `background-size:200% 100%` and the animation `background-position → -200% 0` over **18s linear infinite**. It appears in two places:
-1. The bottom edge of every hero.
-2. The **light → dark transition** before the final contact block. It draws in left→right (`scaleX 0→1`, 1.6s, cubic-bezier(.7,0,.2,1)) when it enters the viewport.
+**Colour line ("One colour").** A 3px line that shows **one service colour at a time**: mint → blue → lilac → coral → ochre, then back to mint. It loops over **20s**. Each colour holds for about 3.2s, then crossfades to the next in 0.8s. The short fades are deliberate, so blended in-between tones (for example pink between lilac and coral) barely show. Use the keyframes `ln1` in `shared.css`.
+- Colours: oklch(.8 .13 165) #5ed8a9 · oklch(.72 .14 255) #65a7fa · oklch(.7 .14 285) #9690f1 · oklch(.72 .15 30) #f47c6b · oklch(.84 .14 88) #f0c551.
+- **Synced to the clock**: `animation-delay: -(Date.now() % 20000)ms` (CSS var `--lnd`), so the colour carries over when you change page instead of restarting.
+- It appears in three places:
+  1. The bottom edge of every hero.
+  2. The **light → dark transition** before the final contact block. It draws in left→right (`scaleX 0→1`, 1.6s, cubic-bezier(.7,0,.2,1)) when it enters the viewport.
+  3. The preloader progress bar.
+- The old multi-colour gradient ("rainbow") was replaced on purpose. Its CSS is still in the files under `.ln-sp` / `?line=spectrum` for comparison only; delete it in production.
+- Still rainbow: the hover sweep on the big contact email (`.mail .mt`). Pending decision; leave as is.
 
 **Accent "close" coral:** oklch(.7 .14 28) ≈ `#e8796c`. Used for the mobile menu X and the Quick look close hover.
 
@@ -87,7 +93,7 @@ Dark ground (`.dark`)
 
 ## Global components & behaviour (all pages)
 
-**Preloader** (`K.pre`). On the first visit of the session only (`sessionStorage inf-pre-<key>`), the letters of INFINIT rise one by one in the 5 service colours, with a counter and a rainbow progress bar, and a curtain then lifts. Respect `prefers-reduced-motion` (currently not handled, see QA).
+**Preloader** (`K.pre`). On the first visit of the session only (`sessionStorage inf-pre-<key>`), the letters of INFINIT rise one by one in the 5 service colours, with a counter and a progress bar in the colour line (one service colour at a time), and a curtain then lifts. Respect `prefers-reduced-motion` (currently not handled, see QA).
 
 **Smooth scroll** (`K.smooth`, desktop only, not on coarse pointers). Wheel input is lerped (`cur = lerp(cur, tgt, .085)`) while native scroll is kept, so `position: sticky` still works. It is disabled while `body.lock` is set. Anchor links (`a[href^="#"]`) scroll smoothly and close the menu. A library such as Lenis is an acceptable replacement if it feels identical.
 
@@ -140,7 +146,7 @@ Esc closes the menu. The body is scroll-locked while it is open.
    - The **INFINIT© wordmark fitted to the full width**.
    - "to scale" (right). There is no ® here; the only mark is the © on INFINIT.
    - Bottom row: **Quick look** card on the left (72×54 thumbnail, "A quick look" + NEW pill, "Overview of the studio") and a "Scroll" indicator on the right (1px line with a white segment falling every 2s).
-   - Rainbow line on the bottom edge.
+   - Colour line on the bottom edge.
 
    Mobile: the Quick look card is removed from the hero (it moves into the menu). Only the scroll line stays, aligned right.
 2. **Intro.** Centred statement: "A strategic brand and digital firm for companies navigating **growth**, transformation and **modernization**." Label "INFINIT©" sits at the top left.
@@ -156,7 +162,7 @@ Esc closes the menu. The body is scroll-locked while it is open.
    - Flip: rotateY 180°, 1.1s expo. It is triggered **on hover on desktop and on tap on touch** devices.
    - Below the cards, the **Capabilities accordion**: big titles, + button, and the open row fills with the service tint.
    - Service copy and capability lists are in `S` in `shared.js`.
-6. **Contact** (#contact, dark). "Experience across" + client marquee, then "Let's talk." and the giant copyable email `hello@weareinfinit.com`. The email has a rainbow sweep on hover. (The extra contact buttons were removed on purpose, because they duplicated the footer.) The rainbow line sits on the top edge of this dark block.
+6. **Contact** (#contact, dark). "Experience across" + client marquee, then "Let's talk." and the giant copyable email `hello@weareinfinit.com`. The email has a rainbow sweep on hover. (The extra contact buttons were removed on purpose, because they duplicated the footer.) The colour line sits on the top edge of this dark block.
 7. **Footer** (see above).
 
 **Quick look overlay** (Home). Triggered by the hero card on desktop and by the menu card on mobile.
@@ -190,7 +196,7 @@ Esc closes the menu. The body is scroll-locked while it is open.
 - Same template. Hero H1 "Staying ahead of the curve.", with Relats logo.
 - Sections: meta (Client / My role / Partner / Sector / Scope) · Who is Relats / The definition · 01 The challenge / 02 The idea / 03 The build · "Protection you can see." · "Now live on the web." · palette & typefaces · "In the field." gallery · "One analytics language for every internal app." · Next case → Bunnker.
 
-Case template rules: dark hero with white text and the rainbow line, the same frosted UI, line reveals, clip-wiped images, autoplaying muted videos with a poster (they fall back to the poster image if the video fails), and a "Next case" block with a big name whose letter-spacing opens up on hover.
+Case template rules: dark hero with white text and the colour line, the same frosted UI, line reveals, clip-wiped images, autoplaying muted videos with a poster (they fall back to the poster image if the video fails), and a "Next case" block with a big name whose letter-spacing opens up on hover.
 
 ---
 
@@ -243,7 +249,7 @@ No horizontal overflow is allowed (`html, body { overflow-x: clip }`).
    - Induktor uses an Unsplash image.
    - The 4 WIP cases have no pages. Show them as non-clickable "Work in progress" (as now) until they exist.
 9. **SEO/meta**: titles, descriptions, Open Graph images and sitemap per page and language. The favicon set is in `assets/favicon/` and already linked in the prototype pages; add a `site.webmanifest` that uses `icon-512.png`.
-10. Remove prototype-only bits: `#ctl` toggle styles, and Babel/devtools if any.
+10. Remove prototype-only bits: `#ctl` toggle styles, the `?line=spectrum` comparison (`.ln-sp` rules and the old gradient on `.hl i` / `.ft-hl i` / `.pre2-l i`), and Babel/devtools if any.
 
 ## State (minimal)
 - `menu-open`, `qk-open` and `lock` on `<body>`.
@@ -259,7 +265,7 @@ No horizontal overflow is allowed (`html, body { overflow-x: clip }`).
 - `prototype/work/bunnker/bunnker-assets/`, `prototype/work/relats/relats-assets/`: case images and video posters.
 - `prototype/assets/clients/`: client and award logos.
 - `prototype/fonts/`: Satoshi variable.
-- `prototype/assets/favicon/`: `favicon.svg` (main), `favicon.ico` (16/32/48), `favicon-32.png`, `apple-touch-icon.png` (180, full-bleed), `icon-512.png` (full-bleed, for the web manifest). `instagram-avatar.png` (1080) is for the Instagram profile and is not used on the site.
+- `prototype/assets/favicon/`: `favicon.svg` (main, mint line), `favicon-mint|blue|lilac|coral|ochre.svg` (on load, `shared.js` swaps the SVG favicon to the colour the line is showing at that moment), `favicon.ico` (16/32/48), `favicon-32.png`, `apple-touch-icon.png` (180, full-bleed), `icon-512.png` (full-bleed, for the web manifest). `instagram-avatar.png` (1080) is for the Instagram profile and is not used on the site.
 
 All of these already exist in the repo (`project/`, `work/`), which is where they were taken from.
 

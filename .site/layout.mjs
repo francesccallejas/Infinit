@@ -16,7 +16,7 @@ export function head(ctx, { title, desc, og, css }) {
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<script>document.documentElement.classList.add('js')</script>
+<script>document.documentElement.classList.add('js');document.documentElement.style.setProperty('--lnd',-(Date.now()%20000)+'ms')</script>
 <title>${esc(title)}</title>
 <meta name="description" content="${esc(desc)}">
 <link rel="canonical" href="${abs(lang, page)}">
@@ -37,6 +37,7 @@ ${LANGS.filter(l => l !== lang).map(l => `<meta property="og:locale:alternate" c
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/assets/site/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
+<script>(function(){var f=document.querySelector('link[rel=icon][type="image/svg+xml"]');if(f)f.href='/favicon-'+['mint','blue','lilac','coral','ochre'][Math.min(4,Math.floor(Date.now()%20000/4000))]+'.svg'})()</script>
 <link rel="preload" href="/assets/site/fonts/Satoshi-Variable.woff2" as="font" type="font/woff2" crossorigin>
 ${styles}
 ${ctx.jsonld ? `<script type="application/ld+json">${JSON.stringify(ctx.jsonld)}</script>` : ''}
@@ -104,7 +105,7 @@ export function cookies(ctx) {
   return `<aside class="ck" id="ck" aria-label="${esc(t.ckLabel)}" hidden><p>${esc(t.ckMsg)}</p><div class="ck-a"><button type="button" class="ck-no" data-ck="declined">${esc(t.ckDecline)}</button><button type="button" class="ck-ok" data-ck="accepted"><span class="roll">${esc(t.ckAccept)}</span></button></div></aside>`;
 }
 
-// Rainbow line on the light → dark transition before the final dark block (drawn in on scroll).
+// Colour line on the light → dark transition before the final dark block (drawn in on scroll).
 export const ftLine = '<div class="ft-hl" aria-hidden="true"><i></i></div>';
 export const heroLine = '<div class="hl" aria-hidden="true"><i></i></div>';
 

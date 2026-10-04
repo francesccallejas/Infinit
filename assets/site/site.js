@@ -308,7 +308,7 @@ function whenVisible(el, cb, margin = '0px') {
   io.observe(el); return io;
 }
 
-/* ---------- marquees + footer rainbow line ---------- */
+/* ---------- marquees + colour line draw-in ---------- */
 function marquees() {
   $$('.mq, .xp-r').forEach(m => whenVisible(m, v => m.classList.toggle('off', !v)));
   const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { threshold: .5 });
@@ -537,7 +537,6 @@ function casePage() {
 }
 
 /* ================= init ================= */
-de.style.setProperty('--ln', 'linear-gradient(90deg,' + HUES.map(h => `oklch(.72 .05 ${h})`).join(',') + ')');
 roll(); mag(); cursor(); ambient(); smooth(); anchors(); copy(); dock(); menu(); langs(); marquees(); videos();
 if (page === 'home') homePage(); else if (page === 'studio') studioPage(); else if (page === 'work') casePage();
 clock(); setInterval(clock, 1000);

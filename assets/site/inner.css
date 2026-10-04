@@ -14,8 +14,8 @@
 .ch-b{display:flex;justify-content:space-between;align-items:center;gap:20px;min-height:52px}
 @media(max-width:1180px){.ch{padding-bottom:clamp(96px,11vh,120px)}}
 .chips{display:flex;gap:6px;flex-wrap:wrap}
-.hl{position:absolute;left:0;right:0;bottom:0;height:3px;overflow:hidden;z-index:2}.hl i{position:absolute;inset:0;background:linear-gradient(90deg,oklch(.8 .13 165),oklch(.72 .14 255),oklch(.7 .14 285),oklch(.72 .15 30),oklch(.84 .14 88),oklch(.8 .13 165));background-size:200% 100%;animation:rb 18s linear infinite}
-@keyframes rb{to{background-position:-200% 0}}
+.hl{position:absolute;left:0;right:0;bottom:0;height:3px;overflow:hidden;z-index:2}.hl i{position:absolute;inset:0;background:oklch(.8 .13 165);animation:ln1 20s linear infinite;animation-delay:var(--lnd,0s)}
+
 .scd{display:flex;align-items:center;gap:12px;height:52px;font-size:13px;font-weight:500;color:oklch(1 0 0 / .75)}@media (hover:hover){.scd:hover{color:#fff}}
 .scd i{width:1px;height:52px;background:oklch(1 0 0 / .2);position:relative;overflow:hidden}.scd i::after{content:"";position:absolute;left:0;right:0;top:-40%;height:40%;background:#fff;animation:scd 2s cubic-bezier(.7,0,.2,1) infinite}@keyframes scd{to{top:100%}}
 .gbtn .ar.bk{order:-1}@media (hover:hover){.gbtn:hover .ar.bk{transform:translateX(-3px)}}
@@ -91,7 +91,7 @@
 @media(hover:none){.mail{cursor:pointer}}
 .tap{outline-offset:4px}
 @media (prefers-reduced-motion:reduce){.ch-bg img{animation:none!important;transform:none!important}}
-/* Rainbow line sits on the top edge of the "Next case" block (light → dark transition) */
+/* Colour line sits on the top edge of the "Next case" block (light → dark transition) */
 .nx>.ft-hl{position:absolute;z-index:3}
 /* Two-column g12 blocks stack on small screens (Relats analytics was squeezed in the prototype) */
 @media(max-width:900px){.g12>div{grid-column:1/13!important}.g12{row-gap:28px}}
