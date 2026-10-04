@@ -442,6 +442,16 @@ function cookies(delay) {
 
 /* ================= Home ================= */
 function homePage() {
+  // Intro: words light up as the paragraph scrolls through the screen (like the Studio manifesto).
+  const ip = $('#inp'), iw = $$('#inp span');
+  const itick = () => {
+    const r = ip.getBoundingClientRect(), vH = innerHeight;
+    const q = clamp((vH * .9 - r.top) / (vH * .5 + r.height * .5), 0, 1);
+    const n = RM ? iw.length : Math.round(q * 1.1 * iw.length);
+    iw.forEach((w, i) => w.classList.toggle('on', i < n));
+  };
+  onScroll.push(itick); itick();
+
   // Hero: background images cross-fade (1.6s) with a slow zoom; images load one step ahead.
   const hbs = $$('#hbg .img');
   const load = i => { const im = $('img', hbs[i]); if (im && im.dataset.src) { im.src = im.dataset.src; im.removeAttribute('data-src'); } };

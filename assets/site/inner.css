@@ -114,4 +114,3 @@
 /* Mobile inner heroes: same — extend under the floating toolbar, content stays above it */
 @media(max-width:760px){.ch{height:100lvh;padding-bottom:calc(clamp(96px,11vh,120px) + (100lvh - 100svh) + var(--sab))}}
 .ch{padding-top:max(22px,calc(var(--sat) + 10px))}
-@media(max-width:760px){.ch .hl{bottom:calc(100lvh - 100svh)}}
