@@ -84,7 +84,7 @@ export function menu(ctx, extra = '') {
   const t = T[ctx.lang], L = links(ctx);
   const items = [[t.work, L.work, 255], [t.services, L.services, 165], [t.studio, L.studio, 285], [t.contact, L.contact, 88]];
   return `<div class="menu dark" id="menu" role="dialog" aria-label="${esc(t.menu)}"><div class="menu-i">
-<div class="menu-t">${wm(22)}<nav class="seg sm" data-langseg aria-label="${esc(t.language)}"><i></i>${ordered(ctx).join('')}</nav></div>
+<div class="menu-t">${wm(22)}<div class="seg sm" data-langseg role="group" aria-label="${esc(t.language)}"><i></i>${ordered(ctx).join('')}</div></div>
 <nav class="menu-l" aria-label="${esc(t.menu)}">${items.map((l, i) => `<a href="${l[1]}" data-hh="${l[2]}" style="--bh:${l[2]};--i:${i}"${ctx.kind === 'studio' && i === 2 ? ' aria-current="page"' : ''}><span class="lbl">0${i + 1}</span><span class="mt">${esc(l[0])}</span><i aria-hidden="true"></i></a>`).join('')}</nav>
 ${extra}<div class="menu-b"><button class="gbtn" type="button" data-copy="${EMAIL}" aria-label="${esc(t.copyEmail)}: ${EMAIL}"><span class="mt">${EMAIL}</span></button><span class="lbl">${esc(t.loc)} · <span data-clock></span></span></div></div></div>`;
 }
@@ -93,8 +93,8 @@ export function footer(ctx) {
   const t = T[ctx.lang], L = links(ctx);
   return `<footer class="ft dark" id="ft"><div class="ft-g">
 <div><p class="lbl">${esc(t.ftStudio)}</p><a href="${L.work}">${esc(t.work)}</a><a href="${L.services}">${esc(t.services)}</a><a href="${L.studio}">${esc(t.studio)}</a></div>
-<div><p class="lbl">${esc(t.ftConnect)}</p><a href="mailto:${EMAIL}">${EMAIL}</a><a href="tel:${PHONE.replace(/\s/g, '')}">${PHONE}</a><a href="${LINKEDIN}" target="_blank" rel="noopener">LinkedIn ↗</a><a href="${INSTAGRAM}" target="_blank" rel="noopener">Instagram ↗</a></div>
-<div><p class="lbl">${esc(t.ftRec)}</p><div class="aw"><img src="${A('project/assets/clients/Awwwards-Logo-Vector.svg-.png')}" alt="Awwwards" loading="lazy"><img src="${A('project/assets/clients/Coac.png')}" alt="COAC" loading="lazy"></div></div></div>
+<div><p class="lbl">${esc(t.ftConnect)}</p><a href="mailto:${EMAIL}">${EMAIL}</a><a href="tel:${PHONE.replace(/\s/g, '')}">${PHONE.replace(/ /g, '\u00a0')}</a><a href="${LINKEDIN}" target="_blank" rel="noopener">LinkedIn ↗</a><a href="${INSTAGRAM}" target="_blank" rel="noopener">Instagram ↗</a></div>
+<div><p class="lbl">${esc(t.ftRec)}</p><div class="aw"><img src="${A('project/assets/clients/Awwwards-Logo-Vector.svg-.png')}" alt="Awwwards" loading="lazy"><img src="${A('project/assets/clients/coac-trim.png')}" alt="COAC" loading="lazy"></div></div></div>
 <div class="ft-b lbl"><span>${esc(t.loc)}</span><nav class="fl" aria-label="${esc(t.language)}">${ordered(ctx).join('')}</nav><span data-clock></span><span>© 2026 INFINIT©</span></div></footer>`;
 }
 

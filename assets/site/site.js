@@ -202,6 +202,11 @@ function trap(e, roots) {
 }
 const setInert = (els, on) => els.forEach(el => { if (el) on ? el.setAttribute('inert', '') : el.removeAttribute('inert'); });
 
+/* Is there a dark section at viewport height y? Geometry only — the previous elementFromPoint
+   approach hid/showed the dock every scroll frame, which could swallow taps on iOS. */
+let darkEls = null;
+const darkAt = y => (darkEls = darkEls || $$('#main .dark, #ft')).some(el => { const r = el.getBoundingClientRect(); return r.top <= y && r.bottom >= y; });
+
 /* ---------- dock: auto-contrast, hide at the footer, "where am I" ---------- */
 let dockChk = () => {};
 function dock() {
@@ -209,10 +214,7 @@ function dock() {
   const ft = $('#ft');
   dockChk = () => {
     if (body.classList.contains('menu-open')) { dk.classList.add('dk'); return; }
-    dk.style.visibility = 'hidden';
-    const el = d.elementFromPoint(innerWidth / 2, innerHeight - 40);
-    dk.style.visibility = '';
-    dk.classList.toggle('dk', !!(el && el.closest('.dark')));
+    dk.classList.toggle('dk', darkAt(innerHeight - 40));
   };
   let ly = scrollY;
   const hid = () => {
@@ -270,7 +272,7 @@ function quick() {
   const set = o => {
     if (o === open()) return;
     body.classList.toggle('qk-open', o); body.classList.toggle('lock', o);
-    q.setAttribute('aria-hidden', !o);
+    q.inert = !o;
     [qlb, qlm].forEach(x => x && x.setAttribute('aria-expanded', o));
     setInert([$('#main'), $('#ft'), $('.dock'), $('#menu')], o);
     if (o) { back = d.activeElement; setTimeout(() => $('.qk-x', q).focus({ preventScroll: true }), 60); }
@@ -317,7 +319,7 @@ function marquees() {
 function videos() {
   $$('.vd video').forEach(v => {
     const vd = v.closest('.vd');
-    const fallback = () => { if (v._sw) return; v._sw = 1; const i = d.createElement('img'); i.src = v.poster; i.alt = v.getAttribute('aria-label') || ''; v.replaceWith(i); vd && $$('.vd-snd, .vd-play', vd).forEach(x => x.remove()); };
+    const fallback = () => { if (v._sw) return; v._sw = 1; const i = d.createElement('img'); i.src = v.poster; i.alt = v.dataset.label || ''; v.replaceWith(i); vd && $$('.vd-snd, .vd-play', vd).forEach(x => x.remove()); };
     // Videos with sound: toggle button for audio; clicking the video pauses / resumes it (v._up = paused by the user).
     if (vd && vd.hasAttribute('data-sound')) {
       const snd = $('.vd-snd', vd);
@@ -411,10 +413,7 @@ function cookies(delay) {
   const chk = () => {
     if (el.hidden) return;
     const r = el.getBoundingClientRect();
-    el.style.visibility = 'hidden';
-    const under = d.elementFromPoint(innerWidth / 2, r.top + r.height / 2);
-    el.style.visibility = '';
-    el.classList.toggle('dk', !!(under && under.closest('.dark')));
+    el.classList.toggle('dk', darkAt(r.top + r.height / 2));
   };
   onScroll.push(chk);
   setTimeout(() => { el.hidden = false; chk(); requestAnimationFrame(() => requestAnimationFrame(() => el.classList.add('on'))); }, delay);
