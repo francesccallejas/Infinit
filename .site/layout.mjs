@@ -6,7 +6,7 @@ import { T } from './i18n.mjs';
 // Strings the client script needs.
 const jsT = t => ({ menu: t.menu, close: t.close, openMenu: t.openMenu, closeMenu: t.closeMenu, copyToast: t.copyToast, copied: t.copied, firm: t.firm, loc: t.loc, soundOn: t.soundOn, soundOff: t.soundOff, vPause: t.vPause, vPlay: t.vPlay, cPause: t.cPause, cPlay: t.cPlay });
 
-export function head(ctx, { title, desc, og, css }) {
+export function head(ctx, { title, desc, og, css, ld }) {
   const { lang, page, V } = ctx;
   const alt = LANGS.map(l => `<link rel="alternate" hreflang="${l}" href="${abs(l, page)}">`).join('\n') +
     `\n<link rel="alternate" hreflang="x-default" href="${SITE}/">`;
@@ -51,7 +51,7 @@ ${LANGS.filter(l => l !== lang).map(l => `<meta property="og:locale:alternate" c
 <script>(function(){var f=document.querySelector('link[rel=icon][type="image/svg+xml"]');if(!f)return;var N=['mint','blue','lilac','coral','ochre'],set=function(){f.href='/favicon-'+N[Math.floor(Date.now()%20000/4000)]+'.svg'};set();if(!matchMedia('(prefers-reduced-motion: reduce)').matches)setTimeout(function(){set();setInterval(set,4000)},4000-Date.now()%4000)})()</script>
 <link rel="preload" href="/assets/site/fonts/Satoshi-Variable.woff2" as="font" type="font/woff2" crossorigin>
 ${styles}
-<script type="application/ld+json">${JSON.stringify(graph(lang, page, { title, desc, og })).replace(/</g, '\\u003c')}</script>
+<script type="application/ld+json">${JSON.stringify(graph(lang, page, { title, desc, og, ld })).replace(/</g, '\\u003c')}</script>
 <script>window.T=${JSON.stringify(jsT(T[lang]))}</script>
 <script src="/assets/site/site.js?v=${V['site.js']}" defer></script>
 </head>
@@ -104,7 +104,7 @@ ${extra}<div class="menu-b"><button class="gbtn" type="button" data-copy="${EMAI
 export function footer(ctx) {
   const t = T[ctx.lang], L = links(ctx);
   return `<footer class="ft dark" id="ft"><div class="ft-g">
-<div><p class="lbl">${esc(t.ftStudio)}</p><a href="${L.work}">${esc(t.work)}</a><a href="${L.services}">${esc(t.services)}</a><a href="${L.studio}">${esc(t.studio)}</a></div>
+<div><p class="lbl">${esc(t.ftStudio)}</p><a href="${L.work}">${esc(t.work)}</a><a href="${L.services}">${esc(t.services)}</a><a href="${L.studio}">${esc(t.studio)}</a><a href="${url(ctx.lang, 'industrial')}">${esc(t.ftIndustrial)}</a></div>
 <div><p class="lbl">${esc(t.ftConnect)}</p><a href="mailto:${EMAIL}">${EMAIL}</a><a href="tel:${PHONE.replace(/\s/g, '')}">${PHONE.replace(/ /g, '\u00a0')}</a><a href="${LINKEDIN}" target="_blank" rel="noopener">LinkedIn ↗</a><a href="${INSTAGRAM}" target="_blank" rel="noopener">Instagram ↗</a></div>
 <div><p class="lbl">${esc(t.ftRec)}</p><div class="aw"><img src="${A('project/assets/clients/Awwwards-Logo-Vector.svg-.png')}" alt="Awwwards" loading="lazy"><img src="${A('project/assets/clients/coac-trim.png')}" alt="COAC" loading="lazy"></div></div></div>
 <div class="ft-b lbl"><span>${esc(t.loc)}</span><nav class="fl" aria-label="${esc(t.language)}">${ordered(ctx).join('')}</nav><span data-clock></span><span>© 2026 INFINIT©</span></div></footer>`;
