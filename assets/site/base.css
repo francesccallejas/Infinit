@@ -158,7 +158,6 @@ body.lock{overflow:hidden}
 /* Visible focus on every interactive element (keyboard only) */
 :is(a,button,[tabindex]):focus-visible{outline:2px solid currentColor;outline-offset:3px;border-radius:99px}
 .dark :is(a,button,[tabindex]):focus-visible,.dock.dk :focus-visible{outline-color:var(--d4)}
-.menu:focus{outline:none}
 .img:focus-visible,.fc:focus-visible,.tap:focus-visible{border-radius:14px}
 .sr{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap}
 /* Reduced motion: no preloader, no smooth scroll, instant reveals/flips, no marquees */

@@ -116,20 +116,10 @@ function smooth() {
   let cur = scrollY, tgt = scrollY, raf = 0;
   const max = () => de.scrollHeight - innerHeight;
   const step = () => { cur = lerp(cur, tgt, .085); if (Math.abs(tgt - cur) < .4) cur = tgt; scrollTo(0, cur); raf = cur !== tgt ? requestAnimationFrame(step) : 0; };
-  // Soft stops ([data-stop]): scrolling down halts at the section top; the next gesture carries on.
-  const stops = $$('[data-stop]');
-  let gate = 0, lastW = 0;
   addEventListener('wheel', e => {
     if (e.ctrlKey || body.classList.contains('lock') || Math.abs(e.deltaX) > Math.abs(e.deltaY)) return;
     e.preventDefault();
-    const now = performance.now(), gap = now - lastW; lastW = now;
-    if (gate) { if (e.deltaY < 0 || gap > 220) gate = 0; else return; } // swallow the rest of the gesture (trackpad inertia)
-    let nt = clamp(tgt + e.deltaY * (e.deltaMode === 1 ? 40 : 1), 0, max());
-    for (const st of stops) {
-      const y = Math.round(st.getBoundingClientRect().top + scrollY);
-      if (tgt < y - 1 && nt >= y) { nt = y; gate = 1; break; }
-    }
-    tgt = nt;
+    tgt = clamp(tgt + e.deltaY * (e.deltaMode === 1 ? 40 : 1), 0, max());
     if (!raf) raf = requestAnimationFrame(step);
   }, { passive: false });
   addEventListener('scroll', () => { if (Math.abs(scrollY - cur) > 3) cur = tgt = scrollY; }, { passive: true });
@@ -253,9 +243,7 @@ let setMenu = () => {};
 function menu() {
   const b = $('#mb'), m = $('#menu'); if (!b || !m) return;
   let back = null;
-  m.tabIndex = -1;
-  // kb: opened from the keyboard → focus the first link; by touch/mouse → focus the panel (no focus ring on "Work").
-  setMenu = (o, kb) => {
+  setMenu = o => {
     if (o === body.classList.contains('menu-open')) return;
     body.classList.toggle('menu-open', o);
     body.classList.toggle('lock', o || body.classList.contains('qk-open'));
@@ -264,10 +252,10 @@ function menu() {
     setInert([$('#main'), $('#ft')], o);
     $$('.dock > :not(#mb)').forEach(el => o ? el.setAttribute('tabindex', '-1') : el.removeAttribute('tabindex'));
     dockChk();
-    if (o) { back = d.activeElement; requestAnimationFrame(() => { const s = m.querySelector('[data-langseg]'); s && s._place && s._place(); const f = kb ? $('.menu-l a', m) : m; f && f.focus({ preventScroll: true }); }); }
+    if (o) { back = d.activeElement; requestAnimationFrame(() => { const s = m.querySelector('[data-langseg]'); s && s._place && s._place(); const f = $('.menu-l a', m); f && f.focus({ preventScroll: true }); }); }
     else if (back && m.contains(d.activeElement)) b.focus({ preventScroll: true });
   };
-  b.addEventListener('click', e => setMenu(!body.classList.contains('menu-open'), e.detail === 0));
+  b.addEventListener('click', () => setMenu(!body.classList.contains('menu-open')));
   addEventListener('keydown', e => {
     if (!body.classList.contains('menu-open')) return;
     if (e.key === 'Escape') { setMenu(false); b.focus(); }
@@ -454,15 +442,6 @@ function cookies(delay) {
 
 /* ================= Home ================= */
 function homePage() {
-  // Intro: pinned while its words light up with scroll (same as the Studio manifesto).
-  const ins = $('#intro'), iw = $$('#inp span');
-  const itick = () => {
-    const r = ins.getBoundingClientRect(), q = clamp(-r.top / (r.height - innerHeight), 0, 1);
-    const n = RM ? iw.length : Math.round(q * 1.15 * iw.length);
-    iw.forEach((w, i) => w.classList.toggle('on', i < n));
-  };
-  onScroll.push(itick); itick();
-
   // Hero: background images cross-fade (1.6s) with a slow zoom; images load one step ahead.
   const hbs = $$('#hbg .img');
   const load = i => { const im = $('img', hbs[i]); if (im && im.dataset.src) { im.src = im.dataset.src; im.removeAttribute('data-src'); } };
