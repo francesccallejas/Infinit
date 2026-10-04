@@ -1,4 +1,4 @@
-# INFINIT© — search engines and AI assistants are welcome. Summary for AI: https://weareinfinit.com/llms.txt
+# INFINIT© — search engines and AI assistants are welcome. Summary for AI: https://www.weareinfinit.com/llms.txt
 User-agent: *
 Allow: /
 Disallow: /project/uploads/
@@ -24,4 +24,4 @@ User-agent: CCBot
 Allow: /
 Disallow: /project/uploads/
 
-Sitemap: https://weareinfinit.com/sitemap.xml
+Sitemap: https://www.weareinfinit.com/sitemap.xml
