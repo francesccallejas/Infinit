@@ -16,6 +16,12 @@ export const ROUTES = {
   relats: 'work/relats/',
   industrial: 'industrial-branding/',
   automotive: 'automotive-branding/',
+  food: 'food-branding/',
+  pharma: 'pharma-branding/',
+  realestate: 'real-estate-branding/',
+  tech: 'tech-branding/',
+  family: 'family-business-branding/',
+  international: 'international-branding/',
 };
 export const url = (lang, page) => `/${lang}/${ROUTES[page]}`;
 export const abs = (lang, page) => SITE + url(lang, page);

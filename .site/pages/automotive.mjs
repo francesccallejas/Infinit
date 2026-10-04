@@ -37,7 +37,7 @@ export const C = {
     ],
   },
   ca: {
-    title: 'Branding per a automoció i mobilitat — Barcelona | INFINIT©',
+    title: 'Branding d’automoció i mobilitat — Barcelona | INFINIT©',
     desc: 'Branding per a empreses d’automoció i mobilitat (d’1 a 200 M€): components, recanvis, vehicles, campers i concessionaris. Estratègia, identitat, web, SEO i GEO. Barcelona.',
     lbl: 'Branding per a automoció i mobilitat',
     h1: 'Empreses d’automoció que van més ràpid que <b>la seva marca.</b>',
@@ -67,7 +67,7 @@ export const C = {
     ],
   },
   es: {
-    title: 'Branding para automoción y movilidad — Barcelona | INFINIT©',
+    title: 'Branding de automoción y movilidad — Barcelona | INFINIT©',
     desc: 'Branding para empresas de automoción y movilidad (de 1 a 200 M€): componentes, recambios, vehículos, campers y concesionarios. Estrategia, identidad, web, SEO y GEO. Barcelona.',
     lbl: 'Branding para automoción y movilidad',
     h1: 'Empresas de automoción que van más rápido que <b>su marca.</b>',

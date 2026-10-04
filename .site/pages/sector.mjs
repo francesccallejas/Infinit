@@ -97,7 +97,7 @@ export const SHARED = {
   },
 };
 
-// def: { C: sector copy per language, hero: image path, proof: { img, case: page key, name }, og }
+// def: { C: sector copy per language, hero: image path, og, proof?: { img, case: page key, name } }
 export function sectorPage(ctx, def) {
   const { lang } = ctx, t = T[lang], own = def.C[lang];
   // Sector copy overrides the shared copy; sector-specific questions go before the shared FAQ.
@@ -125,9 +125,10 @@ ${heroLine}</section>`;
 <tbody>${c.px.map(r => `<tr><th scope="row">${esc(r[0])}</th>${r.slice(1).map((v, i) => `<td data-k="${esc(c.pxCols[i + 1])}">${esc(v)}</td>`).join('')}</tr>`).join('')}</tbody></table>
 <p class="px-n">${esc(c.pxNote)}</p></section>`;
 
-  const proof = `<section class="full" style="margin-top:clamp(90px,11vw,170px)"><div class="img"><img src="${A(def.proof.img)}" alt="" loading="lazy"></div><div><span class="lbl">${esc(c.caseL)}</span><h2 class="h2" data-lines>${esc(c.caseH)}</h2><p>${esc(c.caseP)}</p>
-<a class="gbtn" href="${url(lang, def.proof.case)}" style="--bh:30;align-self:flex-start;color:#fff;background:oklch(1 0 0 / .14)"><span class="roll">${esc(c.caseBtn)}</span><span class="ar" aria-hidden="true">↗</span></a></div></section>
-<section class="blk sx-exp"><span class="lbl">${esc(c.expL)}</span><p>${esc(c.exp)}</p></section>`;
+  // Proof: a case (image + link) when there is one; the experience line always.
+  const exp = `<section class="blk sx-exp"><span class="lbl">${esc(c.expL)}</span><p>${esc(c.exp)}</p></section>`;
+  const proof = (def.proof ? `<section class="full" style="margin-top:clamp(90px,11vw,170px)"><div class="img"><img src="${A(def.proof.img)}" alt="" loading="lazy"></div><div><span class="lbl">${esc(c.caseL)}</span><h2 class="h2" data-lines>${esc(c.caseH)}</h2><p>${esc(c.caseP)}</p>
+<a class="gbtn" href="${url(lang, def.proof.case)}" style="--bh:30;align-self:flex-start;color:#fff;background:oklch(1 0 0 / .14)"><span class="roll">${esc(c.caseBtn)}</span><span class="ar" aria-hidden="true">↗</span></a></div></section>\n` : '') + exp;
 
   const faq = `<section class="blk g12 sx-faq" data-h="88"><div class="sx-fh"><span class="lbl">${esc(c.faqL)}</span><h2 class="h2" data-lines>${esc(c.faqH)}</h2></div>
 <div class="faq">${c.faq.map(([q, a]) => `<details><summary><span>${esc(q)}</span><i aria-hidden="true"></i></summary><p>${esc(a)}</p></details>`).join('')}</div></section>`;
@@ -137,7 +138,7 @@ ${heroLine}</section>`;
 <button class="mail" type="button" data-copy="${EMAIL}" data-cur="${esc(t.cCopy)}" aria-label="${esc(t.copyEmail)}: ${EMAIL}"><span class="mt">${EMAIL}</span></button></div></section>`;
 
   const ld = { name: c.lbl, serviceType: 'Branding', audience: c.meta[0][1] + ' · ' + c.meta[1][1] + ' · ' + c.meta[3][1], faq: c.faq,
-    caseName: def.proof.name, caseUrl: abs(lang, def.proof.case) };
+    ...(def.proof ? { caseName: def.proof.name, caseUrl: abs(lang, def.proof.case) } : {}) };
   return head(ctx, { title: c.title, desc: c.desc, og: def.og, css: ['inner', 'studio'], ld }) +
     `\n<main id="main">\n${[hero, meta, problem, signs, how, prices, proof, faq, cta].join('\n')}\n</main>\n` + end(ctx);
 }
