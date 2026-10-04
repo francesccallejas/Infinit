@@ -20,7 +20,7 @@
 .hl{position:absolute;left:0;right:0;bottom:0;height:3px;overflow:hidden;z-index:2}.hl i{position:absolute;inset:0;background:oklch(.72 .05 165);animation:ln1 20s linear infinite;animation-delay:var(--lnd,0s)}
 
 .scd{display:flex;align-items:center;gap:12px;height:52px;font-size:13px;font-weight:500;color:oklch(1 0 0 / .75)}@media (hover:hover){.scd:hover{color:#fff}}
-.scd i{width:1px;height:52px;background:oklch(1 0 0 / .2);position:relative;overflow:hidden}.scd i::after{content:"";position:absolute;left:0;right:0;top:-40%;height:40%;background:#fff;animation:scd 2s cubic-bezier(.7,0,.2,1) infinite}@keyframes scd{to{top:100%}}
+.scd i{width:1px;height:52px;background:oklch(1 0 0 / .2);position:relative;overflow:hidden}.scd i::after{content:"";position:absolute;left:0;right:0;top:0;height:40%;background:#fff;transform:translateY(-100%);will-change:transform;animation:scd 2s cubic-bezier(.7,0,.2,1) infinite}@keyframes scd{to{transform:translateY(250%)}}
 .gbtn .ar.bk{order:-1}@media (hover:hover){.gbtn:hover .ar.bk{transform:translateX(-3px)}}
 .meta{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:24px;padding:26px var(--pad);border-bottom:1px solid var(--l1)}
 .meta div{display:flex;flex-direction:column;gap:6px}.meta b{font-size:16px;font-weight:500;line-height:1.35}

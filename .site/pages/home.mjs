@@ -57,18 +57,18 @@ ${heroLine}<div class="hb"><a class="ql" href="${url(lang, 'studio')}" data-cur=
 <div class="end"><h2 data-lines>${esc(t.talk)}</h2><button class="mail" type="button" data-copy="${EMAIL}" data-cur="${esc(t.cCopy)}" aria-label="${esc(t.copyEmail)}: ${EMAIL}"><span class="mt">${EMAIL}</span></button></div>
 <div class="ct-wm" aria-hidden="true">${wm('fit')}</div></section>`;
 
-  // Quick look: bento overview overlay.
+  // Quick look: bento overview overlay (its images load when it first opens — site.js).
   const qk = `<div class="qk dark" id="qk" role="dialog" aria-modal="true" aria-labelledby="qk-h" inert><div class="qk-t"><div><span class="lbl">${esc(t.quick)}</span><h2 id="qk-h">${t.qkTitle}</h2></div><button class="qk-x" type="button" aria-label="${esc(t.qkClose)}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
 <div class="qk-g">
-<a class="qk-c qk-w im" href="#work"><img src="${A('project/assets/images/Bunnker Final.webp')}" alt="" loading="lazy"><div class="qk-l"><span>${esc(t.qkWork)}</span><span aria-hidden="true">↗</span></div></a>
+<a class="qk-c qk-w im" href="#work"><img data-src="${A('project/assets/images/Bunnker Final.webp')}" alt=""><div class="qk-l"><span>${esc(t.qkWork)}</span><span aria-hidden="true">↗</span></div></a>
 <a class="qk-c qk-s" href="#services"><ul>${S.map(s => `<li><i style="background:${dot(s.h)}" aria-hidden="true"></i>${esc(s.n[lang])}</li>`).join('')}</ul><div class="qk-l"><span>${esc(t.qkServices)}</span><span aria-hidden="true">↗</span></div></a>
-<a class="qk-c qk-st im" href="${url(lang, 'studio')}"><img src="${A('project/assets/imagery/francesc.webp')}" alt="" loading="lazy"><div class="qk-l"><span>${esc(t.qkStudio)}</span><span aria-hidden="true">↗</span></div></a>
+<a class="qk-c qk-st im" href="${url(lang, 'studio')}"><img data-src="${A('project/assets/imagery/francesc.webp')}" alt=""><div class="qk-l"><span>${esc(t.qkStudio)}</span><span aria-hidden="true">↗</span></div></a>
 <a class="qk-c qk-ap" href="#approach"><h3>${t.qkApH}</h3><div class="qk-l"><span>${esc(t.qkAp)}</span><span aria-hidden="true">↗</span></div></a>
 <a class="qk-c qk-ct" href="#contact"><h3>${esc(t.qkTalk)}</h3><div class="qk-l"><span>${esc(t.getInTouch)}</span><span aria-hidden="true">↗</span></div></a>
 </div></div>`;
 
   // Mobile only: the Quick look card moves into the menu.
-  ctx.menuExtra = `<button class="ql qlm" id="qlm" type="button" data-cur="${esc(t.cOpen)}" aria-haspopup="dialog" aria-controls="qk"><span class="img"><img src="${A('project/assets/images/Bunnker Final.webp')}" alt="" loading="lazy"></span><span>${esc(t.quick)}<small>${esc(t.quickSub)}</small></span><b class="ar" aria-hidden="true">↗</b></button>`;
+  ctx.menuExtra = `<button class="ql qlm" id="qlm" type="button" data-cur="${esc(t.cOpen)}" aria-haspopup="dialog" aria-controls="qk"><span class="img"><img data-src="${A('project/assets/images/Bunnker Final.webp')}" alt=""></span><span>${esc(t.quick)}<small>${esc(t.quickSub)}</small></span><b class="ar" aria-hidden="true">↗</b></button>`;
 
   return head(ctx, { title: t.homeTitle, desc: t.homeDesc, og: '/assets/site/og/home.jpg', css: ['home'] }) +
     `\n<main id="main">\n${hero}\n${intro}\n${work}\n${approach}\n${services}\n${contact}\n</main>\n` + end(ctx, qk + '\n');

@@ -28,3 +28,9 @@
   Cache-Control: public, max-age=604800
 /work/*
   Cache-Control: public, max-age=604800
+/assets/site/og/*
+  Cache-Control: public, max-age=604800
+/assets/site/*.png
+  Cache-Control: public, max-age=604800
+/favicon*
+  Cache-Control: public, max-age=86400

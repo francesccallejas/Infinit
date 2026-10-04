@@ -98,6 +98,6 @@ export const C = {
 };
 
 export const family = ctx => sectorPage(ctx, {
-  C, hero: 'project/assets/imagery/lake-moon.jpg', og: '/assets/site/og/relats.jpg',
+  C, hero: 'project/assets/imagery/lake-moon.webp', og: '/assets/site/og/relats.jpg',
   proof: { img: R + 'brand-context-1.webp', case: 'relats', name: 'Relats' },
 });

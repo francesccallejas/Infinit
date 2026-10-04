@@ -271,6 +271,12 @@ out('_headers', `/*
   Cache-Control: public, max-age=604800
 /work/*
   Cache-Control: public, max-age=604800
+/assets/site/og/*
+  Cache-Control: public, max-age=604800
+/assets/site/*.png
+  Cache-Control: public, max-age=604800
+/favicon*
+  Cache-Control: public, max-age=86400
 `);
 
 if (!existsSync(join(ROOT, 'assets/site/og/home.jpg'))) console.warn('! OG images missing in assets/site/og/');
