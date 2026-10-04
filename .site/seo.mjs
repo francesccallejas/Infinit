@@ -76,14 +76,15 @@ const website = () => ({
   inLanguage: LANGS.map(l => INLANG[l]),
 });
 
-const crumbs = (lang, page) => {
+const crumbs = (lang, page, crumbName) => {
   const items = [[NAMES.home[lang], abs(lang, 'home')]];
   if (page === 'studio') items.push([NAMES.studio[lang], abs(lang, 'studio')]);
+  if (crumbName) items.push([crumbName, abs(lang, page)]);
   if (CASES[page]) items.push([NAMES.work[lang], abs(lang, 'home') + '#work'], [CASES[page].client, abs(lang, page)]);
   return { '@type': 'BreadcrumbList', '@id': abs(lang, page) + '#breadcrumb', itemListElement: items.map(([name, item], i) => ({ '@type': 'ListItem', position: i + 1, name, item })) };
 };
 
-// page: 'home' | 'studio' | case key. meta: { title, desc, og }.
+// page: 'home' | 'studio' | case key | sector key. meta: { title, desc, og, ld? } — ld: sector-page extras (service, FAQ).
 export function graph(lang, page, meta) {
   const u = abs(lang, page);
   const webpage = {
@@ -93,7 +94,19 @@ export function graph(lang, page, meta) {
     breadcrumb: { '@id': u + '#breadcrumb' },
   };
   const g = [org(lang), founder(lang), website(), webpage];
-  if (page !== 'home') g.push(crumbs(lang, page)); else delete webpage.breadcrumb;
+  if (page !== 'home') g.push(crumbs(lang, page, meta.ld && meta.ld.name)); else delete webpage.breadcrumb;
+  // Sector pages: the service they describe + the visible FAQ.
+  if (meta.ld) {
+    webpage.mainEntity = { '@id': u + '#service' };
+    g.push({
+      '@type': 'Service', '@id': u + '#service', name: meta.ld.name, serviceType: meta.ld.serviceType, description: meta.desc, url: u,
+      provider: { '@id': ORG }, areaServed: [{ '@type': 'Place', name: 'Catalonia' }, { '@type': 'Country', name: 'Spain' }, { '@type': 'Place', name: 'Europe' }],
+      audience: { '@type': 'BusinessAudience', name: meta.ld.audience }, availableLanguage: ['en', 'ca', 'es'],
+      ...(meta.ld.caseUrl ? { subjectOf: { '@type': 'CreativeWork', name: meta.ld.caseName, url: meta.ld.caseUrl } } : {}),
+    });
+    if (meta.ld.faq) g.push({ '@type': 'FAQPage', '@id': u + '#faq', inLanguage: INLANG[lang], isPartOf: { '@id': u + '#webpage' },
+      mainEntity: meta.ld.faq.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })) });
+  }
   const c = CASES[page];
   if (c) {
     webpage.mainEntity = { '@id': u + '#case' };

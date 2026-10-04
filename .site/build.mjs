@@ -14,6 +14,7 @@ import { home } from './pages/home.mjs';
 import { studio } from './pages/studio.mjs';
 import { bunnker } from './pages/bunnker.mjs';
 import { relats } from './pages/relats.mjs';
+import { industrial } from './pages/industrial.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const out = (p, s) => { const f = join(ROOT, p); mkdirSync(dirname(f), { recursive: true }); writeFileSync(f, s); };
@@ -29,6 +30,7 @@ const PAGES = [
   { page: 'studio', kind: 'studio', render: studio },
   { page: 'bunnker', kind: 'work', render: bunnker },
   { page: 'relats', kind: 'work', render: relats },
+  { page: 'industrial', kind: 'sector', render: industrial },
 ];
 
 
@@ -165,6 +167,7 @@ ${projLines}
 - [Studio (English)](${abs('en', 'studio')}): beliefs, founder, experience
 - [Bunnker case study](${abs('en', 'bunnker')}): strategy, identity and digital for long-stay rentals — COAC Award
 - [Relats case study](${abs('en', 'relats')}): repositioning a global leader in technical covering solutions (automotive, e-mobility, energy)
+- [Industrial & B2B branding](${abs('en', 'industrial')}): how INFINIT© works with industrial and B2B companies — signs the brand is holding you back, process, FAQ (also in [Català](${abs('ca', 'industrial')}) and [Español](${abs('es', 'industrial')}))
 - Català: ${abs('ca', 'home')} · Español: ${abs('es', 'home')}
 `);
 
