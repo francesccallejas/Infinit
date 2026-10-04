@@ -6,7 +6,7 @@ import { chip, caseHero, meta, about, video, nextCase, swatches } from './case.m
 
 const B = 'work/bunnker/bunnker-assets/';
 // COAC photos that are far from the 16:10 frame (portrait / squarish) are shown whole over a blurred copy; the rest fill it.
-const FIT = [3, 5];
+const FIT = [3, 5]; // coac-1 is zoomed 5% (its source has a thin white line along the bottom)
 
 const C = {
   en: {
@@ -96,7 +96,7 @@ ${video({ file: B + 'web.mp4', poster: B + 'web-poster.jpg', label: c.vWeb, dela
     `<section class="dark" style="margin-top:clamp(90px,11vw,170px)"><div class="aw2">
 <div class="tap" id="tap" data-cur="${esc(t.cNext)}">${[1, 2, 3, 4, 5].map(i => FIT.includes(i)
   ? `<div class="tp img fit" style="--bgi:url('${A(B + 'coac-' + i + '.webp')}')"><img src="${A(B + 'coac-' + i + '.webp')}" alt="${esc(c.coacAlt(i))}" loading="lazy"></div>`
-  : `<div class="tp img"><img src="${A(B + 'coac-' + i + '.webp')}" alt="${esc(c.coacAlt(i))}" loading="lazy"></div>`).join('')}<div class="ctl"><span class="chip" data-n aria-live="polite">01 / 05</span><div><button type="button" data-prev aria-label="${esc(t.prevImg)}">←</button><button type="button" data-next aria-label="${esc(t.nextImg)}">→</button></div></div></div>
+  : `<div class="tp img"><img src="${A(B + 'coac-' + i + '.webp')}" alt="${esc(c.coacAlt(i))}" loading="lazy"${i === 1 ? ' style="transform:scale(1.05);transform-origin:50% 30%"' : ''}></div>`).join('')}<div class="ctl"><span class="chip" data-n aria-live="polite">01 / 05</span><div><button type="button" data-prev aria-label="${esc(t.prevImg)}">←</button><button type="button" data-next aria-label="${esc(t.nextImg)}">→</button></div></div></div>
 <div class="tx"><span class="lbl">${esc(c.awL)}</span><h2 class="h2" data-lines>${esc(c.awH)}</h2><p>${esc(c.awP)}</p><img src="${A('project/assets/clients/coac-trim.png')}" alt="COAC" loading="lazy"></div></div></section>`,
     `<section class="blk"><div class="sh"><div><span class="lbl">${esc(c.sysL)}</span><h2 class="h2" data-lines>${esc(c.sysH)}</h2></div></div>
 ${swatches([[c.sw[0], '#FE585A', '#fff'], [c.sw[1], '#524741', '#fff'], [c.sw[2], '#E8E5E0'], [c.sw[3], '#FFFFFF', '', true]])}
