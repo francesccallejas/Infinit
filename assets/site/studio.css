@@ -41,3 +41,12 @@
 .cta-b{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
 @media(max-width:900px){.vp,.fd2{grid-template-columns:1fr}.vp .img{aspect-ratio:16/10}.fd2 .img{max-height:none}.vp h3{font-size:48px}}
 .xp{position:relative}
+/* Who we work with: sector rows (linked rows lead to a sector page or case) */
+.sxl{list-style:none;margin:0;padding:0;border-top:1px solid var(--l1)}
+.sxl li>*{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr) 32px;gap:24px;align-items:baseline;padding:clamp(20px,2.2vw,30px) 0;border-bottom:1px solid var(--l1);color:inherit}
+.sxl h3{font-size:clamp(24px,2.6vw,44px);letter-spacing:-.045em;font-weight:600;line-height:1;transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+.sxl p{font-size:17px;line-height:1.5;color:var(--t3);max-width:560px}
+.sxl .ar{font-size:22px;justify-self:end;transition:transform .5s cubic-bezier(.2,.7,.2,1)}
+@media (hover:hover){.sxl a:hover h3{transform:translateX(12px)}.sxl a:hover .ar{transform:translate(4px,-4px)}}
+.sxl+.sx-exp{padding-top:clamp(40px,5vw,70px)}
+@media(max-width:760px){.sxl li>*{grid-template-columns:minmax(0,1fr) 24px;gap:10px 16px}.sxl p{grid-column:1;grid-row:2}.sxl .ar{grid-column:2;grid-row:1}}

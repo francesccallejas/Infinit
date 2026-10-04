@@ -104,7 +104,7 @@ ${extra}<div class="menu-b"><button class="gbtn" type="button" data-copy="${EMAI
 export function footer(ctx) {
   const t = T[ctx.lang], L = links(ctx);
   return `<footer class="ft dark" id="ft"><div class="ft-g">
-<div><p class="lbl">${esc(t.ftStudio)}</p><a href="${L.work}">${esc(t.work)}</a><a href="${L.services}">${esc(t.services)}</a><a href="${L.studio}">${esc(t.studio)}</a><a href="${url(ctx.lang, 'industrial')}">${esc(t.ftIndustrial)}</a></div>
+<div><p class="lbl">${esc(t.ftStudio)}</p><a href="${L.work}">${esc(t.work)}</a><a href="${L.services}">${esc(t.services)}</a><a href="${L.studio}">${esc(t.studio)}</a><a href="${url(ctx.lang, 'industrial')}">${esc(t.ftIndustrial)}</a><a href="${url(ctx.lang, 'automotive')}">${esc(t.ftAutomotive)}</a></div>
 <div><p class="lbl">${esc(t.ftConnect)}</p><a href="mailto:${EMAIL}">${EMAIL}</a><a href="tel:${PHONE.replace(/\s/g, '')}">${PHONE.replace(/ /g, '\u00a0')}</a><a href="${LINKEDIN}" target="_blank" rel="noopener">LinkedIn ↗</a><a href="${INSTAGRAM}" target="_blank" rel="noopener">Instagram ↗</a></div>
 <div><p class="lbl">${esc(t.ftRec)}</p><div class="aw"><img src="${A('project/assets/clients/Awwwards-Logo-Vector.svg-.png')}" alt="Awwwards" loading="lazy"><img src="${A('project/assets/clients/coac-trim.png')}" alt="COAC" loading="lazy"></div></div></div>
 <div class="ft-b lbl"><span>${esc(t.loc)}</span><nav class="fl" aria-label="${esc(t.language)}">${ordered(ctx).join('')}</nav><span data-clock></span><span>© 2026 INFINIT©</span></div></footer>`;

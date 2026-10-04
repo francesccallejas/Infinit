@@ -105,4 +105,25 @@
   <xhtml:link rel="alternate" hreflang="x-default" href="https://www.weareinfinit.com/en/industrial-branding/"/>
   <image:image><image:loc>https://www.weareinfinit.com/assets/site/og/industrial.jpg</image:loc></image:image>
 </url>
+<url><loc>https://www.weareinfinit.com/en/automotive-branding/</loc><lastmod>2026-10-04</lastmod>
+  <xhtml:link rel="alternate" hreflang="en" href="https://www.weareinfinit.com/en/automotive-branding/"/>
+  <xhtml:link rel="alternate" hreflang="ca" href="https://www.weareinfinit.com/ca/automotive-branding/"/>
+  <xhtml:link rel="alternate" hreflang="es" href="https://www.weareinfinit.com/es/automotive-branding/"/>
+  <xhtml:link rel="alternate" hreflang="x-default" href="https://www.weareinfinit.com/en/automotive-branding/"/>
+  <image:image><image:loc>https://www.weareinfinit.com/assets/site/og/automotive.jpg</image:loc></image:image>
+</url>
+<url><loc>https://www.weareinfinit.com/ca/automotive-branding/</loc><lastmod>2026-10-04</lastmod>
+  <xhtml:link rel="alternate" hreflang="en" href="https://www.weareinfinit.com/en/automotive-branding/"/>
+  <xhtml:link rel="alternate" hreflang="ca" href="https://www.weareinfinit.com/ca/automotive-branding/"/>
+  <xhtml:link rel="alternate" hreflang="es" href="https://www.weareinfinit.com/es/automotive-branding/"/>
+  <xhtml:link rel="alternate" hreflang="x-default" href="https://www.weareinfinit.com/en/automotive-branding/"/>
+  <image:image><image:loc>https://www.weareinfinit.com/assets/site/og/automotive.jpg</image:loc></image:image>
+</url>
+<url><loc>https://www.weareinfinit.com/es/automotive-branding/</loc><lastmod>2026-10-04</lastmod>
+  <xhtml:link rel="alternate" hreflang="en" href="https://www.weareinfinit.com/en/automotive-branding/"/>
+  <xhtml:link rel="alternate" hreflang="ca" href="https://www.weareinfinit.com/ca/automotive-branding/"/>
+  <xhtml:link rel="alternate" hreflang="es" href="https://www.weareinfinit.com/es/automotive-branding/"/>
+  <xhtml:link rel="alternate" hreflang="x-default" href="https://www.weareinfinit.com/en/automotive-branding/"/>
+  <image:image><image:loc>https://www.weareinfinit.com/assets/site/og/automotive.jpg</image:loc></image:image>
+</url>
 </urlset>
