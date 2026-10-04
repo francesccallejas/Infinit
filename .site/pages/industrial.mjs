@@ -13,7 +13,7 @@ export const C = {
     meta: [
       ['For', 'Industrial & B2B companies'],
       ['Size', '€1M–€200M revenue'],
-      ['Sectors', 'Manufacturing · Components · Automotive · Machinery'],
+      ['Sectors', 'Manufacturing · Components · Machinery · Chemicals · Packaging'],
       ['Markets', 'Catalonia · Spain · Europe'],
       ['Led by', 'Cesc Callejas, founder'],
     ],
@@ -47,7 +47,7 @@ export const C = {
     meta: [
       ['Per a', 'Empreses industrials i B2B'],
       ['Mida', 'D’1 a 200 M€ de facturació'],
-      ['Sectors', 'Fabricació · Components · Automoció · Maquinària'],
+      ['Sectors', 'Fabricació · Components · Maquinària · Química · Packaging'],
       ['Mercats', 'Catalunya · Espanya · Europa'],
       ['Liderat per', 'Cesc Callejas, fundador'],
     ],
@@ -81,7 +81,7 @@ export const C = {
     meta: [
       ['Para', 'Empresas industriales y B2B'],
       ['Tamaño', 'De 1 a 200 M€ de facturación'],
-      ['Sectores', 'Fabricación · Componentes · Automoción · Maquinaria'],
+      ['Sectores', 'Fabricación · Componentes · Maquinaria · Química · Packaging'],
       ['Mercados', 'Cataluña · España · Europa'],
       ['Liderado por', 'Cesc Callejas, fundador'],
     ],

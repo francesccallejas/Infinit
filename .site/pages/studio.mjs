@@ -31,10 +31,18 @@ ${heroLine}</section>`;
 <div class="stt">${t.stats.map((s, i) => `<div><span class="lbl">${esc(s)}</span><b data-cnt="${cnt[i]}" data-fmt="${fmts[i]}">${esc(STATS[lang][i])}</b></div>`).join('')}</div>
 <a class="gbtn" href="https://www.linkedin.com/in/francesc-callejas-%E2%98%81%EF%B8%8F%E2%98%98%EF%B8%8F-99416a90/" target="_blank" rel="noopener" style="--bh:255;align-self:flex-start"><span class="roll">LinkedIn</span><span class="ar" aria-hidden="true">↗</span></a></div></div></section>`;
 
+  // Who we work with: sectors (linked when they have a page or a case) + the moments that change a brand.
+  const sectors = `<section class="blk" id="sectors" data-h="285"><div class="sh"><div><span class="lbl">${esc(t.secL)}</span><h2 class="h2 em" data-lines>${t.secH}</h2></div></div>
+<ul class="sxl">${t.secs.map(([k, n, d], i) => {
+    const inner = `<h3>${esc(n)}</h3><p>${esc(d)}</p><span class="ar" aria-hidden="true">${k ? '↗' : ''}</span>`;
+    return `<li class="rv" style="transition-delay:${(i * .04).toFixed(2)}s">${k ? `<a href="${url(lang, k)}">${inner}</a>` : `<div>${inner}</div>`}</li>`;
+  }).join('')}</ul>
+<div class="sx-exp"><span class="lbl">${esc(t.momL)}</span><p>${esc(t.mom)}</p></div></section>`;
+
   const xp = `<section class="dark xp" id="contact" data-h="n" style="margin-top:clamp(90px,11vw,170px)">${ftLine}<div style="padding:0 var(--pad) 30px"><span class="lbl">${esc(t.exp)}</span><span class="sr">${esc(XP.flat().join(', '))}</span></div><div id="xp" aria-hidden="true">${XP.map((r, k) => `<div class="xp-r"><div class="xp-t">${[...r, ...r, ...r, ...r].map((n, i) => `<span style="--c:oklch(.75 .08 ${HUES[(i + k) % 5]})">${esc(n)}<i></i></span>`).join('')}</div></div>`).join('')}</div>
 <div class="cta2"><h2 class="em" data-lines>${t.stCta}</h2>
 <button class="mail" type="button" data-copy="${EMAIL}" data-cur="${esc(t.cCopy)}" aria-label="${esc(t.copyEmail)}: ${EMAIL}"><span class="mt">${EMAIL}</span></button></div></section>`;
 
   return head(ctx, { title: t.stTitle, desc: t.stDesc, og: '/assets/site/og/studio.jpg', css: ['inner', 'studio'] }) +
-    `\n<main id="main">\n${hero}\n${mf}\n${vh}\n${founder}\n${xp}\n</main>\n` + end(ctx);
+    `\n<main id="main">\n${hero}\n${mf}\n${vh}\n${founder}\n${sectors}\n${xp}\n</main>\n` + end(ctx);
 }
