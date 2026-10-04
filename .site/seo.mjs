@@ -44,7 +44,7 @@ const org = lang => ({
   sameAs: [LINKEDIN, INSTAGRAM],
   knowsAbout: S.flatMap(s => [s.n.en, ...s.t.en]).filter((v, i, a) => a.indexOf(v) === i)
     .concat(['B2B branding', 'Industrial branding', 'Automotive branding', 'Food & beverage branding', 'Rebranding', 'Brand positioning for mid-sized companies']),
-  audience: { '@type': 'BusinessAudience', name: 'Mid-sized, often family-owned companies (€1M–€70M revenue) in Catalonia, Spain and Europe — industrial and B2B manufacturers, automotive, food & beverage and consumer brands with international reach' },
+  audience: { '@type': 'BusinessAudience', name: 'Mid-sized, often family-owned companies (€1M–€200M revenue) in Catalonia, Spain and Europe — industrial and B2B manufacturers, automotive, food & beverage and consumer brands with international reach' },
   hasOfferCatalog: {
     '@type': 'OfferCatalog',
     name: T[lang].capabilities || 'Capabilities',

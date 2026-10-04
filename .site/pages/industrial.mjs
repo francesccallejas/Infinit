@@ -13,10 +13,10 @@ const PH = [165, 255, 285]; // card hues: strategy · brand · digital
 export const C = {
   en: {
     title: 'Industrial & B2B branding — Barcelona | INFINIT©',
-    desc: 'Branding and positioning for industrial and B2B companies (€1M–€70M): strategy, identity, website, SEO & GEO. Senior-led studio in Barcelona. See the Relats case.',
+    desc: 'Branding and positioning for industrial and B2B companies (€1M–€200M): strategy, identity, website, SEO & GEO. Senior-led studio in Barcelona. See the Relats case.',
     lbl: 'Industrial & B2B branding',
     h1: 'Industrial companies that have outgrown <b>their brand.</b>',
-    meta: [['For', 'Industrial & B2B companies'], ['Size', '€1M–€70M revenue'], ['Sectors', 'Manufacturing · Components · Automotive · Machinery'], ['Markets', 'Catalonia · Spain · Europe'], ['Led by', 'Cesc Callejas, founder']],
+    meta: [['For', 'Industrial & B2B companies'], ['Size', '€1M–€200M revenue'], ['Sectors', 'Manufacturing · Components · Automotive · Machinery'], ['Markets', 'Catalonia · Spain · Europe'], ['Led by', 'Cesc Callejas, founder']],
     probL: 'The problem',
     prob: 'Most industrial companies we meet are better than they look. Decades of engineering, quality and loyal clients — presented with a logo from another era, a catalogue website and a story only the founders can tell.',
     quoteL: 'In one line',
@@ -52,10 +52,10 @@ export const C = {
   },
   ca: {
     title: 'Branding industrial i B2B — Barcelona | INFINIT©',
-    desc: 'Branding i posicionament per a empreses industrials i B2B (d’1 a 70 M€): estratègia, identitat, web, SEO i GEO. Estudi sènior a Barcelona. Mira el cas Relats.',
+    desc: 'Branding i posicionament per a empreses industrials i B2B (d’1 a 200 M€): estratègia, identitat, web, SEO i GEO. Estudi sènior a Barcelona. Mira el cas Relats.',
     lbl: 'Branding industrial i B2B',
     h1: 'Empreses industrials que han crescut més que <b>la seva marca.</b>',
-    meta: [['Per a', 'Empreses industrials i B2B'], ['Mida', 'D’1 a 70 M€ de facturació'], ['Sectors', 'Fabricació · Components · Automoció · Maquinària'], ['Mercats', 'Catalunya · Espanya · Europa'], ['Liderat per', 'Cesc Callejas, fundador']],
+    meta: [['Per a', 'Empreses industrials i B2B'], ['Mida', 'D’1 a 200 M€ de facturació'], ['Sectors', 'Fabricació · Components · Automoció · Maquinària'], ['Mercats', 'Catalunya · Espanya · Europa'], ['Liderat per', 'Cesc Callejas, fundador']],
     probL: 'El problema',
     prob: 'La majoria d’empreses industrials que coneixem són millors del que semblen. Dècades d’enginyeria, qualitat i clients fidels — presentades amb un logo d’una altra època, una web catàleg i una història que només saben explicar els fundadors.',
     quoteL: 'En una frase',
@@ -91,10 +91,10 @@ export const C = {
   },
   es: {
     title: 'Branding industrial y B2B — Barcelona | INFINIT©',
-    desc: 'Branding y posicionamiento para empresas industriales y B2B (de 1 a 70 M€): estrategia, identidad, web, SEO y GEO. Estudio sénior en Barcelona. Mira el caso Relats.',
+    desc: 'Branding y posicionamiento para empresas industriales y B2B (de 1 a 200 M€): estrategia, identidad, web, SEO y GEO. Estudio sénior en Barcelona. Mira el caso Relats.',
     lbl: 'Branding industrial y B2B',
     h1: 'Empresas industriales que han crecido más que <b>su marca.</b>',
-    meta: [['Para', 'Empresas industriales y B2B'], ['Tamaño', 'De 1 a 70 M€ de facturación'], ['Sectores', 'Fabricación · Componentes · Automoción · Maquinaria'], ['Mercados', 'Cataluña · España · Europa'], ['Liderado por', 'Cesc Callejas, fundador']],
+    meta: [['Para', 'Empresas industriales y B2B'], ['Tamaño', 'De 1 a 200 M€ de facturación'], ['Sectores', 'Fabricación · Componentes · Automoción · Maquinaria'], ['Mercados', 'Cataluña · España · Europa'], ['Liderado por', 'Cesc Callejas, fundador']],
     probL: 'El problema',
     prob: 'La mayoría de empresas industriales que conocemos son mejores de lo que parecen. Décadas de ingeniería, calidad y clientes fieles — presentadas con un logo de otra época, una web catálogo y una historia que solo saben contar los fundadores.',
     quoteL: 'En una frase',

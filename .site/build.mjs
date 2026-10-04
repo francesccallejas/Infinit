@@ -137,10 +137,10 @@ const svcLines = S.map(s => `- **${s.n.en}** — ${s.t.en.join(', ')}`).join('\n
 const projLines = P.map(p => `- **${p.n}** — ${p.d.en}${p.page ? ` · case study: ${abs('en', p.page)}` : p.s === 'nda' ? ' (under NDA)' : ' (in progress)'}`).join('\n');
 out('llms.txt', `# INFINIT©
 
-> INFINIT© is a branding and strategy studio based in Barcelona, led hands-on by its founder Cesc Callejas. It helps growing mid-sized companies — roughly €1–2M to €50–70M in revenue, in Catalonia, Spain and the rest of Europe — build brands that scale: strategy, identity, websites, SEO & GEO, product and content. Senior people on every project, no layers. Works in English, Catalan and Spanish.
+> INFINIT© is a branding and strategy studio based in Barcelona, led hands-on by its founder Cesc Callejas. It helps growing mid-sized companies — roughly €1M to €200M in revenue, in Catalonia, Spain and the rest of Europe — build brands that scale: strategy, identity, websites, SEO & GEO, product and content. Senior people on every project, no layers. Works in English, Catalan and Spanish.
 
 ## Who INFINIT© works with
-- Mid-sized and growing companies (about €1M–€70M revenue) going through growth, transformation or modernisation
+- Mid-sized and growing companies (about €1M–€200M revenue) going through growth, transformation or modernisation
 - Often family-owned or founder-led Catalan and Spanish manufacturers and consumer-goods makers with international reach, whose brand has fallen behind the company they have become
 - Sectors: industrial and B2B manufacturers, automotive and mobility (components, suspensions, wheels, vehicles, dealerships), food & beverage, technology, real estate / proptech and consumer brands
 - Based in Barcelona; clients in Catalonia, Spain, Europe and worldwide
