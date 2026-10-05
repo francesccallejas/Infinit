@@ -88,5 +88,5 @@ export const C = {
 };
 
 export const tech = ctx => sectorPage(ctx, {
-  C, hero: 'project/assets/images/instellar-aircraft.webp', og: '/assets/site/og/home.jpg',
+  C, hero: 'project/assets/imagery/device-thermos.webp', dim: true, og: '/assets/site/og/home.jpg',
 });
