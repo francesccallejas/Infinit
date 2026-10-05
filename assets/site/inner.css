@@ -3,6 +3,9 @@
 .ch-bg{position:absolute;inset:0}.ch-bg .img{position:absolute;inset:0;background:var(--d1)}
 .ch-bg img{transform:scale(1.12);animation:kb 9s cubic-bezier(.2,.7,.2,1) forwards}@keyframes kb{to{transform:scale(1)}}
 .ch-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,oklch(.14 .012 245 / .45),oklch(.14 .012 245 / .1) 40%,oklch(.14 .012 245 / .55))}
+/* .dim: busy photo behind the headline → a darker scrim on the text side (full-screen on phones). */
+.ch-bg.dim::after{background:linear-gradient(90deg,oklch(.1 .01 245 / .62),oklch(.1 .01 245 / .3) 55%,oklch(.1 .01 245 / .12)),linear-gradient(180deg,oklch(.14 .012 245 / .35),transparent 40%,oklch(.14 .012 245 / .55))}
+@media(max-width:760px){.ch-bg.dim::after{background:oklch(.1 .01 245 / .5)}}
 .ch>*:not(.ch-bg):not(.hl):not(.ch-m){position:relative;z-index:1}
 .ch-t{display:flex;justify-content:space-between;align-items:flex-start}
 /* Logo + headline centred on the visible screen (the bottom padding that used to lift it is gone).
