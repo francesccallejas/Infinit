@@ -364,7 +364,7 @@ function pre(key) {
     p.innerHTML = `<div class="pre2-m"></div><div class="pre2-b"><span class="lbl">${escH(T.firm)} — ${escH(T.loc)}</span><span class="pre2-n">000</span></div><div class="pre2-l"><i></i></div>`;
     const w = $('.mid .wm'); if (w) $('.pre2-m', p).appendChild(w.cloneNode(true));
     body.appendChild(p); body.classList.add('lock');
-    const n = $('.pre2-n', p), l = $('.pre2-l i', p), t0 = performance.now(), D = 1700;
+    const n = $('.pre2-n', p), l = $('.pre2-l i', p), t0 = performance.now(), D = 1000;
     const done = () => { if (p.classList.contains('out')) return; p.classList.add('out'); body.classList.remove('lock'); setTimeout(res, 350); setTimeout(() => p.remove(), 1300); };
     p.onclick = done;
     (function f(t) { const k = Math.min(1, (t - t0) / D), e = 1 - Math.pow(1 - k, 3); n.textContent = String(Math.round(e * 100)).padStart(3, '0'); l.style.transform = `scaleX(${e})`; if (k < 1) requestAnimationFrame(f); else setTimeout(done, 250); })(t0);

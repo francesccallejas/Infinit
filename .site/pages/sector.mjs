@@ -109,7 +109,7 @@ export function sectorPage(ctx, def) {
 
   const hero = `<section class="ch dark" id="top" data-h="n"><div class="ch-bg"><div class="img"><img src="${A(def.hero)}" alt="" fetchpriority="high"></div></div>
 <div class="ch-t"><a class="gbtn" href="${url(lang, 'home')}"><span class="ar bk" aria-hidden="true">←</span><span class="roll">${esc(t.home)}</span></a></div>
-<div class="ch-m"><span class="lbl sx-l">${esc(c.lbl)}</span><h1 data-lines>${c.h1}</h1></div>
+<div class="ch-m"><span class="lbl sx-l">${esc(c.lbl)}</span><h1 class="hin">${c.h1}</h1></div>
 <div class="ch-b"><div class="chips">${chip('strategy', lang)}${chip('brand', lang)}${chip('digital', lang)}</div><a class="scd" href="#sector">${esc(t.scroll)}<i></i></a></div>
 ${heroLine}</section>`;
 

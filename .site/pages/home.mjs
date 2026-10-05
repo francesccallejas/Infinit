@@ -1,5 +1,5 @@
 // Home — port of prototype/pages/home.html, rendered server-side (content in HTML, behaviour in site.js).
-import { EMAIL, url, esc, A, dot, tint, wm } from '../lib.mjs';
+import { EMAIL, url, esc, A, dot, tint, wm, pngDim } from '../lib.mjs';
 import { T } from '../i18n.mjs';
 import { S, P, svc, src, CH, HS } from '../data.mjs';
 import { head, end, heroLine, ftLine } from '../layout.mjs';
@@ -52,7 +52,7 @@ ${heroLine}<div class="hb"><a class="ql" href="${url(lang, 'studio')}" data-cur=
   const services = `<section class="acc" id="services" data-h="n"><div class="sh"><h2 class="h2" data-lines>${t.svcH}</h2><span class="lbl">${esc(t.capabilities)}</span></div>
 <div class="svc" id="svc">${S.map((s, i) => `<article class="fc rv" tabindex="0" data-hh="${s.h}" style="--c:${tint(s.h)};transition-delay:${(i * .06).toFixed(2)}s"><div class="fc-i"><div class="fc-f"><div class="n"><span class="lbl">0${i + 1}</span><i style="background:${dot(s.h)}" aria-hidden="true"></i></div><h3>${esc(s.n[lang])}</h3></div><div class="fc-b"><span class="lbl">0${i + 1} — ${esc(s.n[lang])}</span><ul>${s.t[lang].map(c => `<li>${esc(c)}</li>`).join('')}</ul></div></div></article>`).join('')}</div></section>`;
 
-  const logos = Object.keys(CH).map(n => `<img src="${A('project/assets/clients/' + n + '.png')}" alt="" loading="lazy" style="height:${CH[n]}px">`).join('');
+  const logos = Object.keys(CH).map(n => `<img src="${A('project/assets/clients/' + n + '.png')}" alt=""${pngDim('project/assets/clients/' + n + '.png', CH[n])} loading="lazy" style="height:${CH[n]}px">`).join('');
   const contact = `<section class="dark ct" id="contact">${ftLine}<div class="ct-h"><span class="lbl">${esc(t.exp)}</span><span class="sr">${esc(t.clientsSr)}</span></div><div class="mq on-d" aria-hidden="true"><div class="mq-t">${logos}${logos}</div></div>
 <div class="end"><h2 data-lines>${esc(t.talk)}</h2><button class="mail" type="button" data-copy="${EMAIL}" data-cur="${esc(t.cCopy)}" aria-label="${esc(t.copyEmail)}: ${EMAIL}"><span class="mt">${EMAIL}</span></button></div>
 <div class="ct-wm" aria-hidden="true">${wm('fit')}</div></section>`;
