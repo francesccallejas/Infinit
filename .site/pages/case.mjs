@@ -12,7 +12,7 @@ export function caseHero(ctx, { img, logo, logoStyle = '', name, h1, chips }) {
   const t = T[ctx.lang];
   return `<section class="ch dark" id="top" data-h="n"><div class="ch-bg"><div class="img"><img src="${A(img)}" alt="" fetchpriority="high"></div></div>
 <div class="ch-t"><a class="gbtn" href="${url(ctx.lang, 'home')}#work"><span class="ar bk" aria-hidden="true">←</span><span class="roll">${esc(t.allWork)}</span></a></div>
-<div class="ch-m"><img class="ch-logo" src="${A(logo)}" alt="${esc(name)}"${logoStyle}><h1 data-lines>${h1}</h1></div>
+<div class="ch-m"><img class="ch-logo" src="${A(logo)}" alt="${esc(name)}"${logoStyle}><h1 class="hin">${h1}</h1></div>
 <div class="ch-b"><div class="chips">${chips}</div><a class="scd" href="#case">${esc(t.scroll)}<i></i></a></div>
 ${heroLine}</section>`;
 }

@@ -55,4 +55,10 @@ export const wm = (size) => {
   return `<svg class="wm${size === 'fit' ? ' wm-fit' : ''}" viewBox="0 ${WM.top} ${v.w} ${WM.h}" aria-hidden="true" focusable="false"${style}>${WM.letters.map(d => `<path d="${d}"/>`).join('')}<path class="c" d="${v.c}"/></svg>`;
 };
 
+// width/height attributes for a PNG shown at height h (reserves its box before it loads).
+export const pngDim = (rel, h) => {
+  const b = readFileSync(new URL('../' + rel, import.meta.url)), w = b.readUInt32BE(16), ht = b.readUInt32BE(20);
+  return ` width="${Math.round(h * w / ht)}" height="${h}"`;
+};
+
 export const ARROW_X = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>';

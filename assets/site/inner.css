@@ -13,6 +13,8 @@
 .ch h1{font-size:clamp(50px,8.2vw,150px);line-height:.96;letter-spacing:-.05em;font-weight:600;color:#fff;max-width:14em;text-wrap:balance}
 .ch h1 .lm{padding-bottom:.14em;margin-bottom:-.14em}
 .ch h1 b{color:#fff;font-weight:inherit}
+/* Hero headline: visible from the first frame (no JS wait — it is the page's LCP), rising in with CSS only. */
+.hin{animation:hin 1.15s cubic-bezier(.2,.7,.2,1) both}@keyframes hin{from{opacity:.01;transform:translateY(.4em)}}
 .ch .lbl{color:#fff}
 .ch-b{grid-row:3;display:flex;justify-content:space-between;align-items:center;gap:20px;min-height:52px}
 @media(max-width:1180px){.ch{padding-bottom:clamp(96px,11vh,120px)}}

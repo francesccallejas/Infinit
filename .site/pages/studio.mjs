@@ -16,7 +16,7 @@ export function studio(ctx) {
 
   const hero = `<section class="ch dark" id="top" data-h="n"><div class="ch-bg"><div class="img"><img src="${A('project/assets/imagery/mountains-tekapo.webp')}" alt="" fetchpriority="high"></div></div>
 <div class="ch-t"><a class="gbtn" href="${url(lang, 'home')}"><span class="ar bk" aria-hidden="true">←</span><span class="roll">${esc(t.home)}</span></a><span class="lbl">${esc(t.stLabel)}</span></div>
-<div class="ch-m"><h1 data-lines>${t.stH1}</h1></div>
+<div class="ch-m"><h1 class="hin">${t.stH1}</h1></div>
 <div class="ch-b"><a class="fcd" href="#founder" data-cur="${esc(t.cMeet)}"><span class="img"><img src="${A('project/assets/imagery/francesc.webp')}" alt=""></span><span>Cesc Callejas<small>${esc(t.fcdSub)}</small></span></a><a class="scd" href="#mf">${esc(t.scroll)}<i></i></a></div>
 ${heroLine}</section>`;
 
