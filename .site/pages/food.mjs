@@ -88,5 +88,5 @@ export const C = {
 };
 
 export const food = ctx => sectorPage(ctx, {
-  C, hero: 'project/assets/imagery/device-thermos.webp', og: '/assets/site/og/home.jpg',
+  C, hero: 'project/assets/imagery/food-burger.webp', dim: true, og: '/assets/site/og/home.jpg',
 });
