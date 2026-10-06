@@ -218,18 +218,21 @@ a,button,[role=button],.fc,.tap{touch-action:manipulation;-webkit-tap-highlight-
 /* Hover: a Sand line draws in under the address (no colour sweep).
    Copy (.cp, site.js): the letters lift away one by one, "Copied ✓" rises in their place over the Sand line,
    then the address drops back. No pop-up; the toast only announces it to screen readers. */
-.mail .mt{position:relative;display:inline-block;padding-bottom:.14em}
+.mail .mt{position:relative;display:inline-block;padding-bottom:.26em}
 .mail .mt::after{content:"";position:absolute;left:0;right:0;bottom:0;height:.045em;border-radius:99px;background:var(--acc);transform:scaleX(0);transform-origin:right;transition:transform .7s cubic-bezier(.7,0,.2,1)}
 @media (hover:hover){.mail:hover .mt::after{transform:scaleX(1);transform-origin:left}}
-.mail.cp .mt::after{transform:scaleX(1);transform-origin:left}
-.mail .mt>span,.mail .mok>span{display:inline-block;white-space:pre}
+.mail.cp .mt::after{transform:scaleX(0);transform-origin:right}
+.mail .mt>span,.mail .mw>span{display:inline-block;white-space:pre}
 .mail .mt>span{transition:transform .55s cubic-bezier(.7,0,.2,1) calc(var(--i) * 16ms),opacity .4s calc(var(--i) * 16ms)}
 .mail.cp .mt>span{transform:translateY(-.55em) rotate(-6deg);opacity:0}
-.mail .mok{position:absolute;inset:0 0 .14em;display:flex;align-items:center;justify-content:center;pointer-events:none}
-.mail .mok>span{transform:translateY(.6em);opacity:0;transition:transform .45s cubic-bezier(.7,0,.2,1) calc(var(--i) * 22ms),opacity .3s calc(var(--i) * 22ms)}
-.mail.cp .mok>span{transform:none;opacity:1;transition:transform .7s cubic-bezier(.2,.7,.2,1) calc(220ms + var(--i) * 34ms),opacity .4s calc(220ms + var(--i) * 34ms)}
-.mail .mok .ok{color:var(--acc)}
-@media (prefers-reduced-motion:reduce){.mail .mt>span,.mail .mok>span{transform:none!important;transition:opacity .2s}}
+.mail .mok{position:absolute;inset:0;display:flex;align-items:flex-start;justify-content:center;pointer-events:none}
+.mail .mw{position:relative;display:inline-block;padding-bottom:.26em}
+.mail .mw::after{content:"";position:absolute;left:0;right:0;bottom:0;height:.045em;border-radius:99px;background:var(--acc);transform:scaleX(0);transform-origin:right;transition:transform .5s cubic-bezier(.7,0,.2,1)}
+.mail.cp .mw::after{transform:scaleX(1);transform-origin:left;transition:transform .8s cubic-bezier(.7,0,.2,1) .45s}
+.mail .mw>span{transform:translateY(.6em);opacity:0;transition:transform .45s cubic-bezier(.7,0,.2,1) calc(var(--i) * 22ms),opacity .3s calc(var(--i) * 22ms)}
+.mail.cp .mw>span{transform:none;opacity:1;transition:transform .7s cubic-bezier(.2,.7,.2,1) calc(220ms + var(--i) * 34ms),opacity .4s calc(220ms + var(--i) * 34ms)}
+.mail .mw .ok{color:var(--acc)}
+@media (prefers-reduced-motion:reduce){.mail .mt>span,.mail .mw>span{transform:none!important;transition:opacity .2s}}
 @media(hover:none){.mail{cursor:pointer}}
 @media(max-width:760px){.end{gap:28px}.end h2{font-size:17vw}.mail{font-size:calc((100vw - var(--pad)*2)/12)}}
 /* Phones: the menu button (icon + label) fills the free part of the pill, its content centred —
