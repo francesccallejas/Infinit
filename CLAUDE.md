@@ -40,13 +40,14 @@ The build writes `/en/`, `/ca/`, `/es/` pages, the language gateway `/index.html
 - **Monochrome UI**: ink, white and warm greys; colour comes only from the imagery. The service hues, the colour line, the ambient hue, tints and the colour-cycling favicon are retired (don't bring them back).
 - Light ground `--bg` oklch(.975 .002 85) · ink `--t4` · secondary `--t3` · grey emphasis `--t2 #8C8B8C` (`.em`: grey sentence, key words in `<b>` full ink — display sizes only; small text uses `--t3`).
 - Dark ground `.dark`: `--d0` … `--d4`.
-- **One accent: Sand** `--acc` oklch(.86 .035 80) ≈ #DDCFB8, always with ink text (`--acc-ink`): the "Let’s talk" CTA, text selection, the big email's hover underline, the © hover over dark; also the hover fill of list rows (sectors, Work, Journal), the related card in articles, the highlighted price column, the open FAQ icon and the sign cards' hover. Never for text or focus rings.
+- **One accent: Sand** `--acc` oklch(.86 .035 80) ≈ #DDCFB8, always with ink text (`--acc-ink`): the "Let’s talk" CTA (and the cookie card’s Accept), text selection, the big email's hover underline, the © hover over dark; also the hover fill of list rows (sectors, Work, Journal), the related card in articles, the highlighted price column, the open FAQ icon and the sign cards' hover. Never for text or focus rings.
 - Light → dark transitions: a 1px neutral line (`.ft-hl`), drawn in on scroll.
 - Favicon: bold © in ink on a Sand tile (`/favicon.svg`, `/favicon.ico`, `assets/site/*.png`).
 - Easing: in-out `cubic-bezier(.7,0,.2,1)` · out `cubic-bezier(.2,.7,.2,1)`.
 - `--pad: clamp(20px,3vw,44px)`. No horizontal overflow (`overflow-x: clip`).
 
 ## Behaviour to preserve
+- The cookie card sits above the navigation with the same width and the same liquid glass as the pill.
 - Navigation (v3): the © mark turns with the scroll (upright on hover / focus) + a glass pill (Menu · Let’s talk) that opens a card with Work · Services · Studio · Journal, then Sectors · All work · Contact and CA · ES · EN. Rendered in the HTML; auto-contrast over `.dark` / `.full`, hides at the footer, no scroll lock, closes on Esc / outside click / link / focus leaving / scrolling > 90px.
 - One ending on every page: the dark `#contact` block (Let’s talk, the big copyable email, the wordmark at full width), then the footer `#ft`. Only one `id="contact"` per page.
 - Home: preloader once per session, hero cross-fade, drag carousel ⇄ grid (projects are in the HTML once; site.js builds the loop copies and the grid), scroll-scrubbed approach, flip service cards, giant copyable email. Native scroll with a soft stop at `#work` (wheel and touch).
