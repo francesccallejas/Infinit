@@ -1,5 +1,5 @@
 // Shared page chrome: <head>, navigation (v3: © mark + glass pill + menu card), footer, toast.
-import { SITE, LANGS, LOCALE, EMAIL, PHONE, LINKEDIN, INSTAGRAM, url, abs, esc, A, wm, pngDim, MARK_SVG, ogName } from './lib.mjs';
+import { SITE, LANGS, LOCALE, EMAIL, PHONE, LINKEDIN, INSTAGRAM, url, abs, esc, A, wm, pngDim, MARK_SVG, ogName, icons } from './lib.mjs';
 import { existsSync } from 'node:fs';
 import { graph } from './seo.mjs';
 import { T } from './i18n.mjs';
@@ -49,9 +49,7 @@ ${LANGS.filter(l => l !== lang).map(l => `<meta property="og:locale:alternate" c
 <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
 <link rel="alternate" type="text/plain" href="/llms.txt" title="INFINIT© for AI assistants">
 <meta name="theme-color" content="#060a0e">
-<link rel="icon" href="/favicon.ico" sizes="32x32">
-<link rel="icon" href="/favicon.svg" type="image/svg+xml">
-<link rel="apple-touch-icon" href="/assets/site/apple-touch-icon.png">
+${icons(V)}
 <link rel="manifest" href="/site.webmanifest">
 <link rel="preload" href="/assets/site/fonts/Satoshi-Variable.woff2" as="font" type="font/woff2" crossorigin>
 ${styles}
