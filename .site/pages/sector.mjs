@@ -3,15 +3,18 @@
 // SHARED holds what every sector page says the same way — process labels, the timing & investment
 // table, the general FAQ and the contact block — so a price change is made once. Durations, price
 // ranges and process as given by Cesc Callejas (Oct 2026). Each sector module adds its own copy.
-import { EMAIL, url, abs, esc, A, dot, tint } from '../lib.mjs';
+import { url, abs, esc, A } from '../lib.mjs';
 import { T } from '../i18n.mjs';
-import { head, end, heroLine, ftLine } from '../layout.mjs';
+import { head, end, ending } from '../layout.mjs';
 import { chip } from './case.mjs';
+import { J, row, forPage } from './journal.mjs';
 
-const PH = [165, 255, 285]; // card hues: strategy · brand · digital
+// Filled by sectors.mjs (the sector lists; importing it from here would be circular).
+export const REG = {};
 
 export const SHARED = {
   en: {
+    allSec: 'All sectors', pzL: 'Your company’s revenue', pzSeg: ['€1–10M', '€10–50M', '€50–200M'], moreInd: 'More sectors', moreMom: 'More moments & services',
     probL: 'The problem',
     quoteL: 'In one line',
     sigL: 'Signs it’s time',
@@ -40,6 +43,7 @@ export const SHARED = {
     ctaP: 'Tell us where you are. We’ll tell you honestly whether a brand project makes sense now.',
   },
   ca: {
+    allSec: 'Tots els sectors', pzL: 'Facturació de la vostra empresa', pzSeg: ['1–10 M€', '10–50 M€', '50–200 M€'], moreInd: 'Més sectors', moreMom: 'Més moments i serveis',
     probL: 'El problema',
     quoteL: 'En una frase',
     sigL: 'Senyals',
@@ -68,6 +72,7 @@ export const SHARED = {
     ctaP: 'Expliqueu-nos on sou. Us direm amb sinceritat si ara té sentit un projecte de marca.',
   },
   es: {
+    allSec: 'Todos los sectores', pzL: 'Facturación de vuestra empresa', pzSeg: ['1–10 M€', '10–50 M€', '50–200 M€'], moreInd: 'Más sectores', moreMom: 'Más momentos y servicios',
     probL: 'El problema',
     quoteL: 'En una frase',
     sigL: 'Señales',
@@ -99,7 +104,7 @@ export const SHARED = {
 
 // def: { C: sector copy per language, hero: image path, og, proof?: { img, case: page key, name }, prices?: false, sharedFaq?: [indices] }
 export function sectorPage(ctx, def) {
-  const { lang } = ctx, t = T[lang], own = def.C[lang];
+  const { lang, page } = ctx, t = T[lang], own = def.C[lang];
   // Sector copy overrides the shared copy; sector-specific questions go before the shared FAQ.
   // def.prices === false hides the price table (and the shared cost/duration answers) on pages whose
   // prices aren't published (e.g. GEO, fractional CMO). def.sharedFaq picks shared questions by index.
@@ -107,42 +112,46 @@ export function sectorPage(ctx, def) {
   const shared = keep ? keep.map(i => SHARED[lang].faq[i]) : SHARED[lang].faq;
   const c = { ...SHARED[lang], ...own, faq: [...(own.faq || []), ...shared] };
 
-  const hero = `<section class="ch dark" id="top" data-h="n"><div class="ch-bg${def.dim ? ' dim' : ''}"><div class="img"><img src="${A(def.hero)}" alt="" fetchpriority="high"></div></div>
-<div class="ch-t"><a class="gbtn" href="${url(lang, 'home')}"><span class="ar bk" aria-hidden="true">←</span><span class="roll">${esc(t.home)}</span></a></div>
-<div class="ch-m"><span class="lbl sx-l">${esc(c.lbl)}</span><h1 class="hin">${c.h1}</h1></div>
+  const hero = `<section class="ch dark" id="top"><div class="ch-bg${def.dim ? ' dim' : ''}"><div class="img"><img src="${A(def.hero)}" alt="" fetchpriority="high"></div></div>
+<div class="ch-t"><a class="gbtn" href="${url(lang, 'sectors')}"><span class="ar bk" aria-hidden="true">←</span><span class="roll">${esc(c.allSec)}</span></a><span class="lbl">${esc(c.lbl)}</span></div>
+<div class="ch-m"><h1 class="hin">${c.h1}</h1></div>
 <div class="ch-b"><div class="chips">${chip('strategy', lang)}${chip('brand', lang)}${chip('digital', lang)}</div><a class="scd" href="#sector">${esc(t.scroll)}<i></i></a></div>
-${heroLine}</section>`;
+</section>`;
 
   const meta = `<section class="meta" id="sector">${c.meta.map(([k, v]) => `<div><span class="lbl">${esc(k)}</span><b>${esc(v)}</b></div>`).join('')}</section>`;
 
-  const problem = `<section class="blk g12 ab" data-h="n"><div class="who rv"><span class="lbl">${esc(c.probL)}</span><p>${esc(c.prob)}</p></div>
+  const problem = `<section class="blk g12 ab"><div class="who rv"><span class="lbl">${esc(c.probL)}</span><p>${esc(c.prob)}</p></div>
 <div class="q"><span class="lbl">${esc(c.quoteL)}</span><blockquote class="em" data-lines>${c.quote}</blockquote></div></section>`;
 
   const signs = `<section class="blk"><div class="sh"><div><span class="lbl">${esc(c.sigL)}</span><h2 class="h2" data-lines>${esc(c.sigH)}</h2></div></div>
-<div class="pil">${c.sig.map((s, i) => `<div class="pc rv" data-hh="${PH[i]}" style="--c:${tint(PH[i])}${i ? `;transition-delay:${i * .06}s` : ''}"><div class="n"><span class="lbl">${esc(s[0])}</span><i style="background:${dot(PH[i])}" aria-hidden="true"></i></div><div><h3>${esc(s[1])}</h3><p>${esc(s[2])}</p></div></div>`).join('')}</div></section>`;
+<div class="pil">${c.sig.map((s, i) => `<div class="pc rv"${i ? ` style="transition-delay:${i * .06}s"` : ''}><div class="n"><span class="lbl">${esc(s[0])}</span></div><div><h3>${esc(s[1])}</h3><p>${esc(s[2])}</p></div></div>`).join('')}</div></section>`;
 
-  const how = `<section class="blk" data-h="255"><div class="sh"><div><span class="lbl">${esc(c.howL)}</span><h2 class="h2" data-lines>${esc(c.howH)}</h2></div></div>
-<ol class="proc">${c.how.map((s, i) => `<li class="rv" style="transition-delay:${(i * .05).toFixed(2)}s"><span class="lbl">0${i + 1}</span><div><h3>${esc(s[0])}</h3><span class="chip" style="color:var(--t4);background:oklch(.16 .004 85 / .06);margin-top:12px">${esc(s[1])}</span></div><p>${esc(s[2])}</p></li>`).join('')}</ol></section>`;
+  const how = `<section class="blk"><div class="sh"><div><span class="lbl">${esc(c.howL)}</span><h2 class="h2" data-lines>${esc(c.howH)}</h2></div></div>
+<ol class="proc">${c.how.map((s, i) => `<li class="rv"${i ? ` style="transition-delay:${(i * .05).toFixed(2)}s"` : ''}><span class="lbl">0${i + 1}</span><h3>${esc(s[0])}</h3><span class="d">${esc(s[1])}</span><p>${esc(s[2])}</p></li>`).join('')}</ol></section>`;
 
-  const prices = `<section class="blk" data-h="88" id="pricing"><div class="sh"><div><span class="lbl">${esc(c.pxL)}</span><h2 class="h2" data-lines>${esc(c.pxH)}</h2></div></div>
-<table class="px rv"><thead><tr>${c.pxCols.map(h => `<th scope="col">${esc(h)}</th>`).join('')}</tr></thead>
-<tbody>${c.px.map(r => `<tr><th scope="row">${esc(r[0])}</th>${r.slice(1).map((v, i) => `<td data-k="${esc(c.pxCols[i + 1])}">${esc(v)}</td>`).join('')}</tr>`).join('')}</tbody></table>
-<p class="px-n">${esc(c.pxNote)}</p></section>`;
+  // Timing & investment: the segmented control highlights one revenue column (site.js); without JS the first stays highlighted.
+  const prices = `<section class="blk" id="pricing"><div class="sh"><div><span class="lbl">${esc(c.pxL)}</span><h2 class="h2" data-lines>${esc(c.pxH)}</h2></div></div>
+<div class="pz-h"><span class="lbl">${esc(c.pzL)}</span><div class="seg" data-pz role="group" aria-label="${esc(c.pzL)}"><i></i>${c.pzSeg.map((x, i) => `<button type="button" data-c="${i + 1}"${i ? ' aria-pressed="false"' : ' class="on" aria-pressed="true"'}>${esc(x)}</button>`).join('')}</div></div>
+<div class="ptw"><table class="pt" data-col="1"><thead><tr>${c.pxCols.map(h => `<th scope="col">${esc(h)}</th>`).join('')}</tr></thead>
+<tbody>${c.px.map(r => `<tr>${r.map(v => `<td>${esc(v)}</td>`).join('')}</tr>`).join('')}</tbody></table></div>
+<p class="pz-n">${esc(c.pxNote)}</p></section>`;
 
-  // Proof: a case (image + link) when there is one; the experience line always.
-  const exp = `<section class="blk sx-exp"><span class="lbl">${esc(c.expL)}</span><p>${esc(c.exp)}</p></section>`;
-  const proof = (def.proof ? `<section class="full" style="margin-top:clamp(90px,11vw,170px)"><div class="img"><img src="${A(def.proof.img)}" alt="" loading="lazy"></div><div><span class="lbl">${esc(c.caseL)}</span><h2 class="h2" data-lines>${esc(c.caseH)}</h2><p>${esc(c.caseP)}</p>
-<a class="gbtn" href="${url(lang, def.proof.case)}" style="--bh:30;align-self:flex-start;color:#fff;background:oklch(1 0 0 / .14)"><span class="roll">${esc(c.caseBtn)}</span><span class="ar" aria-hidden="true">↗</span></a></div></section>\n` : '') + exp;
+  const proof = def.proof ? `<section class="full" style="margin-top:clamp(90px,11vw,170px)"><div class="img"><img src="${A(def.proof.img)}" alt="${esc(c.caseL)}" loading="lazy"></div><div><span class="lbl">${esc(c.caseL)}</span><h2 class="h2" data-lines>${esc(c.caseH)}</h2><p>${esc(c.caseP)}</p>
+<a class="gbtn" href="${url(lang, def.proof.case)}" style="align-self:flex-start"><span class="roll">${esc(c.caseBtn)}</span><span class="ar" aria-hidden="true">↗</span></a></div></section>` : '';
+  const exp = `<section class="blk"><span class="lbl">${esc(c.expL)}</span><p class="xa">${esc(c.exp)}</p></section>`;
 
-  const faq = `<section class="blk g12 sx-faq" data-h="88"><div class="sx-fh"><span class="lbl">${esc(c.faqL)}</span><h2 class="h2" data-lines>${esc(c.faqH)}</h2></div>
-<div class="faq">${c.faq.map(([q, a]) => `<details><summary><span>${esc(q)}</span><i aria-hidden="true"></i></summary><p>${esc(a)}</p></details>`).join('')}</div></section>`;
+  const faq = `<section class="blk faq"><div class="faq-h"><span class="lbl">${esc(c.faqL)}</span><h2 class="h2" data-lines>${esc(c.faqH)}</h2></div>
+<div>${c.faq.map(([q, a], i) => `<details class="qa"${i ? '' : ' open'}><summary>${esc(q)}<i aria-hidden="true"></i></summary><p>${esc(a)}</p></details>`).join('')}</div></section>`;
 
-  const cta = `<section class="dark xp" id="contact" data-h="n" style="margin-top:clamp(90px,11vw,170px)">${ftLine}
-<div class="cta2"><h2 class="em" data-lines>${c.ctaH}</h2><p class="sx-cp">${esc(c.ctaP)}</p>
-<button class="mail" type="button" data-copy="${EMAIL}" data-cur="${esc(t.cCopy)}" aria-label="${esc(t.copyEmail)}: ${EMAIL}"><span class="mt">${EMAIL}</span></button></div></section>`;
+  const j = J[lang];
+  const journal = `<section class="blk"><div class="sh"><div><span class="lbl">${esc(j.fromL)}</span><h2 class="h2 em">${j.fromH}</h2></div><a class="gbtn" href="${url(lang, 'journal')}" style="background:oklch(.16 .004 85 / .06)"><span class="roll">${esc(j.all)}</span><span class="ar" aria-hidden="true">↗</span></a></div>
+<ul class="jl sm">${forPage(page, lang).map(a => row(a, lang)).join('')}</ul></section>`;
+
+  const isInd = REG.industries.includes(page), group = isInd ? REG.industries : REG.moments;
+  const more = `<section class="blk"><span class="lbl">${esc(isInd ? c.moreInd : c.moreMom)}</span><div class="tgs" style="margin-top:16px">${group.filter(k => k !== page).map(k => `<a class="tg" href="${url(lang, k)}">${esc(REG.sectorName(k, lang))}</a>`).join('')}<a class="tg" href="${url(lang, 'sectors')}">${esc(t.ftAll)}</a></div></section>`;
 
   const ld = { name: c.lbl, serviceType: 'Branding', audience: c.meta[0][1] + ' · ' + c.meta[1][1] + ' · ' + c.meta[3][1], faq: own.faq || [],
     ...(def.proof ? { caseName: def.proof.name, caseUrl: abs(lang, def.proof.case) } : {}) };
-  return head(ctx, { title: c.title, desc: c.desc, og: def.og, css: ['inner', 'studio'], ld }) +
-    `\n<main id="main">\n${[hero, meta, problem, signs, how, def.prices === false ? '' : prices, proof, faq, cta].filter(Boolean).join('\n')}\n</main>\n` + end(ctx);
+  return head(ctx, { title: c.title, desc: c.desc, og: def.og, css: ['inner', 'seo'], ld }) +
+    `\n<main id="main">\n${[hero, meta, problem, signs, how, def.prices === false ? '' : prices, proof, exp, faq, journal, more, ending(ctx)].filter(Boolean).join('\n')}\n</main>\n` + end(ctx);
 }

@@ -1,0 +1,49 @@
+/* Versió sòbria (per defecte): la interfície és monocroma i el color el posen les imatges dels projectes. ?colour torna als colors de servei. */
+html.sober{--ac:0!important}
+.sober ::selection{background:var(--t4);color:var(--bg)}
+/* Fora els punts de servei */
+.sober i[style*="oklch(.72 .05"],.sober i[style*="oklch(.8 .1"],.sober i[style*="oklch(.72 .09"],.sober .dots,.sober .amb{display:none!important}
+.sober .tgs span,.sober .chip,.sober .tg,.sober .tag{gap:0}
+.sober .xp-t i,.sober .vp h3 i,.sober i[style*="oklch(.7"],.sober i[style*="oklch(.8"]{display:none!important}
+/* Fora la línia de color. Al footer i al preloader, una línia neutra */
+.sober .hl{display:none!important}
+.sober .ft-hl{height:1px}.sober .ft-hl i,.sober .pre2-l i,.sober .pre-l i{background:oklch(1 0 0 / .55)!important;animation:none!important}
+/* Wordmark en un sol color */
+.sober .wm>span{color:inherit!important}
+/* Fons de color → gris neutre; el revers de les cards de servei, en tinta */
+.sober [style*="--c:oklch(.92"]{--c:oklch(.9 .004 85)!important}
+.sober .fc{--c:var(--t4)!important}.sober .fc-b,.sober .fc-b *{color:var(--bg)!important}.sober .fc-b .lbl{opacity:.6}
+/* Hovers: tinta sobre clar, os sobre fosc */
+.sober .gbtn:hover{background:var(--t4)!important;color:var(--bg)!important;box-shadow:0 14px 40px -18px oklch(.14 .012 245 / .5)!important}
+.sober :is(.dark,.full,.ch) .gbtn:hover{background:var(--d4)!important;color:var(--d0)!important}
+.sober .ql:hover{background:oklch(1 0 0 / .62)!important}.sober :is(.dark,.hx) .ql:hover{background:oklch(1 0 0 / .18)!important}
+.sober [data-gh]:hover{box-shadow:0 50px 100px -40px oklch(.14 .012 245 / .35)!important}
+.sober .cur.big{background:var(--bg)!important;box-shadow:0 10px 30px oklch(.14 .012 245 / .25)!important}
+.sober .toast i{background:currentColor!important}
+/* El correu gran: sense escombrada de colors, subratllat en passar-hi */
+.sober .mail .mt{background:none!important;-webkit-background-clip:border-box!important;background-clip:border-box!important;color:inherit!important;text-decoration:underline;text-decoration-color:transparent;text-decoration-thickness:.045em;text-underline-offset:.14em;transition:text-decoration-color .5s}
+.sober .mail:hover .mt{text-decoration-color:currentColor}
+/* Accent únic (en prova). Només a: Let's talk, selecció, focus, subratllat del correu, © en hover i fletxa del menú */
+html[data-acc="terracotta"]{--acc:oklch(.57 .14 42);--acc-ink:#fff}
+html[data-acc="signal"]{--acc:oklch(.585 .2 36);--acc-ink:#fff}
+html[data-acc="tobacco"]{--acc:oklch(.5 .07 60);--acc-ink:#fff}
+html[data-acc="sand"]{--acc:oklch(.86 .035 80);--acc-ink:var(--t4)}
+html[data-acc] :is(.nv,.nv.dk,.nv.open) .nv-go{background:var(--acc);color:var(--acc-ink)}
+html[data-acc] :is(.nv,.nv.dk,.nv.open) .nv-go:hover{background:color-mix(in oklch,var(--acc),#000 14%);color:var(--acc-ink)}
+html[data-acc] ::selection{background:var(--acc);color:var(--acc-ink)}
+html[data-acc]:not([data-acc="sand"]) :focus-visible{outline-color:var(--acc)!important}
+html[data-acc] .mail:hover .mt{text-decoration-color:var(--acc)}
+html[data-acc]:not([data-acc="sand"]) .nv-l a:hover>i,html[data-acc]:not([data-acc="sand"]) .nv-l a[aria-current]>i{color:var(--acc)}
+html[data-acc] .nv.dk .nv-mk:hover,html[data-acc]:not([data-acc="sand"]) .nv-mk:hover{color:var(--acc)}
+/* Sorra com a fons de hover i de destacats: files de llista, targeta relacionada, columna de preus, icona de la FAQ */
+.sx-l a,.wl a{position:relative;isolation:isolate}.sx-l a::before,.wl a::before{content:"";position:absolute;inset:0 -12px;z-index:-1;border-radius:12px;transform:scaleY(0);transform-origin:50% 100%;transition:transform .6s cubic-bezier(.7,0,.2,1)}.sx-l a:hover::before,.wl a:hover::before{transform:none}
+html[data-acc] :is(.jl,.sx-l,.wl) a::before{background:var(--acc)}html[data-acc] :is(.jl,.sx-l,.wl) a:hover{color:var(--acc-ink)}
+html[data-acc] .rel{background:var(--acc);color:var(--acc-ink)}html[data-acc] .rel:hover{background:color-mix(in oklch,var(--acc),#000 8%);color:var(--acc-ink)}html[data-acc] .rel .lbl,html[data-acc] .rel:hover .lbl{color:var(--t3)}
+html[data-acc] .pt[data-col="1"] :is(th,td):nth-child(3),html[data-acc] .pt[data-col="2"] :is(th,td):nth-child(4),html[data-acc] .pt[data-col="3"] :is(th,td):nth-child(5){background:var(--acc)}
+html[data-acc] .qa[open] summary i,html[data-acc] .qa summary:hover i{background:var(--acc);color:var(--acc-ink)}
+html[data-acc] [style*="--c:oklch(.92"]:not(.fc){--c:var(--acc)!important}
+/* Sectors: cada fitxa té el seu marge; el fons de hover no toca la del costat i tapa la línia superior */
+.sx-l a::before{inset:8px -18px 8px;border-radius:14px}
+/* La © canvia de color en passar-hi per sobre: sorra sobre fosc, sorra fosca sobre clar (la sorra sola no es veuria) */
+html[data-acc="sand"] .nv:not(.dk) :is(.nv-mk:hover,.nv-mk:focus-visible){color:color-mix(in oklch,var(--acc),#000 38%)}
+html[data-acc] .nv.dk .nv-mk:focus-visible{color:var(--acc)}

@@ -33,13 +33,16 @@ import { website } from './pages/website.mjs';
 import { geo } from './pages/geo.mjs';
 import { cmo } from './pages/cmo.mjs';
 import { sectors, INDUSTRIES, MOMENTS } from './pages/sectors.mjs';
+import { workidx } from './pages/workidx.mjs';
+import { journal, article } from './pages/journal.mjs';
+import { A as ARTICLES, SLUGS } from './jdata.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const out = (p, s) => { const f = join(ROOT, p); mkdirSync(dirname(f), { recursive: true }); writeFileSync(f, s); };
 
 // Cache-busting: short content hash per asset.
 const V = {};
-for (const f of ['base.css', 'home.css', 'inner.css', 'studio.css', 'site.js']) {
+for (const f of ['base.css', 'home.css', 'inner.css', 'studio.css', 'seo.css', 'site.js']) {
   V[f] = createHash('sha1').update(readFileSync(join(ROOT, 'assets/site', f))).digest('hex').slice(0, 8);
 }
 
@@ -66,6 +69,9 @@ const PAGES = [
   { page: 'geo', kind: 'sector', render: geo },
   { page: 'cmo', kind: 'sector', render: cmo },
   { page: 'sectors', kind: 'sector', render: sectors },
+  { page: 'workidx', kind: 'workidx', render: workidx },
+  { page: 'journal', kind: 'journal', render: journal },
+  ...SLUGS.map(slug => ({ page: 'j:' + slug, kind: 'article', render: ctx => article(ctx, slug) })),
 ];
 
 
@@ -143,7 +149,8 @@ out('404.html', `<!doctype html>
 const today = new Date().toISOString().slice(0, 10);
 // lastmod = last commit of the page's own source module (today if it has uncommitted changes or no history).
 const lastmod = page => {
-  const f = `.site/pages/${page}.mjs`;
+  // Articles: their Markdown files; the Journal index: the journal folder; other pages: their module.
+  const f = page.startsWith('j:') ? `.site/journal/*` : page === 'journal' ? '.site/journal .site/pages/journal.mjs' : `.site/pages/${page}.mjs`;
   try {
     if (execSync(`git status --porcelain -- ${f}`, { cwd: ROOT }).toString().trim()) return today;
     return execSync(`git log -1 --format=%cs -- ${f}`, { cwd: ROOT }).toString().trim() || today;
@@ -226,6 +233,11 @@ ${projLines}
 - [Relats case study](${abs('en', 'relats')}): repositioning a global leader in technical covering solutions (automotive, e-mobility, energy)
 ${[...Object.entries(INDUSTRIES), ...Object.entries(MOMENTS)].map(([k, C]) => `- [${C.en.lbl}](${abs('en', k)}): ${C.en.desc} (also in [Català](${abs('ca', k)}) and [Español](${abs('es', k)}))`).join('\n')}
 - [All sectors & services](${abs('en', 'sectors')})
+- [All work](${abs('en', 'workidx')}): every project, with its sector and services
+
+## Journal — clear answers for companies of €1M–€200M
+- [Journal](${abs('en', 'journal')}) (also in [Català](${abs('ca', 'journal')}) and [Español](${abs('es', 'journal')}))
+${ARTICLES.en.map(a => `- [${a.title}](${abs('en', 'j:' + a.slug)}): ${a.description}`).join('\n')}
 - Català: ${abs('ca', 'home')} · Español: ${abs('es', 'home')}
 `);
 

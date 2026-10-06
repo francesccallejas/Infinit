@@ -38,30 +38,30 @@ export const svc = k => S.find(s => s.k === k);
 
 const B = 'work/bunnker/bunnker-assets/', R = 'work/relats/relats-assets/', I = 'project/assets/imagery/', IM = 'project/assets/images/';
 
-// Projects. `page` = case page key (null → work in progress / NDA, not clickable).
+// Projects. `page` = case page key (null → work in progress / NDA, not clickable); `sec` = sector page key
+// (for Instellar, Induktor and Julià a proposal from the v3 handoff — to confirm with the clients).
 export const P = [
-  { n: 'Bunnker', page: 'bunnker', t: ['strategy', 'brand'],
+  { n: 'Bunnker', page: 'bunnker', sec: 'realestate', t: ['strategy', 'brand'],
     d: { en: 'beyond renting', ca: 'més que llogar', es: 'más que alquilar' },
     img: IM + 'Bunnker Final.webp', g: [B + 'int-03.webp', B + 'int-12.webp', B + 'art-07.webp', B + 'int-15.webp', B + 'coac-1.webp'] },
-  { n: 'Relats', page: 'relats', t: ['strategy', 'brand', 'digital'],
+  { n: 'Relats', page: 'relats', sec: 'industrial', t: ['strategy', 'brand', 'digital'],
     d: { en: 'ahead of the curve', ca: 'al capdavant', es: 'por delante de la curva' },
     img: IM + 'Relats Brand.webp', g: [R + 'tie-cord-poster.jpg', R + 'offices.webp'] },
-  { n: 'Instellar', page: null, s: 'wip', t: ['strategy', 'brand', 'digital'],
+  { n: 'Instellar', page: null, sec: 'tech', s: 'wip', t: ['strategy', 'brand', 'digital'],
     d: { en: 'mission performance', ca: 'rendiment de missió', es: 'rendimiento de misión' },
     img: IM + 'instellar-aircraft.webp', g: [] },
-  { n: 'Induktor', page: null, s: 'wip', t: ['strategy', 'brand', 'digital'],
+  { n: 'Induktor', page: null, sec: 'leisure', s: 'wip', t: ['strategy', 'brand', 'digital'],
     d: { en: 'sim racing hardware', ca: 'hardware de sim racing', es: 'hardware de sim racing' },
     // Self-hosted motor image (originally Unsplash) — replace with the client's own render when available.
     img: I + 'induktor-motor.jpg', g: [] },
-  { n: 'Julià', page: null, s: 'wip', t: ['strategy', 'brand', 'digital'],
+  { n: 'Julià', page: null, sec: 'automotive', s: 'wip', t: ['strategy', 'brand', 'digital'],
     d: { en: 'premium adventure vans', ca: 'campers premium', es: 'campers premium' },
     img: I + 'Julia Yosemite.webp', g: [I + 'julia-camper.webp'] },
-  { n: 'Almirall', page: null, s: 'nda', t: ['strategy', 'digital'],
+  { n: 'Almirall', page: null, sec: 'pharma', s: 'nda', t: ['strategy', 'digital'],
     d: { en: 'beautifully clinical', ca: 'clínicament bell', es: 'clínicamente bello' },
     img: I + 'Almirall.webp', g: [] },
 ];
-// Card hue = hue of the project's last service.
-P.forEach(p => { p.h = svc(p.t[p.t.length - 1]).h; p.all = [p.img, ...p.g]; });
+P.forEach(p => { p.all = [p.img, ...p.g]; });
 export const src = p => /^https?:/.test(p) ? p : A(p);
 
 // Client logos for the marquee — each has its own height so the visual weight is equal (ink-area normalised).

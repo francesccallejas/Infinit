@@ -1,7 +1,8 @@
 // Case: Bunnker — port of prototype/pages/case-bunnker.html.
-import { esc, A, dot, tint } from '../lib.mjs';
+import { esc, A, url } from '../lib.mjs';
+import { C as SECTOR } from './realestate.mjs';
 import { T } from '../i18n.mjs';
-import { head, end } from '../layout.mjs';
+import { head, end, ending } from '../layout.mjs';
 import { chip, caseHero, meta, about, video, nextCase, swatches } from './case.mjs';
 
 const B = 'work/bunnker/bunnker-assets/';
@@ -73,7 +74,6 @@ const C = {
 
 const ART = ['art-01', 'art-02', 'art-03', 'art-04', 'art-05', 'art-07', 'art-08', 'art-10', 'art-11'];
 const INT = ['int-01', 'int-02', 'int-03', 'int-04', 'int-05', 'int-06', 'int-07', 'int-08', 'int-09', 'int-11', 'int-12', 'int-13', 'int-15'];
-const PH = [165, 255, 285];
 
 export function bunnker(ctx) {
   const { lang } = ctx, t = T[lang], c = C[lang];
@@ -82,17 +82,17 @@ export function bunnker(ctx) {
   const body = [
     caseHero(ctx, { img: B + 'hero.webp', logo: B + 'bunnker-logo-white.png', name: 'Bunnker', h1: c.h1,
       chips: chip('strategy', lang) + chip('brand', lang) + chip('digital', lang) + `<span class="chip">${esc(c.award)}</span>` }),
-    meta(c.meta),
+    meta(c.meta.map((r, i) => i === 2 ? [...r, [url(lang, 'realestate'), SECTOR[lang].lbl]] : r)),
     about(c),
-    `<section class="blk" data-h="165"><div class="sh"><div><span class="lbl">${esc(c.workL)}</span><h2 class="h2" data-lines>${esc(c.workH)}</h2></div></div>
-<div class="pil">${c.pil.map((p, i) => `<div class="pc rv" data-hh="${PH[i]}" style="--c:${tint(PH[i])}${i ? `;transition-delay:${i * .06}s` : ''}"><div class="n"><span class="lbl">${esc(p[0])}</span><i style="background:${dot(PH[i])}" aria-hidden="true"></i></div><div><h3>${esc(p[1])}</h3><p>${esc(p[2])}</p></div></div>`).join('')}</div></section>`,
+    `<section class="blk"><div class="sh"><div><span class="lbl">${esc(c.workL)}</span><h2 class="h2" data-lines>${esc(c.workH)}</h2></div></div>
+<div class="pil">${c.pil.map((p, i) => `<div class="pc rv"${i ? ` style="transition-delay:${i * .06}s"` : ''}><div class="n"><span class="lbl">${esc(p[0])}</span></div><div><h3>${esc(p[1])}</h3><p>${esc(p[2])}</p></div></div>`).join('')}</div></section>`,
     `<section class="blk"><div class="vids">
 ${video({ file: B + 'logo-motion.mp4', poster: B + 'logo-motion-poster.jpg', label: c.vMark })}
 ${video({ file: B + 'web.mp4', poster: B + 'web-poster.jpg', label: c.vWeb, delay: '.06s' })}
 </div></section>`,
-    `<section class="blk" data-h="30"><div class="sh"><div><span class="lbl">${esc(c.artL)}</span><h2 class="h2" data-lines>${esc(c.artH)}</h2></div><span class="lbl" aria-hidden="true">${esc(c.drag)}</span></div>
+    `<section class="blk"><div class="sh"><div><span class="lbl">${esc(c.artL)}</span><h2 class="h2" data-lines>${esc(c.artH)}</h2></div><span class="lbl" aria-hidden="true">${esc(c.drag)}</span></div>
 <div class="car" id="art" data-cur="${esc(t.cDrag)}"><div class="car-t">${[0, 1, 2].map(k => ART.map(s => img(s, k === 1 ? c.artAlt : '', '', k === 1 ? '' : ' aria-hidden="true"')).join('')).join('')}</div></div></section>`,
-    `<section class="blk" data-h="88"><div class="sh"><div><span class="lbl">${esc(c.intL)}</span><h2 class="h2" data-lines>${esc(c.intH)}</h2></div></div><div class="mas">${INT.map(s => img(s, c.intAlt, 'rv')).join('')}</div></section>`,
+    `<section class="blk"><div class="sh"><div><span class="lbl">${esc(c.intL)}</span><h2 class="h2" data-lines>${esc(c.intH)}</h2></div></div><div class="mas">${INT.map(s => img(s, c.intAlt, 'rv')).join('')}</div></section>`,
     `<section class="dark" style="margin-top:clamp(90px,11vw,170px)"><div class="aw2">
 <div class="tap" id="tap" data-cur="${esc(t.cNext)}">${[1, 2, 3, 4, 5].map(i => FIT.includes(i)
   ? `<div class="tp img fit" style="--bgi:url('${A(B + 'coac-' + i + '.webp')}')"><img src="${A(B + 'coac-' + i + '.webp')}" alt="${esc(c.coacAlt(i))}" loading="lazy"></div>`
@@ -102,6 +102,7 @@ ${video({ file: B + 'web.mp4', poster: B + 'web-poster.jpg', label: c.vWeb, dela
 ${swatches([[c.sw[0], '#FE585A', '#fff'], [c.sw[1], '#524741', '#fff'], [c.sw[2], '#E8E5E0'], [c.sw[3], '#FFFFFF', '', true]])}
 <div class="tpf rv"><div><span class="lbl">${esc(c.typeL)}</span><span class="aa" aria-hidden="true">Aa</span></div><div><ul><li>Suisse Int’l <span>Regular</span></li><li style="font-weight:700">Suisse Int’l <span>SemiBold</span></li></ul></div></div></section>`,
     nextCase(ctx, 'relats'),
+    ending(ctx, { cls: 'afternx' }),
   ].join('\n');
 
   return head(ctx, { title: c.title, desc: c.desc, og: '/assets/site/og/bunnker.jpg', css: ['inner'] }) +
