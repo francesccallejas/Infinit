@@ -6,7 +6,7 @@ import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'node:fs';
 import { createHash } from 'node:crypto';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { SITE, LANGS, ROUTES, url, abs, esc } from './lib.mjs';
+import { SITE, LANGS, ROUTES, url, abs, esc, icons } from './lib.mjs';
 import { T } from './i18n.mjs';
 import { S, P, CLIENT_NAMES } from './data.mjs';
 import { FOUNDER_LINKEDIN, siteGraph } from './seo.mjs';
@@ -44,6 +44,9 @@ const out = (p, s) => { const f = join(ROOT, p); mkdirSync(dirname(f), { recursi
 const V = {};
 for (const f of ['base.css', 'home.css', 'inner.css', 'studio.css', 'seo.css', 'site.js']) {
   V[f] = createHash('sha1').update(readFileSync(join(ROOT, 'assets/site', f))).digest('hex').slice(0, 8);
+}
+for (const [k, f] of [['favicon.svg', 'favicon.svg'], ['favicon.ico', 'favicon.ico'], ['apple-touch-icon.png', 'assets/site/apple-touch-icon.png']]) {
+  V[k] = createHash('sha1').update(readFileSync(join(ROOT, f))).digest('hex').slice(0, 8);
 }
 
 const PAGES = [
@@ -108,9 +111,7 @@ const gateway = `<!doctype html>
 ${LANGS.map(l => `<link rel="alternate" hreflang="${l}" href="${abs(l, 'home')}">`).join('\n')}
 <link rel="alternate" hreflang="x-default" href="${SITE}/">
 <meta name="theme-color" content="#060a0e">
-<link rel="icon" href="/favicon.ico" sizes="32x32">
-<link rel="icon" href="/favicon.svg" type="image/svg+xml">
-<link rel="apple-touch-icon" href="/assets/site/apple-touch-icon.png">
+${icons(V)}
 <script>(function(){var L=['ca','es','en'],s=null;try{s=localStorage.getItem('inf-lang')}catch(e){}
 if(L.indexOf(s)<0){s='en';var n=navigator.languages||[navigator.language||''];for(var i=0;i<n.length;i++){var c=String(n[i]).slice(0,2).toLowerCase();if(L.indexOf(c)>-1){s=c;break}}}
 location.replace('/'+s+'/'+location.search+location.hash)})()</script>
@@ -131,9 +132,7 @@ out('404.html', `<!doctype html>
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Page not found — INFINIT©</title>
 <meta name="robots" content="noindex">
-<link rel="icon" href="/favicon.ico" sizes="32x32">
-<link rel="icon" href="/favicon.svg" type="image/svg+xml">
-<link rel="apple-touch-icon" href="/assets/site/apple-touch-icon.png">
+${icons(V)}
 <link rel="stylesheet" href="/assets/site/base.css?v=${V['base.css']}">
 <style>main{min-height:100svh;display:flex;flex-direction:column;justify-content:space-between;padding:22px var(--pad) 40px}h1{font-size:clamp(56px,10vw,184px);line-height:.92;letter-spacing:-.06em;font-weight:700}nav{display:flex;gap:10px;flex-wrap:wrap}</style>
 </head>
