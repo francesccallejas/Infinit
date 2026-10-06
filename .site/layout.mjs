@@ -85,8 +85,8 @@ export function nav(ctx) {
   const t = T[ctx.lang], L = links(ctx), k = ctx.kind, pg = ctx.page;
   const cur = on => on ? ' aria-current="page"' : '';
   const big = [[t.work, L.work, k === 'work'], [t.services, L.services, false], [t.studio, L.studio, k === 'studio'], [t.journal, L.journal, k === 'journal' || k === 'article']];
-  const small = [[t.ftSecL, url(ctx.lang, 'sectors'), pg === 'sectors'], [t.allWork, url(ctx.lang, 'workidx'), pg === 'workidx'], [t.contact, L.contact, false]];
-  return `<div class="nv" id="nv"><div class="nv-c" id="nvc" role="dialog" aria-label="${esc(t.menu)}" inert><nav class="nv-l" aria-label="${esc(t.navLabel)}">${big.map(([n, h, c], i) => `<a href="${h}" style="--i:${i}"${cur(c)}><span>${esc(n)}</span><i aria-hidden="true">↗</i></a>`).join('')}</nav>
+  const small = [[t.ftSecL, url(ctx.lang, 'sectors'), pg === 'sectors'], [t.allWork, url(ctx.lang, 'workidx'), pg === 'workidx']]; // Contact is the "Let’s talk" button
+  return `<div class="nv" id="nv"><div class="nv-c" id="nvc" role="dialog" aria-label="${esc(t.menu)}" tabindex="-1" inert><nav class="nv-l" aria-label="${esc(t.navLabel)}">${big.map(([n, h, c], i) => `<a href="${h}" style="--i:${i}"${cur(c)}><span>${esc(n)}</span><i aria-hidden="true">↗</i></a>`).join('')}</nav>
 <div class="nv-s"><div>${small.map(([n, h, c]) => `<a href="${h}"${cur(c)}>${esc(n)}</a>`).join('')}</div><div class="nv-lang" role="group" aria-label="${esc(t.language)}">${ordered(ctx).join('')}</div></div></div>
 <div class="nv-bar"><a class="nv-mk" href="${L.top}" aria-label="${esc(t.homeAria)}"><svg viewBox="0 0 32 32" aria-hidden="true" focusable="false">${MARK_SVG}</svg></a><div class="nv-p"><button class="nv-b" type="button" aria-expanded="false" aria-controls="nvc"><span class="nv-ic" aria-hidden="true"><i></i><i></i></span><span class="nv-lb"><span>${esc(t.menu)}</span><span aria-hidden="true">${esc(t.close)}</span></span></button><a class="nv-go" href="${L.contact}"><span class="roll">${esc(t.letsTalk)}</span></a></div></div></div>`;
 }

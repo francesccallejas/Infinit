@@ -262,16 +262,18 @@ function nav() {
     mA.addEventListener('pointerenter', st); mA.addEventListener('pointerleave', go);
     mA.addEventListener('focus', st); mA.addEventListener('blur', go);
   }
-  const set = o => {
+  // kb: opened from the keyboard → focus the first link; by touch / mouse → focus the card itself (no ring:
+  // Safari draws the keyboard focus ring on a link focused by script after a tap).
+  const set = (o, kb) => {
     if (o === open) return;
     open = o; spin += o ? 180 : -180; oy = scrollY;
     nv.classList.toggle('open', o); body.classList.toggle('nv-open', o);
     btn.setAttribute('aria-expanded', o); card.inert = !o;
     chk(); hid(); turn();
-    if (o) setTimeout(() => { const a = $('a', card); a && open && a.focus({ preventScroll: true }); }, 320);
+    if (o) setTimeout(() => { if (!open) return; (kb ? $('a', card) : card).focus({ preventScroll: true }); }, 320);
   };
   closeNav = () => set(false);
-  btn.addEventListener('click', () => set(!open));
+  btn.addEventListener('click', e => set(!open, e.detail === 0));
   addEventListener('keydown', e => { if (e.key === 'Escape' && open) { set(false); btn.focus(); } });
   d.addEventListener('pointerdown', e => { if (open && !nv.contains(e.target)) set(false); });
   card.addEventListener('click', e => { if (e.target.closest('a')) set(false); });

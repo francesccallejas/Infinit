@@ -220,3 +220,14 @@ a,button,[role=button],.fc,.tap{touch-action:manipulation;-webkit-tap-highlight-
 @media (hover:hover){.mail:hover .mt{text-decoration-color:var(--acc)}}
 @media(hover:none){.mail{cursor:pointer}}
 @media(max-width:760px){.end{gap:28px}.end h2{font-size:17vw}.mail{font-size:calc((100vw - var(--pad)*2)/12)}}
+/* Phones: the menu button is the icon only, centred on the screen where the thumb reaches it
+   (the label stays for screen readers). The pill starts 64px in, so the screen centre is 50% − 32px of it. */
+@media(max-width:760px){
+ .nv-b{position:absolute;top:6px;bottom:6px;height:auto;left:calc(50% - 32px);transform:translateX(-50%);width:72px;padding:0;justify-content:center;transition:background .3s,left .7s cubic-bezier(.7,0,.2,1)}
+ .nv.open .nv-b{left:50%}
+ .nv-ic{width:26px}
+ .nv-lb{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+ .nv-p{justify-content:flex-end}
+}
+/* Phones: a narrower bar (about a quarter less than full width), still centred */
+@media(max-width:760px){.nv{width:min(296px,calc(100vw - 20px))}.nv-b{width:52px}.nv-go{padding:0 18px}}
