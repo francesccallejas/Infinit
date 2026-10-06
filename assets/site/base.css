@@ -229,3 +229,5 @@ a,button,[role=button],.fc,.tap{touch-action:manipulation;-webkit-tap-highlight-
  .nv-lb{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
  .nv-p{justify-content:flex-end}
 }
+/* Phones: a narrower bar (about a quarter less than full width), still centred */
+@media(max-width:760px){.nv{width:min(296px,calc(100vw - 20px))}.nv-b{width:52px}.nv-go{padding:0 18px}}
