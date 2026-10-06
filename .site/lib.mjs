@@ -36,6 +36,8 @@ export const ROUTES = {
   journal: 'journal/',
   // Journal articles ("j:<slug>") are added by jdata.mjs.
 };
+// Social image file name for a page key ("j:<slug>" → "j-<slug>"), see og.mjs.
+export const ogName = page => page.replace(':', '-');
 export const url = (lang, page) => `/${lang}/${ROUTES[page]}`;
 export const abs = (lang, page) => SITE + url(lang, page);
 
