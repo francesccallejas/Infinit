@@ -28,7 +28,7 @@ The build writes `/en/`, `/ca/`, `/es/` pages, the language gateway `/index.html
 - GitHub `main` → Cloudflare Pages → **www.weareinfinit.com** (auto-deploys on push to `main`, no build step: the repo root is served as-is).
 - Domain registered at **GoDaddy**, DNS on **Cloudflare** (nameservers byron/kallie.ns.cloudflare.com, since Oct 2026). `www` → CNAME `infinit-ede.pages.dev`; the bare domain is redirected to www by a Cloudflare Redirect Rule (`https://weareinfinit.com/*` → `https://www.weareinfinit.com/${1}`, 301). Canonicals, sitemap and `llms.txt` use `SITE` = https://www.weareinfinit.com (`.site/lib.mjs`).
 - Email is Microsoft 365 (via GoDaddy): MX / SPF / DMARC / SRV and the autodiscover, msoid, lyncdiscover, sip, email CNAMEs must stay **DNS only** (grey cloud) in Cloudflare.
-- Cloudflare AI crawler settings: Search / Agent / Training all **Allow**; robots.txt comes from the build only. Google Search Console (Domain property) + Bing Webmaster Tools set up; sitemap submitted.
+- Cloudflare AI crawler settings: Search / Agent / Training all **Allow**; robots.txt comes from the build only. **Crawler Hints** (IndexNow) is on, so Bing & co. are pinged automatically on every change. Google Search Console (Domain property) + Bing Webmaster Tools set up; sitemap submitted.
 - **Dot-prefixed folders are NOT deployed** (`.site`, `.handoff`, `.lab`, `.archive`, `.chats`).
 - Old URLs (`/studio.html`, `/work/bunnker/`, `/work/relats/`) 301 to `/en/…` via `_redirects`.
 - The previous site lives in `.archive/site-v1/` and the old design systems in `.archive/design-system-v01|v02/` — obsolete, don't use.
