@@ -224,6 +224,7 @@ a,button,[role=button],.fc,.tap{touch-action:manipulation;-webkit-tap-highlight-
    a big target where the thumb reaches it; "Let’s talk" keeps its size on the right. */
 @media(max-width:760px){
  .nv-b{flex:1 1 auto;min-width:0;justify-content:center;gap:10px;padding:0 8px}
+ .nv.open .nv-b{justify-content:flex-start;padding:0 18px 0 16px} /* open: the X + Close sit at the left, as on desktop */
  .nv-ic{width:24px}
 }
 /* Phones: a narrower bar (about a quarter less than full width), still centred */
