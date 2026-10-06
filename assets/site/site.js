@@ -166,9 +166,11 @@ function anchors() {
 const loadIn = root => root && $$('img[data-src]', root).forEach(i => { i.src = i.dataset.src; i.removeAttribute('data-src'); });
 
 /* ---------- toast + copy email ---------- */
-function toast(msg) {
+// quiet: screen readers only (the copy button already shows "Copied ✓" in place, no pop-up).
+function toast(msg, quiet) {
   const t = $('#toast'); if (!t) return;
-  t.innerHTML = `<i aria-hidden="true"></i>${escH(msg)}`; t.classList.add('on');
+  t.innerHTML = `<i aria-hidden="true"></i>${escH(msg)}`; if (quiet) return;
+  t.classList.add('on');
   clearTimeout(t._t); t._t = setTimeout(() => t.classList.remove('on'), 2200);
 }
 function copy() {
@@ -176,7 +178,18 @@ function copy() {
     const b = e.target.closest && e.target.closest('[data-copy]'); if (!b) return;
     e.preventDefault();
     const v = b.dataset.copy;
-    const ok = () => { toast(T.copyToast); const m = b.querySelector('.mt'); if (m && !m._o) { m._o = m.textContent; m.textContent = T.copied; setTimeout(() => { m.textContent = m._o; m._o = null; }, 1500); } };
+    const ok = () => {
+      toast(T.copyToast, true); if (navigator.vibrate) navigator.vibrate(12);
+      const m = b.querySelector('.mt'); if (!m) return;
+      // First copy: split the address and "Copied ✓" into letters (staggered by --i in base.css).
+      if (!b._s) {
+        const sp = (s, f) => [...s].map((c, i) => `<span style="--i:${i}"${f && f(c) ? ' class="ok"' : ''}>${escH(c)}</span>`).join('');
+        m.innerHTML = sp(m.textContent);
+        m.insertAdjacentHTML('afterend', `<span class="mok" aria-hidden="true">${sp(T.copied, c => c === '✓')}</span>`);
+        b._s = 1;
+      }
+      b.classList.add('cp'); clearTimeout(b._t); b._t = setTimeout(() => b.classList.remove('cp'), 1900);
+    };
     (navigator.clipboard ? navigator.clipboard.writeText(v) : Promise.reject()).then(ok).catch(() => {
       const ta = d.createElement('textarea'); ta.value = v; ta.setAttribute('readonly', ''); ta.style.position = 'fixed'; ta.style.opacity = '0'; body.appendChild(ta); ta.select();
       try { d.execCommand('copy'); ok(); } catch (_) { location.href = 'mailto:' + v; }
