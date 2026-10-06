@@ -1,5 +1,6 @@
 // Shared page chrome: <head>, navigation (v3: © mark + glass pill + menu card), footer, toast.
-import { SITE, LANGS, LOCALE, EMAIL, PHONE, LINKEDIN, INSTAGRAM, url, abs, esc, A, wm, pngDim, MARK_SVG } from './lib.mjs';
+import { SITE, LANGS, LOCALE, EMAIL, PHONE, LINKEDIN, INSTAGRAM, url, abs, esc, A, wm, pngDim, MARK_SVG, ogName } from './lib.mjs';
+import { existsSync } from 'node:fs';
 import { graph } from './seo.mjs';
 import { T } from './i18n.mjs';
 
@@ -10,6 +11,9 @@ export function head(ctx, { title, desc, og, css, ld }) {
   const { lang, page, V } = ctx;
   const alt = LANGS.map(l => `<link rel="alternate" hreflang="${l}" href="${abs(l, page)}">`).join('\n') +
     `\n<link rel="alternate" hreflang="x-default" href="${page === 'home' ? SITE + '/' : abs('en', page)}">`;
+  // Per-page social image (og.mjs) when it exists; otherwise the one the page passed.
+  const own = `/assets/site/og/${ogName(page)}.jpg`;
+  if (existsSync(new URL('..' + own, import.meta.url))) og = own;
   const ogImg = SITE + og;
   ctx.og = og; // read by the build for the sitemap's image entries
   const styles = ['base', ...css].map(n => `<link rel="stylesheet" href="/assets/site/${n}.css?v=${V[n + '.css']}">`).join('\n');
