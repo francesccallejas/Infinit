@@ -59,7 +59,7 @@ function cursor() {
   addEventListener('pointermove', e => {
     tx = e.clientX; ty = e.clientY;
     const t = e.target.closest && e.target.closest('[data-cur]');
-    c.classList.toggle('big', !!t); if (t && c.firstChild.textContent !== t.dataset.cur) c.firstChild.textContent = t.dataset.cur;
+    c.classList.toggle('big', !!t && !t.classList.contains('cp')); if (t && c.firstChild.textContent !== t.dataset.cur) c.firstChild.textContent = t.dataset.cur;
     if (!raf) raf = requestAnimationFrame(f);
   });
   f();
@@ -185,10 +185,11 @@ function copy() {
       if (!b._s) {
         const sp = (s, f) => [...s].map((c, i) => `<span style="--i:${i}"${f && f(c) ? ' class="ok"' : ''}>${escH(c)}</span>`).join('');
         m.innerHTML = sp(m.textContent);
-        m.insertAdjacentHTML('afterend', `<span class="mok" aria-hidden="true">${sp(T.copied, c => c === '✓')}</span>`);
+        m.insertAdjacentHTML('afterend', `<span class="mok" aria-hidden="true"><span class="mw">${sp(T.copied, c => c === '✓')}</span></span>`);
         b._s = 1;
       }
-      b.classList.add('cp'); clearTimeout(b._t); b._t = setTimeout(() => b.classList.remove('cp'), 1900);
+      b.classList.add('cp'); $('.cur') && $('.cur').classList.remove('big'); // the cursor bubble steps aside so "Copied ✓" shows
+      clearTimeout(b._t); b._t = setTimeout(() => b.classList.remove('cp'), 1900);
     };
     (navigator.clipboard ? navigator.clipboard.writeText(v) : Promise.reject()).then(ok).catch(() => {
       const ta = d.createElement('textarea'); ta.value = v; ta.setAttribute('readonly', ''); ta.style.position = 'fixed'; ta.style.opacity = '0'; body.appendChild(ta); ta.select();
