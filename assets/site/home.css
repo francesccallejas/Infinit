@@ -96,4 +96,4 @@
 [data-cyc] .img img.cy-ov.in{opacity:1}
 /* Mobile: the animated scroll line sits low on the right, level with the dock (the bottom row ends
    clamp(96px,11vh,120px) above the visible bottom, so this offset is the same with or without html.bar). */
-@media(max-width:760px){.hx .scd{position:absolute;right:calc(12px - var(--pad));bottom:calc(18px - clamp(96px,11vh,120px))}}
+@media(max-width:760px){.hx .scd{position:absolute;right:calc(12px - var(--pad));bottom:calc(84px - clamp(96px,11vh,120px))}}
