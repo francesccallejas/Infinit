@@ -32,6 +32,9 @@ export const ROUTES = {
   website: 'b2b-website-design/',
   geo: 'geo-ai-search/',
   cmo: 'fractional-cmo/',
+  workidx: 'work/',
+  journal: 'journal/',
+  // Journal articles ("j:<slug>") are added by jdata.mjs.
 };
 export const url = (lang, page) => `/${lang}/${ROUTES[page]}`;
 export const abs = (lang, page) => SITE + url(lang, page);
@@ -49,10 +52,21 @@ export const tint = h => `oklch(.92 .025 ${h})`;
 // 'fit' fills the container width; a number is the type size in px (as in the prototype: © at .2em above 80px, .42em below).
 import { readFileSync } from 'node:fs';
 const WM = JSON.parse(readFileSync(new URL('./wordmark.json', import.meta.url)));
+// The bold © (handoff v3.1): ring r 13.2 + C arc r 6 opening right, stroke 3.3, in a 32×32 box. It replaces the
+// Geist © glyph — drawn in the glyph's place, its outer edge on the glyph's bounding box.
+export const MARK_SVG = '<circle cx="16" cy="16" r="13.2"/><path d="M20.46 11.99A6 6 0 1 0 20.46 20.01"/>';
+const boldC = c => {
+  const n = c.match(/-?\d+(?:\.\d+)?/g).map(Number), xs = n.filter((_, i) => i % 2 === 0), ys = n.filter((_, i) => i % 2 === 1);
+  const x0 = Math.min(...xs), x1 = Math.max(...xs), y0 = Math.min(...ys), y1 = Math.max(...ys);
+  const k = Math.max(x1 - x0, y1 - y0) / (2 * (13.2 + 3.3 / 2)), cx = (x0 + x1) / 2, cy = (y0 + y1) / 2;
+  const P = (x, y) => `${(cx + (x - 16) * k).toFixed(2)} ${(cy + (y - 16) * k).toFixed(2)}`, r = v => (v * k).toFixed(2);
+  return `<g class="c" fill="none" stroke="currentColor" stroke-width="${r(3.3)}"><circle cx="${cx.toFixed(2)}" cy="${cy.toFixed(2)}" r="${r(13.2)}"/><path d="M${P(20.46, 11.99)}A${r(6)} ${r(6)} 0 1 0 ${P(20.46, 20.01)}"/></g>`;
+};
+const BOLD = { lg: boldC(WM.lg.c), sm: boldC(WM.sm.c) };
 export const wm = (size) => {
-  const v = size === 'fit' || size > 80 ? WM.lg : WM.sm;
+  const v = size === 'fit' || size > 80 ? WM.lg : WM.sm, bc = v === WM.lg ? BOLD.lg : BOLD.sm;
   const style = size === 'fit' ? '' : ` style="height:${(size * WM.h / 100).toFixed(2)}px"`;
-  return `<svg class="wm${size === 'fit' ? ' wm-fit' : ''}" viewBox="0 ${WM.top} ${v.w} ${WM.h}" aria-hidden="true" focusable="false"${style}>${WM.letters.map(d => `<path d="${d}"/>`).join('')}<path class="c" d="${v.c}"/></svg>`;
+  return `<svg class="wm${size === 'fit' ? ' wm-fit' : ''}" viewBox="0 ${WM.top} ${v.w} ${WM.h}" aria-hidden="true" focusable="false"${style}>${WM.letters.map(d => `<path d="${d}"/>`).join('')}${bc}</svg>`;
 };
 
 // width/height attributes for a PNG shown at height h (reserves its box before it loads).

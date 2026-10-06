@@ -6,7 +6,7 @@
 'use strict';
 const d = document, de = d.documentElement, body = d.body;
 const T = window.T || {};
-const lang = de.lang || 'en', page = de.dataset.page; // home | studio | work
+const lang = de.lang || 'en', page = de.dataset.page; // home | studio | work | sector | workidx | journal | article
 const mq = q => matchMedia(q).matches;
 const RM = mq('(prefers-reduced-motion: reduce)');
 const coarse = mq('(pointer: coarse)');
@@ -24,8 +24,6 @@ const flush = () => { sRaf = 0; for (const f of onScroll) f(); };
 addEventListener('scroll', () => { if (!sRaf) sRaf = requestAnimationFrame(flush); }, { passive: true });
 let lastW = innerWidth;
 addEventListener('resize', () => { flush(); });
-
-const HUES = [165, 255, 285, 30, 88];
 
 /* ---------- Barcelona clock ---------- */
 function clock() {
@@ -67,15 +65,6 @@ function cursor() {
   f();
 }
 
-/* ---------- ambient colour: [data-h] at screen centre (or [data-hh] under the pointer) tints the page ---------- */
-let curH;
-function setH(h) { if (h === curH) return; curH = h; const r = de.style; if (h === 'n' || h == null) r.setProperty('--ac', '.002'); else { r.setProperty('--h', h); r.setProperty('--ac', '.011'); } }
-function ambient() {
-  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) setH(e.target.dataset.h); }), { rootMargin: '-48% 0px -48% 0px' });
-  $$('[data-h]').forEach(el => io.observe(el));
-  $$('[data-hh]').forEach(el => el.addEventListener('pointerenter', () => setH(el.dataset.hh)));
-}
-
 /* ---------- reveals ---------- */
 function reveal() {
   if (RM) { $$('.rv').forEach(el => el.classList.add('in')); return; }
@@ -112,34 +101,25 @@ function lines() {
   });
 }
 
-/* ---------- smooth wheel scroll (desktop; native scroll kept so sticky works) ---------- */
+/* ---------- desktop: native scroll (v3) with a soft stop at [data-stop] ----------
+   A downward wheel gesture that would cross the section top stops there; trackpad inertia is
+   swallowed until a new gesture (a pause > 220ms) or an upward scroll. Other wheel input stays native. */
 let navT = 0; // last in-page jump started by the site (the touch brake leaves those alone)
 let scrollToY = y => scrollTo({ top: y, behavior: RM ? 'auto' : 'smooth' });
 function smooth() {
-  if (coarse || RM) return;
-  de.classList.add('sm');
-  let cur = scrollY, tgt = scrollY, raf = 0;
-  const max = () => de.scrollHeight - innerHeight;
-  const step = () => { cur = lerp(cur, tgt, .085); if (Math.abs(tgt - cur) < .4) cur = tgt; scrollTo(0, cur); raf = cur !== tgt ? requestAnimationFrame(step) : 0; };
-  // Soft stop ([data-stop]): a downward gesture halts at the section top; trackpad inertia is
-  // swallowed until a new gesture (a pause > 220ms) or an upward scroll.
-  const stops = $$('[data-stop]');
+  const stops = $$('[data-stop]'); if (coarse || RM || !stops.length) return;
   let gate = 0, lastW = 0;
   addEventListener('wheel', e => {
     if (e.ctrlKey || body.classList.contains('lock') || Math.abs(e.deltaX) > Math.abs(e.deltaY)) return;
-    e.preventDefault();
     const now = performance.now(), gap = now - lastW; lastW = now;
-    if (gate) { if (e.deltaY < 0 || gap > 220) gate = 0; else return; }
-    let nt = clamp(tgt + e.deltaY * (e.deltaMode === 1 ? 40 : 1), 0, max());
+    if (gate) { if (e.deltaY < 0 || gap > 220) gate = 0; else { e.preventDefault(); return; } }
+    if (e.deltaY <= 0) return;
+    const y = scrollY, dy = e.deltaY * (e.deltaMode === 1 ? 40 : 1);
     for (const st of stops) {
-      const y = Math.round(st.getBoundingClientRect().top + scrollY);
-      if (tgt < y - 1 && nt >= y) { nt = y; gate = 1; break; }
+      const top = Math.round(st.getBoundingClientRect().top + y);
+      if (y < top - 1 && y + dy >= top) { e.preventDefault(); gate = 1; navT = performance.now(); scrollToY(top); return; }
     }
-    tgt = nt;
-    if (!raf) raf = requestAnimationFrame(step);
   }, { passive: false });
-  addEventListener('scroll', () => { if (Math.abs(scrollY - cur) > 3) { cur = tgt = scrollY; cancelAnimationFrame(raf); raf = 0; } }, { passive: true });
-  scrollToY = y => { tgt = clamp(y, 0, max()); if (!raf) raf = requestAnimationFrame(step); };
 }
 
 /* ---------- touch: soft stop at [data-stop] ----------
@@ -175,11 +155,8 @@ function anchors() {
     const id = a.getAttribute('href'), t = id === '#top' ? null : d.querySelector(id);
     if (id !== '#top' && !t) return;
     e.preventDefault(); navT = performance.now();
-    const fromMenu = body.classList.contains('menu-open');
-    setMenu(false);
-    const y = t ? t.getBoundingClientRect().top + scrollY : 0;
-    // From the open menu: jump behind it while it closes (no long glide through the page); otherwise glide.
-    if (fromMenu) scrollTo(0, y); else scrollToY(y);
+    closeNav();
+    scrollToY(t ? t.getBoundingClientRect().top + scrollY : 0);
     const f = t || $('#top');
     if (f) { if (!f.hasAttribute('tabindex')) f.setAttribute('tabindex', '-1'); f.focus({ preventScroll: true }); }
   });
@@ -253,106 +230,55 @@ const setInert = (els, on) => els.forEach(el => { if (el) on ? el.setAttribute('
 /* Is there a dark section at viewport height y? Geometry only — the previous elementFromPoint
    approach hid/showed the dock every scroll frame, which could swallow taps on iOS. */
 let darkEls = null;
-const darkAt = y => (darkEls = darkEls || $$('#main .dark, #ft')).some(el => { const r = el.getBoundingClientRect(); return r.top <= y && r.bottom >= y; });
+const darkAt = y => (darkEls = darkEls || $$('#main .dark, #main .full, #ft')).some(el => { const r = el.getBoundingClientRect(); return r.top <= y && r.bottom >= y; });
 
-/* ---------- dock: auto-contrast, hide at the footer, "where am I" ---------- */
-let dockChk = () => {};
-function dock() {
-  const dk = $('.dock'); if (!dk) return;
-  const ft = $('#ft');
-  dockChk = () => {
-    if (body.classList.contains('menu-open')) { dk.classList.add('dk'); return; }
-    dk.classList.toggle('dk', darkAt(innerHeight - 40));
-  };
-  let ly = scrollY;
+/* ---------- navigation (v3): © mark turning with the scroll + glass pill + menu card ----------
+   Auto-contrast over dark sections, hides at the footer (any upward scroll brings it back). The menu card
+   closes with the button, Esc, a click outside, any link, focus leaving it or scrolling > 90px; no scroll lock. */
+let closeNav = () => {};
+function nav() {
+  const nv = $('#nv'); if (!nv) return;
+  const btn = $('.nv-b', nv), card = $('#nvc'), mA = $('.nv-mk', nv), mk = $('svg', mA), ft = $('#ft');
+  let open = false, oy = 0, ly = scrollY;
+  const chk = () => { nv.classList.toggle('dk', !open && darkAt(innerHeight - 48)); };
   const hid = () => {
-    const y = scrollY, up = y < ly - 2, dn = y > ly + 2, nb = ft ? ft.getBoundingClientRect().top < innerHeight - 60 : false;
-    if (body.classList.contains('menu-open')) dk.classList.remove('hid');
-    else if (up || !nb) dk.classList.remove('hid');
-    else if (dn && nb) dk.classList.add('hid');
+    const y = scrollY, nb = ft ? ft.getBoundingClientRect().top < innerHeight - 60 : false;
+    if (open || y < ly - 2 || !nb) nv.classList.remove('hid'); else if (y > ly + 2) nv.classList.add('hid');
     ly = y;
   };
-  onScroll.push(dockChk, hid);
-  setTimeout(dockChk, 60);
-  // Scrollspy: active link follows the section crossing 45% of the viewport (Home); fixed on inner pages.
-  const key = a => { const h = a.getAttribute('href') || ''; return /#work$/.test(h) ? 'work' : /#services$/.test(h) ? 'services' : /\/studio\/$/.test(h) ? 'studio' : /#contact$/.test(h) ? 'contact' : ''; };
-  const pg = page === 'studio' ? 'studio' : page === 'work' ? 'work' : '';
-  const links = $$('.dock .dl, .menu-l a');
-  const spy = () => {
-    let k = pg;
-    if (!k) { const y = innerHeight * .45; for (const id of ['work', 'services', 'contact']) { const s = d.getElementById(id); if (!s) continue; const r = s.getBoundingClientRect(); if (r.top < y && r.bottom > y) k = id; } }
-    links.forEach(a => a.classList.toggle('on', !!k && key(a) === k));
+  // The mark: target angle = scrollY × 0.2° (+180° while the menu is open), eased each frame; upright on hover / focus.
+  let rot = scrollY * .2, spin = 0, up = null, raf = 0;
+  const tick = () => {
+    const tg = up !== null ? up : scrollY * .2 + spin;
+    rot += (tg - rot) * (up !== null ? .16 : .09);
+    if (Math.abs(tg - rot) < .05) rot = tg;
+    mk.style.transform = `rotate(${rot.toFixed(2)}deg)`;
+    raf = rot !== tg ? requestAnimationFrame(tick) : 0;
   };
-  onScroll.push(spy); setTimeout(spy, 300);
-}
-
-/* iOS: overflow:hidden on <html> doesn't stop every touch scroll. While an overlay is open, block page
-   scrolling unless the finger is on a part of the overlay that can scroll itself. Attached only while
-   locked, so normal scrolling never waits for this listener. */
-const touchGuard = e => { const s = e.target.closest && e.target.closest('.menu-i, .qk'); if (s && s.scrollHeight > s.clientHeight + 1) return; e.preventDefault(); };
-const lockTouch = () => body.classList.contains('menu-open') || body.classList.contains('qk-open')
-  ? d.addEventListener('touchmove', touchGuard, { passive: false }) : d.removeEventListener('touchmove', touchGuard);
-
-/* ---------- fullscreen menu (mobile burger) ---------- */
-let setMenu = () => {};
-function menu() {
-  const b = $('#mb'), m = $('#menu'); if (!b || !m) return;
-  let back = null;
-  const ml = $('.menu-l', m); let rdy = 0, full = 0;
-  m.tabIndex = -1;
-  // Circle origin = the burger; radius covers the whole screen with room to spare (Safari may resize the viewport).
-  const origin = () => {
-    const r = b.getBoundingClientRect(), x = r.left + r.width / 2, y = r.top + r.height / 2;
-    m.style.setProperty('--mx', x + 'px'); m.style.setProperty('--my', y + 'px');
-    m.style.setProperty('--mr', Math.ceil(Math.hypot(Math.max(x, innerWidth - x), Math.max(y, innerHeight - y)) + 160) + 'px');
-  };
-  // kb: opened from the keyboard → focus the first link; by touch/mouse → focus the panel (no ring on "Work").
-  setMenu = (o, kb) => {
-    if (o === body.classList.contains('menu-open')) return;
-    clearTimeout(rdy); clearTimeout(full); ml && ml.classList.remove('rdy');
-    origin(); m.classList.remove('is-open'); void m.offsetWidth; // start (or play back) from the burger
-    if (o) { loadIn(m); full = setTimeout(() => m.classList.add('is-open'), 1000); if (ml) rdy = setTimeout(() => ml.classList.add('rdy'), 1400); }
-    body.classList.toggle('menu-open', o);
-    body.classList.toggle('lock', o || body.classList.contains('qk-open'));
-    lockTouch();
-    b.setAttribute('aria-expanded', o); b.setAttribute('aria-label', o ? T.closeMenu : T.openMenu);
-    $$('.rw>span', b).forEach(s => s.textContent = o ? T.close : T.menu);
-    setInert([$('#main'), $('#ft'), $('#ck')], o);
-    $$('.dock > :not(#mb)').forEach(el => o ? el.setAttribute('tabindex', '-1') : el.removeAttribute('tabindex'));
-    dockChk();
-    if (o) { back = d.activeElement; requestAnimationFrame(() => { const s = m.querySelector('[data-langseg]'); s && s._place && s._place(); const f = kb ? $('.menu-l a', m) : m; f && f.focus({ preventScroll: true }); }); }
-    else if (back && m.contains(d.activeElement)) b.focus({ preventScroll: true });
-  };
-  b.addEventListener('click', e => setMenu(!body.classList.contains('menu-open'), e.detail === 0));
-  addEventListener('keydown', e => {
-    if (!body.classList.contains('menu-open')) return;
-    if (e.key === 'Escape') { setMenu(false); b.focus(); }
-    trap(e, [b, m]);
-  });
-}
-
-/* ---------- Quick look (Home) ---------- */
-function quick() {
-  const q = $('#qk'); if (!q) return;
-  const qlb = $('#qlb'), qlm = $('#qlm');
-  let back = null;
-  const open = () => body.classList.contains('qk-open');
+  const turn = () => { if (!RM && !raf) raf = requestAnimationFrame(tick); };
+  if (!RM) {
+    mk.style.transform = `rotate(${rot.toFixed(2)}deg)`;
+    const st = () => { up = Math.round(rot / 360) * 360; turn(); }, go = () => { up = null; turn(); };
+    mA.addEventListener('pointerenter', st); mA.addEventListener('pointerleave', go);
+    mA.addEventListener('focus', st); mA.addEventListener('blur', go);
+  }
   const set = o => {
-    if (o === open()) return;
-    body.classList.toggle('qk-open', o); body.classList.toggle('lock', o);
-    lockTouch();
-    q.inert = !o;
-    [qlb, qlm].forEach(x => x && x.setAttribute('aria-expanded', o));
-    setInert([$('#main'), $('#ft'), $('.dock'), $('#menu')], o);
-    if (o) { loadIn(q); back = d.activeElement; setTimeout(() => $('.qk-x', q).focus({ preventScroll: true }), 60); }
-    else if (back && back.isConnected && back.offsetParent) back.focus({ preventScroll: true });
+    if (o === open) return;
+    open = o; spin += o ? 180 : -180; oy = scrollY;
+    nv.classList.toggle('open', o); body.classList.toggle('nv-open', o);
+    btn.setAttribute('aria-expanded', o); card.inert = !o;
+    chk(); hid(); turn();
+    if (o) setTimeout(() => { const a = $('a', card); a && open && a.focus({ preventScroll: true }); }, 320);
   };
-  qlb && qlb.addEventListener('click', e => { e.preventDefault(); set(true); });
-  qlm && qlm.addEventListener('click', () => { setMenu(false); setTimeout(() => set(true), 350); });
-  $('.qk-x', q).addEventListener('click', () => set(false));
-  q.addEventListener('click', e => { if (e.target === q || e.target.classList.contains('qk-g')) set(false); });
-  $$('a', q).forEach(a => a.addEventListener('click', () => { back = null; set(false); }));
-  addEventListener('keydown', e => { if (!open()) return; if (e.key === 'Escape') set(false); trap(e, [q]); });
+  closeNav = () => set(false);
+  btn.addEventListener('click', () => set(!open));
+  addEventListener('keydown', e => { if (e.key === 'Escape' && open) { set(false); btn.focus(); } });
+  d.addEventListener('pointerdown', e => { if (open && !nv.contains(e.target)) set(false); });
+  card.addEventListener('click', e => { if (e.target.closest('a')) set(false); });
+  nv.addEventListener('focusout', e => { if (open && e.relatedTarget && !nv.contains(e.relatedTarget)) set(false); });
+  onScroll.push(() => { hid(); chk(); turn(); if (open && Math.abs(scrollY - oy) > 90) set(false); });
+  addEventListener('resize', chk);
+  setTimeout(chk, 60); d.fonts && d.fonts.ready.then(chk);
 }
 
 /* ---------- preloader (Home, first visit of the session) ---------- */
@@ -369,6 +295,11 @@ function pre(key) {
     p.onclick = done;
     (function f(t) { const k = Math.min(1, (t - t0) / D), e = 1 - Math.pow(1 - k, 3); n.textContent = String(Math.round(e * 100)).padStart(3, '0'); l.style.transform = `scaleX(${e})`; if (k < 1) requestAnimationFrame(f); else setTimeout(done, 250); })(t0);
   });
+}
+
+/* ---------- inner heroes: the Ken Burns starts once the image is decoded (no stall on entering a page) ---------- */
+function heroes() {
+  $$('.ch-bg').forEach(b => { const i = $('img', b), ok = () => b.classList.add('ok'); if (!i) return ok(); (i.decode ? i.decode() : Promise.resolve()).then(ok, ok); setTimeout(ok, 1500); });
 }
 
 /* ---------- visibility helper (pause work off-screen) ---------- */
@@ -536,8 +467,16 @@ function homePage() {
     }, 3400);
   }
 
-  // Work: drag carousel ⇄ editorial grid.
-  const wv = $('#wv'), vCar = $('.wv-car', wv), vGr = $('.wv-gr', wv);
+  // Work: drag carousel ⇄ editorial grid. The projects are in the HTML once (SEO); the editorial grid
+  // (data-g = "column aspect") and the carousel's loop copies (hidden from AT, out of the tab order) are built here.
+  const wv = $('#wv'), vCar = $('.wv-car', wv), vGr = $('.wv-gr', wv), ct = $('#ct'), real = $$('.pj', ct);
+  real.forEach(c => {
+    const g = c.cloneNode(true), [col, ar] = (c.dataset.g || '').split(' '), im = $('.img', g);
+    g.style.gridColumn = col; im.classList.add('clip'); im.style.aspectRatio = ar;
+    $('.gr', vGr).appendChild(g);
+  });
+  const loop = c => { const k = c.cloneNode(true); k.setAttribute('aria-hidden', 'true'); k.tabIndex = -1; $$('img', k).forEach(i => { i.alt = ''; }); return k; };
+  ct.prepend(...real.map(loop)); ct.append(...real.map(loop));
   const car = carousel($('#car'), { drift: -.7, skew: 9, scale: .004 });
   const sg = seg($('#seg'), i => {
     wv.classList.add('sw');
@@ -576,7 +515,6 @@ function homePage() {
     c.addEventListener('focusout', e => { if (!coarse && !c.contains(e.relatedTarget)) c.classList.remove('on'); });
   });
 
-  quick();
 }
 
 /* ================= Studio ================= */
@@ -585,7 +523,6 @@ function studioPage() {
   const mf = $('.mf'), mw = $$('#mfp span');
   // Values: horizontal track driven by vertical scroll.
   const vh = $('#vh'), vht = $('#vht'), bs = $$('#bars b');
-  const VH = $$('.vp', vht).map(v => v.dataset.hh);
   const tick = () => {
     const vH = innerHeight;
     let r = mf.getBoundingClientRect(), q = clamp(-r.top / (r.height - vH), 0, 1);
@@ -595,7 +532,6 @@ function studioPage() {
     if (r.bottom > 0 && r.top < vH) {
       vht.style.transform = `translate3d(${-q * (vht.scrollWidth - innerWidth)}px,0,0)`;
       bs.forEach((b, i) => b.style.transform = `scaleX(${clamp(q * 3 - i, 0, 1)})`);
-      if (r.top < vH * .5 && r.bottom > vH * .5) setH(VH[Math.min(2, Math.floor(q * 2.999))]);
     }
   };
   onScroll.push(tick); tick();
@@ -631,9 +567,33 @@ function casePage() {
   }
 }
 
+/* ================= SEO pages: sector pricing, Work / Journal filters, article contents ================= */
+function seoPages() {
+  // Segmented control → callback with the button's data attribute; aria-pressed kept in sync by seg().
+  const wire = (el, fn) => { if (!el) return; const sg = seg(el, i => fn(sg.items[i])); sg.items.forEach((b, i) => b.addEventListener('click', () => { if (!b.classList.contains('on')) sg.set(i); })); };
+  // Pricing: highlight one revenue column (phones show only that one).
+  const pt = $('.pt'); wire($('[data-pz]'), b => { pt.dataset.col = b.dataset.c; });
+  // Work index: filter rows by service, live count.
+  const wl = $('#wl'), wc = $('#wcount');
+  wire($('#wfs'), b => {
+    const k = b.dataset.k; let n = 0;
+    $$(':scope > *', wl).forEach(r => { const on = k === 'all' || r.dataset.sv.split(' ').includes(k); r.classList.toggle('hide', !on); n += on; });
+    if (wc) wc.textContent = wc.dataset.fmt.replace('#', n);
+  });
+  // Journal: filter by cluster.
+  const jl = $('#jl'); wire($('#jf'), b => { const k = b.dataset.k; $$('li', jl).forEach(li => { li.hidden = k !== 'all' && li.dataset.c !== k; }); });
+  // Article: table-of-contents scrollspy (the active item has a 2px ink border).
+  const toc = $('#toc');
+  if (toc) {
+    const T2 = $$('a', toc), H = T2.map(a => d.getElementById(a.getAttribute('href').slice(1)));
+    const spy = () => { let n = 0; H.forEach((h, i) => { if (h && h.getBoundingClientRect().top < innerHeight * .35) n = i; }); T2.forEach((a, i) => a.classList.toggle('on', i === n)); };
+    onScroll.push(spy); spy();
+  }
+}
+
 /* ================= init ================= */
-roll(); mag(); cursor(); ambient(); smooth(); brake(); anchors(); copy(); dock(); menu(); langs(); marquees(); videos();
-if (page === 'home') homePage(); else if (page === 'studio') studioPage(); else if (page === 'work') casePage();
+roll(); mag(); cursor(); smooth(); brake(); anchors(); copy(); nav(); langs(); marquees(); videos(); heroes();
+if (page === 'home') homePage(); else if (page === 'studio') studioPage(); else if (page === 'work') casePage(); else seoPages();
 clock(); setInterval(clock, 1000);
 // Line splitting needs the real font; if it is slow, split now and again once it arrives.
 let fontLate = 0;

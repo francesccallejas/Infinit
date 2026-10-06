@@ -1,7 +1,8 @@
 // Case: Relats — port of prototype/pages/case-relats.html.
-import { esc, A } from '../lib.mjs';
+import { esc, A, url } from '../lib.mjs';
+import { C as SECTOR } from './industrial.mjs';
 import { T } from '../i18n.mjs';
-import { head, end } from '../layout.mjs';
+import { head, end, ending } from '../layout.mjs';
 import { chip, caseHero, meta, about, video, nextCase, swatches } from './case.mjs';
 
 const R = 'work/relats/relats-assets/';
@@ -82,7 +83,7 @@ const C = {
   },
 };
 
-const STEP_IMG = ['join-the-ride', 'brand-context-2', 'emi-hero'], STEP_H = [165, 255, 285];
+const STEP_IMG = ['join-the-ride', 'brand-context-2', 'emi-hero'];
 const FLD = ['social-1', 'mobile-app', 'offices', 'social-2', 'brand-context-1', 'web-section', 'web-mockup', 'mobile'];
 const SW = [['#FF5710', '#fff'], ['#1C1C1C', '#fff'], ['#3131FF', '#fff'], ['#42CC8B'], ['#FF9E2C'], ['#E0DBD7'], ['#F5F1ED'], ['#FFFFFF', '', true]];
 const darkChip = 'style="color:var(--t4);background:oklch(.16 .004 85 / .06);align-self:flex-start"';
@@ -93,26 +94,27 @@ export function relats(ctx) {
   const body = [
     caseHero(ctx, { img: R + 'emi-hero-lg-2400.webp', logo: 'project/assets/clients/relats.png', logoStyle: ' style="filter:brightness(0) invert(1);height:clamp(20px,1.9vw,30px)"', name: 'Relats', h1: c.h1,
       chips: chip('strategy', lang) + chip('brand', lang) + chip('digital', lang) + `<a class="chip" href="${LIVE}" target="_blank" rel="noopener">${esc(c.live)}</a>` }),
-    meta(c.meta),
+    meta(c.meta.map((r, i) => i === 3 ? [...r, [url(lang, 'industrial'), SECTOR[lang].lbl]] : r)),
     about(c),
     `<section class="blk"><div class="vids">
 ${video({ file: R + 'brand-film.mp4', poster: R + 'film-poster.jpg', label: c.vFilm, cls: 'wide' })}
 ${video({ file: R + 'logo-motion-dark.mp4', poster: R + 'logo-dark-poster.jpg', label: c.vMark, cls: 'mark' })}
 ${video({ file: R + 'tie-cord.mp4', poster: R + 'tie-cord-poster.jpg', alt: c.vCord, delay: '.06s' })}
 </div></section>`,
-    `<section class="blk"><h2 class="sr">${esc({ en: 'How we did it', ca: 'Com ho vam fer', es: 'Cómo lo hicimos' }[lang])}</h2><div>${c.steps.map((s, i) => `<div class="step" data-h="${STEP_H[i]}"><div class="tx rv"><span class="lbl">${esc(s[0])}</span><h3${i === 1 ? ' class="em"' : ''}>${s[1]}</h3><p>${esc(s[2])}</p><span class="chip" ${darkChip}>${esc(s[3])}</span></div><div class="img clip"><img src="${A(R + STEP_IMG[i] + '.webp')}" alt="${esc(s[4])}" loading="lazy"></div></div>`).join('')}</div></section>`,
+    `<section class="blk"><h2 class="sr">${esc({ en: 'How we did it', ca: 'Com ho vam fer', es: 'Cómo lo hicimos' }[lang])}</h2><div>${c.steps.map((s, i) => `<div class="step"><div class="tx rv"><span class="lbl">${esc(s[0])}</span><h3${i === 1 ? ' class="em"' : ''}>${s[1]}</h3><p>${esc(s[2])}</p><span class="chip" ${darkChip}>${esc(s[3])}</span></div><div class="img clip"><img src="${A(R + STEP_IMG[i] + '.webp')}" alt="${esc(s[4])}" loading="lazy"></div></div>`).join('')}</div></section>`,
     `<section class="full" style="margin-top:clamp(70px,8vw,120px)"><div class="img"><img src="${A(R + 'turbine-2400.webp')}" alt="" loading="lazy"></div><div><span class="lbl">${esc(c.fullL)}</span><h2 class="h2" data-lines>${esc(c.fullH)}</h2><p>${esc(c.fullP)}</p></div></section>`,
-    `<section class="blk"><div class="sh"><div><span class="lbl">${esc(c.webL)}</span><h2 class="h2" data-lines>${esc(c.webH)}</h2></div><a class="gbtn" href="${LIVE}" target="_blank" rel="noopener" style="--bh:30"><span class="roll">${esc(c.webBtn)}</span><span class="ar" aria-hidden="true">↗</span></a></div>
+    `<section class="blk"><div class="sh"><div><span class="lbl">${esc(c.webL)}</span><h2 class="h2" data-lines>${esc(c.webH)}</h2></div><a class="gbtn" href="${LIVE}" target="_blank" rel="noopener"><span class="roll">${esc(c.webBtn)}</span><span class="ar" aria-hidden="true">↗</span></a></div>
 <div class="img clip" style="border-radius:14px;aspect-ratio:16/9"><img src="${A(R + 'staying-ahead.webp')}" alt="${esc(c.webAlt)}" loading="lazy"></div></section>`,
     `<section class="blk"><div class="sh"><div><span class="lbl">${esc(c.sysL)}</span><h2 class="h2" data-lines>${esc(c.sysH)}</h2></div></div>
 ${swatches(SW.map(([hex, fg, b], i) => [c.sw[i], hex, fg, b]), 8)}
 <div class="tpf rv"><div><span class="lbl">${esc(c.typeL)}</span><span class="aa" aria-hidden="true">Aa</span></div><div><ul><li>Roobert <span>${esc(c.tDisplay)}</span></li><li style="font-family:ui-monospace,monospace;font-size:clamp(18px,1.8vw,28px)">DM Mono <span>${esc(c.tData)}</span></li></ul></div></div></section>`,
-    `<section class="blk" data-h="30"><div class="sh"><div><span class="lbl">${esc(c.fldL)}</span><h2 class="h2" data-lines>${esc(c.fldH)}</h2></div></div>
+    `<section class="blk"><div class="sh"><div><span class="lbl">${esc(c.fldL)}</span><h2 class="h2" data-lines>${esc(c.fldH)}</h2></div></div>
 ${video({ file: R + 'top-tier.mp4', poster: R + 'top-tier-poster.jpg', label: c.topTier, cls: 'wide', sound: true, lang }).replace('class="vd rv wide"', 'class="vd rv wide" style="margin-bottom:12px"')}
 <div class="fld">${FLD.map((s, i) => `<div class="rv" style="transition-delay:${(i % 4) * .05}s"><div class="img"><img src="${A(R + s + '.webp')}" alt="${esc(c.fldAlt[i])}" loading="lazy"></div><span class="chip">${esc(c.fld[i])}</span></div>`).join('')}</div></section>`,
-    `<section class="blk g12" data-h="255"><div style="grid-column:1/6;display:flex;flex-direction:column;gap:18px" class="rv"><span class="lbl">${esc(c.anL)}</span><h2 class="h2">${esc(c.anH)}</h2><p style="font-size:17px;line-height:1.5;color:var(--t3)">${c.anP}</p></div>
+    `<section class="blk g12"><div style="grid-column:1/6;display:flex;flex-direction:column;gap:18px" class="rv"><span class="lbl">${esc(c.anL)}</span><h2 class="h2">${esc(c.anH)}</h2><p style="font-size:17px;line-height:1.5;color:var(--t3)">${c.anP}</p></div>
 <div style="grid-column:7/13;position:relative"><div class="img clip" style="border-radius:14px;aspect-ratio:4/3"><img src="${A(R + 'analytics.webp')}" alt="${esc(c.anAlt)}" loading="lazy"></div><span class="chip" style="position:absolute;left:14px;bottom:14px">data.relats.com</span></div></section>`,
     nextCase(ctx, 'bunnker'),
+    ending(ctx, { cls: 'afternx' }),
   ].join('\n');
 
   return head(ctx, { title: c.title, desc: c.desc, og: '/assets/site/og/relats.jpg', css: ['inner'] }) +

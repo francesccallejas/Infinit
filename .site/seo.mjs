@@ -82,6 +82,8 @@ const crumbs = (lang, page, crumbName) => {
   if (crumbName && page !== 'sectors') items.push([NAMES.sectors[lang], abs(lang, 'sectors')]);
   if (crumbName) items.push([crumbName, abs(lang, page)]);
   if (CASES[page]) items.push([CASES[page].client, abs(lang, page)]);
+  // Work index / Journal / articles: explicit trail [[name, page key], …].
+  if (Array.isArray(crumbName)) items.splice(1, items.length, ...crumbName.map(([n, k]) => [n, abs(lang, k)]));
   return { '@type': 'BreadcrumbList', '@id': abs(lang, page) + '#breadcrumb', itemListElement: items.map(([name, item], i) => ({ '@type': 'ListItem', position: i + 1, name, item })) };
 };
 
@@ -96,10 +98,28 @@ export function graph(lang, page, meta) {
   };
   // #org / #founder are shared nodes (same @id on every page): keep their content language-neutral (English).
   const g = [org('en'), founder('en'), website(), webpage];
-  if (page !== 'home') g.push(crumbs(lang, page, meta.ld && meta.ld.name)); else delete webpage.breadcrumb;
+  if (page !== 'home') g.push(crumbs(lang, page, meta.ld && (meta.ld.crumbs || meta.ld.name))); else delete webpage.breadcrumb;
+  // Work index / Journal: a collection page listing its items.
+  if (meta.ld && meta.ld.list) {
+    webpage['@type'] = 'CollectionPage';
+    webpage.mainEntity = { '@type': 'ItemList', itemListElement: meta.ld.list.map(([name, url], i) => ({ '@type': 'ListItem', position: i + 1, name, url })) };
+  }
+  // Journal article: Article (+ FAQPage when it has questions).
+  const a = meta.ld && meta.ld.article;
+  if (a) {
+    webpage.mainEntity = { '@id': u + '#article' };
+    g.push({
+      '@type': 'Article', '@id': u + '#article', headline: a.title, description: a.description, inLanguage: INLANG[lang], url: u,
+      image: SITE + meta.og, datePublished: a.date, dateModified: a.date, author: { '@id': FOUNDER }, publisher: { '@id': ORG },
+      mainEntityOfPage: { '@id': u + '#webpage' }, isPartOf: { '@type': 'Blog', name: 'INFINIT© Journal', url: abs(lang, 'journal') },
+      about: { '@type': 'Service', name: a.sectorName, url: abs(lang, a.sectorKey), provider: { '@id': ORG } }, wordCount: a.md.split(/\s+/).length,
+    });
+    if (a.faq.length) g.push({ '@type': 'FAQPage', '@id': u + '#faq', inLanguage: INLANG[lang], isPartOf: { '@id': u + '#webpage' },
+      mainEntity: a.faq.map(([q, ans]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: ans } })) });
+  }
   // Sector pages: the service they describe + the visible FAQ.
   if (meta.ld && meta.ld.hub) webpage['@type'] = 'CollectionPage';
-  if (meta.ld && !meta.ld.hub) {
+  if (meta.ld && !meta.ld.hub && !meta.ld.list && !meta.ld.article) {
     webpage.mainEntity = { '@id': u + '#service' };
     g.push({
       '@type': 'Service', '@id': u + '#service', name: meta.ld.name, serviceType: meta.ld.serviceType, description: meta.desc, url: u,

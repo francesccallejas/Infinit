@@ -1,25 +1,26 @@
 // Case-study building blocks (template from prototype/pages/case-*.html + case.css).
-import { url, esc, A, dot } from '../lib.mjs';
+import { url, esc, A } from '../lib.mjs';
 import { T } from '../i18n.mjs';
 import { svc, P, src } from '../data.mjs';
-import { heroLine, ftLine } from '../layout.mjs';
+import { ftLine } from '../layout.mjs';
 
 // Case chips call the brand service "Identity" (as in the prototype).
 const ID = { en: 'Identity', ca: 'Identitat', es: 'Identidad' };
-export const chip = (k, lang) => `<span class="chip"><i style="background:${dot(svc(k).h)}" aria-hidden="true"></i>${esc(k === 'brand' ? ID[lang] : svc(k).n[lang])}</span>`;
+export const chip = (k, lang) => `<span class="chip">${esc(k === 'brand' ? ID[lang] : svc(k).n[lang])}</span>`;
 
 export function caseHero(ctx, { img, logo, logoStyle = '', name, h1, chips }) {
   const t = T[ctx.lang];
-  return `<section class="ch dark" id="top" data-h="n"><div class="ch-bg"><div class="img"><img src="${A(img)}" alt="" fetchpriority="high"></div></div>
-<div class="ch-t"><a class="gbtn" href="${url(ctx.lang, 'home')}#work"><span class="ar bk" aria-hidden="true">←</span><span class="roll">${esc(t.allWork)}</span></a></div>
+  return `<section class="ch dark" id="top"><div class="ch-bg"><div class="img"><img src="${A(img)}" alt="" fetchpriority="high"></div></div>
+<div class="ch-t"><a class="gbtn" href="${url(ctx.lang, 'workidx')}"><span class="ar bk" aria-hidden="true">←</span><span class="roll">${esc(t.allWork)}</span></a></div>
 <div class="ch-m"><img class="ch-logo" src="${A(logo)}" alt="${esc(name)}"${logoStyle}><h1 class="hin">${h1}</h1></div>
 <div class="ch-b"><div class="chips">${chips}</div><a class="scd" href="#case">${esc(t.scroll)}<i></i></a></div>
-${heroLine}</section>`;
+</section>`;
 }
 
-export const meta = rows => `<section class="meta" id="case">${rows.map(([k, v]) => `<div><span class="lbl">${esc(k)}</span><b>${esc(v)}</b></div>`).join('')}</section>`;
+// Meta bar; a row may carry a link to its sector page: [label, value, [href, text]].
+export const meta = rows => `<section class="meta" id="case">${rows.map(([k, v, l]) => `<div><span class="lbl">${esc(k)}</span><b>${esc(v)}</b>${l ? `<a class="mlk" href="${l[0]}">${esc(l[1])} ↗</a>` : ''}</div>`).join('')}</section>`;
 
-export const about = ({ whoL, who, defL, quote }) => `<section class="blk g12 ab" data-h="n"><div class="who rv"><span class="lbl">${esc(whoL)}</span><p>${esc(who)}</p></div>
+export const about = ({ whoL, who, defL, quote }) => `<section class="blk g12 ab"><div class="who rv"><span class="lbl">${esc(whoL)}</span><p>${esc(who)}</p></div>
 <div class="q"><span class="lbl">${esc(defL)}</span><blockquote class="em" data-lines>${quote}</blockquote></div></section>`;
 
 // Autoplaying muted video, lazy: site.js sets src when it nears the viewport, pauses it off-screen,

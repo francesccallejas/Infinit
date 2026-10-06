@@ -1,0 +1,88 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Studio — INFINIT©</title><link rel="icon" href="../assets/favicon/favicon.ico" sizes="32x32"><link rel="icon" href="../assets/favicon/favicon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="../assets/favicon/apple-touch-icon.png">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@500;900&display=swap"><link rel="stylesheet" href="shared.css"><link rel="stylesheet" href="kit.css"><link rel="stylesheet" href="kit2.css"><link rel="stylesheet" href="case.css">
+<script src="shared.js"></script><script src="kit.js"></script><script src="kit2.js"></script><script src="nav.js"></script>
+<style>
+.sh1{height:100vh;height:100svh;min-height:560px;position:relative;display:grid;grid-template-rows:auto 1fr auto;padding:22px var(--pad) 18px}
+@media(max-width:1180px){.sh1{padding-bottom:clamp(96px,11vh,120px)}}
+.sh1-t{display:flex;justify-content:space-between;align-items:flex-start}
+.sh1 h1{align-self:center;font-size:clamp(52px,8.6vw,160px);line-height:.92;letter-spacing:-.06em;font-weight:700;max-width:1500px;text-wrap:balance}
+.sh1 h1 .lm{padding-bottom:.14em;margin-bottom:-.14em}
+.sh1-b{display:flex;justify-content:space-between;align-items:center;min-height:52px}
+.fcd{display:flex;gap:12px;align-items:center;padding:8px 20px 8px 8px;border-radius:16px;color:#fff;background:oklch(1 0 0 / .12);-webkit-backdrop-filter:blur(18px) saturate(1.5);backdrop-filter:blur(18px) saturate(1.5);font-size:15px;font-weight:500;line-height:1.3;box-shadow:0 10px 30px -14px oklch(.14 .012 245 / .25)}
+.fcd:hover{color:#fff;background:oklch(1 0 0 / .2)}.fcd .img{width:54px;height:54px;border-radius:12px}.fcd small{display:block;font-size:13px;color:oklch(1 0 0 / .7)}
+.mf{position:relative;height:170vh}
+.mf-s{position:sticky;top:0;height:100vh;display:flex;flex-direction:column;justify-content:center;gap:28px;padding:0 var(--pad)}
+.mf p{font-size:clamp(28px,3.4vw,56px);line-height:1.08;letter-spacing:-.04em;font-weight:500;max-width:1100px;text-wrap:balance}
+.mf p span{color:var(--l1);transition:color .4s}.mf p span.on{color:var(--t2)}.mf p span.on.k{color:var(--t4)}
+.vh{position:relative;height:260vh}
+.vh-s{position:sticky;top:0;height:100vh;overflow:hidden;display:flex;flex-direction:column;justify-content:center}
+.vh-t{display:flex;width:max-content;will-change:transform}
+.vp{width:100vw;padding:0 var(--pad);display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:clamp(24px,4vw,72px);align-items:center;box-sizing:border-box}
+.vp .img{aspect-ratio:3/2;border-radius:14px}
+.vp .tx{display:flex;flex-direction:column;gap:18px}
+.vp h3{font-size:clamp(44px,5.6vw,96px);letter-spacing:-.055em;font-weight:700;line-height:.9;display:flex;align-items:flex-start;gap:.12em}
+.vp h3 i{width:.12em;height:.12em;border-radius:50%;margin-top:.1em}
+.vp p{font-size:clamp(16px,1.2vw,19px);line-height:1.5;color:var(--t3);max-width:440px}
+.vh-p{position:absolute;left:var(--pad);right:var(--pad);top:28px;display:flex;justify-content:space-between;align-items:center}
+.vh-p .bars{display:flex;gap:6px}.vh-p .bars i{width:40px;height:3px;border-radius:2px;background:var(--l1);overflow:hidden;position:relative}.vh-p .bars b{position:absolute;inset:0;background:var(--t4);transform-origin:0 0;transform:scaleX(0)}
+.fd2{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:clamp(24px,5vw,90px);align-items:center}
+.fd2 .img{aspect-ratio:4/5;max-height:78vh;border-radius:16px}
+.fd2 .tx{display:flex;flex-direction:column;gap:28px}
+.fd2 .tx>p{font-size:clamp(20px,1.7vw,28px);line-height:1.2;letter-spacing:-.035em;font-weight:500;text-wrap:pretty}
+.stt{display:flex;flex-direction:column;border-top:1px solid var(--l1)}
+.stt div{display:flex;justify-content:space-between;align-items:baseline;gap:20px;padding:12px 0;border-bottom:1px solid var(--l1)}
+.stt b{font-size:clamp(26px,2.4vw,40px);letter-spacing:-.045em;font-weight:700;line-height:1;font-variant-numeric:tabular-nums}
+.xp{padding:clamp(70px,8vw,120px) 0 0}
+.xp-r{overflow:hidden;border-top:1px solid var(--d1)}.xp-r:last-of-type{border-bottom:1px solid var(--d1)}
+.xp-t{display:flex;width:max-content;gap:.6em;padding:14px 0;font-size:clamp(28px,3.4vw,52px);letter-spacing:-.045em;font-weight:700;line-height:1;animation:mq 60s linear infinite}
+.xp-r:nth-child(even) .xp-t{animation-direction:reverse;color:var(--t2)}
+.xp-t span{display:flex;align-items:center;gap:.6em}.xp-t i{width:.12em;height:.12em;border-radius:50%;background:var(--c)}
+.cta2{padding:clamp(90px,10vw,150px) var(--pad) clamp(60px,7vw,100px);display:flex;flex-direction:column;align-items:center;gap:clamp(28px,4vw,52px);text-align:center}
+.cta2 h2{font-size:clamp(40px,5.6vw,96px);letter-spacing:-.05em;line-height:.95;font-weight:700}
+.cta2 .mail{font-size:clamp(26px,4.6vw,80px)}
+.blk{padding-top:clamp(70px,8vw,120px)}
+.cta-b{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+@media(max-width:900px){.vp,.fd2{grid-template-columns:1fr}.vp .img{aspect-ratio:16/10}.fd2 .img{max-height:none}.vp h3{font-size:48px}}
+</style><link rel="stylesheet" href="nav.css"><link rel="stylesheet" href="sober.css">
+</head><body>
+<section class="ch dark" id="top" data-h="n"><div class="ch-bg"><div class="img"><img src="../project/assets/imagery/studio-hero.webp" fetchpriority="high" decoding="async" alt="A runner in mid-air, one foot off the ground"></div></div>
+<div class="ch-t"><a class="gbtn" href="home.html"><span class="ar bk">←</span><span class="roll">Home</span></a><span class="lbl">The studio</span></div>
+<div class="ch-m"><h1 data-lines>Brands that move — fast, and <b>with clarity.</b></h1></div>
+<div class="ch-b" style="justify-content:flex-end"><a class="scd" href="#mf">Scroll<i></i></a></div>
+<div class="hl"><i></i></div></section>
+<section class="mf" id="mf" data-h="n"><div class="mf-s"><span class="lbl">INFINIT©</span><p id="mfp">INFINIT© is a brand &amp; strategy studio built on one belief: branding is a craft — and craft is made by people.</p></div></section>
+<section class="vh" id="vh"><div class="vh-s"><div class="vh-p"><span class="lbl">What we believe</span><span class="bars" id="bars"><i><b></b></i><i><b></b></i><i><b></b></i></span></div><div class="vh-t" id="vht"></div></div></section>
+<section class="blk" id="founder" data-h="165"><div class="fd2">
+<div class="img"><img src="../project/assets/imagery/francesc.webp" alt="Cesc Callejas" loading="lazy"></div>
+<div class="tx"><span class="lbl">The founder</span><p class="em" data-lines>All led hands-on by <b>Cesc Callejas</b> — two decades on both sides of the table: building brands, and running the operations that depend on them. <b>No layers. You work with him.</b></p>
+<div class="stt"><div><span class="lbl">Built from scratch</span><b data-cnt="1.7" data-fmt="eur">€0 → €1.7M</b></div><div><span class="lbl">Growth · 2 yrs</span><b data-cnt="50" data-fmt="pct">+50%</b></div><div><span class="lbl">Visibility</span><b data-cnt="10" data-fmt="x">×10</b></div></div>
+<a class="gbtn" href="https://www.linkedin.com/in/francesc-callejas-%E2%98%81%EF%B8%8F%E2%98%98%EF%B8%8F-99416a90/" style="--bh:255;align-self:flex-start"><span class="roll">LinkedIn</span><span class="ar">↗</span></a></div></div></section>
+<section class="sx" id="sectors" data-screen-label="Sectors"><div class="sx-h"><div><span class="lbl">Sectors</span><h2 class="em" data-lines>Sectors and moments we know <b>from the inside.</b></h2></div><a class="gbtn" href="sectors.html"><span class="roll">All sectors &amp; services</span><span class="ar">↗</span></a></div>
+<ul class="sx-l"><li><a href="sector.html"><b>Industrial &amp; B2B</b><span>Manufacturing · Components · Machinery · Chemicals · Packaging</span><i aria-hidden="true">↗</i></a></li><li><a href="sector-automotive-branding.html"><b>Automotive &amp; mobility</b><span>Components · Aftermarket · Vehicles &amp; campers · Dealerships · E-mobility</span><i aria-hidden="true">↗</i></a></li><li><a href="sector-food-branding.html"><b>Food &amp; beverage</b><span>Food · Beverage · Snacks · Gourmet · Private label · FMCG</span><i aria-hidden="true">↗</i></a></li><li><a href="sector-pharma-branding.html"><b>Pharma, health &amp; dermocosmetics</b><span>Pharma · OTC · Dermocosmetics · Medical devices · Labs · Health services</span><i aria-hidden="true">↗</i></a></li><li><a href="sector-real-estate-branding.html"><b>Real estate &amp; proptech</b><span>Developers · Rentals · Proptech · Construction · Architecture · Property services</span><i aria-hidden="true">↗</i></a></li><li><a href="sector-tech-branding.html"><b>Tech, startups &amp; scaleups</b><span>SaaS · Deep tech · Hardware · Marketplaces · B2B software · AI</span><i aria-hidden="true">↗</i></a></li><li><a href="sector-fashion-branding.html"><b>Fashion &amp; retail</b><span>Fashion · Textile · Footwear &amp; accessories · Retail · E-commerce</span><i aria-hidden="true">↗</i></a></li><li><a href="sector-energy-branding.html"><b>Energy &amp; renewables</b><span>Renewables · Wind &amp; solar · Utilities · Storage · EV charging · Energy services</span><i aria-hidden="true">↗</i></a></li><li><a href="sector-outdoor-leisure-branding.html"><b>Outdoor, leisure &amp; sport</b><span>Campers &amp; vans · Outdoor gear · Sports equipment · Sim racing · Active leisure</span><i aria-hidden="true">↗</i></a></li></ul></section>
+<section class="dark xp" id="contact" data-h="n" style="margin-top:clamp(90px,11vw,170px)"><div style="padding:0 var(--pad) 30px"><span class="lbl">Experience across</span></div><div id="xp"></div>
+<div class="end"><h2 data-lines>Let’s talk.</h2><button class="mail" data-copy="hello@weareinfinit.com" data-cur="Copy"><span class="mt">hello@weareinfinit.com</span></button></div><div class="endw"><span class="wm" data-wm="fit"></span></div></section>
+<div id="ft"></div>
+<script>
+// Manifest: les paraules s'encenen a mesura que avances.
+mfp.innerHTML=mfp.textContent.split(' ').map((w,i,a)=>`<span${i>=a.indexOf('branding')?' class="k"':''}>${w}</span>`).join(' ');const mw=[...mfp.querySelectorAll('span')],mf=document.querySelector('.mf');
+// Valors en horitzontal amb l'scroll.
+const V=[['Clarity','eye-dark.webp','Simple, fast, understood at first glance. We strip away everything that isn\'t the idea, so the brand reads instantly and moves with speed. Clarity is a competitive advantage — and a faster path to market.',165],
+['Alive','../images/Bunnker%20Final.webp','A brand is never a static logo. We build living identities — systems that move, breathe and iterate, designed to evolve with the company. Infinite by design, never finished.',255],
+['People','Almirall.webp','Branding should be a recognised craft — built by senior hands and fairly valued. A sector that counts on its people, values their craft, and rewards it as the discipline it is. People first, always.',30]];
+vht.innerHTML=V.map((v,i)=>`<div class="vp" data-hh="${v[3]}"><div class="img"><img src="../project/assets/imagery/${v[1]}" alt="${v[0]}" loading="lazy"></div><div class="tx"><span class="lbl">0${i+1} / 03</span><h3>${v[0]}<i style="background:oklch(.72 .07 ${v[3]})"></i></h3><p>${v[2]}</p></div></div>`).join('');
+const vh=document.getElementById('vh'),bs=[...bars.querySelectorAll('b')];
+xp.innerHTML=[['Almirall','Desigual','Casa Tarradellas','Mercadona','Santander','MartiDerm'],['Girbau','Seidor','Repsol','SAP','Glovo']].map((r,k)=>`<div class="xp-r"><div class="xp-t">${[...r,...r,...r,...r].map((n,i)=>`<span style="--c:oklch(.75 .08 ${[165,255,285,30,88][(i+k)%5]})">${n}<i></i></span>`).join('')}</div></div>`).join('');
+// Lectures primer, escriptures després, un sol cop per fotograma: evita que l'scroll s'encalli.
+let ln=-1,sw=0,tk=0;const msw=()=>{sw=vht.scrollWidth-innerWidth;};
+function tick(){tk=0;const vH=innerHeight,r1=mf.getBoundingClientRect(),r=vh.getBoundingClientRect();
+ let q=Math.min(1,Math.max(0,-r1.top/(r1.height-vH)));const n=Math.round(q*1.15*mw.length);if(n!==ln){mw.forEach((w,i)=>w.classList.toggle('on',i<n));ln=n;}
+ q=Math.min(1,Math.max(0,-r.top/(r.height-vH)));vht.style.transform=`translate3d(${-q*sw}px,0,0)`;bs.forEach((b,i)=>b.style.transform=`scaleX(${Math.min(1,Math.max(0,q*3-i))})`);
+ const cur=V[Math.min(2,Math.floor(q*2.999))];if(r.top<vH*.5&&r.bottom>vH*.5)KIT.setH(cur[3]);}
+const sched=()=>{if(!tk)tk=requestAnimationFrame(tick);};addEventListener('scroll',sched,{passive:true});addEventListener('resize',()=>{msw();sched();});msw();tick();
+// Xifres que compten quan entren a la pantalla.
+const fm={eur:v=>`€0 → €${v.toFixed(1)}M`,pct:v=>`+${Math.round(v)}%`,x:v=>`×${Math.round(v)}`};
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;io.unobserve(e.target);const el=e.target,to=+el.dataset.cnt,f=fm[el.dataset.fmt],t0=performance.now();(function s(t){const k=Math.min(1,(t-t0)/1400),v=to*(1-Math.pow(1-k,3));el.textContent=f(v);if(k<1)requestAnimationFrame(s);})(t0);}),{threshold:.6});
+document.querySelectorAll('[data-cnt]').forEach(el=>io.observe(el));
+KIT2.page();
+</script>
+</body></html>

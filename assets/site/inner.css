@@ -2,11 +2,13 @@
 .ch{height:100vh;height:100svh;min-height:440px;position:relative;overflow:hidden;display:grid;grid-template-rows:auto 1fr auto;padding:22px var(--pad) 18px;color:#fff}
 .ch-bg{position:absolute;inset:0}.ch-bg .img{position:absolute;inset:0;background:var(--d1)}
 .ch-bg img{transform:scale(1.12);animation:kb 9s cubic-bezier(.2,.7,.2,1) forwards}@keyframes kb{to{transform:scale(1)}}
+/* The Ken Burns starts once the image is decoded (no stall on entering the page); site.js adds .ok. */
+.js .ch-bg img{opacity:0;transition:opacity .9s cubic-bezier(.2,.7,.2,1);animation-play-state:paused}.js .ch-bg.ok img{opacity:1;animation-play-state:running}
 .ch-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,oklch(.14 .012 245 / .45),oklch(.14 .012 245 / .1) 40%,oklch(.14 .012 245 / .55))}
 /* .dim: busy photo behind the headline → a darker scrim on the text side (full-screen on phones). */
 .ch-bg.dim::after{background:linear-gradient(90deg,oklch(.1 .01 245 / .62),oklch(.1 .01 245 / .3) 55%,oklch(.1 .01 245 / .12)),linear-gradient(180deg,oklch(.14 .012 245 / .35),transparent 40%,oklch(.14 .012 245 / .55))}
 @media(max-width:760px){.ch-bg.dim::after{background:oklch(.1 .01 245 / .5)}}
-.ch>*:not(.ch-bg):not(.hl):not(.ch-m){position:relative;z-index:1}
+.ch>*:not(.ch-bg):not(.ch-m){position:relative;z-index:1}
 .ch-t{display:flex;justify-content:space-between;align-items:flex-start}
 /* Logo + headline centred on the visible screen (the bottom padding that used to lift it is gone).
    iOS 26 Safari (html.bar): the hero runs under the toolbar, so the centre is the middle of 100svh. */
@@ -22,7 +24,6 @@
 .ch-b{grid-row:3;display:flex;justify-content:space-between;align-items:center;gap:20px;min-height:52px}
 @media(max-width:1180px){.ch{padding-bottom:clamp(96px,11vh,120px)}}
 .chips{display:flex;gap:6px;flex-wrap:wrap}
-.hl{position:absolute;left:0;right:0;bottom:0;height:3px;overflow:hidden;z-index:2}.hl i{position:absolute;inset:0;background:oklch(.72 .05 165);animation:ln1 20s linear infinite;animation-delay:var(--lnd,0s)}
 
 .scd{display:flex;align-items:center;gap:12px;height:52px;font-size:13px;font-weight:500;color:oklch(1 0 0 / .75)}@media (hover:hover){.scd:hover{color:#fff}}
 .scd i{width:1px;height:52px;background:oklch(1 0 0 / .2);position:relative;overflow:hidden}.scd i::after{content:"";position:absolute;left:0;right:0;top:0;height:40%;background:#fff;transform:translateY(-100%);will-change:transform;animation:scd 2s cubic-bezier(.7,0,.2,1) infinite}@keyframes scd{to{transform:translateY(250%)}}
@@ -40,9 +41,9 @@
 .h2{font-size:clamp(32px,4vw,64px);letter-spacing:-.045em;line-height:1;font-weight:700;text-wrap:balance}
 .pil{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
 .pc{position:relative;border-radius:14px;padding:24px;min-height:340px;display:flex;flex-direction:column;justify-content:space-between;background:oklch(.16 .004 85 / .045);overflow:hidden;isolation:isolate}
-.pc::before{content:"";position:absolute;inset:0;background:var(--c);transform:translateY(101%);transition:transform .8s cubic-bezier(.7,0,.2,1);z-index:-1}
+.pc::before{content:"";position:absolute;inset:0;background:var(--c,var(--acc));transform:translateY(101%);transition:transform .8s cubic-bezier(.7,0,.2,1);z-index:-1}
 @media (hover:hover){.pc:hover::before{transform:none}}
-.pc .n{display:flex;justify-content:space-between;align-items:center}.pc .n i{width:10px;height:10px;border-radius:50%}
+.pc .n{display:flex;justify-content:space-between;align-items:center}
 .pc h3{font-size:clamp(28px,2.6vw,42px);letter-spacing:-.045em;font-weight:700;line-height:.95}
 .pc p{font-size:16px;line-height:1.5;color:var(--t3);margin-top:12px}
 .vids{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
@@ -100,15 +101,10 @@
 .nx>*:not(.img){position:relative;z-index:1}
 .nx b{display:block;font-size:clamp(72px,15vw,260px);letter-spacing:-.065em;line-height:.85;font-weight:700;margin-top:16px;transition:letter-spacing .8s cubic-bezier(.2,.7,.2,1)}
 @media (hover:hover){.nx:hover b{letter-spacing:-.04em}}
-.ft-g{grid-template-columns:1fr 1.4fr 1.2fr}
-.mail{border:0;background:none;padding:0;cursor:none;font:700 clamp(30px,6.4vw,112px)/1 Satoshi,sans-serif;letter-spacing:-.05em;color:var(--d4)}
-.mail .mt{background:linear-gradient(90deg,var(--d4) 0 50%,oklch(.72 .05 165) 58%,oklch(.72 .05 255) 66%,oklch(.72 .05 285) 74%,oklch(.72 .05 30) 82%,oklch(.72 .05 88) 90%,var(--d4) 100%);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;transition:background-position 1.4s cubic-bezier(.7,0,.2,1)}
-@media (hover:hover){.mail:hover .mt{background-position:-100% 0}}
 @media(max-width:900px){.meta{grid-template-columns:1fr 1fr}.ab .who,.ab .q{grid-column:1/13}.pil,.vids{grid-template-columns:1fr}.aw2,.step{grid-template-columns:1fr}.step:nth-child(even) .img{order:0}.fld{grid-template-columns:1fr 1fr}.sw{grid-template-columns:repeat(2,minmax(0,1fr))}.tpf{grid-template-columns:1fr}.ch-b .chips{display:none}}
-@media(hover:none){.mail{cursor:pointer}}
 .tap{outline-offset:4px}
 @media (prefers-reduced-motion:reduce){.ch-bg img{animation:none!important;transform:none!important}}
-/* Colour line sits on the top edge of the "Next case" block (light → dark transition) */
+/* The 1px line sits on the top edge of the "Next case" block (light → dark transition) */
 .nx>.ft-hl{position:absolute;z-index:3}
 /* Two-column g12 blocks stack on small screens (Relats analytics was squeezed in the prototype) */
 @media(max-width:900px){.g12>div{grid-column:1/13!important}.g12{row-gap:28px}}
@@ -117,7 +113,7 @@
 .vd[data-sound] .chip{max-width:calc(100% - 96px)}
 .vd-snd{position:absolute;right:16px;bottom:16px;z-index:2;width:44px;height:44px;border:0;border-radius:50%;display:grid;place-items:center;color:#fff;cursor:pointer;background:oklch(1 0 0 / .18);-webkit-backdrop-filter:blur(14px) saturate(1.5);backdrop-filter:blur(14px) saturate(1.5);transition:background .4s,box-shadow .5s}
 @media (hover:hover){.vd-snd:hover{background:oklch(1 0 0 / .3)}}
-.vd-snd[aria-pressed="true"]{background:oklch(.9 .06 var(--h));color:var(--t4);box-shadow:0 10px 30px -12px oklch(.6 .09 var(--h) / .6)}
+.vd-snd[aria-pressed="true"]{background:var(--d4);color:var(--d0)}
 .vd-snd svg{width:18px;height:18px}
 .vd-snd .on,.vd-snd[aria-pressed="true"] .off{display:none}.vd-snd[aria-pressed="true"] .on{display:inline}
 .vd-play{position:absolute;left:50%;top:50%;z-index:2;width:72px;height:72px;margin:-36px 0 0 -36px;border-radius:50%;display:grid;place-items:center;color:#fff;pointer-events:none;background:oklch(1 0 0 / .18);-webkit-backdrop-filter:blur(14px) saturate(1.5);backdrop-filter:blur(14px) saturate(1.5);opacity:0;transform:scale(.8);transition:opacity .4s,transform .6s cubic-bezier(.2,.7,.2,1)}
@@ -136,35 +132,6 @@
    clamp(96px,11vh,120px) above the visible bottom, so this offset is the same with or without html.bar). */
 @media(max-width:760px){.ch .scd{position:absolute;right:calc(12px - var(--pad));bottom:calc(18px - clamp(96px,11vh,120px));font-size:0;gap:0;height:44px}.ch .scd i{height:44px}}
 
-/* ---------- Sector pages (e.g. /industrial-branding/) ---------- */
-.ch-m .sx-l{color:oklch(1 0 0 / .8)}
-.proc{list-style:none;margin:0;padding:0;border-top:1px solid var(--l1)}
-.proc li{display:grid;grid-template-columns:80px minmax(0,1.1fr) minmax(0,1.6fr);gap:20px;align-items:baseline;padding:clamp(22px,2.4vw,34px) 0;border-bottom:1px solid var(--l1)}
-.proc h3{font-size:clamp(24px,2.4vw,40px);letter-spacing:-.045em;font-weight:600;line-height:1}
-.proc p{font-size:17px;line-height:1.5;color:var(--t3);max-width:560px}
-.sx-exp{display:flex;flex-direction:column;gap:14px;padding-top:clamp(60px,7vw,100px)}
-.sx-exp p{font-size:clamp(22px,2.4vw,38px);letter-spacing:-.035em;line-height:1.15;font-weight:500;color:var(--t3);text-wrap:balance}
-.sx-fh{grid-column:1/5;display:flex;flex-direction:column;gap:12px;align-self:start;position:sticky;top:90px}
-.faq{grid-column:6/13;border-top:1px solid var(--l1)}
-.faq details{border-bottom:1px solid var(--l1)}
-.faq summary{list-style:none;display:flex;justify-content:space-between;align-items:center;gap:20px;padding:22px 0;cursor:pointer;font-size:clamp(19px,1.7vw,24px);letter-spacing:-.025em;font-weight:500;line-height:1.25}
-.faq summary::-webkit-details-marker{display:none}
-.faq summary i{flex:none;position:relative;width:14px;height:14px}
-.faq summary i::before,.faq summary i::after{content:"";position:absolute;left:0;right:0;top:6px;height:2px;border-radius:2px;background:currentColor;transition:transform .5s cubic-bezier(.7,0,.2,1)}
-.faq summary i::after{transform:rotate(90deg)}
-.faq details[open] summary i::after{transform:rotate(0)}
-.faq details p{font-size:17px;line-height:1.55;color:var(--t3);max-width:640px;padding:0 0 24px}
-@media (hover:hover){.faq summary:hover{color:var(--t3)}}
-.sx-cp{font-size:18px;line-height:1.5;color:var(--d3);max-width:520px;margin-top:-12px}
-@media(max-width:900px){.proc li{grid-template-columns:44px minmax(0,1fr)}.proc li p{grid-column:2}.sx-fh,.faq{grid-column:1/-1;position:static}.sx-fh{margin-bottom:24px}}
-/* Sector pages: timing & investment table (stacks into cards on mobile) */
-.px{width:100%;border-collapse:collapse;border-top:1px solid var(--l1)}
-.px th,.px td{text-align:left;padding:20px 16px 20px 0;border-bottom:1px solid var(--l1);vertical-align:baseline}
-.px thead th{font-size:13px;font-weight:500;color:var(--t3);padding-top:14px;padding-bottom:14px}
-.px tbody th{font-size:clamp(20px,1.9vw,30px);letter-spacing:-.035em;font-weight:600;line-height:1.1;width:30%}
-.px td{font-size:clamp(17px,1.4vw,21px);letter-spacing:-.02em;font-weight:500}
-.px td:nth-child(2){color:var(--t3)}
-.px-n{font-size:15px;line-height:1.5;color:var(--t3);max-width:720px;margin-top:18px}
-@media(max-width:760px){.px thead{display:none}.px,.px tbody,.px tr,.px th,.px td{display:block;width:auto}
-  .px tr{padding:18px 0;border-bottom:1px solid var(--l1)}.px th,.px td{border:0;padding:0}.px tbody th{margin-bottom:10px;width:auto}
-  .px td{display:flex;justify-content:space-between;gap:16px;padding:5px 0;font-size:17px}.px td::before{content:attr(data-k);font-size:14px;font-weight:500;color:var(--t3);letter-spacing:0}}
+/* Case meta bar: link to the related sector page */
+.meta a.mlk{font-size:14px;color:var(--t3);text-decoration:underline;text-decoration-color:var(--l1);text-underline-offset:4px;transition:color .3s,text-decoration-color .3s}
+@media (hover:hover){.meta a.mlk:hover{color:var(--t4);text-decoration-color:currentColor}}
