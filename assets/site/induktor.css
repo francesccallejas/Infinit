@@ -87,3 +87,26 @@
 
 /* ---------- 06 · Identity frames: a wide drag carousel ---------- */
 .car.fr .img{width:clamp(300px,58vw,920px);aspect-ratio:16/10}
+
+/* ---------- The record: brief to delivery in 10 days — a lap-timer count and ten day marks ----------
+   Static (full) without JS; site.js counts 00 → 10 and lights the days once, when the section comes into view. */
+.spd{margin-top:clamp(90px,11vw,170px);padding:clamp(70px,9vw,140px) var(--pad);display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:28px clamp(36px,6vw,100px);align-items:end}
+.spd-n{display:flex;align-items:baseline;gap:.25em;line-height:.8}
+.spd-n b{font-size:clamp(150px,24vw,380px);font-weight:700;letter-spacing:-.07em;font-variant-numeric:tabular-nums;color:var(--d4)}
+.spd-n span{font-size:clamp(20px,2vw,30px);font-weight:500;letter-spacing:-.02em;color:var(--d3)}
+.spd-t{display:flex;flex-direction:column;gap:16px}
+.spd-t p{font-size:18px;line-height:1.5;color:var(--d3);max-width:520px}
+.spd-d{grid-column:1/-1;list-style:none;margin:16px 0 0;padding:0;display:grid;grid-template-columns:repeat(10,minmax(0,1fr));gap:6px}
+.spd-d li{position:relative;height:44px;border-radius:6px;overflow:hidden;background:oklch(1 0 0 / .08);display:flex;align-items:flex-end;padding:6px 8px;font-size:12px;font-variant-numeric:tabular-nums}
+.spd-d li::before{content:"";position:absolute;inset:0;background:var(--d4);transform-origin:left;transition:transform .45s cubic-bezier(.7,0,.2,1) calc(var(--i) * 120ms)}
+.spd-d li:last-child::before{background:#B86B3C}
+.spd-d span{position:relative;color:var(--d0);transition:color .3s calc(var(--i) * 120ms)}
+.js .spd:not(.go) .spd-d li::before{transform:scaleX(0)}
+.js .spd:not(.go) .spd-d span{color:var(--d3)}
+@media(max-width:900px){.spd{grid-template-columns:1fr}}
+@media(max-width:760px){.spd-d{gap:4px}.spd-d li{height:34px;padding:4px 5px;font-size:10px}}
+
+/* Platform marks in the hero: small, grey on the dark photo */
+.plat{list-style:none;margin:0;padding:0;display:flex;align-items:center;gap:clamp(18px,2vw,26px)}
+.plat svg{display:block;width:auto;height:clamp(16px,1.4vw,20px);fill:oklch(1 0 0 / .62)}
+.plat li:nth-child(3) svg{height:clamp(14px,1.2vw,17px)}

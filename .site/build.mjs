@@ -199,7 +199,7 @@ Sitemap: ${SITE}/sitemap.xml
 
 // llms.txt (llmstxt.org): a plain summary for AI assistants, built from the same data as the pages.
 const svcLines = S.map(s => `- **${s.n.en}** — ${s.t.en.join(', ')}`).join('\n');
-const projLines = P.map(p => `- **${p.n}** — ${p.d.en}${p.page ? ` · case study: ${abs('en', p.page)}` : p.s === 'nda' ? ' (under NDA)' : ' (in progress)'}`).join('\n');
+const projLines = P.map(p => `- **${p.n}** — ${p.d.en}${p.rec ? ` (delivered in ${p.rec.en.replace(/^Record · /, '')} — the studio’s record)` : ''}${p.page ? ` · case study: ${abs('en', p.page)}` : p.s === 'nda' ? ' (under NDA)' : ' (in progress)'}`).join('\n');
 out('llms.txt', `# INFINIT©
 
 > INFINIT© is a branding and strategy studio based in Barcelona, led hands-on by its founder Cesc Callejas. It helps growing mid-sized companies — roughly €1M to €200M in revenue, in Catalonia, Spain and the rest of Europe — build brands that scale: strategy, identity, websites, SEO & GEO, product and content. Senior people on every project, no layers. Works in English, Catalan and Spanish.
@@ -232,7 +232,7 @@ ${projLines}
 - [Studio (English)](${abs('en', 'studio')}): beliefs, founder, experience
 - [Bunnker case study](${abs('en', 'bunnker')}): strategy, identity and digital for long-stay rentals — COAC Award
 - [Relats case study](${abs('en', 'relats')}): repositioning a global leader in technical covering solutions (automotive, e-mobility, energy)
-- [Induktor case study](${abs('en', 'induktor')}): brand identity for sim racing hardware — a symbol cut by the air gap of an induction motor, materials not colours
+- [Induktor case study](${abs('en', 'induktor')}): a complete sim racing hardware brand delivered in 10 days — a symbol cut by the air gap of an induction motor, materials not colours
 ${[...Object.entries(INDUSTRIES), ...Object.entries(MOMENTS)].map(([k, C]) => `- [${C.en.lbl}](${abs('en', k)}): ${C.en.desc} (also in [Català](${abs('ca', k)}) and [Español](${abs('es', k)}))`).join('\n')}
 - [All sectors & services](${abs('en', 'sectors')})
 - [All work](${abs('en', 'workidx')}): every project, with its sector and services

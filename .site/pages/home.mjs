@@ -18,7 +18,7 @@ export function home(ctx) {
   const card = (p, i) => {
     const live = !!p.page;
     const alt = `${p.n} — ${p.d[lang]}`;
-    const inner = `<div class="cw"><div class="img"><img src="${src(p.img)}" alt="${esc(alt)}" loading="lazy" draggable="false"></div><span class="chip vc">${live ? esc(t.viewCase) + ' ↗' : esc(status(p))}</span></div><div class="cap"><b>${esc(p.n)}</b><span class="ds">${esc(p.d[lang])}</span></div>${tags(p)}`;
+    const inner = `<div class="cw"><div class="img"><img src="${src(p.img)}" alt="${esc(alt)}" loading="lazy" draggable="false"></div><span class="chip vc">${live ? esc(t.viewCase) + ' ↗' : esc(status(p))}</span>${p.rec ? `<span class="chip rc">${esc(p.rec[lang])}</span>` : ''}</div><div class="cap"><b>${esc(p.n)}</b><span class="ds">${esc(p.d[lang])}</span></div>${tags(p)}`;
     const common = `${cyc(p)} data-g="${L[i][0]} ${L[i][1]}"`;
     return live
       ? `<a class="pj" href="${url(lang, p.page)}" draggable="false" data-cur="${esc(t.cView)}"${common}>${inner}</a>`

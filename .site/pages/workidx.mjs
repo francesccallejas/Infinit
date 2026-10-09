@@ -19,7 +19,7 @@ export function workidx(ctx) {
 <h1 class="em hin">${t.workH}</h1><p class="lt-p">${esc(t.intro.replace(/<\/?b>/g, ''))}</p></header>`;
   const rows = P.map(p => {
     const live = !!p.page, tag = live ? 'a' : 'div';
-    const inner = `<div class="img"><img src="${src(p.img)}" alt="${esc(p.n + ' — ' + p.d[lang])}" loading="lazy"></div><div><b>${esc(p.n)}</b><span class="ds">${esc(p.d[lang])}</span></div><span class="sc">${esc(sectorName(p.sec, lang))}</span><div class="tgs">${p.t.map(k => `<span class="tg">${esc(svc(k).n[lang])}</span>`).join('')}</div><span class="st">${esc(live ? t.viewCase + ' ↗' : p.s === 'nda' ? t.nda : t.wip)}</span>`;
+    const inner = `<div class="img"><img src="${src(p.img)}" alt="${esc(p.n + ' — ' + p.d[lang])}" loading="lazy"></div><div><b>${esc(p.n)}</b><span class="ds">${esc(p.d[lang])}${p.rec ? ` · ${esc(p.rec[lang])}` : ''}</span></div><span class="sc">${esc(sectorName(p.sec, lang))}</span><div class="tgs">${p.t.map(k => `<span class="tg">${esc(svc(k).n[lang])}</span>`).join('')}</div><span class="st">${esc(live ? t.viewCase + ' ↗' : p.s === 'nda' ? t.nda : t.wip)}</span>`;
     return `<${tag}${live ? ` href="${url(lang, p.page)}" data-cur="${esc(t.cView)}"` : ''} data-sv="${p.t.join(' ')}">${inner}</${tag}>`;
   }).join('');
   const list = `<section class="blk"><div class="wf"><span class="lbl" id="wcount" data-fmt="${esc(t.projects('#'))}" aria-live="polite">${esc(t.projects(P.length))}</span><div class="seg" id="wfs" role="group" aria-label="${esc(t.filterLabel)}"><i></i><button type="button" data-k="all" class="on" aria-pressed="true">${esc(w.all)}</button>${FILTER.map(k => `<button type="button" data-k="${k}" aria-pressed="false">${esc(svc(k).n[lang])}</button>`).join('')}</div></div>

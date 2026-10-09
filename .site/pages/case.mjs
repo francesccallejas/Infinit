@@ -8,11 +8,11 @@ import { ftLine } from '../layout.mjs';
 const ID = { en: 'Identity', ca: 'Identitat', es: 'Identidad' };
 export const chip = (k, lang) => `<span class="chip">${esc(k === 'brand' ? ID[lang] : svc(k).n[lang])}</span>`;
 
-export function caseHero(ctx, { img, logo, logoStyle = '', name, h1, chips }) {
+export function caseHero(ctx, { img, logo, logoStyle = '', name, h1, chips, after = '' }) {
   const t = T[ctx.lang];
   return `<section class="ch dark" id="top"><div class="ch-bg"><div class="img"><img src="${A(img)}" alt="" fetchpriority="high"></div></div>
 <div class="ch-t"><a class="gbtn" href="${url(ctx.lang, 'workidx')}"><span class="ar bk" aria-hidden="true">←</span><span class="roll">${esc(t.allWork)}</span></a></div>
-<div class="ch-m"><img class="ch-logo" src="${A(logo)}" alt="${esc(name)}"${logoStyle}><h1 class="hin">${h1}</h1></div>
+<div class="ch-m"><img class="ch-logo" src="${A(logo)}" alt="${esc(name)}"${logoStyle}><h1 class="hin">${h1}</h1>${after}</div>
 <div class="ch-b"><div class="chips">${chips}</div><a class="scd" href="#case">${esc(t.scroll)}<i></i></a></div>
 </section>`;
 }

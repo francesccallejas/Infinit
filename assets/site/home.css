@@ -31,6 +31,7 @@
 .car .pj{width:clamp(280px,34vw,520px);display:flex;flex-direction:column;gap:12px;flex:none;-webkit-user-drag:none}
 .cw{position:relative;border-radius:10px;overflow:hidden}
 .car .img{aspect-ratio:4/5;transition:transform .5s cubic-bezier(.2,.7,.2,1)}.car img{pointer-events:none}
+.pj .rc{position:absolute;left:14px;top:14px}
 .vc{position:absolute;left:14px;bottom:14px;opacity:0;transform:translateY(10px);transition:opacity .4s,transform .6s cubic-bezier(.2,.7,.2,1)}.pj:focus-visible .vc{opacity:1;transform:none}@media (hover:hover){.pj:hover .vc{opacity:1;transform:none}}
 .cap{display:flex;justify-content:space-between;align-items:baseline;gap:12px}.cap b{font-size:clamp(22px,2vw,30px);letter-spacing:-.035em;font-weight:700}
 /* QA: grey .em is for display sizes only — small descriptions use --t3 for contrast */

@@ -52,6 +52,8 @@ export const P = [
     img: IM + 'instellar-aircraft.webp', g: [] },
   { n: 'Induktor', page: 'induktor', sec: 'leisure', t: ['strategy', 'brand', 'digital'],
     d: { en: 'sim racing hardware', ca: 'hardware de sim racing', es: 'hardware de sim racing' },
+    // The studio's record — shown only on this project (its card, its Work row, its case), never as a general timing.
+    rec: { en: 'Record · 10 days', ca: 'Rècord · 10 dies', es: 'Récord · 10 días' },
     img: K + 'carbon.webp', g: [K + 'exposure.webp', K + 'copper.webp', K + 'shadow.webp'] },
   { n: 'Julià', page: null, sec: 'automotive', s: 'wip', t: ['strategy', 'brand', 'digital'],
     d: { en: 'premium adventure vans', ca: 'campers premium', es: 'campers premium' },
