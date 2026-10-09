@@ -36,10 +36,10 @@ export const S = [
 ];
 export const svc = k => S.find(s => s.k === k);
 
-const B = 'work/bunnker/bunnker-assets/', R = 'work/relats/relats-assets/', I = 'project/assets/imagery/', IM = 'project/assets/images/';
+const B = 'work/bunnker/bunnker-assets/', R = 'work/relats/relats-assets/', K = 'work/induktor/induktor-assets/', I = 'project/assets/imagery/', IM = 'project/assets/images/';
 
 // Projects. `page` = case page key (null → work in progress / NDA, not clickable); `sec` = sector page key
-// (for Instellar, Induktor and Julià a proposal from the v3 handoff — to confirm with the clients).
+// (for Instellar and Julià a proposal from the v3 handoff — to confirm with the clients).
 export const P = [
   { n: 'Bunnker', page: 'bunnker', sec: 'realestate', t: ['strategy', 'brand'],
     d: { en: 'beyond renting', ca: 'més que llogar', es: 'más que alquilar' },
@@ -50,10 +50,9 @@ export const P = [
   { n: 'Instellar', page: null, sec: 'tech', s: 'wip', t: ['strategy', 'brand', 'digital'],
     d: { en: 'mission performance', ca: 'rendiment de missió', es: 'rendimiento de misión' },
     img: IM + 'instellar-aircraft.webp', g: [] },
-  { n: 'Induktor', page: null, sec: 'leisure', s: 'wip', t: ['strategy', 'brand', 'digital'],
+  { n: 'Induktor', page: 'induktor', sec: 'leisure', t: ['strategy', 'brand', 'digital'],
     d: { en: 'sim racing hardware', ca: 'hardware de sim racing', es: 'hardware de sim racing' },
-    // Self-hosted motor image (originally Unsplash) — replace with the client's own render when available.
-    img: I + 'induktor-motor.jpg', g: [] },
+    img: K + 'carbon.webp', g: [K + 'exposure.webp', K + 'copper.webp', K + 'shadow.webp'] },
   { n: 'Julià', page: null, sec: 'automotive', s: 'wip', t: ['strategy', 'brand', 'digital'],
     d: { en: 'premium adventure vans', ca: 'campers premium', es: 'campers premium' },
     img: I + 'Julia Yosemite.webp', g: [I + 'julia-camper.webp'] },
@@ -69,4 +68,4 @@ export const CH = { sap: 28, glovo: 37, almirall: 22, instellar: 21, relats: 22,
 export const CLIENT_NAMES = 'SAP, Glovo, Almirall, Instellar, Relats, Bunnker, 11onze, DronParc';
 
 // Home hero rotation (conceptual imagery, as in the prototype) — the first 5 also feed the approach section.
-export const HS = [IM + 'Relats Brand.webp', B + 'hero.webp', I + 'Julia Yosemite.webp', B + 'int-12.webp', I + 'night-lake.webp', IM + 'instellar-aircraft.webp', I + 'induktor-motor.jpg', IM + 'Bunnker Final.webp', I + 'mountains-tekapo.webp', I + 'Almirall.webp'];
+export const HS = [IM + 'Relats Brand.webp', B + 'hero.webp', I + 'Julia Yosemite.webp', B + 'int-12.webp', I + 'night-lake.webp', IM + 'instellar-aircraft.webp', K + 'exposure.webp', IM + 'Bunnker Final.webp', I + 'mountains-tekapo.webp', I + 'Almirall.webp'];

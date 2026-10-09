@@ -1,0 +1,89 @@
+/* Induktor case (.site/pages/induktor.mjs) — the page uses the brand instead of only showing it.
+   Copper #B86B3C is the client's single accent: it appears only inside the client's own material
+   (the air-gap construction and the palette), never in the site's UI. Behaviour: site.js › casePage. */
+
+/* ---------- 01 · The air gap: the K assembles on scroll and stops 130 units from its stem ---------- */
+.gap{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:clamp(36px,6vw,110px);align-items:center}
+.gap-k{display:block;width:100%;height:auto;overflow:visible}
+.gap-s,.gap-r{fill:var(--t4)}
+.gap-r{transform-box:fill-box}
+.gap-a text{font:500 62px Satoshi,sans-serif;letter-spacing:.14em;fill:var(--t3)}
+.gap-a .cu{fill:#B86B3C}
+.gap-a{transition:opacity .8s cubic-bezier(.2,.7,.2,1)}
+.js .gap:not(.on) .gap-a{opacity:0}
+.gap-t{display:flex;flex-direction:column;gap:18px}
+.gap-t p{font-size:18px;line-height:1.5;color:var(--t3);max-width:520px}
+.gap-t .gap-n{font-size:15px;padding-top:16px;border-top:1px solid var(--l1)}
+@media(max-width:900px){.gap{grid-template-columns:1fr}}
+
+/* ---------- 02 · Motion is implied: pinned, the scroll brings the motor to rest ----------
+   Default (no JS / reduced motion): the three treatments side by side with their captions. */
+.spn-s{position:relative;padding:clamp(70px,8vw,120px) var(--pad) 0;display:flex;flex-direction:column;gap:24px}
+.spn-ls{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;order:2}
+.spn-l{aspect-ratio:16/9;border-radius:12px}
+.spn-t{display:flex;flex-direction:column;gap:16px;max-width:620px}
+.spn-t p{font-size:18px;line-height:1.5;color:var(--d3)}
+.spn-k{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;order:3;font-size:14px;line-height:1.4;color:var(--d3)}
+.spn-k li{display:flex;gap:10px}.spn-k span{color:var(--d4);font-variant-numeric:tabular-nums}
+.spn-p{display:none}
+@media(max-width:760px){.spn-ls,.spn-k{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:no-preference){
+  .js .spn{height:320vh}
+  .js .spn-s{position:sticky;top:0;height:100vh;height:100svh;padding:0;display:block;overflow:hidden}
+  .js .spn-ls{position:absolute;inset:0;display:block}
+  .js .spn-l{position:absolute;inset:0;aspect-ratio:auto;border-radius:0;background:#0B0B0C}
+  .js .spn-l:nth-child(n+2){opacity:0}
+  .js .spn-l img{object-position:62% 50%;will-change:transform}
+  .js .spn-s::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(0deg,oklch(.1 .004 85 / .82),oklch(.1 .004 85 / 0) 55%),linear-gradient(90deg,oklch(.1 .004 85 / .55),oklch(.1 .004 85 / 0) 60%)}
+  .js .spn-t{position:absolute;z-index:2;left:var(--pad);bottom:clamp(56px,9vh,96px);max-width:min(560px,52vw)}
+  .js .spn-k{position:absolute;z-index:2;right:var(--pad);bottom:clamp(56px,9vh,96px);display:flex;flex-direction:column;gap:10px;width:min(340px,34vw)}
+  .js .spn-k li{opacity:.4;transition:opacity .5s}.js .spn-k li.on{opacity:1}
+  .js .spn-p{display:block;position:absolute;z-index:2;left:var(--pad);right:var(--pad);top:max(28px,calc(var(--sat) + 16px));height:1px;background:oklch(1 0 0 / .16)}
+  .js .spn-p i{display:block;height:100%;background:var(--d4);transform-origin:left;transform:scaleX(0)}
+  @media(max-width:760px){
+    .js .spn-t{max-width:none;right:var(--pad);bottom:calc(104px + var(--sab))}
+    .js .spn-t p{font-size:16px}
+    .js .spn-k{top:calc(var(--sat) + 40px);bottom:auto;left:var(--pad);right:var(--pad);width:auto;gap:6px;font-size:13px}
+    .js .spn-s::after{background:linear-gradient(0deg,oklch(.1 .004 85 / .85),oklch(.1 .004 85 / 0) 55%),linear-gradient(180deg,oklch(.1 .004 85 / .7),oklch(.1 .004 85 / 0) 30%)}
+  }
+}
+
+/* ---------- 03 · The window: dimmed glass, a clear window follows the pointer ---------- */
+.win{padding:clamp(90px,11vw,170px) var(--pad) 0}
+.win-h{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px 40px;align-items:end;padding-bottom:30px}
+.win-h>div{display:flex;flex-direction:column;gap:12px}
+.win-h p{font-size:18px;line-height:1.5;color:var(--d3);max-width:520px}
+.win-s{position:relative;aspect-ratio:16/9;border-radius:14px;overflow:hidden;background:#0B0B0C;touch-action:pan-y;user-select:none;-webkit-user-select:none}
+.win-s img{position:absolute;inset:0;pointer-events:none}
+.win-b{filter:brightness(.32) blur(12px) saturate(.6);transform:scale(1.08)}
+.win-c{clip-path:inset(25% 14% 25% 50%)}
+.win-f{position:absolute;left:50%;top:25%;width:36%;height:50%;box-shadow:inset 0 0 0 1px oklch(1 0 0 / .5);pointer-events:none}
+.win-f .lbl{position:absolute;left:12px;bottom:10px;color:oklch(1 0 0 / .78);white-space:nowrap}
+.win-hint{position:absolute;left:16px;top:14px;color:oklch(1 0 0 / .6);transition:opacity .6s}
+.win-s.used .win-hint{opacity:0}
+.win-s:focus-visible{outline:2px solid var(--d4);outline-offset:4px}
+@media(max-width:760px){.win-h{grid-template-columns:1fr}.win-s{aspect-ratio:4/5}.win-c,.win-f{will-change:clip-path}}
+
+/* ---------- 04 · Materials, not colours: the palette at its real proportion ---------- */
+.mat-p{font-size:18px;line-height:1.5;color:var(--t3);max-width:640px;margin:0 0 28px}
+.mat{list-style:none;margin:0;padding:0;display:flex;height:clamp(220px,30vw,440px);border-radius:14px;overflow:hidden;box-shadow:inset 0 0 0 1px var(--l1)}
+.mat>li{flex:var(--w) 1 0;min-width:0;display:flex;flex-direction:column;justify-content:flex-end;gap:2px;padding:16px;color:#0B0B0C;font-size:14px;line-height:1.35;outline:none;transition:flex-grow .9s cubic-bezier(.7,0,.2,1)}
+.mat>li.lt{color:#F5F5F3}
+.mat b{font-weight:500}.mat span{font-size:13px;opacity:.7}
+.mat b,.mat span{white-space:nowrap;transition:opacity .4s}
+.mat>li.n b,.mat>li.n span{opacity:0}
+.mat>li:focus{flex-grow:30}.mat>li:focus b{opacity:1}.mat>li:focus span{opacity:.7}
+.mat>li:focus-visible{box-shadow:inset 0 0 0 2px currentColor}
+@media (hover:hover){.mat>li:hover{flex-grow:30}.mat>li:hover b{opacity:1}.mat>li:hover span{opacity:.7}}
+.mat-n{font-size:14px;line-height:1.5;color:var(--t3);margin:12px 0 0}
+@media(max-width:760px){.mat>li{padding:12px 10px}.mat>li:focus{flex-grow:44}}
+
+/* ---------- 05 · The shadow: the K is projected, never printed ---------- */
+.gobo{position:relative;overflow:hidden;min-height:clamp(600px,100vh,980px);display:flex;align-items:flex-end;padding:clamp(40px,6vw,90px) var(--pad);background:radial-gradient(110% 90% at 70% 25%,#F5F5F3,#E6E6E5 55%,#D4D4D3)}
+.gobo-k{position:absolute;left:46%;top:2%;width:min(1000px,62%);height:auto;fill:#0B0B0C;opacity:.68;filter:blur(clamp(6px,.8vw,12px));transform:skewX(-16deg);transform-origin:50% 100%;will-change:transform}
+.gobo-t{position:relative;z-index:1;display:flex;flex-direction:column;gap:16px;max-width:680px}.gobo-t p{max-width:520px}
+.gobo-t p{font-size:18px;line-height:1.5;color:var(--t3)}
+@media(max-width:760px){.gobo{min-height:680px;padding-bottom:calc(110px + var(--sab))}.gobo-k{left:4%;top:5%;width:104%}}
+
+/* ---------- 06 · Identity frames: a wide drag carousel ---------- */
+.car.fr .img{width:clamp(300px,58vw,920px);aspect-ratio:16/10}

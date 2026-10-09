@@ -13,7 +13,8 @@ const { chromium } = await import(process.env.PW || 'playwright');
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 // Pages without a hero image (light headers) use one from the work.
 // Screenshot covers (text under the wordmark) use a photo instead.
-const FALLBACK = { 'j:website-first-meeting': 'project/assets/images/ipad-sunset.webp', sectors: 'project/assets/imagery/mountains-tekapo.webp', workidx: 'project/assets/images/Bunnker Final.webp', journal: 'project/assets/imagery/industrial-machine.webp' };
+const FALLBACK = { 'j:website-first-meeting': 'project/assets/images/ipad-sunset.webp', sectors: 'project/assets/imagery/mountains-tekapo.webp', workidx: 'project/assets/images/Bunnker Final.webp', journal: 'project/assets/imagery/industrial-machine.webp',
+  induktor: 'work/induktor/induktor-assets/exposure.webp' }; // its hero (the spin) is too dark for a thumbnail
 
 const hero = key => {
   if (FALLBACK[key]) return FALLBACK[key];

@@ -15,6 +15,7 @@ import { home } from './pages/home.mjs';
 import { studio } from './pages/studio.mjs';
 import { bunnker } from './pages/bunnker.mjs';
 import { relats } from './pages/relats.mjs';
+import { induktor } from './pages/induktor.mjs';
 import { industrial } from './pages/industrial.mjs';
 import { automotive } from './pages/automotive.mjs';
 import { food } from './pages/food.mjs';
@@ -42,7 +43,7 @@ const out = (p, s) => { const f = join(ROOT, p); mkdirSync(dirname(f), { recursi
 
 // Cache-busting: short content hash per asset.
 const V = {};
-for (const f of ['base.css', 'home.css', 'inner.css', 'studio.css', 'seo.css', 'site.js']) {
+for (const f of ['base.css', 'home.css', 'inner.css', 'studio.css', 'seo.css', 'induktor.css', 'site.js']) {
   V[f] = createHash('sha1').update(readFileSync(join(ROOT, 'assets/site', f))).digest('hex').slice(0, 8);
 }
 for (const [k, f] of [['favicon.svg', 'favicon.svg'], ['favicon.ico', 'favicon.ico'], ['apple-touch-icon.png', 'assets/site/apple-touch-icon.png']]) {
@@ -54,6 +55,7 @@ const PAGES = [
   { page: 'studio', kind: 'studio', render: studio },
   { page: 'bunnker', kind: 'work', render: bunnker },
   { page: 'relats', kind: 'work', render: relats },
+  { page: 'induktor', kind: 'work', render: induktor },
   { page: 'industrial', kind: 'sector', render: industrial },
   { page: 'automotive', kind: 'sector', render: automotive },
   { page: 'food', kind: 'sector', render: food },
@@ -230,6 +232,7 @@ ${projLines}
 - [Studio (English)](${abs('en', 'studio')}): beliefs, founder, experience
 - [Bunnker case study](${abs('en', 'bunnker')}): strategy, identity and digital for long-stay rentals — COAC Award
 - [Relats case study](${abs('en', 'relats')}): repositioning a global leader in technical covering solutions (automotive, e-mobility, energy)
+- [Induktor case study](${abs('en', 'induktor')}): brand identity for sim racing hardware — a symbol cut by the air gap of an induction motor, materials not colours
 ${[...Object.entries(INDUSTRIES), ...Object.entries(MOMENTS)].map(([k, C]) => `- [${C.en.lbl}](${abs('en', k)}): ${C.en.desc} (also in [Català](${abs('ca', k)}) and [Español](${abs('es', k)}))`).join('\n')}
 - [All sectors & services](${abs('en', 'sectors')})
 - [All work](${abs('en', 'workidx')}): every project, with its sector and services

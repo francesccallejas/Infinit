@@ -23,6 +23,11 @@ export const CASES = {
     sector: { en: 'Sustainable mobility · Automotive · Energy', ca: 'Mobilitat sostenible · Automoció · Energia', es: 'Movilidad sostenible · Automoción · Energía' },
     services: ['strategy', 'brand', 'digital'],
   },
+  induktor: {
+    client: 'Induktor', img: '/assets/site/og/induktor.jpg',
+    sector: { en: 'Sim racing · Direct drive hardware', ca: 'Sim racing · Hardware direct drive', es: 'Sim racing · Hardware direct drive' },
+    services: ['strategy', 'brand', 'digital'],
+  },
 };
 
 const org = lang => ({
