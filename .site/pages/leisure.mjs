@@ -1,6 +1,6 @@
 // Sector page: branding for outdoor, leisure & sport brands (EN / CA / ES). Template + shared copy: sector.mjs.
-// Facts: Julià (premium adventure vans) and Induktor (sim racing hardware) — work in progress on the Home, no case
-// page → no case block; the founder's experience, the services list.
+// Facts: Julià (premium adventure vans, work in progress on the Home) and Induktor (sim racing hardware — case page,
+// shown as the case block); the founder's experience, the services list.
 import { sectorPage } from './sector.mjs';
 
 export const C = {
@@ -25,6 +25,10 @@ export const C = {
       ['Website, SEO & GEO', '1–2 months', 'UX/UI, design and custom development — e-commerce, product configurator, dealer locator or owners’ area if you need them — built to be found by Google and by AI assistants.'],
       ['Launch', 'Optional', 'A launch plan for the new brand or a new product, with a brand video — for the community, dealers, events, social and the end customer.'],
     ],
+    caseL: 'Case · Induktor',
+    caseH: 'A brand cut by an air gap.',
+    caseP: 'Induktor makes direct drive sim racing hardware. We built the brand from the physics of its motor: a K cut by the air gap between stator and rotor, a palette of materials instead of colours, imagery where motion is implied — and a digital experience made of glass.',
+    caseBtn: 'See the Induktor case',
     exp: 'Julià (premium adventure vans) · Induktor (sim racing hardware) · Relats · Desigual · Glovo · Repsol',
     faqH: 'What outdoor and sport brands ask us.',
     faq: [
@@ -52,6 +56,10 @@ export const C = {
       ['Web, SEO i GEO', '1–2 mesos', 'UX/UI, disseny i programació a mida — e-commerce, configurador de producte, cercador de distribuïdors o àrea de propietaris si us calen — feta perquè la trobin Google i els assistents d’IA.'],
       ['Llançament', 'Opcional', 'Un pla de llançament de la nova marca o d’un nou producte, amb un vídeo de marca — per a la comunitat, distribuïdors, esdeveniments, xarxes i el client final.'],
     ],
+    caseL: 'Cas · Induktor',
+    caseH: 'Una marca tallada per un entreferro.',
+    caseP: 'Induktor fa hardware de sim racing direct drive. Vam construir la marca a partir de la física del seu motor: una K tallada per l’entreferro entre estator i rotor, una paleta de materials en lloc de colors, una imatge on el moviment se suggereix — i una experiència digital feta de vidre.',
+    caseBtn: 'Mira el cas Induktor',
     exp: 'Julià (campers premium d’aventura) · Induktor (hardware de sim racing) · Relats · Desigual · Glovo · Repsol',
     faqH: 'El que ens pregunten les marques d’outdoor i esport.',
     faq: [
@@ -79,6 +87,10 @@ export const C = {
       ['Web, SEO y GEO', '1–2 meses', 'UX/UI, diseño y programación a medida — e-commerce, configurador de producto, buscador de distribuidores o área de propietarios si os hacen falta — hecha para que la encuentren Google y los asistentes de IA.'],
       ['Lanzamiento', 'Opcional', 'Un plan de lanzamiento de la nueva marca o de un nuevo producto, con un vídeo de marca — para la comunidad, distribuidores, eventos, redes y el cliente final.'],
     ],
+    caseL: 'Caso · Induktor',
+    caseH: 'Una marca cortada por un entrehierro.',
+    caseP: 'Induktor fabrica hardware de sim racing direct drive. Construimos la marca desde la física de su motor: una K cortada por el entrehierro entre estátor y rotor, una paleta de materiales en lugar de colores, una imagen donde el movimiento se sugiere — y una experiencia digital hecha de cristal.',
+    caseBtn: 'Mira el caso Induktor',
     exp: 'Julià (campers premium de aventura) · Induktor (hardware de sim racing) · Relats · Desigual · Glovo · Repsol',
     faqH: 'Lo que nos preguntan las marcas de outdoor y deporte.',
     faq: [
@@ -89,4 +101,5 @@ export const C = {
 
 export const leisure = ctx => sectorPage(ctx, {
   C, hero: 'project/assets/imagery/julia-camper.webp', og: '/assets/site/og/home.jpg',
+  proof: { img: 'work/induktor/induktor-assets/exposure.webp', case: 'induktor', name: 'Induktor' },
 });

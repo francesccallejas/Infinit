@@ -569,8 +569,87 @@ function studioPage() {
 }
 
 /* ================= Cases ================= */
+/* ---------- Induktor case: the page uses the brand (air gap, implied motion, the glass window, the gobo shadow) ---------- */
+const ease3 = p => 1 - Math.pow(1 - p, 3);
+const span = (a, b, x) => clamp((x - a) / (b - a), 0, 1);
+// The K assembles as it scrolls in: the arms (rotor) arrive from the right and stop 130 units from the stem.
+function airGap(s) {
+  const r = $('.gap-r', s), k = $('.gap-k', s);
+  if (RM) { s.classList.add('on'); return; }
+  let vis = false;
+  const tick = () => {
+    if (!vis) return;
+    const b = k.getBoundingClientRect(), p = ease3(span(innerHeight * .95, innerHeight * .5, b.top + b.height * .35));
+    r.style.transform = `translateX(${(1 - p) * 70}%)`;
+    s.classList.toggle('on', p > .985);
+  };
+  whenVisible(s, v => { vis = v; tick(); }, '100px');
+  onScroll.push(tick);
+}
+// Pinned: the scroll brings the motor to rest — spin → exposure → carbon plate.
+function spinSeq(s) {
+  if (RM) return;
+  const L = $$('.spn-l', s), K = $$('.spn-k li', s), bar = $('.spn-p i', s);
+  L.forEach(l => { const i = $('img', l); i.loading = 'eager'; });
+  let vis = false;
+  const tick = () => {
+    if (!vis) return;
+    const r = s.getBoundingClientRect(), p = clamp(-r.top / Math.max(1, r.height - innerHeight), 0, 1);
+    L[1].style.opacity = span(.2, .42, p); L[2].style.opacity = span(.56, .78, p);
+    $('img', L[0]).style.transform = `scale(${1.06 - p * .06}) rotate(${(1 - p) * -2}deg)`;
+    const k = p < .31 ? 0 : p < .67 ? 1 : 2; K.forEach((li, i) => li.classList.toggle('on', i === k));
+    bar.style.transform = `scaleX(${p})`;
+  };
+  whenVisible(s, v => { vis = v; tick(); }, '200px');
+  onScroll.push(tick);
+}
+// The window: the stage is dimmed glass; a clear window follows the pointer, drifts on its own until touched,
+// and moves with the arrow keys when the stage has focus.
+function glassWin(st) {
+  const top = $('.win-c', st), fr = $('.win-f', st), hint = $('.win-hint', st);
+  if (fine && hint) hint.textContent = hint.dataset.fine;
+  let x = .68, y = .5, tx = x, ty = y, raf = 0, vis = false, user = 0, idle = 0, t0 = performance.now();
+  const size = () => st.clientWidth < 700 ? [.66, .44] : [.36, .5];
+  const draw = () => {
+    const [w, h] = size(), l = clamp(x - w / 2, 0, 1 - w), t = clamp(y - h / 2, 0, 1 - h);
+    top.style.clipPath = `inset(${t * 100}% ${(1 - l - w) * 100}% ${(1 - t - h) * 100}% ${l * 100}%)`;
+    fr.style.cssText = `left:${l * 100}%;top:${t * 100}%;width:${w * 100}%;height:${h * 100}%`;
+  };
+  const loop = now => {
+    raf = 0;
+    if (!user && !RM) { const k = (now - t0) / 1000; tx = .5 + Math.sin(k * .42) * .3; ty = .5 + Math.sin(k * .67 + 1.2) * .22; }
+    x = lerp(x, tx, RM ? 1 : .1); y = lerp(y, ty, RM ? 1 : .1); draw();
+    if (vis && ((!user && !RM) || Math.abs(tx - x) + Math.abs(ty - y) > .0004)) raf = requestAnimationFrame(loop);
+  };
+  const go = () => { if (!raf && vis) raf = requestAnimationFrame(loop); };
+  const held = () => { user = 1; st.classList.add('used'); clearTimeout(idle); idle = setTimeout(() => { user = 0; go(); }, 5000); go(); };
+  const at = e => { const r = st.getBoundingClientRect(); tx = clamp((e.clientX - r.left) / r.width, 0, 1); ty = clamp((e.clientY - r.top) / r.height, 0, 1); held(); };
+  st.addEventListener('pointermove', at); st.addEventListener('pointerdown', at);
+  st.addEventListener('keydown', e => {
+    const m = { ArrowLeft: [-.06, 0], ArrowRight: [.06, 0], ArrowUp: [0, -.06], ArrowDown: [0, .06] }[e.key]; if (!m) return;
+    e.preventDefault(); tx = clamp(tx + m[0], 0, 1); ty = clamp(ty + m[1], 0, 1); held();
+  });
+  whenVisible(st, v => { vis = v; if (v) go(); });
+  addEventListener('resize', draw); draw();
+}
+// The gobo: the K is a shadow cast by the key light; it travels with the scroll (and the pointer).
+function gobo(g) {
+  if (RM) return;
+  const k = $('.gobo-k', g); let vis = false, mx = 0;
+  const tick = () => {
+    if (!vis) return;
+    const r = g.getBoundingClientRect(), p = clamp((innerHeight - r.top) / (innerHeight + r.height), 0, 1) - .5;
+    k.style.transform = `translate3d(${p * -14 - mx * 4}%,${p * 8}%,0) skewX(${-16 + p * 14 + mx * 6}deg)`;
+  };
+  whenVisible(g, v => { vis = v; tick(); });
+  onScroll.push(tick);
+  if (fine) g.addEventListener('pointermove', e => { const r = g.getBoundingClientRect(); mx = (e.clientX - r.left) / r.width - .5; requestAnimationFrame(tick); });
+}
+
 function casePage() {
   const art = $('#art'); if (art) carousel(art, { drift: -.6, skew: 8 });
+  const gp = $('#gap'), sp = $('#spn'), wn = $('.win-s'), gb = $('#gobo');
+  if (gp) airGap(gp); if (sp) spinSeq(sp); if (wn) glassWin(wn); if (gb) gobo(gb);
   // Tap gallery: each click goes to the next image.
   const tap = $('#tap');
   if (tap) {

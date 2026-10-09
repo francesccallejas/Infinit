@@ -113,7 +113,7 @@ ${video({ file: R + 'top-tier.mp4', poster: R + 'top-tier-poster.jpg', label: c.
 <div class="fld">${FLD.map((s, i) => `<div class="rv" style="transition-delay:${(i % 4) * .05}s"><div class="img"><img src="${A(R + s + '.webp')}" alt="${esc(c.fldAlt[i])}" loading="lazy"></div><span class="chip">${esc(c.fld[i])}</span></div>`).join('')}</div></section>`,
     `<section class="blk g12"><div style="grid-column:1/6;display:flex;flex-direction:column;gap:18px" class="rv"><span class="lbl">${esc(c.anL)}</span><h2 class="h2">${esc(c.anH)}</h2><p style="font-size:17px;line-height:1.5;color:var(--t3)">${c.anP}</p></div>
 <div style="grid-column:7/13;position:relative"><div class="img clip" style="border-radius:14px;aspect-ratio:4/3"><img src="${A(R + 'analytics.webp')}" alt="${esc(c.anAlt)}" loading="lazy"></div><span class="chip" style="position:absolute;left:14px;bottom:14px">data.relats.com</span></div></section>`,
-    nextCase(ctx, 'bunnker'),
+    nextCase(ctx, 'induktor'),
     ending(ctx, { cls: 'afternx' }),
   ].join('\n');
 

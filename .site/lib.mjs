@@ -14,6 +14,7 @@ export const ROUTES = {
   studio: 'studio/',
   bunnker: 'work/bunnker/',
   relats: 'work/relats/',
+  induktor: 'work/induktor/',
   industrial: 'industrial-branding/',
   automotive: 'automotive-branding/',
   food: 'food-branding/',
