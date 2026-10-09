@@ -374,7 +374,8 @@ function carousel(el, { drift = -.6, skew = 8, scale = 0 } = {}) {
   const auto = RM ? 0 : drift;
   let x = 0, v = auto, drag = false, lx = 0, moved = 0, run = false, focused = false, visible = true;
   const W = () => t.scrollWidth / 3;
-  el.addEventListener('pointerdown', e => { drag = true; lx = e.clientX; moved = 0; v = 0; });
+  let pt = 0; // last pointer press — a click focuses the card too, and that focus must not move the track
+  el.addEventListener('pointerdown', e => { drag = true; lx = e.clientX; moved = 0; v = 0; pt = performance.now(); });
   el.addEventListener('pointermove', e => {
     if (!drag) return;
     const dx = e.clientX - lx; lx = e.clientX; x += dx; v = dx; moved += Math.abs(dx);
@@ -384,9 +385,12 @@ function carousel(el, { drift = -.6, skew = 8, scale = 0 } = {}) {
   const up = () => { drag = false; };
   el.addEventListener('pointerup', up); el.addEventListener('pointercancel', up);
   el.addEventListener('click', e => { if (moved > 6 && e.detail) { e.preventDefault(); e.stopPropagation(); } }, true);
-  // Keyboard: bring the focused card into view and hold the drift.
+  // Keyboard: bring the focused card into view and hold the drift. Only for keyboard focus: if a click
+  // moved the card from under the pointer, the click would land elsewhere and never open the case.
   el.addEventListener('focusin', e => {
-    focused = true; el.scrollLeft = 0;
+    el.scrollLeft = 0;
+    if (performance.now() - pt < 800) return;
+    focused = true;
     const c = e.target.closest('.pj, .img'); if (!c) return;
     x -= c.getBoundingClientRect().left - el.getBoundingClientRect().left - 20; v = 0; if (!run) frame();
   });
@@ -396,7 +400,7 @@ function carousel(el, { drift = -.6, skew = 8, scale = 0 } = {}) {
     run = true;
     if (!drag && !focused) { v = lerp(v, auto, .03); x += v; }
     const w = W();
-    if (w) { if (x < -w * 2) x += w; if (x > -w) x -= w; }
+    if (w && !focused) { if (x < -w * 2) x += w; if (x > -w) x -= w; } // no wrap while a card has keyboard focus (it would swap it for its copy)
     t.style.transform = `translate3d(${x}px,0,0)`;
     if (!RM && skew) { const sk = clamp(v * .4, -skew, skew); ims.forEach(i => i.style.transform = `skewX(${-sk}deg)${scale ? ` scale(${1 + Math.abs(sk) * scale})` : ''}`); }
     if (visible && el.offsetParent && (auto || drag || Math.abs(v) > .05)) requestAnimationFrame(frame); else run = false;
