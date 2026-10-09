@@ -24,7 +24,7 @@ export const CASES = {
     services: ['strategy', 'brand', 'digital'],
   },
   induktor: {
-    client: 'Induktor', img: '/assets/site/og/induktor.jpg',
+    client: 'Induktor', img: '/assets/site/og/induktor.jpg', time: 'P10D', // brief to delivery: the studio's record
     sector: { en: 'Sim racing · Direct drive hardware', ca: 'Sim racing · Hardware direct drive', es: 'Sim racing · Hardware direct drive' },
     services: ['strategy', 'brand', 'digital'],
   },
@@ -145,6 +145,7 @@ export function graph(lang, page, meta) {
       author: { '@id': FOUNDER }, publisher: { '@id': ORG }, creator: [{ '@id': FOUNDER }, ...(c.partner ? [{ '@type': 'Organization', name: c.partner }] : [])],
       keywords: c.services.map(k => S.find(s => s.k === k).n[lang]).concat(c.sector[lang].split(' · ')).join(', '),
       ...(c.award ? { award: c.award[lang] } : {}),
+      ...(c.time ? { timeRequired: c.time } : {}),
     });
   }
   return { '@context': 'https://schema.org', '@graph': g };

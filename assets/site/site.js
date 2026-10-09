@@ -646,9 +646,25 @@ function gobo(g) {
   if (fine) g.addEventListener('pointermove', e => { const r = g.getBoundingClientRect(); mx = (e.clientX - r.left) / r.width - .5; requestAnimationFrame(tick); });
 }
 
+// The record: count 00 → 10 like a lap timer and light the ten days, once, when the section comes into view.
+function speedo(s) {
+  const n = $('.spd-n b', s), to = +n.dataset.to;
+  if (RM) { s.classList.add('go'); return; }
+  n.textContent = '00';
+  const io = new IntersectionObserver(es => {
+    if (!es[0].isIntersecting) return; io.disconnect();
+    s.classList.add('go');
+    const t0 = performance.now(), dur = 1300;
+    const f = now => { const p = ease3(clamp((now - t0) / dur, 0, 1)); n.textContent = String(Math.round(p * to)).padStart(2, '0'); if (p < 1) requestAnimationFrame(f); };
+    requestAnimationFrame(f);
+  }, { threshold: .45 });
+  io.observe(s);
+}
+
 function casePage() {
   const art = $('#art'); if (art) carousel(art, { drift: -.6, skew: 8 });
   const gp = $('#gap'), sp = $('#spn'), wn = $('.win-s'), gb = $('#gobo');
+  const sd = $('#spd'); if (sd) speedo(sd);
   if (gp) airGap(gp); if (sp) spinSeq(sp); if (wn) glassWin(wn); if (gb) gobo(gb);
   // Tap gallery: each click goes to the next image.
   const tap = $('#tap');

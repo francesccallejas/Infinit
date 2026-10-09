@@ -1,4 +1,5 @@
-// Case: Induktor — sim racing hardware. Unlike the other cases, the page *uses* the brand instead of only showing it:
+// Case: Induktor — sim racing hardware, delivered in 10 days (the studio's record: hero chip, meta row and the #spd count).
+// Unlike the other cases, the page *uses* the brand instead of only showing it:
 //   · the air gap: the K assembles on scroll and stops with its 130-unit gap (#gap)
 //   · motion is implied: a pinned scroll that brings the spinning motor to rest — spin → exposure → carbon plate (#spn)
 //   · the window: the page is dimmed glass, a clear window follows the cursor / finger (#win)
@@ -19,14 +20,27 @@ const STEM = 'M0 1400H400V0H0Z';
 const ARMS = 'M530 1053.3V551L1232 0H1871L1093 611L1880 1400H1316L777 860Z';
 const COPPER = '#B86B3C';
 
+// Platform marks for the hero (small, grey on the dark photo). PlayStation, Xbox, Apple: Simple Icons (CC0);
+// Windows: the perspective window. Each is an <svg role="img"> with its name.
+const PLAT = [
+  ['PlayStation', '0 0 24 24', 'M8.984 2.596v17.547l3.915 1.261V6.688c0-.69.304-1.151.794-.991.636.18.76.814.76 1.505v5.875c2.441 1.193 4.362-.002 4.362-3.152 0-3.237-1.126-4.675-4.438-5.827-1.307-.448-3.728-1.186-5.39-1.502zm4.656 16.241l6.296-2.275c.715-.258.826-.625.246-.818-.586-.192-1.637-.139-2.357.123l-4.205 1.5V14.98l.24-.085s1.201-.42 2.913-.615c1.696-.18 3.785.03 5.437.661 1.848.601 2.04 1.472 1.576 2.072-.465.6-1.622 1.036-1.622 1.036l-8.544 3.107V18.86zM1.807 18.6c-1.9-.545-2.214-1.668-1.352-2.32.801-.586 2.16-1.052 2.16-1.052l5.615-2.013v2.313L4.205 17c-.705.271-.825.632-.239.826.586.195 1.637.15 2.343-.12L8.247 17v2.074c-.12.03-.256.044-.39.073-1.939.331-3.996.196-6.038-.479z'],
+  ['Xbox', '0 0 24 24', 'M4.102 21.033C6.211 22.881 8.977 24 12 24c3.026 0 5.789-1.119 7.902-2.967 1.877-1.912-4.316-8.709-7.902-11.417-3.582 2.708-9.779 9.505-7.898 11.417zm11.16-14.406c2.5 2.961 7.484 10.313 6.076 12.912C23.002 17.48 24 14.861 24 12.004c0-3.34-1.365-6.362-3.57-8.536 0 0-.027-.022-.082-.042-.063-.022-.152-.045-.281-.045-.592 0-1.985.434-4.805 3.246zM3.654 3.426c-.057.02-.082.041-.086.042C1.365 5.642 0 8.664 0 12.004c0 2.854.998 5.473 2.661 7.533-1.401-2.605 3.579-9.951 6.08-12.91-2.82-2.813-4.216-3.245-4.806-3.245-.131 0-.223.021-.281.046v-.002zM12 3.551S9.055 1.828 6.755 1.746c-.903-.033-1.454.295-1.521.339C7.379.646 9.659 0 11.984 0H12c2.334 0 4.605.646 6.766 2.085-.068-.046-.615-.372-1.52-.339C14.946 1.828 12 3.545 12 3.545v.006z'],
+  ['Windows', '0 0 88 88', 'M0 12.4 35.7 7.6V42H0zM40.1 6.9 88 0v41.5H40.1zM0 45.7h35.7v34.6L0 75.3zM40.1 46.2H88V88l-47.9-6.8z'],
+  ['Mac', '0 0 24 24', 'M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701'],
+];
+const plat = label => `<p class="sr">${esc(label)}</p><ul class="plat">${PLAT.map(([n, vb, d]) => `<li><svg viewBox="${vb}" role="img" aria-label="${n}"><path d="${d}"/></svg></li>`).join('')}</ul>`;
+
 const C = {
   en: {
-    title: 'Induktor — Sim racing brand identity case study | INFINIT©',
-    desc: 'How INFINIT© built Induktor, a sim racing hardware brand: positioning, a K cut by the air gap of an induction motor, a palette of materials and a digital experience.',
+    title: 'Induktor — A sim racing brand in 10 days | INFINIT©',
+    desc: 'Induktor, a sim racing hardware brand delivered in 10 days by INFINIT©: strategy, a K cut by the air gap of an induction motor, materials not colours, and the web.',
+    rec: 'Record · 10 days', platL: 'Platforms: PlayStation, Xbox, Windows and Mac',
     h1: 'Nothing touches. <b>Everything moves.</b>',
-    meta: [['Client', 'Induktor'], ['Studio', 'INFINIT©'], ['Sector', 'Sim racing · Direct drive hardware'], ['Scope', 'Strategy · Identity · Digital'], ['Platforms', 'PlayStation · Xbox · PC']],
+    meta: [['Client', 'Induktor'], ['Studio', 'INFINIT©'], ['Sector', 'Sim racing · Direct drive hardware'], ['Scope', 'Strategy · Identity · Digital'], ['Delivered in', '10 days · studio record']],
     whoL: 'Who is Induktor', who: 'Induktor makes sim racing hardware engineered around the physics of induction: direct drive wheelbases for PlayStation, Xbox and PC that put every force on the track into the driver’s hands — without loss.',
     defL: 'The idea', quote: '“Induced reality — <b>every force on the track, delivered to your hands.”</b>',
+    spdL: 'Brief to delivery', spdU: 'days', spdH: 'A whole brand, in ten days.',
+    spdP: 'From the first brief to the complete brand in 10 days — strategy, symbol and logotype, typography, materials, imagery, motion, the campaign frame and the digital experience. The studio’s fastest project yet.',
     gapL: '01 · The symbol', gapH: 'Stator, gap, rotor.',
     gapP: 'An inductor is a coil of copper that stores energy in a magnetic field. In an induction motor, force crosses from stator to rotor through a gap of air — nothing touches, and yet everything moves. So we cut the K the same way: its arms set free from the stem by exactly that gap. The R answers it at the end of the name.',
     gapN: 'The gap is drawn by the ground showing through — never by a line, a stroke or a second colour.',
@@ -50,12 +64,15 @@ const C = {
     fr: ['Key visual: Induced reality', 'The logotype', 'The symbol and the air gap', 'Typography', 'Colour: materials, not colours', 'Imagery and motion', 'Campaign: the shadow', 'Brand experience: the windings', 'Brand experience: the air gap', 'Brand experience: the end frame'],
   },
   ca: {
-    title: 'Induktor — Cas d’identitat de marca de sim racing | INFINIT©',
-    desc: 'Com INFINIT© va crear Induktor, marca de hardware de sim racing: posicionament, una K tallada per l’entreferro d’un motor d’inducció, una paleta de materials i web.',
+    title: 'Induktor — Una marca de sim racing en 10 dies | INFINIT©',
+    desc: 'Induktor, marca de hardware de sim racing entregada en 10 dies per INFINIT©: estratègia, una K tallada per l’entreferro d’un motor d’inducció, materials i web.',
+    rec: 'Rècord · 10 dies', platL: 'Plataformes: PlayStation, Xbox, Windows i Mac',
     h1: 'Res no es toca. <b>Tot es mou.</b>',
-    meta: [['Client', 'Induktor'], ['Estudi', 'INFINIT©'], ['Sector', 'Sim racing · Hardware direct drive'], ['Abast', 'Estratègia · Identitat · Digital'], ['Plataformes', 'PlayStation · Xbox · PC']],
+    meta: [['Client', 'Induktor'], ['Estudi', 'INFINIT©'], ['Sector', 'Sim racing · Hardware direct drive'], ['Abast', 'Estratègia · Identitat · Digital'], ['Entregat en', '10 dies · rècord de l’estudi']],
     whoL: 'Qui és Induktor', who: 'Induktor fa hardware de sim racing pensat a partir de la física de la inducció: bases direct drive per a PlayStation, Xbox i PC que porten cada força de la pista a les mans del pilot — sense pèrdues.',
     defL: 'La idea', quote: '“Realitat induïda — <b>cada força de la pista, a les teves mans.”</b>',
+    spdL: 'Del brief a l’entrega', spdU: 'dies', spdH: 'Una marca sencera, en deu dies.',
+    spdP: 'Del primer brief a la marca completa en 10 dies — estratègia, símbol i logotip, tipografia, materials, imatge, moviment, la imatge de campanya i l’experiència digital. El projecte més ràpid de l’estudi.',
     gapL: '01 · El símbol', gapH: 'Estator, entreferro, rotor.',
     gapP: 'Un inductor és una bobina de coure que emmagatzema energia en un camp magnètic. En un motor d’inducció, la força passa de l’estator al rotor a través d’un espai d’aire — res no es toca i, tanmateix, tot es mou. Per això vam tallar la K de la mateixa manera: els braços se separen del pal exactament per aquest espai. La R li respon al final del nom.',
     gapN: 'L’entreferro el dibuixa el fons que es veu a través — mai una línia, un traç o un segon color.',
@@ -79,12 +96,15 @@ const C = {
     fr: ['Imatge clau: Induced reality', 'El logotip', 'El símbol i l’entreferro', 'Tipografia', 'Color: materials, no colors', 'Imatge i moviment', 'Campanya: l’ombra', 'Experiència de marca: les bobines', 'Experiència de marca: l’entreferro', 'Experiència de marca: el tancament'],
   },
   es: {
-    title: 'Induktor — Caso de identidad de marca de sim racing | INFINIT©',
-    desc: 'Cómo INFINIT© creó Induktor, marca de hardware de sim racing: posicionamiento, una K cortada por el entrehierro de un motor de inducción, una paleta de materiales y web.',
+    title: 'Induktor — Una marca de sim racing en 10 días | INFINIT©',
+    desc: 'Induktor, marca de hardware de sim racing entregada en 10 días por INFINIT©: estrategia, una K cortada por el entrehierro de un motor de inducción, materiales y web.',
+    rec: 'Récord · 10 días', platL: 'Plataformas: PlayStation, Xbox, Windows y Mac',
     h1: 'Nada se toca. <b>Todo se mueve.</b>',
-    meta: [['Cliente', 'Induktor'], ['Estudio', 'INFINIT©'], ['Sector', 'Sim racing · Hardware direct drive'], ['Alcance', 'Estrategia · Identidad · Digital'], ['Plataformas', 'PlayStation · Xbox · PC']],
+    meta: [['Cliente', 'Induktor'], ['Estudio', 'INFINIT©'], ['Sector', 'Sim racing · Hardware direct drive'], ['Alcance', 'Estrategia · Identidad · Digital'], ['Entregado en', '10 días · récord del estudio']],
     whoL: 'Quién es Induktor', who: 'Induktor fabrica hardware de sim racing pensado desde la física de la inducción: bases direct drive para PlayStation, Xbox y PC que llevan cada fuerza de la pista a las manos del piloto — sin pérdidas.',
     defL: 'La idea', quote: '“Realidad inducida — <b>cada fuerza de la pista, en tus manos.”</b>',
+    spdL: 'Del brief a la entrega', spdU: 'días', spdH: 'Una marca entera, en diez días.',
+    spdP: 'Del primer brief a la marca completa en 10 días — estrategia, símbolo y logotipo, tipografía, materiales, imagen, movimiento, la imagen de campaña y la experiencia digital. El proyecto más rápido del estudio.',
     gapL: '01 · El símbolo', gapH: 'Estátor, entrehierro, rotor.',
     gapP: 'Un inductor es una bobina de cobre que almacena energía en un campo magnético. En un motor de inducción, la fuerza pasa del estátor al rotor a través de un espacio de aire — nada se toca y, sin embargo, todo se mueve. Por eso cortamos la K del mismo modo: sus brazos se separan del asta exactamente por ese espacio. La R le responde al final del nombre.',
     gapN: 'El entrehierro lo dibuja el fondo que se ve a través — nunca una línea, un trazo o un segundo color.',
@@ -118,6 +138,11 @@ const img = (s, alt, extra = '') => `<div class="img"${extra}><img src="${A(K + 
 
 export function induktor(ctx) {
   const { lang } = ctx, c = C[lang], t = T[lang];
+
+  // The record: brief to delivery in 10 days — a lap-timer count (00 → 10) and ten day marks lighting up (static without JS / reduced motion).
+  const spd = `<section class="dark spd" id="spd"><div class="spd-n" aria-hidden="true"><b data-to="10">10</b><span>${esc(c.spdU)}</span></div>
+<div class="spd-t"><span class="lbl">${esc(c.spdL)}</span><h2 class="h2" data-lines>${esc(c.spdH)}</h2><p>${esc(c.spdP)}</p></div>
+<ol class="spd-d" aria-hidden="true">${Array.from({ length: 10 }, (_, i) => `<li style="--i:${i}"><span>D${String(i + 1).padStart(2, '0')}</span></li>`).join('')}</ol></section>`;
 
   // 01 · The air gap — the symbol in SVG; the arms (rotor) slide in and stop 130 units from the stem.
   const gap = `<section class="blk"><div class="gap" id="gap">
@@ -161,11 +186,11 @@ ${video({ file: K + 'logo-reveal.mp4', poster: K + 'logo-reveal-poster.webp', la
 <div class="car fr" id="art" data-cur="${esc(t.cDrag)}"><div class="car-t">${[0, 1, 2].map(k => FR.map((s, i) => img(s, k === 1 ? c.fr[i] : '', k === 1 ? '' : ' aria-hidden="true"')).join('')).join('')}</div></div></section>`;
 
   const body = [
-    caseHero(ctx, { img: K + 'spin.webp', logo: K + 'logotype-bone.svg', logoStyle: ' style="height:clamp(14px,1.5vw,22px)"', name: 'Induktor', h1: c.h1,
-      chips: chip('strategy', lang) + chip('brand', lang) + chip('digital', lang) }),
+    caseHero(ctx, { img: K + 'spin.webp', logo: K + 'logotype-bone.svg', logoStyle: ' style="height:clamp(14px,1.5vw,22px)"', name: 'Induktor', h1: c.h1, after: plat(c.platL),
+      chips: chip('strategy', lang) + chip('brand', lang) + chip('digital', lang) + `<span class="chip">${esc(c.rec)}</span>` }),
     meta(c.meta.map((r, i) => i === 2 ? [...r, [url(lang, 'leisure'), SECTOR[lang].lbl]] : r)),
     about(c),
-    gap, spn, win, mat, gobo, mark, frames,
+    spd, gap, spn, win, mat, gobo, mark, frames,
     nextCase(ctx, 'bunnker'),
     ending(ctx, { cls: 'afternx' }),
   ].join('\n');
