@@ -24,6 +24,8 @@ export function head(ctx, { title, desc, og, css, ld }) {
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <script>document.documentElement.classList.add('js');
+/* The project's pages.dev address → the real domain, same page (preview deployments, <hash>.infinit-ede.pages.dev, keep working). */
+if(location.hostname==='infinit-ede.pages.dev')location.replace('https://www.weareinfinit.com'+location.pathname+location.search+location.hash);
 /* iOS 26+ Safari, bottom toolbar: the page draws ~58px below 100lvh → html.bar lets the hero reach the physical bottom.
    Checked: iPhone Safari (not in-app/other browsers), Face ID size, not a home-screen app, and screen − 100lvh in the
    bottom-toolbar range (status bar + toolbar zone ≈ 114–120px; the Top tab layout is smaller). */

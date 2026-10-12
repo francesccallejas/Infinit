@@ -115,6 +115,7 @@ ${LANGS.map(l => `<link rel="alternate" hreflang="${l}" href="${abs(l, 'home')}"
 <link rel="alternate" hreflang="x-default" href="${SITE}/">
 <meta name="theme-color" content="#060a0e">
 ${icons(V)}
+<script>if(location.hostname==='infinit-ede.pages.dev')location.replace('https://www.weareinfinit.com'+location.pathname+location.search+location.hash);</script>
 <script>(function(){var L=['ca','es','en'],s=null;try{s=localStorage.getItem('inf-lang')}catch(e){}
 if(L.indexOf(s)<0){s='en';var n=navigator.languages||[navigator.language||''];for(var i=0;i<n.length;i++){var c=String(n[i]).slice(0,2).toLowerCase();if(L.indexOf(c)>-1){s=c;break}}}
 location.replace('/'+s+'/'+location.search+location.hash)})()</script>
@@ -257,7 +258,13 @@ out('_redirects', `# Previous site URLs → new language-prefixed pages
 /work/relats/index.html  /en/work/relats/   301
 `);
 
-out('_headers', `/*
+out('_headers', `# The project's pages.dev addresses are never indexed: the site lives on www.weareinfinit.com
+https://:project.pages.dev/*
+  X-Robots-Tag: noindex
+https://:version.:project.pages.dev/*
+  X-Robots-Tag: noindex
+
+/*
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: camera=(), microphone=(), geolocation=()
