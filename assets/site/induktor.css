@@ -4,6 +4,7 @@
 
 /* ---------- 01 · The air gap: the K assembles on scroll and stops 130 units from its stem ---------- */
 .gap{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:clamp(36px,6vw,110px);align-items:center}
+.gap-v{overflow:hidden} /* the arms slide in from the edge of their own column, never over the text */
 .gap-k{display:block;width:100%;height:auto;overflow:visible}
 .gap-s,.gap-r{fill:var(--t4)}
 .gap-r{transform-box:fill-box}
@@ -15,6 +16,12 @@
 .gap-t p{font-size:18px;line-height:1.5;color:var(--t3);max-width:520px}
 .gap-t .gap-n{font-size:15px;padding-top:16px;border-top:1px solid var(--l1)}
 @media(max-width:900px){.gap{grid-template-columns:1fr}}
+.gap-k{max-height:72vh;max-height:72svh}
+/* Two columns: the section is pinned while the arms travel in, so the whole assembly is seen (site.js › airGap). */
+@media (min-width:901px) and (prefers-reduced-motion:no-preference){
+  .js .gap-sec{height:230vh}
+  .js .gap{position:sticky;top:max(90px,calc(50vh - 36vh))}
+}
 
 /* ---------- 02 · Motion is implied: pinned, the scroll brings the motor to rest ----------
    Default (no JS / reduced motion): the three treatments side by side with their captions. */
@@ -118,10 +125,12 @@
 
 /* ---------- Intro: the logo reveal over carbon, once per session, then the hero ---------- */
 .ik-in{display:none}
-.ik-intro .ik-in{display:grid;place-items:center;position:fixed;inset:0;z-index:400;background:#0B0B0C;cursor:pointer;animation:ik-out .9s cubic-bezier(.7,0,.2,1) 4.3s forwards}
+/* It leaves like the Home preloader: a curtain that lifts straight up (clip-path), on the video's end or a click —
+   or by itself after 4.3s if the video can't play. */
+.ik-intro .ik-in{display:grid;place-items:center;position:fixed;inset:0;z-index:400;background:#0B0B0C;cursor:pointer;clip-path:inset(0 0 0 0);animation:ik-out 1.1s cubic-bezier(.7,0,.2,1) 4.3s forwards}
 .ik-in video{width:min(100vw,1280px);aspect-ratio:16/9;height:auto;object-fit:cover}
-.ik-in.out{animation:ik-out .6s cubic-bezier(.7,0,.2,1) forwards}
-@keyframes ik-out{to{opacity:0;visibility:hidden}}
+.ik-intro .ik-in.out{animation:ik-out 1.1s cubic-bezier(.7,0,.2,1) forwards}
+@keyframes ik-out{to{clip-path:inset(0 0 100% 0);visibility:hidden}}
 
 /* ---------- 06 · The website: four chapters as tabs, a browser frame and a phone, scrolling in step ---------- */
 .ws-p{font-size:18px;line-height:1.5;color:var(--t3);max-width:520px;margin:0}

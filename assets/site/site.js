@@ -583,8 +583,14 @@ function airGap(s) {
   let vis = false;
   const tick = () => {
     if (!vis) return;
-    const b = k.getBoundingClientRect(), p = ease3(span(innerHeight * .95, innerHeight * .5, b.top + b.height * .35));
-    r.style.transform = `translateX(${(1 - p) * 70}%)`;
+    // Pinned (two columns): progress through the tall section; stacked (phones): from the K's top at 90% of the
+    // screen to 30%, so it is in view the whole time. Ease in-out, so the arrival reads.
+    const sec = s.closest('.gap-sec'), pinned = sec && getComputedStyle(s).position === 'sticky';
+    let q;
+    if (pinned) { const r2 = sec.getBoundingClientRect(); q = span(.12, .78, -r2.top / Math.max(1, r2.height - innerHeight)); }
+    else { const b = k.getBoundingClientRect(); q = span(innerHeight * .9, innerHeight * .3, b.top); }
+    const p = q < .5 ? 4 * q * q * q : 1 - Math.pow(-2 * q + 2, 3) / 2;
+    r.style.transform = `translateX(${(1 - p) * 80}%)`;
     s.classList.toggle('on', p > .985);
   };
   whenVisible(s, v => { vis = v; tick(); }, '100px');
@@ -670,7 +676,7 @@ function speedo(s) {
 function ikIntro() {
   const el = $('#ik-in'); if (!el) return;
   if (!de.classList.contains('ik-intro')) { el.remove(); return; }
-  const v = $('video', el), out = () => { el.classList.add('out'); setTimeout(() => el.remove(), 700); };
+  const v = $('video', el), out = () => { if (el.classList.contains('out')) return; el.classList.add('out'); setTimeout(() => el.remove(), 1200); };
   if (v) { v.addEventListener('ended', out); const p = v.play(); p && p.catch(() => {}); }
   el.addEventListener('click', out);
 }
