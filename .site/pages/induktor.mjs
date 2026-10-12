@@ -8,12 +8,19 @@
 // Behaviour: site.js (casePage → airGap, spinSeq, glassWin, gobo). Styles: assets/site/induktor.css.
 // Source: the client's brand deliverables (Oct 2026). Product figures are still placeholders, so no frame with [XX] is used.
 import { esc, A, url } from '../lib.mjs';
+import { readFileSync } from 'node:fs';
 import { C as SECTOR } from './leisure.mjs';
 import { T } from '../i18n.mjs';
 import { head, end, ending } from '../layout.mjs';
 import { chip, caseHero, meta, about, video, nextCase } from './case.mjs';
 
 const K = 'work/induktor/induktor-assets/';
+// The logotype's letters (I N D U K T O R) from the supplied outlines: the K's stem and arms are one letter.
+const LETTERS = (() => {
+  const d = readFileSync(new URL('../../' + K + 'logotype-bone.svg', import.meta.url), 'utf8').match(/ d="([^"]+)"/)[1];
+  const parts = d.split(/ (?=M)/); // letters are separated by ' M'; holes (D, O) follow without a space
+  return [...parts.slice(0, 4), parts[4] + ' ' + parts[5], ...parts.slice(6)];
+})();
 
 // The symbol, from the supplied outlines (never redrawn): stem = stator, arms = rotor, 130 units apart.
 const STEM = 'M0 1400H400V0H0Z';
@@ -40,6 +47,7 @@ const C = {
     tabs: [['The feeling', 'Home'], ['The machine', 'Product'], ['The science', 'Technology'], ['Your setup', 'Configurator']],
     webHint: 'Scroll inside the screens — or let them run.', webAlt: n => `The Induktor website, ${n} page, full length`, webAltM: n => `The Induktor website, ${n} page, on a phone`,
     pres: ['The three main pages of the Induktor website', 'The Induktor website on phones'],
+    preL: 'Case study — Induktor',
     rec: 'Record · 10 days', platL: 'Platforms: PlayStation, Xbox, Windows and Mac',
     h1: 'Nothing touches. <b>Everything moves.</b>',
     meta: [['Client', 'Induktor'], ['Studio', 'INFINIT©'], ['Sector', 'Sim racing · Direct drive hardware'], ['Scope', 'Strategy · Identity · Digital'], ['Delivered in', '10 days · studio record']],
@@ -78,6 +86,7 @@ const C = {
     tabs: [['La sensació', 'Inici'], ['La màquina', 'Producte'], ['La ciència', 'Tecnologia'], ['La teva configuració', 'Configurador']],
     webHint: 'Desplaça’t dins les pantalles — o deixa-les córrer.', webAlt: n => `La web d’Induktor, pàgina ${n}, sencera`, webAltM: n => `La web d’Induktor, pàgina ${n}, en un mòbil`,
     pres: ['Les tres pàgines principals de la web d’Induktor', 'La web d’Induktor en mòbils'],
+    preL: 'Cas d’estudi — Induktor',
     rec: 'Rècord · 10 dies', platL: 'Plataformes: PlayStation, Xbox, Windows i Mac',
     h1: 'Res no es toca. <b>Tot es mou.</b>',
     meta: [['Client', 'Induktor'], ['Estudi', 'INFINIT©'], ['Sector', 'Sim racing · Hardware direct drive'], ['Abast', 'Estratègia · Identitat · Digital'], ['Entregat en', '10 dies · rècord de l’estudi']],
@@ -116,6 +125,7 @@ const C = {
     tabs: [['La sensación', 'Inicio'], ['La máquina', 'Producto'], ['La ciencia', 'Tecnología'], ['Tu configuración', 'Configurador']],
     webHint: 'Desplázate dentro de las pantallas — o déjalas correr.', webAlt: n => `La web de Induktor, página ${n}, completa`, webAltM: n => `La web de Induktor, página ${n}, en un móvil`,
     pres: ['Las tres páginas principales de la web de Induktor', 'La web de Induktor en móviles'],
+    preL: 'Caso de estudio — Induktor',
     rec: 'Récord · 10 días', platL: 'Plataformas: PlayStation, Xbox, Windows y Mac',
     h1: 'Nada se toca. <b>Todo se mueve.</b>',
     meta: [['Cliente', 'Induktor'], ['Estudio', 'INFINIT©'], ['Sector', 'Sim racing · Hardware direct drive'], ['Alcance', 'Estrategia · Identidad · Digital'], ['Entregado en', '10 días · récord del estudio']],
@@ -216,13 +226,11 @@ ${WEB.map((w, i) => `<div class="ws-st" role="tabpanel" id="ws-p${i}" aria-label
 <p class="lbl ws-h">${esc(c.webHint)}</p>
 <div class="ws-g">${['web-three-pages', 'web-mobile'].map((f, i) => `<div class="img rv"${i ? ' style="transition-delay:.06s"' : ''}><img src="${A(K + f + '.webp')}" alt="${esc(c.pres[i])}" loading="lazy"></div>`).join('')}</div></section>`;
 
-  // Intro (once per session, not with reduced motion): the logo reveal plays over carbon, then fades to the hero.
-  // The inline script decides before the first paint; CSS fades it out even if the video can't play.
-  const intro = `<script>try{if(!sessionStorage.getItem('ik-in')&&!matchMedia('(prefers-reduced-motion: reduce)').matches){sessionStorage.setItem('ik-in',1);document.documentElement.classList.add('ik-intro')}}catch(e){}</script>
-<div class="ik-in" id="ik-in" aria-hidden="true"><video src="${A(K + 'logo-reveal.mp4')}" poster="${A(K + 'logo-reveal-poster.webp')}" muted playsinline preload="none"></video></div>`;
+  // Preloader mark (site.js › pre): the Induktor logotype, one path per letter so they rise one by one like INFINIT©'s.
+  const preMark = `<template id="pre-mark" data-label="${esc(c.preL)}"><svg class="wm" viewBox="0 0 17370 1400" aria-hidden="true" focusable="false">${LETTERS.map(d => `<path d="${d}"/>`).join('')}</svg></template>`;
 
   const body = [
-    intro,
+    preMark,
     caseHero(ctx, { img: K + 'spin.webp', logo: K + 'logotype-bone.svg', logoStyle: ' style="height:clamp(14px,1.5vw,22px)"', name: 'Induktor', h1: c.h1, after: `<p class="ch-sub">${esc(c.sub)}</p>` + plat(c.platL),
       chips: chip('strategy', lang) + chip('brand', lang) + chip('digital', lang) + `<span class="chip">${esc(c.rec)}</span>` }),
     meta(c.meta.map((r, i) => i === 2 ? [...r, [url(lang, 'leisure'), SECTOR[lang].lbl]] : r)),

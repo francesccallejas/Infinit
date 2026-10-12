@@ -300,12 +300,15 @@ function nav() {
 /* ---------- preloader (Home, first visit of the session) ---------- */
 function pre(key) {
   return new Promise(res => {
-    if (RM || store.get(sessionStorage, 'inf-pre-' + key)) return res();
+    const off = () => de.classList.remove('pre-on'); // the inline cover (layout.mjs) until the preloader is in place
+    if (RM || store.get(sessionStorage, 'inf-pre-' + key)) { off(); return res(); }
     store.set(sessionStorage, 'inf-pre-' + key, 1);
     const p = d.createElement('div'); p.className = 'pre2'; p.setAttribute('aria-hidden', 'true');
-    p.innerHTML = `<div class="pre2-m"></div><div class="pre2-b"><span class="lbl">${escH(T.firm)} — ${escH(T.loc)}</span><span class="pre2-n">000</span></div><div class="pre2-l"><i></i></div>`;
-    const w = $('.mid .wm'); if (w) $('.pre2-m', p).appendChild(w.cloneNode(true));
-    body.appendChild(p); body.classList.add('lock');
+    // The mark: the INFINIT© wordmark of the Home hero, or a page's own (<template id="pre-mark" data-label>, e.g. Induktor).
+    const tpl = $('#pre-mark'), lbl = tpl ? tpl.dataset.label : `${T.firm} — ${T.loc}`;
+    p.innerHTML = `<div class="pre2-m"></div><div class="pre2-b"><span class="lbl">${escH(lbl)}</span><span class="pre2-n">000</span></div><div class="pre2-l"><i></i></div>`;
+    const w = tpl ? tpl.content.firstElementChild : $('.mid .wm'); if (w) $('.pre2-m', p).appendChild(w.cloneNode(true));
+    body.appendChild(p); body.classList.add('lock'); off();
     const n = $('.pre2-n', p), l = $('.pre2-l i', p), t0 = performance.now(), D = 1000;
     const done = () => { if (p.classList.contains('out')) return; p.classList.add('out'); body.classList.remove('lock'); setTimeout(res, 350); setTimeout(() => p.remove(), 1300); };
     p.onclick = done;
@@ -671,15 +674,6 @@ function speedo(s) {
   io.observe(s);
 }
 
-// Induktor intro: the logo reveal over carbon (shown before the first paint by an inline script, once per session).
-// The video plays; it fades out when the video ends, on a click, or by CSS after 4.3s if the video can't play.
-function ikIntro() {
-  const el = $('#ik-in'); if (!el) return;
-  if (!de.classList.contains('ik-intro')) { el.remove(); return; }
-  const v = $('video', el), out = () => { if (el.classList.contains('out')) return; el.classList.add('out'); setTimeout(() => el.remove(), 1200); };
-  if (v) { v.addEventListener('ended', out); const p = v.play(); p && p.catch(() => {}); }
-  el.addEventListener('click', out);
-}
 // Induktor website: chapters as tabs (arrow keys move between them); the browser frame and the phone scroll on
 // their own, in step, while the section is on screen — until the visitor scrolls one of them (or never, with reduced motion).
 function webShow(s) {
@@ -715,7 +709,6 @@ function webShow(s) {
 }
 
 function casePage() {
-  ikIntro();
   const ws = $('#ws'); if (ws) webShow(ws);
   const art = $('#art'); if (art) carousel(art, { drift: -.6, skew: 8 });
   const gp = $('#gap'), sp = $('#spn'), wn = $('.win-s'), gb = $('#gobo');
@@ -768,5 +761,5 @@ d.fonts && d.fonts.ready.then(() => { if (fontLate) lines(); });
 addEventListener('resize', () => {
   if (innerWidth !== lastW) { lastW = innerWidth; clearTimeout(lines._t); lines._t = setTimeout(lines, 250); }
 });
-(page === 'home' ? pre('home') : Promise.resolve()).then(() => fontsReady).then(() => { lines(); clip(); reveal(); roll($('#ck') || d); cookies(1200); });
+(de.dataset.pre ? pre(de.dataset.pre) : Promise.resolve()).then(() => fontsReady).then(() => { lines(); clip(); reveal(); roll($('#ck') || d); cookies(1200); });
 })();

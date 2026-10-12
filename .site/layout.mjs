@@ -7,6 +7,9 @@ import { T } from './i18n.mjs';
 // Strings the client script needs.
 const jsT = t => ({ copyToast: t.copyToast, copied: t.copied, firm: t.firm, loc: t.loc, soundOn: t.soundOn, soundOff: t.soundOff, vPause: t.vPause, vPlay: t.vPlay, cPause: t.cPause, cPlay: t.cPlay });
 
+// Pages that open with the preloader (site.js › pre): page key → preloader key (sessionStorage 'inf-pre-<key>').
+const PRE = { home: 'home', induktor: 'induktor' };
+
 export function head(ctx, { title, desc, og, css, ld }) {
   const { lang, page, V } = ctx;
   const alt = LANGS.map(l => `<link rel="alternate" hreflang="${l}" href="${abs(l, page)}">`).join('\n') +
@@ -18,12 +21,14 @@ export function head(ctx, { title, desc, og, css, ld }) {
   ctx.og = og; // read by the build for the sitemap's image entries
   const styles = ['base', ...css].map(n => `<link rel="stylesheet" href="/assets/site/${n}.css?v=${V[n + '.css']}">`).join('\n');
   return `<!doctype html>
-<html lang="${lang}" data-page="${ctx.kind}">
+<html lang="${lang}" data-page="${ctx.kind}"${PRE[page] ? ` data-pre="${PRE[page]}"` : ''}>
 <!--email_off--><!-- Cloudflare: keep the email address readable for crawlers and AI assistants (no obfuscation) -->
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <script>document.documentElement.classList.add('js');
+/* Pages with a preloader (once per session): cover the page from the first paint until site.js builds it, so the page never flashes underneath. */
+(function(d){var k=d.dataset.pre;if(!k)return;try{if(!sessionStorage.getItem('inf-pre-'+k)&&!matchMedia('(prefers-reduced-motion: reduce)').matches)d.classList.add('pre-on')}catch(e){}})(document.documentElement);
 /* The project's pages.dev address → the real domain, same page (preview deployments, <hash>.infinit-ede.pages.dev, keep working). */
 if(location.hostname==='infinit-ede.pages.dev')location.replace('https://www.weareinfinit.com'+location.pathname+location.search+location.hash);
 /* iOS 26+ Safari, bottom toolbar: the page draws ~58px below 100lvh → html.bar lets the hero reach the physical bottom.

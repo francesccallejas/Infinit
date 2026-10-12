@@ -106,6 +106,8 @@ html:has(>body.lock){overflow:hidden;scrollbar-gutter:stable}
 .pre2 .wm>path,.pre2 .wm>.c{transform-box:fill-box;transform:translateY(115%);animation:rise .8s cubic-bezier(.2,.7,.2,1) forwards}.pre2 .wm>.c{animation-delay:.28s}
 .pre2 .wm>path:nth-child(2){animation-delay:0.035s}.pre2 .wm>path:nth-child(3){animation-delay:0.07s}.pre2 .wm>path:nth-child(4){animation-delay:0.105s}.pre2 .wm>path:nth-child(5){animation-delay:0.14s}.pre2 .wm>path:nth-child(6){animation-delay:0.175s}.pre2 .wm>path:nth-child(7){animation-delay:0.21s}.pre2 .wm>path:nth-child(8){animation-delay:0.245s}
 @keyframes rise{to{transform:none}}
+.pre-on body::after{content:"";position:fixed;inset:0;z-index:499;background:var(--d0);animation:pre-safe 0s 4s forwards}
+@keyframes pre-safe{to{visibility:hidden}}
 .pre2-b{display:flex;justify-content:space-between;align-items:flex-end}
 .pre2-n{font:900 clamp(40px,6vw,96px)/.8 Geist,sans-serif;letter-spacing:-.04em;font-variant-numeric:tabular-nums}
 .pre2-l{height:1px;background:var(--d1);margin-top:18px;position:relative}.pre2-l i{position:absolute;inset:0;transform-origin:0 0;transform:scaleX(0);background:oklch(1 0 0 / .55)}
