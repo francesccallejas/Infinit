@@ -19,6 +19,7 @@ export function head(ctx, { title, desc, og, css, ld }) {
   const styles = ['base', ...css].map(n => `<link rel="stylesheet" href="/assets/site/${n}.css?v=${V[n + '.css']}">`).join('\n');
   return `<!doctype html>
 <html lang="${lang}" data-page="${ctx.kind}">
+<!--email_off--><!-- Cloudflare: keep the email address readable for crawlers and AI assistants (no obfuscation) -->
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
@@ -129,6 +130,7 @@ export function end(ctx, extra = '') {
 ${nav(ctx)}
 ${extra}<div class="toast" id="toast" role="status" aria-live="polite"></div>
 ${cookies(ctx)}
+<!--/email_off-->
 </body>
 </html>
 `;

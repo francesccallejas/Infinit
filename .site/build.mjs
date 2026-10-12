@@ -94,6 +94,7 @@ for (const lang of LANGS) {
 // Language gateway: saved choice → browser language → English. Crawlers get hreflang alternates.
 const gateway = `<!doctype html>
 <html lang="en">
+<!--email_off-->
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
@@ -121,6 +122,7 @@ location.replace('/'+s+'/'+location.search+location.hash)})()</script>
 </head>
 <body>
 <noscript><nav aria-label="Language">${LANGS.map(l => `<a href="${url(l, 'home')}" hreflang="${l}" lang="${l}">${{ en: 'English', ca: 'Català', es: 'Español' }[l]}</a>`).join('')}</nav></noscript>
+<!--/email_off-->
 </body>
 </html>
 `;
