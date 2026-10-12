@@ -46,7 +46,7 @@ const V = {};
 for (const f of ['base.css', 'home.css', 'inner.css', 'studio.css', 'seo.css', 'induktor.css', 'site.js']) {
   V[f] = createHash('sha1').update(readFileSync(join(ROOT, 'assets/site', f))).digest('hex').slice(0, 8);
 }
-for (const [k, f] of [['favicon.svg', 'favicon.svg'], ['favicon.ico', 'favicon.ico'], ['apple-touch-icon.png', 'assets/site/apple-touch-icon.png']]) {
+for (const [k, f] of [['favicon.svg', 'favicon.svg'], ['favicon.ico', 'favicon.ico'], ['apple-touch-icon.png', 'assets/site/apple-touch-icon.png'], ['icon-192.png', 'assets/site/icon-192.png'], ['icon-512.png', 'assets/site/icon-512.png']]) {
   V[k] = createHash('sha1').update(readFileSync(join(ROOT, f))).digest('hex').slice(0, 8);
 }
 
@@ -210,8 +210,8 @@ out('site.webmanifest', JSON.stringify({
   name: 'INFINIT©', short_name: 'INFINIT©', start_url: '/', display: 'browser',
   background_color: '#03050F', theme_color: '#03050F',
   icons: [
-    { src: '/assets/site/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
-    { src: '/assets/site/icon-512.png', sizes: '512x512', type: 'image/png', purpose: 'any maskable' },
+    { src: `/assets/site/icon-192.png?v=${V['icon-192.png']}`, sizes: '192x192', type: 'image/png' },
+    { src: `/assets/site/icon-512.png?v=${V['icon-512.png']}`, sizes: '512x512', type: 'image/png', purpose: 'any maskable' },
   ],
 }, null, 2) + '\n');
 
