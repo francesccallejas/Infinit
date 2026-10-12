@@ -1,3 +1,9 @@
+# The project's pages.dev addresses are never indexed: the site lives on www.weareinfinit.com
+https://:project.pages.dev/*
+  X-Robots-Tag: noindex
+https://:version.:project.pages.dev/*
+  X-Robots-Tag: noindex
+
 /*
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
