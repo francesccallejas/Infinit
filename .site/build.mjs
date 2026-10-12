@@ -6,7 +6,7 @@ import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'node:fs';
 import { createHash } from 'node:crypto';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { SITE, ANALYTICS, LANGS, ROUTES, url, abs, esc, icons, wm, MARK_SVG } from './lib.mjs';
+import { SITE, ANALYTICS, LANGS, ROUTES, url, abs, esc, icons, wm } from './lib.mjs';
 import { T } from './i18n.mjs';
 import { S, P, CLIENT_NAMES } from './data.mjs';
 import { FOUNDER_LINKEDIN, siteGraph } from './seo.mjs';
@@ -131,8 +131,8 @@ out('index.html', gateway);
 
 // 404 (Cloudflare Pages serves /404.html with status 404). One page for every language: it is written in
 // English and an inline script switches the copy and the links to the visitor's language (saved choice →
-// browser language → English), like the gateway. Dark, like the common ending: the © turning, a play on the
-// name, the useful ways out, the wordmark at full width.
+// browser language → English), like the gateway. Quiet: the light ground, a small wordmark, a play on the
+// name and the useful ways out.
 const NF = Object.fromEntries(LANGS.map(l => [l, {
   lbl: { en: 'Error 404', ca: 'Error 404', es: 'Error 404' }[l],
   h1: { en: 'Infinite. <b>Except this page.</b>', ca: 'Infinit. <b>Excepte aquesta pàgina.</b>', es: 'Infinito. <b>Excepto esta página.</b>' }[l],
@@ -150,32 +150,26 @@ out('404.html', `<!doctype html>
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Page not found — INFINIT©</title>
 <meta name="robots" content="noindex">
-<meta name="theme-color" content="#060a0e">
 ${icons(V)}
 <link rel="stylesheet" href="/assets/site/base.css?v=${V['base.css']}">
 <style>
-html,body{background:var(--d0)}
-.nf{min-height:100vh;min-height:100svh;display:flex;flex-direction:column;padding:max(22px,calc(var(--sat) + 10px)) var(--pad) 0;overflow:hidden}
+.nf{min-height:100vh;min-height:100svh;display:flex;flex-direction:column;padding:max(22px,calc(var(--sat) + 10px)) var(--pad) max(28px,var(--sab))}
 .nf-t{display:flex;justify-content:space-between;align-items:center}
-.nf-mk{color:var(--d4);display:block;border-radius:50%}
-.nf-mk svg{display:block;width:44px;height:44px;fill:none;stroke:currentColor;stroke-width:3.3;animation:nf-turn 16s linear infinite}
-@keyframes nf-turn{to{transform:rotate(360deg)}}
-.nf-m{flex:1;display:flex;flex-direction:column;justify-content:center;gap:clamp(22px,3vw,34px);padding:clamp(56px,10vh,120px) 0}
-.nf h1{font-size:clamp(52px,9vw,168px);line-height:.92;letter-spacing:-.06em;font-weight:700;max-width:11em;text-wrap:balance}
-.nf p{font-size:18px;line-height:1.5;color:var(--d3);max-width:520px;margin:0}
+.nf-t a{color:var(--t4)}
+.nf-m{flex:1;display:flex;flex-direction:column;justify-content:center;gap:clamp(20px,2.6vw,30px);padding:clamp(48px,9vh,110px) 0}
+.nf h1{font-size:clamp(38px,5.4vw,88px);line-height:.98;letter-spacing:-.05em;font-weight:700;max-width:12em;text-wrap:balance}
+.nf p{font-size:18px;line-height:1.5;color:var(--t3);max-width:520px;margin:0}
 .nf-l{display:flex;flex-wrap:wrap;gap:8px}
-.dark .nf-go{background:var(--acc);color:var(--acc-ink)}
-@media (hover:hover){.dark .nf-go:hover{background:color-mix(in oklch,var(--acc),#000 12%)}}
-.nf-w{color:var(--d4);padding-bottom:max(clamp(18px,3vw,40px),var(--sab))}
-@media (prefers-reduced-motion:reduce){.nf-mk svg{animation:none}}
+.nf-l .gbtn{background:oklch(.16 .004 85 / .06)}
+.nf-l .nf-go{background:var(--acc);color:var(--acc-ink)}
+@media (hover:hover){.nf-l .nf-go:hover{background:color-mix(in oklch,var(--acc),#000 12%)}}
 </style>
 ${ANALYTICS}
 </head>
 <body>
-<main class="dark nf">
-<div class="nf-t"><a class="nf-mk" id="nf-home" href="${url('en', 'home')}" aria-label="INFINIT© — ${esc(T.en.home)}"><svg viewBox="0 0 32 32" aria-hidden="true" focusable="false">${MARK_SVG}</svg></a><span class="lbl">${NF.en.lbl}</span></div>
+<main class="nf">
+<div class="nf-t"><a id="nf-home" href="${url('en', 'home')}" aria-label="INFINIT© — ${esc(T.en.home)}">${wm(26)}</a><span class="lbl">${NF.en.lbl}</span></div>
 <div class="nf-m"><h1 class="em" id="nf-h">${NF.en.h1}</h1><p id="nf-p">${esc(NF.en.p)}</p><nav class="nf-l" id="nf-l" aria-label="${esc(NF.en.title)}">${nfLinks(NF.en)}</nav></div>
-<div class="nf-w" aria-hidden="true">${wm('fit')}</div>
 </main>
 <script>(function(){var N=${JSON.stringify(Object.fromEntries(LANGS.map(l => [l, { h1: NF[l].h1, p: NF[l].p, title: NF[l].title, home: url(l, 'home'), links: nfLinks(NF[l]) }])))},L=['ca','es','en'],s=null;
 try{s=localStorage.getItem('inf-lang')}catch(e){}
