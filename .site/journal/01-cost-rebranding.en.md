@@ -13,7 +13,7 @@ cluster: cost
 
 # How much does a rebrand cost for an industrial company (and what’s included)
 
-**Short answer:** for a company with €1–10M in revenue, a brand strategy costs about €2–3k, a new identity about €2–3k and a custom website about €10k. For companies of €10–50M, expect €4–7k, €5–10k and €12–18k. From €50M, from €10k, €15k and €20k. These are guide figures: every company is different and we adapt to the budget.
+**Short answer:** for a company with €1–10M in revenue, a brand strategy costs from €4k, a new identity from €5k and a custom website from €10k. For companies of €10–50M, expect €6–10k, €8–15k and €15–25k. From €50M, from €12k, €18k and €25k. These are guide figures: every company is different and we adapt to the budget.
 
 “How much does it cost?” is usually the first question, and fairly so. The problem is that many agencies don’t answer it until the third meeting. Here it is, openly.
 
@@ -31,10 +31,10 @@ Many industrial companies don’t need to change their name or logo: what needs 
 
 | Phase | Duration | €1–10M | €10–50M | €50–200M |
 |---|---|---|---|---|
-| Strategy | 2–4 weeks | €2–3k | €4–7k | from €10k |
-| Brand identity | from 2 weeks | €2–3k | €5–10k | from €15k |
-| Website, SEO & GEO | 1–2 months | ~€10k | €12–18k | from €20k |
-| Launch plan + video | optional | ~€5k | €7–8k | ~€10k |
+| Strategy | 2–4 weeks | from €4k | €6–10k | from €12k |
+| Brand identity | from 2 weeks | from €5k | €8–15k | from €18k |
+| Website, SEO & GEO | 1–2 months | from €10k | €15–25k | from €25k |
+| Launch plan + video | optional | from €7k | €8–12k | from €12k |
 
 Why does it change with size? A bigger company has more markets, more product lines, more people to interview and more materials to apply the brand to. With many assets — 3D renders, photo shoots, lots of content — budget and timing go up.
 

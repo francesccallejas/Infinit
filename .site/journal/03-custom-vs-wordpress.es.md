@@ -35,9 +35,9 @@ WordPress y Webflow son herramientas fantásticas para muchos proyectos. Pero en
 
 | Tamaño de la empresa | Web, SEO y GEO | Plazo |
 |---|---|---|
-| 1–10 M€ | ~10 k€ | 1 mes |
-| 10–50 M€ | 12–18 k€ | 1–2 meses |
-| 50–200 M€ | desde 20 k€ | 1–2 meses |
+| 1–10 M€ | desde 10 k€ | 1 mes |
+| 10–50 M€ | 15–25 k€ | 1–2 meses |
+| 50–200 M€ | desde 25 k€ | 1–2 meses |
 
 Si la web incluye un backoffice complejo, el plazo se alarga. Son cifras orientativas: si vuestro presupuesto es otro, adaptamos el alcance.
 

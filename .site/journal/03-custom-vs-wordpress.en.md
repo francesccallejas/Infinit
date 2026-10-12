@@ -35,9 +35,9 @@ WordPress and Webflow are great tools for many projects. But in industrial compa
 
 | Company size | Website, SEO & GEO | Timing |
 |---|---|---|
-| €1–10M | ~€10k | 1 month |
-| €10–50M | €12–18k | 1–2 months |
-| €50–200M | from €20k | 1–2 months |
+| €1–10M | from €10k | 1 month |
+| €10–50M | €15–25k | 1–2 months |
+| €50–200M | from €25k | 1–2 months |
 
 A complex back office adds time. These are guide figures: if your budget is different, we adapt the scope.
 
