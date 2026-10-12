@@ -86,4 +86,5 @@ export const ARROW_X = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColo
 // Favicon links, cache-busted with the files' content hash (V from build.mjs), so browsers drop an old icon.
 export const icons = V => `<link rel="icon" href="/favicon.ico?v=${V['favicon.ico']}" sizes="32x32">
 <link rel="icon" href="/favicon.svg?v=${V['favicon.svg']}" type="image/svg+xml">
+<link rel="icon" href="/assets/site/icon-192.png?v=${V['icon-192.png']}" type="image/png" sizes="192x192">
 <link rel="apple-touch-icon" href="/assets/site/apple-touch-icon.png?v=${V['apple-touch-icon.png']}">`;
