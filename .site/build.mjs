@@ -6,7 +6,7 @@ import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'node:fs';
 import { createHash } from 'node:crypto';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { SITE, ANALYTICS, LANGS, ROUTES, url, abs, esc, icons } from './lib.mjs';
+import { SITE, ANALYTICS, LANGS, ROUTES, url, abs, esc, icons, wm, MARK_SVG } from './lib.mjs';
 import { T } from './i18n.mjs';
 import { S, P, CLIENT_NAMES } from './data.mjs';
 import { FOUNDER_LINKEDIN, siteGraph } from './seo.mjs';
@@ -129,23 +129,61 @@ location.replace('/'+s+'/'+location.search+location.hash)})()</script>
 `;
 out('index.html', gateway);
 
-// 404 (Cloudflare Pages serves /404.html with status 404).
+// 404 (Cloudflare Pages serves /404.html with status 404). One page for every language: it is written in
+// English and an inline script switches the copy and the links to the visitor's language (saved choice →
+// browser language → English), like the gateway. Dark, like the common ending: the © turning, a play on the
+// name, the useful ways out, the wordmark at full width.
+const NF = Object.fromEntries(LANGS.map(l => [l, {
+  lbl: { en: 'Error 404', ca: 'Error 404', es: 'Error 404' }[l],
+  h1: { en: 'Infinite. <b>Except this page.</b>', ca: 'Infinit. <b>Excepte aquesta pàgina.</b>', es: 'Infinito. <b>Excepto esta página.</b>' }[l],
+  p: { en: 'The link may be old or mistyped. Here’s where to go:', ca: 'L’enllaç pot ser antic o estar mal escrit. Pots anar aquí:', es: 'El enlace puede ser antiguo o estar mal escrito. Puedes ir aquí:' }[l],
+  title: { en: 'Page not found', ca: 'Pàgina no trobada', es: 'Página no encontrada' }[l],
+  links: [[T[l].home, url(l, 'home')], [T[l].work, url(l, 'workidx')], [{ en: 'Sectors', ca: 'Sectors', es: 'Sectores' }[l], url(l, 'sectors')], ['Journal', url(l, 'journal')]],
+  go: [T[l].letsTalk, url(l, 'home') + '#contact'],
+}]));
+const nfLinks = n => n.links.map(([t, h]) => `<a class="gbtn" href="${h}"><span class="roll">${esc(t)}</span></a>`).join('') + `<a class="gbtn nf-go" href="${n.go[1]}"><span class="roll">${esc(n.go[0])}</span><span class="ar" aria-hidden="true">↗</span></a>`;
 out('404.html', `<!doctype html>
 <html lang="en">
+<!--email_off-->
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Page not found — INFINIT©</title>
 <meta name="robots" content="noindex">
+<meta name="theme-color" content="#060a0e">
 ${icons(V)}
 <link rel="stylesheet" href="/assets/site/base.css?v=${V['base.css']}">
-<style>main{min-height:100svh;display:flex;flex-direction:column;justify-content:space-between;padding:22px var(--pad) 40px}h1{font-size:clamp(56px,10vw,184px);line-height:.92;letter-spacing:-.06em;font-weight:700}nav{display:flex;gap:10px;flex-wrap:wrap}</style>
+<style>
+html,body{background:var(--d0)}
+.nf{min-height:100vh;min-height:100svh;display:flex;flex-direction:column;padding:max(22px,calc(var(--sat) + 10px)) var(--pad) 0;overflow:hidden}
+.nf-t{display:flex;justify-content:space-between;align-items:center}
+.nf-mk{color:var(--d4);display:block;border-radius:50%}
+.nf-mk svg{display:block;width:44px;height:44px;fill:none;stroke:currentColor;stroke-width:3.3;animation:nf-turn 16s linear infinite}
+@keyframes nf-turn{to{transform:rotate(360deg)}}
+.nf-m{flex:1;display:flex;flex-direction:column;justify-content:center;gap:clamp(22px,3vw,34px);padding:clamp(56px,10vh,120px) 0}
+.nf h1{font-size:clamp(52px,9vw,168px);line-height:.92;letter-spacing:-.06em;font-weight:700;max-width:11em;text-wrap:balance}
+.nf p{font-size:18px;line-height:1.5;color:var(--d3);max-width:520px;margin:0}
+.nf-l{display:flex;flex-wrap:wrap;gap:8px}
+.dark .nf-go{background:var(--acc);color:var(--acc-ink)}
+@media (hover:hover){.dark .nf-go:hover{background:color-mix(in oklch,var(--acc),#000 12%)}}
+.nf-w{color:var(--d4);padding-bottom:max(clamp(18px,3vw,40px),var(--sab))}
+@media (prefers-reduced-motion:reduce){.nf-mk svg{animation:none}}
+</style>
 ${ANALYTICS}
 </head>
-<body class="dark">
-<main><span class="lbl">404 · INFINIT©</span>
-<div><h1 class="em">Page not <b>found.</b></h1><p class="lbl" style="margin-top:24px">No s’ha trobat la pàgina · No se ha encontrado la página</p></div>
-<nav aria-label="Language">${LANGS.map(l => `<a class="gbtn" href="${url(l, 'home')}" hreflang="${l}" lang="${l}">${{ en: 'Home', ca: 'Inici', es: 'Inicio' }[l]} · ${l.toUpperCase()}</a>`).join('')}</nav></main>
+<body>
+<main class="dark nf">
+<div class="nf-t"><a class="nf-mk" id="nf-home" href="${url('en', 'home')}" aria-label="INFINIT© — ${esc(T.en.home)}"><svg viewBox="0 0 32 32" aria-hidden="true" focusable="false">${MARK_SVG}</svg></a><span class="lbl">${NF.en.lbl}</span></div>
+<div class="nf-m"><h1 class="em" id="nf-h">${NF.en.h1}</h1><p id="nf-p">${esc(NF.en.p)}</p><nav class="nf-l" id="nf-l" aria-label="${esc(NF.en.title)}">${nfLinks(NF.en)}</nav></div>
+<div class="nf-w" aria-hidden="true">${wm('fit')}</div>
+</main>
+<script>(function(){var N=${JSON.stringify(Object.fromEntries(LANGS.map(l => [l, { h1: NF[l].h1, p: NF[l].p, title: NF[l].title, home: url(l, 'home'), links: nfLinks(NF[l]) }])))},L=['ca','es','en'],s=null;
+try{s=localStorage.getItem('inf-lang')}catch(e){}
+if(L.indexOf(s)<0){s='en';var n=navigator.languages||[navigator.language||''];for(var i=0;i<n.length;i++){var c=String(n[i]).slice(0,2).toLowerCase();if(L.indexOf(c)>-1){s=c;break}}}
+if(s==='en')return;var t=N[s],d=document;d.documentElement.lang=s;d.title=t.title+' — INFINIT©';
+d.getElementById('nf-h').innerHTML=t.h1;d.getElementById('nf-p').textContent=t.p;d.getElementById('nf-home').href=t.home;
+var l=d.getElementById('nf-l');l.innerHTML=t.links;l.setAttribute('aria-label',t.title)})()</script>
+<!--/email_off-->
 </body>
 </html>
 `);
