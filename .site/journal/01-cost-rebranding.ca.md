@@ -13,7 +13,7 @@ cluster: cost
 
 # Quant costa un rebranding per a una empresa industrial (i què inclou)
 
-**Resposta curta:** per a una empresa d’1 a 10 M€ de facturació, una estratègia de marca costa uns 2–3 k€, una nova identitat uns 2–3 k€ i una web a mida uns 10 k€. Per a empreses de 10 a 50 M€, cal comptar 4–7 k€, 5–10 k€ i 12–18 k€. A partir de 50 M€, des de 10 k€, 15 k€ i 20 k€. Són xifres orientatives: cada empresa és diferent i ens adaptem al pressupost.
+**Resposta curta:** per a una empresa d’1 a 10 M€ de facturació, una estratègia de marca costa des de 4 k€, una nova identitat des de 5 k€ i una web a mida des de 10 k€. Per a empreses de 10 a 50 M€, cal comptar 6–10 k€, 8–15 k€ i 15–25 k€. A partir de 50 M€, des de 12 k€, 18 k€ i 25 k€. Són xifres orientatives: cada empresa és diferent i ens adaptem al pressupost.
 
 La pregunta “quant costa?” sol arribar la primera, i és lògica. El problema és que moltes agències no responen fins a la tercera reunió. Aquí ho expliquem obertament.
 
@@ -31,10 +31,10 @@ Moltes empreses industrials no necessiten canviar el nom ni el logo: el que han 
 
 | Fase | Durada | 1–10 M€ | 10–50 M€ | 50–200 M€ |
 |---|---|---|---|---|
-| Estratègia | 2–4 setmanes | 2–3 k€ | 4–7 k€ | des de 10 k€ |
-| Identitat de marca | des de 2 setmanes | 2–3 k€ | 5–10 k€ | des de 15 k€ |
-| Web, SEO i GEO | 1–2 mesos | ~10 k€ | 12–18 k€ | des de 20 k€ |
-| Pla de llançament + vídeo | opcional | ~5 k€ | 7–8 k€ | ~10 k€ |
+| Estratègia | 2–4 setmanes | des de 4 k€ | 6–10 k€ | des de 12 k€ |
+| Identitat de marca | des de 2 setmanes | des de 5 k€ | 8–15 k€ | des de 18 k€ |
+| Web, SEO i GEO | 1–2 mesos | des de 10 k€ | 15–25 k€ | des de 25 k€ |
+| Pla de llançament + vídeo | opcional | des de 7 k€ | 8–12 k€ | des de 12 k€ |
 
 Per què canvia segons la mida? Perquè una empresa més gran té més mercats, més línies de producte, més persones a entrevistar i més materials on aplicar la marca. Si hi ha molts recursos — renders 3D, sessions de fotografia, molt de contingut — el pressupost i el termini augmenten.
 

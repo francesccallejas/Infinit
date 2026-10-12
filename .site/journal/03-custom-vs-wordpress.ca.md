@@ -35,9 +35,9 @@ WordPress i Webflow són eines fantàstiques per a molts projectes. Però en emp
 
 | Mida de l’empresa | Web, SEO i GEO | Termini |
 |---|---|---|
-| 1–10 M€ | ~10 k€ | 1 mes |
-| 10–50 M€ | 12–18 k€ | 1–2 mesos |
-| 50–200 M€ | des de 20 k€ | 1–2 mesos |
+| 1–10 M€ | des de 10 k€ | 1 mes |
+| 10–50 M€ | 15–25 k€ | 1–2 mesos |
+| 50–200 M€ | des de 25 k€ | 1–2 mesos |
 
 Si la web inclou un backoffice complex, el termini s’allarga. Són xifres orientatives: si el vostre pressupost és un altre, adaptem l’abast.
 
