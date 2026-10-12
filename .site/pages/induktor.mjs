@@ -165,7 +165,7 @@ export function induktor(ctx) {
 <ol class="spd-d" aria-hidden="true">${Array.from({ length: 10 }, (_, i) => `<li style="--i:${i}"><span>D${String(i + 1).padStart(2, '0')}</span></li>`).join('')}</ol></section>`;
 
   // 01 · The air gap — the symbol in SVG; the arms (rotor) slide in and stop 130 units from the stem.
-  const gap = `<section class="blk"><div class="gap" id="gap">
+  const gap = `<section class="blk gap-sec" id="gap-sec"><div class="gap" id="gap">
 <div class="gap-v"><svg class="gap-k" viewBox="-60 -230 2000 2010" role="img" aria-label="${esc(c.gapAlt)}">
 <g class="gap-a" aria-hidden="true"><rect x="400" y="-60" width="130" height="1560" fill="${COPPER}" opacity=".14"/><path d="M400-60V1560M530-60V1560" stroke="${COPPER}" stroke-width="5"/>
 <text x="200" y="-110" text-anchor="middle">${esc(c.gapT[0].toUpperCase())}</text><text x="1205" y="-110" text-anchor="middle">${esc(c.gapT[1].toUpperCase())}</text>
