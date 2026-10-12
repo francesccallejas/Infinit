@@ -40,7 +40,7 @@ No significa famoso. Significa tres cosas:
 - **Una idea clara.** Un posicionamiento que toda la empresa pueda repetir.
 - **Una identidad coherente.** La misma marca en el estand, el catálogo, la flota y la web, para que cada contacto sume.
 - **Estar presentes entre compra y compra.** Casos, artículos, prensa sectorial y LinkedIn: cosas útiles, con regularidad.
-- **Que la IA os pueda encontrar.** Los compradores piden proveedores a los asistentes. Las páginas claras con respuestas reales son las que se citan. Ved [cómo eligen los asistentes de IA](/es/journal/geo-ai-assistants-b2b/).
+- **Que la IA os pueda encontrar.** Los compradores piden proveedores a los asistentes. Las páginas claras con respuestas reales son las que se citan. Ved [cómo eligen los asistentes de IA](/es/guides/geo-ai-assistants-b2b/).
 
 ## Preguntas frecuentes
 

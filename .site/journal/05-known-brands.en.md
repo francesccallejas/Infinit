@@ -40,7 +40,7 @@ It doesn’t mean famous. It means three things:
 - **One clear idea.** A positioning the whole company can repeat.
 - **A consistent identity.** The same brand on the stand, the catalogue, the fleet and the website, so every contact adds up.
 - **Show up between purchases.** Cases, articles, trade press and LinkedIn: useful things, regularly.
-- **Be findable by AI.** Buyers ask assistants for suppliers. Clear pages with real answers get cited. See [how AI assistants choose](/en/journal/geo-ai-assistants-b2b/).
+- **Be findable by AI.** Buyers ask assistants for suppliers. Clear pages with real answers get cited. See [how AI assistants choose](/en/guides/geo-ai-assistants-b2b/).
 
 ## FAQ
 

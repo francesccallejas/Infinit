@@ -138,7 +138,7 @@ const NF = Object.fromEntries(LANGS.map(l => [l, {
   h1: { en: 'Infinite. <b>Except this page.</b>', ca: 'Infinit. <b>Excepte aquesta pàgina.</b>', es: 'Infinito. <b>Excepto esta página.</b>' }[l],
   p: { en: 'The link may be old or mistyped. Here’s where to go:', ca: 'L’enllaç pot ser antic o estar mal escrit. Pots anar aquí:', es: 'El enlace puede ser antiguo o estar mal escrito. Puedes ir aquí:' }[l],
   title: { en: 'Page not found', ca: 'Pàgina no trobada', es: 'Página no encontrada' }[l],
-  links: [[T[l].home, url(l, 'home')], [T[l].work, url(l, 'workidx')], [{ en: 'Sectors', ca: 'Sectors', es: 'Sectores' }[l], url(l, 'sectors')], ['Journal', url(l, 'journal')]],
+  links: [[T[l].home, url(l, 'home')], [T[l].work, url(l, 'workidx')], [{ en: 'Sectors', ca: 'Sectors', es: 'Sectores' }[l], url(l, 'sectors')], [T[l].journal, url(l, 'journal')]],
   go: [T[l].letsTalk, url(l, 'home') + '#contact'],
 }]));
 const nfLinks = n => n.links.map(([t, h]) => `<a class="gbtn" href="${h}"><span class="roll">${esc(t)}</span></a>`).join('') + `<a class="gbtn nf-go" href="${n.go[1]}"><span class="roll">${esc(n.go[0])}</span><span class="ar" aria-hidden="true">↗</span></a>`;
@@ -273,8 +273,8 @@ ${[...Object.entries(INDUSTRIES), ...Object.entries(MOMENTS)].map(([k, C]) => `-
 - [All sectors & services](${abs('en', 'sectors')})
 - [All work](${abs('en', 'workidx')}): every project, with its sector and services
 
-## Journal — clear answers for companies of €1M–€200M
-- [Journal](${abs('en', 'journal')}) (also in [Català](${abs('ca', 'journal')}) and [Español](${abs('es', 'journal')}))
+## Guides — clear answers for companies of €1M–€200M
+- [Guides](${abs('en', 'journal')}) (also in [Català](${abs('ca', 'journal')}) and [Español](${abs('es', 'journal')}))
 ${ARTICLES.en.map(a => `- [${a.title}](${abs('en', 'j:' + a.slug)}): ${a.description}`).join('\n')}
 - Català: ${abs('ca', 'home')} · Español: ${abs('es', 'home')}
 `);
@@ -289,6 +289,13 @@ out('_redirects', `# Previous site URLs → new language-prefixed pages
 /work/relats/          /en/work/relats/     301
 /work/relats           /en/work/relats/     301
 /work/relats/index.html  /en/work/relats/   301
+# Journal → Guides (Oct 2026)
+/en/journal           /en/guides/          301
+/en/journal/*         /en/guides/:splat    301
+/ca/journal           /ca/guides/          301
+/ca/journal/*         /ca/guides/:splat    301
+/es/journal           /es/guides/          301
+/es/journal/*         /es/guides/:splat    301
 `);
 
 out('_headers', `# The project's pages.dev addresses are never indexed: the site lives on www.weareinfinit.com

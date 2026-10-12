@@ -53,7 +53,7 @@ La majoria de gent coneix la nova marca primer a la web. Llançar una identitat 
 
 ## Com les fem
 
-A mida, lleugeres i fàcils de mantenir, amb un backoffice quan cal. UX/UI, disseny i programació amb revisions periòdiques, i pensades perquè les trobin Google i els assistents d’IA. Una web porta més o menys un mes; dos si és complexa o té backoffice. Si esteu valorant una plantilla, llegiu [web a mida o WordPress](/ca/journal/custom-website-or-wordpress/).
+A mida, lleugeres i fàcils de mantenir, amb un backoffice quan cal. UX/UI, disseny i programació amb revisions periòdiques, i pensades perquè les trobin Google i els assistents d’IA. Una web porta més o menys un mes; dos si és complexa o té backoffice. Si esteu valorant una plantilla, llegiu [web a mida o WordPress](/ca/guides/custom-website-or-wordpress/).
 
 ## Preguntes freqüents
 

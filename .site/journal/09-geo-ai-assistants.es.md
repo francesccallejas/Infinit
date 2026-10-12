@@ -20,7 +20,7 @@ Un comprador escribe: “proveedores de protección térmica para baterías de v
 ## Qué buscan los asistentes
 
 - **Claridad.** Una frase que diga quiénes sois. Los asistentes repiten lo que es fácil de resumir.
-- **Respuestas.** Páginas que respondan preguntas reales: precios, plazos, procesos, comparativas. Como este journal.
+- **Respuestas.** Páginas que respondan preguntas reales: precios, plazos, procesos, comparativas. Como estas guías.
 - **Estructura.** HTML limpio, títulos claros, datos de schema.org (Organization, FAQ, Article) y un archivo llms.txt.
 - **Coherencia.** El mismo nombre, la misma descripción y los mismos datos de contacto en la web, en LinkedIn y en los directorios.
 - **Autoridad.** Casos, clientes, prensa sectorial y otras webs que os mencionan.

@@ -53,7 +53,7 @@ La mayoría de la gente conoce la nueva marca primero en la web. Lanzar una iden
 
 ## Cómo las hacemos
 
-A medida, ligeras y fáciles de mantener, con un backoffice cuando hace falta. UX/UI, diseño y programación con revisiones periódicas, y pensadas para que las encuentren Google y los asistentes de IA. Una web lleva más o menos un mes; dos si es compleja o tiene backoffice. Si estáis valorando una plantilla, leed [web a medida o WordPress](/es/journal/custom-website-or-wordpress/).
+A medida, ligeras y fáciles de mantener, con un backoffice cuando hace falta. UX/UI, diseño y programación con revisiones periódicas, y pensadas para que las encuentren Google y los asistentes de IA. Una web lleva más o menos un mes; dos si es compleja o tiene backoffice. Si estáis valorando una plantilla, leed [web a medida o WordPress](/es/guides/custom-website-or-wordpress/).
 
 ## Preguntas frecuentes
 

@@ -20,7 +20,7 @@ A buyer types: “suppliers of thermal protection for EV batteries in Europe”.
 ## What assistants look for
 
 - **Clarity.** One sentence that says who you are. Assistants repeat what is easy to summarise.
-- **Answers.** Pages that respond to real questions: prices, timings, processes, comparisons. Like this journal.
+- **Answers.** Pages that respond to real questions: prices, timings, processes, comparisons. Like these guides.
 - **Structure.** Clean HTML, clear headings, schema.org data (Organization, FAQ, Article) and an llms.txt file.
 - **Consistency.** The same name, description and contact details on your website, LinkedIn and directories.
 - **Authority.** Cases, clients, trade press and other sites that mention you.

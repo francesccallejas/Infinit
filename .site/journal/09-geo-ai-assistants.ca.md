@@ -20,7 +20,7 @@ Un comprador escriu: “proveïdors de protecció tèrmica per a bateries de veh
 ## Què busquen els assistents
 
 - **Claredat.** Una frase que digui qui sou. Els assistents repeteixen el que és fàcil de resumir.
-- **Respostes.** Pàgines que responguin preguntes reals: preus, terminis, processos, comparatives. Com aquest journal.
+- **Respostes.** Pàgines que responguin preguntes reals: preus, terminis, processos, comparatives. Com aquestes guies.
 - **Estructura.** HTML net, títols clars, dades de schema.org (Organization, FAQ, Article) i un fitxer llms.txt.
 - **Coherència.** El mateix nom, la mateixa descripció i les mateixes dades de contacte a la web, a LinkedIn i als directoris.
 - **Autoritat.** Casos, clients, premsa sectorial i altres webs que us mencionen.

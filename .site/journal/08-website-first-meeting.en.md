@@ -53,7 +53,7 @@ Most people meet the new brand on the website first. Launching a new identity on
 
 ## How we build them
 
-Custom, lightweight and simple to maintain, with a back office when you need one. UX/UI, design and development with regular reviews, built to be found by Google and by AI assistants. A website takes around a month, two if it is complex or needs a back office. If you’re weighing up a template, read [custom website or WordPress](/en/journal/custom-website-or-wordpress/).
+Custom, lightweight and simple to maintain, with a back office when you need one. UX/UI, design and development with regular reviews, built to be found by Google and by AI assistants. A website takes around a month, two if it is complex or needs a back office. If you’re weighing up a template, read [custom website or WordPress](/en/guides/custom-website-or-wordpress/).
 
 ## FAQ
 
