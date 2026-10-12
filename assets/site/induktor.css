@@ -110,3 +110,52 @@
 .plat{list-style:none;margin:0;padding:0;display:flex;align-items:center;gap:clamp(18px,2vw,26px)}
 .plat svg{display:block;width:auto;height:clamp(16px,1.4vw,20px);fill:oklch(1 0 0 / .62)}
 .plat li:nth-child(3) svg{height:clamp(14px,1.2vw,17px)}
+
+/* ---------- The client's own rules inside the case: square corners, 1px hairlines ---------- */
+.vd,.car .img,.win-s,.mat,.tpf>div,.spd-d li,.ws-g .img{border-radius:0}
+.js .spn-l,.spn-l{border-radius:0}
+.ch-sub{font-size:clamp(16px,1.3vw,20px);line-height:1.4;color:oklch(1 0 0 / .78);margin:-6px 0 0;max-width:34em}
+
+/* ---------- Intro: the logo reveal over carbon, once per session, then the hero ---------- */
+.ik-in{display:none}
+.ik-intro .ik-in{display:grid;place-items:center;position:fixed;inset:0;z-index:400;background:#0B0B0C;cursor:pointer;animation:ik-out .9s cubic-bezier(.7,0,.2,1) 4.3s forwards}
+.ik-in video{width:min(100vw,1280px);aspect-ratio:16/9;height:auto;object-fit:cover}
+.ik-in.out{animation:ik-out .6s cubic-bezier(.7,0,.2,1) forwards}
+@keyframes ik-out{to{opacity:0;visibility:hidden}}
+
+/* ---------- 06 · The website: four chapters as tabs, a browser frame and a phone, scrolling in step ---------- */
+.ws-p{font-size:18px;line-height:1.5;color:var(--t3);max-width:520px;margin:0}
+.ws-tabs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid var(--l1);margin-bottom:28px}
+.ws-tabs button{all:unset;cursor:pointer;display:flex;flex-direction:column;gap:4px;padding:16px 16px 18px 0;border-top:2px solid transparent;margin-top:-1px;color:var(--t3);transition:color .3s,border-color .3s}
+.ws-tabs button span{font-size:13px;font-variant-numeric:tabular-nums}
+.ws-tabs button b{font-size:clamp(17px,1.6vw,22px);font-weight:600;letter-spacing:-.02em;color:inherit}
+.ws-tabs button small{font-size:13px}
+.ws-tabs button[aria-selected="true"]{color:var(--t4);border-top-color:var(--t4)}
+@media (hover:hover){.ws-tabs button:hover{color:var(--t4)}}
+.ws-tabs button:focus-visible{outline:2px solid var(--t4);outline-offset:4px}
+.ws-st[hidden]{display:none}
+.ws-st{display:grid;grid-template-columns:minmax(0,1fr) clamp(180px,17vw,260px);gap:clamp(16px,2.5vw,36px);align-items:end}
+.ws-d{background:#0B0B0C;border:1px solid oklch(.16 .004 85 / .16)}
+.ws-bar{display:flex;align-items:center;gap:6px;height:34px;padding:0 12px;border-bottom:1px solid oklch(1 0 0 / .1);color:oklch(1 0 0 / .55);font-size:12px}
+.ws-bar i{width:8px;height:8px;border-radius:50%;background:oklch(1 0 0 / .2)}
+.ws-bar span{margin-left:10px}
+.ws-sc{overflow-y:auto;overscroll-behavior:contain;scrollbar-width:none;background:#0B0B0C}
+.ws-sc::-webkit-scrollbar{display:none}
+.ws-sc img{height:auto;display:block}
+.ws-d .ws-sc{aspect-ratio:16/10;max-height:66vh;max-height:66svh}
+.ws-m{padding:8px;background:#161719;border:1px solid oklch(.16 .004 85 / .16)}
+.ws-m .ws-sc{aspect-ratio:390/780}
+.ws-sc:focus-visible{outline:2px solid var(--t4);outline-offset:3px}
+.ws-h{margin-top:14px}
+.ws-g{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:clamp(40px,5vw,72px)}
+.ws-g .img{aspect-ratio:16/9}
+@media(max-width:760px){
+  .ws-tabs{display:flex;overflow-x:auto;scrollbar-width:none;gap:18px;margin:0 calc(var(--pad)*-1) 22px;padding:0 var(--pad)}
+  .ws-tabs::-webkit-scrollbar{display:none}
+  .ws-tabs button{flex:none;padding-right:0}
+  .ws-st{grid-template-columns:1fr;justify-items:center}
+  .ws-d{display:none}
+  .ws-m{width:min(78vw,300px)}
+  .ws-h{text-align:center}
+  .ws-g{grid-template-columns:1fr}
+}

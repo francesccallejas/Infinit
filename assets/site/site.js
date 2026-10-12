@@ -665,7 +665,52 @@ function speedo(s) {
   io.observe(s);
 }
 
+// Induktor intro: the logo reveal over carbon (shown before the first paint by an inline script, once per session).
+// The video plays; it fades out when the video ends, on a click, or by CSS after 4.3s if the video can't play.
+function ikIntro() {
+  const el = $('#ik-in'); if (!el) return;
+  if (!de.classList.contains('ik-intro')) { el.remove(); return; }
+  const v = $('video', el), out = () => { el.classList.add('out'); setTimeout(() => el.remove(), 700); };
+  if (v) { v.addEventListener('ended', out); const p = v.play(); p && p.catch(() => {}); }
+  el.addEventListener('click', out);
+}
+// Induktor website: chapters as tabs (arrow keys move between them); the browser frame and the phone scroll on
+// their own, in step, while the section is on screen — until the visitor scrolls one of them (or never, with reduced motion).
+function webShow(s) {
+  const tabs = $$('[role="tab"]', s), panels = $$('[role="tabpanel"]', s);
+  let cur = 0, p = 0, user = false, vis = false, raf = 0, last = 0;
+  const scs = () => $$('.ws-sc', panels[cur]);
+  const step = now => {
+    raf = 0; if (!vis || user || RM) return;
+    const dt = last ? Math.min(64, now - last) : 16; last = now;
+    const a = scs().find(x => x.clientHeight > 0), max = a ? a.scrollHeight - a.clientHeight : 0; // phones hide the browser frame
+    if (max > 0) {
+      p += dt / (max * 9); if (p > 1.12) p = 0; // ~110px/s, a short hold at the end, then from the top
+      const q = Math.min(1, p); scs().forEach(x => { x.scrollTop = q * (x.scrollHeight - x.clientHeight); });
+    }
+    raf = requestAnimationFrame(step);
+  };
+  const go = () => { last = 0; if (!raf && vis && !user && !RM) raf = requestAnimationFrame(step); };
+  const sel = (i, focus) => {
+    cur = i; p = 0; user = false;
+    tabs.forEach((t, j) => { t.setAttribute('aria-selected', j === i); t.tabIndex = j === i ? 0 : -1; });
+    panels.forEach((pn, j) => { pn.hidden = j !== i; });
+    scs().forEach(x => { x.scrollTop = 0; });
+    if (focus) tabs[i].focus();
+    go();
+  };
+  tabs.forEach((t, i) => {
+    t.addEventListener('click', () => sel(i));
+    t.addEventListener('keydown', e => { const k = { ArrowRight: 1, ArrowLeft: -1 }[e.key]; if (k) { e.preventDefault(); sel((cur + k + tabs.length) % tabs.length, true); } });
+  });
+  const stop = () => { user = true; };
+  $$('.ws-sc', s).forEach(x => ['wheel', 'touchstart', 'pointerdown', 'keydown'].forEach(ev => x.addEventListener(ev, stop, { passive: true })));
+  whenVisible(s, v => { vis = v; go(); });
+}
+
 function casePage() {
+  ikIntro();
+  const ws = $('#ws'); if (ws) webShow(ws);
   const art = $('#art'); if (art) carousel(art, { drift: -.6, skew: 8 });
   const gp = $('#gap'), sp = $('#spn'), wn = $('.win-s'), gb = $('#gobo');
   const sd = $('#spd'); if (sd) speedo(sd);

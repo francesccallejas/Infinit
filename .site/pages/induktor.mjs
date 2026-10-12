@@ -34,13 +34,19 @@ const C = {
   en: {
     title: 'Induktor — A sim racing brand in 10 days | INFINIT©',
     desc: 'Induktor, a sim racing hardware brand delivered in 10 days by INFINIT©: strategy, a K cut by the air gap of an induction motor, materials not colours, and the web.',
+    sub: 'Brand identity and website, designed in 10 days.',
+    webL: '06 · Website', webH: 'Four chapters, one story.',
+    webP: 'The website tells the product the way the brand does — from the feeling to the machine, the science behind it and your own setup. Built so the product is always bigger than the words.',
+    tabs: [['The feeling', 'Home'], ['The machine', 'Product'], ['The science', 'Technology'], ['Your setup', 'Configurator']],
+    webHint: 'Scroll inside the screens — or let them run.', webAlt: n => `The Induktor website, ${n} page, full length`, webAltM: n => `The Induktor website, ${n} page, on a phone`,
+    pres: ['The three main pages of the Induktor website', 'The Induktor website on phones'],
     rec: 'Record · 10 days', platL: 'Platforms: PlayStation, Xbox, Windows and Mac',
     h1: 'Nothing touches. <b>Everything moves.</b>',
     meta: [['Client', 'Induktor'], ['Studio', 'INFINIT©'], ['Sector', 'Sim racing · Direct drive hardware'], ['Scope', 'Strategy · Identity · Digital'], ['Delivered in', '10 days · studio record']],
-    whoL: 'Who is Induktor', who: 'Induktor makes sim racing hardware engineered around the physics of induction: direct drive wheelbases for PlayStation, Xbox, PC and Mac that put every force on the track into the driver’s hands — without loss.',
+    whoL: 'Who is Induktor', who: 'Induktor builds direct drive wheelbases, wheels and pedals for sim racing — PlayStation, Xbox, PC and Mac. The brief: a brand and a web presence that make the company read as what it is — an engineering company — and raise its perceived value in front of investors.',
     defL: 'The idea', quote: '“Induced reality — <b>every force on the track, delivered to your hands.”</b>',
     spdL: 'Brief to delivery', spdU: 'days', spdH: 'A whole brand, in ten days.',
-    spdP: 'From the first brief to the complete brand in 10 days — strategy, symbol and logotype, typography, materials, imagery, motion, the campaign frame and the digital experience. The studio’s fastest project yet.',
+    spdP: 'From the first brief to the complete brand in 10 days: strategy, logotype and symbol, design system, imagery direction, a four-page website and the logo animation. The studio’s fastest project yet.',
     gapL: '01 · The symbol', gapH: 'Stator, gap, rotor.',
     gapP: 'An inductor is a coil of copper that stores energy in a magnetic field. In an induction motor, force crosses from stator to rotor through a gap of air — nothing touches, and yet everything moves. So we cut the K the same way: its arms set free from the stem by exactly that gap. The R answers it at the end of the name.',
     gapN: 'The gap is drawn by the ground showing through — never by a line, a stroke or a second colour.',
@@ -60,19 +66,25 @@ const C = {
     gobL: '05 · Campaign', gobH: 'The K is never printed. It is projected.',
     gobP: 'A gobo in the key light: the symbol exists only as light and shadow — like the force it stands for.',
     vMark: 'The logotype, in motion', sysTag: 'Logo system', sysAlt: 'The Induktor logo system on carbon, studio and copper',
-    frL: '06 · The identity', frH: 'Frame by frame.', drag: 'Drag ←→',
+    frL: '07 · The identity', frH: 'Frame by frame.', drag: 'Drag ←→',
     fr: ['Key visual: Induced reality', 'The logotype', 'The symbol and the air gap', 'Typography', 'Colour: materials, not colours', 'Imagery and motion', 'Campaign: the shadow', 'Brand experience: the windings', 'Brand experience: the air gap', 'Brand experience: the end frame'],
   },
   ca: {
     title: 'Induktor — Una marca de sim racing en 10 dies | INFINIT©',
     desc: 'Induktor, marca de hardware de sim racing entregada en 10 dies per INFINIT©: estratègia, una K tallada per l’entreferro d’un motor d’inducció, materials i web.',
+    sub: 'Identitat de marca i web, dissenyades en 10 dies.',
+    webL: '06 · Web', webH: 'Quatre capítols, una sola història.',
+    webP: 'La web explica el producte com ho fa la marca — de la sensació a la màquina, la ciència que hi ha al darrere i la teva pròpia configuració. Feta perquè el producte sempre sigui més gran que les paraules.',
+    tabs: [['La sensació', 'Inici'], ['La màquina', 'Producte'], ['La ciència', 'Tecnologia'], ['La teva configuració', 'Configurador']],
+    webHint: 'Desplaça’t dins les pantalles — o deixa-les córrer.', webAlt: n => `La web d’Induktor, pàgina ${n}, sencera`, webAltM: n => `La web d’Induktor, pàgina ${n}, en un mòbil`,
+    pres: ['Les tres pàgines principals de la web d’Induktor', 'La web d’Induktor en mòbils'],
     rec: 'Rècord · 10 dies', platL: 'Plataformes: PlayStation, Xbox, Windows i Mac',
     h1: 'Res no es toca. <b>Tot es mou.</b>',
     meta: [['Client', 'Induktor'], ['Estudi', 'INFINIT©'], ['Sector', 'Sim racing · Hardware direct drive'], ['Abast', 'Estratègia · Identitat · Digital'], ['Entregat en', '10 dies · rècord de l’estudi']],
-    whoL: 'Qui és Induktor', who: 'Induktor fa hardware de sim racing pensat a partir de la física de la inducció: bases direct drive per a PlayStation, Xbox, PC i Mac que porten cada força de la pista a les mans del pilot — sense pèrdues.',
+    whoL: 'Qui és Induktor', who: 'Induktor fa bases direct drive, volants i pedals per a sim racing — PlayStation, Xbox, PC i Mac. L’encàrrec: una marca i una presència digital que facin llegir l’empresa com el que és — una empresa d’enginyeria — i que n’augmentin el valor percebut davant d’inversors.',
     defL: 'La idea', quote: '“Realitat induïda — <b>cada força de la pista, a les teves mans.”</b>',
     spdL: 'Del brief a l’entrega', spdU: 'dies', spdH: 'Una marca sencera, en deu dies.',
-    spdP: 'Del primer brief a la marca completa en 10 dies — estratègia, símbol i logotip, tipografia, materials, imatge, moviment, la imatge de campanya i l’experiència digital. El projecte més ràpid de l’estudi.',
+    spdP: 'Del primer brief a la marca completa en 10 dies: estratègia, logotip i símbol, sistema de disseny, direcció d’imatge, una web de quatre pàgines i l’animació del logotip. El projecte més ràpid de l’estudi.',
     gapL: '01 · El símbol', gapH: 'Estator, entreferro, rotor.',
     gapP: 'Un inductor és una bobina de coure que emmagatzema energia en un camp magnètic. En un motor d’inducció, la força passa de l’estator al rotor a través d’un espai d’aire — res no es toca i, tanmateix, tot es mou. Per això vam tallar la K de la mateixa manera: els braços se separen del pal exactament per aquest espai. La R li respon al final del nom.',
     gapN: 'L’entreferro el dibuixa el fons que es veu a través — mai una línia, un traç o un segon color.',
@@ -92,19 +104,25 @@ const C = {
     gobL: '05 · Campanya', gobH: 'La K no s’imprimeix mai. Es projecta.',
     gobP: 'Un gobo a la llum principal: el símbol només existeix com a llum i ombra — com la força que representa.',
     vMark: 'El logotip, en moviment', sysTag: 'Sistema de logotip', sysAlt: 'El sistema de logotip d’Induktor sobre carboni, estudi i coure',
-    frL: '06 · La identitat', frH: 'Làmina a làmina.', drag: 'Arrossega ←→',
+    frL: '07 · La identitat', frH: 'Làmina a làmina.', drag: 'Arrossega ←→',
     fr: ['Imatge clau: Induced reality', 'El logotip', 'El símbol i l’entreferro', 'Tipografia', 'Color: materials, no colors', 'Imatge i moviment', 'Campanya: l’ombra', 'Experiència de marca: les bobines', 'Experiència de marca: l’entreferro', 'Experiència de marca: el tancament'],
   },
   es: {
     title: 'Induktor — Una marca de sim racing en 10 días | INFINIT©',
     desc: 'Induktor, marca de hardware de sim racing entregada en 10 días por INFINIT©: estrategia, una K cortada por el entrehierro de un motor de inducción, materiales y web.',
+    sub: 'Identidad de marca y web, diseñadas en 10 días.',
+    webL: '06 · Web', webH: 'Cuatro capítulos, una sola historia.',
+    webP: 'La web cuenta el producto como lo hace la marca — de la sensación a la máquina, la ciencia que hay detrás y tu propia configuración. Hecha para que el producto siempre sea más grande que las palabras.',
+    tabs: [['La sensación', 'Inicio'], ['La máquina', 'Producto'], ['La ciencia', 'Tecnología'], ['Tu configuración', 'Configurador']],
+    webHint: 'Desplázate dentro de las pantallas — o déjalas correr.', webAlt: n => `La web de Induktor, página ${n}, completa`, webAltM: n => `La web de Induktor, página ${n}, en un móvil`,
+    pres: ['Las tres páginas principales de la web de Induktor', 'La web de Induktor en móviles'],
     rec: 'Récord · 10 días', platL: 'Plataformas: PlayStation, Xbox, Windows y Mac',
     h1: 'Nada se toca. <b>Todo se mueve.</b>',
     meta: [['Cliente', 'Induktor'], ['Estudio', 'INFINIT©'], ['Sector', 'Sim racing · Hardware direct drive'], ['Alcance', 'Estrategia · Identidad · Digital'], ['Entregado en', '10 días · récord del estudio']],
-    whoL: 'Quién es Induktor', who: 'Induktor fabrica hardware de sim racing pensado desde la física de la inducción: bases direct drive para PlayStation, Xbox, PC y Mac que llevan cada fuerza de la pista a las manos del piloto — sin pérdidas.',
+    whoL: 'Quién es Induktor', who: 'Induktor fabrica bases direct drive, volantes y pedales para sim racing — PlayStation, Xbox, PC y Mac. El encargo: una marca y una presencia digital que hagan leer la empresa como lo que es — una empresa de ingeniería — y que aumenten su valor percibido ante inversores.',
     defL: 'La idea', quote: '“Realidad inducida — <b>cada fuerza de la pista, en tus manos.”</b>',
     spdL: 'Del brief a la entrega', spdU: 'días', spdH: 'Una marca entera, en diez días.',
-    spdP: 'Del primer brief a la marca completa en 10 días — estrategia, símbolo y logotipo, tipografía, materiales, imagen, movimiento, la imagen de campaña y la experiencia digital. El proyecto más rápido del estudio.',
+    spdP: 'Del primer brief a la marca completa en 10 días: estrategia, logotipo y símbolo, sistema de diseño, dirección de imagen, una web de cuatro páginas y la animación del logotipo. El proyecto más rápido del estudio.',
     gapL: '01 · El símbolo', gapH: 'Estátor, entrehierro, rotor.',
     gapP: 'Un inductor es una bobina de cobre que almacena energía en un campo magnético. En un motor de inducción, la fuerza pasa del estátor al rotor a través de un espacio de aire — nada se toca y, sin embargo, todo se mueve. Por eso cortamos la K del mismo modo: sus brazos se separan del asta exactamente por ese espacio. La R le responde al final del nombre.',
     gapN: 'El entrehierro lo dibuja el fondo que se ve a través — nunca una línea, un trazo o un segundo color.',
@@ -124,7 +142,7 @@ const C = {
     gobL: '05 · Campaña', gobH: 'La K nunca se imprime. Se proyecta.',
     gobP: 'Un gobo en la luz principal: el símbolo solo existe como luz y sombra — como la fuerza que representa.',
     vMark: 'El logotipo, en movimiento', sysTag: 'Sistema de logotipo', sysAlt: 'El sistema de logotipo de Induktor sobre carbono, estudio y cobre',
-    frL: '06 · La identidad', frH: 'Lámina a lámina.', drag: 'Arrastra ←→',
+    frL: '07 · La identidad', frH: 'Lámina a lámina.', drag: 'Arrastra ←→',
     fr: ['Imagen clave: Induced reality', 'El logotipo', 'El símbolo y el entrehierro', 'Tipografía', 'Color: materiales, no colores', 'Imagen y movimiento', 'Campaña: la sombra', 'Experiencia de marca: las bobinas', 'Experiencia de marca: el entrehierro', 'Experiencia de marca: el cierre'],
   },
 };
@@ -133,6 +151,8 @@ const C = {
 const MAT = [['#0B0B0C', 40, 1], ['#161719', 7, 1], ['#8E9094', 5, 1], ['#C9CBCE', 5, 0], ['#ECECEC', 40, 0], [COPPER, 3, 1]];
 const FR = ['f-key-visual', 'f-logotype', 'f-symbol', 'f-typography', 'f-colour', 'f-motion', 'f-shadow', 'x-windings', 'x-air-gap', 'x-end'];
 const SPN = ['spin', 'exposure', 'carbon'];
+// The website: four pages, each a full-length desktop screen and its phone version.
+const WEB = ['home', 'product', 'technology', 'configurator'];
 
 const img = (s, alt, extra = '') => `<div class="img"${extra}><img src="${A(K + s + '.webp')}" alt="${esc(alt)}" loading="lazy" draggable="false"></div>`;
 
@@ -185,12 +205,29 @@ ${video({ file: K + 'logo-reveal.mp4', poster: K + 'logo-reveal-poster.webp', la
   const frames = `<section class="blk"><div class="sh"><div><span class="lbl">${esc(c.frL)}</span><h2 class="h2" data-lines>${esc(c.frH)}</h2></div><span class="lbl" aria-hidden="true">${esc(c.drag)}</span></div>
 <div class="car fr" id="art" data-cur="${esc(t.cDrag)}"><div class="car-t">${[0, 1, 2].map(k => FR.map((s, i) => img(s, k === 1 ? c.fr[i] : '', k === 1 ? '' : ' aria-hidden="true"')).join('')).join('')}</div></div></section>`;
 
+  // 06 · The website — four chapters as tabs; each shows the full-length page in a browser frame and on a phone,
+  // scrolling on their own (in step) until the visitor scrolls them; reduced motion: no auto-scroll.
+  const web = `<section class="blk ws" id="ws"><div class="sh"><div><span class="lbl">${esc(c.webL)}</span><h2 class="h2" data-lines>${esc(c.webH)}</h2></div><p class="ws-p">${esc(c.webP)}</p></div>
+<div class="ws-tabs" role="tablist" aria-label="${esc(c.webH)}">${c.tabs.map(([n, pg], i) => `<button type="button" role="tab" id="ws-t${i}" aria-controls="ws-p${i}" aria-selected="${!i}"${i ? ' tabindex="-1"' : ''}><span>0${i + 1}</span><b>${esc(n)}</b><small>${esc(pg)}</small></button>`).join('')}</div>
+${WEB.map((w, i) => `<div class="ws-st" role="tabpanel" id="ws-p${i}" aria-labelledby="ws-t${i}"${i ? ' hidden' : ''}>
+<div class="ws-d"><div class="ws-bar" aria-hidden="true"><i></i><i></i><i></i><span>Induktor — ${esc(c.tabs[i][1])}</span></div><div class="ws-sc" tabindex="0"><img src="${A(K + 'site-' + w + '.webp')}" alt="${esc(c.webAlt(c.tabs[i][1].toLowerCase()))}" loading="lazy"></div></div>
+<div class="ws-m"><div class="ws-sc" tabindex="-1"><img src="${A(K + 'site-m-' + w + '.webp')}" alt="${esc(c.webAltM(c.tabs[i][1].toLowerCase()))}" loading="lazy"></div></div>
+</div>`).join('\n')}
+<p class="lbl ws-h">${esc(c.webHint)}</p>
+<div class="ws-g">${['web-three-pages', 'web-mobile'].map((f, i) => `<div class="img rv"${i ? ' style="transition-delay:.06s"' : ''}><img src="${A(K + f + '.webp')}" alt="${esc(c.pres[i])}" loading="lazy"></div>`).join('')}</div></section>`;
+
+  // Intro (once per session, not with reduced motion): the logo reveal plays over carbon, then fades to the hero.
+  // The inline script decides before the first paint; CSS fades it out even if the video can't play.
+  const intro = `<script>try{if(!sessionStorage.getItem('ik-in')&&!matchMedia('(prefers-reduced-motion: reduce)').matches){sessionStorage.setItem('ik-in',1);document.documentElement.classList.add('ik-intro')}}catch(e){}</script>
+<div class="ik-in" id="ik-in" aria-hidden="true"><video src="${A(K + 'logo-reveal.mp4')}" poster="${A(K + 'logo-reveal-poster.webp')}" muted playsinline preload="none"></video></div>`;
+
   const body = [
-    caseHero(ctx, { img: K + 'spin.webp', logo: K + 'logotype-bone.svg', logoStyle: ' style="height:clamp(14px,1.5vw,22px)"', name: 'Induktor', h1: c.h1, after: plat(c.platL),
+    intro,
+    caseHero(ctx, { img: K + 'spin.webp', logo: K + 'logotype-bone.svg', logoStyle: ' style="height:clamp(14px,1.5vw,22px)"', name: 'Induktor', h1: c.h1, after: `<p class="ch-sub">${esc(c.sub)}</p>` + plat(c.platL),
       chips: chip('strategy', lang) + chip('brand', lang) + chip('digital', lang) + `<span class="chip">${esc(c.rec)}</span>` }),
     meta(c.meta.map((r, i) => i === 2 ? [...r, [url(lang, 'leisure'), SECTOR[lang].lbl]] : r)),
     about(c),
-    spd, gap, spn, win, mat, gobo, mark, frames,
+    spd, gap, spn, win, mat, gobo, mark, web, frames,
     nextCase(ctx, 'bunnker'),
     ending(ctx, { cls: 'afternx' }),
   ].join('\n');
