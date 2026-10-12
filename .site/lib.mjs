@@ -37,8 +37,8 @@ export const ROUTES = {
   geo: 'geo-ai-search/',
   cmo: 'fractional-cmo/',
   workidx: 'work/',
-  journal: 'journal/',
-  // Journal articles ("j:<slug>") are added by jdata.mjs.
+  journal: 'guides/',
+  // Guides (articles, "j:<slug>") are added by jdata.mjs.
 };
 // Social image file name for a page key ("j:<slug>" → "j-<slug>"), see og.mjs.
 export const ogName = page => page.replace(':', '-');

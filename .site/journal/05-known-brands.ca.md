@@ -40,7 +40,7 @@ No vol dir famós. Vol dir tres coses:
 - **Una idea clara.** Un posicionament que tota l’empresa pugui repetir.
 - **Una identitat coherent.** La mateixa marca a l’estand, el catàleg, la flota i la web, perquè cada contacte sumi.
 - **Fer-vos presents entre compra i compra.** Casos, articles, premsa sectorial i LinkedIn: coses útils, amb regularitat.
-- **Que la IA us pugui trobar.** Els compradors demanen proveïdors als assistents. Les pàgines clares amb respostes reals són les que es citen. Vegeu [com trien els assistents d’IA](/ca/journal/geo-ai-assistants-b2b/).
+- **Que la IA us pugui trobar.** Els compradors demanen proveïdors als assistents. Les pàgines clares amb respostes reals són les que es citen. Vegeu [com trien els assistents d’IA](/ca/guides/geo-ai-assistants-b2b/).
 
 ## Preguntes freqüents
 

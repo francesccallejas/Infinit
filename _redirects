@@ -8,3 +8,10 @@
 /work/relats/          /en/work/relats/     301
 /work/relats           /en/work/relats/     301
 /work/relats/index.html  /en/work/relats/   301
+# Journal → Guides (Oct 2026)
+/en/journal           /en/guides/          301
+/en/journal/*         /en/guides/:splat    301
+/ca/journal           /ca/guides/          301
+/ca/journal/*         /ca/guides/:splat    301
+/es/journal           /es/guides/          301
+/es/journal/*         /es/guides/:splat    301

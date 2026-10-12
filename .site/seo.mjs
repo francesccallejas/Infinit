@@ -116,7 +116,7 @@ export function graph(lang, page, meta) {
     g.push({
       '@type': 'Article', '@id': u + '#article', headline: a.title, description: a.description, inLanguage: INLANG[lang], url: u,
       image: SITE + meta.og, datePublished: a.date, dateModified: a.date, author: { '@id': FOUNDER }, publisher: { '@id': ORG },
-      mainEntityOfPage: { '@id': u + '#webpage' }, isPartOf: { '@type': 'Blog', name: 'INFINIT© Journal', url: abs(lang, 'journal') },
+      mainEntityOfPage: { '@id': u + '#webpage' }, isPartOf: { '@type': 'Blog', name: { en: 'INFINIT© Guides', ca: 'Guies INFINIT©', es: 'Guías INFINIT©' }[lang], url: abs(lang, 'journal') },
       about: { '@type': 'Service', name: a.sectorName, url: abs(lang, a.sectorKey), provider: { '@id': ORG } }, wordCount: a.md.split(/\s+/).length,
     });
     if (a.faq.length) g.push({ '@type': 'FAQPage', '@id': u + '#faq', inLanguage: INLANG[lang], isPartOf: { '@id': u + '#webpage' },

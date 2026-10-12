@@ -33,8 +33,8 @@ for (const lang of LANGS) {
     return { ...fm, n: i + 1, md, mins: Math.max(2, Math.round(md.split(/\s+/).length / 220)) };
   });
 }
-// Routes: /<lang>/journal/<slug>/ (page key "j:<slug>").
-for (const a of A.en) ROUTES['j:' + a.slug] = `journal/${a.slug}/`;
+// Routes: /<lang>/guides/<slug>/ (page key "j:<slug>").
+for (const a of A.en) ROUTES['j:' + a.slug] = `guides/${a.slug}/`;
 export const SLUGS = A.en.map(a => a.slug);
 export const art = (lang, slug) => A[lang].find(a => a.slug === slug);
 
