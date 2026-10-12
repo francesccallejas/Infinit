@@ -15,13 +15,13 @@ status: esborrany — per revisar
 
 **Resposta curta:** els assistents d’IA recomanen les empreses que poden entendre i verificar. Això vol dir un posicionament clar i en paraules senzilles, pàgines que responen preguntes reals, dades estructurades, la mateixa informació a tot arreu i mencions d’altres. Això és el GEO, Generative Engine Optimisation. Es construeix sobre el SEO; no el substitueix.
 
-Un comprador escriu: “proveïdors de protecció tèrmica per a bateries de vehicles elèctrics a Europa”. L’assistent respon amb quatre noms i una línia sobre cadascun. Si la vostra web no diu clarament què feu, per a qui i on, no podeu ser un d’aquests noms.
+Un comprador escriu: “proveïdors de protecció tèrmica per a bateries de vehicles elèctrics a Europa”. L’assistent respon amb quatre noms i una línia sobre cadascun. Si la vostra web no diu clarament què feu, per a qui i on, és molt més difícil ser un d’aquests noms. I la resposta canvia segons la pregunta, l’assistent i si busca a la web.
 
 ## Què busquen els assistents
 
 - **Claredat.** Una frase que digui qui sou. Els assistents repeteixen el que és fàcil de resumir.
 - **Respostes.** Pàgines que responguin preguntes reals: preus, terminis, processos, comparatives. Com aquestes guies.
-- **Estructura.** HTML net, títols clars, dades de schema.org (Organization, FAQ, Article) i un fitxer llms.txt.
+- **Estructura.** HTML net, títols clars, dades de schema.org (Organization, FAQ, Article). Les dades estructurades aclareixen el text; no el substitueixen.
 - **Coherència.** El mateix nom, la mateixa descripció i les mateixes dades de contacte a la web, a LinkedIn i als directoris.
 - **Autoritat.** Casos, clients, premsa sectorial i altres webs que us mencionen.
 
@@ -32,7 +32,7 @@ Un comprador escriu: “proveïdors de protecció tèrmica per a bateries de veh
 3. Publiqueu preguntes freqüents reals, amb respostes reals.
 4. Publiqueu preus i terminis orientatius sempre que pugueu.
 5. Afegiu dades estructurades a cada pàgina.
-6. Publiqueu un llms.txt amb un resum de l’empresa.
+6. Opcionalment, publiqueu un llms.txt amb un resum de l’empresa. Algunes eines d’IA el llegeixen; no canvia el posicionament a Google.
 7. Decidiu al robots.txt quins rastrejadors d’IA poden llegir la vostra web.
 8. Assegureu-vos que el contingut és a l’HTML, i no només carregat amb JavaScript.
 9. Signeu els articles amb autor i data.
@@ -40,7 +40,7 @@ Un comprador escriu: “proveïdors de protecció tèrmica per a bateries de veh
 
 ## El que el GEO no pot fer
 
-No hi ha trucs, i ningú no pot garantir una recomanació. Requereix mesos, i depèn del que tingueu per dir. Una marca clara i un contingut útil fan la major part de la feina.
+No hi ha trucs, i ningú no pot garantir una recomanació. La visibilitat varia segons l’assistent i la pregunta. Requereix mesos, i depèn del que tingueu per dir. Una marca clara i un contingut útil fan la major part de la feina.
 
 ## Com ho hem fet a la nostra web
 

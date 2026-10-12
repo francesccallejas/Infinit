@@ -3,6 +3,7 @@ import { EMAIL, url, esc, A, wm, pngDim } from '../lib.mjs';
 import { T } from '../i18n.mjs';
 import { S, P, svc, src, CH, HS } from '../data.mjs';
 import { head, end, ftLine } from '../layout.mjs';
+import { REG } from './sector.mjs';
 
 // Editorial grid: [grid-column, aspect-ratio] per project.
 const L = [['1/8', '16/10'], ['9/13', '4/5'], ['1/6', '4/5'], ['7/13', '16/10'], ['2/8', '16/10'], ['9/13', '1/1']];
@@ -48,11 +49,12 @@ export function home(ctx) {
 <div class="show-o"><span class="lbl">${esc(t.approach)}</span><div class="st">${t.st.map((s, i) => `<p${i ? '' : ' class="on"'}>${esc(s)}</p>`).join('')}</div><div class="show-b"><span class="pg" id="pg" aria-hidden="true">${SH.map(() => '<i><b></b></i>').join('')}</span></div></div></div></section>`;
 
   const services = `<section class="acc" id="services"><div class="sh"><h2 class="h2" data-lines>${t.svcH}</h2><span class="lbl">${esc(t.capabilities)}</span></div>
-<div class="svc" id="svc">${S.map((s, i) => `<article class="fc rv" tabindex="0" style="transition-delay:${(i * .06).toFixed(2)}s"><div class="fc-i"><div class="fc-f"><div class="n"><span class="lbl">0${i + 1}</span></div><h3>${esc(s.n[lang])}</h3></div><div class="fc-b"><span class="lbl">0${i + 1} — ${esc(s.n[lang])}</span><ul>${s.t[lang].map(c => `<li>${esc(c)}</li>`).join('')}</ul></div></div></article>`).join('')}</div></section>`;
+<div class="svc" id="svc">${S.map((s, i) => `<article class="fc rv" tabindex="0" style="transition-delay:${(i * .06).toFixed(2)}s"><div class="fc-i"><div class="fc-f"><div class="n"><span class="lbl">0${i + 1}</span></div><h3>${esc(s.n[lang])}</h3></div><div class="fc-b"><span class="lbl">0${i + 1} — ${esc(s.n[lang])}</span><ul>${s.t[lang].map(c => `<li>${esc(c)}</li>`).join('')}</ul></div></div></article>`).join('')}</div>
+<div class="svl"><span class="lbl">${esc(t.svlL)}</span><div class="tgs">${['website', 'geo', 'cmo', 'launch'].map(k => `<a class="tg" href="${url(lang, k)}">${esc(REG.sectorName(k, lang))}</a>`).join('')}<a class="tg" href="${url(lang, 'sectors')}">${esc(t.ftAll)}</a></div></div></section>`;
 
   const logos = Object.keys(CH).map(n => `<img src="${A('project/assets/clients/' + n + '.png')}" alt=""${pngDim('project/assets/clients/' + n + '.png', CH[n])} loading="lazy" style="height:${CH[n]}px">`).join('');
   const contact = `<section class="dark ct" id="contact">${ftLine}<div class="ct-h"><span class="lbl">${esc(t.exp)}</span><span class="sr">${esc(t.clientsSr)}</span></div><div class="mq on-d" aria-hidden="true"><div class="mq-t">${logos}${logos}</div></div>
-<div class="end"><h2 data-lines>${esc(t.talk)}</h2><button class="mail" type="button" data-copy="${EMAIL}" data-cur="${esc(t.cCopy)}" aria-label="${esc(t.copyEmail)}: ${EMAIL}"><span class="mt">${EMAIL}</span></button></div>
+<div class="end"><h2 data-lines>${esc(t.talk)}</h2><button class="mail" type="button" data-umami-event="email-copy" data-copy="${EMAIL}" data-cur="${esc(t.cCopy)}" aria-label="${esc(t.copyEmail)}: ${EMAIL}"><span class="mt">${EMAIL}</span></button></div>
 <div class="endw" aria-hidden="true">${wm('fit')}</div></section>`;
 
   return head(ctx, { title: t.homeTitle, desc: t.homeDesc, og: '/assets/site/og/home.jpg', css: ['home'] }) +

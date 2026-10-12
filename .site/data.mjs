@@ -41,7 +41,7 @@ const B = 'work/bunnker/bunnker-assets/', R = 'work/relats/relats-assets/', K = 
 // Projects. `page` = case page key (null → work in progress / NDA, not clickable); `sec` = sector page key
 // (for Instellar and Julià a proposal from the v3 handoff — to confirm with the clients).
 export const P = [
-  { n: 'Bunnker', page: 'bunnker', sec: 'realestate', t: ['strategy', 'brand'],
+  { n: 'Bunnker', page: 'bunnker', sec: 'realestate', t: ['strategy', 'brand', 'digital'],
     d: { en: 'beyond renting', ca: 'més que llogar', es: 'más que alquilar' },
     img: IM + 'Bunnker Final.webp', g: [B + 'int-03.webp', B + 'int-12.webp', B + 'art-07.webp', B + 'int-15.webp', B + 'coac-1.webp'] },
   { n: 'Relats', page: 'relats', sec: 'industrial', t: ['strategy', 'brand', 'digital'],

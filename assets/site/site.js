@@ -571,7 +571,8 @@ function studioPage() {
       const el = e.target, to = +el.dataset.cnt, f = fm[el.dataset.fmt], t0 = performance.now();
       (function s(t) { const k = Math.min(1, (t - t0) / 1400), v = to * (1 - Math.pow(1 - k, 3)); el.textContent = f(v); if (k < 1) requestAnimationFrame(s); })(t0);
     }), { threshold: .6 });
-    $$('[data-cnt]').forEach(el => { el.textContent = fm[el.dataset.fmt](0); io.observe(el); });
+    // The final figure stays in the accessibility tree; only the visual copy counts up.
+    $$('[data-cnt]').forEach(el => { el.insertAdjacentHTML('afterend', `<span class="sr">${escH(el.textContent)}</span>`); el.setAttribute('aria-hidden', 'true'); el.textContent = fm[el.dataset.fmt](0); io.observe(el); });
   }
 }
 

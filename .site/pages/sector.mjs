@@ -150,7 +150,7 @@ export function sectorPage(ctx, def) {
   const isInd = REG.industries.includes(page), group = isInd ? REG.industries : REG.moments;
   const more = `<section class="blk"><span class="lbl">${esc(isInd ? c.moreInd : c.moreMom)}</span><div class="tgs" style="margin-top:16px">${group.filter(k => k !== page).map(k => `<a class="tg" href="${url(lang, k)}">${esc(REG.sectorName(k, lang))}</a>`).join('')}<a class="tg" href="${url(lang, 'sectors')}">${esc(t.ftAll)}</a></div></section>`;
 
-  const ld = { name: c.lbl, serviceType: 'Branding', audience: c.meta[0][1] + ' · ' + c.meta[1][1] + ' · ' + c.meta[3][1], faq: own.faq || [],
+  const ld = { name: c.lbl, serviceType: 'Branding', audience: c.meta[0][1] + ' · ' + c.meta[1][1] + ' · ' + c.meta[3][1], faq: c.faq, // the visible questions (sector-specific + shared), same as the page
     ...(def.proof ? { caseName: def.proof.name, caseUrl: abs(lang, def.proof.case) } : {}) };
   return head(ctx, { title: c.title, desc: c.desc, og: def.og, css: ['inner', 'seo'], ld }) +
     `\n<main id="main">\n${[hero, meta, problem, signs, how, def.prices === false ? '' : prices, proof, exp, faq, journal, more, ending(ctx)].filter(Boolean).join('\n')}\n</main>\n` + end(ctx);

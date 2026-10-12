@@ -36,6 +36,8 @@ export const C = {
     faqH: 'What CEOs ask us about a fractional CMO.',
     faq: [
       ['How does a fractional CMO work day to day?', 'Part-time, senior and hands-on. We set the positioning and the plan, lead brand, website and performance, coordinate agencies and suppliers, and work alongside your team — with the same senior people who build the brand. Cesc Callejas, with two decades on both sides of the table, leads it personally. Until you hire your own CMO; then we hand over.'],
+      ['What’s the difference from a marketing agency?', 'An agency executes what it is briefed. A fractional CMO decides what should be done and why: positioning, priorities, budget and KPIs. We brief your agencies and suppliers clearly and hold them to the plan — leadership, not another supplier.'],
+      ['What happens when we hire our own CMO?', 'We help you define the role and hand over the plan, the brand and the team, so your CMO starts with a system that already runs instead of a blank page. The aim is to leave a team behind, not a dependency.'],
     ],
   },
   ca: {
@@ -69,6 +71,8 @@ export const C = {
     faqH: 'El que ens pregunten els CEO sobre el CMO fraccional.',
     faq: [
       ['Com funciona un CMO fraccional en el dia a dia?', 'A temps parcial, sènior i amb les mans a la feina. Fixem el posicionament i el pla, liderem marca, web i performance, coordinem agències i proveïdors i treballem al costat del vostre equip — amb les mateixes persones sèniors que construeixen la marca. Ho lidera personalment en Cesc Callejas, amb dues dècades a banda i banda de la taula. Fins que contracteu el vostre CMO; llavors, li passem el relleu.'],
+      ['Quina diferència hi ha amb una agència de màrqueting?', 'Una agència executa el que se li encarrega. Un CMO fraccional decideix què cal fer i per què: posicionament, prioritats, pressupost i indicadors. Fem briefs clars a les vostres agències i proveïdors i vetllem perquè segueixin el pla — lideratge, no un proveïdor més.'],
+      ['Què passa quan contractem el nostre CMO?', 'Us ajudem a definir el lloc i li passem el pla, la marca i l’equip, perquè comenci amb un sistema que ja funciona i no amb un full en blanc. L’objectiu és deixar un equip, no una dependència.'],
     ],
   },
   es: {
@@ -102,10 +106,13 @@ export const C = {
     faqH: 'Lo que nos preguntan los CEO sobre el CMO fraccional.',
     faq: [
       ['¿Cómo funciona un CMO fraccional en el día a día?', 'A tiempo parcial, sénior y con las manos en la masa. Fijamos el posicionamiento y el plan, lideramos marca, web y performance, coordinamos agencias y proveedores y trabajamos junto a vuestro equipo — con las mismas personas sénior que construyen la marca. Lo lidera personalmente Cesc Callejas, con dos décadas a ambos lados de la mesa. Hasta que contratéis vuestro CMO; entonces, le pasamos el relevo.'],
+      ['¿Qué diferencia hay con una agencia de marketing?', 'Una agencia ejecuta lo que se le encarga. Un CMO fraccional decide qué hay que hacer y por qué: posicionamiento, prioridades, presupuesto e indicadores. Hacemos briefs claros a vuestras agencias y proveedores y velamos por que sigan el plan — liderazgo, no un proveedor más.'],
+      ['¿Qué pasa cuando contratamos a nuestro CMO?', 'Os ayudamos a definir el puesto y le pasamos el plan, la marca y el equipo, para que empiece con un sistema que ya funciona y no con una hoja en blanco. El objetivo es dejar un equipo, no una dependencia.'],
     ],
   },
 };
 
 export const cmo = ctx => sectorPage(ctx, {
   C, hero: 'project/assets/images/knob-orange.webp', og: '/assets/site/og/home.jpg', prices: false,
+  sharedFaq: [5], // only "outside Catalonia": the branding / website questions don't apply to a CMO
 });

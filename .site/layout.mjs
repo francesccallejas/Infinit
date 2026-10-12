@@ -95,7 +95,7 @@ export function nav(ctx) {
   const small = [[t.ftSecL, url(ctx.lang, 'sectors'), pg === 'sectors'], [t.allWork, url(ctx.lang, 'workidx'), pg === 'workidx']]; // Contact is the "Let’s talk" button
   return `<div class="nv" id="nv"><div class="nv-c" id="nvc" role="dialog" aria-label="${esc(t.menu)}" tabindex="-1" inert><nav class="nv-l" aria-label="${esc(t.navLabel)}">${big.map(([n, h, c], i) => `<a href="${h}" style="--i:${i}"${cur(c)}><span>${esc(n)}</span><i aria-hidden="true">↗</i></a>`).join('')}</nav>
 <div class="nv-s"><div>${small.map(([n, h, c]) => `<a href="${h}"${cur(c)}>${esc(n)}</a>`).join('')}</div><div class="nv-lang" role="group" aria-label="${esc(t.language)}">${ordered(ctx).join('')}</div></div></div>
-<div class="nv-bar"><a class="nv-mk" href="${L.top}" aria-label="${esc(t.homeAria)}"><svg viewBox="0 0 32 32" aria-hidden="true" focusable="false">${MARK_SVG}</svg></a><div class="nv-p"><button class="nv-b" type="button" aria-expanded="false" aria-controls="nvc"><span class="nv-ic" aria-hidden="true"><i></i><i></i></span><span class="nv-lb"><span>${esc(t.menu)}</span><span aria-hidden="true">${esc(t.close)}</span></span></button><a class="nv-go" href="${L.contact}"><span class="roll">${esc(t.letsTalk)}</span></a></div></div></div>`;
+<div class="nv-bar"><a class="nv-mk" href="${L.top}" aria-label="${esc(t.homeAria)}"><svg viewBox="0 0 32 32" aria-hidden="true" focusable="false">${MARK_SVG}</svg></a><div class="nv-p"><button class="nv-b" type="button" aria-expanded="false" aria-controls="nvc"><span class="nv-ic" aria-hidden="true"><i></i><i></i></span><span class="nv-lb"><span>${esc(t.menu)}</span><span aria-hidden="true">${esc(t.close)}</span></span></button><a class="nv-go" data-umami-event="lets-talk" href="${L.contact}"><span class="roll">${esc(t.letsTalk)}</span></a></div></div></div>`;
 }
 
 // Language switchers: each points to the same page in the other language.
@@ -111,7 +111,7 @@ export function footer(ctx) {
   return `<footer class="ft dark" id="ft"><div class="ft-g">
 <div><p class="lbl">${esc(t.ftStudio)}</p><a href="${L.work}">${esc(t.work)}</a><a href="${L.services}">${esc(t.services)}</a><a href="${L.studio}">${esc(t.studio)}</a><a href="${L.journal}">${esc(t.journal)}</a></div>
 <div><p class="lbl">${esc(t.ftSecL)}</p>${t.ftSecs.map(([k, n]) => `<a href="${url(ctx.lang, k)}">${esc(n)}</a>`).join('')}<a href="${url(ctx.lang, 'sectors')}">${esc(t.ftAll)}</a></div>
-<div><p class="lbl">${esc(t.ftConnect)}</p><a href="mailto:${EMAIL}">${EMAIL}</a><a href="tel:${PHONE.replace(/\s/g, '')}">${PHONE.replace(/ /g, '\u00a0')}</a><a href="${LINKEDIN}" target="_blank" rel="noopener">LinkedIn ↗</a><a href="${INSTAGRAM}" target="_blank" rel="noopener">Instagram ↗</a></div>
+<div><p class="lbl">${esc(t.ftConnect)}</p><a href="mailto:${EMAIL}" data-umami-event="email-click">${EMAIL}</a><a data-umami-event="phone-click" href="tel:${PHONE.replace(/\s/g, '')}">${PHONE.replace(/ /g, '\u00a0')}</a><a href="${LINKEDIN}" target="_blank" rel="noopener">LinkedIn ↗</a><a href="${INSTAGRAM}" target="_blank" rel="noopener">Instagram ↗</a></div>
 <div><p class="lbl">${esc(t.ftRec)}</p><div class="aw"><img src="${A('project/assets/clients/Awwwards-Logo-Vector.svg-.png')}" alt="Awwwards"${pngDim('project/assets/clients/Awwwards-Logo-Vector.svg-.png', 22)} loading="lazy"><img src="${A('project/assets/clients/coac-trim.png')}" alt="COAC"${pngDim('project/assets/clients/coac-trim.png', 22)} loading="lazy"></div></div></div>
 <div class="ft-b lbl"><span>${esc(t.loc)}</span><nav class="fl" aria-label="${esc(t.language)}">${ordered(ctx).join('')}</nav><span data-clock></span><span>© 2026 INFINIT©</span></div></footer>`;
 }
@@ -129,7 +129,7 @@ export const ftLine = '<div class="ft-hl" aria-hidden="true"><i></i></div>';
 // `before` goes first inside the block (Home / Studio: "Experience across" + the clients).
 export function ending(ctx, { before = '', cls = '' } = {}) {
   const t = T[ctx.lang];
-  return `<section class="dark endb${cls ? ' ' + cls : ''}" id="contact">${cls.includes('afternx') ? '' : ftLine}${before}<div class="end"><h2 data-lines>${esc(t.talk)}</h2><button class="mail" type="button" data-copy="${EMAIL}" data-cur="${esc(t.cCopy)}" aria-label="${esc(t.copyEmail)}: ${EMAIL}"><span class="mt">${EMAIL}</span></button></div>
+  return `<section class="dark endb${cls ? ' ' + cls : ''}" id="contact">${cls.includes('afternx') ? '' : ftLine}${before}<div class="end"><h2 data-lines>${esc(t.talk)}</h2><button class="mail" type="button" data-umami-event="email-copy" data-copy="${EMAIL}" data-cur="${esc(t.cCopy)}" aria-label="${esc(t.copyEmail)}: ${EMAIL}"><span class="mt">${EMAIL}</span></button></div>
 <div class="endw" aria-hidden="true">${wm('fit')}</div></section>`;
 }
 

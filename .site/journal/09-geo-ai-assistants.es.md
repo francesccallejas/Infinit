@@ -15,13 +15,13 @@ status: borrador — para revisar
 
 **Respuesta corta:** los asistentes de IA recomiendan las empresas que pueden entender y verificar. Eso significa un posicionamiento claro y en palabras sencillas, páginas que responden preguntas reales, datos estructurados, la misma información en todas partes y menciones de otros. Esto es el GEO, Generative Engine Optimisation. Se construye sobre el SEO; no lo sustituye.
 
-Un comprador escribe: “proveedores de protección térmica para baterías de vehículos eléctricos en Europa”. El asistente responde con cuatro nombres y una línea sobre cada uno. Si vuestra web no dice claramente qué hacéis, para quién y dónde, no podéis ser uno de esos nombres.
+Un comprador escribe: “proveedores de protección térmica para baterías de vehículos eléctricos en Europa”. El asistente responde con cuatro nombres y una línea sobre cada uno. Si vuestra web no dice claramente qué hacéis, para quién y dónde, es mucho más difícil ser uno de esos nombres. Y la respuesta cambia según la pregunta, el asistente y si busca en la web.
 
 ## Qué buscan los asistentes
 
 - **Claridad.** Una frase que diga quiénes sois. Los asistentes repiten lo que es fácil de resumir.
 - **Respuestas.** Páginas que respondan preguntas reales: precios, plazos, procesos, comparativas. Como estas guías.
-- **Estructura.** HTML limpio, títulos claros, datos de schema.org (Organization, FAQ, Article) y un archivo llms.txt.
+- **Estructura.** HTML limpio, títulos claros, datos de schema.org (Organization, FAQ, Article). Los datos estructurados aclaran el texto; no lo sustituyen.
 - **Coherencia.** El mismo nombre, la misma descripción y los mismos datos de contacto en la web, en LinkedIn y en los directorios.
 - **Autoridad.** Casos, clientes, prensa sectorial y otras webs que os mencionan.
 
@@ -32,7 +32,7 @@ Un comprador escribe: “proveedores de protección térmica para baterías de v
 3. Publicad preguntas frecuentes reales, con respuestas reales.
 4. Publicad precios y plazos orientativos siempre que podáis.
 5. Añadid datos estructurados a cada página.
-6. Publicad un llms.txt con un resumen de la empresa.
+6. Opcionalmente, publicad un llms.txt con un resumen de la empresa. Algunas herramientas de IA lo leen; no cambia el posicionamiento en Google.
 7. Decidid en el robots.txt qué rastreadores de IA pueden leer vuestra web.
 8. Aseguraos de que el contenido está en el HTML, y no solo cargado con JavaScript.
 9. Firmad los artículos con autor y fecha.
@@ -40,7 +40,7 @@ Un comprador escribe: “proveedores de protección térmica para baterías de v
 
 ## Lo que el GEO no puede hacer
 
-No hay trucos, y nadie puede garantizar una recomendación. Requiere meses, y depende de lo que tengáis que decir. Una marca clara y un contenido útil hacen la mayor parte del trabajo.
+No hay trucos, y nadie puede garantizar una recomendación. La visibilidad varía según el asistente y la pregunta. Requiere meses, y depende de lo que tengáis que decir. Una marca clara y un contenido útil hacen la mayor parte del trabajo.
 
 ## Cómo lo hemos hecho en nuestra web
 
