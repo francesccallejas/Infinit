@@ -6,7 +6,7 @@ import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'node:fs';
 import { createHash } from 'node:crypto';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { SITE, LANGS, ROUTES, url, abs, esc, icons } from './lib.mjs';
+import { SITE, ANALYTICS, LANGS, ROUTES, url, abs, esc, icons } from './lib.mjs';
 import { T } from './i18n.mjs';
 import { S, P, CLIENT_NAMES } from './data.mjs';
 import { FOUNDER_LINKEDIN, siteGraph } from './seo.mjs';
@@ -140,6 +140,7 @@ out('404.html', `<!doctype html>
 ${icons(V)}
 <link rel="stylesheet" href="/assets/site/base.css?v=${V['base.css']}">
 <style>main{min-height:100svh;display:flex;flex-direction:column;justify-content:space-between;padding:22px var(--pad) 40px}h1{font-size:clamp(56px,10vw,184px);line-height:.92;letter-spacing:-.06em;font-weight:700}nav{display:flex;gap:10px;flex-wrap:wrap}</style>
+${ANALYTICS}
 </head>
 <body class="dark">
 <main><span class="lbl">404 · INFINIT©</span>

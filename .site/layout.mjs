@@ -1,5 +1,5 @@
 // Shared page chrome: <head>, navigation (v3: © mark + glass pill + menu card), footer, toast.
-import { SITE, LANGS, LOCALE, EMAIL, PHONE, LINKEDIN, INSTAGRAM, url, abs, esc, A, wm, pngDim, MARK_SVG, ogName, icons } from './lib.mjs';
+import { SITE, ANALYTICS, LANGS, LOCALE, EMAIL, PHONE, LINKEDIN, INSTAGRAM, url, abs, esc, A, wm, pngDim, MARK_SVG, ogName, icons } from './lib.mjs';
 import { existsSync } from 'node:fs';
 import { graph } from './seo.mjs';
 import { T } from './i18n.mjs';
@@ -59,6 +59,7 @@ ${styles}
 <script type="application/ld+json">${JSON.stringify(graph(lang, page, { title, desc, og, ld })).replace(/</g, '\\u003c')}</script>
 <script>window.T=${JSON.stringify(jsT(T[lang]))}</script>
 <script src="/assets/site/site.js?v=${V['site.js']}" defer></script>
+${ANALYTICS}
 </head>
 <body>
 <a class="skip" href="#main">${esc(T[lang].skip)}</a>`;

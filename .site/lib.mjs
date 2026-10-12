@@ -1,6 +1,9 @@
 // Shared helpers for the static build.
 // The site is served at www (GoDaddy DNS: www → Cloudflare Pages; the bare domain forwards to www).
 export const SITE = 'https://www.weareinfinit.com';
+// Umami Cloud analytics (cookieless — no consent needed): the INFINIT© account, this website's id.
+// data-domains: counts only the live domain (not previews, pages.dev or local tests).
+export const ANALYTICS = '<script defer src="https://cloud.umami.is/script.js" data-website-id="0e9ac4ff-e9f9-43dc-8864-758a4bdc267b" data-domains="www.weareinfinit.com"></script>';
 export const LANGS = ['en', 'ca', 'es'];
 export const LOCALE = { en: 'en_GB', ca: 'ca_ES', es: 'es_ES' };
 export const EMAIL = 'hello@weareinfinit.com';
