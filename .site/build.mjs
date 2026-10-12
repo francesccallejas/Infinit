@@ -208,7 +208,7 @@ ${LANGS.map(l => `  <xhtml:link rel="alternate" hreflang="${l}" href="${abs(l, p
 // Web app manifest (handoff: uses icon-512.png).
 out('site.webmanifest', JSON.stringify({
   name: 'INFINIT©', short_name: 'INFINIT©', start_url: '/', display: 'browser',
-  background_color: '#03050F', theme_color: '#03050F',
+  background_color: '#F7F6F3', theme_color: '#0E0D0B',
   icons: [
     { src: `/assets/site/icon-192.png?v=${V['icon-192.png']}`, sizes: '192x192', type: 'image/png' },
     { src: `/assets/site/icon-512.png?v=${V['icon-512.png']}`, sizes: '512x512', type: 'image/png', purpose: 'any maskable' },

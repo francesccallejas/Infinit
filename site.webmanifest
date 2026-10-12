@@ -3,8 +3,8 @@
   "short_name": "INFINIT©",
   "start_url": "/",
   "display": "browser",
-  "background_color": "#03050F",
-  "theme_color": "#03050F",
+  "background_color": "#F7F6F3",
+  "theme_color": "#0E0D0B",
   "icons": [
     {
       "src": "/assets/site/icon-192.png?v=53de9fa6",

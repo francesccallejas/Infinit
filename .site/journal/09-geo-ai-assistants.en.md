@@ -15,13 +15,13 @@ status: draft — for review
 
 **Short answer:** AI assistants recommend companies they can understand and verify. That means a clear positioning in plain words, pages that answer real questions, structured data, the same information everywhere and mentions from others. This is GEO, Generative Engine Optimisation. It builds on SEO; it doesn’t replace it.
 
-A buyer types: “suppliers of thermal protection for EV batteries in Europe”. The assistant answers with four names and a line about each. If your website doesn’t say clearly what you do, for whom and where, you can’t be one of them.
+A buyer types: “suppliers of thermal protection for EV batteries in Europe”. The assistant answers with four names and a line about each. If your website doesn’t say clearly what you do, for whom and where, it is much harder to be one of them. And the answer changes with the question, the assistant and whether it searches the web.
 
 ## What assistants look for
 
 - **Clarity.** One sentence that says who you are. Assistants repeat what is easy to summarise.
 - **Answers.** Pages that respond to real questions: prices, timings, processes, comparisons. Like these guides.
-- **Structure.** Clean HTML, clear headings, schema.org data (Organization, FAQ, Article) and an llms.txt file.
+- **Structure.** Clean HTML, clear headings, schema.org data (Organization, FAQ, Article). Structured data clarifies the text; it doesn’t replace it.
 - **Consistency.** The same name, description and contact details on your website, LinkedIn and directories.
 - **Authority.** Cases, clients, trade press and other sites that mention you.
 
@@ -32,7 +32,7 @@ A buyer types: “suppliers of thermal protection for EV batteries in Europe”.
 3. Publish real FAQs, with real answers.
 4. Publish guide prices and timings where you can.
 5. Add structured data to every page.
-6. Publish an llms.txt with a summary of the company.
+6. Optionally, publish an llms.txt with a summary of the company. Some AI tools read it; it doesn’t change Google rankings.
 7. Decide in robots.txt which AI crawlers can read your site.
 8. Make sure the content is in the HTML, not only loaded by JavaScript.
 9. Sign articles with an author and a date.
@@ -40,7 +40,7 @@ A buyer types: “suppliers of thermal protection for EV batteries in Europe”.
 
 ## What GEO can’t do
 
-There are no tricks, and nobody can guarantee a recommendation. It takes months, and it depends on what you have to say. A clear brand and useful content do most of the work.
+There are no tricks, and nobody can guarantee a recommendation. Visibility varies by assistant and by question. It takes months, and it depends on what you have to say. A clear brand and useful content do most of the work.
 
 ## How we did it on our own website
 
