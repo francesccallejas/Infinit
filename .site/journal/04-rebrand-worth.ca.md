@@ -62,7 +62,7 @@ Preneu una referència abans de començar i torneu-ho a mirar sis i dotze mesos 
 
 ## A la pràctica
 
-Relats desenvolupa solucions tècniques de protecció per a la mobilitat elèctrica, l’automoció i l’energia eòlica. La seva marca semblava la d’un proveïdor de peces. La vam reposicionar com a soci global en solucions innovadores i de seguretat — estratègia, identitat i una nova plataforma digital. [Vegeu el cas Relats](/ca/work/relats/).
+Relats desenvolupa solucions tècniques de protecció per a la mobilitat elèctrica, l’automoció i l’energia eòlica. La seva marca semblava la d’un proveïdor de peces. Una transformació de marca liderada per Cesc Callejas com a CDMO de Relats, amb Firma, la va reposicionar com a soci global en solucions innovadores i de seguretat — estratègia, identitat i una nova plataforma digital. [Vegeu el cas Relats](/ca/work/relats/).
 
 ## Preguntes freqüents
 

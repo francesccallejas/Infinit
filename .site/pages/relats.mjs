@@ -11,7 +11,7 @@ const LIVE = 'https://www.relats.com';
 const C = {
   en: {
     title: 'Relats — Rebranding & digital case study | INFINIT©',
-    desc: 'How INFINIT© repositioned Relats — strategy, identity and a new digital platform for a global leader in technical covering solutions for e-mobility.',
+    desc: 'Brand transformation led by Cesc Callejas as CDMO of Relats, in collaboration with Firma: strategy, identity and a new digital platform for a global leader in technical coverings.',
     h1: 'Staying ahead of <b>the curve.</b>', live: 'See it live ↗',
     meta: [['Client', 'Relats'], ['My role', 'CDMO — Brand Director & Project Lead'], ['Partner', 'In collaboration with Firma'], ['Sector', 'Sustainable mobility · Automotive · Energy'], ['Scope', 'Strategy · Identity · Digital']],
     whoL: 'Who is Relats', who: 'Relats protects what moves the world. From e-mobility and automotive to wind energy, it engineers innovative, safety-driven covering solutions trusted by industries across the globe.',
@@ -35,7 +35,7 @@ const C = {
   },
   ca: {
     title: 'Relats — Cas d’estudi de rebranding i digital | INFINIT©',
-    desc: 'Com INFINIT© va reposicionar Relats — estratègia, identitat i digital per a un líder global en solucions de protecció tècnica.',
+    desc: 'Transformació de marca liderada per Cesc Callejas com a CDMO de Relats, en col·laboració amb Firma: estratègia, identitat i digital per a un líder global en protecció tècnica.',
     h1: 'Un pas <b>per davant.</b>', live: 'Visita la web ↗',
     meta: [['Client', 'Relats'], ['El meu rol', 'CDMO — Director de marca i cap de projecte'], ['Partner', 'En col·laboració amb Firma'], ['Sector', 'Mobilitat sostenible · Automoció · Energia'], ['Abast', 'Estratègia · Identitat · Digital']],
     whoL: 'Qui és Relats', who: 'Relats protegeix allò que mou el món. De la mobilitat elèctrica i l’automoció a l’energia eòlica, desenvolupa solucions de protecció innovadores i centrades en la seguretat, en què confien indústries de tot el món.',
@@ -59,7 +59,7 @@ const C = {
   },
   es: {
     title: 'Relats — Caso de estudio de rebranding y digital | INFINIT©',
-    desc: 'Cómo INFINIT© reposicionó Relats — estrategia, identidad y digital para un líder global en soluciones de protección técnica.',
+    desc: 'Transformación de marca liderada por Cesc Callejas como CDMO de Relats, en colaboración con Firma: estrategia, identidad y digital para un líder global en protección técnica.',
     h1: 'Un paso <b>por delante.</b>', live: 'Visita la web ↗',
     meta: [['Cliente', 'Relats'], ['Mi rol', 'CDMO — Director de marca y jefe de proyecto'], ['Partner', 'En colaboración con Firma'], ['Sector', 'Movilidad sostenible · Automoción · Energía'], ['Alcance', 'Estrategia · Identidad · Digital']],
     whoL: 'Quién es Relats', who: 'Relats protege lo que mueve el mundo. De la movilidad eléctrica y la automoción a la energía eólica, desarrolla soluciones de protección innovadoras y centradas en la seguridad, en las que confían industrias de todo el mundo.',

@@ -267,7 +267,7 @@ ${projLines}
 - [Home (English)](${abs('en', 'home')}): studio overview, work, approach, services, contact
 - [Studio (English)](${abs('en', 'studio')}): beliefs, founder, experience
 - [Bunnker case study](${abs('en', 'bunnker')}): strategy, identity and digital for long-stay rentals — COAC Award
-- [Relats case study](${abs('en', 'relats')}): repositioning a global leader in technical covering solutions (automotive, e-mobility, energy)
+- [Relats case study](${abs('en', 'relats')}): brand transformation led by Cesc Callejas as CDMO of Relats, in collaboration with Firma — repositioning a global leader in technical covering solutions (automotive, e-mobility, energy)
 - [Induktor case study](${abs('en', 'induktor')}): a complete sim racing hardware brand delivered in 10 days — a symbol cut by the air gap of an induction motor, materials not colours
 ${[...Object.entries(INDUSTRIES), ...Object.entries(MOMENTS)].map(([k, C]) => `- [${C.en.lbl}](${abs('en', k)}): ${C.en.desc} (also in [Català](${abs('ca', k)}) and [Español](${abs('es', k)}))`).join('\n')}
 - [All sectors & services](${abs('en', 'sectors')})
