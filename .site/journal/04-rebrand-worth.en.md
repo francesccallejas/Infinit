@@ -62,7 +62,7 @@ Take a baseline before you start, and look again six and twelve months after lau
 
 ## In practice
 
-Relats engineers technical covering solutions for e-mobility, automotive and wind energy. Its brand read like a parts supplier. We repositioned it as a global partner in innovative, safety-driven solutions — strategy, identity and a new digital platform. [See the Relats case](/en/work/relats/).
+Relats engineers technical covering solutions for e-mobility, automotive and wind energy. Its brand read like a parts supplier. A brand transformation led by Cesc Callejas as CDMO of Relats, with Firma, repositioned it as a global partner in innovative, safety-driven solutions — strategy, identity and a new digital platform. [See the Relats case](/en/work/relats/).
 
 ## FAQ
 
